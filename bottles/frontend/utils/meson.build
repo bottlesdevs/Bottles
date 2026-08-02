@@ -7,6 +7,7 @@ bottles_sources = [
   'localization.py',
   'common.py',
   'filters.py',
+  'flatpak.py',
   'playtime.py',
   'sh.py',
   'sandbox_guard.py',

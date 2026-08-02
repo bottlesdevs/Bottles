@@ -151,11 +151,10 @@ class Manager(metaclass=Singleton):
                 "/run/user/" in user_bottles_path and "/doc/" in user_bottles_path
             )
             if is_portal_path:
-                # a transient document portal path is not usable across sessions
-                # and makes startup crash when it is no longer accessible
+                # Portal-backed paths are not reliable enough for bottle storage.
                 logging.error(
-                    f"Custom bottles path {user_bottles_path} is a temporary "
-                    f"portal path! Falling back to default path."
+                    f"Custom bottles path {user_bottles_path} uses the document "
+                    f"portal! Falling back to default path."
                 )
             elif os.path.isdir(user_bottles_path) and os.access(
                 user_bottles_path, os.W_OK

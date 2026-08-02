@@ -29,6 +29,7 @@ from bottles.backend.state import Task, TaskManager
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.common import format_runner_name
 from bottles.frontend.utils.filters import add_all_filters, add_yaml_filters
+from bottles.frontend.utils.flatpak import resolve_bottles_directory
 from bottles.frontend.utils.gtk import GtkUtils
 
 
@@ -206,21 +207,8 @@ class BottlesNewBottleDialog(Adw.Dialog):
             except GLib.Error:
                 return
 
-            path = folder.get_path()
-            if path and "/run/user/" in path and "/doc/" in path:
-                """
-                Folders reached through the document portal are exposed under a
-                temporary mount that does not survive a reboot. A bottle created
-                there would vanish and break on the next session, so reject the
-                selection and ask the user to pick a regular folder.
-                """
-                self.window.show_toast(
-                    _(
-                        "This folder is only available as a temporary location "
-                        "and would be lost after a reboot. Please choose a "
-                        "different folder."
-                    )
-                )
+            path = resolve_bottles_directory(self.window, folder.get_path())
+            if path is None:
                 return
 
             self.custom_path = path

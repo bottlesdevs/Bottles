@@ -25,8 +25,8 @@ from gi.repository import Adw, Gio, GLib, Gtk
 from bottles.backend.managers.data import DataManager, UserDataKeys
 from bottles.backend.state import EventManager, Events
 from bottles.backend.utils.generic import sort_by_version
-from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.threading import RunAsync
+from bottles.frontend.utils.flatpak import resolve_bottles_directory
 from bottles.frontend.utils.gtk import FONT_SCALE_VALUES
 from bottles.frontend.utils.localization import (
     UI_LANGUAGES,
@@ -357,19 +357,8 @@ class PreferencesWindow(Adw.PreferencesWindow):
             if response != Gtk.ResponseType.ACCEPT:
                 return
 
-            path = ManagerUtils.resolve_portal_path(dialog.get_file().get_path())
-
-            if path and "/run/user/" in path and "/doc/" in path:
-                # a transient document portal path cannot be used as the bottles
-                # directory: it would be lost on restart and break startup
-                self.add_toast(
-                    Adw.Toast.new(
-                        _(
-                            "That location is only available temporarily. Please "
-                            "choose a regular folder."
-                        )
-                    )
-                )
+            path = resolve_bottles_directory(self.window, dialog.get_file().get_path())
+            if path is None:
                 return
 
             self.data.set(UserDataKeys.CustomBottlesPath, path)
