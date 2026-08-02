@@ -142,6 +142,21 @@ class PreferencesView(Adw.PreferencesPage):
         self.queue = details.queue
         self.details = details
 
+        steam_runtimes = RuntimeManager.get_runtimes("steam")
+        self.row_steam_runtime.set_visible(True)
+        self.switch_steam_runtime.set_sensitive(bool(steam_runtimes))
+        if steam_runtimes:
+            self.switch_steam_runtime.connect(
+                "state-set", self.__toggle_feature_cb, "use_steam_runtime"
+            )
+        else:
+            self.row_steam_runtime.set_subtitle(
+                _(
+                    "Steam Runtime was not detected. Install it or grant Bottles "
+                    "access to Steam files, then restart Bottles."
+                )
+            )
+
         if not gamemode_available or not Xdp.Portal.running_under_sandbox():
             return
 
@@ -283,12 +298,6 @@ class PreferencesView(Adw.PreferencesPage):
         is_nvidia_gpu = GPUUtils.is_gpu(GPUVendors.NVIDIA)
         self.row_nvapi.set_visible(is_nvidia_gpu)
         self.combo_nvapi.set_visible(is_nvidia_gpu)
-
-        if RuntimeManager.get_runtimes("steam"):
-            self.row_steam_runtime.set_visible(True)
-            self.switch_steam_runtime.connect(
-                "state-set", self.__toggle_feature_cb, "use_steam_runtime"
-            )
 
         """Toggle some utilities according to its availability"""
         self.switch_gamemode.set_sensitive(gamemode_available)
