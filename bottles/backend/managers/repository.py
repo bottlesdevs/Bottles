@@ -16,6 +16,7 @@
 #
 
 import os
+from io import BytesIO
 
 import pycurl
 
@@ -27,6 +28,7 @@ from bottles.backend.repos.component import ComponentRepo
 from bottles.backend.repos.dependency import DependencyRepo
 from bottles.backend.repos.installer import InstallerRepo
 from bottles.backend.state import SignalManager, Signals
+from bottles.backend.utils import yaml
 from bottles.backend.utils.threading import RunAsync
 
 logging = Logger()
@@ -35,17 +37,26 @@ logging = Logger()
 class RepositoryManager:
     __repositories = {
         "components": {
-            "url": "https://proxy.usebottles.com/repo/components/",
+            "sources": (
+                "https://proxy.usebottles.com/repo/components/",
+                "https://raw.githubusercontent.com/bottlesdevs/components/5038c9e39fc90ed237587ce18796e832f917eab2/",
+            ),
             "index": "",
             "cls": ComponentRepo,
         },
         "dependencies": {
-            "url": "https://proxy.usebottles.com/repo/dependencies/",
+            "sources": (
+                "https://proxy.usebottles.com/repo/dependencies/",
+                "https://raw.githubusercontent.com/bottlesdevs/dependencies/2c0c19707c252d9ec49f1bf26ac4793fd041332b/",
+            ),
             "index": "",
             "cls": DependencyRepo,
         },
         "installers": {
-            "url": "https://proxy.usebottles.com/repo/programs/",
+            "sources": (
+                "https://proxy.usebottles.com/repo/programs/",
+                "https://raw.githubusercontent.com/bottlesdevs/programs/d1160b816ca44a1cc803ab9a0050071517cc1960/",
+            ),
             "index": "",
             "cls": InstallerRepo,
         },
@@ -56,6 +67,17 @@ class RepositoryManager:
         self.aborted_connections = 0
         SignalManager.connect(Signals.ForceStopNetworking, self.__stop_index)
         self.data = DataManager()
+        self.__repositories = {
+            name: {
+                **repository,
+                "sources": list(repository["sources"]),
+                "url": repository["sources"][0],
+                "cache_url": repository["sources"][0],
+                "index": "",
+                "catalog": None,
+            }
+            for name, repository in self.__repositories.items()
+        }
 
         self.__check_personals()
         if get_index:
@@ -74,6 +96,8 @@ class RepositoryManager:
                 repo["index"],
                 offline=offline,
                 callback_in_main_loop=callback_in_main_loop,
+                catalog_data=None if offline else repo["catalog"],
+                cache_url=repo["cache_url"],
             )
 
         logging.error(f"Repository {name} not found")
@@ -105,7 +129,9 @@ class RepositoryManager:
                 continue
 
             _url = _personals[repo]
+            self.__repositories[repo]["sources"] = [_url]
             self.__repositories[repo]["url"] = _url
+            self.__repositories[repo]["cache_url"] = _url
             logging.info(f"Using personal {repo} repository at {_url}")
 
     def __curl_progress(self, _download_t, _download_d, _upload_t, _upload_d):
@@ -127,43 +153,71 @@ class RepositoryManager:
         for repo, data in self.__repositories.items():
 
             def query(_repo, _data):
-                __index = os.path.join(_data["url"], f"{APP_VERSION}.yml")
-                __fallback = os.path.join(_data["url"], "index.yml")
+                for source in _data["sources"]:
+                    for filename in (f"{APP_VERSION}.yml", "index.yml"):
+                        if not self.do_get_index:
+                            break
 
-                for url in (__index, __fallback):
-                    c = pycurl.Curl()
-                    _proxy = os.environ.get("http_proxy") or os.environ.get("https_proxy")
-                    if _proxy:
-                        c.setopt(pycurl.PROXY, _proxy)
-                    c.setopt(c.URL, url)
-                    c.setopt(c.NOBODY, True)
-                    c.setopt(c.FOLLOWLOCATION, True)
-                    c.setopt(c.TIMEOUT, 10)
-                    c.setopt(c.NOPROGRESS, False)
-                    c.setopt(c.XFERINFOFUNCTION, self.__curl_progress)
-
-                    try:
-                        c.perform()
-                    except pycurl.error as e:
-                        if url is not __index:
+                        url = os.path.join(source, filename)
+                        buffer = BytesIO()
+                        c = pycurl.Curl()
+                        try:
+                            _proxy = os.environ.get("http_proxy") or os.environ.get(
+                                "https_proxy"
+                            )
+                            if _proxy:
+                                c.setopt(pycurl.PROXY, _proxy)
+                            c.setopt(c.URL, url)
+                            c.setopt(c.FOLLOWLOCATION, True)
+                            c.setopt(c.WRITEDATA, buffer)
+                            c.setopt(c.CONNECTTIMEOUT, 5)
+                            c.setopt(c.TIMEOUT, 10)
+                            c.setopt(c.NOPROGRESS, False)
+                            c.setopt(c.XFERINFOFUNCTION, self.__curl_progress)
+                            c.perform()
+                            response_code = c.getinfo(c.RESPONSE_CODE)
+                        except pycurl.error as e:
                             logging.error(
                                 f"Could not get index for {_repo} repository: {e}"
                             )
-                        continue
+                            if url.startswith("file://"):
+                                continue
+                            break
+                        finally:
+                            c.close()
 
-                    if url.startswith("file://") or c.getinfo(c.RESPONSE_CODE) == 200:
-                        _data["index"] = url
-                        SignalManager.send(
-                            Signals.RepositoryFetched, Result(True, data=total)
-                        )
+                        if url.startswith("file://") or response_code == 200:
+                            catalog = buffer.getvalue()
+                            try:
+                                parsed_catalog = yaml.load(catalog)
+                            except yaml.YAMLError:
+                                parsed_catalog = None
+                            if not isinstance(parsed_catalog, dict):
+                                logging.error(
+                                    f"Invalid index for {_repo} repository at {url}"
+                                )
+                                break
+
+                            _data["url"] = source
+                            _data["index"] = url
+                            _data["catalog"] = catalog
+                            SignalManager.send(
+                                Signals.RepositoryFetched, Result(True, data=total)
+                            )
+                            return
+
+                        if response_code != 404:
+                            logging.error(
+                                f"Could not get index for {_repo} repository: "
+                                f"HTTP {response_code}"
+                            )
+                            break
+
+                    if not self.do_get_index:
                         break
 
-                    c.close()
-                else:
-                    SignalManager.send(
-                        Signals.RepositoryFetched, Result(False, data=total)
-                    )
-                    logging.error(f"Could not get index for {_repo} repository")
+                SignalManager.send(Signals.RepositoryFetched, Result(False, data=total))
+                logging.error(f"Could not get index for {_repo} repository")
 
             thread = RunAsync(query, _repo=repo, _data=data)
             threads.append(thread)

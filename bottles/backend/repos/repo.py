@@ -40,10 +40,18 @@ class Repo:
         index: str,
         offline: bool = False,
         callback_in_main_loop: bool = True,
+        catalog_data: bytes | None = None,
+        cache_url: str | None = None,
     ):
         self.url = url
+        self.cache_url = cache_url or url
         self.offline = offline
         self.catalog = None
+
+        if catalog_data is not None and not offline:
+            self.catalog = self.__parse_catalog(catalog_data)
+            EventManager.done(Events(self.name + ".fetching"))
+            return
 
         def set_catalog(result, error=None):
             self.catalog = result
@@ -80,22 +88,31 @@ class Repo:
             finally:
                 c.close()
 
-            data = buffer.getvalue()
-            index = yaml.load(data)
-            if not isinstance(index, dict):
-                logging.error(f"Invalid catalog returned by {self.name} repository.")
-                return self.__read_cache(cache_path) or {}
-
-            self.__write_cache(cache_path, data)
-            logging.info(f"Catalog {self.name} loaded")
-
-            return index
+            return self.__parse_catalog(buffer.getvalue())
         except (pycurl.error, yaml.YAMLError):
             logging.error(f"Cannot fetch {self.name} repository index.")
             return self.__read_cache(cache_path) or {}
 
+    def __parse_catalog(self, data: bytes) -> dict:
+        cache_path = self.__get_cache_path("catalog.yml")
+        try:
+            index = yaml.load(data)
+        except yaml.YAMLError:
+            index = None
+        if not isinstance(index, dict):
+            logging.error(f"Invalid catalog returned by {self.name} repository.")
+            return self.__read_cache(cache_path) or {}
+
+        self.__write_cache(cache_path, data)
+        logging.info(f"Catalog {self.name} loaded")
+        return index
+
     def get_manifest(self, url: str, plain: bool = False) -> str | dict | bool:
-        cache_name = sha256(url.encode("utf-8")).hexdigest() + ".yml"
+        cache_url = url
+        canonical_url = getattr(self, "cache_url", self.url)
+        if url.startswith(self.url):
+            cache_url = canonical_url + url[len(self.url) :]
+        cache_name = sha256(cache_url.encode("utf-8")).hexdigest() + ".yml"
         cache_path = self.__get_cache_path(cache_name)
         if self.offline:
             return self.__read_cache(cache_path, plain=plain) or False
@@ -133,7 +150,8 @@ class Repo:
             return self.__read_cache(cache_path, plain=plain) or False
 
     def __get_cache_path(self, name: str) -> str:
-        repo_id = sha256(self.url.encode("utf-8")).hexdigest()[:16]
+        cache_url = getattr(self, "cache_url", self.url)
+        repo_id = sha256(cache_url.encode("utf-8")).hexdigest()[:16]
         return os.path.join(Paths.temp, "repositories", self.name, repo_id, name)
 
     @staticmethod
