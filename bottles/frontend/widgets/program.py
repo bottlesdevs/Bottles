@@ -459,7 +459,7 @@ class ProgramEntry(Adw.ActionRow):
         def update(_result=False, _error=False):
             if not _error:
                 ManagerUtils.remove_desktop_entry(self.config, self.program)
-            self.update_programs()
+            self.view_bottle.update_programs(config=self.config, force_update=True)
 
         RunAsync(
             task_func=uninstaller.from_name,
