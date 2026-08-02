@@ -87,6 +87,9 @@ class BottlesNewBottleDialog(Adw.Dialog):
 
     def __init__(self, **kwargs: Any) -> None:
         super().__init__(**kwargs)
+        self.combo_runner.set_list_factory(
+            GtkUtils.create_full_width_string_list_factory()
+        )
         # common variables and references
         self.window = GtkUtils.get_parent_window()
         if not self.window or not Xdp.Portal.running_under_sandbox():

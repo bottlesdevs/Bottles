@@ -142,6 +142,9 @@ class PreferencesView(Adw.PreferencesPage):
         self.config = config
         self.queue = details.queue
         self.details = details
+        self.combo_runner.set_list_factory(
+            GtkUtils.create_full_width_string_list_factory()
+        )
 
         steam_runtimes = RuntimeManager.get_runtimes("steam")
         self.row_steam_runtime.set_visible(True)
