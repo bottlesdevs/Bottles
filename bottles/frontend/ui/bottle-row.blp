@@ -1,6 +1,36 @@
 using Gtk 4.0;
 using Adw 1;
 
+Popover pop_order {
+  styles [
+    "menu",
+  ]
+
+  Box {
+    orientation: vertical;
+    margin-top: 6;
+    margin-bottom: 6;
+    margin-start: 6;
+    margin-end: 6;
+
+    $GtkModelButton button_move_top {
+      text: _("Move to Top");
+    }
+
+    $GtkModelButton button_move_up {
+      text: _("Move Up");
+    }
+
+    $GtkModelButton button_move_down {
+      text: _("Move Down");
+    }
+
+    $GtkModelButton button_move_bottom {
+      text: _("Move to Bottom");
+    }
+  }
+}
+
 template $BottlesBottleRow: Adw.ActionRow {
   activatable: true;
   use-markup: false;
@@ -18,6 +48,17 @@ template $BottlesBottleRow: Adw.ActionRow {
     halign: center;
     valign: center;
     icon-name: "system-run-symbolic";
+
+    styles [
+      "flat",
+    ]
+  }
+
+  MenuButton button_order {
+    valign: center;
+    popover: pop_order;
+    icon-name: "view-more-symbolic";
+    tooltip-text: _("Change Bottle Order");
 
     styles [
       "flat",
