@@ -351,9 +351,16 @@ class ManagerUtils:
             SignalManager.send(Signals.DesktopEntryCreated)
 
         def prepare_install_cb(self, result):
-            exec_cmd = "bottles-cli run -p {} -b {} -- %u".format(
+            launch_args = "run -p {} -b {} -- %u".format(
                 shlex.quote(program.get("name")), shlex.quote(config.get("Name"))
             )
+            flatpak_id = os.environ.get("FLATPAK_ID")
+            if flatpak_id:
+                exec_cmd = "flatpak run --command=bottles-cli {} {}".format(
+                    shlex.quote(flatpak_id), launch_args
+                )
+            else:
+                exec_cmd = f"bottles-cli {launch_args}"
 
             # Handle portal preparation failure (e.g., KDE's broken implementation)
             try:
