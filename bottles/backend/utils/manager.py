@@ -17,6 +17,7 @@
 import os
 import shlex
 import shutil
+from collections.abc import Callable
 from gettext import gettext as _
 from typing import Optional
 
@@ -24,7 +25,6 @@ import icoextract  # type: ignore [import-untyped]
 import gi
 
 from bottles.backend.params import APP_ID
-
 from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
@@ -315,6 +315,7 @@ class ManagerUtils:
         program: dict,
         skip_icon: bool = False,
         custom_icon: str = "",
+        callback: Callable[[Result], None] | None = None,
     ):
         icon = "com.usebottles.bottles-program"
 
@@ -324,6 +325,12 @@ class ManagerUtils:
             )
         elif custom_icon:
             icon = custom_icon
+
+        def notify(result: Result) -> None:
+            if callback:
+                callback(result)
+                return
+            SignalManager.send(Signals.DesktopEntryCreated, result)
 
         def create_manual_fallback(icon_path, exec_cmd):
             """Create desktop entry manually when portal is unavailable."""
@@ -339,16 +346,20 @@ class ManagerUtils:
                 f"Name={program.get('name')}\n"
                 f"Icon={icon_path}\n"
             )
+            paths = []
+            errors = []
 
             # Write to application menu
             apps_dir = os.path.expanduser("~/.local/share/applications")
-            os.makedirs(apps_dir, exist_ok=True)
             apps_path = os.path.join(apps_dir, filename)
             try:
+                os.makedirs(apps_dir, exist_ok=True)
                 with open(apps_path, "w") as f:
                     f.write(content)
+                paths.append(apps_path)
                 logging.info(f"Desktop entry created at {apps_path}")
-            except Exception as e:
+            except OSError as e:
+                errors.append(str(e))
                 logging.error(f"Failed to write desktop entry to applications: {e}")
 
             # Write to desktop surface
@@ -362,11 +373,19 @@ class ManagerUtils:
                         f.write(content)
                     # Make executable so KDE/GNOME will run it
                     os.chmod(desktop_path, 0o755)
+                    paths.append(desktop_path)
                     logging.info(f"Desktop shortcut created at {desktop_path}")
-                except Exception as e:
+                except OSError as e:
+                    errors.append(str(e))
                     logging.error(f"Failed to write desktop shortcut: {e}")
 
-            SignalManager.send(Signals.DesktopEntryCreated)
+            notify(
+                Result(
+                    status=bool(paths),
+                    data={"method": "manual", "paths": paths},
+                    message="\n".join(errors),
+                )
+            )
 
         def prepare_install_cb(self, result):
             launch_args = "run -p {} -b {} -- %u".format(
@@ -407,7 +426,7 @@ class ManagerUtils:
                         exec_cmd, program.get("name"), program.get("executable").lower()
                     ),
                 )
-                SignalManager.send(Signals.DesktopEntryCreated)
+                notify(Result(status=True, data={"method": "portal"}))
             except GLib.Error as e:
                 logging.warning(
                     f"Dynamic Launcher portal install failed: {e}. "

@@ -32,6 +32,7 @@ from gi.repository import Gio
 Gio.resources_register(Gio.Resource.load(str(resource_bundle)))
 
 from bottles.backend.models.config import BottleConfig
+from bottles.backend.models.result import Result
 from bottles.frontend.views import bottle_details
 from bottles.frontend.views.bottle_details import BottleView
 from bottles.frontend.widgets import program as program_module
@@ -45,6 +46,115 @@ class Button:
 
     def set_visible(self, visible):
         self.visible = visible
+
+
+def desktop_program_entry():
+    toasts = []
+    return (
+        SimpleNamespace(
+            window=SimpleNamespace(show_toast=toasts.append),
+            config=object(),
+            program={
+                "name": "Test Program",
+                "executable": "test.exe",
+                "path": "/test.exe",
+            },
+        ),
+        toasts,
+    )
+
+
+def test_add_entry_reports_portal_success(monkeypatch):
+    entry, toasts = desktop_program_entry()
+
+    def create_desktop_entry(**kwargs):
+        kwargs["callback"](Result(True, {"method": "portal"}))
+
+    monkeypatch.setattr(
+        program_module.ManagerUtils,
+        "create_desktop_entry",
+        create_desktop_entry,
+    )
+
+    ProgramEntry.add_entry(entry, None)
+
+    assert toasts == ['Desktop Entry created for "Test Program"']
+
+
+def test_add_entry_warns_after_manual_fallback(monkeypatch):
+    entry, toasts = desktop_program_entry()
+    warnings = []
+
+    def create_desktop_entry(**kwargs):
+        kwargs["callback"](
+            Result(True, {"method": "manual", "paths": ["/test.desktop"]})
+        )
+
+    monkeypatch.setattr(
+        program_module.ManagerUtils,
+        "create_desktop_entry",
+        create_desktop_entry,
+    )
+    monkeypatch.setattr(
+        ProgramEntry,
+        "_ProgramEntry__show_desktop_entry_fallback",
+        lambda _self, result: warnings.append(result),
+    )
+
+    ProgramEntry.add_entry(entry, None)
+
+    assert toasts == []
+    assert warnings[0].data["method"] == "manual"
+
+
+def test_add_entry_warns_after_manual_fallback_failure(monkeypatch):
+    entry, toasts = desktop_program_entry()
+    warnings = []
+
+    def create_desktop_entry(**kwargs):
+        kwargs["callback"](Result(False, {"method": "manual", "paths": []}))
+
+    monkeypatch.setattr(
+        program_module.ManagerUtils,
+        "create_desktop_entry",
+        create_desktop_entry,
+    )
+    monkeypatch.setattr(
+        ProgramEntry,
+        "_ProgramEntry__show_desktop_entry_fallback",
+        lambda _self, result: warnings.append(result),
+    )
+
+    ProgramEntry.add_entry(entry, None)
+
+    assert toasts == []
+    assert warnings[0].status is False
+
+
+def test_flatpak_fallback_guidance_requires_restart():
+    title, description, command = (
+        ProgramEntry._ProgramEntry__desktop_entry_fallback_content(
+            Result(False, {"method": "manual", "paths": []}),
+            "com.usebottles.bottles.Devel",
+        )
+    )
+
+    assert title == "Desktop Entry Could Not Be Created"
+    assert "Close Bottles" in description
+    assert "reopen Bottles" in description
+    assert command.endswith("com.usebottles.bottles.Devel")
+
+
+def test_native_fallback_guidance_does_not_show_flatpak_command():
+    _title, description, command = (
+        ProgramEntry._ProgramEntry__desktop_entry_fallback_content(
+            Result(False, {"method": "manual", "paths": []}),
+            None,
+        )
+    )
+
+    assert "writable" in description
+    assert command is None
 
 
 def steam_config():

@@ -21,14 +21,13 @@ import time
 import webbrowser
 from gettext import gettext as _
 
-from gi.repository import Adw, GLib, Gtk
+from gi.repository import Adw, Gdk, GLib, Gtk
 
 from bottles.backend.managers.data import DataManager, UserDataKeys
 from bottles.backend.managers.eagle import EagleManager
 from bottles.backend.managers.library import LibraryManager
 from bottles.backend.managers.steam import SteamManager
 from bottles.backend.models.result import Result
-from bottles.backend.state import SignalManager, Signals
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.threading import RunAsync
 from bottles.backend.wine.executor import WineExecutor
@@ -41,8 +40,6 @@ from bottles.frontend.utils.sandbox_guard import guard_sandbox_launch
 from bottles.frontend.windows.launchoptions import LaunchOptionsDialog
 from bottles.frontend.windows.playtimegraph import PlaytimeGraphDialog
 from bottles.frontend.windows.rename import RenameDialog
-
-from typing import Optional
 
 
 # noinspection PyUnusedLocal
@@ -573,6 +570,21 @@ class ProgramEntry(Adw.ActionRow):
         self.pop_actions.popdown()  # workaround #1640
 
     def add_entry(self, _widget):
+        def _on_desktop_entry_created(data: Result | None = None) -> None:
+            if data and data.data and data.data.get("method") == "manual":
+                ProgramEntry.__show_desktop_entry_fallback(self, data)
+                return
+            if not data or not data.status:
+                self.window.show_toast(
+                    _('Could not create a Desktop Entry for "{0}"').format(
+                        self.program["name"]
+                    )
+                )
+                return
+            self.window.show_toast(
+                _('Desktop Entry created for "{0}"').format(self.program["name"])
+            )
+
         ManagerUtils.create_desktop_entry(
             config=self.config,
             program={
@@ -580,14 +592,84 @@ class ProgramEntry(Adw.ActionRow):
                 "executable": self.program["executable"],
                 "path": self.program["path"],
             },
+            callback=_on_desktop_entry_created,
         )
 
-        def _on_desktop_entry_created(data: Optional[Result] = None) -> None:
-            self.window.show_toast(
-                _('Desktop Entry created for "{0}"').format(self.program["name"])
-            )
+    def __show_desktop_entry_fallback(self, result: Result) -> None:
+        title, description, command = ProgramEntry.__desktop_entry_fallback_content(
+            result, os.environ.get("FLATPAK_ID")
+        )
 
-        SignalManager.connect(Signals.DesktopEntryCreated, _on_desktop_entry_created)
+        dialog = Adw.MessageDialog.new(self.window, title, description)
+        if command:
+            command_box = Gtk.Box(spacing=6)
+            command_box.set_margin_top(6)
+
+            command_entry = Gtk.Entry()
+            command_entry.set_editable(False)
+            command_entry.set_hexpand(True)
+            command_entry.set_text(command)
+            command_entry.add_css_class("monospace")
+
+            copy_button = Gtk.Button.new_from_icon_name("edit-copy-symbolic")
+            copy_button.set_tooltip_text(_("Copy command"))
+
+            def copy_command(*_args):
+                display = Gdk.Display.get_default()
+                if display:
+                    display.get_clipboard().set_content(
+                        Gdk.ContentProvider.new_for_value(command)
+                    )
+
+            copy_button.connect("clicked", copy_command)
+            command_box.append(command_entry)
+            command_box.append(copy_button)
+            dialog.set_extra_child(command_box)
+
+        dialog.add_response("close", _("_Close"))
+        dialog.present()
+
+    @staticmethod
+    def __desktop_entry_fallback_content(
+        result: Result, app_id: str | None
+    ) -> tuple[str, str, str | None]:
+        if result.status:
+            title = _("Desktop Entry Created Manually")
+            if app_id:
+                description = _(
+                    "The desktop portal was unavailable, so Bottles used its "
+                    "manual fallback. If the entry does not appear, close "
+                    "Bottles, run the command below, reopen Bottles and try again."
+                )
+            else:
+                description = _(
+                    "The desktop portal was unavailable, so Bottles used its "
+                    "manual fallback. If the entry does not appear, check the "
+                    "permissions of your desktop entry folders and try again."
+                )
+        else:
+            title = _("Desktop Entry Could Not Be Created")
+            if app_id:
+                description = _(
+                    "The desktop portal and the manual fallback both failed. "
+                    "Close Bottles, run the command below, reopen Bottles and "
+                    "try again."
+                )
+            else:
+                description = _(
+                    "The desktop portal and the manual fallback both failed. "
+                    "Check that your desktop entry folders are writable and "
+                    "try again."
+                )
+
+        command = None
+        if app_id:
+            command = (
+                "flatpak override --user "
+                "--filesystem=xdg-data/applications:create "
+                f"--filesystem=xdg-desktop:create {app_id}"
+            )
+        return title, description, command
 
     def add_to_library(self, _widget):
         def update(_result, _error=False):
