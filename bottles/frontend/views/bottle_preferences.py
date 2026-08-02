@@ -43,6 +43,7 @@ from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.threading import RunAsync
 from bottles.backend.utils.vulkan import VulkanUtils
 from bottles.backend.wine.regkeys import RegKeys
+from bottles.frontend.utils.common import format_runner_name
 from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.windows.display import DisplayDialog
 from bottles.frontend.windows.dlloverrides import DLLOverridesDialog
@@ -508,7 +509,7 @@ class PreferencesView(Adw.PreferencesPage):
             self.str_list_vkd3d.append(vkd3d)
 
         for index, runner in enumerate(self.manager.runners_available):
-            self.str_list_runner.append(runner)
+            self.str_list_runner.append(format_runner_name(runner))
 
         for index, nvapi in enumerate(self.manager.nvapi_available):
             self.str_list_nvapi.append(nvapi)

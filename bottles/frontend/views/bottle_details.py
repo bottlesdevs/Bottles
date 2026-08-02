@@ -41,7 +41,7 @@ from bottles.backend.wine.wineboot import WineBoot
 from bottles.backend.wine.winecfg import WineCfg
 from bottles.backend.wine.winedbg import WineDbg
 from bottles.backend.wine.wineserver import WineServer
-from bottles.frontend.utils.common import open_doc_url
+from bottles.frontend.utils.common import format_runner_name, open_doc_url
 from bottles.frontend.utils.filters import add_all_filters, add_executable_filters
 from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.utils.playtime import PlaytimeService
@@ -285,7 +285,7 @@ class BottleView(Adw.PreferencesPage):
 
         # set name and runner
         self.label_name.set_text(self.config.Name)
-        self.label_runner.set_text(self.config.Runner)
+        self.label_runner.set_text(format_runner_name(self.config.Runner))
 
         # set environment
         self.label_environment.set_text(_(self.config.Environment))

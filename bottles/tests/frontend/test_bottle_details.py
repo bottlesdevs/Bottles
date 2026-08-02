@@ -14,14 +14,56 @@ from bottles.frontend.views.bottle_details import BottleView
 
 
 class WidgetStub:
-    def set_text(self, _text):
-        pass
+    def __init__(self):
+        self.text = None
+
+    def set_text(self, text):
+        self.text = text
 
     def set_tooltip_text(self, _text):
         pass
 
     def set_visible(self, _visible):
         pass
+
+
+def test_flatpak_system_runner_uses_builtin_label(monkeypatch):
+    runner_label = WidgetStub()
+    widget = WidgetStub()
+    config = BottleConfig(
+        Name="Test",
+        Runner="sys-wine-11.0",
+        Environment="Gaming",
+        Update_Date="2026-01-01 00:00:00.000000",
+    )
+    view = SimpleNamespace(
+        manager=SimpleNamespace(
+            runners_available=["sys-wine-11.0"],
+            versioning_manager=SimpleNamespace(needs_migration=lambda _config: False),
+        ),
+        label_name=widget,
+        label_arch=widget,
+        label_runner=runner_label,
+        label_environment=widget,
+        dot_versioning=widget,
+        btn_versioning_badge=widget,
+        label_state=widget,
+        _BottleView__update_by_env=lambda: None,
+        _BottleView__set_steam_rules=lambda: None,
+        update_programs=lambda: None,
+        populate_updates=lambda: None,
+    )
+    monkeypatch.setenv("FLATPAK_ID", "com.usebottles.bottles")
+    monkeypatch.setattr(
+        bottle_details.ManagerUtils,
+        "get_bottle_path",
+        lambda _config: "/tmp/test-bottle",
+    )
+    monkeypatch.setattr(bottle_details.os.path, "exists", lambda _path: False)
+
+    BottleView.set_config(view, config)
+
+    assert runner_label.text == "Built-in Wine 11.0"
 
 
 def test_missing_runner_dialog_waits_for_versioning_upgrade(monkeypatch):
