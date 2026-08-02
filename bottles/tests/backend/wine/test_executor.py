@@ -7,6 +7,7 @@ import pytest
 from bottles.backend.dlls.dxvk import DXVKComponent
 from bottles.backend.models.config import BottleConfig, BottleParams
 from bottles.backend.models.result import Result
+from bottles.backend.models.samples import Samples
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.executor import WineExecutor
 from bottles.backend.wine.winecommand import WineCommand, WineEnv
@@ -245,6 +246,14 @@ def test_wine_env_respects_allowed_keys(monkeypatch):
 
     assert resolved["KEEP_ONLY"] == "1"
     assert "DROP_ME" not in resolved
+
+
+def test_default_wine_environment_inherits_xmodifiers(monkeypatch):
+    monkeypatch.setenv("XMODIFIERS", "@im=fcitx")
+
+    env = WineEnv(allowed_keys=Samples.default_inherited_environment)
+
+    assert env.get()["envs"]["XMODIFIERS"] == "@im=fcitx"
 
 
 def test_winecommand_filters_host_environment(monkeypatch, tmp_path):

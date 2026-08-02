@@ -52,3 +52,4 @@ def test_create_bottle_applies_sandbox_before_wineboot(monkeypatch, tmp_path, sa
 
     assert result.ok is False
     assert captured["config"].Parameters.sandbox is sandbox
+    assert "XMODIFIERS" in captured["config"].Inherited_Environment_Variables

@@ -10,6 +10,33 @@ from typing import IO, Container, Dict, ItemsView, List, Optional
 from bottles.backend.models.result import Result
 from bottles.backend.utils import yaml
 
+_LEGACY_DEFAULT_INHERITED_ENVIRONMENT = [
+    "DBUS_SESSION_BUS_ADDRESS",
+    "DISPLAY",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "LC_CTYPE",
+    "LC_MESSAGES",
+    "MANGOHUD_CONFIG",
+    "PATH",
+    "PULSE_SERVER",
+    "TERM",
+    "TZ",
+    "USER",
+    "WAYLAND_DISPLAY",
+    "XAUTHORITY",
+    "XDG_RUNTIME_DIR",
+]
+_LEGACY_DEFAULT_INHERITED_ENVIRONMENTS = [
+    [
+        name
+        for name in _LEGACY_DEFAULT_INHERITED_ENVIRONMENT
+        if name != "MANGOHUD_CONFIG"
+    ],
+    _LEGACY_DEFAULT_INHERITED_ENVIRONMENT,
+]
+
 # class name prefix "Bottle" is a workaround for:
 # https://github.com/python/cpython/issues/90104
 
@@ -254,6 +281,17 @@ class BottleConfig(DictCompatMixIn):
             data["Parameters"] = {}
         if "Sandbox" not in data:
             data["Sandbox"] = {}
+
+        inherited_environment = data.get("Inherited_Environment_Variables")
+        if (
+            data.get("Limit_System_Environment")
+            and inherited_environment in _LEGACY_DEFAULT_INHERITED_ENVIRONMENTS
+        ):
+            logging.warning("Adding XMODIFIERS to inherited environment defaults")
+            data["Inherited_Environment_Variables"] = [
+                *inherited_environment,
+                "XMODIFIERS",
+            ]
 
         # migrate old fsr_level key to fsr_sharpening_strength
         # TODO: remove after some time
