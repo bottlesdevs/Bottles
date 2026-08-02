@@ -102,11 +102,18 @@ class ManagerUtils:
     def resolve_portal_path(path: str) -> str:
         """
         Resolve a document portal path (/run/user/<uid>/doc/<id>/...) to its real
-        host path through the Documents portal. These paths are transient: the
-        document id changes between sessions, so storing one (e.g. a program
-        shortcut on a read-only filesystem) breaks the entry on the next launch.
-        Returns the original path unchanged on any failure.
+        host path through the Documents portal when the host path is accessible
+        inside the sandbox. Returns the original path unchanged on any failure.
         """
+        if not path or "/run/user/" not in path or "/doc/" not in path:
+            return path
+
+        resolved = ManagerUtils.get_portal_host_path(path)
+        return resolved if resolved and os.path.exists(resolved) else path
+
+    @staticmethod
+    def get_portal_host_path(path: str) -> Optional[str]:
+        """Return the host path represented by a document portal path."""
         if not path or "/run/user/" not in path or "/doc/" not in path:
             return path
 
@@ -138,7 +145,7 @@ class ManagerUtils:
                 ).unpack()[0]
             )
             if not mount or not path.startswith(mount + "/"):
-                return path
+                return None
 
             doc_id, _, remainder = path[len(mount) + 1 :].partition("/")
 
@@ -150,18 +157,21 @@ class ManagerUtils:
                 None,
             ).unpack()[0]
             if doc_id not in hosts:
-                return path
+                return None
 
             host = _to_str(hosts[doc_id])
-            if remainder and os.path.basename(host) != remainder.rstrip("/"):
-                resolved = os.path.join(host, remainder)
-            else:
-                resolved = host
-
-            return resolved if os.path.exists(resolved) else path
+            exported_name, _, nested_path = remainder.partition("/")
+            if exported_name and os.path.basename(host) != exported_name:
+                return None
+            if nested_path:
+                resolved = os.path.normpath(os.path.join(host, nested_path))
+                if os.path.commonpath((host, resolved)) != os.path.normpath(host):
+                    return None
+                return resolved
+            return host
         except Exception as e:
             logging.warning(f"Could not resolve document portal path: {e}")
-            return path
+            return None
 
     @staticmethod
     def get_runner_path(runner: str) -> str:

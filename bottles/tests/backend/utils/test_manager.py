@@ -1,6 +1,7 @@
 """Unit tests for ManagerUtils."""
 
 import shlex
+from types import SimpleNamespace
 
 import pytest
 
@@ -76,6 +77,104 @@ def test_desktop_entry_uses_host_launch_command(
         "--",
         "%u",
     ]
+
+
+class PortalProxyStub:
+    def __init__(self, mount, host_paths):
+        self.mount = mount
+        self.host_paths = host_paths
+
+    def call_sync(self, method, *_args):
+        if method == "GetMountPoint":
+            return SimpleNamespace(unpack=lambda: (self.mount,))
+        if method == "GetHostPaths":
+            return SimpleNamespace(unpack=lambda: (self.host_paths,))
+        raise AssertionError(method)
+
+
+def test_get_portal_host_path_resolves_exported_directory(monkeypatch):
+    proxy = PortalProxyStub(
+        b"/run/user/1000/doc\x00",
+        {"document-id": b"/media/Games/My Bottles\x00"},
+    )
+    monkeypatch.setattr(manager.Gio, "bus_get_sync", lambda *_args: object())
+    monkeypatch.setattr(manager.Gio.DBusProxy, "new_sync", lambda *_args: proxy)
+
+    assert (
+        ManagerUtils.get_portal_host_path("/run/user/1000/doc/document-id/My Bottles")
+        == "/media/Games/My Bottles"
+    )
+
+
+def test_get_portal_host_path_preserves_nested_path(monkeypatch):
+    proxy = PortalProxyStub(
+        b"/run/user/1000/doc\x00",
+        {"document-id": b"/media/Games/My Bottles\x00"},
+    )
+    monkeypatch.setattr(manager.Gio, "bus_get_sync", lambda *_args: object())
+    monkeypatch.setattr(manager.Gio.DBusProxy, "new_sync", lambda *_args: proxy)
+
+    assert (
+        ManagerUtils.get_portal_host_path(
+            "/run/user/1000/doc/document-id/My Bottles/drive_c/game.exe"
+        )
+        == "/media/Games/My Bottles/drive_c/game.exe"
+    )
+
+
+def test_get_portal_host_path_rejects_mismatched_export_name(monkeypatch):
+    proxy = PortalProxyStub(
+        b"/run/user/1000/doc\x00",
+        {"document-id": b"/media/Games/My Bottles\x00"},
+    )
+    monkeypatch.setattr(manager.Gio, "bus_get_sync", lambda *_args: object())
+    monkeypatch.setattr(manager.Gio.DBusProxy, "new_sync", lambda *_args: proxy)
+
+    assert (
+        ManagerUtils.get_portal_host_path("/run/user/1000/doc/document-id/Other Folder")
+        is None
+    )
+
+
+def test_get_portal_host_path_rejects_parent_traversal(monkeypatch):
+    proxy = PortalProxyStub(
+        b"/run/user/1000/doc\x00",
+        {"document-id": b"/media/Games/My Bottles\x00"},
+    )
+    monkeypatch.setattr(manager.Gio, "bus_get_sync", lambda *_args: object())
+    monkeypatch.setattr(manager.Gio.DBusProxy, "new_sync", lambda *_args: proxy)
+
+    assert (
+        ManagerUtils.get_portal_host_path(
+            "/run/user/1000/doc/document-id/My Bottles/../../Other"
+        )
+        is None
+    )
+
+
+def test_resolve_portal_path_keeps_unavailable_portal_path(monkeypatch):
+    portal_path = "/run/user/1000/doc/document-id/My Bottles"
+    monkeypatch.setattr(
+        ManagerUtils,
+        "get_portal_host_path",
+        lambda _path: "/media/Games/My Bottles",
+    )
+    monkeypatch.setattr(manager.os.path, "exists", lambda _path: False)
+
+    assert ManagerUtils.resolve_portal_path(portal_path) == portal_path
+
+
+def test_resolve_portal_path_returns_accessible_host_path(monkeypatch):
+    portal_path = "/run/user/1000/doc/document-id/My Bottles"
+    host_path = "/media/Games/My Bottles"
+    monkeypatch.setattr(
+        ManagerUtils,
+        "get_portal_host_path",
+        lambda _path: host_path,
+    )
+    monkeypatch.setattr(manager.os.path, "exists", lambda path: path == host_path)
+
+    assert ManagerUtils.resolve_portal_path(portal_path) == host_path
 
 
 def test_desktop_entry_id_matches_dynamic_launcher_format(monkeypatch):
