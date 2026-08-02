@@ -16,6 +16,7 @@
 #
 
 import os
+import shutil
 import subprocess
 from datetime import datetime
 from glob import glob
@@ -33,38 +34,40 @@ class ImportManager:
         self.manager = manager
 
     @staticmethod
-    def search_wineprefixes() -> Result:
+    def search_wineprefixes(selected_paths=None) -> Result:
         """Look and return all 3rd party available wine prefixes"""
         importer_wineprefixes = []
 
         # search wine prefixes in external managers paths
-        wine_standard = glob(TrdyPaths.wine)
-        lutris_results = glob(f"{TrdyPaths.lutris}/*/")
-        playonlinux_results = glob(f"{TrdyPaths.playonlinux}/*/")
-        bottlesv1_results = glob(f"{TrdyPaths.bottlesv1}/*/")
+        results = [(path, "Legacy Wine") for path in glob(TrdyPaths.wine)]
+        results += [(path, "Lutris") for path in glob(f"{TrdyPaths.lutris}/*/")]
+        results += [
+            (path, "PlayOnLinux") for path in glob(f"{TrdyPaths.playonlinux}/*/")
+        ]
+        results += [(path, "Bottles v1") for path in glob(f"{TrdyPaths.bottlesv1}/*/")]
 
-        results = (
-            wine_standard + lutris_results + playonlinux_results + bottlesv1_results
-        )
-
-        # count results
-        is_wine = len(wine_standard)
-        is_lutris = len(lutris_results)
-        is_playonlinux = len(playonlinux_results)
-        i = 1
-
-        for wineprefix in results:
-            wineprefix_name = wineprefix.split("/")[-2]
-
-            # identify manager by index
-            if i <= is_wine:
-                wineprefix_manager = "Legacy Wine"
-            elif i <= is_wine + is_lutris:
-                wineprefix_manager = "Lutris"
-            elif i <= is_wine + is_lutris + is_playonlinux:
-                wineprefix_manager = "PlayOnLinux"
+        for selected_path in selected_paths or []:
+            selected_path = os.path.normpath(selected_path)
+            if os.path.isdir(os.path.join(selected_path, "drive_c")):
+                results.append((selected_path, "Manual"))
             else:
-                wineprefix_manager = "Bottles v1"
+                try:
+                    with os.scandir(selected_path) as entries:
+                        results += [
+                            (entry.path, "Manual")
+                            for entry in entries
+                            if entry.is_dir()
+                        ]
+                except OSError:
+                    pass
+
+        seen = set()
+        for wineprefix, wineprefix_manager in results:
+            wineprefix = os.path.normpath(wineprefix)
+            if wineprefix in seen:
+                continue
+            seen.add(wineprefix)
+            wineprefix_name = os.path.basename(wineprefix)
 
             # check the drive_c path exists
             if os.path.isdir(os.path.join(wineprefix, "drive_c")):
@@ -79,7 +82,6 @@ class ImportManager:
                         "Lock": wineprefix_lock,
                     }
                 )
-            i += 1
 
         logging.info(f"Found {len(importer_wineprefixes)} wine prefixes…")
 
@@ -99,13 +101,21 @@ class ImportManager:
             logging.error(f"Error creating bottle directory for {wineprefix['Name']}")
             return Result(False)
 
-        # create lockfile in source path
-        logging.info(f"Creating lock file in {wineprefix['Path']}…")
-        open(f"{wineprefix.get('Path')}/bottle.lock", "a").close()
-
         # copy wineprefix files in the new bottle
-        command = f"cp -a {wineprefix.get('Path')}/* {bottle_complete_path}/"
-        subprocess.Popen(command, shell=True).communicate()
+        try:
+            subprocess.run(
+                [
+                    "cp",
+                    "-a",
+                    os.path.join(wineprefix["Path"], "."),
+                    bottle_complete_path,
+                ],
+                check=True,
+            )
+        except (OSError, subprocess.CalledProcessError) as error:
+            logging.error(f"Error copying wine prefix {wineprefix['Name']}: {error}")
+            shutil.rmtree(bottle_complete_path, ignore_errors=True)
+            return Result(False)
 
         # create bottle config
         new_config = BottleConfig()
@@ -119,7 +129,15 @@ class ImportManager:
         # save config
         saved = new_config.dump(os.path.join(bottle_complete_path, "bottle.yml"))
         if not saved.status:
+            shutil.rmtree(bottle_complete_path, ignore_errors=True)
             return Result(False)
+
+        # mark the source as imported when it is writable
+        try:
+            with open(os.path.join(wineprefix["Path"], "bottle.lock"), "a"):
+                pass
+        except OSError as error:
+            logging.warning(f"Could not mark the source prefix as imported: {error}")
 
         # update bottles view
         self.manager.update_bottles(silent=True)
