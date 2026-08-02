@@ -219,6 +219,59 @@ def test_manager_rejects_file_as_custom_bottles_path(monkeypatch, tmp_path):
     assert default_path.is_dir()
 
 
+@pytest.mark.parametrize(
+    ("environment", "runners", "expected"),
+    [
+        ("Gaming", ["soda-11.0-1", "sys-wine-11.0"], "sys-wine-11.0"),
+        ("Gaming", ["soda-11.0-1"], "sys-wine-10.20"),
+        (
+            "Gaming",
+            ["soda-11.0-1", "sys-wine-11.0", "sys-wine-current"],
+            "sys-wine-10.20",
+        ),
+        ("Steam", ["soda-11.0-1", "sys-wine-11.0"], "sys-wine-10.20"),
+    ],
+)
+def test_check_bottles_updates_versioned_system_runner(
+    mocker, monkeypatch, tmp_path, environment, runners, expected
+):
+    bottles_path = tmp_path / "bottles"
+    bottle_path = bottles_path / "Test"
+    bottle_path.mkdir(parents=True)
+    config_path = bottle_path / "bottle.yml"
+    BottleConfig(
+        Name="Test",
+        Path="Test",
+        Runner="sys-wine-10.20",
+        Environment=environment,
+        session_arguments="--from-desktop",
+        run_in_terminal=True,
+    ).dump(str(config_path))
+
+    manager = object.__new__(Manager)
+    manager.runners_available = runners
+    manager.settings = GSettingsStub()
+    manager.is_cli = True
+    manager.steam_manager = mocker.Mock(is_steam_supported=False)
+    wineboot = mocker.patch.object(manager_module, "WineBoot")
+    wineserver = mocker.patch.object(manager_module, "WineServer")
+    apply_rules = mocker.patch.object(manager_module.RegistryRuleManager, "apply_rules")
+    monkeypatch.setattr(manager_module.Paths, "bottles", str(bottles_path))
+
+    manager.check_bottles(silent=True)
+
+    assert manager.local_bottles["Test"].Runner == expected
+    assert manager.local_bottles["Test"].session_arguments == ""
+    assert manager.local_bottles["Test"].run_in_terminal is False
+    persisted = BottleConfig.load(str(config_path)).data
+    assert persisted.Runner == expected
+    assert persisted.session_arguments == "--from-desktop"
+    assert persisted.run_in_terminal is True
+    wineboot.assert_not_called()
+    wineserver.assert_not_called()
+    apply_rules.assert_not_called()
+
+
 def test_get_programs_preserves_per_program_runtime_options(monkeypatch):
     class Settings:
         @staticmethod
