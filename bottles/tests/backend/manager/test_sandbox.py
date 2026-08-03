@@ -28,6 +28,26 @@ def test_flatpak_input_capability(monkeypatch, tmp_path, version, devices, suppo
     assert SandboxManager.supports_input_devices() is supported
 
 
+@pytest.mark.parametrize(
+    ("version", "devices", "supported"),
+    [
+        ("1.16.6", "all;", False),
+        ("1.17.1", "all;", True),
+        ("1.17.1", "usb;", True),
+        ("1.18.0", "dri;", False),
+    ],
+)
+def test_flatpak_usb_capability(monkeypatch, tmp_path, version, devices, supported):
+    flatpak_info = tmp_path / "flatpak-info"
+    flatpak_info.write_text(
+        f"[Instance]\nflatpak-version={version}\n[Context]\ndevices={devices}\n"
+    )
+    monkeypatch.setenv("FLATPAK_ID", "com.usebottles.bottles")
+    monkeypatch.setattr(sandbox_module, "FLATPAK_INFO", str(flatpak_info))
+
+    assert SandboxManager.supports_usb_devices() is supported
+
+
 def test_flatpak_input_flag_requires_capability(monkeypatch):
     monkeypatch.setenv("FLATPAK_ID", "com.usebottles.bottles")
     monkeypatch.setattr(
@@ -87,6 +107,45 @@ def test_flatpak_clear_environment_quotes_variable_names(monkeypatch):
     assert "'VALUE; touch /tmp/not-run=content'" in command
 
 
+def test_flatpak_usb_flag_requires_capability(monkeypatch):
+    monkeypatch.setenv("FLATPAK_ID", "com.usebottles.bottles")
+    monkeypatch.setattr(
+        SandboxManager,
+        "supports_usb_devices",
+        staticmethod(lambda: False),
+    )
+
+    command = SandboxManager(share_usb=True).get_cmd("true")
+
+    assert "--sandbox-flag=64" not in command
+
+
+def test_flatpak_usb_flag_is_added_when_supported(monkeypatch):
+    monkeypatch.setenv("FLATPAK_ID", "com.usebottles.bottles")
+    monkeypatch.setattr(
+        SandboxManager,
+        "supports_usb_devices",
+        staticmethod(lambda: True),
+    )
+
+    command = SandboxManager(share_usb=True).get_cmd("true")
+
+    assert "--sandbox-flag=64" in command
+
+
+def test_flatpak_usb_flag_is_opt_in_when_supported(monkeypatch):
+    monkeypatch.setenv("FLATPAK_ID", "com.usebottles.bottles")
+    monkeypatch.setattr(
+        SandboxManager,
+        "supports_usb_devices",
+        staticmethod(lambda: True),
+    )
+
+    command = SandboxManager(share_usb=False).get_cmd("true")
+
+    assert "--sandbox-flag=64" not in command
+
+
 def test_bwrap_input_devices_are_opt_in(monkeypatch):
     monkeypatch.delenv("FLATPAK_ID", raising=False)
     monkeypatch.setattr(
@@ -100,6 +159,19 @@ def test_bwrap_input_devices_are_opt_in(monkeypatch):
     assert "--tmpfs /dev/input" not in shared
 
 
+def test_bwrap_usb_devices_are_opt_in(monkeypatch):
+    monkeypatch.delenv("FLATPAK_ID", raising=False)
+    monkeypatch.setattr(
+        "bottles.backend.managers.sandbox.os.path.isdir", lambda _: True
+    )
+
+    restricted = SandboxManager(share_usb=False).get_cmd("true")
+    shared = SandboxManager(share_usb=True).get_cmd("true")
+
+    assert "--tmpfs /dev/bus/usb" in restricted
+    assert "--tmpfs /dev/bus/usb" not in shared
+
+
 def test_input_devices_are_opt_in():
     assert BottleConfig().Sandbox.share_input is False
 
@@ -107,6 +179,18 @@ def test_input_devices_are_opt_in():
 
     assert result.status is True
     assert result.data.Sandbox.share_input is True
+
+
+def test_usb_devices_are_opt_in():
+    assert BottleConfig().Sandbox.share_usb is False
+
+    legacy = BottleConfig._fill_with({"Sandbox": {"share_input": True}})
+    result = BottleConfig._fill_with({"Sandbox": {"share_usb": True}})
+
+    assert legacy.status is True
+    assert legacy.data.Sandbox.share_usb is False
+    assert result.status is True
+    assert result.data.Sandbox.share_usb is True
 
 
 def test_wine_command_passes_input_permission(monkeypatch, tmp_path):
@@ -124,3 +208,20 @@ def test_wine_command_passes_input_permission(monkeypatch, tmp_path):
     sandbox = WineCommand._get_sandbox_manager(command)
 
     assert sandbox.share_input is True
+
+
+def test_wine_command_passes_usb_permission(monkeypatch, tmp_path):
+    command = object.__new__(WineCommand)
+    command.config = BottleConfig(Name="Test", Path=str(tmp_path), Runner="sys-wine")
+    command.config.Sandbox.share_usb = True
+    command.env = {}
+    command.cwd = str(tmp_path)
+    command.runner_runtime = None
+    command.steam_runtime_root = None
+
+    monkeypatch.setattr(ManagerUtils, "get_bottle_path", lambda _config: str(tmp_path))
+    monkeypatch.setattr(ManagerUtils, "get_runner_path", lambda _runner: "sys-wine")
+
+    sandbox = WineCommand._get_sandbox_manager(command)
+
+    assert sandbox.share_usb is True

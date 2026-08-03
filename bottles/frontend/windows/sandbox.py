@@ -31,6 +31,8 @@ class SandboxDialog(Adw.Window):
     switch_sound = Gtk.Template.Child()
     row_input = Gtk.Template.Child()
     switch_input = Gtk.Template.Child()
+    row_usb = Gtk.Template.Child()
+    switch_usb = Gtk.Template.Child()
 
     # endregion
 
@@ -48,6 +50,7 @@ class SandboxDialog(Adw.Window):
         self.switch_net.connect("state-set", self.__set_flag, "share_net")
         self.switch_sound.connect("state-set", self.__set_flag, "share_sound")
         self.switch_input.connect("state-set", self.__set_flag, "share_input")
+        self.switch_usb.connect("state-set", self.__set_flag, "share_usb")
 
     def __set_flag(self, widget, state, flag):
         self.config = self.manager.update_config(
@@ -58,8 +61,12 @@ class SandboxDialog(Adw.Window):
         self.switch_net.set_active(config.Sandbox.share_net)
         self.switch_sound.set_active(config.Sandbox.share_sound)
         self.switch_input.set_active(config.Sandbox.share_input)
+        self.switch_usb.set_active(config.Sandbox.share_usb)
         if not SandboxManager.supports_input_devices():
             self.row_input.set_sensitive(False)
             self.row_input.set_subtitle(
                 _("Input devices cannot be shared on this system.")
             )
+        if not SandboxManager.supports_usb_devices():
+            self.row_usb.set_sensitive(False)
+            self.row_usb.set_subtitle(_("USB devices cannot be shared on this system."))

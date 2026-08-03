@@ -1021,6 +1021,7 @@ class WineCommand:
             share_net=self.config.Sandbox.share_net,
             share_sound=self.config.Sandbox.share_sound,
             share_input=self.config.Sandbox.share_input,
+            share_usb=self.config.Sandbox.share_usb,
         )
 
     def run(self) -> Result[Optional[str]]:

@@ -26,7 +26,8 @@ from typing import Optional
 
 FLATPAK_INFO = "/.flatpak-info"
 FLATPAK_SHARE_INPUT = 1 << 5
-FLATPAK_SHARE_INPUT_VERSION = (1, 17, 1)
+FLATPAK_SHARE_USB = 1 << 6
+FLATPAK_SHARE_DEVICES_VERSION = (1, 17, 1)
 
 
 class SandboxManager:
@@ -52,6 +53,7 @@ class SandboxManager:
         share_sound: bool = True,
         share_gpu: bool = True,
         share_input: bool = False,
+        share_usb: bool = False,
     ):
         self.envs = envs
         self.chdir = chdir
@@ -65,12 +67,13 @@ class SandboxManager:
         self.share_sound = share_sound
         self.share_gpu = share_gpu
         self.share_input = share_input
+        self.share_usb = share_usb
         self.__uid = os.environ.get("UID", "1000")
 
     @staticmethod
-    def supports_input_devices() -> bool:
+    def _supports_device(device: str, path: str) -> bool:
         if "FLATPAK_ID" not in os.environ:
-            return os.path.isdir("/dev/input")
+            return os.path.isdir(path)
 
         try:
             info = ConfigParser(interpolation=None)
@@ -83,9 +86,17 @@ class SandboxManager:
         except (KeyError, ValueError):
             return False
 
-        return version >= FLATPAK_SHARE_INPUT_VERSION and bool(
-            {"all", "input"}.intersection(devices)
+        return version >= FLATPAK_SHARE_DEVICES_VERSION and bool(
+            {"all", device}.intersection(devices)
         )
+
+    @classmethod
+    def supports_input_devices(cls) -> bool:
+        return cls._supports_device("input", "/dev/input")
+
+    @classmethod
+    def supports_usb_devices(cls) -> bool:
+        return cls._supports_device("usb", "/dev/bus/usb")
 
     def __get_bwrap(self, cmd: str):
         _cmd = ["bwrap"]
@@ -124,6 +135,9 @@ class SandboxManager:
 
         if not self.share_input and os.path.isdir("/dev/input"):
             _cmd.append("--tmpfs /dev/input")
+
+        if not self.share_usb and os.path.isdir("/dev/bus/usb"):
+            _cmd.append("--tmpfs /dev/bus/usb")
 
         if self.share_display:
             _cmd.append("--dev-bind /dev/video0 /dev/video0")
@@ -175,6 +189,9 @@ class SandboxManager:
 
         if self.share_input and self.supports_input_devices():
             _cmd.append(f"--sandbox-flag={FLATPAK_SHARE_INPUT}")
+
+        if self.share_usb and self.supports_usb_devices():
+            _cmd.append(f"--sandbox-flag={FLATPAK_SHARE_USB}")
 
         if self.clear_env:
             clean_env = " ".join(
