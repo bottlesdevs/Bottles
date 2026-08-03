@@ -54,6 +54,7 @@ def desktop_program_entry():
         SimpleNamespace(
             window=SimpleNamespace(show_toast=toasts.append),
             config=object(),
+            _ProgramEntry__set_desktop_entry_state=lambda _exists: None,
             program={
                 "name": "Test Program",
                 "executable": "test.exe",
@@ -79,6 +80,103 @@ def test_add_entry_reports_portal_success(monkeypatch):
     ProgramEntry.add_entry(entry, None)
 
     assert toasts == ['Desktop Entry created for "Test Program"']
+
+
+def test_desktop_entry_state_updates_action():
+    labels = []
+    sensitivities = []
+    entry = SimpleNamespace(
+        btn_add_entry=SimpleNamespace(
+            set_property=lambda name, value: labels.append((name, value)),
+            set_sensitive=sensitivities.append,
+        ),
+    )
+
+    ProgramEntry._ProgramEntry__set_desktop_entry_state(entry, True)
+    ProgramEntry._ProgramEntry__set_desktop_entry_state(entry, False)
+
+    assert labels == [
+        ("text", "Remove Desktop Entry"),
+        ("text", "Add Desktop Entry"),
+    ]
+    assert sensitivities == [True, True]
+    assert entry._ProgramEntry__desktop_entry_exists is False
+
+
+def test_remove_entry_result_updates_action():
+    entry, toasts = desktop_program_entry()
+    states = []
+    entry._ProgramEntry__set_desktop_entry_state = states.append
+
+    ProgramEntry._ProgramEntry__desktop_entry_removed(entry, True, None)
+
+    assert states == [False]
+    assert toasts == ['Desktop Entry removed for "Test Program"']
+
+
+def test_manage_entry_uses_detected_state():
+    calls = []
+    entry = SimpleNamespace(
+        _ProgramEntry__desktop_entry_exists=True,
+        add_entry=lambda _widget: calls.append("add"),
+        remove_entry=lambda _widget: calls.append("remove"),
+    )
+
+    ProgramEntry.manage_entry(entry, None)
+
+    assert calls == ["remove"]
+
+
+def test_program_widget_switches_desktop_entry_action(monkeypatch):
+    toasts = []
+
+    class LibraryManager:
+        def get_library(self):
+            return {}
+
+    monkeypatch.setattr(program_module, "LibraryManager", LibraryManager)
+    monkeypatch.setattr(
+        program_module,
+        "RunAsync",
+        lambda task_func, callback: callback(task_func(), None),
+    )
+    monkeypatch.setattr(
+        program_module.ManagerUtils,
+        "has_desktop_entry",
+        lambda _config, _program: True,
+    )
+    monkeypatch.setattr(
+        program_module.ManagerUtils,
+        "remove_desktop_entry",
+        lambda _config, _program: True,
+    )
+    window = SimpleNamespace(
+        page_details=SimpleNamespace(view_bottle=object()),
+        manager=SimpleNamespace(
+            steam_manager=SimpleNamespace(is_steam_supported=False),
+        ),
+        show_toast=toasts.append,
+    )
+    entry = ProgramEntry(
+        window,
+        BottleConfig(Name="Games", Path="Games"),
+        {
+            "name": "Test Program",
+            "id": "test-program",
+            "path": "C:\\Games\\test.exe",
+            "executable": "test.exe",
+        },
+        check_boot=False,
+    )
+
+    ProgramEntry._ProgramEntry__refresh_desktop_entry_state(
+        entry,
+        SimpleNamespace(get_visible=lambda: True),
+    )
+    assert entry.btn_add_entry.get_property("text") == "Remove Desktop Entry"
+    entry.btn_add_entry.emit("clicked")
+    assert entry.btn_add_entry.get_property("text") == "Add Desktop Entry"
+    assert toasts == ['Desktop Entry removed for "Test Program"']
 
 
 def test_add_entry_warns_after_manual_fallback(monkeypatch):
