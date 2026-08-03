@@ -112,11 +112,26 @@ class ProgramEntry(Adw.ActionRow):
         if self.manager.steam_manager.is_steam_supported:
             self.btn_add_steam.set_visible(True)
 
+        program_icon = self.program.get("icon", "com.usebottles.bottles-program")
         library_manager = LibraryManager()
         for _uuid, entry in library_manager.get_library().items():
             if entry.get("id") == program.get("id"):
                 self.btn_add_library.set_visible(False)
                 self.btn_add_steam_library.set_visible(False)
+                program_icon = entry.get("icon") or program_icon
+
+        self.img_program = Gtk.Image()
+        self.img_program.set_pixel_size(32)
+        self.img_program.set_valign(Gtk.Align.CENTER)
+        if isinstance(program_icon, str) and os.path.isfile(program_icon):
+            self.img_program.set_from_file(program_icon)
+        elif isinstance(program_icon, str) and not any(
+            separator in program_icon for separator in ("/", "\\")
+        ):
+            self.img_program.set_from_icon_name(program_icon)
+        else:
+            self.img_program.set_from_icon_name("com.usebottles.bottles-program")
+        self.add_prefix(self.img_program)
 
         external_programs = []
         for v in self.config.External_Programs.values():
