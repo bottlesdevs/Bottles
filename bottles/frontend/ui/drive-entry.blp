@@ -8,6 +8,16 @@ template $DriveEntry: Adw.ActionRow {
   Box {
     spacing: 6;
 
+    Button btn_eject {
+      valign: center;
+      tooltip-text: _("Eject");
+      icon-name: "media-eject-symbolic";
+
+      styles [
+        "flat",
+      ]
+    }
+
     Button btn_remove {
       valign: center;
       tooltip-text: _("Remove");
