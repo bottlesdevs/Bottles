@@ -126,18 +126,21 @@ def _copy_into_bottle(parent, config, exec_path, on_launch):
 def guard_sandbox_launch(parent, config, exec_path, on_launch):
     """Ask the user how to launch a program the dedicated sandbox cannot reach.
 
+    Document portal paths are resolved to an accessible host path before launch
+    so programs can find files stored next to the selected executable.
     When the dedicated sandbox is enabled and ``exec_path`` lives outside the
     bottle (a document portal path), the program cannot be opened inside the
     sandbox. A dialog is then presented and ``on_launch(sandbox_override,
     exec_path)`` is called with the executable to actually run: either the
-    original path with the sandbox disabled, or a copy staged inside the bottle
-    with the sandbox kept on. In every other case ``on_launch(None, exec_path)``
-    is called right away. ``on_launch`` is not called if the user cancels.
+    resolved path with the sandbox disabled, or a copy staged inside the bottle
+    with the sandbox kept on. In every other case the resolved path is passed to
+    ``on_launch`` right away. ``on_launch`` is not called if the user cancels.
     """
+    resolved_path = ManagerUtils.resolve_portal_path(exec_path)
     if not config.Parameters.sandbox or not WineExecutor.is_unreachable_in_sandbox(
         exec_path
     ):
-        on_launch(None, exec_path)
+        on_launch(None, resolved_path)
         return
 
     name = os.path.basename(exec_path) if exec_path else _("This program")
@@ -179,9 +182,9 @@ def guard_sandbox_launch(parent, config, exec_path, on_launch):
         if response != "run":
             return
         if opt_copy.get_active():
-            _copy_into_bottle(parent, config, exec_path, on_launch)
+            _copy_into_bottle(parent, config, resolved_path, on_launch)
         else:
-            on_launch("off", exec_path)
+            on_launch("off", resolved_path)
 
     dialog.connect("response", on_response)
     dialog.present()
