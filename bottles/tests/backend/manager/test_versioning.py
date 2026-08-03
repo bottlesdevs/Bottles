@@ -220,3 +220,57 @@ def test_create_state_keeps_success_result(tmp_path, monkeypatch, snapshot_confi
     }
     assert refreshed == [True]
     assert TaskManager._TASKS == {}
+
+
+def test_list_states_handles_missing_bottle(tmp_path, monkeypatch, snapshot_config):
+    missing_bottle = tmp_path / "missing"
+    snapshot_config.Versioning = False
+
+    monkeypatch.setattr(
+        versioning_module.ManagerUtils,
+        "get_bottle_path",
+        lambda _config: str(missing_bottle),
+    )
+
+    result = VersioningManager(SimpleNamespace()).list_states(snapshot_config)
+
+    assert not result.status
+    assert not missing_bottle.exists()
+    assert result.data == {
+        "state_id": None,
+        "states": {},
+        "branches": [],
+        "active_branch": "",
+        "dirty": False,
+        "changed_files": 0,
+    }
+
+
+def test_list_states_handles_bottle_removed_during_recovery(
+    tmp_path, monkeypatch, snapshot_config
+):
+    bottle = tmp_path / "bottle"
+    bottle.mkdir()
+    snapshot_config.Versioning = False
+    attempts = []
+
+    class RepoStub:
+        def __init__(self, **_kwargs):
+            attempts.append(True)
+            if len(attempts) == 1:
+                raise versioning_module.FVSStateNotFound
+            bottle.rmdir()
+            raise FileNotFoundError
+
+    monkeypatch.setattr(
+        versioning_module.ManagerUtils,
+        "get_bottle_path",
+        lambda _config: str(bottle),
+    )
+    monkeypatch.setattr(versioning_module, "FVSRepo", RepoStub)
+
+    result = VersioningManager(SimpleNamespace()).list_states(snapshot_config)
+
+    assert len(attempts) == 2
+    assert not result.status
+    assert result.data["states"] == {}

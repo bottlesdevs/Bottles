@@ -200,24 +200,38 @@ class VersioningManager:
         of the given bottle and return them as a dict.
         """
         if not self.needs_migration(config):
+            bottle_path = ManagerUtils.get_bottle_path(config)
+            empty_data = {
+                "state_id": None,
+                "states": {},
+                "branches": [],
+                "active_branch": "",
+                "dirty": False,
+                "changed_files": 0,
+            }
+            if not os.path.isdir(bottle_path):
+                return Result(status=False, data=empty_data)
             try:
-                repo = FVSRepo(
-                    repo_path=ManagerUtils.get_bottle_path(config),
-                    use_compression=config.Parameters.versioning_compression,
-                )
-                if check_dirty:
-                    repo.check_dirty()
-            except FVSStateNotFound:
-                logging.warning(
-                    "The FVS repository may be corrupted, trying to re-initialize it"
-                )
-                self.re_initialize(config)
-                repo = FVSRepo(
-                    repo_path=ManagerUtils.get_bottle_path(config),
-                    use_compression=config.Parameters.versioning_compression,
-                )
-                if check_dirty:
-                    repo.check_dirty()
+                try:
+                    repo = FVSRepo(
+                        repo_path=bottle_path,
+                        use_compression=config.Parameters.versioning_compression,
+                    )
+                    if check_dirty:
+                        repo.check_dirty()
+                except FVSStateNotFound:
+                    logging.warning(
+                        "The FVS repository may be corrupted, trying to re-initialize it"
+                    )
+                    self.re_initialize(config)
+                    repo = FVSRepo(
+                        repo_path=bottle_path,
+                        use_compression=config.Parameters.versioning_compression,
+                    )
+                    if check_dirty:
+                        repo.check_dirty()
+            except FileNotFoundError:
+                return Result(status=False, data=empty_data)
             return Result(
                 status=True,
                 message=_("States list retrieved successfully!"),
