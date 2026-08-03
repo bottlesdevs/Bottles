@@ -233,6 +233,26 @@ def apply_lsfg_vk_preferences(
     env.add("LSFG_PERFORMANCE_MODE", performance, override=True)
 
 
+def apply_frame_rate_limit(env: "WineEnv", params) -> None:
+    try:
+        limit = int(getattr(params, "frame_rate_limit", 0))
+    except (TypeError, ValueError):
+        return
+
+    if limit <= 0:
+        return
+
+    dxvk_config = env.get_value("DXVK_CONFIG")
+    frame_rate_config = (
+        f"dxgi.maxFrameRate = {limit}; d3d9.maxFrameRate = {limit}"
+    )
+    if dxvk_config:
+        frame_rate_config = f"{dxvk_config.rstrip('; ')}; {frame_rate_config}"
+
+    env.add("DXVK_CONFIG", frame_rate_config, override=True)
+    env.add("VKD3D_FRAME_RATE", str(limit), override=True)
+
+
 def _needs_steam_virtual_gamepad_workaround(runner_name: Optional[str]) -> bool:
     """Return True if the runner should force SteamVirtualGamepadInfo."""
 
@@ -527,6 +547,8 @@ class WineCommand:
             env.add(
                 "VKD3D_SHADER_CACHE_PATH", os.path.join(bottle, "cache", "vkd3d_shader")
             )
+
+        apply_frame_rate_limit(env, params)
 
         # LatencyFleX environment variables
         if params.latencyflex and not return_steam_env:
