@@ -221,11 +221,21 @@ class BottleView(Adw.Bin):
         terms = widget.get_text()
         self.list_bottles.set_filter_func(self.__filter_bottles, terms)
         self.list_steam.set_filter_func(self.__filter_bottles, terms)
+        self.__update_empty_state(terms)
 
     @staticmethod
     def __filter_bottles(row, terms=None):
         text = row.get_title().lower()
         return terms.lower() in text
+
+    def __update_empty_state(self, terms):
+        has_bottles = bool(self.__bottles)
+        has_matches = any(
+            self.__filter_bottles(row, terms) for row in self.__bottles.values()
+        )
+        self.pref_page.set_visible(has_matches)
+        self.bottle_status.set_visible(not has_bottles)
+        self.no_bottles_found.set_visible(has_bottles and not has_matches)
 
     def update_bottles_list(self, *args, refresh_updates=True) -> None:
         self.__bottles = {}
@@ -236,10 +246,6 @@ class BottleView(Adw.Bin):
             self.list_steam.remove(self.list_steam.get_first_child())
 
         local_bottles = self.window.manager.local_bottles
-        is_empty_local_bottles = len(local_bottles) == 0
-
-        self.pref_page.set_visible(not is_empty_local_bottles)
-        self.bottle_status.set_visible(is_empty_local_bottles)
 
         configured_order = self.window.settings.get_strv("bottle-order")
         configs = _ordered_bottles(list(local_bottles.values()), configured_order)
@@ -260,6 +266,7 @@ class BottleView(Adw.Bin):
                 self.group_steam.set_visible(True)
                 self.group_bottles.set_title(_("Your Bottles"))
 
+        self.__update_empty_state(self.entry_search.get_text())
         self.__update_reorder_states(configs)
 
         if refresh_updates:
