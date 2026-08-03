@@ -59,6 +59,11 @@ template $SandboxDialog: Adw.Window {
           }
         }
       }
+
+      Adw.PreferencesGroup group_hidraw {
+        title: _("Flight Controllers (HIDRAW)");
+        description: _("Use raw HID access only for the selected vendor and product IDs.");
+      }
     }
   }
 }

@@ -951,7 +951,6 @@ class PreferencesView(Adw.PreferencesPage):
             set_widgets_status(True)
             self.queue.end_task()
 
-        set_widgets_status(False)
         runner = self.manager.runners_available[self.combo_runner.get_selected()]
 
         def run_task(status=True):
@@ -970,11 +969,48 @@ class PreferencesView(Adw.PreferencesPage):
                 runner=runner,
             )
 
-        if re.search("^(GE-)?Proton", runner):
-            dialog = ProtonAlertDialog(self.window, run_task)
-            dialog.show()
-        else:
-            run_task()
+        def apply_runner():
+            set_widgets_status(False)
+            if re.search("^(GE-)?Proton", runner):
+                dialog = ProtonAlertDialog(self.window, run_task)
+                dialog.show()
+            else:
+                run_task()
+
+        if self.config.Parameters.hidraw_devices and "soda" not in runner.lower():
+            dialog = Adw.MessageDialog.new(
+                self.window,
+                _("HIDRAW support is not guaranteed"),
+                _(
+                    "Selective HIDRAW access is tested with Soda. The new "
+                    "runner may ignore it or behave differently. Continue anyway?"
+                ),
+            )
+            dialog.add_response("cancel", _("_Cancel"))
+            dialog.add_response("continue", _("_Continue"))
+            dialog.set_response_appearance(
+                "continue", Adw.ResponseAppearance.SUGGESTED
+            )
+            dialog.set_default_response("cancel")
+            dialog.set_close_response("cancel")
+
+            def on_response(_dialog, response):
+                if response == "continue":
+                    apply_runner()
+                    return
+
+                self.combo_runner.handler_block_by_func(self.__set_runner)
+                if self.config.Runner in self.manager.runners_available:
+                    self.combo_runner.set_selected(
+                        self.manager.runners_available.index(self.config.Runner)
+                    )
+                self.combo_runner.handler_unblock_by_func(self.__set_runner)
+
+            dialog.connect("response", on_response)
+            dialog.present()
+            return
+
+        apply_runner()
 
     def __dll_component_task_func(self, *args, **kwargs):
         # Remove old version

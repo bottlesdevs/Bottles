@@ -24,6 +24,7 @@ from bottles.backend.models.result import Result
 from bottles.backend.utils.display import DisplayUtils
 from bottles.backend.utils.generic import detect_encoding, is_ntsync_available
 from bottles.backend.utils.gpu import GPUUtils
+from bottles.backend.utils.hidraw import normalize_hidraw_id
 from bottles.backend.utils.lsfgvk import get_lsfg_vk_dll_path
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.steam import SteamUtils
@@ -251,6 +252,17 @@ def apply_frame_rate_limit(env: "WineEnv", params) -> None:
 
     env.add("DXVK_CONFIG", frame_rate_config, override=True)
     env.add("VKD3D_FRAME_RATE", str(limit), override=True)
+
+
+def apply_hidraw_preferences(env: "WineEnv", params) -> None:
+    selected = []
+    for value in getattr(params, "hidraw_devices", []):
+        identifier = normalize_hidraw_id(value)
+        if identifier and identifier not in selected:
+            selected.append(identifier)
+
+    if selected:
+        env.add("PROTON_ENABLE_HIDRAW", ",".join(selected), override=True)
 
 
 def _needs_steam_virtual_gamepad_workaround(runner_name: Optional[str]) -> bool:
@@ -549,6 +561,7 @@ class WineCommand:
             )
 
         apply_frame_rate_limit(env, params)
+        apply_hidraw_preferences(env, params)
 
         # LatencyFleX environment variables
         if params.latencyflex and not return_steam_env:
@@ -1034,6 +1047,10 @@ class WineCommand:
                 ):
                     share_paths_rw.append(argument)
 
+        hidraw_selected = any(
+            normalize_hidraw_id(value)
+            for value in self.config.Parameters.hidraw_devices
+        )
         return SandboxManager(
             envs=self.env,
             chdir=chdir,
@@ -1042,8 +1059,9 @@ class WineCommand:
             share_paths_ro=[p for p in share_paths_ro if p],
             share_net=self.config.Sandbox.share_net,
             share_sound=self.config.Sandbox.share_sound,
-            share_input=self.config.Sandbox.share_input,
-            share_usb=self.config.Sandbox.share_usb,
+            share_input=self.config.Sandbox.share_input or hidraw_selected,
+            share_usb=self.config.Sandbox.share_usb or hidraw_selected,
+            share_hidraw=hidraw_selected,
         )
 
     def run(self) -> Result[Optional[str]]:

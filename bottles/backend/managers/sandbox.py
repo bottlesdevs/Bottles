@@ -27,6 +27,7 @@ from typing import Optional
 FLATPAK_INFO = "/.flatpak-info"
 FLATPAK_SHARE_INPUT = 1 << 5
 FLATPAK_SHARE_USB = 1 << 6
+FLATPAK_SHARE_ALL_DEVICES = 1 << 9
 FLATPAK_SHARE_DEVICES_VERSION = (1, 17, 1)
 
 
@@ -54,6 +55,7 @@ class SandboxManager:
         share_gpu: bool = True,
         share_input: bool = False,
         share_usb: bool = False,
+        share_hidraw: bool = False,
     ):
         self.envs = envs
         self.chdir = chdir
@@ -68,6 +70,7 @@ class SandboxManager:
         self.share_gpu = share_gpu
         self.share_input = share_input
         self.share_usb = share_usb
+        self.share_hidraw = share_hidraw
         self.__uid = os.environ.get("UID", "1000")
 
     @staticmethod
@@ -97,6 +100,12 @@ class SandboxManager:
     @classmethod
     def supports_usb_devices(cls) -> bool:
         return cls._supports_device("usb", "/dev/bus/usb")
+
+    @classmethod
+    def supports_hidraw_devices(cls) -> bool:
+        if "FLATPAK_ID" not in os.environ:
+            return True
+        return cls._supports_device("all", "/dev")
 
     def __get_bwrap(self, cmd: str):
         _cmd = ["bwrap"]
@@ -192,6 +201,9 @@ class SandboxManager:
 
         if self.share_usb and self.supports_usb_devices():
             _cmd.append(f"--sandbox-flag={FLATPAK_SHARE_USB}")
+
+        if self.share_hidraw and self.supports_hidraw_devices():
+            _cmd.append(f"--sandbox-flag={FLATPAK_SHARE_ALL_DEVICES}")
 
         if self.clear_env:
             clean_env = " ".join(
