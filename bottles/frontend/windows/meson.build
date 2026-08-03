@@ -14,6 +14,7 @@ bottles_sources = [
   'lsfgvk.py',
   'onboard.py',
   'playtimegraph.py',
+  'programbackups.py',
   'rename.py',
   'drives.py',
   'eagleintel.py',

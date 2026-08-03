@@ -1,0 +1,160 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $ProgramBackupsDialog: Adw.Dialog {
+  title: _("Automatic Backups");
+  content-width: 620;
+  content-height: 680;
+
+  child: Adw.ToolbarView {
+    [top]
+    Adw.HeaderBar {
+      show-start-title-buttons: false;
+      show-end-title-buttons: false;
+
+      Button btn_cancel {
+        label: _("_Cancel");
+        use-underline: true;
+      }
+
+      [end]
+      Button btn_save {
+        label: _("_Save");
+        use-underline: true;
+
+        styles [
+          "suggested-action",
+        ]
+      }
+    }
+
+    [top]
+    Adw.Banner banner_error {
+      title: _("Select a backup folder and at least one file or folder.");
+      revealed: false;
+    }
+
+    content: Adw.PreferencesPage {
+      Adw.PreferencesGroup {
+        title: _("After Closing the Program");
+        description: _("Copy only the selected save data instead of creating a snapshot of the whole bottle.");
+
+        Adw.SwitchRow switch_enabled {
+          title: _("Create Automatic Backups");
+          subtitle: _("A new copy is created when this program exits.");
+        }
+
+        Adw.SpinRow spin_keep {
+          title: _("Backups to Keep");
+          subtitle: _("Older copies are removed after a new backup succeeds.");
+          adjustment: Adjustment {
+            lower: 1;
+            upper: 20;
+            step-increment: 1;
+            page-increment: 5;
+            value: 5;
+          };
+        }
+      }
+
+      Adw.PreferencesGroup {
+        title: _("Destination");
+
+        Adw.ActionRow action_destination {
+          activatable-widget: btn_destination;
+          title: _("Backup Folder");
+
+          Box {
+            spacing: 6;
+
+            Button btn_open_destination {
+              tooltip-text: _("Open Backup Folder");
+              valign: center;
+              visible: false;
+              icon-name: "folder-open-symbolic";
+
+              styles [
+                "flat",
+              ]
+            }
+
+            Button btn_destination_reset {
+              tooltip-text: _("Reset");
+              valign: center;
+              visible: false;
+              icon-name: "edit-undo-symbolic";
+
+              styles [
+                "flat",
+              ]
+            }
+
+            Button btn_destination {
+              tooltip-text: _("Choose Backup Folder");
+              valign: center;
+              icon-name: "document-open-symbolic";
+
+              styles [
+                "flat",
+              ]
+            }
+          }
+        }
+      }
+
+      Adw.PreferencesGroup {
+        title: _("Files and Folders");
+        description: _("Paths inside the bottle remain valid if the bottle is moved.");
+
+        Gtk.ListBox list_paths {
+          selection-mode: none;
+
+          styles [
+            "boxed-list",
+          ]
+        }
+
+        Gtk.Label label_paths_empty {
+          label: _("No files or folders selected");
+          margin-top: 6;
+
+          styles [
+            "dim-label",
+          ]
+        }
+
+        Box {
+          halign: end;
+          spacing: 6;
+          margin-top: 6;
+
+          Button btn_add_files {
+            child: Adw.ButtonContent {
+              label: _("Add Files");
+              icon-name: "document-open-symbolic";
+            };
+          }
+
+          Button btn_add_folder {
+            child: Adw.ButtonContent {
+              label: _("Add Folder");
+              icon-name: "folder-open-symbolic";
+            };
+          }
+        }
+      }
+
+      Adw.PreferencesGroup {
+        Adw.ActionRow {
+          title: _("Manual Restore");
+          subtitle: _("Open the backup folder and copy a generation's files back into the bottle.");
+
+          [prefix]
+          Image {
+            icon-name: "dialog-information-symbolic";
+          }
+        }
+      }
+    };
+  };
+}

@@ -16,13 +16,15 @@
 #
 
 import os
+import re
 import shutil
 import tarfile
 import tempfile
 from concurrent.futures import CancelledError
+from datetime import datetime
 from gettext import gettext as _
-from threading import Event
-from typing import Callable, Optional
+from threading import Event, Lock
+from typing import Callable, ClassVar, Optional
 
 import pathvalidate
 
@@ -165,6 +167,11 @@ class ProgressTrackingFilter:
 
 
 class BackupManager:
+    _BOTTLE_PATH_TOKEN = "%BOTTLE_PATH%"
+    _PROGRAM_BACKUP_PATTERN = re.compile(r"^\d{8}-\d{6}-\d{6}$")
+    _program_backup_locks: ClassVar[dict[str, Lock]] = {}
+    _program_backup_locks_guard: ClassVar[Lock] = Lock()
+
     @staticmethod
     def _validate_path(path: str) -> bool:
         """Validate if the path is not None or empty."""
@@ -172,6 +179,281 @@ class BackupManager:
             logging.error(_("No path specified"))
             return False
         return True
+
+    @staticmethod
+    def _program_backup_timestamp() -> str:
+        return datetime.now().strftime("%Y%m%d-%H%M%S-%f")
+
+    @classmethod
+    def _get_program_backup_lock(cls, path: str) -> Lock:
+        with cls._program_backup_locks_guard:
+            return cls._program_backup_locks.setdefault(path, Lock())
+
+    @classmethod
+    def serialize_program_backup_path(
+        cls, config: BottleConfig, path: str
+    ) -> Optional[str]:
+        bottle_path = os.path.abspath(ManagerUtils.get_bottle_path(config))
+        selected_path = os.path.abspath(path)
+        try:
+            if os.path.commonpath(
+                (bottle_path, selected_path)
+            ) != bottle_path or os.path.commonpath(
+                (os.path.realpath(bottle_path), os.path.realpath(selected_path))
+            ) != os.path.realpath(bottle_path):
+                return None
+        except ValueError:
+            return None
+
+        relative_path = os.path.relpath(selected_path, bottle_path)
+        if relative_path == ".":
+            return None
+        return os.path.join(cls._BOTTLE_PATH_TOKEN, relative_path)
+
+    @classmethod
+    def resolve_program_backup_path(
+        cls, config: BottleConfig, path: str
+    ) -> Optional[str]:
+        if not isinstance(path, str) or not path:
+            return None
+        token_prefix = f"{cls._BOTTLE_PATH_TOKEN}{os.sep}"
+        if path.startswith(token_prefix):
+            bottle_path = os.path.abspath(ManagerUtils.get_bottle_path(config))
+            resolved = os.path.abspath(
+                os.path.join(bottle_path, path.removeprefix(token_prefix))
+            )
+            try:
+                if os.path.commonpath(
+                    (bottle_path, resolved)
+                ) != bottle_path or os.path.commonpath(
+                    (os.path.realpath(bottle_path), os.path.realpath(resolved))
+                ) != os.path.realpath(bottle_path):
+                    return None
+            except ValueError:
+                return None
+            return resolved
+        return None
+
+    @staticmethod
+    def _safe_program_backup_name(value: str, fallback: str) -> str:
+        name = pathvalidate.sanitize_filename(
+            value if isinstance(value, str) else "", platform="universal"
+        ).strip()
+        if name in (".", ".."):
+            return fallback
+        return name or fallback
+
+    @classmethod
+    def get_program_backup_root(cls, config: BottleConfig, program: dict) -> str:
+        settings = program.get("automatic_backup") or {}
+        destination = settings.get("destination", "")
+        bottle_name = cls._safe_program_backup_name(config.Name, "Bottle")
+        program_name = cls._safe_program_backup_name(program.get("name", ""), "Program")
+        program_id = cls._safe_program_backup_name(program.get("id", ""), "")
+        if program_id:
+            program_name = f"{program_name}-{program_id}"
+        return os.path.join(destination, bottle_name, program_name)
+
+    @staticmethod
+    def is_program_backup_destination_valid(
+        config: BottleConfig, destination: str
+    ) -> bool:
+        if not isinstance(destination, str) or not destination:
+            return False
+        bottle_path = os.path.abspath(ManagerUtils.get_bottle_path(config))
+        destination_path = os.path.abspath(destination)
+        real_bottle_path = os.path.realpath(bottle_path)
+        real_destination_path = os.path.realpath(destination_path)
+        try:
+            return not (
+                os.path.commonpath((bottle_path, destination_path)) == bottle_path
+                or os.path.commonpath((real_bottle_path, real_destination_path))
+                == real_bottle_path
+            )
+        except ValueError:
+            return True
+
+    @staticmethod
+    def _copy_program_backup_path(source: str, destination: str) -> None:
+        os.makedirs(os.path.dirname(destination), exist_ok=True)
+        if os.path.islink(source):
+            os.symlink(
+                os.readlink(source),
+                destination,
+                target_is_directory=os.path.isdir(source),
+            )
+        elif os.path.isdir(source):
+            shutil.copytree(source, destination, symlinks=True)
+        else:
+            shutil.copy2(source, destination, follow_symlinks=False)
+
+    @staticmethod
+    def _program_backup_paths_overlap(source: str, destination: str) -> bool:
+        if not os.path.isdir(source) or os.path.islink(source):
+            return False
+        source = os.path.realpath(source)
+        destination = os.path.realpath(destination)
+        try:
+            common = os.path.commonpath((source, destination))
+        except ValueError:
+            return False
+        return common in (source, destination)
+
+    @staticmethod
+    def _program_backup_source_contains(source: str, path: str) -> bool:
+        if not os.path.isdir(source) or os.path.islink(source):
+            return False
+        source = os.path.abspath(source)
+        path = os.path.abspath(path)
+        try:
+            return os.path.commonpath((source, path)) == source
+        except ValueError:
+            return False
+
+    @classmethod
+    def _trim_program_backups(cls, root: str, keep: int) -> None:
+        generations = sorted(
+            [
+                entry
+                for entry in os.scandir(root)
+                if entry.is_dir(follow_symlinks=False)
+                and cls._PROGRAM_BACKUP_PATTERN.fullmatch(entry.name)
+            ],
+            key=lambda entry: entry.name,
+        )
+        for entry in generations[:-keep]:
+            shutil.rmtree(entry.path)
+
+    @classmethod
+    def create_program_backup(cls, config: BottleConfig, program: dict) -> Result:
+        settings = program.get("automatic_backup")
+        if not isinstance(settings, dict) or not settings.get("enabled"):
+            return Result(False, message="disabled")
+
+        destination = settings.get("destination")
+        paths = settings.get("paths")
+        if (
+            not isinstance(destination, str)
+            or not os.path.isabs(destination)
+            or not os.path.isdir(destination)
+        ):
+            return Result(False, message="The backup folder is unavailable.")
+        if not isinstance(paths, list) or not paths:
+            return Result(False, message="No backup paths are configured.")
+
+        try:
+            keep = int(settings.get("keep", 5))
+        except (TypeError, ValueError):
+            keep = 5
+        keep = min(max(keep, 1), 20)
+
+        bottle_path = os.path.abspath(ManagerUtils.get_bottle_path(config))
+        if not cls.is_program_backup_destination_valid(config, destination):
+            return Result(
+                False,
+                message="The backup folder must be outside the bottle.",
+            )
+
+        root = cls.get_program_backup_root(config, program)
+        try:
+            if os.path.commonpath(
+                (os.path.realpath(destination), os.path.realpath(root))
+            ) != os.path.realpath(destination):
+                return Result(
+                    False,
+                    message="The program backup folder is unavailable.",
+                )
+        except ValueError:
+            return Result(
+                False,
+                message="The program backup folder is unavailable.",
+            )
+        if not cls.is_program_backup_destination_valid(config, root):
+            return Result(
+                False,
+                message="The program backup folder must be outside the bottle.",
+            )
+
+        selected = []
+        for configured_path in paths:
+            source = cls.resolve_program_backup_path(config, configured_path)
+            if (
+                not source
+                or not os.path.lexists(source)
+                or source in (item[1] for item in selected)
+            ):
+                continue
+            if any(
+                cls._program_backup_source_contains(item[1], source)
+                for item in selected
+            ):
+                continue
+            selected = [
+                item
+                for item in selected
+                if not cls._program_backup_source_contains(source, item[1])
+            ]
+            if cls._program_backup_paths_overlap(source, root):
+                return Result(
+                    False,
+                    message="The backup folder overlaps a selected directory.",
+                )
+            selected.append((configured_path, source))
+        if not selected:
+            return Result(False, message="No selected backup paths are available.")
+
+        lock = cls._get_program_backup_lock(os.path.realpath(root))
+        staging = None
+        task = Task(title=_("Backing up {0}").format(program.get("name", "Program")))
+        task_id = TaskManager.add(task)
+        try:
+            with lock:
+                os.makedirs(root, exist_ok=True)
+                staging = tempfile.mkdtemp(prefix=".backup-", dir=root)
+                manifest_paths = []
+                for configured_path, source in selected:
+                    source_path = os.path.abspath(source)
+                    relative_path = os.path.relpath(source_path, bottle_path)
+
+                    target = os.path.join(staging, relative_path)
+                    cls._copy_program_backup_path(source, target)
+                    manifest_paths.append(
+                        {"source": configured_path, "backup": relative_path}
+                    )
+
+                timestamp = cls._program_backup_timestamp()
+                manifest = {
+                    "created": timestamp,
+                    "bottle": config.Name,
+                    "program": program.get("name", ""),
+                    "paths": manifest_paths,
+                }
+                with open(
+                    os.path.join(staging, "backup.yml"),
+                    "w",
+                    encoding="utf-8",
+                ) as manifest_file:
+                    yaml.dump(manifest, manifest_file, sort_keys=False)
+
+                final_path = os.path.join(root, timestamp)
+                os.replace(staging, final_path)
+                staging = None
+                try:
+                    cls._trim_program_backups(root, keep)
+                except OSError as error:
+                    logging.warning(f"Failed to rotate automatic backups: {error}")
+                logging.info(
+                    f"Automatic backup for [{program.get('name', '')}] saved to "
+                    f"[{final_path}]."
+                )
+                return Result(True, data={"path": final_path})
+        except (OSError, TypeError, ValueError, yaml.YAMLError) as error:
+            logging.error(f"Failed to create automatic backup: {error}")
+            return Result(False, message=str(error))
+        finally:
+            if staging:
+                shutil.rmtree(staging, ignore_errors=True)
+            TaskManager.remove(task_id)
 
     @staticmethod
     def _calculate_dir_size(

@@ -171,6 +171,26 @@ template $LaunchOptionsDialog: Adw.Window {
       }
 
       Adw.PreferencesGroup {
+        title: _("Data Protection");
+
+        Adw.ActionRow action_automatic_backup {
+          title: _("Automatic Backups");
+          subtitle: _("Disabled");
+          activatable-widget: btn_automatic_backup;
+
+          Button btn_automatic_backup {
+            tooltip-text: _("Configure Automatic Backups");
+            valign: center;
+            icon-name: "go-next-symbolic";
+
+            styles [
+              "flat",
+            ]
+          }
+        }
+      }
+
+      Adw.PreferencesGroup {
         title: _("Startup");
 
         Adw.SwitchRow switch_autostart {

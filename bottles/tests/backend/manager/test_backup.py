@@ -8,7 +8,9 @@ from types import SimpleNamespace
 import pytest
 
 from bottles.backend.managers.backup import BackupManager
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.state import SignalManager, Task, TaskManager
+from bottles.backend.utils import yaml
 
 
 @pytest.fixture(autouse=True)
@@ -255,3 +257,430 @@ def test_export_backup_reports_cancellation_and_removes_task(tmp_path, monkeypat
     assert not result.status
     assert result.message == "cancelled"
     assert TaskManager._TASKS == {}
+
+
+def test_program_backup_copies_selected_paths_and_writes_manifest(
+    tmp_path, monkeypatch
+):
+    bottle = tmp_path / "bottle"
+    saves = bottle / "drive_c" / "users" / "player" / "Saved Games"
+    saves.mkdir(parents=True)
+    (saves / "slot.sav").write_bytes(b"save-data")
+    destination = tmp_path / "backups"
+    destination.mkdir()
+    config = BottleConfig(Name="Test Bottle", Path="TestBottle")
+    program = {
+        "id": "game-id",
+        "name": "Test Game",
+        "automatic_backup": {
+            "enabled": True,
+            "destination": str(destination),
+            "paths": ["%BOTTLE_PATH%/drive_c/users/player/Saved Games"],
+            "keep": 5,
+        },
+    }
+    monkeypatch.setattr(
+        "bottles.backend.managers.backup.ManagerUtils.get_bottle_path",
+        lambda _config: str(bottle),
+    )
+
+    result = BackupManager.create_program_backup(config, program)
+
+    assert result.status
+    backup = Path(result.data["path"])
+    assert (
+        backup / "drive_c/users/player/Saved Games/slot.sav"
+    ).read_bytes() == b"save-data"
+    with (backup / "backup.yml").open() as manifest_file:
+        manifest = yaml.load(manifest_file)
+    assert manifest["bottle"] == "Test Bottle"
+    assert manifest["program"] == "Test Game"
+    assert manifest["paths"] == [
+        {
+            "source": "%BOTTLE_PATH%/drive_c/users/player/Saved Games",
+            "backup": "drive_c/users/player/Saved Games",
+        }
+    ]
+
+
+def test_program_backup_keeps_only_requested_generations(tmp_path, monkeypatch):
+    bottle = tmp_path / "bottle"
+    bottle.mkdir()
+    save = bottle / "save.dat"
+    save.write_bytes(b"save-data")
+    destination = tmp_path / "backups"
+    destination.mkdir()
+    config = BottleConfig(Name="Bottle", Path="Bottle")
+    program = {
+        "id": "game-id",
+        "name": "Game",
+        "automatic_backup": {
+            "enabled": True,
+            "destination": str(destination),
+            "paths": ["%BOTTLE_PATH%/save.dat"],
+            "keep": 2,
+        },
+    }
+    monkeypatch.setattr(
+        "bottles.backend.managers.backup.ManagerUtils.get_bottle_path",
+        lambda _config: str(bottle),
+    )
+    root = Path(BackupManager.get_program_backup_root(config, program))
+    root.mkdir(parents=True)
+    (root / "20260101-000000-000001").mkdir()
+    (root / "20260102-000000-000001").mkdir()
+    monkeypatch.setattr(
+        BackupManager,
+        "_program_backup_timestamp",
+        staticmethod(lambda: "20260103-000000-000001"),
+    )
+
+    result = BackupManager.create_program_backup(config, program)
+
+    assert result.status
+    generations = sorted(path.name for path in root.iterdir())
+    assert generations == [
+        "20260102-000000-000001",
+        "20260103-000000-000001",
+    ]
+
+
+def test_program_backup_is_atomic_after_copy_failure(tmp_path, monkeypatch):
+    bottle = tmp_path / "bottle"
+    bottle.mkdir()
+    save = bottle / "save.dat"
+    save.write_bytes(b"save-data")
+    destination = tmp_path / "backups"
+    destination.mkdir()
+    config = BottleConfig(Name="Bottle", Path="Bottle")
+    program = {
+        "id": "game-id",
+        "name": "Game",
+        "automatic_backup": {
+            "enabled": True,
+            "destination": str(destination),
+            "paths": ["%BOTTLE_PATH%/save.dat"],
+            "keep": 5,
+        },
+    }
+    monkeypatch.setattr(
+        "bottles.backend.managers.backup.ManagerUtils.get_bottle_path",
+        lambda _config: str(bottle),
+    )
+    root = Path(BackupManager.get_program_backup_root(config, program))
+    root.mkdir(parents=True)
+    previous = root / "20260101-000000-000001"
+    previous.mkdir()
+    monkeypatch.setattr(
+        "bottles.backend.managers.backup.shutil.copy2",
+        lambda *_args, **_kwargs: (_ for _ in ()).throw(OSError("copy failed")),
+    )
+
+    result = BackupManager.create_program_backup(config, program)
+
+    assert not result.status
+    assert previous.is_dir()
+    assert [path for path in root.iterdir() if path.name.startswith(".")] == []
+
+
+def test_program_backup_preserves_symlinks(tmp_path, monkeypatch):
+    bottle = tmp_path / "bottle"
+    saves = bottle / "saves"
+    saves.mkdir(parents=True)
+    secret = tmp_path / "secret"
+    secret.write_text("do not copy")
+    (saves / "external").symlink_to(secret)
+    destination = tmp_path / "backups"
+    destination.mkdir()
+    config = BottleConfig(Name="Bottle", Path="Bottle")
+    program = {
+        "id": "game-id",
+        "name": "Game",
+        "automatic_backup": {
+            "enabled": True,
+            "destination": str(destination),
+            "paths": ["%BOTTLE_PATH%/saves"],
+            "keep": 5,
+        },
+    }
+    monkeypatch.setattr(
+        "bottles.backend.managers.backup.ManagerUtils.get_bottle_path",
+        lambda _config: str(bottle),
+    )
+
+    result = BackupManager.create_program_backup(config, program)
+
+    assert result.status
+    copied_link = Path(result.data["path"]) / "saves/external"
+    assert copied_link.is_symlink()
+    assert os.readlink(copied_link) == str(secret)
+
+
+def test_program_backup_rejects_source_through_external_symlink(tmp_path, monkeypatch):
+    bottle = tmp_path / "bottle"
+    bottle.mkdir()
+    outside = tmp_path / "outside"
+    outside.mkdir()
+    (outside / "private.dat").write_bytes(b"private")
+    (bottle / "external").symlink_to(outside, target_is_directory=True)
+    destination = tmp_path / "backups"
+    destination.mkdir()
+    config = BottleConfig(Name="Bottle", Path="Bottle")
+    program = {
+        "name": "Game",
+        "automatic_backup": {
+            "enabled": True,
+            "destination": str(destination),
+            "paths": ["%BOTTLE_PATH%/external/private.dat"],
+        },
+    }
+    monkeypatch.setattr(
+        "bottles.backend.managers.backup.ManagerUtils.get_bottle_path",
+        lambda _config: str(bottle),
+    )
+
+    result = BackupManager.create_program_backup(config, program)
+
+    assert not result.status
+    assert list(destination.iterdir()) == []
+
+
+@pytest.mark.parametrize(
+    "paths",
+    [
+        ["%BOTTLE_PATH%/saves/slot.sav", "%BOTTLE_PATH%/saves"],
+        ["%BOTTLE_PATH%/saves", "%BOTTLE_PATH%/saves/slot.sav"],
+    ],
+)
+def test_program_backup_collapses_nested_paths(tmp_path, monkeypatch, paths):
+    bottle = tmp_path / "bottle"
+    saves = bottle / "saves"
+    saves.mkdir(parents=True)
+    (saves / "slot.sav").write_bytes(b"save-data")
+    destination = tmp_path / "backups"
+    destination.mkdir()
+    config = BottleConfig(Name="Bottle", Path="Bottle")
+    program = {
+        "name": "Game",
+        "automatic_backup": {
+            "enabled": True,
+            "destination": str(destination),
+            "paths": paths,
+        },
+    }
+    monkeypatch.setattr(
+        "bottles.backend.managers.backup.ManagerUtils.get_bottle_path",
+        lambda _config: str(bottle),
+    )
+
+    result = BackupManager.create_program_backup(config, program)
+
+    assert result.status
+    backup = Path(result.data["path"])
+    assert (backup / "saves/slot.sav").read_bytes() == b"save-data"
+    with (backup / "backup.yml").open() as manifest_file:
+        manifest = yaml.load(manifest_file)
+    assert manifest["paths"] == [{"source": "%BOTTLE_PATH%/saves", "backup": "saves"}]
+
+
+def test_program_backup_rejects_destination_inside_selected_directory(
+    tmp_path, monkeypatch
+):
+    bottle = tmp_path / "bottle"
+    saves = bottle / "saves"
+    destination = saves / "backups"
+    destination.mkdir(parents=True)
+    (saves / "slot.sav").write_bytes(b"save-data")
+    config = BottleConfig(Name="Bottle", Path="Bottle")
+    program = {
+        "id": "game-id",
+        "name": "Game",
+        "automatic_backup": {
+            "enabled": True,
+            "destination": str(destination),
+            "paths": ["%BOTTLE_PATH%/saves"],
+            "keep": 5,
+        },
+    }
+    monkeypatch.setattr(
+        "bottles.backend.managers.backup.ManagerUtils.get_bottle_path",
+        lambda _config: str(bottle),
+    )
+
+    result = BackupManager.create_program_backup(config, program)
+
+    assert not result.status
+    assert list(destination.iterdir()) == []
+
+
+def test_program_backup_rejects_sources_outside_bottle(tmp_path, monkeypatch):
+    bottle = tmp_path / "bottle"
+    bottle.mkdir()
+    outside = tmp_path / "outside.dat"
+    outside.write_bytes(b"private")
+    destination = tmp_path / "backups"
+    destination.mkdir()
+    config = BottleConfig(Name="Bottle", Path="Bottle")
+    program = {
+        "name": "Game",
+        "automatic_backup": {
+            "enabled": True,
+            "destination": str(destination),
+            "paths": [str(outside)],
+        },
+    }
+    monkeypatch.setattr(
+        "bottles.backend.managers.backup.ManagerUtils.get_bottle_path",
+        lambda _config: str(bottle),
+    )
+
+    result = BackupManager.create_program_backup(config, program)
+
+    assert not result.status
+    assert list(destination.iterdir()) == []
+
+
+def test_program_backup_paths_stay_inside_bottle(tmp_path, monkeypatch):
+    bottle = tmp_path / "bottle"
+    bottle.mkdir()
+    save = bottle / "save.dat"
+    save.touch()
+    outside = tmp_path / "outside.dat"
+    outside.touch()
+    config = BottleConfig(Name="Bottle", Path="Bottle")
+    monkeypatch.setattr(
+        "bottles.backend.managers.backup.ManagerUtils.get_bottle_path",
+        lambda _config: str(bottle),
+    )
+
+    assert BackupManager.serialize_program_backup_path(config, str(save)) == (
+        "%BOTTLE_PATH%/save.dat"
+    )
+    assert BackupManager.serialize_program_backup_path(config, str(bottle)) is None
+    assert BackupManager.serialize_program_backup_path(config, str(outside)) is None
+    assert BackupManager.resolve_program_backup_path(config, "%BOTTLE_PATH%") is None
+    assert BackupManager.resolve_program_backup_path(config, str(save)) is None
+    assert (
+        BackupManager.resolve_program_backup_path(
+            config, "%BOTTLE_PATH%/../outside.dat"
+        )
+        is None
+    )
+
+
+def test_program_backup_rejects_destination_inside_bottle_for_file_source(
+    tmp_path, monkeypatch
+):
+    bottle = tmp_path / "bottle"
+    bottle.mkdir()
+    save = bottle / "save.dat"
+    save.write_bytes(b"save-data")
+    destination = bottle / "backups"
+    destination.mkdir()
+    config = BottleConfig(Name="Bottle", Path="Bottle")
+    program = {
+        "name": "Game",
+        "automatic_backup": {
+            "enabled": True,
+            "destination": str(destination),
+            "paths": ["%BOTTLE_PATH%/save.dat"],
+        },
+    }
+    monkeypatch.setattr(
+        "bottles.backend.managers.backup.ManagerUtils.get_bottle_path",
+        lambda _config: str(bottle),
+    )
+
+    result = BackupManager.create_program_backup(config, program)
+
+    assert not result.status
+    assert list(destination.iterdir()) == []
+
+
+def test_program_backup_rejects_destination_symlinked_into_bottle(
+    tmp_path, monkeypatch
+):
+    bottle = tmp_path / "bottle"
+    destination_target = bottle / "backups"
+    destination_target.mkdir(parents=True)
+    destination = tmp_path / "backups-link"
+    destination.symlink_to(destination_target, target_is_directory=True)
+    save = bottle / "save.dat"
+    save.write_bytes(b"save-data")
+    config = BottleConfig(Name="Bottle", Path="Bottle")
+    program = {
+        "name": "Game",
+        "automatic_backup": {
+            "enabled": True,
+            "destination": str(destination),
+            "paths": ["%BOTTLE_PATH%/save.dat"],
+        },
+    }
+    monkeypatch.setattr(
+        "bottles.backend.managers.backup.ManagerUtils.get_bottle_path",
+        lambda _config: str(bottle),
+    )
+
+    result = BackupManager.create_program_backup(config, program)
+
+    assert not result.status
+    assert list(destination_target.iterdir()) == []
+
+
+def test_program_backup_rejects_symlinked_program_root(tmp_path, monkeypatch):
+    bottle = tmp_path / "bottle"
+    bottle.mkdir()
+    save = bottle / "save.dat"
+    save.write_bytes(b"save-data")
+    destination = tmp_path / "backups"
+    destination.mkdir()
+    (destination / "Bottle").symlink_to(bottle, target_is_directory=True)
+    config = BottleConfig(Name="Bottle", Path="Bottle")
+    program = {
+        "name": "Game",
+        "automatic_backup": {
+            "enabled": True,
+            "destination": str(destination),
+            "paths": ["%BOTTLE_PATH%/save.dat"],
+        },
+    }
+    monkeypatch.setattr(
+        "bottles.backend.managers.backup.ManagerUtils.get_bottle_path",
+        lambda _config: str(bottle),
+    )
+
+    result = BackupManager.create_program_backup(config, program)
+
+    assert not result.status
+    assert not (bottle / "Game").exists()
+
+
+def test_program_backup_names_cannot_escape_destination(tmp_path):
+    destination = tmp_path / "backups"
+    config = BottleConfig(Name="..", Path="Bottle")
+    program = {
+        "name": ".",
+        "automatic_backup": {"destination": str(destination)},
+    }
+
+    root = BackupManager.get_program_backup_root(config, program)
+
+    assert root == str(destination / "Bottle" / "Program")
+
+
+def test_program_backup_roots_separate_programs_with_the_same_name(tmp_path):
+    destination = tmp_path / "backups"
+    config = BottleConfig(Name="Bottle", Path="Bottle")
+    settings = {"destination": str(destination)}
+
+    first = BackupManager.get_program_backup_root(
+        config,
+        {"id": "first-id", "name": "Game", "automatic_backup": settings},
+    )
+    second = BackupManager.get_program_backup_root(
+        config,
+        {"id": "second-id", "name": "Game", "automatic_backup": settings},
+    )
+
+    assert first == str(destination / "Bottle" / "Game-first-id")
+    assert second == str(destination / "Bottle" / "Game-second-id")

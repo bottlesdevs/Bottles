@@ -167,6 +167,45 @@ def test_run_program_substitutes_placeholders(monkeypatch):
     assert config.Parameters.sync == "wine"
 
 
+def test_run_program_creates_configured_backup_after_exit(monkeypatch):
+    events = []
+
+    def fake_init(self, **_kwargs):
+        self.use_winebridge = True
+
+    def fake_run(self):
+        events.append("run")
+        return Result(True, data={"use_winebridge": self.use_winebridge})
+
+    monkeypatch.setattr(WineExecutor, "__init__", fake_init, raising=False)
+    monkeypatch.setattr(
+        WineExecutor,
+        "run",
+        fake_run,
+        raising=False,
+    )
+    monkeypatch.setattr(
+        "bottles.backend.managers.backup.BackupManager.create_program_backup",
+        lambda _config, _program: events.append("backup") or Result(True),
+    )
+    config = _make_config()
+    program = {
+        "name": "Game",
+        "path": "/games/game.exe",
+        "automatic_backup": {
+            "enabled": True,
+            "destination": "/backups",
+            "paths": ["/saves"],
+        },
+    }
+
+    result = WineExecutor.run_program(config, program)
+
+    assert result.status
+    assert result.data["use_winebridge"] is False
+    assert events == ["run", "backup"]
+
+
 def test_run_program_preserves_custom_steam_app_id(monkeypatch):
     captured = {}
 
@@ -559,7 +598,6 @@ def test_windows_executable_cwd_uses_its_parent(monkeypatch):
     assert captured["windows_parent"] == r"C:\Program Files\Example"
     assert captured["native"] is True
     assert executor.cwd == "/prefix/drive_c/Program Files/Example"
-
 
 
 def test_winebridge_launch_preserves_spaces_in_executable_path(monkeypatch):
