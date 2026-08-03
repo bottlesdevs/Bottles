@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from gettext import gettext as _
+from gettext import gettext as _, ngettext
 
 from gi.repository import Adw, GLib, GObject, Gtk
 
@@ -66,6 +66,8 @@ class LaunchOptionsDialog(Adw.Window):
     action_gamescope = Gtk.Template.Child()
     action_cwd = Gtk.Template.Child()
     action_virt_desktop = Gtk.Template.Child()
+    action_automatic_backup = Gtk.Template.Child()
+    btn_automatic_backup = Gtk.Template.Child()
     # endregion
 
     __default_pre_script_msg = _("Choose a script which should be executed before run.")
@@ -140,6 +142,7 @@ class LaunchOptionsDialog(Adw.Window):
         self.btn_post_script_reset.connect("clicked", self.__reset_post_script)
         self.btn_cwd.connect("clicked", self.__choose_cwd)
         self.btn_cwd_reset.connect("clicked", self.__reset_cwd)
+        self.btn_automatic_backup.connect("clicked", self.__show_automatic_backup)
         self.btn_reset_defaults.connect("clicked", self.__reset_defaults)
         self.entry_arguments.connect("activate", self.__save)
         self.switch_arguments.connect("notify::active", self.__toggle_arguments)
@@ -233,6 +236,8 @@ class LaunchOptionsDialog(Adw.Window):
         ):
             self.action_cwd.set_subtitle(program["folder"])
             self.btn_cwd_reset.set_visible(True)
+
+        self.__update_automatic_backup()
 
         self.__set_disabled_switches()
 
@@ -443,6 +448,35 @@ class LaunchOptionsDialog(Adw.Window):
         )
         self.action_cwd.set_subtitle(self.__default_cwd_msg)
         self.btn_cwd_reset.set_visible(False)
+
+    def __update_automatic_backup(self):
+        settings = self.program.get("automatic_backup")
+        if not isinstance(settings, dict) or not settings.get("enabled"):
+            self.action_automatic_backup.set_subtitle(_("Disabled"))
+            return
+        paths = settings.get("paths")
+        count = len(paths) if isinstance(paths, list) else 0
+        self.action_automatic_backup.set_subtitle(
+            ngettext(
+                "{0} selected path",
+                "{0} selected paths",
+                count,
+            ).format(count)
+        )
+
+    def __show_automatic_backup(self, *_args):
+        from bottles.frontend.windows.programbackups import ProgramBackupsDialog
+
+        def save(settings):
+            self.program["automatic_backup"] = settings
+            self.__update_automatic_backup()
+
+        ProgramBackupsDialog(
+            self,
+            self.config,
+            self.program,
+            save,
+        ).present()
 
     def __reset_defaults(self, *_args):
         self.switch_d7vk.set_active(self.global_d7vk)

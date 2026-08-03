@@ -309,6 +309,12 @@ def test_get_programs_preserves_per_program_runtime_options(monkeypatch):
                 "sync": "esync",
                 "hide_console": True,
                 "file_extensions": [".txt", ".json"],
+                "automatic_backup": {
+                    "enabled": True,
+                    "destination": "/backups",
+                    "paths": ["%BOTTLE_PATH%/save.dat"],
+                    "keep": 3,
+                },
             }
         },
     )
@@ -335,6 +341,12 @@ def test_get_programs_preserves_per_program_runtime_options(monkeypatch):
     assert program["sync"] == "esync"
     assert program["hide_console"] is True
     assert program["file_extensions"] == [".txt", ".json"]
+    assert program["automatic_backup"] == {
+        "enabled": True,
+        "destination": "/backups",
+        "paths": ["%BOTTLE_PATH%/save.dat"],
+        "keep": 3,
+    }
 
 
 @pytest.mark.parametrize(

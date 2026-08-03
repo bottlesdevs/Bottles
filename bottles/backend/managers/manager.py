@@ -1201,6 +1201,7 @@ class Manager(metaclass=Singleton):
                     "hide_console": _program.get("hide_console"),
                     "autostart": _program.get("autostart", False),
                     "file_extensions": _program.get("file_extensions", []),
+                    "automatic_backup": _program.get("automatic_backup"),
                     "removed": _program.get("removed"),
                     "id": _program.get("id"),
                 }

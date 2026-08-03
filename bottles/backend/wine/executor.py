@@ -223,12 +223,17 @@ class WineExecutor:
             config.Parameters = config.Parameters.copy()
             for key, value in parameter_overrides.items():
                 config.Parameters[key] = value
+        backup = program.get("automatic_backup")
+        automatic_backup_enabled = isinstance(backup, dict) and backup.get(
+            "enabled"
+        )
         direct_wine_override = (
             any(
                 program.get(key) is not None
                 for key in cls._PROGRAM_DIRECT_WINE_OVERRIDES
             )
             or program.get("hide_console") is True
+            or automatic_backup_enabled
         )
 
         executor = cls(
@@ -266,10 +271,22 @@ class WineExecutor:
             )
         ):
             logging.info(
-                "Using Wine directly because this program has launch overrides."
+                "Using Wine directly because this program requires process tracking."
             )
             executor.use_winebridge = False
-        return executor.run()
+        result = executor.run()
+        if automatic_backup_enabled:
+            try:
+                from bottles.backend.managers.backup import BackupManager
+
+                backup_result = BackupManager.create_program_backup(config, program)
+                if not backup_result.status:
+                    logging.warning(
+                        f"Automatic backup failed: {backup_result.message}"
+                    )
+            except Exception as error:
+                logging.error(f"Automatic backup failed: {error}")
+        return result
 
     @staticmethod
     def _build_placeholder_map(config: BottleConfig, program: dict) -> dict[str, str]:
