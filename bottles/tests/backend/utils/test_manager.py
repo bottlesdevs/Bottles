@@ -475,6 +475,145 @@ def test_desktop_entry_uses_local_file_field_code_for_associations():
     assert "MimeType=text/plain;application/pdf;" in content
 
 
+def test_program_steam_app_id_is_stable_and_unique():
+    config = BottleConfig(Name="Games", Path="Games")
+    first = {"id": "first", "name": "First Game", "path": "C:\\Games\\first.exe"}
+    second = {
+        "id": "second",
+        "name": "Second Game",
+        "path": "C:\\Games\\second.exe",
+    }
+
+    first_app_id = ManagerUtils.get_program_steam_app_id(config, first)
+
+    assert first_app_id == ManagerUtils.get_program_steam_app_id(config, first)
+    assert first_app_id.startswith("bottles_")
+    assert first_app_id != ManagerUtils.get_program_steam_app_id(config, second)
+    assert first_app_id != ManagerUtils.get_program_steam_app_id(
+        BottleConfig(Name="Other", Path="Other"), first
+    )
+
+
+def test_program_steam_app_id_ignores_transient_scan_id():
+    config = BottleConfig(Name="Games", Path="Games")
+    first_scan = {
+        "id": "first-scan-id",
+        "path": "C:\\Games\\game.exe",
+        "auto_discovered": True,
+    }
+    second_scan = {
+        "id": "second-scan-id",
+        "path": "C:\\Games\\game.exe",
+        "auto_discovered": True,
+    }
+
+    assert ManagerUtils.get_program_steam_app_id(
+        config, first_scan
+    ) == ManagerUtils.get_program_steam_app_id(config, second_scan)
+
+
+def test_program_steam_app_id_ignores_dynamic_cli_arguments():
+    config = BottleConfig(Name="Games", Path="Games", Runner="soda-11.0-3")
+    desktop_program = {
+        "id": "first-scan-id",
+        "name": "Game",
+        "path": "C:\\Games\\launcher.exe",
+        "arguments": "--stored-option",
+    }
+    cli_program = desktop_program | {
+        "id": "second-scan-id",
+        "arguments": "file:///home/user/document.txt",
+    }
+
+    content = ManagerUtils.build_desktop_entry(
+        config,
+        desktop_program,
+        'bottles-cli run -p "Game" -b "Games" -- %u',
+    )
+    runtime_app_id = ManagerUtils.get_program_steam_app_id(config, cli_program)
+
+    assert f"StartupWMClass=steam_app_{runtime_app_id}" in content
+
+
+def test_program_steam_app_id_distinguishes_shared_launchers():
+    config = BottleConfig(Name="Games", Path="Games")
+    first = {"name": "First Game", "path": "C:\\Games\\launcher.exe"}
+    second = {"name": "Second Game", "path": "C:\\Games\\launcher.exe"}
+
+    assert ManagerUtils.get_program_steam_app_id(
+        config, first
+    ) != ManagerUtils.get_program_steam_app_id(config, second)
+
+
+def test_program_steam_app_id_preserves_custom_value():
+    config = BottleConfig(Name="Games")
+    program = {"environment": {"SteamAppId": "123456"}}
+
+    assert ManagerUtils.get_program_steam_app_id(config, program) == "123456"
+
+
+def test_program_steam_app_id_honors_bottle_environment():
+    config = BottleConfig(
+        Name="Games",
+        Environment_Variables={"SteamAppId": "654321"},
+    )
+
+    assert ManagerUtils.get_program_steam_app_id(config, {}) == "654321"
+
+
+def test_program_steam_app_id_prefers_program_environment():
+    config = BottleConfig(
+        Name="Games",
+        Environment_Variables={"SteamAppId": "654321"},
+    )
+    program = {"environment": {"SteamAppId": "123456"}}
+
+    assert ManagerUtils.get_program_steam_app_id(config, program) == "123456"
+
+
+def test_program_steam_app_id_replaces_invalid_custom_value():
+    config = BottleConfig(Name="Games")
+    program = {"id": "game-id", "environment": {"SteamAppId": "invalid value"}}
+
+    assert ManagerUtils.get_program_steam_app_id(config, program).startswith(
+        "bottles_"
+    )
+
+
+def test_desktop_entry_matches_proton_window_class():
+    config = BottleConfig(Name="Games", Runner="soda-11.0-3")
+    program = {
+        "id": "game-id",
+        "name": "Game",
+        "executable": "game.exe",
+    }
+
+    content = ManagerUtils.build_desktop_entry(
+        config,
+        program,
+        'bottles-cli run -p "Game" -b "Games"',
+    )
+
+    app_id = ManagerUtils.get_program_steam_app_id(config, program)
+    assert f"StartupWMClass=steam_app_{app_id}" in content
+
+
+def test_desktop_entry_keeps_executable_window_class_for_wine():
+    config = BottleConfig(Name="Applications", Runner="sys-wine")
+    program = {
+        "name": "Editor",
+        "executable": "Editor.exe",
+    }
+
+    content = ManagerUtils.build_desktop_entry(
+        config,
+        program,
+        'bottles-cli run -p "Editor" -b "Applications"',
+    )
+
+    assert "StartupWMClass=editor.exe" in content
+
+
 def test_desktop_entry_keeps_uri_field_code_without_associations():
     config = BottleConfig(Name="Games")
     program = {"name": "Game", "executable": "game.exe"}

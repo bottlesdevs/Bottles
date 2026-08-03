@@ -161,6 +161,96 @@ def test_run_program_substitutes_placeholders(monkeypatch):
     assert config.Parameters.sync == "wine"
 
 
+def test_run_program_preserves_custom_steam_app_id(monkeypatch):
+    captured = {}
+
+    def fake_init(self, **kwargs):
+        captured.update(kwargs)
+        self.use_winebridge = False
+
+    monkeypatch.setattr(WineExecutor, "__init__", fake_init, raising=False)
+    monkeypatch.setattr(
+        WineExecutor,
+        "run",
+        lambda _self: Result(True),
+        raising=False,
+    )
+
+    config = _make_config()
+    config.Runner = "soda-11.0-3"
+    WineExecutor.run_program(
+        config=config,
+        program={
+            "id": "game-id",
+            "name": "Game",
+            "path": "/games/game.exe",
+            "environment": {"SteamAppId": "123456"},
+        },
+    )
+
+    assert captured["environment"]["SteamAppId"] == "123456"
+
+
+def test_run_program_preserves_bottle_steam_app_id(monkeypatch):
+    captured = {}
+
+    def fake_init(self, **kwargs):
+        captured.update(kwargs)
+        self.use_winebridge = False
+
+    monkeypatch.setattr(WineExecutor, "__init__", fake_init, raising=False)
+    monkeypatch.setattr(
+        WineExecutor,
+        "run",
+        lambda _self: Result(True),
+        raising=False,
+    )
+
+    config = _make_config()
+    config.Runner = "soda-11.0-3"
+    config.Environment_Variables = {"SteamAppId": "654321"}
+    WineExecutor.run_program(
+        config=config,
+        program={
+            "id": "game-id",
+            "name": "Game",
+            "path": "/games/game.exe",
+        },
+    )
+
+    assert captured["environment"]["SteamAppId"] == "654321"
+
+
+def test_run_program_sets_stable_steam_app_id_for_soda(monkeypatch):
+    captured = {}
+
+    def fake_init(self, **kwargs):
+        captured.update(kwargs)
+        self.use_winebridge = True
+
+    def fake_run(self):
+        return Result(True, data={"use_winebridge": self.use_winebridge})
+
+    monkeypatch.setattr(WineExecutor, "__init__", fake_init, raising=False)
+    monkeypatch.setattr(WineExecutor, "run", fake_run, raising=False)
+
+    config = _make_config()
+    config.Runner = "soda-11.0-3"
+    program = {
+        "id": "game-id",
+        "name": "Game",
+        "path": "/games/game.exe",
+        "winebridge": True,
+    }
+
+    result = WineExecutor.run_program(config=config, program=program)
+
+    assert captured["environment"]["SteamAppId"] == (
+        ManagerUtils.get_program_steam_app_id(config, program)
+    )
+    assert result.data["use_winebridge"] is True
+
+
 def test_program_dxvk_false_adds_builtin_override(tmp_path):
     executable = tmp_path / "program.exe"
     executable.touch()

@@ -199,6 +199,11 @@ class WineExecutor:
                 and isinstance(value, str)
                 and key not in cls._PROGRAM_ENVIRONMENT_DENYLIST
             }
+        has_program_environment = bool(environment)
+        if ManagerUtils.uses_steam_window_class(config):
+            environment["SteamAppId"] = ManagerUtils.get_program_steam_app_id(
+                config, program or {}
+            )
 
         parameter_overrides = {}
         for key in cls._PROGRAM_BOOLEAN_OVERRIDES:
@@ -247,7 +252,7 @@ class WineExecutor:
             executor.use_winebridge
             and (
                 arguments
-                or environment
+                or has_program_environment
                 or parameter_overrides
                 or direct_wine_override
             )
