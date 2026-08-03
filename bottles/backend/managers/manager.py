@@ -23,6 +23,7 @@ import shutil
 import subprocess
 import time
 import uuid
+from copy import deepcopy
 from datetime import datetime
 from gettext import gettext as _
 from glob import glob
@@ -1552,103 +1553,42 @@ class Manager(metaclass=Singleton):
         """Create a bottle from a config object."""
         logging.info(f"Creating new {config.Name} bottle from config…")
 
+        config = deepcopy(config)
         sample = BottleConfig()
         for key in sample.keys():
-            """
-            If the key is not in the configuration sample, set it to the
-            default value.
-            """
             if key not in config.keys():
-                self.update_config(config=config, key=key, value=sample[key])
+                config[key] = sample[key]
 
         if config.Runner not in self.runners_available:
-            """
-            If the runner is not in the list of available runners, set it
-            to latest Soda. If there is no Soda, set it to the
-            first one.
-            """
             config.Runner = self.get_latest_runner()
 
         if config.DXVK not in self.dxvk_available:
-            """
-            If the DXVK is not in the list of available DXVKs, set it to
-            highest version which is the first in the list.
-            """
             config.DXVK = self.dxvk_available[0] if self.dxvk_available else ""
 
         if config.VKD3D not in self.vkd3d_available:
-            """
-            If the VKD3D is not in the list of available VKD3Ds, set it to
-            highest version which is the first in the list.
-            """
             config.VKD3D = self.vkd3d_available[0] if self.vkd3d_available else ""
 
         if config.NVAPI not in self.nvapi_available:
-            """
-            If the NVAPI is not in the list of available NVAPIs, set it to
-            highest version which is the first in the list.
-            """
             config.NVAPI = self.nvapi_available[0] if self.nvapi_available else ""
 
-        # create the bottle path
-        bottle_path = os.path.join(Paths.bottles, config.Name)
-
-        if not os.path.exists(bottle_path):
-            """
-            If the bottle does not exist, create it, else
-            append a random number to the name.
-            """
-            os.makedirs(bottle_path)
-        else:
-            rnd = random.randint(100, 200)
-            bottle_path = f"{bottle_path}__{rnd}"
-            config.Name = f"{config.Name}__{rnd}"
-            config.Path = f"{config.Path}__{rnd}"
-            os.makedirs(bottle_path)
-
-        # Pre-create drive_c directory and set the case-fold flag
-        bottle_drive_c = os.path.join(bottle_path, "drive_c")
-        os.makedirs(bottle_drive_c)
-        FileUtils.chattr_f(bottle_drive_c)
-
-        # write the bottle config file
-        saved = config.dump(os.path.join(bottle_path, "bottle.yml"))
-        if not saved.status:
+        result = self.create_bottle(
+            name=config.Name,
+            environment=config.Environment or "Custom",
+            runner=config.Runner,
+            dxvk=config.DXVK,
+            vkd3d=config.VKD3D,
+            nvapi=config.NVAPI,
+            latencyflex=config.LatencyFleX,
+            versioning=config.Versioning,
+            sandbox=config.Parameters.sandbox,
+            arch=config.Arch,
+            configuration=config,
+        )
+        if not result.ok:
             return False
 
-        if config.Parameters.dxvk:
-            """
-            If DXVK is enabled, execute the installation script.
-            """
-            self.install_dll_component(config, "dxvk")
-
-        if config.Parameters.dxvk_nvapi:
-            """
-            If NVAPI is enabled, execute the substitution of DLLs.
-            """
-            self.install_dll_component(config, "nvapi")
-
-        if config.Parameters.vkd3d:
-            """
-            If the VKD3D parameter is set to True, install it
-            in the new bottle.
-            """
-            self.install_dll_component(config, "vkd3d")
-
-        for dependency in config.Installed_Dependencies:
-            """
-            Install each declared dependency in the new bottle.
-            """
-            if dependency in self.supported_dependencies.keys():
-                dep = [dependency, self.supported_dependencies[dependency]]
-                res = self.dependency_manager.install(config, dep)
-                if not res.ok:
-                    logging.error(
-                        _("Failed to install dependency: %s") % dependency,
-                        jn=True,
-                    )
-                    return False
-        logging.info(f"New bottle from config created: {config.Path}")
+        restored = result.data["config"]
+        logging.info(f"New bottle from config created: {restored.Path}")
         self.update_bottles(silent=True)
         return True
 
@@ -1668,6 +1608,7 @@ class Manager(metaclass=Singleton):
         arch: str = "win64",
         custom_environment: Optional[str] = None,
         cancel_event: Optional[Event] = None,
+        configuration: Optional[BottleConfig] = None,
     ) -> Result[dict]:
         """
         Create a new bottle from the given arguments.
@@ -1816,8 +1757,10 @@ class Manager(metaclass=Singleton):
             using the name and a random number.
             """
             rnd = random.randint(100, 200)
+            bottle_name = f"{bottle_name}__{rnd}"
             bottle_name_path = f"{bottle_name_path}__{rnd}"
             bottle_complete_path = f"{bottle_complete_path}__{rnd}"
+            cleanup_config.Name = bottle_name
 
             if bottle_custom_path:
                 cleanup_config.Path = bottle_complete_path
@@ -1879,7 +1822,9 @@ class Manager(metaclass=Singleton):
         # generate bottle configuration
         logging.info("Generating bottle configuration…")
         log_update(_("Generating bottle configuration…"))
-        config = BottleConfig()
+        config = (
+            deepcopy(configuration) if configuration is not None else BottleConfig()
+        )
         config.Name = bottle_name
         config.Arch = arch
         config.Runner = runner_name
@@ -1897,10 +1842,11 @@ class Manager(metaclass=Singleton):
         config.Parameters.sandbox = sandbox
         if versioning:
             config.Versioning = True
-        config.Limit_System_Environment = True
-        config.Inherited_Environment_Variables = (
-            Samples.default_inherited_environment.copy()
-        )
+        if configuration is None:
+            config.Limit_System_Environment = True
+            config.Inherited_Environment_Variables = (
+                Samples.default_inherited_environment.copy()
+            )
 
         cleanup_config = config
 
@@ -1909,7 +1855,11 @@ class Manager(metaclass=Singleton):
             return cancel_result
 
         # get template
-        template = TemplateManager.get_env_template(environment)
+        template = (
+            None
+            if configuration is not None
+            else TemplateManager.get_env_template(environment)
+        )
         template_updated = False
         if template:
             log_update(_("Template found, applying…"))
@@ -2000,9 +1950,9 @@ class Manager(metaclass=Singleton):
 
             logging.info("Setting Windows version…")
             log_update(_("Setting Windows version…"))
-            if (
+            if config.Windows != "win10" or (
                 "soda" not in runner_name.lower() and "caffe" not in runner_name.lower()
-            ):  # Caffe/Soda came with win10 by default
+            ):
                 try:
                     rk.lg_set_windows(config.Windows)
                 except ValueError as e:
@@ -2047,6 +1997,21 @@ class Manager(metaclass=Singleton):
                     data="",
                 )
 
+        if configuration is not None:
+            parameters = config.Parameters
+            rk.toggle_virtual_desktop(
+                parameters.virtual_desktop,
+                parameters.virtual_desktop_res,
+            )
+            rk.toggle_wayland_driver(parameters.wayland)
+            rk.set_renderer(parameters.renderer)
+            rk.set_dpi(parameters.custom_dpi)
+            rk.set_grab_fullscreen(parameters.fullscreen_capture)
+            rk.set_take_focus(parameters.take_focus)
+            rk.set_decorated(parameters.decorated)
+            rk.set_mouse_warp(int(parameters.mouse_warp))
+            wineboot.update()
+
         # apply environment configuration
         logging.info(f"Applying environment: [{environment}]…")
         log_update(_("Applying environment: {0}…").format(environment))
@@ -2056,7 +2021,12 @@ class Manager(metaclass=Singleton):
         if cancel_result is not None:
             return cancel_result
 
-        if environment.lower() not in ["custom"]:
+        if configuration is not None:
+            env = {
+                "Parameters": {},
+                "Installed_Dependencies": config.Installed_Dependencies,
+            }
+        elif environment.lower() not in ["custom"]:
             env = Samples.environments[environment.lower()]
         elif custom_environment:
             try:
@@ -2201,7 +2171,7 @@ class Manager(metaclass=Singleton):
             Drives(config).remove_drive("Z")
 
         # caching template
-        if not template or template_updated:
+        if configuration is None and (not template or template_updated):
             logging.info("Caching template…")
             log_update(_("Caching template…"))
             TemplateManager.new(environment, config)
