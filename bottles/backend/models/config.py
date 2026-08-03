@@ -124,6 +124,7 @@ class BottleParams(DictCompatMixIn):
     gamescope_fullscreen: bool = True
     gamescope_custom_options: str = ""
     sync: str = "wine"
+    frame_rate_limit: int = 0
     fsr: bool = False
     fsr_sharpening_strength: int = 8
     custom_dpi: int = 96

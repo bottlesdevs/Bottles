@@ -248,6 +248,18 @@ template $DetailsPreferences: Adw.PreferencesPage {
       };
     }
 
+    Adw.SpinRow spin_frame_rate_limit {
+      title: _("Frame Rate Limit");
+      subtitle: _("Limit DXVK and VKD3D applications. Set to 0 to disable.");
+      adjustment: Adjustment {
+        lower: 0;
+        upper: 1000;
+        step-increment: 1;
+        page-increment: 10;
+        value: 0;
+      };
+    }
+
     Adw.ActionRow row_mangohud {
       activatable-widget: switch_mangohud;
       title: _("Monitor Performance");

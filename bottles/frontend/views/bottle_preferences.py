@@ -123,6 +123,7 @@ class PreferencesView(Adw.PreferencesPage):
     combo_windows = Gtk.Template.Child()
     combo_language = Gtk.Template.Child()
     combo_sync = Gtk.Template.Child()
+    spin_frame_rate_limit = Gtk.Template.Child()
     spinner_d7vk = Gtk.Template.Child()
     spinner_dxvk = Gtk.Template.Child()
     spinner_vkd3d = Gtk.Template.Child()
@@ -335,6 +336,9 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_windows.connect("notify::selected", self.__set_windows)
         self.combo_language.connect("notify::selected-item", self.__set_language)
         self.combo_sync.connect("notify::selected", self.__set_sync_type)
+        self.spin_frame_rate_limit.connect(
+            "notify::value", self.__set_frame_rate_limit
+        )
         self.entry_name.connect("changed", self.__check_entry_name)
         self.entry_name.connect("apply", self.__save_name)
         # endregion
@@ -631,6 +635,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_latencyflex.handler_block_by_func(self.__set_latencyflex)
         self.combo_windows.handler_block_by_func(self.__set_windows)
         self.combo_language.handler_block_by_func(self.__set_language)
+        self.spin_frame_rate_limit.handler_block_by_func(self.__set_frame_rate_limit)
         self.switch_mangohud.set_active(parameters.mangohud)
         self.switch_obsvkc.set_active(parameters.obsvkc)
         self.switch_vkbasalt.set_active(parameters.vkbasalt)
@@ -653,6 +658,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_sandbox.set_active(parameters.sandbox)
         self.switch_steam_runtime.set_active(parameters.use_steam_runtime)
         self.switch_vmtouch.set_active(parameters.vmtouch)
+        self.spin_frame_rate_limit.set_value(parameters.frame_rate_limit)
 
         # self.toggle_sync.set_active(parameters["sync"] == "wine")
         # self.toggle_esync.set_active(parameters["sync"] == "esync")
@@ -790,6 +796,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_latencyflex.handler_unblock_by_func(self.__set_latencyflex)
         self.combo_windows.handler_unblock_by_func(self.__set_windows)
         self.combo_language.handler_unblock_by_func(self.__set_language)
+        self.spin_frame_rate_limit.handler_unblock_by_func(self.__set_frame_rate_limit)
 
         self.__set_steam_rules()
 
@@ -875,6 +882,18 @@ class PreferencesView(Adw.PreferencesPage):
         )
         self.combo_sync.set_sensitive(True)
         self.queue.end_task()
+
+    def __set_frame_rate_limit(self, spin_row, _pspec):
+        value = int(spin_row.get_value())
+        if value == self.config.Parameters.frame_rate_limit:
+            return
+
+        self.config = self.manager.update_config(
+            config=self.config,
+            key="frame_rate_limit",
+            value=value,
+            scope="Parameters",
+        ).data["config"]
 
     def __toggle_nvapi(self, widget=False, state=False):
         """Install/Uninstall NVAPI from the bottle"""

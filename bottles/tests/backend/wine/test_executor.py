@@ -17,6 +17,7 @@ from bottles.backend.wine.executor import WineExecutor
 from bottles.backend.wine.winecommand import (
     WineCommand,
     WineEnv,
+    apply_frame_rate_limit,
     apply_hdr_preferences,
     apply_wayland_preferences,
 )
@@ -695,6 +696,32 @@ def test_winecommand_applies_selected_sync_environment(
     WineCommand._apply_sync_environment(env, sync, "/runner/bin/wine")
 
     assert env.get()["envs"] == expected
+
+
+def test_frame_rate_limit_applies_to_dxvk_and_vkd3d():
+    env = WineEnv(clean=True)
+    env.add("DXVK_CONFIG", "dxgi.syncInterval = 0")
+
+    apply_frame_rate_limit(env, BottleParams(frame_rate_limit=120))
+
+    resolved = env.get()["envs"]
+    assert resolved["DXVK_CONFIG"] == (
+        "dxgi.syncInterval = 0; dxgi.maxFrameRate = 120; "
+        "d3d9.maxFrameRate = 120"
+    )
+    assert resolved["VKD3D_FRAME_RATE"] == "120"
+
+
+def test_frame_rate_limit_preserves_manual_environment_when_disabled():
+    env = WineEnv(clean=True)
+    env.add("DXVK_CONFIG", "dxgi.maxFrameRate = 90")
+    env.add("VKD3D_FRAME_RATE", "90")
+
+    apply_frame_rate_limit(env, BottleParams())
+
+    resolved = env.get()["envs"]
+    assert resolved["DXVK_CONFIG"] == "dxgi.maxFrameRate = 90"
+    assert resolved["VKD3D_FRAME_RATE"] == "90"
 
 
 def test_hdr_preferences_enable_dxvk_without_automatic_wayland_layer(monkeypatch):
