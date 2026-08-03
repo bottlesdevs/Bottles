@@ -857,6 +857,17 @@ def test_winecommand_syncs_proton_vkd3d(monkeypatch, tmp_path):
         "bottles.backend.wine.winecommand.SteamUtils.get_dist_directory",
         lambda _runner: str(dist_path),
     )
+    prepared = {}
+
+    def _prepare_fsr4(path, prefix, env, sandbox):
+        prepared.update({"path": path, "prefix": prefix, "sandbox": sandbox})
+        env["FSR4_UPGRADE"] = "1"
+        return True
+
+    monkeypatch.setattr(
+        "bottles.backend.wine.winecommand.SteamUtils.prepare_proton_fsr4",
+        _prepare_fsr4,
+    )
     monkeypatch.setattr(
         "bottles.backend.wine.winecommand.DisplayUtils.check_nvidia_device",
         lambda: None,
@@ -886,6 +897,31 @@ def test_winecommand_syncs_proton_vkd3d(monkeypatch, tmp_path):
     for dll in ["libvkd3d-1.dll", "libvkd3d-shader-1.dll"]:
         assert (bottle_path / "drive_c/windows/system32" / dll).read_bytes() == b"win64"
         assert (bottle_path / "drive_c/windows/syswow64" / dll).read_bytes() == b"win32"
+    assert prepared == {}
+
+    config.Environment_Variables = {"PROTON_FSR4_UPGRADE": "1"}
+    winecmd.minimal = False
+    env = winecmd.get_env()
+
+    assert prepared == {
+        "path": str(proton_path),
+        "prefix": str(bottle_path),
+        "sandbox": None,
+    }
+    assert env["FSR4_UPGRADE"] == "1"
+
+    prepared.clear()
+    config.Parameters.sandbox = True
+    env = winecmd.get_env()
+
+    sandbox = prepared.pop("sandbox")
+    assert prepared == {"path": str(proton_path), "prefix": str(bottle_path)}
+    assert sandbox.chdir == str(bottle_path)
+    assert sandbox.clear_env is True
+    assert sandbox.share_paths_ro == [str(proton_path)]
+    assert sandbox.share_paths_rw == [str(bottle_path)]
+    assert sandbox.share_net is False
+    assert env["FSR4_UPGRADE"] == "1"
 
 
 def test_wayland_sandbox_clears_parent_display(monkeypatch, tmp_path):
