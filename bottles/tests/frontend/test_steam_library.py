@@ -488,6 +488,48 @@ def test_steam_program_widget_exposes_library_action(monkeypatch):
     assert captured["updated"] is True
 
 
+def test_program_widget_uses_library_icon(monkeypatch, tmp_path):
+    icon_path = tmp_path / "program.svg"
+    icon_path.write_text(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32">'
+        '<rect width="32" height="32" fill="#3584e4"/></svg>',
+        encoding="utf-8",
+    )
+
+    class LibraryManager:
+        @staticmethod
+        def get_library():
+            return {
+                "entry-id": {
+                    "id": "program-id",
+                    "icon": str(icon_path),
+                }
+            }
+
+    monkeypatch.setattr(program_module, "LibraryManager", LibraryManager)
+    window = SimpleNamespace(
+        page_details=SimpleNamespace(view_bottle=object()),
+        manager=SimpleNamespace(
+            steam_manager=SimpleNamespace(is_steam_supported=False),
+        ),
+    )
+
+    entry = ProgramEntry(
+        window,
+        BottleConfig(Name="Games", Path="Games"),
+        {
+            "name": "Example Game",
+            "id": "program-id",
+            "path": "C:\\Example Game\\game.exe",
+            "icon": "com.usebottles.bottles-program",
+        },
+        check_boot=False,
+    )
+
+    assert entry.img_program.get_icon_name() is None
+    assert entry.img_program.get_paintable() is not None
+
+
 def test_library_entry_resolves_steam_game_without_wine_program():
     config = steam_config()
     data = {
