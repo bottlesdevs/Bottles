@@ -83,6 +83,8 @@ class ProgramEntry(Adw.ActionRow):
         self.config = config
         self.program = program
         self.is_steam = is_steam
+        self.__desktop_entry_exists = False
+        self.__desktop_entry_query_pending = False
 
         self.set_title(GLib.markup_escape_text(self.program["name"]))
 
@@ -132,12 +134,15 @@ class ProgramEntry(Adw.ActionRow):
         self.btn_unhide.connect("clicked", self.hide_program)
         self.btn_rename.connect("clicked", self.rename_program)
         self.btn_browse.connect("clicked", self.browse_program_folder)
-        self.btn_add_entry.connect("clicked", self.add_entry)
+        self.btn_add_entry.connect("clicked", self.manage_entry)
         self.btn_file_associations.connect("clicked", self.show_file_associations)
         self.btn_add_library.connect("clicked", self.add_to_library)
         self.btn_add_steam_library.connect("clicked", self.add_to_library)
         self.btn_add_steam.connect("clicked", self.add_to_steam)
         self.btn_remove.connect("clicked", self.remove_program)
+        self.pop_actions.connect(
+            "notify::visible", self.__refresh_desktop_entry_state
+        )
 
         if not program.get("removed") and not is_steam and check_boot:
             self.__is_alive()
@@ -591,6 +596,8 @@ class ProgramEntry(Adw.ActionRow):
     def add_entry(self, _widget):
         def _on_desktop_entry_created(data: Result | None = None) -> None:
             if data and data.data and data.data.get("method") == "manual":
+                if data.status:
+                    self.__set_desktop_entry_state(True)
                 ProgramEntry.__show_desktop_entry_fallback(self, data)
                 return
             if not data or not data.status:
@@ -600,6 +607,7 @@ class ProgramEntry(Adw.ActionRow):
                     )
                 )
                 return
+            self.__set_desktop_entry_state(True)
             self.window.show_toast(
                 _('Desktop Entry created for "{0}"').format(self.program["name"])
             )
@@ -609,6 +617,61 @@ class ProgramEntry(Adw.ActionRow):
             program=self.program,
             callback=_on_desktop_entry_created,
         )
+
+    def manage_entry(self, widget):
+        if self.__desktop_entry_exists:
+            self.remove_entry(widget)
+            return
+        self.add_entry(widget)
+
+    def remove_entry(self, _widget):
+        self.btn_add_entry.set_sensitive(False)
+        RunAsync(
+            lambda: ManagerUtils.remove_desktop_entry(self.config, self.program),
+            callback=self.__desktop_entry_removed,
+        )
+
+    def __desktop_entry_removed(self, removed, error):
+        if error is not None or not removed:
+            self.btn_add_entry.set_sensitive(True)
+            self.window.show_toast(
+                _('Could not remove the desktop entry for "{0}"').format(
+                    self.program["name"]
+                )
+            )
+            return
+
+        self.__set_desktop_entry_state(False)
+        self.window.show_toast(
+            _('Desktop Entry removed for "{0}"').format(self.program["name"])
+        )
+
+    def __desktop_entry_state_ready(self, exists, error):
+        self.__desktop_entry_query_pending = False
+        if error is not None or exists is None:
+            self.btn_add_entry.set_sensitive(True)
+            return
+        self.__set_desktop_entry_state(exists)
+
+    def __refresh_desktop_entry_state(self, popover, _property=None):
+        if (
+            self.is_steam
+            or self.__desktop_entry_query_pending
+            or not popover.get_visible()
+        ):
+            return
+        self.__desktop_entry_query_pending = True
+        self.btn_add_entry.set_sensitive(False)
+        RunAsync(
+            lambda: ManagerUtils.has_desktop_entry(self.config, self.program),
+            callback=self.__desktop_entry_state_ready,
+        )
+
+    def __set_desktop_entry_state(self, exists):
+        self.__desktop_entry_exists = exists
+        label = _("Remove Desktop Entry") if exists else _("Add Desktop Entry")
+        self.btn_add_entry.set_property("text", label)
+        self.btn_add_entry.set_sensitive(True)
 
     def __show_desktop_entry_fallback(self, result: Result) -> None:
         title, description, command = ProgramEntry.__desktop_entry_fallback_content(

@@ -792,7 +792,12 @@ class ManagerUtils:
         desktop_entry_id = ManagerUtils.get_desktop_entry_id(config, program)
         portal_state = ManagerUtils.get_portal_desktop_entry_state(config, program)
         if portal_state is None:
-            return False
+            _, entry_paths = ManagerUtils.get_manual_desktop_entry_paths(
+                config, program
+            )
+            if not any(os.path.exists(entry_path) for entry_path in entry_paths):
+                return False
+            return ManagerUtils.remove_manual_desktop_entry(config, program)
         if portal_state:
             try:
                 portal.dynamic_launcher_uninstall(desktop_entry_id)

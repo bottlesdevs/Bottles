@@ -851,7 +851,7 @@ def test_create_desktop_entry_does_not_duplicate_existing_portal_on_error(
     assert not (tmp_path / ".local/share/applications").exists()
 
 
-def test_unknown_portal_state_blocks_launcher_removal(monkeypatch, tmp_path):
+def test_unknown_portal_state_removes_manual_launcher(monkeypatch, tmp_path):
     config = BottleConfig(Name="Unknown")
     program = {"name": "Editor", "executable": "editor.exe"}
     applications = tmp_path / ".local/share/applications"
@@ -866,5 +866,17 @@ def test_unknown_portal_state_blocks_launcher_removal(monkeypatch, tmp_path):
     )
     monkeypatch.setenv("HOME", str(tmp_path))
 
-    assert ManagerUtils.remove_desktop_entry(config, program) is False
-    assert manual_entry.exists()
+    assert ManagerUtils.remove_desktop_entry(config, program) is True
+    assert not manual_entry.exists()
+
+
+def test_unknown_portal_state_without_manual_launcher_fails(monkeypatch, tmp_path):
+    monkeypatch.setattr(
+        ManagerUtils, "get_portal_desktop_entry_state", lambda *_args: None
+    )
+    monkeypatch.setenv("HOME", str(tmp_path))
+
+    assert ManagerUtils.remove_desktop_entry(
+        BottleConfig(Name="Unknown"),
+        {"name": "Editor", "executable": "editor.exe"},
+    ) is False
