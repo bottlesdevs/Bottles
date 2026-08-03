@@ -25,6 +25,7 @@ from bottles.backend.utils.display import DisplayUtils
 from bottles.backend.utils.file import FileUtils
 from bottles.backend.utils.generic import is_glibc_min_available
 from bottles.backend.utils.gpu import GPUUtils
+from bottles.backend.utils.vulkan import VulkanUtils
 
 logging = Logger()
 
@@ -36,6 +37,7 @@ class HealthChecker:
     xwayland: bool = False
     desktop: str = ""
     gpus: dict = {}
+    vulkan: bool = False
     cabextract: bool = False
     p7zip: bool = False
     patool: bool = False
@@ -58,6 +60,7 @@ class HealthChecker:
         self.xwayland = self.x11 and self.wayland
         self.desktop = self.check_desktop()
         self.gpus = GPUUtils().get_gpu()
+        self.vulkan = VulkanUtils.check_support()
         self.glibc_min = is_glibc_min_available()
         self.bottles_envs = self.get_bottles_envs()
         self.check_system_info()
@@ -125,7 +128,7 @@ class HealthChecker:
                 "X.org (port)": self.x11_port,
                 "Wayland": self.wayland,
             },
-            "Graphics": self.gpus,
+            "Graphics": {**self.gpus, "Vulkan": self.vulkan},
             "Kernel": {"Type": self.kernel, "Version": self.kernel_version},
             "Disk": self.disk,
             "RAM": self.ram,
