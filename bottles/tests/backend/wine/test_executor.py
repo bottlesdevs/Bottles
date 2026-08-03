@@ -18,6 +18,7 @@ from bottles.backend.wine.winecommand import (
     WineCommand,
     WineEnv,
     apply_frame_rate_limit,
+    apply_hidraw_preferences,
     apply_hdr_preferences,
     apply_wayland_preferences,
 )
@@ -722,6 +723,28 @@ def test_frame_rate_limit_preserves_manual_environment_when_disabled():
     resolved = env.get()["envs"]
     assert resolved["DXVK_CONFIG"] == "dxgi.maxFrameRate = 90"
     assert resolved["VKD3D_FRAME_RATE"] == "90"
+
+
+def test_hidraw_preferences_enable_only_selected_devices():
+    env = WineEnv(clean=True)
+    params = BottleParams(
+        hidraw_devices=["0x044f/0xb10a", "1", "0x231D/0x0200"]
+    )
+
+    apply_hidraw_preferences(env, params)
+
+    assert env.get()["envs"]["PROTON_ENABLE_HIDRAW"] == (
+        "0x044F/0xB10A,0x231D/0x0200"
+    )
+
+
+def test_hidraw_preferences_preserve_manual_environment_when_unset():
+    env = WineEnv(clean=True)
+    env.add("PROTON_ENABLE_HIDRAW", "0x3344/0x0001")
+
+    apply_hidraw_preferences(env, BottleParams())
+
+    assert env.get()["envs"]["PROTON_ENABLE_HIDRAW"] == "0x3344/0x0001"
 
 
 def test_hdr_preferences_enable_dxvk_without_automatic_wayland_layer(monkeypatch):
