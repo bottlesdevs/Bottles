@@ -682,7 +682,11 @@ class ManagerUtils:
         desktop_entry.set_boolean(group, "Terminal", False)
         desktop_entry.set_string(group, "Categories", "Game;")
         desktop_entry.set_string(group, "Comment", f"Launch {name} using Bottles.")
-        desktop_entry.set_string(group, "StartupWMClass", executable.lower())
+        wm_class = executable.lower()
+        if ManagerUtils.uses_steam_window_class(config):
+            app_id = ManagerUtils.get_program_steam_app_id(config, program)
+            wm_class = f"steam_app_{app_id}"
+        desktop_entry.set_string(group, "StartupWMClass", wm_class)
         if mime_types:
             desktop_entry.set_string(group, "MimeType", f"{';'.join(mime_types)};")
         if icon_path is not None:
@@ -693,6 +697,43 @@ class ManagerUtils:
                 ManagerUtils.validate_desktop_entry_value(icon_path),
             )
         return desktop_entry.to_data()[0]
+
+    @staticmethod
+    def get_program_steam_app_id(config, program: dict) -> str:
+        environments = (
+            program.get("environment"),
+            config.get("Environment_Variables"),
+        )
+        for environment in environments:
+            if not isinstance(environment, dict):
+                continue
+            app_id = environment.get("SteamAppId")
+            if isinstance(app_id, str) and re.fullmatch(
+                r"[A-Za-z0-9_.-]{1,117}", app_id
+            ):
+                return app_id
+
+        bottle_id = str(config.get("Path") or config.get("Name") or "")
+        program_path = str(program.get("path") or program.get("executable") or "")
+        program_name = str(program.get("name") or "")
+        fallback = str(program.get("id") or "") if not program_path else ""
+        fields = (bottle_id, program_path, program_name, fallback)
+        identity = "".join(f"{len(field)}:{field}" for field in fields)
+
+        checksum = GLib.compute_checksum_for_string(
+            GLib.ChecksumType.SHA1,
+            identity,
+            -1,
+        )
+        return f"bottles_{checksum}"
+
+    @staticmethod
+    def uses_steam_window_class(config) -> bool:
+        if str(config.get("Environment") or "").lower() == "steam":
+            return True
+
+        runner = str(config.get("Runner") or config.get("RunnerPath") or "").lower()
+        return any(name in runner for name in ("soda", "proton", "wine-ge"))
 
     @staticmethod
     def get_desktop_entry_id(config, program: dict):
