@@ -73,3 +73,26 @@ def test_winebridge_preserves_windows_executable_path(monkeypatch):
     WineBridge(BottleConfig()).run_exe(path)
 
     assert captured["args"] == f'runExe "{path}"'
+
+
+def test_winebridge_forwards_launch_context(monkeypatch):
+    captured = {}
+
+    def fake_launch(self, **kwargs):
+        captured.update(kwargs)
+        return Result(True)
+
+    monkeypatch.setattr(WineBridge, "launch", fake_launch)
+
+    WineBridge(BottleConfig()).run_exe(
+        r"C:\Games\example.exe",
+        terminal=True,
+        environment={"GAME_MODE": "1"},
+        cwd=r"C:\Games",
+        sandbox_override="off",
+    )
+
+    assert captured["terminal"] is True
+    assert captured["environment"] == {"GAME_MODE": "1"}
+    assert captured["cwd"] == r"C:\Games"
+    assert captured["sandbox_override"] == "off"

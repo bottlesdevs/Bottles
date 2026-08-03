@@ -493,7 +493,13 @@ class WineExecutor:
                     if winepath.is_unix(self._raw_exec_path)
                     else self._raw_exec_path
                 )
-                res = winebridge.run_exe(exec_path)
+                res = winebridge.run_exe(
+                    exec_path,
+                    terminal=self.terminal,
+                    environment=self.environment,
+                    cwd=self.cwd,
+                    sandbox_override=self.sandbox_override,
+                )
                 return Result(status=True, data={"output": res})
         winepath = WinePath(self.config)
         if self.use_virt_desktop:

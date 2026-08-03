@@ -63,8 +63,23 @@ class WineBridge(WineProgram):
         args = f"killProcByName {name}"
         return self.launch(args=args, communicate=True, action_name="kill_proc_by_name")
 
-    def run_exe(self, exec_path: str):
+    def run_exe(
+        self,
+        exec_path: str,
+        terminal: bool = False,
+        environment: dict | None = None,
+        cwd: str | None = None,
+        sandbox_override: str | None = None,
+    ):
         winepath = WinePath(self.config)
         exec_path = winepath.to_windows(exec_path, True)
         args = f'runExe "{exec_path}"'
-        return self.launch(args=args, communicate=True, action_name="run_exe")
+        return self.launch(
+            args=args,
+            terminal=terminal,
+            communicate=True,
+            environment=environment,
+            cwd=cwd,
+            action_name="run_exe",
+            sandbox_override=sandbox_override,
+        )

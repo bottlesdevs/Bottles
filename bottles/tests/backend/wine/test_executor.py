@@ -263,6 +263,56 @@ def test_hide_console_routes_exe_through_start(monkeypatch):
     assert calls == ["start"]
 
 
+def test_winebridge_preserves_terminal_launch(monkeypatch):
+    captured = {}
+
+    class FakeWineBridge:
+        def __init__(self, _config):
+            pass
+
+        @staticmethod
+        def is_available():
+            return True
+
+        @staticmethod
+        def run_exe(exec_path, **kwargs):
+            captured["exec_path"] = exec_path
+            captured.update(kwargs)
+            return Result(True)
+
+    class FakeWinePath:
+        def __init__(self, _config):
+            pass
+
+        @staticmethod
+        def is_unix(_path):
+            return False
+
+    monkeypatch.setattr("bottles.backend.wine.executor.WineBridge", FakeWineBridge)
+    monkeypatch.setattr("bottles.backend.wine.executor.WinePath", FakeWinePath)
+
+    executor = WineExecutor.__new__(WineExecutor)
+    executor.config = _make_config()
+    executor.use_winebridge = True
+    executor.exec_type = "exe"
+    executor._raw_exec_path = r"C:\Games\example.exe"
+    executor.terminal = True
+    executor.environment = {"GAME_MODE": "1"}
+    executor.cwd = r"C:\Games"
+    executor.sandbox_override = "off"
+
+    result = executor._WineExecutor__launch_with_bridge()
+
+    assert result.status is True
+    assert captured == {
+        "exec_path": r"C:\Games\example.exe",
+        "terminal": True,
+        "environment": {"GAME_MODE": "1"},
+        "cwd": r"C:\Games",
+        "sandbox_override": "off",
+    }
+
+
 def test_hide_console_virtual_desktop_uses_background_explorer(monkeypatch):
     captured = {}
 
@@ -386,8 +436,9 @@ def test_winebridge_launch_preserves_spaces_in_executable_path(monkeypatch):
             return True
 
         @staticmethod
-        def run_exe(exec_path):
+        def run_exe(exec_path, **kwargs):
             captured["exec_path"] = exec_path
+            captured.update(kwargs)
             return ""
 
     class FakeWinePath:
@@ -412,11 +463,16 @@ def test_winebridge_launch_preserves_spaces_in_executable_path(monkeypatch):
     executor.exec_type = "exe"
     executor._raw_exec_path = executable
     executor.exec_path = f"'{executable}'"
+    executor.terminal = False
+    executor.environment = {}
+    executor.cwd = None
+    executor.sandbox_override = None
 
     result = executor._WineExecutor__launch_with_bridge()
 
     assert result.status is True
     assert captured["exec_path"] == executable.replace("/", "\\")
+    assert captured["terminal"] is False
 
 
 def test_wine_env_respects_allowed_keys(monkeypatch):
