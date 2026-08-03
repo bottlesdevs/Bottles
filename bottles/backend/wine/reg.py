@@ -1,4 +1,5 @@
 import codecs
+import contextlib
 import dataclasses
 import os
 import uuid
@@ -8,6 +9,7 @@ from typing import List, Dict, Optional
 
 from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
+from bottles.backend.models.result import Result
 from bottles.backend.utils.generic import random_string
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.winedbg import WineDbg
@@ -107,41 +109,46 @@ class Reg(WineProgram):
         res = self.launch(args, communicate=True, minimal=True, action_name="remove")
         logging.info(res.data)
 
-    def import_bundle(self, bundle: dict):
+    def import_bundle(self, bundle: dict) -> Result:
         """Import a bundle of keys into the registry"""
         config = self.config
         logging.info(f"Importing bundle to {config.Name} registry")
         winedbg = WineDbg(config)
         reg_file = ManagerUtils.get_temp_path(f"{uuid.uuid4()}.reg")
 
-        # prepare reg file
-        with open(reg_file, "w") as f:
-            f.write("REGEDIT4\n\n")
+        try:
+            # prepare reg file
+            with open(reg_file, "w") as f:
+                f.write("REGEDIT4\n\n")
 
-            for key in bundle:
-                f.write(f"[{key}]\n")
+                for key in bundle:
+                    f.write(f"[{key}]\n")
 
-                for value in bundle[key]:
-                    if value["data"] == "-":
-                        f.write(f'"{value["value"]}"=-\n')
-                    elif "key_type" in value:
-                        f.write(
-                            f'"{value["value"]}"={value["key_type"]}:{value["data"]}\n'
-                        )
-                    else:
-                        f.write(f'"{value["value"]}"="{value["data"]}"\n')
+                    for value in bundle[key]:
+                        if value["data"] == "-":
+                            f.write(f'"{value["value"]}"=-\n')
+                        elif "key_type" in value:
+                            f.write(
+                                f'"{value["value"]}"={value["key_type"]}:{value["data"]}\n'
+                            )
+                        else:
+                            f.write(f'"{value["value"]}"="{value["data"]}"\n')
 
-                f.write("\n")
+                    f.write("\n")
 
-        args = f"import {reg_file}"
+            args = f"import {reg_file}"
 
-        # avoid conflicts when executing async
-        winedbg.wait_for_process("reg.exe")
+            # avoid conflicts when executing async
+            winedbg.wait_for_process("reg.exe")
 
-        res = self.launch(
-            args, communicate=True, minimal=True, action_name="import_bundle"
-        )
-        logging.info(f"Import bundle result: '{res.data}'")
-
-        # remove reg file
-        os.remove(reg_file)
+            res = self.launch(
+                args, communicate=True, minimal=True, action_name="import_bundle"
+            )
+            logging.info(f"Import bundle result: '{res.data}'")
+            return res
+        except OSError as error:
+            logging.warning(f"Failed to import registry bundle: {error}")
+            return Result(False, message=str(error))
+        finally:
+            with contextlib.suppress(FileNotFoundError):
+                os.remove(reg_file)

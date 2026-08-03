@@ -39,7 +39,7 @@ class RepositoryManager:
         "components": {
             "sources": (
                 "https://proxy.usebottles.com/repo/components/",
-                "https://raw.githubusercontent.com/bottlesdevs/components/5038c9e39fc90ed237587ce18796e832f917eab2/",
+                "https://raw.githubusercontent.com/bottlesdevs/components/f0789e69477aafa5a207bad13dead7ac144972bc/",
             ),
             "index": "",
             "cls": ComponentRepo,

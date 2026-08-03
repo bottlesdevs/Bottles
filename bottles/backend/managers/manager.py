@@ -28,10 +28,11 @@ from datetime import datetime
 from gettext import gettext as _
 from glob import glob
 from threading import Event
-from typing import Any, Callable, Dict, List, Optional, Tuple
+from typing import Any, Callable, ClassVar, Dict, List, Optional, Tuple
 
 import pathvalidate
 
+from bottles.backend.dlls.d7vk import D7VKComponent
 from bottles.backend.dlls.dxvk import DXVKComponent
 from bottles.backend.dlls.latencyflex import LatencyFleXComponent
 from bottles.backend.dlls.nvapi import NVAPIComponent
@@ -103,6 +104,7 @@ class Manager(metaclass=Singleton):
     winebridge_available = []
     runners_available = []
     external_runners: set[str] = set()
+    d7vk_available: ClassVar[list] = []
     dxvk_available = []
     vkd3d_available = []
     nvapi_available = []
@@ -113,6 +115,7 @@ class Manager(metaclass=Singleton):
     supported_winebridge = {}
     supported_wine_runners = {}
     supported_proton_runners = {}
+    supported_d7vk: ClassVar[dict] = {}
     supported_dxvk = {}
     supported_vkd3d = {}
     supported_nvapi = {}
@@ -235,6 +238,11 @@ class Manager(metaclass=Singleton):
 
         steps: List[Tuple[Optional[str], str, Callable[[], bool | None]]] = [
             ("check_app_dirs", _("Preparing folders…"), self.check_app_dirs),
+            (
+                "check_d7vk",
+                _("Setting up D7VK..."),
+                lambda: self.check_d7vk(install_latest),
+            ),
             (
                 "check_dxvk",
                 _("Setting up DXVK…"),
@@ -611,6 +619,10 @@ class Manager(metaclass=Singleton):
             logging.info("Dxvk path doesn't exist, creating now.")
             os.makedirs(Paths.dxvk, exist_ok=True)
 
+        if not os.path.isdir(Paths.d7vk):
+            logging.info("D7VK path doesn't exist, creating now.")
+            os.makedirs(Paths.d7vk, exist_ok=True)
+
         if not os.path.isdir(Paths.vkd3d):
             logging.info("Vkd3d path doesn't exist, creating now.")
             os.makedirs(Paths.vkd3d, exist_ok=True)
@@ -645,6 +657,7 @@ class Manager(metaclass=Singleton):
         self.supported_proton_runners = catalog["proton"]
         self.supported_runtimes = catalog["runtimes"]
         self.supported_winebridge = catalog["winebridge"]
+        self.supported_d7vk = catalog["d7vk"]
         self.supported_dxvk = catalog["dxvk"]
         self.supported_vkd3d = catalog["vkd3d"]
         self.supported_nvapi = catalog["nvapi"]
@@ -919,6 +932,11 @@ class Manager(metaclass=Singleton):
             self.dxvk_available = res
         return res is not False
 
+    def check_d7vk(self, install_latest: bool = True) -> bool:
+        res = self.__check_component("d7vk", install_latest)
+        self.d7vk_available = res if isinstance(res, list) else []
+        return res is not False
+
     def check_vkd3d(self, install_latest: bool = True) -> bool:
         res = self.__check_component("vkd3d", install_latest)
         if res:
@@ -941,6 +959,10 @@ class Manager(metaclass=Singleton):
         self, component_type: str, extra_name_check: str = ""
     ) -> list:
         components = {
+            "d7vk": {
+                "available": self.d7vk_available,
+                "supported": self.supported_d7vk,
+            },
             "dxvk": {
                 "available": self.dxvk_available,
                 "supported": self.supported_dxvk,
@@ -1007,6 +1029,11 @@ class Manager(metaclass=Singleton):
         self, component_type: str, install_latest: bool = True
     ) -> bool | list:
         components = {
+            "d7vk": {
+                "available": self.d7vk_available,
+                "supported": self.supported_d7vk,
+                "path": Paths.d7vk,
+            },
             "dxvk": {
                 "available": self.dxvk_available,
                 "supported": self.supported_dxvk,
@@ -1040,6 +1067,12 @@ class Manager(metaclass=Singleton):
 
         component = components[component_type]
         component["available"] = os.listdir(component["path"])
+        if component_type == "d7vk":
+            component["available"] = [
+                version
+                for version in component["available"]
+                if D7VKComponent(version).checked_dlls
+            ]
 
         if len(component["available"]) > 0:
             logging.info(
@@ -1064,7 +1097,11 @@ class Manager(metaclass=Singleton):
                     else:
                         tmp_components = component["supported"]
                         component_version = next(iter(tmp_components))
-                    self.component_manager.install(component_type, component_version)
+                    installed = self.component_manager.install(
+                        component_type, component_version
+                    )
+                    if not installed.ok:
+                        return False
                     component["available"] = [component_version]
                 except StopIteration:
                     return False
@@ -1148,6 +1185,7 @@ class Manager(metaclass=Singleton):
                     "post_script": _program.get("post_script"),
                     "post_script_args": _program.get("post_script_args"),
                     "folder": _program.get("folder", program_folder),
+                    "d7vk": _program.get("d7vk"),
                     "dxvk": _program.get("dxvk"),
                     "vkd3d": _program.get("vkd3d"),
                     "dxvk_nvapi": _program.get("dxvk_nvapi"),
@@ -1370,6 +1408,8 @@ class Manager(metaclass=Singleton):
                 persisted_config.run_in_terminal = run_in_terminal
                 persisted_config.dump(_config)
 
+            if not self.reconcile_d7vk(config):
+                logging.warning(f"Could not reconcile D7VK for bottle {_name}.")
             self.local_bottles[config.Name] = config
 
             try:
@@ -1522,6 +1562,7 @@ class Manager(metaclass=Singleton):
 
         component_keys = {
             "Runner",
+            "D7VK",
             "DXVK",
             "VKD3D",
             "NVAPI",
@@ -1565,6 +1606,9 @@ class Manager(metaclass=Singleton):
         if config.DXVK not in self.dxvk_available:
             config.DXVK = self.dxvk_available[0] if self.dxvk_available else ""
 
+        if config.D7VK not in self.d7vk_available:
+            config.D7VK = self.d7vk_available[0] if self.d7vk_available else ""
+
         if config.VKD3D not in self.vkd3d_available:
             config.VKD3D = self.vkd3d_available[0] if self.vkd3d_available else ""
 
@@ -1575,6 +1619,7 @@ class Manager(metaclass=Singleton):
             name=config.Name,
             environment=config.Environment or "Custom",
             runner=config.Runner,
+            d7vk=config.D7VK if config.Parameters.d7vk else False,
             dxvk=config.DXVK,
             vkd3d=config.VKD3D,
             nvapi=config.NVAPI,
@@ -1598,6 +1643,7 @@ class Manager(metaclass=Singleton):
         environment: str,
         path: str = "",
         runner: str = False,
+        d7vk: bool = False,
         dxvk: bool = False,
         vkd3d: bool = False,
         nvapi: bool = False,
@@ -1614,6 +1660,8 @@ class Manager(metaclass=Singleton):
         Create a new bottle from the given arguments.
         TODO: will be replaced by the BottleBuilder class.
         """
+
+        d7vk_requested = bool(d7vk)
 
         def log_update(message):
             if fn_logger:
@@ -1685,6 +1733,11 @@ class Manager(metaclass=Singleton):
             if len(self.latencyflex_available) == 0:
                 self.check_latencyflex()
                 needs_install = True
+            if d7vk and d7vk not in self.d7vk_available:
+                result = self.component_manager.install("d7vk", d7vk)
+                if not result.ok:
+                    return False
+                needs_install = True
 
             if needs_install:
                 self.organize_components()
@@ -1708,6 +1761,10 @@ class Manager(metaclass=Singleton):
             # if no dxvk is specified, use the first one from available
             dxvk = self.dxvk_available[0] if self.dxvk_available else ""
         dxvk_name = dxvk
+
+        if not d7vk:
+            d7vk = self.d7vk_available[0] if self.d7vk_available else ""
+        d7vk_name = d7vk
 
         if not vkd3d:
             # if no vkd3d is specified, use the first one from available
@@ -1828,6 +1885,7 @@ class Manager(metaclass=Singleton):
         config.Name = bottle_name
         config.Arch = arch
         config.Runner = runner_name
+        config.D7VK = d7vk_name
         config.DXVK = dxvk_name
         config.VKD3D = vkd3d_name
         config.NVAPI = nvapi_name
@@ -2132,6 +2190,26 @@ class Manager(metaclass=Singleton):
                         return Result(False)
                     template_updated = True
 
+        if d7vk_requested:
+            config.Parameters.d7vk = True
+
+        template_has_d7vk = bool(
+            template
+            and template["config"].get("Parameters", {}).get("d7vk")
+            and template["config"].get("D7VK") == d7vk_name
+        )
+        if config.Parameters.d7vk and not template_has_d7vk:
+            cancel_result = check_cancel()
+            if cancel_result is not None:
+                return cancel_result
+
+            logging.info("Installing D7VK...")
+            log_update(_("Installing D7VK..."))
+            result = self.install_dll_component(config, "d7vk", version=d7vk_name)
+            if not result.ok:
+                return result
+            template_updated = True
+
         # save bottle config
         cancel_result = check_cancel()
         if cancel_result is not None:
@@ -2202,6 +2280,7 @@ class Manager(metaclass=Singleton):
 
     # Config version key for each DLL component that supports upgrades.
     __dll_component_keys = {
+        "d7vk": "D7VK",
         "dxvk": "DXVK",
         "vkd3d": "VKD3D",
         "nvapi": "NVAPI",
@@ -2228,6 +2307,12 @@ class Manager(metaclass=Singleton):
             updates.append(runner_update)
 
         component_meta = {
+            "d7vk": {
+                "title": _("D7VK"),
+                "enabled": config.Parameters.d7vk,
+                "current": config.D7VK,
+                "supported": self.supported_d7vk,
+            },
             "dxvk": {
                 "title": _("DXVK"),
                 "enabled": config.Parameters.dxvk,
@@ -2401,6 +2486,7 @@ class Manager(metaclass=Singleton):
 
     def __ensure_component_available(self, component: str, version: str) -> Result:
         availability_attrs = {
+            "d7vk": "d7vk_available",
             "dxvk": "dxvk_available",
             "vkd3d": "vkd3d_available",
             "nvapi": "nvapi_available",
@@ -2417,6 +2503,9 @@ class Manager(metaclass=Singleton):
         ensure = self.__ensure_component_available(component, version)
         if not ensure.ok:
             return ensure
+
+        if component == "d7vk":
+            return self.set_d7vk(config, True, version)
 
         remove_res = self.install_dll_component(
             config=config, component=component, remove=True
@@ -2438,6 +2527,79 @@ class Manager(metaclass=Singleton):
             return install_res
 
         return Result(True, data={"config": updated_config})
+
+    def set_d7vk(
+        self, config: BottleConfig, enabled: bool, version: str | None = None
+    ) -> Result:
+        previous = deepcopy(config)
+
+        if not enabled:
+            result = self.install_dll_component(config, "d7vk", remove=True)
+            if not result.ok:
+                return self.__rollback_d7vk(previous, result)
+            persisted = self.__persist_d7vk_config(config, False, config.D7VK)
+            if persisted.ok:
+                return persisted
+            return self.__rollback_d7vk(previous, persisted)
+
+        selected = version or config.D7VK
+        if not selected:
+            selected = self.d7vk_available[0] if self.d7vk_available else ""
+        if not selected:
+            return Result(False, message=_("No D7VK version available."))
+
+        result = self.install_dll_component(config, "d7vk", version=selected)
+        if not result.ok:
+            return self.__rollback_d7vk(previous, result)
+
+        persisted = self.__persist_d7vk_config(config, True, selected)
+        if persisted.ok:
+            return persisted
+        return self.__rollback_d7vk(previous, persisted)
+
+    def __persist_d7vk_config(
+        self, config: BottleConfig, enabled: bool, version: str
+    ) -> Result:
+        candidate = deepcopy(config)
+        candidate.D7VK = version
+        candidate.Parameters.d7vk = enabled
+        candidate.Update_Date = str(datetime.now().astimezone().replace(tzinfo=None))
+
+        bottle_path = ManagerUtils.get_bottle_path(candidate)
+        saved = candidate.dump(os.path.join(bottle_path, "bottle.yml"))
+        if not saved.ok:
+            return Result(False, message=saved.message)
+
+        if candidate.Name in self.local_bottles:
+            self.local_bottles[candidate.Name] = candidate
+        if candidate.Environment == "Steam":
+            self.steam_manager.update_bottle(candidate)
+        RegistryRuleManager.apply_rules(candidate, trigger="components")
+        return Result(True, data={"config": candidate})
+
+    def __rollback_d7vk(self, previous: BottleConfig, failure: Result) -> Result:
+        if not self.reconcile_d7vk(previous):
+            return Result(
+                False,
+                message=_("Failed to save and roll back the D7VK configuration."),
+            )
+        return failure
+
+    def reconcile_d7vk(self, config: BottleConfig) -> bool:
+        if not config.Parameters.d7vk and not D7VKComponent.has_managed_install(config):
+            return True
+
+        component = D7VKComponent(config.D7VK or "d7vk")
+        if config.Parameters.d7vk:
+            if not config.D7VK or not component.checked_dlls:
+                return False
+            if component.is_installed(config):
+                return True
+            return component.install(config)
+
+        if component.has_managed_install(config):
+            return component.uninstall(config)
+        return True
 
     def __update_runner_component(
         self, config: BottleConfig, runner: str, component_type: str
@@ -2548,8 +2710,8 @@ class Manager(metaclass=Singleton):
         if exclude is None:
             exclude = []
 
-        # dxvk, vkd3d and nvapi require Vulkan to be present on the host.
-        if not remove and component in ("dxvk", "vkd3d", "nvapi"):
+        # D7VK, DXVK, VKD3D and NVAPI require Vulkan to be present on the host.
+        if not remove and component in ("d7vk", "dxvk", "vkd3d", "nvapi"):
             from bottles.backend.utils.vulkan import VulkanUtils
 
             if not VulkanUtils.check_support():
@@ -2563,7 +2725,18 @@ class Manager(metaclass=Singleton):
                     ),
                 )
 
-        if component == "dxvk":
+        if component == "d7vk":
+            _version = (
+                version
+                or config.D7VK
+                or (self.d7vk_available[0] if self.d7vk_available else "")
+            )
+            if remove and not _version:
+                _version = "d7vk"
+            if not _version:
+                return Result(status=False, message=_("No D7VK version available."))
+            manager = D7VKComponent(_version)
+        elif component == "dxvk":
             _version = (
                 version
                 or config.DXVK
@@ -2608,11 +2781,25 @@ class Manager(metaclass=Singleton):
                 status=False, data={"message": f"Invalid component: {component}"}
             )
 
-        if remove:
-            manager.uninstall(config, exclude)
-        else:
-            manager.install(config, overrides_only, exclude)
+        if not remove and component == "d7vk" and not manager.checked_dlls:
+            return Result(
+                status=False,
+                message=_("The selected D7VK installation is incomplete."),
+            )
 
+        if remove:
+            success = manager.uninstall(config, exclude)
+        else:
+            success = manager.install(config, overrides_only, exclude)
+
+        if not success:
+            message = (
+                _("Failed to remove {0}.") if remove else _("Failed to install {0}.")
+            )
+            return Result(
+                status=False,
+                message=message.format(component.upper()),
+            )
         return Result(status=True)
 
     def shutdown(self):

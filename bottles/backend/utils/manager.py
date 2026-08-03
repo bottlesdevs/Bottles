@@ -72,6 +72,8 @@ class ManagerUtils:
         elif component != "":
             if path_type in ["runner", "runner:proton"]:
                 path = ManagerUtils.get_runner_path(component)
+            elif path_type == "d7vk":
+                path = ManagerUtils.get_d7vk_path(component)
             elif path_type == "dxvk":
                 path = ManagerUtils.get_dxvk_path(component)
             elif path_type == "vkd3d":
@@ -217,6 +219,10 @@ class ManagerUtils:
     @staticmethod
     def get_dxvk_path(dxvk: str) -> str:
         return f"{Paths.dxvk}/{dxvk}"
+
+    @staticmethod
+    def get_d7vk_path(d7vk: str) -> str:
+        return f"{Paths.d7vk}/{d7vk}"
 
     @staticmethod
     def get_vkd3d_path(vkd3d: str) -> str:

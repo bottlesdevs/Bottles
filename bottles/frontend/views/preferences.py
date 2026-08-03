@@ -578,6 +578,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
 
     def populate_dlls_list(self):
         dll_components = [
+            ("d7vk", self.manager.supported_d7vk, "D7VK"),
             ("dxvk", self.manager.supported_dxvk, "DXVK"),
             ("vkd3d", self.manager.supported_vkd3d, "VKD3D"),
             ("nvapi", self.manager.supported_nvapi, "DXVK-NVAPI"),

@@ -25,6 +25,19 @@ template $DetailsPreferences: Adw.PreferencesPage {
       model: StringList str_list_runner {};
     }
 
+    Adw.ComboRow combo_d7vk {
+      title: _("D7VK");
+      subtitle: _("Improve Direct3D 3/5/6/7 compatibility for 32-bit applications by translating it to Vulkan.");
+
+      Spinner spinner_d7vk {
+        tooltip-text: _("Updating D7VK, please wait...");
+        valign: center;
+        visible: false;
+      }
+
+      model: StringList str_list_d7vk {};
+    }
+
     Adw.ComboRow combo_dxvk {
       title: _("DXVK");
       subtitle: _("Improve Direct3D 8/9/10/11 compatibility by translating it to Vulkan.");
