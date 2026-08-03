@@ -334,6 +334,89 @@ def test_get_programs_preserves_per_program_runtime_options(monkeypatch):
     assert program["file_extensions"] == [".txt", ".json"]
 
 
+@pytest.mark.parametrize(
+    ("arguments_enabled", "expected_names"),
+    [
+        (True, ["Renamed Game"]),
+        (False, ["Renamed Game", "Original Folder Name"]),
+    ],
+)
+def test_get_programs_deduplicates_renamed_epic_game(
+    monkeypatch, arguments_enabled, expected_names
+):
+    class Settings:
+        @staticmethod
+        def get_boolean(key):
+            return key == "epic-games"
+
+    class WindowsPath:
+        @staticmethod
+        def is_windows(_path):
+            return True
+
+    class WindowsSteam:
+        is_steam_supported = False
+
+    path = (
+        "C:\\Program Files (x86)\\Epic Games\\Launcher\\Portal\\Binaries\\Win32\\"
+        "EpicGamesLauncher.exe"
+    )
+    arguments = "-opengl -com.epicgames.launcher://apps/game?action=launch"
+    manager = object.__new__(Manager)
+    manager._programs_cache = {}
+    manager.settings = Settings()
+    config = BottleConfig(
+        Name="Test",
+        External_Programs={
+            "game-id": {
+                "id": "game-id",
+                "name": "Renamed Game",
+                "executable": "EpicGamesLauncher.exe",
+                "path": path,
+                "folder": "C:\\Program Files (x86)\\Epic Games\\Launcher",
+                "arguments": arguments,
+                "arguments_enabled": arguments_enabled,
+            }
+        },
+    )
+    discovered = {
+        "id": "discovered-id",
+        "name": "Original Folder Name",
+        "executable": "EpicGamesLauncher.exe",
+        "path": path,
+        "folder": "C:\\Program Files (x86)\\Epic Games\\Launcher",
+        "arguments": arguments,
+    }
+
+    monkeypatch.setattr(manager_module, "glob", lambda *_args, **_kwargs: [])
+    monkeypatch.setattr(manager_module, "WinePath", lambda _config: WindowsPath())
+    monkeypatch.setattr(
+        manager_module.ManagerUtils, "get_bottle_path", lambda _config: "/bottle"
+    )
+    monkeypatch.setattr(
+        manager_module.ManagerUtils,
+        "get_exe_parent_dir",
+        lambda *_args: "C:\\Program Files (x86)\\Epic Games\\Launcher",
+    )
+    monkeypatch.setattr(
+        manager_module, "SteamManager", lambda *_args, **_kwargs: WindowsSteam()
+    )
+    monkeypatch.setattr(
+        manager_module.EpicGamesStoreManager,
+        "is_epic_supported",
+        lambda _config: True,
+    )
+    monkeypatch.setattr(
+        manager_module.EpicGamesStoreManager,
+        "get_installed_games",
+        lambda _config: [discovered],
+    )
+
+    programs = Manager.get_programs(manager, config)
+
+    assert [program["name"] for program in programs] == expected_names
+
+
 def test_create_bottle_checks_every_essential_component_before_retry():
     manager = object.__new__(Manager)
     manager.runners_available = []
@@ -366,6 +449,8 @@ def test_create_bottle_checks_every_essential_component_before_retry():
 
     assert not result.ok
     assert calls == ["runner", "dxvk", "vkd3d"]
+
+
 def test_component_updates_can_be_disabled(mocker):
     manager = object.__new__(Manager)
     manager._Manager__collect_runner_update = mocker.Mock()
