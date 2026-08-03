@@ -44,7 +44,7 @@ class Drives:
         drive_sym_path = os.path.join(self.dosdevices_path, letter)
         if not os.path.exists(self.dosdevices_path):
             os.makedirs(self.dosdevices_path)
-        if not os.path.exists(drive_sym_path):
+        if not os.path.lexists(drive_sym_path):
             os.symlink(path, drive_sym_path)
             logging.info(f"New drive {letter} added to the bottle")
         else:
