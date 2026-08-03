@@ -1223,10 +1223,21 @@ class Manager(metaclass=Singleton):
         if self.settings.get_boolean(
             "epic-games"
         ) and EpicGamesStoreManager.is_epic_supported(config):
-            programs_names = [p.get("name", "") for p in installed_programs]
+            programs_names = {p.get("name", "") for p in installed_programs}
+            program_launches = {
+                (
+                    p.get("path"),
+                    p.get("arguments") if p.get("arguments_enabled", True) else None,
+                )
+                for p in installed_programs
+            }
             for app in EpicGamesStoreManager.get_installed_games(config):
-                if app["name"] not in programs_names:
-                    installed_programs.append(app)
+                launch = (app.get("path"), app.get("arguments"))
+                if app["name"] in programs_names or launch in program_launches:
+                    continue
+                installed_programs.append(app)
+                programs_names.add(app["name"])
+                program_launches.add(launch)
 
         if self.settings.get_boolean(
             "ubisoft-connect"
