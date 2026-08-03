@@ -371,12 +371,14 @@ class WineCommand:
 
         bottle = ManagerUtils.get_bottle_path(config)
         runner_path = ManagerUtils.get_runner_path(config.Runner)
+        proton_path = ""
 
         if config.Environment == "Steam":
             bottle = config.Path
             runner_path = config.RunnerPath
 
         if SteamUtils.is_proton(runner_path):
+            proton_path = runner_path
             SteamUtils.sync_proton_vkd3d(runner_path, bottle, arch)
             runner_path = SteamUtils.get_dist_directory(runner_path)
 
@@ -659,7 +661,25 @@ class WineCommand:
             bool(not self.minimal and gamescope_available and self.gamescope_activated),
         )
 
-        return env.get()["envs"]
+        resolved_env = env.get()["envs"]
+        if proton_path and not clean_env and not self.minimal:
+            proton_sandbox = None
+            if params.sandbox:
+                proton_sandbox = SandboxManager(
+                    chdir=bottle,
+                    clear_env=True,
+                    share_paths_ro=[proton_path],
+                    share_paths_rw=[bottle],
+                    share_net=config.Sandbox.share_net,
+                    share_display=False,
+                    share_sound=False,
+                    share_gpu=False,
+                )
+            SteamUtils.prepare_proton_fsr4(
+                proton_path, bottle, resolved_env, proton_sandbox
+            )
+
+        return resolved_env
 
     @staticmethod
     def _apply_sync_environment(env: WineEnv, sync: str, runner: str) -> None:
