@@ -72,10 +72,10 @@ locale_dir = path.join(share_dir, "locale")
 if not path.exists(locale_dir):  # development
     locale_dir = path.join(base_dir, "build", "mo")
 
-locale.bindtextdomain("bottles", locale_dir)
-locale.textdomain("bottles")
-gettext.bindtextdomain("bottles", locale_dir)
-gettext.textdomain("bottles")
+locale.bindtextdomain("com.usebottles.bottles", locale_dir)
+locale.textdomain("com.usebottles.bottles")
+gettext.bindtextdomain("com.usebottles.bottles", locale_dir)
+gettext.textdomain("com.usebottles.bottles")
 _ = gettext.gettext
 
 

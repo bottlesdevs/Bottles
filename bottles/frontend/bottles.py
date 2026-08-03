@@ -43,7 +43,7 @@ if __name__ == "__main__":
     from bottles.frontend.utils.localization import apply_ui_language
 
     apply_ui_language(Gio.Settings.new(APP_ID).get_string("ui-language"))
-    gettext.install("bottles", localedir)
+    gettext.install("com.usebottles.bottles", localedir)
 
     data_resource = Gio.Resource.load(data_gresource_path)
     bottles_resource = Gio.Resource.load(bottles_gresource_path)
