@@ -48,6 +48,16 @@ template $SandboxDialog: Adw.Window {
             valign: center;
           }
         }
+
+        Adw.ActionRow row_usb {
+          title: _("Share USB Devices");
+          subtitle: _("Programs in this bottle can access raw USB devices permitted by the host while enabled.");
+          activatable-widget: switch_usb;
+
+          Switch switch_usb {
+            valign: center;
+          }
+        }
       }
     }
   }
