@@ -82,6 +82,8 @@ class Runner:
             return Result(status=False, data={"config": up_config})
 
         # re-initialize DLLComponents
+        if config.Parameters.d7vk:
+            manager.install_dll_component(config, "d7vk", overrides_only=True)
         if config.Parameters.dxvk:
             manager.install_dll_component(config, "dxvk", overrides_only=True)
         if config.Parameters.dxvk_nvapi:

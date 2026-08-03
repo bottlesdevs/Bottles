@@ -4,6 +4,7 @@ dllsdir = join_paths(pkgdatadir, 'bottles/backend/dlls')
 bottles_sources = [
   '__init__.py',
   'dll.py',
+  'd7vk.py',
   'dxvk.py',
   'vkd3d.py',
   'nvapi.py',

@@ -5,6 +5,7 @@ import time
 import uuid
 from typing import ClassVar, Optional, Pattern
 
+from bottles.backend.dlls.d7vk import D7VKComponent
 from bottles.backend.dlls.dxvk import DXVKComponent
 from bottles.backend.dlls.nvapi import NVAPIComponent
 from bottles.backend.dlls.vkd3d import VKD3DComponent
@@ -41,6 +42,7 @@ class WineExecutor:
         "latencyflex",
     }
     _PROGRAM_DIRECT_WINE_OVERRIDES: ClassVar[set[str]] = {
+        "d7vk",
         "dxvk",
         "dxvk_nvapi",
         "gamescope",
@@ -77,6 +79,7 @@ class WineExecutor:
         post_script_args: Optional[str] = None,
         cwd: Optional[str] = None,
         monitoring: Optional[list] = None,
+        program_d7vk: bool | None = None,
         program_dxvk: Optional[bool] = None,
         program_vkd3d: Optional[bool] = None,
         program_nvapi: Optional[bool] = None,
@@ -125,6 +128,10 @@ class WineExecutor:
         self._play_session_id = -1
 
         env_dll_overrides = []
+
+        if program_d7vk is False and self.config.Parameters.d7vk:
+            override_d7vk = D7VKComponent.get_override_keys() + "=b"
+            env_dll_overrides.append(override_d7vk)
 
         # None = use global DXVK value
         if program_dxvk is not None:
@@ -239,6 +246,7 @@ class WineExecutor:
             post_script_args=_resolve("post_script_args"),
             cwd=_resolve("folder"),
             terminal=terminal,
+            program_d7vk=program.get("d7vk"),
             program_dxvk=program.get("dxvk"),
             program_vkd3d=program.get("vkd3d"),
             program_nvapi=program.get("dxvk_nvapi"),

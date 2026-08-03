@@ -97,6 +97,7 @@ class BottleSandboxParams(DictCompatMixIn):
 
 @dataclass
 class BottleParams(DictCompatMixIn):
+    d7vk: bool = False
     dxvk: bool = False
     dxvk_nvapi: bool = False
     vkd3d: bool = False
@@ -158,6 +159,7 @@ class BottleConfig(DictCompatMixIn):
     Windows: str = "win10"
     Runner: str = ""  # runner name, "sys-*", or any installed runner name
     WorkingDir: str = ""
+    D7VK: str = ""
     DXVK: str = ""
     NVAPI: str = ""
     VKD3D: str = ""

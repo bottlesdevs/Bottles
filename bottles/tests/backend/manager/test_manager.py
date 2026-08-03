@@ -195,6 +195,7 @@ def test_manager_rejects_file_as_custom_bottles_path(monkeypatch, tmp_path):
         "runners",
         "runtimes",
         "winebridge",
+        "d7vk",
         "dxvk",
         "vkd3d",
         "nvapi",
@@ -300,6 +301,7 @@ def test_get_programs_preserves_per_program_runtime_options(monkeypatch):
                 "environment": {"DXVK_HUD": "fps"},
                 "arguments": "--safe-mode",
                 "arguments_enabled": False,
+                "d7vk": False,
                 "discrete_gpu": True,
                 "fsr": True,
                 "gamemode": True,
@@ -325,6 +327,7 @@ def test_get_programs_preserves_per_program_runtime_options(monkeypatch):
     assert program["environment"] == {"DXVK_HUD": "fps"}
     assert program["arguments"] == "--safe-mode"
     assert program["arguments_enabled"] is False
+    assert program["d7vk"] is False
     assert program["discrete_gpu"] is True
     assert program["fsr"] is True
     assert program["gamemode"] is True
@@ -506,6 +509,7 @@ def _make_update_manager(release_candidate: bool) -> Manager:
     manager.settings = Settings()
     manager.supported_wine_runners = {}
     manager.supported_proton_runners = {}
+    manager.supported_d7vk = {}
     manager.supported_dxvk = {}
     manager.supported_vkd3d = {}
     manager.supported_nvapi = {}
@@ -534,6 +538,31 @@ def test_component_updates_respect_release_channel(
     updates = Manager.get_component_updates(manager, config)
 
     assert {update["id"]: update["latest"] for update in updates} == {"dxvk": expected}
+
+
+def test_d7vk_updates_are_reported():
+    manager = _make_update_manager(False)
+    manager.supported_d7vk = {
+        "d7vk-v2.0": {"Channel": "stable"},
+        "d7vk-v1.0": {"Channel": "stable"},
+    }
+    config = BottleConfig(D7VK="d7vk-v1.0")
+    config.Parameters.d7vk = True
+
+    updates = Manager.get_component_updates(manager, config)
+
+    assert {update["id"]: update["latest"] for update in updates} == {
+        "d7vk": "d7vk-v2.0"
+    }
+
+
+def test_check_d7vk_clears_stale_available_versions():
+    manager = object.__new__(Manager)
+    manager.d7vk_available = ["d7vk-v1.0"]
+    manager._Manager__check_component = lambda *_args: []
+
+    assert Manager.check_d7vk(manager, False)
+    assert manager.d7vk_available == []
 
 
 @pytest.mark.parametrize(

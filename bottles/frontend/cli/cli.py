@@ -117,6 +117,9 @@ class CLI:
         add_parser.add_argument("-p", "--path", help="Program path", required=True)
         add_parser.add_argument("-l", "--launch-options", help="Program launch options")
         add_parser.add_argument(
+            "--no-d7vk", action="store_true", help="Disable D7VK for the program"
+        )
+        add_parser.add_argument(
             "--no-dxvk", action="store_true", help="Disable DXVK for the program"
         )
         add_parser.add_argument(
@@ -211,6 +214,9 @@ class CLI:
             "--runner", help="Change Runner (e.g. '--runner caffe-7.2')"
         )
         edit_parser.add_argument(
+            "--d7vk", help="Change D7VK or disable it (e.g. '--d7vk d7vk-v2.0')"
+        )
+        edit_parser.add_argument(
             "--dxvk", help="Change DXVK (e.g. '--dxvk dxvk-1.9.0')"
         )
         edit_parser.add_argument(
@@ -236,6 +242,7 @@ class CLI:
         )
         new_parser.add_argument("--arch", help="Architecture (win32|win64)")
         new_parser.add_argument("--runner", help="Name of the runner to be used")
+        new_parser.add_argument("--d7vk", help="Name of the d7vk to be used")
         new_parser.add_argument("--dxvk", help="Name of the dxvk to be used")
         new_parser.add_argument("--vkd3d", help="Name of the vkd3d to be used")
         new_parser.add_argument("--nvapi", help="Name of the dxvk-nvapi to be used")
@@ -401,6 +408,7 @@ class CLI:
         mng = Manager(g_settings=self.settings, is_cli=True)
         mng.check_app_dirs()
         mng.check_runners(False)
+        mng.check_d7vk(False)
         mng.check_dxvk(False)
         mng.check_vkd3d(False)
         mng.check_nvapi(False)
@@ -408,6 +416,7 @@ class CLI:
 
         components = {
             "runners": mng.runners_available,
+            "d7vk": mng.d7vk_available,
             "dxvk": mng.dxvk_available,
             "vkd3d": mng.vkd3d_available,
             "nvapi": mng.nvapi_available,
@@ -491,6 +500,7 @@ class CLI:
         _name = self.args.name
         _path = self.args.path
         _launch_options = self.args.launch_options
+        _no_d7vk = self.args.no_d7vk
         _no_dxvk = self.args.no_dxvk
         _no_vkd3d = self.args.no_vkd3d
         _no_dxvk_nvapi = self.args.no_dxvk_nvapi
@@ -534,6 +544,8 @@ class CLI:
                 not _no_dxvk_nvapi if _no_dxvk_nvapi else bottle.Parameters.dxvk_nvapi
             ),
         }
+        if _no_d7vk:
+            _program["d7vk"] = False
         mng.update_config(bottle, _uuid, _program, scope="External_Programs")
         sys.stdout.write(f"'{_name}' added to '{bottle.Name}'!")
 
@@ -653,6 +665,7 @@ class CLI:
         _env_var = self.args.env_var
         _win = self.args.win
         _runner = self.args.runner
+        _d7vk = self.args.d7vk
         _dxvk = self.args.dxvk
         _vkd3d = self.args.vkd3d
         _nvapi = self.args.nvapi
@@ -672,6 +685,9 @@ class CLI:
             _params = _params.split(",")
             _params = [p.split(":") for p in _params]
             for k, v in _params:
+                if k == "d7vk":
+                    sys.stderr.write("Use --d7vk to change D7VK\n")
+                    sys.exit(1)
                 if k not in valid_parameters:
                     sys.stderr.write(f"Invalid parameter {k}\n")
                     exit(1)
@@ -697,6 +713,19 @@ class CLI:
 
         if _runner is not None:
             Runner.runner_update(bottle, mng, _runner)
+
+        if _d7vk is not None:
+            if _d7vk.lower() == "disabled":
+                result = mng.set_d7vk(bottle, False)
+            else:
+                mng.check_d7vk(False)
+                if _d7vk not in mng.d7vk_available:
+                    sys.stderr.write(f"D7VK version {_d7vk} not available\n")
+                    sys.exit(1)
+                result = mng.set_d7vk(bottle, True, _d7vk)
+            if not result.ok:
+                sys.stderr.write(f"Failed to change D7VK: {result.message}\n")
+                sys.exit(1)
 
         if _dxvk is not None:
             mng.check_dxvk(False)
@@ -747,6 +776,7 @@ class CLI:
         _custom_environment = self.args.custom_environment
         _arch = "win64" if self.args.arch is None else self.args.arch
         _runner = self.args.runner
+        _d7vk = self.args.d7vk
         _dxvk = self.args.dxvk
         _vkd3d = self.args.vkd3d
         _nvapi = self.args.nvapi
@@ -765,6 +795,7 @@ class CLI:
             name=_name,
             environment=_environment,
             runner=_runner,
+            d7vk=_d7vk,
             dxvk=_dxvk,
             vkd3d=_vkd3d,
             nvapi=_nvapi,

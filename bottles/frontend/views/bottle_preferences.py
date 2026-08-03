@@ -115,6 +115,7 @@ class PreferencesView(Adw.PreferencesPage):
     switch_sandbox = Gtk.Template.Child()
     switch_vmtouch = Gtk.Template.Child()
     combo_runner = Gtk.Template.Child()
+    combo_d7vk = Gtk.Template.Child()
     combo_dxvk = Gtk.Template.Child()
     combo_vkd3d = Gtk.Template.Child()
     combo_nvapi = Gtk.Template.Child()
@@ -122,6 +123,7 @@ class PreferencesView(Adw.PreferencesPage):
     combo_windows = Gtk.Template.Child()
     combo_language = Gtk.Template.Child()
     combo_sync = Gtk.Template.Child()
+    spinner_d7vk = Gtk.Template.Child()
     spinner_dxvk = Gtk.Template.Child()
     spinner_vkd3d = Gtk.Template.Child()
     spinner_nvapi = Gtk.Template.Child()
@@ -133,6 +135,7 @@ class PreferencesView(Adw.PreferencesPage):
     group_details = Gtk.Template.Child()
     str_list_languages = Gtk.Template.Child()
     str_list_runner = Gtk.Template.Child()
+    str_list_d7vk = Gtk.Template.Child()
     str_list_dxvk = Gtk.Template.Child()
     str_list_vkd3d = Gtk.Template.Child()
     str_list_nvapi = Gtk.Template.Child()
@@ -324,6 +327,7 @@ class PreferencesView(Adw.PreferencesPage):
         )
         self.switch_vmtouch.connect("state-set", self.__toggle_feature_cb, "vmtouch")
         self.combo_runner.connect("notify::selected", self.__set_runner)
+        self.combo_d7vk.connect("notify::selected", self.__set_d7vk)
         self.combo_dxvk.connect("notify::selected", self.__set_dxvk)
         self.combo_vkd3d.connect("notify::selected", self.__set_vkd3d)
         self.combo_nvapi.connect("notify::selected", self.__set_nvapi)
@@ -361,6 +365,7 @@ class PreferencesView(Adw.PreferencesPage):
 
         vulkan_supported = VulkanUtils.check_support()
         if not vulkan_supported:
+            self.combo_d7vk.set_sensitive(False)
             self.combo_dxvk.set_sensitive(False)
             self.combo_vkd3d.set_sensitive(False)
             self.combo_nvapi.set_sensitive(False)
@@ -542,6 +547,7 @@ class PreferencesView(Adw.PreferencesPage):
         bottle configuration to be updated during the process.
         """
         self.combo_runner.handler_block_by_func(self.__set_runner)
+        self.combo_d7vk.handler_block_by_func(self.__set_d7vk)
         self.combo_dxvk.handler_block_by_func(self.__set_dxvk)
         self.combo_vkd3d.handler_block_by_func(self.__set_vkd3d)
         self.combo_nvapi.handler_block_by_func(self.__set_nvapi)
@@ -551,6 +557,7 @@ class PreferencesView(Adw.PreferencesPage):
 
         for string_list in [
             self.str_list_runner,
+            self.str_list_d7vk,
             self.str_list_dxvk,
             self.str_list_vkd3d,
             self.str_list_nvapi,
@@ -560,9 +567,13 @@ class PreferencesView(Adw.PreferencesPage):
         ]:
             string_list.splice(0, string_list.get_n_items())
 
+        self.str_list_d7vk.append(_("Disabled"))
         self.str_list_dxvk.append(_("Disabled"))
         self.str_list_vkd3d.append(_("Disabled"))
         self.str_list_latencyflex.append(_("Disabled"))
+        for d7vk in self.manager.d7vk_available:
+            self.str_list_d7vk.append(d7vk)
+
         for index, dxvk in enumerate(self.manager.dxvk_available):
             self.str_list_dxvk.append(dxvk)
 
@@ -582,6 +593,7 @@ class PreferencesView(Adw.PreferencesPage):
             self.str_list_languages.append(lang)
 
         self.combo_runner.handler_unblock_by_func(self.__set_runner)
+        self.combo_d7vk.handler_unblock_by_func(self.__set_d7vk)
         self.combo_dxvk.handler_unblock_by_func(self.__set_dxvk)
         self.combo_vkd3d.handler_unblock_by_func(self.__set_vkd3d)
         self.combo_nvapi.handler_unblock_by_func(self.__set_nvapi)
@@ -612,6 +624,7 @@ class PreferencesView(Adw.PreferencesPage):
         with contextlib.suppress(TypeError):
             self.switch_steam_runtime.handler_block_by_func(self.__toggle_feature_cb)
         self.combo_runner.handler_block_by_func(self.__set_runner)
+        self.combo_d7vk.handler_block_by_func(self.__set_d7vk)
         self.combo_dxvk.handler_block_by_func(self.__set_dxvk)
         self.combo_vkd3d.handler_block_by_func(self.__set_vkd3d)
         self.combo_nvapi.handler_block_by_func(self.__set_nvapi)
@@ -687,6 +700,15 @@ class PreferencesView(Adw.PreferencesPage):
 
         parameters = self.config.Parameters
 
+        _d7vk = self.config.D7VK
+        if parameters.d7vk:
+            if _d7vk in self.manager.d7vk_available:
+                self.combo_d7vk.set_selected(
+                    self.manager.d7vk_available.index(_d7vk) + 1
+                )
+        else:
+            self.combo_d7vk.set_selected(0)
+
         _dxvk = self.config.DXVK
         if parameters.dxvk:
             if _dxvk in self.manager.dxvk_available:
@@ -761,6 +783,7 @@ class PreferencesView(Adw.PreferencesPage):
         with contextlib.suppress(TypeError):
             self.switch_steam_runtime.handler_unblock_by_func(self.__toggle_feature_cb)
         self.combo_runner.handler_unblock_by_func(self.__set_runner)
+        self.combo_d7vk.handler_unblock_by_func(self.__set_d7vk)
         self.combo_dxvk.handler_unblock_by_func(self.__set_dxvk)
         self.combo_vkd3d.handler_unblock_by_func(self.__set_vkd3d)
         self.combo_nvapi.handler_unblock_by_func(self.__set_nvapi)
@@ -875,6 +898,7 @@ class PreferencesView(Adw.PreferencesPage):
             for w in [
                 self.combo_runner,
                 self.switch_nvapi,
+                self.combo_d7vk,
                 self.combo_dxvk,
                 self.combo_nvapi,
                 self.combo_vkd3d,
@@ -941,6 +965,20 @@ class PreferencesView(Adw.PreferencesPage):
         # Install new version
         self.manager.install_dll_component(
             config=kwargs["config"], component=kwargs["component"]
+        )
+
+    def __set_d7vk(self, *_args):
+        """Set the D7VK version to use for the bottle"""
+        self.set_d7vk_status(pending=True)
+        self.queue.add_task()
+        selected = self.combo_d7vk.get_selected()
+        version = self.manager.d7vk_available[selected - 1] if selected else None
+        RunAsync(
+            task_func=self.manager.set_d7vk,
+            callback=self.set_d7vk_status,
+            config=self.config,
+            enabled=selected != 0,
+            version=version,
         )
 
     def __set_dxvk(self, *_args):
@@ -1125,6 +1163,30 @@ class PreferencesView(Adw.PreferencesPage):
         else:
             self.spinner_dxvk.stop()
             self.spinner_dxvk.set_visible(False)
+            self.queue.end_task()
+
+    @GtkUtils.run_in_main_loop
+    def set_d7vk_status(self, status=None, error=None, pending=False):
+        """Set the D7VK status"""
+        self.combo_d7vk.set_sensitive(not pending)
+        if pending:
+            self.spinner_d7vk.start()
+            self.spinner_d7vk.set_visible(True)
+        else:
+            if isinstance(status, Result) and status.ok and status.data:
+                self.config = status.data["config"]
+            elif error or not isinstance(status, Result) or not status.ok:
+                self.combo_d7vk.handler_block_by_func(self.__set_d7vk)
+                selected = 0
+                if (
+                    self.config.Parameters.d7vk
+                    and self.config.D7VK in self.manager.d7vk_available
+                ):
+                    selected = self.manager.d7vk_available.index(self.config.D7VK) + 1
+                self.combo_d7vk.set_selected(selected)
+                self.combo_d7vk.handler_unblock_by_func(self.__set_d7vk)
+            self.spinner_d7vk.stop()
+            self.spinner_d7vk.set_visible(False)
             self.queue.end_task()
 
     @GtkUtils.run_in_main_loop

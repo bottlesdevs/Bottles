@@ -2,9 +2,11 @@
 
 import os
 import shlex
+from types import SimpleNamespace
 
 import pytest
 
+from bottles.backend.dlls.d7vk import D7VKComponent
 from bottles.backend.dlls.dxvk import DXVKComponent
 from bottles.backend.models.config import BottleConfig, BottleParams
 from bottles.backend.models.result import Result
@@ -20,7 +22,9 @@ from bottles.backend.wine.winecommand import (
 )
 
 
-def _make_config(name: str = "TestBottle", path: str = "TestBottlePath") -> BottleConfig:
+def _make_config(
+    name: str = "TestBottle", path: str = "TestBottlePath"
+) -> BottleConfig:
     return BottleConfig(Name=name, Path=path, Custom_Path="", Environment="Custom")
 
 
@@ -69,6 +73,7 @@ def test_run_program_substitutes_placeholders(monkeypatch):
         post_script_args=None,
         cwd=None,
         monitoring=None,
+        program_d7vk=None,
         program_dxvk=None,
         program_vkd3d=None,
         program_nvapi=None,
@@ -95,6 +100,7 @@ def test_run_program_substitutes_placeholders(monkeypatch):
             "pre_script_args": pre_script_args,
             "post_script_args": post_script_args,
             "cwd": cwd,
+            "program_d7vk": program_d7vk,
             "program_dxvk": program_dxvk,
             "program_nvapi": program_nvapi,
             "program_hide_console": program_hide_console,
@@ -266,6 +272,49 @@ def test_program_dxvk_false_adds_builtin_override(tmp_path):
     assert executor.environment["WINEDLLOVERRIDES"] == (
         f"{DXVKComponent.get_override_keys()}=b"
     )
+
+
+def test_program_d7vk_false_adds_builtin_override(tmp_path):
+    executable = tmp_path / "program.exe"
+    executable.touch()
+    config = _make_config()
+    config.Parameters.d7vk = True
+
+    executor = WineExecutor(
+        config=config,
+        exec_path=str(executable),
+        program_d7vk=False,
+    )
+
+    assert executor.environment["WINEDLLOVERRIDES"] == (
+        f"{D7VKComponent.get_override_keys()}=b"
+    )
+
+
+def test_winecommand_reports_nonzero_exit_status(monkeypatch):
+    process = SimpleNamespace(
+        returncode=7,
+        communicate=lambda: (b"registry failed", None),
+    )
+    monkeypatch.setattr(
+        winecommand.subprocess, "Popen", lambda *_args, **_kwargs: process
+    )
+
+    command = WineCommand.__new__(WineCommand)
+    command.runner = "/usr/bin/wine"
+    command.env = {}
+    command.command = "wine reg import test.reg"
+    command.config = _make_config()
+    command.terminal = False
+    command.sandbox_override = None
+    command.communicate = True
+    command.cwd = None
+
+    result = command.run()
+
+    assert not result.ok
+    assert result.data == "registry failed"
+    assert result.message == "Command exited with status 7."
 
 
 def test_component_override_bypasses_winebridge(monkeypatch):

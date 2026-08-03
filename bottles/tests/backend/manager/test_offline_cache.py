@@ -1,17 +1,234 @@
 import tarfile
+import zipfile
 from hashlib import md5, sha256
 from pathlib import Path
 from types import SimpleNamespace
 
 from bottles.backend.globals import Paths
 from bottles.backend.managers import component as component_module
-from bottles.backend.managers.component import ComponentManager
 from bottles.backend.managers import dependency as dependency_module
+from bottles.backend.managers.component import ComponentManager
 from bottles.backend.managers.dependency import DependencyManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.repos.component import ComponentRepo
 from bottles.backend.repos.dependency import DependencyRepo
 from bottles.backend.state import TaskManager
+
+
+def test_component_manager_extracts_zip_archive(tmp_path, monkeypatch):
+    temp_path = tmp_path / "temp"
+    d7vk_path = tmp_path / "d7vk"
+    temp_path.mkdir()
+    d7vk_path.mkdir()
+    archive_path = temp_path / "d7vk-v2.0.zip"
+
+    with zipfile.ZipFile(archive_path, "w") as archive:
+        archive.writestr("d7vk-v2.0/x32/ddraw.dll", b"d7vk")
+
+    monkeypatch.setattr(Paths, "temp", str(temp_path))
+    monkeypatch.setattr(Paths, "d7vk", str(d7vk_path), raising=False)
+
+    assert ComponentManager.extract("d7vk-v2.0", "d7vk", archive_path.name)
+    assert (d7vk_path / "d7vk-v2.0/x32/ddraw.dll").read_bytes() == b"d7vk"
+
+
+def test_component_manager_rejects_zip_path_traversal(tmp_path, monkeypatch):
+    temp_path = tmp_path / "temp"
+    d7vk_path = tmp_path / "d7vk"
+    temp_path.mkdir()
+    d7vk_path.mkdir()
+    sentinel = d7vk_path / "d7vk-v2.0" / "keep"
+    sentinel.parent.mkdir()
+    sentinel.write_text("safe")
+    archive_path = temp_path / "d7vk-v2.0.zip"
+
+    with zipfile.ZipFile(archive_path, "w") as archive:
+        archive.writestr("../escape.dll", b"invalid")
+
+    monkeypatch.setattr(Paths, "temp", str(temp_path))
+    monkeypatch.setattr(Paths, "d7vk", str(d7vk_path), raising=False)
+
+    assert not ComponentManager.extract("d7vk-v2.0", "d7vk", archive_path.name)
+    assert not (tmp_path / "escape.dll").exists()
+    assert sentinel.read_text() == "safe"
+
+
+def test_component_manager_rejects_zip_with_another_root(tmp_path, monkeypatch):
+    temp_path = tmp_path / "temp"
+    d7vk_path = tmp_path / "d7vk"
+    preserved = d7vk_path / "d7vk-v1.0/x32/ddraw.dll"
+    temp_path.mkdir()
+    preserved.parent.mkdir(parents=True)
+    preserved.write_bytes(b"installed")
+    archive_path = temp_path / "d7vk-v2.0.zip"
+
+    with zipfile.ZipFile(archive_path, "w") as archive:
+        archive.writestr("d7vk-v2.0/x32/ddraw.dll", b"expected")
+        archive.writestr("d7vk-v1.0/x32/ddraw.dll", b"overwrite")
+
+    monkeypatch.setattr(Paths, "temp", str(temp_path))
+    monkeypatch.setattr(Paths, "d7vk", str(d7vk_path), raising=False)
+
+    assert not ComponentManager.extract("d7vk-v2.0", "d7vk", archive_path.name)
+    assert preserved.read_bytes() == b"installed"
+    assert not (d7vk_path / "d7vk-v2.0").exists()
+
+
+def test_component_manager_rejects_incomplete_d7vk_zip(tmp_path, monkeypatch):
+    temp_path = tmp_path / "temp"
+    d7vk_path = tmp_path / "d7vk"
+    temp_path.mkdir()
+    d7vk_path.mkdir()
+    archive_path = temp_path / "d7vk-v2.0.zip"
+
+    with zipfile.ZipFile(archive_path, "w") as archive:
+        archive.writestr("d7vk-v2.0/x32/", b"")
+
+    monkeypatch.setattr(Paths, "temp", str(temp_path))
+    monkeypatch.setattr(Paths, "d7vk", str(d7vk_path), raising=False)
+
+    assert not ComponentManager.extract("d7vk-v2.0", "d7vk", archive_path.name)
+    assert not (d7vk_path / "d7vk-v2.0").exists()
+    assert not list(d7vk_path.glob(".d7vk-v2.0-*"))
+
+
+def test_component_manager_rejects_zero_byte_d7vk_dll(tmp_path, monkeypatch):
+    temp_path = tmp_path / "temp"
+    d7vk_path = tmp_path / "d7vk"
+    temp_path.mkdir()
+    d7vk_path.mkdir()
+    archive_path = temp_path / "d7vk-v2.0.zip"
+
+    with zipfile.ZipFile(archive_path, "w") as archive:
+        archive.writestr("d7vk-v2.0/x32/ddraw.dll", b"")
+
+    monkeypatch.setattr(Paths, "temp", str(temp_path))
+    monkeypatch.setattr(Paths, "d7vk", str(d7vk_path), raising=False)
+
+    assert not ComponentManager.extract("d7vk-v2.0", "d7vk", archive_path.name)
+    assert not (d7vk_path / "d7vk-v2.0").exists()
+
+
+def test_component_manager_rejects_incomplete_d7vk_tar(tmp_path, monkeypatch):
+    temp_path = tmp_path / "temp"
+    d7vk_path = tmp_path / "d7vk"
+    source_path = tmp_path / "source"
+    temp_path.mkdir()
+    d7vk_path.mkdir()
+    (source_path / "x32").mkdir(parents=True)
+    archive_path = temp_path / "d7vk-v2.0.tar.gz"
+
+    with tarfile.open(archive_path, "w:gz") as archive:
+        archive.add(source_path, arcname="d7vk-v2.0")
+
+    monkeypatch.setattr(Paths, "temp", str(temp_path))
+    monkeypatch.setattr(Paths, "d7vk", str(d7vk_path), raising=False)
+
+    assert not ComponentManager.extract("d7vk-v2.0", "d7vk", archive_path.name)
+    assert not (d7vk_path / "d7vk-v2.0").exists()
+
+
+def test_component_manager_rejects_zero_byte_d7vk_tar(tmp_path, monkeypatch):
+    temp_path = tmp_path / "temp"
+    d7vk_path = tmp_path / "d7vk"
+    source_path = tmp_path / "source"
+    temp_path.mkdir()
+    d7vk_path.mkdir()
+    (source_path / "x32").mkdir(parents=True)
+    (source_path / "x32/ddraw.dll").touch()
+    archive_path = temp_path / "d7vk-v2.0.tar.gz"
+
+    with tarfile.open(archive_path, "w:gz") as archive:
+        archive.add(source_path, arcname="d7vk-v2.0")
+
+    monkeypatch.setattr(Paths, "temp", str(temp_path))
+    monkeypatch.setattr(Paths, "d7vk", str(d7vk_path), raising=False)
+
+    assert not ComponentManager.extract("d7vk-v2.0", "d7vk", archive_path.name)
+    assert not (d7vk_path / "d7vk-v2.0").exists()
+
+
+def test_component_manager_rejects_d7vk_tar(tmp_path, monkeypatch):
+    temp_path = tmp_path / "temp"
+    d7vk_path = tmp_path / "d7vk"
+    source_path = tmp_path / "source"
+    temp_path.mkdir()
+    d7vk_path.mkdir()
+    (source_path / "x32").mkdir(parents=True)
+    (source_path / "x32/ddraw.dll").write_bytes(b"d7vk")
+    archive_path = temp_path / "d7vk-v2.0.tar.gz"
+
+    with tarfile.open(archive_path, "w:gz") as archive:
+        archive.add(source_path, arcname="d7vk-v2.0")
+
+    monkeypatch.setattr(Paths, "temp", str(temp_path))
+    monkeypatch.setattr(Paths, "d7vk", str(d7vk_path), raising=False)
+
+    assert not ComponentManager.extract("d7vk-v2.0", "d7vk", archive_path.name)
+    assert not (d7vk_path / "d7vk-v2.0").exists()
+
+
+def test_component_manager_handles_zip_root_as_file(tmp_path, monkeypatch):
+    temp_path = tmp_path / "temp"
+    d7vk_path = tmp_path / "d7vk"
+    temp_path.mkdir()
+    d7vk_path.mkdir()
+    archive_path = temp_path / "d7vk-v2.0.zip"
+
+    with zipfile.ZipFile(archive_path, "w") as archive:
+        archive.writestr("d7vk-v2.0", b"not a directory")
+
+    monkeypatch.setattr(Paths, "temp", str(temp_path))
+    monkeypatch.setattr(Paths, "d7vk", str(d7vk_path), raising=False)
+
+    assert not ComponentManager.extract("d7vk-v2.0", "d7vk", archive_path.name)
+    assert not (d7vk_path / "d7vk-v2.0").exists()
+
+
+def test_d7vk_uninstall_does_not_reinstall_component(tmp_path, monkeypatch):
+    d7vk_path = tmp_path / "d7vk-v2.0"
+    d7vk_path.mkdir()
+    calls = []
+
+    class FakeManager:
+        @staticmethod
+        def check_d7vk(install_latest=True):
+            calls.append(install_latest)
+
+        @staticmethod
+        def organize_components():
+            pass
+
+    manager = FakeManager()
+    manager.local_bottles = {}
+    component_manager = object.__new__(ComponentManager)
+    component_manager._ComponentManager__manager = manager
+    monkeypatch.setattr(
+        component_module.ManagerUtils,
+        "get_d7vk_path",
+        lambda _component: str(d7vk_path),
+    )
+
+    result = component_manager.uninstall("d7vk", "d7vk-v2.0")
+
+    assert result.ok
+    assert calls == [False]
+    assert not d7vk_path.exists()
+
+
+def test_disabled_d7vk_does_not_block_component_removal():
+    config = BottleConfig(D7VK="d7vk-v2.0")
+    config.Parameters.d7vk = False
+
+    class FakeManager:
+        pass
+
+    component_manager = object.__new__(ComponentManager)
+    manager = FakeManager()
+    manager.local_bottles = {"test": config}
+    component_manager._ComponentManager__manager = manager
+
+    assert not component_manager.is_in_use("d7vk", "d7vk-v2.0")
 
 
 def test_repository_reuses_catalog_and_manifest_offline(tmp_path, monkeypatch):
@@ -174,6 +391,7 @@ def test_component_catalog_is_available_without_connection():
             "Sub-category": "wine",
             "Channel": "stable",
         },
+        "d7vk-v2.0": {"Category": "d7vk", "Channel": "stable"},
         "missing-channel": {"Category": "dxvk"},
         "bad-category": {"Category": [], "Channel": "stable"},
         "bad-runner": {
@@ -186,6 +404,7 @@ def test_component_catalog_is_available_without_connection():
     manager = SimpleNamespace(
         runtimes_available=[],
         runners_available=[],
+        d7vk_available=[],
         dxvk_available=[],
         vkd3d_available=[],
         nvapi_available=[],
@@ -198,6 +417,9 @@ def test_component_catalog_is_available_without_connection():
 
     assert component_manager.fetch_catalog()["wine"] == {
         "test-runner": catalog["test-runner"]
+    }
+    assert component_manager.fetch_catalog()["d7vk"] == {
+        "d7vk-v2.0": catalog["d7vk-v2.0"]
     }
 
 
@@ -232,6 +454,7 @@ def test_component_catalog_marks_checksum_valid_cache(tmp_path, monkeypatch):
     manager = SimpleNamespace(
         runtimes_available=[],
         runners_available=[],
+        d7vk_available=[],
         dxvk_available=[],
         vkd3d_available=[],
         nvapi_available=[],

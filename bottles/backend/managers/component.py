@@ -18,7 +18,10 @@
 import contextlib
 import os
 import shutil
+import stat
 import tarfile
+import tempfile
+import zipfile
 from functools import lru_cache
 from threading import Event
 from typing import Optional
@@ -119,6 +122,7 @@ class ComponentManager:
             "runtimes": {},
             "wine": {},
             "proton": {},
+            "d7vk": {},
             "dxvk": {},
             "vkd3d": {},
             "nvapi": {},
@@ -129,6 +133,7 @@ class ComponentManager:
             "runtimes": self.__manager.runtimes_available,
             "wine": self.__manager.runners_available,
             "proton": self.__manager.runners_available,
+            "d7vk": self.__manager.d7vk_available,
             "dxvk": self.__manager.dxvk_available,
             "vkd3d": self.__manager.vkd3d_available,
             "nvapi": self.__manager.nvapi_available,
@@ -414,6 +419,8 @@ class ComponentManager:
 
         if component in ["runner", "runner:proton"]:
             path = Paths.runners
+        elif component == "d7vk":
+            path = Paths.d7vk
         elif component == "dxvk":
             path = Paths.dxvk
         elif component == "vkd3d":
@@ -430,6 +437,14 @@ class ComponentManager:
             logging.error(f"Unknown component [{component}].")
             return False
 
+        root_dir = name
+        staging_path = None
+
+        def validate_d7vk(root: str) -> None:
+            ddraw_path = os.path.join(root, "x32", "ddraw.dll")
+            if not os.path.isfile(ddraw_path) or os.path.getsize(ddraw_path) == 0:
+                raise ValueError("D7VK archive is incomplete")
+
         try:
             """
             Try to extract the archive in the /temp directory.
@@ -437,15 +452,77 @@ class ComponentManager:
             directory and return False. The common cause of a failed
             extraction is that the archive is corrupted.
             """
-            tar = tarfile.open(f"{Paths.temp}/{archive}")
-            root_dir = tar.getnames()[0]
-            tar.extractall(path)
-            tar.close()
-        except (tarfile.TarError, IOError, EOFError):
+            archive_path = os.path.join(Paths.temp, archive)
+            is_zip = zipfile.is_zipfile(archive_path)
+            if component == "d7vk" and not is_zip:
+                raise zipfile.BadZipFile("D7VK components require ZIP archives")
+            if is_zip:
+                if not name or os.path.basename(name) != name:
+                    raise zipfile.BadZipFile("Invalid component name")
+                staging_path = tempfile.mkdtemp(prefix=f".{name}-", dir=path)
+                with zipfile.ZipFile(archive_path) as zipped:
+                    members = zipped.infolist()
+                    if not members:
+                        raise zipfile.BadZipFile("Archive is empty")
+                    extraction_path = os.path.abspath(staging_path)
+                    for member in members:
+                        member_path = member.filename
+                        parts = member_path.split("/")
+                        destination = os.path.abspath(
+                            os.path.join(staging_path, member_path)
+                        )
+                        if (
+                            not member_path
+                            or member_path.startswith("/")
+                            or ".." in parts
+                            or parts[0] != name
+                            or os.path.commonpath((extraction_path, destination))
+                            != extraction_path
+                            or stat.S_ISLNK(member.external_attr >> 16)
+                        ):
+                            raise zipfile.BadZipFile("Archive contains an invalid path")
+                    zipped.extractall(staging_path)
+
+                staged_root = os.path.join(staging_path, name)
+                if not os.path.isdir(staged_root):
+                    raise zipfile.BadZipFile("Archive root is not a directory")
+                if component == "d7vk":
+                    validate_d7vk(staged_root)
+
+                destination = os.path.join(path, name)
+                if os.path.exists(destination):
+                    raise FileExistsError("Component already exists")
+                os.replace(staged_root, destination)
+                shutil.rmtree(staging_path, ignore_errors=True)
+                staging_path = None
+            else:
+                with tarfile.open(archive_path) as tar:
+                    root_dir = tar.getnames()[0]
+                    tar.extractall(path)
+        except (
+            OSError,
+            ValueError,
+            tarfile.TarError,
+            zipfile.BadZipFile,
+            EOFError,
+            IndexError,
+        ):
             with contextlib.suppress(FileNotFoundError):
                 os.remove(os.path.join(Paths.temp, archive))
-            with contextlib.suppress(FileNotFoundError):
-                shutil.rmtree(os.path.join(path, archive[:-7]))
+            if staging_path:
+                with contextlib.suppress(FileNotFoundError):
+                    shutil.rmtree(staging_path)
+            else:
+                cleanup_path = os.path.abspath(os.path.join(path, root_dir))
+                extraction_path = os.path.abspath(path)
+                if (
+                    cleanup_path != extraction_path
+                    and os.path.commonpath((extraction_path, cleanup_path))
+                    == extraction_path
+                    and os.path.isdir(cleanup_path)
+                ):
+                    with contextlib.suppress(FileNotFoundError):
+                        shutil.rmtree(cleanup_path)
 
             logging.error("Extraction failed! Archive ends earlier than expected.")
             return False
@@ -553,6 +630,9 @@ class ComponentManager:
         if component_type in ["runner", "runner:proton"]:
             self.__manager.check_runners()
 
+        elif component_type == "d7vk":
+            self.__manager.check_d7vk()
+
         elif component_type == "dxvk":
             self.__manager.check_dxvk()
 
@@ -580,6 +660,8 @@ class ComponentManager:
 
         if component_type in ["runner", "runner:proton"]:
             path = Paths.runners
+        elif component_type == "d7vk":
+            path = Paths.d7vk
         elif component_type == "dxvk":
             path = Paths.dxvk
         elif component_type == "vkd3d":
@@ -602,6 +684,10 @@ class ComponentManager:
 
         if component_type in ["runner", "runner:proton"]:
             return component_name in [b["Runner"] for _, b in bottles.items()]
+        if component_type == "d7vk":
+            return component_name in [
+                b.D7VK for b in bottles.values() if b.Parameters.d7vk
+            ]
         if component_type == "dxvk":
             return component_name in [b["DXVK"] for _, b in bottles.items()]
         if component_type == "vkd3d":
@@ -635,6 +721,9 @@ class ComponentManager:
         if component_type in ["runner", "runner:proton"]:
             path = ManagerUtils.get_runner_path(component_name)
 
+        elif component_type == "d7vk":
+            path = ManagerUtils.get_d7vk_path(component_name)
+
         elif component_type == "dxvk":
             path = ManagerUtils.get_dxvk_path(component_name)
 
@@ -667,6 +756,9 @@ class ComponentManager:
         """
         if component_type in ["runner", "runner:proton"]:
             self.__manager.check_runners()
+
+        elif component_type == "d7vk":
+            self.__manager.check_d7vk(False)
 
         elif component_type == "dxvk":
             self.__manager.check_dxvk()

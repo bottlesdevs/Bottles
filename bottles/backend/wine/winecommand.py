@@ -1109,6 +1109,13 @@ class WineCommand:
             logging.warning("stdout decoding failed")
             rv = str(stdout_data)[2:-1]  # trim b''
 
+        if proc.returncode:
+            return Result(
+                False,
+                data=rv,
+                message=f"Command exited with status {proc.returncode}.",
+            )
+
         # "ShellExecuteEx" exception may occur while executing command,
         # previously we rerun the command without `cwd` and `stdout=PIPE`
         # to fix it, which is removed since it may lead to unexpected behavior

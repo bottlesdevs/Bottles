@@ -16,6 +16,7 @@
 #
 
 from gettext import gettext as _
+from typing import ClassVar
 
 from gi.repository import Adw, GLib, Gtk
 
@@ -39,7 +40,15 @@ class BottlesBulkUpdateDialog(Adw.Dialog):
     # endregion
 
     # Preferred display order for the component checklist.
-    __component_order = ["runner", "dxvk", "vkd3d", "nvapi", "latencyflex", "winebridge"]
+    __component_order: ClassVar[list[str]] = [
+        "runner",
+        "d7vk",
+        "dxvk",
+        "vkd3d",
+        "nvapi",
+        "latencyflex",
+        "winebridge",
+    ]
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)

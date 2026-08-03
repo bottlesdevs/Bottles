@@ -70,6 +70,7 @@ class Paths:
     runners = f"{base}/runners"
     bottles = f"{base}/bottles"
     steam = f"{base}/steam"
+    d7vk = f"{base}/d7vk"
     dxvk = f"{base}/dxvk"
     vkd3d = f"{base}/vkd3d"
     nvapi = f"{base}/nvapi"
