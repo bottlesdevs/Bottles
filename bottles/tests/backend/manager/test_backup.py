@@ -120,6 +120,31 @@ def test_full_backup_keeps_existing_filter_behavior(tmp_path):
         assert not any("dosdevices" in name for name in names)
 
 
+def test_duplicate_bottle_preserves_hidden_files(tmp_path):
+    source = tmp_path / "source"
+    destination = tmp_path / "destination"
+    drive_c = source / "drive_c"
+    hidden_directory = drive_c / ".hidden-directory"
+    hidden_directory.mkdir(parents=True)
+    (drive_c / ".hidden-file").write_bytes(b"hidden")
+    (hidden_directory / "payload.dat").write_bytes(b"payload")
+    with (source / "bottle.yml").open("w") as config_file:
+        yaml.dump({"Name": "Source", "Path": "Source"}, config_file)
+
+    result = BackupManager._duplicate_bottle_directory(
+        BottleConfig(Name="Source", Path="Source"),
+        str(source),
+        str(destination),
+        "Destination",
+    )
+
+    assert result.status
+    assert (destination / "drive_c/.hidden-file").read_bytes() == b"hidden"
+    assert (
+        destination / "drive_c/.hidden-directory/payload.dat"
+    ).read_bytes() == b"payload"
+
+
 def test_full_backup_is_atomic_when_cancelled_during_file_copy(tmp_path, monkeypatch):
     source = tmp_path / "bottle"
     source.mkdir()

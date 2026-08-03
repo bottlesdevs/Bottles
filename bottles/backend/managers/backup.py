@@ -765,7 +765,6 @@ class BackupManager:
                     shutil.copytree(
                         source_item,
                         destination_item,
-                        ignore=shutil.ignore_patterns(".*"),
                         symlinks=True,
                     )
                 elif os.path.isfile(source_item):
