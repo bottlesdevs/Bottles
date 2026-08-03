@@ -20,7 +20,9 @@ from gettext import gettext as _
 
 from gi.repository import Adw, GLib, Gtk
 
+from bottles.backend.utils.threading import RunAsync
 from bottles.backend.wine.drives import Drives
+from bottles.backend.wine.eject import Eject
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/drive-entry.ui")
@@ -30,6 +32,7 @@ class DriveEntry(Adw.ActionRow):
     # region Widgets
     btn_remove = Gtk.Template.Child()
     btn_path = Gtk.Template.Child()
+    btn_eject = Gtk.Template.Child()
 
     # endregion
 
@@ -50,10 +53,31 @@ class DriveEntry(Adw.ActionRow):
         if "c" in self.drive[0].lower():
             self.btn_remove.set_visible(False)
             self.btn_path.set_visible(False)
+            self.btn_eject.set_visible(False)
+        else:
+            self.btn_eject.set_visible(
+                Drives(self.config).is_ejectable(self.drive[0])
+            )
 
         # connect signals
         self.btn_path.connect("clicked", self.__choose_path)
         self.btn_remove.connect("clicked", self.__remove)
+        self.btn_eject.connect("clicked", self.__eject)
+
+    def __eject(self, *_args):
+        drive = f"{self.drive[0].rstrip(':')}:"
+        self.btn_eject.set_sensitive(False)
+
+        def complete(result, error):
+            self.btn_eject.set_sensitive(True)
+            if error is not None or result is None or not result.status:
+                self.parent.window.show_toast(
+                    _("Could not eject drive {0}").format(drive)
+                )
+                return
+            self.parent.window.show_toast(_("Drive {0} ejected").format(drive))
+
+        RunAsync(Eject(self.config).cdrom, callback=complete, drive=drive)
 
     def __choose_path(self, *_args):
         """Open file chooser dialog and set path pointing to the selected one"""
