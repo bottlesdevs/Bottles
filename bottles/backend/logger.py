@@ -48,7 +48,11 @@ class Logger(logging.getLoggerClass()):
             formatter = self.__format_log
         formatter = logging.Formatter(**formatter)
 
-        self.root.setLevel(os.environ.get("LOG_LEVEL") or logging.INFO)
+        log_level = os.environ.get("LOG_LEVEL", "").upper()
+        try:
+            self.root.setLevel(log_level or logging.INFO)
+        except ValueError:
+            self.root.setLevel(logging.INFO)
         self.root.handlers = []
 
         handler = logging.StreamHandler()
