@@ -85,6 +85,42 @@
     <display_length compare="ge">768</display_length>
   </requires>
   <releases>
+    <release version="65.0" date="2026-08-04">
+      <description translate="no">
+        <ul>
+          <li>Added Eagle Intelligence with credited and licensed compatibility data from ProtonDB and winetricks</li>
+          <li>Added community-backed environment variables, DLL overrides, launch arguments, compatibility ratings and configurable recommendations to Eagle results</li>
+          <li>Added D7VK as a managed component for Direct3D 3, 5, 6 and 7 applications</li>
+          <li>Added automatic backups for selected program files and folders after the program closes</li>
+          <li>Added a per-bottle frame rate limiter for DXVK and VKD3D applications</li>
+          <li>Added HOTAS and HIDRAW device selection with runner compatibility warnings</li>
+          <li>Added input and USB device sharing controls to dedicated sandboxes</li>
+          <li>Added lsfg-vk frame generation with private handling for the user-provided Lossless Scaling DLL</li>
+          <li>Added sandbox configuration during bottle creation</li>
+          <li>Added application language and text scaling controls</li>
+          <li>Added Steam games to the library and discovery for Steam Proton runners and shortcut prefixes</li>
+          <li>Added custom library covers, bottle ordering, file associations and program launch at login</li>
+          <li>Added selected dependency installation and CLI bottle setup</li>
+          <li>Added controls to hide console windows and component update suggestions</li>
+          <li>Added support for configuring the default Z drive</li>
+          <li>Added NTSync runner detection and HDR launch configuration</li>
+          <li>Fixed hidden files being omitted from bottle duplicates</li>
+          <li>Fixed missing paths breaking bottle versioning and restoration</li>
+          <li>Fixed malformed environment variables and unavailable process environments causing crashes</li>
+          <li>Fixed bottle creation failures caused by invalid recipes, templates and Windows version changes</li>
+          <li>Fixed desktop entries after program renames, removals and Flatpak launches</li>
+          <li>Fixed drive mappings, external prefix imports and shared Wine user profiles</li>
+          <li>Fixed Steam game discovery, runtime selection and shortcut launch options</li>
+          <li>Fixed document portal paths for shortcuts, custom bottle directories and folder access</li>
+          <li>Fixed cached component installation and repository failover when offline</li>
+          <li>Fixed application installers not refreshing the programs list after completion</li>
+          <li>Fixed Wine Mono prompts during wineboot and incompatible system Wine detection</li>
+          <li>Fixed MangoHud configuration inheritance and NVK Vulkan driver detection</li>
+          <li>Fixed imported bottle configuration, library icons and renamed Epic games</li>
+          <li>Updated issue reporting checks and documentation for stable Flatpak builds</li>
+        </ul>
+      </description>
+    </release>
     <release version="64.1" date="2026-05-30">
       <description translate="no">
         <ul>
