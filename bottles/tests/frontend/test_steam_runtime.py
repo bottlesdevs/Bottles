@@ -50,6 +50,9 @@ def test_steam_runtime_row_explains_availability(monkeypatch, runtimes, sensitiv
 
     view = PreferencesView(details, config)
 
+    view.combo_runner.handler_block_by_func(view._PreferencesView__set_runner)
+    view.combo_runner.handler_unblock_by_func(view._PreferencesView__set_runner)
+
     assert view.row_steam_runtime.get_visible()
     assert view.switch_steam_runtime.get_sensitive() is sensitive
     if not runtimes:

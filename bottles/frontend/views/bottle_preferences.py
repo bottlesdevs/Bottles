@@ -173,7 +173,7 @@ class PreferencesView(Adw.PreferencesPage):
                 )
             )
 
-        if not gamemode_available or not Xdp.Portal.running_under_sandbox():
+        if not Xdp.Portal.running_under_sandbox():
             return
 
         _not_available = _("This feature is unavailable on your system.")
