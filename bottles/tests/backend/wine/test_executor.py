@@ -238,37 +238,8 @@ def test_run_program_preserves_custom_steam_app_id(monkeypatch):
     assert captured["environment"]["SteamAppId"] == "123456"
 
 
-def test_run_program_preserves_bottle_steam_app_id(monkeypatch):
-    captured = {}
-
-    def fake_init(self, **kwargs):
-        captured.update(kwargs)
-        self.use_winebridge = False
-
-    monkeypatch.setattr(WineExecutor, "__init__", fake_init, raising=False)
-    monkeypatch.setattr(
-        WineExecutor,
-        "run",
-        lambda _self: Result(True),
-        raising=False,
-    )
-
-    config = _make_config()
-    config.Runner = "soda-11.0-3"
-    config.Environment_Variables = {"SteamAppId": "654321"}
-    WineExecutor.run_program(
-        config=config,
-        program={
-            "id": "game-id",
-            "name": "Game",
-            "path": "/games/game.exe",
-        },
-    )
-
-    assert captured["environment"]["SteamAppId"] == "654321"
-
-
-def test_run_program_sets_stable_steam_app_id_for_soda(monkeypatch):
+@pytest.mark.parametrize("runner", ["soda-11.0-3", "dwproton-9-1", "wine-ge-8-26"])
+def test_run_program_does_not_advertise_steam_to_proton_runners(monkeypatch, runner):
     captured = {}
 
     def fake_init(self, **kwargs):
@@ -282,7 +253,8 @@ def test_run_program_sets_stable_steam_app_id_for_soda(monkeypatch):
     monkeypatch.setattr(WineExecutor, "run", fake_run, raising=False)
 
     config = _make_config()
-    config.Runner = "soda-11.0-3"
+    config.Runner = runner
+    config.Parameters.use_steam_runtime = False
     program = {
         "id": "game-id",
         "name": "Game",
@@ -292,9 +264,7 @@ def test_run_program_sets_stable_steam_app_id_for_soda(monkeypatch):
 
     result = WineExecutor.run_program(config=config, program=program)
 
-    assert captured["environment"]["SteamAppId"] == (
-        ManagerUtils.get_program_steam_app_id(config, program)
-    )
+    assert "SteamAppId" not in captured["environment"]
     assert result.data["use_winebridge"] is True
 
 
