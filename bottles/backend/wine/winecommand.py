@@ -856,9 +856,14 @@ class WineCommand:
             _picked = {}
 
             if _rs:
-                if "sniper" in _rs.keys() and "sniper" in self.runner_runtime:
+                if "steamrt4" in _rs.keys() and "steamrt4" in self.runner_runtime:
                     """
-                    Sniper is the default runtime used by Proton version >= 8.0
+                    Steam Linux Runtime 4 (steamrt4) is the default runtime used by Proton version >= 11.0
+                    """
+                    _picked = _rs["steamrt4"]
+                elif "sniper" in _rs.keys() and "sniper" in self.runner_runtime:
+                    """
+                    Sniper is the default runtime used by Proton version >= 8.0 and < 11.0
                     """
                     _picked = _rs["sniper"]
                 elif "soldier" in _rs.keys() and "soldier" in self.runner_runtime:

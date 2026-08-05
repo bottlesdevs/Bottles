@@ -130,6 +130,13 @@ class RuntimeManager:
             return available_runtimes
 
         lookup = {
+            "steamrt4": {
+                "name": "steamrt4",
+                "entry_point": os.path.join(
+                    steam_manager.steam_path,
+                    "steamapps/common/SteamLinuxRuntime_4/_v2-entry-point",
+                ),
+            },
             "sniper": {
                 "name": "sniper",
                 "entry_point": os.path.join(
