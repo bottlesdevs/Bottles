@@ -14,6 +14,43 @@ def runners_path(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> Path:
     return path
 
 
+def _write_toolmanifest(path: Path, require_tool_appid: str | None) -> Path:
+    path.mkdir(parents=True, exist_ok=True)
+    entries = ['"commandline" "/proton %verb%"']
+    if require_tool_appid is not None:
+        entries.append(f'"require_tool_appid" "{require_tool_appid}"')
+    (path / "toolmanifest.vdf").write_text(
+        '"manifest"\n{{\n{}\n}}\n'.format("\n".join(entries)),
+        encoding="utf-8",
+    )
+    return path
+
+
+@pytest.mark.parametrize(
+    ("require_tool_appid", "expected"),
+    [
+        ("4183110", "steamrt4"),
+        ("1628350", "sniper"),
+        ("1391110", "soldier"),
+        ("1070560", "scout"),
+        (None, "scout"),
+    ],
+)
+def test_associated_runtime_follows_required_tool_appid(
+    tmp_path: Path, require_tool_appid: str | None, expected: str
+) -> None:
+    proton_path = _write_toolmanifest(tmp_path / "Proton", require_tool_appid)
+
+    assert SteamUtils.get_associated_runtime(str(proton_path)) == expected
+
+
+def test_associated_runtime_is_unknown_without_toolmanifest(tmp_path: Path) -> None:
+    proton_path = tmp_path / "Proton"
+    proton_path.mkdir()
+
+    assert SteamUtils.get_associated_runtime(str(proton_path)) is None
+
+
 def _write_protonfixes(path: Path, replacement: str) -> None:
     package = path / "protonfixes"
     package.mkdir(parents=True)
