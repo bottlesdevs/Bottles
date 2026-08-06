@@ -88,7 +88,12 @@ class DetailsView(Adw.Bin):
 
         self.btn_back.connect("clicked", self.go_back)
         self.btn_back_sidebar.connect("clicked", self.go_back_sidebar)
-        self.window.main_leaf.connect("notify::visible-child", self.unload_view)
+        self.window.main_leaf.connect(
+            "notify::visible-child", self.__on_main_leaf_changed
+        )
+        self.window.main_leaf.connect(
+            "notify::child-transition-running", self.__on_main_leaf_changed
+        )
         self.default_actions.append(self.view_bottle.actions)
 
         # region signals
@@ -242,6 +247,14 @@ class DetailsView(Adw.Bin):
 
     def go_back_sidebar(self, *_args):
         self.leaflet.navigate(Adw.NavigationDirection.BACK)
+
+    def __on_main_leaf_changed(self, *_args):
+        leaflet = self.window.main_leaf
+        if leaflet.get_child_transition_running():
+            return
+        if leaflet.get_visible_child() is self:
+            return
+        self.unload_view()
 
     def unload_view(self, *_args):
         while self.stack_bottle.get_first_child():
