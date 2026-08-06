@@ -85,6 +85,16 @@
     <display_length compare="ge">768</display_length>
   </requires>
   <releases>
+    <release version="65.3" date="2026-08-06">
+      <description translate="no">
+        <ul>
+          <li>Fixed bottle creation when DXVK or a runner has not been downloaded yet</li>
+          <li>Fixed the dependencies list freezing the interface and failing to list installed dependencies</li>
+          <li>Fixed bottle pages turning blank after a cancelled back gesture</li>
+          <li>Fixed the bottle deletion dialog closing while the view was already changing</li>
+        </ul>
+      </description>
+    </release>
     <release version="65.2" date="2026-08-05">
       <description translate="no">
         <ul>
