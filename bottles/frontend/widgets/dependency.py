@@ -63,7 +63,7 @@ class DependencyEntry(Adw.ActionRow):
             If the dependency is plain, treat it as a placeholder, it
             can be used to display "fake" elements on the list
             """
-            self.set_title(dependency)
+            self.set_title(dependency[0])
             self.set_subtitle("")
             self.btn_install.set_visible(False)
             self.btn_remove.set_visible(False)
@@ -115,18 +115,18 @@ class DependencyEntry(Adw.ActionRow):
             if isinstance(cached_by_arch, dict)
             else False
         )
-        if not cached and self.config.Installed_Dependencies:
+        needs_offline_check = (
+            not self.manager.utils_conn.status
+            and dependency[0] not in self.config.Installed_Dependencies
+        )
+        if needs_offline_check and not cached and self.config.Installed_Dependencies:
             cached = self.manager.dependency_manager.is_dependency_cached(
                 dependency[0],
                 arch=self.config.Arch,
                 installed=self.config.Installed_Dependencies,
             )
 
-        if (
-            not self.manager.utils_conn.status
-            and dependency[0] not in self.config.Installed_Dependencies
-            and not cached
-        ):
+        if needs_offline_check and not cached:
             self.btn_install.set_visible(False)
             self.btn_err.set_visible(True)
             self.btn_err.set_tooltip_text(
