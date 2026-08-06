@@ -237,7 +237,12 @@ class BottlesNewBottleDialog(Adw.Dialog):
         self.btn_cancel_creating.set_sensitive(True)
         self.btn_cancel_creating.set_label(_("_Cancel Creation"))
 
-        self.runner = self.manager.runners_available[self.combo_runner.get_selected()]
+        runner_index = self.combo_runner.get_selected()
+        self.runner = (
+            self.manager.runners_available[runner_index]
+            if runner_index < len(self.manager.runners_available)
+            else False
+        )
 
         self.__clear_creation_task()
 
@@ -254,7 +259,7 @@ class BottlesNewBottleDialog(Adw.Dialog):
             environment=self.selected_environment,
             runner=self.runner,
             arch=list(self.arch)[self.combo_arch.get_selected()],
-            dxvk=self.manager.dxvk_available[0],
+            dxvk=self.manager.dxvk_available[0] if self.manager.dxvk_available else False,
             sandbox=self.switch_sandbox.get_active(),
             fn_logger=self.update_output,
             custom_environment=self.env_recipe_path,
