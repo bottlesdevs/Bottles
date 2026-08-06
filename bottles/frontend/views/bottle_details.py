@@ -857,20 +857,26 @@ class BottleView(Adw.PreferencesPage):
         """
 
         def handle_response(_widget, response_id):
-            if response_id == "ok":
+            _widget.destroy()
 
-                def _on_deleted(_result=False, _error=False):
-                    # refresh on the main loop so the list (and its empty state
-                    # when the last bottle is gone) repaints correctly
-                    self.window.page_list.update_bottles_list()
+            if response_id != "ok":
+                return
 
+            def _on_deleted(_result=False, _error=False):
+                # refresh on the main loop so the list (and its empty state
+                # when the last bottle is gone) repaints correctly
+                self.window.page_list.update_bottles_list()
+
+            def _delete_bottle():
                 RunAsync(
                     self.manager.delete_bottle,
                     callback=_on_deleted,
                     config=self.config,
                 )
                 self.window.page_list.disable_bottle(self.config)
-            _widget.destroy()
+                return False
+
+            GLib.idle_add(_delete_bottle)
 
         dialog = Adw.MessageDialog.new(
             self.window,
