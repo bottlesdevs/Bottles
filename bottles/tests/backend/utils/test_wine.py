@@ -90,7 +90,7 @@ def test_preserves_conflicting_real_profiles(tmp_path):
     (host_user / "host-save.dat").write_text("host")
     (steamuser / "proton-save.dat").write_text("proton")
 
-    assert WineUtils.ensure_user_profile_alias(str(prefix), "mirko") is False
+    assert WineUtils.ensure_user_profile_alias(str(prefix), "mirko") is True
 
     assert not host_user.is_symlink()
     assert not steamuser.is_symlink()
@@ -650,3 +650,14 @@ def test_rollback_does_not_overwrite_concurrent_entry(tmp_path):
     assert restored is False
     assert desktop.read_text() == "concurrent data"
     assert not backup.exists()
+
+
+def test_conflicting_real_profiles_do_not_block_bottle_creation(tmp_path):
+    prefix = tmp_path / "prefix"
+    users = prefix / "drive_c" / "users"
+    (users / "mirko").mkdir(parents=True)
+    (users / "steamuser").mkdir()
+
+    assert WineUtils.ensure_user_profile_alias(str(prefix), "mirko") is True
+    assert not (users / "mirko").is_symlink()
+    assert not (users / "steamuser").is_symlink()

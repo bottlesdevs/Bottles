@@ -116,7 +116,7 @@ class WineUtils:
                 profile_targets.setdefault(target_identity, target)
 
             if len(profile_targets) > 1:
-                return False
+                return True
 
             if profile_targets:
                 profile_target = next(iter(profile_targets.values()))
