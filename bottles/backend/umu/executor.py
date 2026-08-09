@@ -5,7 +5,7 @@ import subprocess
 import sys
 import threading
 import time
-from collections.abc import Mapping, Sequence
+from collections.abc import Callable, Mapping, Sequence
 from dataclasses import dataclass
 from pathlib import Path
 from uuid import UUID
@@ -74,6 +74,7 @@ class UmuExecutor:
         installation: UmuInstallation,
         data_root: str | Path | None = None,
         base_environment: Mapping[str, str] | None = None,
+        proton_resolver: Callable[[str], str] | None = None,
     ):
         if not isinstance(installation, UmuInstallation):
             raise TypeError("Invalid UMU installation")
@@ -99,6 +100,7 @@ class UmuExecutor:
         ):
             raise ValueError("Invalid base environment")
         self.base_environment = dict(environment)
+        self.proton_resolver = proton_resolver or UmuProtonCatalog.validate_value
         self._processes: dict[UUID, _TrackedProcess] = {}
         self._process_lock = threading.Lock()
         self._termination_lock = threading.Lock()
@@ -120,7 +122,7 @@ class UmuExecutor:
         for key in RESERVED_ENVIRONMENT_KEYS:
             environment.pop(key, None)
         environment.update(game.environment)
-        proton = UmuProtonCatalog.validate_value(game.proton)
+        proton = self.proton_resolver(game.proton)
         environment.update(
             {
                 "GAMEID": game.game_id,

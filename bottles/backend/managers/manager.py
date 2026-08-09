@@ -408,6 +408,7 @@ class Manager(metaclass=Singleton):
         self.umu_executor = UmuExecutor(
             installation,
             data_root=self.umu_repository.root,
+            proton_resolver=self.umu_proton_catalog.resolve_value,
         )
         self._umu_probe_complete = True
         self.umu_error = ""
