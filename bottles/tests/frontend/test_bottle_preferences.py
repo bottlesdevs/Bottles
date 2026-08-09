@@ -20,6 +20,25 @@ def _make_view(config):
     return SimpleNamespace(config=config, switch_hdr=Mock())
 
 
+def test_flatpak_addons_use_the_current_runtime_branch():
+    from bottles.frontend.views.bottle_preferences import FLATPAK_INSTALL_COMMANDS
+
+    assert set(FLATPAK_INSTALL_COMMANDS) == {
+        "gamescope",
+        "hdr",
+        "vkbasalt",
+        "lsfg_vk",
+        "mangohud",
+        "obsvkc",
+    }
+    assert all("remote-add" not in command for command in FLATPAK_INSTALL_COMMANDS.values())
+    assert all(command.endswith("//25.08") for command in FLATPAK_INSTALL_COMMANDS.values())
+    assert (
+        "org.freedesktop.Platform.VulkanLayer.OBSVkCapture"
+        in FLATPAK_INSTALL_COMMANDS["obsvkc"]
+    )
+
+
 def test_active_hdr_remains_available_to_disable_on_x11(monkeypatch):
     from bottles.frontend.views import bottle_preferences
     from bottles.frontend.views.bottle_preferences import PreferencesView
