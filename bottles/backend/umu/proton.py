@@ -6,6 +6,8 @@ from bottles.backend.models.result import Result
 from bottles.backend.utils.steam import SteamUtils
 
 AUTO_PROTON_VALUES = ("UMU-Proton", "GE-Proton")
+DEFAULT_PROTON_VALUE = "ProtoSoda"
+PROTOSODA_PREFIX = "protosoda-"
 
 
 @dataclass(frozen=True)
@@ -50,10 +52,91 @@ class UmuProtonCatalog:
             )
         return str(path.resolve())
 
+    @staticmethod
+    def validate_selection(value: str) -> str:
+        if value == DEFAULT_PROTON_VALUE:
+            return value
+        return UmuProtonCatalog.validate_value(value)
+
+    def _latest_protosoda(self) -> str | None:
+        catalog = self.manager.supported_proton_runners
+        installed = {
+            name
+            for name in self.manager.runners_available
+            if name.startswith(PROTOSODA_PREFIX)
+        }
+        names = {
+            name
+            for name, metadata in catalog.items()
+            if name.startswith(PROTOSODA_PREFIX)
+            and metadata.get("Channel") == "stable"
+            and (
+                self.manager.utils_conn.status
+                or metadata.get("Cached", False)
+                or name in installed
+            )
+        }
+
+        def version(name):
+            parts = (
+                name.removeprefix(PROTOSODA_PREFIX).replace("-", ".").split(".")
+            )
+            if not all(part.isdigit() for part in parts):
+                return None
+            return tuple(int(part) for part in parts)
+
+        if not names:
+            names = {
+                name
+                for name in installed
+                if version(name) is not None
+                and catalog.get(name, {}).get("Channel") not in ("rc", "unstable")
+            }
+        return max(
+            names,
+            key=version,
+            default=None,
+        )
+
+    def pin_value(self, value: str) -> str:
+        if value != DEFAULT_PROTON_VALUE:
+            return value
+        component_name = self._latest_protosoda()
+        if component_name is None:
+            raise ValueError("ProtoSoda is not available from Bottles Components")
+        return component_name
+
+    def resolve_value(self, value: str) -> str:
+        value = self.pin_value(value)
+        if not value.startswith(PROTOSODA_PREFIX):
+            return self.validate_value(value)
+
+        try:
+            return self.validate_value(self._runner_path(value))
+        except ValueError:
+            pass
+        result = self.install(value)
+        if not result.ok:
+            raise ValueError(result.message or "ProtoSoda installation failed")
+        return result.data.value
+
     def list_choices(
         self, query: str = "", *, include_unstable: bool = False
     ) -> list[UmuProtonChoice]:
+        protosoda = self._latest_protosoda()
         choices = [
+            UmuProtonChoice(
+                key="auto:protosoda",
+                title="ProtoSoda",
+                value=DEFAULT_PROTON_VALUE,
+                source="bottles",
+                component_name=protosoda,
+                installed=bool(
+                    protosoda and protosoda in self.manager.runners_available
+                ),
+                downloadable=bool(protosoda),
+                channel="stable",
+            ),
             UmuProtonChoice(
                 key="auto:umu-proton",
                 title="UMU-Proton",
@@ -90,6 +173,8 @@ class UmuProtonCatalog:
 
         catalog = self.manager.supported_proton_runners
         for name, metadata in catalog.items():
+            if name == protosoda:
+                continue
             channel = metadata.get("Channel")
             if channel in ("rc", "unstable") and not include_unstable:
                 continue
@@ -185,6 +270,13 @@ class UmuProtonCatalog:
         values = [self.manager.settings.get_string("umu-proton")]
         values.extend(game.proton for game in self.manager.umu_repository.list_games())
         for value in values:
+            if value == component_name:
+                return True
+            if (
+                value == DEFAULT_PROTON_VALUE
+                and component_name == self._latest_protosoda()
+            ):
+                return True
             if value in AUTO_PROTON_VALUES:
                 continue
             try:

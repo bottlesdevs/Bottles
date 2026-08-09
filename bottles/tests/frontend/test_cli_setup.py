@@ -29,6 +29,9 @@ class FakeManager:
     def check_app_dirs(self):
         self.calls.append(("check_app_dirs", {}))
 
+    def organize_components(self):
+        self.calls.append(("organize_components", {}))
+
     def check_runners(self, _install_latest):
         self.calls.append(("check_runners", {}))
 
@@ -113,3 +116,23 @@ def test_list_components_prepares_directories(monkeypatch, capsys):
 
     assert manager.calls[0][0] == "check_app_dirs"
     assert "Found 0 runners" in capsys.readouterr().out
+
+
+def test_umu_waits_for_components_catalog(monkeypatch, capsys):
+    manager = FakeManager()
+    manager.umu_repository = SimpleNamespace(list_games=lambda: ())
+    waits = []
+    instance = object.__new__(cli.CLI)
+    instance.settings = object()
+    instance.args = SimpleNamespace(action="list", json=False)
+    monkeypatch.setattr(cli, "Manager", lambda **_kwargs: manager)
+    monkeypatch.setattr(cli.EventManager, "wait", waits.append)
+
+    instance.manage_umu()
+
+    assert manager.calls[:2] == [
+        ("check_app_dirs", {}),
+        ("organize_components", {}),
+    ]
+    assert waits == [Events.ComponentsOrganizing]
+    assert capsys.readouterr().out == ""

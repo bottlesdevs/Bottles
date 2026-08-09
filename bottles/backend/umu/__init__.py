@@ -30,6 +30,7 @@ from bottles.backend.umu.models import (
 from bottles.backend.umu.processes import prefix_has_process
 from bottles.backend.umu.proton import (
     AUTO_PROTON_VALUES,
+    DEFAULT_PROTON_VALUE,
     UmuProtonCatalog,
     UmuProtonChoice,
 )
@@ -43,6 +44,7 @@ from bottles.backend.umu.repository import UmuGameRepository, UmuRepositoryError
 
 __all__ = [
     "AUTO_PROTON_VALUES",
+    "DEFAULT_PROTON_VALUE",
     "CURRENT_SCHEMA_VERSION",
     "RESERVED_ENVIRONMENT_KEYS",
     "UMU_DATABASE_API",
