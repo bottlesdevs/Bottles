@@ -4,7 +4,7 @@ buildsystem: simple
 build-commands:
 - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
   --prefix=${FLATPAK_DEST} --no-build-isolation wheel PyYAML pycurl chardet requests
-  Markdown icoextract patool pathvalidate FVS orjson pycairo PyGObject charset-normalizer
+  PySocks Markdown icoextract patool pathvalidate FVS orjson pycairo PyGObject charset-normalizer
   idna urllib3 certifi pefile yara-python
 sources:
 - type: file
@@ -16,6 +16,9 @@ sources:
 - type: file
   url: https://files.pythonhosted.org/packages/da/61/978c5fbca34f10a90df362502fbb5a005637909e7b5a0e9212349ea9d010/pygobject-3.56.3.tar.gz
   sha256: 12760e4a0e3d04b6eb95e06f7a27e362c826d567ea613373a92c003b6c70d2d6
+- type: file
+  url: https://files.pythonhosted.org/packages/8d/59/b4572118e098ac8e46e399a1dd0f2d85403ce8bbaad9ec79373ed6badaf9/PySocks-1.7.1-py3-none-any.whl
+  sha256: 2725bd0a9925919b9b51739eea5f9e2bae91e83288108a9ad338b2e3a4435ee5
 - type: file
   url: https://files.pythonhosted.org/packages/74/27/e5b8f34d02d9995b80abcef563ea1f8b56d20134d8f4e5e81733b1feceb2/pyyaml-6.0.3-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
   sha256: 0f29edc409a6392443abf94b9cf89ce99889a1dd5376d94316ae5145dfedd5d6
