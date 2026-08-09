@@ -39,6 +39,10 @@ def test_parser_accepts_autostart_and_program_id(monkeypatch):
     assert parser.parse_args(["autostart"]).command == "autostart"
     args = parser.parse_args(["run", "-b", "Services", "--program-id", "service"])
     assert args.program_id == "service"
+    args = parser.parse_args(["umu", "status", "--game", "PKHeX"])
+    assert args.command == "umu"
+    assert args.action == "status"
+    assert args.game == "PKHeX"
 
 
 def test_autostart_launches_each_enabled_program_by_id(monkeypatch):

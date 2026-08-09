@@ -20,19 +20,20 @@ import os
 import webbrowser
 from datetime import datetime, timedelta
 from gettext import gettext as _
-from typing import Optional
 
-from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk, Xdp, XdpGtk4
+from gi.repository import Adw, Gdk, Gio, GLib, Gtk, Xdp, XdpGtk4
 
 from bottles.backend.globals import Paths
 from bottles.backend.health import HealthChecker
 from bottles.backend.logger import Logger
 from bottles.backend.managers.data import DataManager, UserDataKeys
 from bottles.backend.managers.journal import JournalManager
+from bottles.backend.managers.library import LibraryManager
 from bottles.backend.managers.manager import Manager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.state import Notification, SignalManager, Signals
+from bottles.backend.umu import UmuRepositoryError
 from bottles.backend.utils.connection import ConnectionUtils
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.operation import TaskSyncer
@@ -50,6 +51,12 @@ from bottles.frontend.windows.depscheck import DependenciesCheckDialog
 from bottles.frontend.windows.eagleintel import EagleIntelDialog
 from bottles.frontend.windows.funding import FundingDialog
 from bottles.frontend.windows.onboard import OnboardDialog
+from bottles.frontend.windows.umu import (
+    UmuAddGameDialog,
+    UmuGameDialog,
+    UmuInstallDialog,
+    UmuSearchDialog,
+)
 from bottles.frontend.windows.winebridgeupdate import WineBridgeUpdateDialog
 
 logging = Logger()
@@ -91,13 +98,13 @@ class BottlesWindow(Adw.ApplicationWindow):
             UserDataKeys.EagleIntelAnnouncementSeen, False
         )
         self._show_funding = False
-        
+
         show_funding_setting = self.settings.get_boolean("show-funding")
         dismissed = self.data_mgr.get(UserDataKeys.FundingDismissed, False)
-        
+
         if show_funding_setting and not dismissed:
             last_prompt = self.data_mgr.get(UserDataKeys.LastFundingPrompt, "")
-            
+
             if not last_prompt:
                 self._show_funding = True
             else:
@@ -176,6 +183,7 @@ class BottlesWindow(Adw.ApplicationWindow):
             "https://usebottles.com/funding/",
         )
         self.btn_add.connect("clicked", self.show_add_view)
+        self.btn_search.connect("toggled", self.__toggle_search)
         self.btn_noconnection.connect("clicked", self.check_for_connection)
         self.banner_offline.connect("button-clicked", self.check_for_connection)
         self.stack_main.connect("notify::visible-child", self.__on_page_changed)
@@ -216,7 +224,7 @@ class BottlesWindow(Adw.ApplicationWindow):
             self.btn_donate.set_icon_name(icon_name)
         return GLib.SOURCE_REMOVE
 
-    def __resolve_donate_icon_name(self) -> Optional[str]:
+    def __resolve_donate_icon_name(self) -> str | None:
         display = self.get_display()
         icon_theme = None
         if display is not None:
@@ -402,11 +410,12 @@ class BottlesWindow(Adw.ApplicationWindow):
             ).set_icon_name("library-symbolic")
 
             self.page_list.search_bar.set_key_capture_widget(self)
-            self.btn_search.bind_property(
-                "active",
-                self.page_list.search_bar,
-                "search-mode-enabled",
-                GObject.BindingFlags.BIDIRECTIONAL,
+            self.page_library.search_bar.set_key_capture_widget(self)
+            self.page_list.search_bar.connect(
+                "notify::search-mode-enabled", self.__sync_search_button
+            )
+            self.page_library.search_bar.connect(
+                "notify::search-mode-enabled", self.__sync_search_button
             )
 
             if (
@@ -431,8 +440,7 @@ class BottlesWindow(Adw.ApplicationWindow):
                 UserDataKeys.CustomBottlesPath
             )
             self._show_custom_path_warning = bool(
-                user_defined_bottles_path
-                and Paths.bottles != user_defined_bottles_path
+                user_defined_bottles_path and Paths.bottles != user_defined_bottles_path
             )
             if not self._showing_onboard:
                 GLib.idle_add(self.__continue_startup_dialogs)
@@ -448,6 +456,7 @@ class BottlesWindow(Adw.ApplicationWindow):
                 g_settings=self.settings,
                 check_connection=self.utils_conn.aborted_connections == 0,
             )
+            mng.get_umu_installation()
             return mng
 
         self.show_loading_view()
@@ -474,7 +483,7 @@ class BottlesWindow(Adw.ApplicationWindow):
     def go_back(self, *_args):
         self.main_leaf.navigate(direction=Adw.NavigationDirection.BACK)
 
-    def show_details_view(self, widget=False, config: Optional[BottleConfig] = None):
+    def show_details_view(self, widget=False, config: BottleConfig | None = None):
         self.main_leaf.set_visible_child(self.page_details)
         self.page_details.set_config(config or BottleConfig())
 
@@ -492,8 +501,92 @@ class BottlesWindow(Adw.ApplicationWindow):
         GLib.idle_add(self.__continue_startup_dialogs)
 
     def show_add_view(self, widget=False):
+        if self.stack_main.get_visible_child_name() == "page_library":
+            self.show_umu_search()
+            return
         new_bottle_dialog = BottlesNewBottleDialog()
         new_bottle_dialog.present(self)
+
+    def show_umu_add_game(self, _widget=False, mode="install"):
+        if self.manager.get_umu_installation() is None:
+            self.show_umu_unavailable()
+            return
+        if mode == "install":
+            UmuInstallDialog(self).present(self)
+            return
+        UmuAddGameDialog(self, mode=mode).present(self)
+
+    def show_umu_search(self, *_args, detected_prefix=None):
+        if self.manager.get_umu_installation() is None:
+            self.show_umu_unavailable()
+            return
+        UmuSearchDialog(self, detected_prefix=detected_prefix).present(self)
+
+    def show_umu_game_settings(self, game_id):
+        try:
+            game = self.manager.umu_repository.load(game_id)
+        except (FileNotFoundError, UmuRepositoryError) as error:
+            self.show_toast(str(error))
+            return
+        UmuGameDialog(self, game).present(self)
+
+    def show_umu_detected_prefix(self, entry):
+        prefix = entry.get("path") if isinstance(entry, dict) else None
+        if not prefix:
+            return
+        self.show_umu_search(detected_prefix=prefix)
+
+    def launch_umu_installer(self, game):
+        executor = self.manager.get_umu_executor()
+        if executor is None:
+            self.show_toast(
+                _("UMU is not available. Check the UMU page in Preferences.")
+            )
+            return
+
+        self.show_toast(_('Launching the installer for "{0}"...').format(game.name))
+
+        def install():
+            executor.run(game)
+            GLib.idle_add(self.update_umu_views)
+            return executor.wait(game) == 0
+
+        @GtkUtils.run_in_main_loop
+        def complete(success, error=False):
+            updated = None
+            try:
+                current = self.manager.umu_repository.load(game.id)
+                installer = current.extra.get("installer")
+                state = "failed"
+                if success:
+                    state = (
+                        "ready"
+                        if installer and str(current.executable) != installer
+                        else "draft"
+                    )
+                updated = self.manager.umu_repository.update(current, state=state)
+                LibraryManager().sync_umu_game(updated)
+            except (FileNotFoundError, UmuRepositoryError) as update_error:
+                logging.warning(str(update_error))
+            self.update_umu_views()
+            if success and updated is not None:
+                self.show_toast(
+                    _(
+                        "Installation finished. Select the installed game "
+                        "executable in its settings."
+                    )
+                )
+                UmuGameDialog(self, updated).present(self)
+            else:
+                self.show_toast(_("The installer did not finish successfully."))
+
+        RunAsync(install, callback=complete)
+
+    def update_umu_views(self):
+        if hasattr(self, "page_list"):
+            self.page_list.update_bottles_list(refresh_updates=False)
+        if hasattr(self, "page_library"):
+            self.page_library.update()
 
     def show_list_view(self, widget=False):
         self.stack_main.set_visible_child_name("page_list")
@@ -501,9 +594,25 @@ class BottlesWindow(Adw.ApplicationWindow):
     def show_importer_view(self, widget=False):
         self.main_leaf.set_visible_child(self.page_importer)
 
-    def show_prefs_view(self, widget=False, view=0):
+    def show_prefs_view(self, widget=False, view=0, page=None):
         preferences_window = PreferencesWindow(self)
+        if page:
+            preferences_window.set_visible_page_name(page)
+        elif view:
+            pages = preferences_window.get_pages()
+            if view < pages.get_n_items():
+                preferences_window.set_visible_page(pages.get_item(view))
         preferences_window.present()
+
+    def show_umu_preferences(self, *_args):
+        self.show_prefs_view(page="umu")
+
+    def show_umu_unavailable(self, *_args):
+        self.show_toast(
+            _("The UMU launcher is not available."),
+            action_label=_("Preferences"),
+            action_callback=self.show_umu_preferences,
+        )
 
     def show_download_preferences_view(self, widget=False):
         self.show_prefs_view(widget, view=1)
@@ -562,7 +671,7 @@ class BottlesWindow(Adw.ApplicationWindow):
         self._show_funding = False
         count = self.data_mgr.get(UserDataKeys.FundingPromptCount) or 0
         self.data_mgr.set(UserDataKeys.FundingPromptCount, count + 1)
-        
+
         today = datetime.now().strftime("%Y-%m-%d")
         self.data_mgr.set(UserDataKeys.LastFundingPrompt, today)
 
@@ -626,7 +735,8 @@ class BottlesWindow(Adw.ApplicationWindow):
 
             def wrapper_callback(*args):
                 action_callback(toast)
-                toast.handler_block_by_func(dismissed_callback)
+                if dismissed_callback:
+                    toast.handler_block_by_func(dismissed_callback)
 
             toast.connect("button-clicked", wrapper_callback)
 
@@ -636,8 +746,38 @@ class BottlesWindow(Adw.ApplicationWindow):
         self.toasts.add_toast(toast)
 
     def __on_page_changed(self, stack, *args):
-        is_bottles_list = stack.get_visible_child_name() == "page_list"
-        self.btn_search.set_visible(is_bottles_list)
+        page = stack.get_visible_child_name()
+        is_bottles_list = page == "page_list"
+        if hasattr(self, "page_list"):
+            self.page_list.search_bar.set_search_mode(False)
+            self.page_library.search_bar.set_search_mode(False)
+        self.btn_search.set_active(False)
+        self.btn_search.set_visible(page in ("page_list", "page_library"))
+        self.btn_add.set_tooltip_text(
+            _("Create New Bottle") if is_bottles_list else _("Add a Windows Game")
+        )
+
+    def __toggle_search(self, button):
+        if not hasattr(self, "page_list"):
+            return
+        page = self.stack_main.get_visible_child_name()
+        active = button.get_active()
+        self.page_list.search_bar.set_search_mode(active and page == "page_list")
+        self.page_library.search_bar.set_search_mode(
+            active and page == "page_library"
+        )
+
+    def __sync_search_button(self, search_bar, *_args):
+        page = self.stack_main.get_visible_child_name()
+        if page not in ("page_list", "page_library"):
+            return
+        current = (
+            self.page_list.search_bar
+            if page == "page_list"
+            else self.page_library.search_bar
+        )
+        if search_bar is current:
+            self.btn_search.set_active(search_bar.get_search_mode())
 
     @staticmethod
     def proper_close():

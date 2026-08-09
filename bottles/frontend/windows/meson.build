@@ -35,6 +35,7 @@ bottles_sources = [
   'registry_rules.py',
   'winebridgeupdate.py',
   'upgradeversioning.py',
+  'umu.py',
   'vmtouch.py',
   'window.py',
   'versioning_settings.py',

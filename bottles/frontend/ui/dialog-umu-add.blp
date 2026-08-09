@@ -1,0 +1,138 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $UmuAddGameDialog: Adw.Dialog {
+  content-width: 560;
+  content-height: 680;
+  title: _("Add a Windows Game");
+
+  child: Adw.ToolbarView {
+    [top]
+    Adw.HeaderBar {
+      show-start-title-buttons: false;
+      show-end-title-buttons: false;
+
+      Button btn_cancel {
+        label: _("_Cancel");
+        use-underline: true;
+      }
+
+      [end]
+      Button btn_add {
+        label: _("_Add");
+        use-underline: true;
+        sensitive: false;
+
+        styles [
+          "suggested-action",
+        ]
+      }
+    }
+
+    content: Adw.PreferencesPage {
+      Adw.PreferencesGroup group_setup {
+        title: _("Setup");
+
+        Adw.ComboRow combo_mode {
+          title: _("Action");
+          model: StringList modes {};
+        }
+      }
+
+      Adw.PreferencesGroup group_game {
+        title: _("Game");
+
+        Adw.EntryRow entry_name {
+          title: _("Name");
+          show-apply-button: false;
+        }
+
+        Adw.ActionRow row_executable {
+          title: _("Installer");
+          subtitle: _("Choose the game installer.");
+          activatable-widget: btn_executable;
+
+          Button btn_executable {
+            valign: center;
+            icon-name: "document-open-symbolic";
+            tooltip-text: _("Choose Executable");
+
+            styles [
+              "flat",
+            ]
+          }
+        }
+
+        Adw.ActionRow row_prefix {
+          visible: false;
+          title: _("Existing Prefix");
+          subtitle: _("Choose an existing Proton prefix.");
+          activatable-widget: btn_prefix;
+
+          Button btn_prefix {
+            valign: center;
+            icon-name: "folder-open-symbolic";
+            tooltip-text: _("Choose Prefix");
+
+            styles [
+              "flat",
+            ]
+          }
+        }
+      }
+
+      Adw.PreferencesGroup {
+        title: _("Compatibility");
+
+        Adw.ActionRow row_proton {
+          title: _("Proton");
+          activatable-widget: btn_proton;
+
+          [suffix]
+          Box {
+            spacing: 6;
+
+            Label label_proton {
+              valign: center;
+              ellipsize: middle;
+              max-width-chars: 24;
+
+              styles [
+                "dim-label",
+              ]
+            }
+
+            Button btn_proton {
+              valign: center;
+              icon-name: "go-next-symbolic";
+              tooltip-text: _("Choose Proton");
+
+              styles [
+                "flat",
+              ]
+            }
+          }
+        }
+
+        Adw.EntryRow entry_game_id {
+          title: _("Game ID");
+          text: "umu-default";
+          show-apply-button: false;
+        }
+
+        Adw.ComboRow combo_store {
+          title: _("Store");
+          model: StringList stores {};
+        }
+      }
+
+      Adw.PreferencesGroup {
+        Adw.ActionRow {
+          title: _("Separate Game Environment");
+          subtitle: _("This game uses its own Proton prefix and does not appear as a Bottle.");
+          icon-name: "input-gaming-symbolic";
+        }
+      }
+    };
+  };
+}

@@ -25,6 +25,7 @@ import subprocess
 import sys
 import uuid
 import warnings
+from pathlib import Path
 
 import gi
 
@@ -50,6 +51,7 @@ from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.registry_rule import RegistryRule
 from bottles.backend.runner import Runner
 from bottles.backend.state import EventManager, Events
+from bottles.backend.umu import UMU_STORE_IDS, UmuRepositoryError
 from bottles.backend.utils import json, yaml
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.cmd import CMD
@@ -294,6 +296,18 @@ class CLI:
             "-i", "--input", help="Command to execute", required=True
         )
 
+        umu_parser = subparsers.add_parser("umu", help="Manage UMU games")
+        umu_parser.add_argument(
+            "action",
+            choices=["list", "status", "add", "install", "run", "set-executable"],
+        )
+        umu_parser.add_argument("--game", help="UMU game id or exact name")
+        umu_parser.add_argument("--name", help="Game name")
+        umu_parser.add_argument("--executable", help="Windows executable or installer")
+        umu_parser.add_argument("--game-id", default="umu-default")
+        umu_parser.add_argument("--store", choices=UMU_STORE_IDS, default="none")
+        umu_parser.add_argument("--proton", help="Proton version or path")
+
         self.__process_args()
 
     @staticmethod
@@ -362,8 +376,126 @@ class CLI:
         elif self.args.command == "standalone":
             self.generate_standalone()
 
+        elif self.args.command == "umu":
+            self.manage_umu()
+
         else:
             self.parser.print_help()
+
+    def manage_umu(self):
+        manager = Manager(g_settings=self.settings, is_cli=True)
+        manager.check_app_dirs()
+        repository = manager.umu_repository
+        action = self.args.action
+
+        if action == "list":
+            games = repository.list_games()
+            if self.args.json:
+                sys.stdout.write(json.dumps([game.to_dict() for game in games]) + "\n")
+                return
+            for game in games:
+                sys.stdout.write(f"{game.id}  {game.state:10}  {game.name}\n")
+            return
+
+        def find_game():
+            if not self.args.game:
+                self.parser.error("--game is required for this UMU action")
+            matches = [
+                game
+                for game in repository.list_games()
+                if str(game.id) == self.args.game or game.name == self.args.game
+            ]
+            if len(matches) != 1:
+                sys.stderr.write(f"UMU game not found or ambiguous: {self.args.game}\n")
+                raise SystemExit(1)
+            return matches[0]
+
+        if action in ("add", "install"):
+            if not self.args.name or not self.args.executable:
+                self.parser.error("--name and --executable are required")
+            executable = Path(self.args.executable).expanduser().resolve()
+            if not executable.is_file():
+                sys.stderr.write(f"Executable not found: {executable}\n")
+                raise SystemExit(1)
+            proton = self.args.proton or self.settings.get_string("umu-proton")
+            proton = proton or "UMU-Proton"
+            game = repository.new_game(
+                self.args.name,
+                executable,
+                proton=proton,
+                game_id=self.args.game_id,
+                store=self.args.store,
+            )
+            extra = {
+                **game.extra,
+                "dependency_tool": self.settings.get_string("umu-dependency-tool"),
+                "source_mode": "installer" if action == "install" else "portable",
+            }
+            if action == "install":
+                extra["installer"] = str(executable)
+            try:
+                game = repository.update(
+                    game,
+                    state="installing" if action == "install" else "ready",
+                    extra=extra,
+                )
+            except UmuRepositoryError as error:
+                sys.stderr.write(f"{error}\n")
+                raise SystemExit(1) from error
+            sys.stdout.write(f"{game.id}\n")
+            if action == "add":
+                return
+        else:
+            game = find_game()
+
+        if action == "status":
+            executor = manager.get_umu_executor(for_launch=False)
+            status = {
+                "id": str(game.id),
+                "name": game.name,
+                "state": game.state,
+                "running": bool(executor and executor.is_running(game)),
+                "prefix": str(repository.prefix_path(game)),
+                "executable": str(game.executable),
+            }
+            if self.args.json:
+                sys.stdout.write(json.dumps(status) + "\n")
+            else:
+                for key, value in status.items():
+                    sys.stdout.write(f"{key}: {value}\n")
+            return
+
+        if action == "set-executable":
+            if not self.args.executable:
+                self.parser.error("--executable is required")
+            executable = Path(self.args.executable).expanduser().resolve()
+            if not executable.is_file():
+                sys.stderr.write(f"Executable not found: {executable}\n")
+                raise SystemExit(1)
+            try:
+                repository.update(game, executable=executable, state="ready")
+            except UmuRepositoryError as error:
+                sys.stderr.write(f"{error}\n")
+                raise SystemExit(1) from error
+            return
+
+        executor = manager.get_umu_executor()
+        if executor is None:
+            sys.stderr.write((manager.umu_error or "UMU is not available") + "\n")
+            raise SystemExit(1)
+        if action == "run" and game.state != "ready":
+            sys.stderr.write("The UMU game is not ready to run\n")
+            raise SystemExit(1)
+
+        executor.run(game)
+        return_code = executor.wait(game)
+        if action == "install":
+            game = repository.update(
+                game,
+                state="draft" if return_code == 0 else "failed",
+            )
+            sys.stdout.write(f"state: {game.state}\n")
+        raise SystemExit(return_code)
 
     # region INFO
     def show_info(self):

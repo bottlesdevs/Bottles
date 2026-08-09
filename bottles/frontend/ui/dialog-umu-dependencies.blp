@@ -1,0 +1,115 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $UmuDependencyDialog: Adw.Dialog {
+  content-width: 620;
+  content-height: 680;
+  title: _("Install Dependencies");
+
+  child: Adw.ToolbarView {
+    [top]
+    Adw.HeaderBar {
+      show-start-title-buttons: false;
+      show-end-title-buttons: false;
+      title-widget: Adw.WindowTitle {
+        title: _("Install Dependencies");
+        subtitle: _("Compatible Bottles recipes");
+      };
+
+      Button btn_cancel {
+        label: _("_Cancel");
+        use-underline: true;
+      }
+
+      [end]
+      Button btn_install {
+        label: _("_Install");
+        use-underline: true;
+        sensitive: false;
+
+        styles [
+          "suggested-action",
+        ]
+      }
+    }
+
+    content: Box {
+      orientation: vertical;
+
+      SearchEntry entry_search {
+        margin-top: 12;
+        margin-bottom: 12;
+        margin-start: 12;
+        margin-end: 12;
+        placeholder-text: _("Search dependencies");
+      }
+
+      Stack stack_results {
+        vexpand: true;
+        transition-type: crossfade;
+
+        StackPage {
+          name: "loading";
+
+          child: Adw.StatusPage {
+            title: _("Loading Dependencies");
+
+            Spinner spinner {
+              spinning: true;
+              halign: center;
+            }
+          };
+        }
+
+        StackPage {
+          name: "results";
+
+          child: ScrolledWindow {
+            hscrollbar-policy: never;
+
+            ListBox list_dependencies {
+              margin-bottom: 12;
+              margin-start: 12;
+              margin-end: 12;
+              selection-mode: none;
+
+              styles [
+                "boxed-list",
+              ]
+            }
+          };
+        }
+
+        StackPage {
+          name: "empty";
+
+          child: Adw.StatusPage status_empty {
+            icon-name: "system-search-symbolic";
+            title: _("No Compatible Dependencies");
+            description: _("Try another search or use Winetricks for this game.");
+          };
+        }
+
+        StackPage {
+          name: "error";
+
+          child: Adw.StatusPage {
+            icon-name: "warning-symbolic";
+            title: _("Dependencies Could Not Be Loaded");
+            description: _("Try loading the Bottles dependency catalog again.");
+
+            Button btn_retry {
+              halign: center;
+              label: _("_Try Again");
+              use-underline: true;
+
+              styles [
+                "pill",
+              ]
+            }
+          };
+        }
+      }
+    };
+  };
+}

@@ -1,0 +1,249 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $UmuGameDialog: Adw.Dialog {
+  content-width: 560;
+  content-height: 680;
+  title: _("Game Settings");
+
+  child: Adw.ToolbarView {
+    [top]
+    Adw.HeaderBar {
+      show-start-title-buttons: false;
+      show-end-title-buttons: false;
+
+      Button btn_cancel {
+        label: _("_Cancel");
+        use-underline: true;
+      }
+
+      [end]
+      Button btn_save {
+        label: _("_Save");
+        use-underline: true;
+
+        styles [
+          "suggested-action",
+        ]
+      }
+    }
+
+    content: Adw.PreferencesPage {
+      Adw.PreferencesGroup {
+        title: _("Game");
+        description: _("These settings apply only to this game.");
+
+        Adw.EntryRow entry_name {
+          title: _("Name");
+          show-apply-button: false;
+        }
+
+        Adw.ActionRow row_executable {
+          title: _("Executable");
+          activatable-widget: btn_executable;
+
+          Button btn_executable {
+            valign: center;
+            icon-name: "document-open-symbolic";
+            tooltip-text: _("Choose Executable");
+
+            styles [
+              "flat",
+            ]
+          }
+        }
+
+        Adw.ActionRow row_prefix {
+          title: _("Prefix");
+          activatable-widget: btn_prefix;
+
+          Button btn_prefix {
+            valign: center;
+            icon-name: "folder-open-symbolic";
+            tooltip-text: _("Choose Prefix");
+
+            styles [
+              "flat",
+            ]
+          }
+        }
+
+        Adw.ActionRow row_proton {
+          title: _("Proton");
+          activatable-widget: btn_proton;
+
+          [suffix]
+          Box {
+            spacing: 6;
+
+            Label label_proton {
+              valign: center;
+              ellipsize: middle;
+              max-width-chars: 24;
+
+              styles [
+                "dim-label",
+              ]
+            }
+
+            Button btn_proton {
+              valign: center;
+              icon-name: "go-next-symbolic";
+              tooltip-text: _("Choose Proton");
+
+              styles [
+                "flat",
+              ]
+            }
+          }
+        }
+      }
+
+      Adw.PreferencesGroup {
+        title: _("Compatibility Profile");
+        description: _("Identify the game so its Proton fixes can be applied automatically, or keep umu-default for an unknown game.");
+
+        Adw.EntryRow entry_game_id {
+          title: _("Game ID");
+          show-apply-button: false;
+        }
+
+        Adw.ComboRow combo_store {
+          title: _("Store");
+          model: StringList stores {};
+        }
+      }
+
+      Adw.PreferencesGroup {
+        title: _("Launch");
+
+        Adw.ActionRow row_arguments {
+          title: _("Arguments");
+          activatable: true;
+
+          Image {
+            icon-name: "go-next-symbolic";
+
+            styles [
+              "dim-label",
+            ]
+          }
+        }
+
+        Adw.ActionRow row_working_directory {
+          title: _("Working Directory");
+          activatable-widget: btn_working_directory;
+
+          Button btn_working_directory_reset {
+            visible: false;
+            valign: center;
+            icon-name: "edit-undo-symbolic";
+            tooltip-text: _("Use Executable Directory");
+
+            styles [
+              "flat",
+            ]
+          }
+
+          Button btn_working_directory {
+            valign: center;
+            icon-name: "folder-open-symbolic";
+            tooltip-text: _("Choose Working Directory");
+
+            styles [
+              "flat",
+            ]
+          }
+        }
+
+        Adw.ActionRow row_environment {
+          title: _("Environment Variables");
+          activatable: true;
+
+          Image {
+            icon-name: "go-next-symbolic";
+
+            styles [
+              "dim-label",
+            ]
+          }
+        }
+      }
+
+      Adw.PreferencesGroup {
+        title: _("Dependencies");
+        description: _("Use Bottles recipes compatible with UMU or install Winetricks verbs. Protonfixes remains managed by UMU.");
+
+        Adw.ComboRow combo_dependency_tool {
+          title: _("Installer");
+          model: StringList dependency_tools {};
+        }
+
+        Adw.ExpanderRow row_installed_dependencies {
+          visible: false;
+          title: _("Installed Dependencies");
+        }
+
+        Adw.ActionRow row_dependency_selection {
+          title: _("Bottles Dependencies");
+
+          [suffix]
+          Button btn_choose_dependencies {
+            valign: center;
+            label: _("Install...");
+          }
+        }
+
+        Adw.EntryRow entry_winetricks {
+          visible: false;
+          title: _("Winetricks Verbs");
+          show-apply-button: false;
+        }
+
+        Adw.ActionRow row_install_dependencies {
+          title: _("Install Winetricks Verbs");
+          subtitle: _("Enter one or more Winetricks verbs separated by spaces.");
+          activatable-widget: btn_install_dependencies;
+
+          Box {
+            spacing: 6;
+
+            Spinner spinner_install_dependencies {
+              visible: false;
+              valign: center;
+            }
+
+            Button btn_install_dependencies {
+              valign: center;
+              label: _("Install");
+            }
+          }
+        }
+      }
+
+      Adw.PreferencesGroup {
+        title: _("Remove from Bottles");
+
+        Adw.SwitchRow switch_delete_prefix {
+          title: _("Delete Game Files");
+          subtitle: _("Also delete this game\'s managed Proton prefix.");
+        }
+
+        Adw.ActionRow {
+          title: _("Remove Game");
+          subtitle: _("Remove this game and its settings from Bottles.");
+          activatable-widget: btn_remove;
+
+          Button btn_remove {
+            valign: center;
+            label: _("Remove");
+
+            styles [
+              "destructive-action",
+            ]
+          }
+        }
+      }
+    };
+  };
+}

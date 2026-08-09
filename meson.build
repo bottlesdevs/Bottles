@@ -20,10 +20,15 @@ APP_MINOR_VERSION = _version_array[1]
 PROFILE = get_option('profile')
 
 if PROFILE == 'development'
-	APP_VERSION += '-' + run_command(
+	git_revision = run_command(
 		'git', 'rev-parse', '--short', 'HEAD',
-		check: true
-	).stdout().strip()
+		check: false
+	)
+	if git_revision.returncode() == 0
+		APP_VERSION += '-' + git_revision.stdout().strip()
+	else
+		APP_VERSION += '-devel'
+	endif
 	APP_NAME += ' (Development)'
 	APP_ID += '.' + 'Devel'
 endif

@@ -16,7 +16,10 @@
 #
 
 import os
+from pathlib import Path
+from typing import Optional
 
+from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils.manager import ManagerUtils
@@ -26,9 +29,13 @@ logging = Logger()
 
 class ThumbnailManager:
     @staticmethod
-    def get_path(config: BottleConfig, uri: str):
+    def get_path(config: Optional[BottleConfig], uri: str):
         if uri.startswith("grid:"):
+            if config is None:
+                return None
             return ThumbnailManager.__load_grid(config, uri)
+        if uri.startswith("umu-grid:"):
+            return ThumbnailManager.__load_umu_grid(uri)
         # elif uri.startswith("epic:"):
         #     return ThumbnailManager.__load_epic(config, uri)
         # elif uri.startswith("origin:"):
@@ -47,3 +54,16 @@ class ThumbnailManager:
             return None
 
         return path
+
+    @staticmethod
+    def __load_umu_grid(uri: str):
+        file_name = uri.removeprefix("umu-grid:")
+        if os.path.basename(file_name) != file_name:
+            return None
+
+        path = Path(Paths.base) / "umu" / "covers" / file_name
+        if not path.is_file():
+            logging.error(f"Grid not found: {path}")
+            return None
+
+        return os.fspath(path)

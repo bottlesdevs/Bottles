@@ -17,9 +17,12 @@
 
 import os
 import uuid
+from pathlib import Path
+from typing import Optional
 
 import requests
 
+from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils.manager import ManagerUtils
@@ -29,9 +32,11 @@ logging = Logger()
 
 class SteamGridDBManager:
     @staticmethod
-    def get_game_grid(name: str, config: BottleConfig):
+    def get_game_grid(name: str, config: Optional[BottleConfig] = None):
         try:
-            res = requests.get(f"https://steamgrid.usebottles.com/api/search/{name}")
+            res = requests.get(
+                f"https://steamgrid.usebottles.com/api/search/{name}", timeout=10
+            )
         except:
             return
 
@@ -39,8 +44,13 @@ class SteamGridDBManager:
             return SteamGridDBManager.__save_grid(res.json(), config)
 
     @staticmethod
-    def __save_grid(url: str, config: BottleConfig):
-        grids_path = os.path.join(ManagerUtils.get_bottle_path(config), "grids")
+    def __save_grid(url: str, config: Optional[BottleConfig] = None):
+        if config is None:
+            grids_path = os.fspath(Path(Paths.base) / "umu" / "covers")
+            uri_prefix = "umu-grid:"
+        else:
+            grids_path = os.path.join(ManagerUtils.get_bottle_path(config), "grids")
+            uri_prefix = "grid:"
         if not os.path.exists(grids_path):
             os.makedirs(grids_path)
 
@@ -49,10 +59,10 @@ class SteamGridDBManager:
         path = os.path.join(grids_path, filename)
 
         try:
-            r = requests.get(url)
+            r = requests.get(url, timeout=10)
             with open(path, "wb") as f:
                 f.write(r.content)
         except Exception:
             return
 
-        return f"grid:{filename}"
+        return f"{uri_prefix}{filename}"

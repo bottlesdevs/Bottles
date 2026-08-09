@@ -16,7 +16,8 @@
 #
 
 from datetime import datetime
-from gettext import gettext as _, ngettext
+from gettext import gettext as _
+from gettext import ngettext
 
 from gi.repository import Adw, GLib, Gtk, Xdp
 
@@ -28,6 +29,8 @@ from bottles.backend.wine.executor import WineExecutor
 from bottles.frontend.params import APP_ID
 from bottles.frontend.utils.filters import add_all_filters, add_executable_filters
 from bottles.frontend.utils.sandbox_guard import guard_sandbox_launch
+from bottles.frontend.utils.umu import UmuFrontendProvider
+from bottles.frontend.widgets.umu import UmuPrefixRow
 
 
 def _bottle_order_id(config: BottleConfig) -> str:
@@ -179,8 +182,10 @@ class BottleView(Adw.Bin):
 
     # region Widgets
     list_bottles = Gtk.Template.Child()
+    list_umu = Gtk.Template.Child()
     list_steam = Gtk.Template.Child()
     group_bottles = Gtk.Template.Child()
+    group_umu = Gtk.Template.Child()
     group_steam = Gtk.Template.Child()
     pref_page = Gtk.Template.Child()
     bottle_status = Gtk.Template.Child()
@@ -198,6 +203,7 @@ class BottleView(Adw.Bin):
         # common variables and references
         self.window = window
         self.arg_bottle = arg_bottle
+        self.umu_provider = UmuFrontendProvider.from_backend(window.manager)
 
         # connect signals
         self.btn_create.connect("clicked", self.window.show_add_view)
@@ -220,6 +226,7 @@ class BottleView(Adw.Bin):
         """
         terms = widget.get_text()
         self.list_bottles.set_filter_func(self.__filter_bottles, terms)
+        self.list_umu.set_filter_func(self.__filter_bottles, terms)
         self.list_steam.set_filter_func(self.__filter_bottles, terms)
         self.__update_empty_state(terms)
 
@@ -233,9 +240,10 @@ class BottleView(Adw.Bin):
         has_matches = any(
             self.__filter_bottles(row, terms) for row in self.__bottles.values()
         )
-        self.pref_page.set_visible(has_matches)
-        self.bottle_status.set_visible(not has_bottles)
-        self.no_bottles_found.set_visible(has_bottles and not has_matches)
+        show_umu_actions = self.umu_provider.available and not terms
+        self.pref_page.set_visible(has_matches or show_umu_actions)
+        self.bottle_status.set_visible(not has_bottles and not show_umu_actions)
+        self.no_bottles_found.set_visible(bool(terms) and not has_matches)
 
     def update_bottles_list(self, *args, refresh_updates=True) -> None:
         self.__bottles = {}
@@ -244,6 +252,9 @@ class BottleView(Adw.Bin):
 
         while self.list_steam.get_first_child():
             self.list_steam.remove(self.list_steam.get_first_child())
+
+        while self.list_umu.get_first_child():
+            self.list_umu.remove(self.list_umu.get_first_child())
 
         local_bottles = self.window.manager.local_bottles
 
@@ -259,18 +270,60 @@ class BottleView(Adw.Bin):
             else:
                 self.list_steam.append(_entry)
 
-            if self.list_steam.get_first_child() is None:
-                self.group_steam.set_visible(False)
-                self.group_bottles.set_title("")
-            else:
-                self.group_steam.set_visible(True)
-                self.group_bottles.set_title(_("Your Bottles"))
+        for entry in self.umu_provider.list_prefixes():
+            callback = (
+                self.window.show_umu_detected_prefix
+                if entry.get("detected")
+                else self.window.show_umu_game_settings
+            )
+            row = UmuPrefixRow(entry, callback)
+            self.__bottles[entry["id"]] = row
+            self.list_umu.append(row)
+
+        has_umu_prefixes = self.list_umu.get_first_child() is not None
+        if self.umu_provider.available and not has_umu_prefixes:
+            self.list_umu.append(self.__build_umu_empty_row())
+
+        has_local_bottles = self.list_bottles.get_first_child() is not None
+        has_steam_prefixes = self.list_steam.get_first_child() is not None
+        self.group_bottles.set_visible(has_local_bottles)
+        self.group_umu.set_visible(self.umu_provider.available)
+        self.group_steam.set_visible(has_steam_prefixes)
+        self.group_bottles.set_title(
+            _("Your Bottles") if has_umu_prefixes or has_steam_prefixes else ""
+        )
 
         self.__update_empty_state(self.entry_search.get_text())
         self.__update_reorder_states(configs)
 
         if refresh_updates:
             self.update_component_updates_banner()
+
+    def __build_umu_empty_row(self):
+        launcher_available = self.window.manager.get_umu_installation() is not None
+        row = Adw.ActionRow(
+            title=_("No UMU Prefixes Yet"),
+            subtitle=(
+                _("Install a Windows game to create one.")
+                if launcher_available
+                else _("Configure the UMU launcher in Preferences first.")
+            ),
+        )
+        actions = Gtk.Box(spacing=6, valign=Gtk.Align.CENTER)
+
+        install = Gtk.Button()
+        install.set_child(
+            Adw.ButtonContent(
+                icon_name="system-software-install-symbolic",
+                label=_("Install Game"),
+            )
+        )
+        install.add_css_class("suggested-action")
+        install.connect("clicked", self.window.show_umu_search)
+        actions.append(install)
+
+        row.add_suffix(actions)
+        return row
 
     def __reorder_bottle(self, row, position):
         configured_order = self.window.settings.get_strv("bottle-order")

@@ -1,0 +1,53 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $UmuEnvironmentDialog: Adw.Dialog {
+  content-width: 560;
+  content-height: 620;
+  title: _("Environment Variables");
+
+  child: Adw.ToolbarView {
+    [top]
+    Adw.HeaderBar {
+      show-start-title-buttons: false;
+      show-end-title-buttons: false;
+
+      Button btn_cancel {
+        label: _("_Cancel");
+        use-underline: true;
+      }
+
+      [end]
+      Button btn_save {
+        label: _("_Save");
+        use-underline: true;
+
+        styles [
+          "suggested-action",
+        ]
+      }
+    }
+
+    content: Adw.PreferencesPage {
+      Adw.PreferencesGroup {
+        description: _("Add variables that should be available only when this game runs.");
+
+        Adw.EntryRow entry_new_variable {
+          title: _("New Variable (NAME=value)");
+          show-apply-button: false;
+
+          [suffix]
+          Button btn_add_variable {
+            valign: center;
+            label: _("Add");
+            sensitive: false;
+          }
+        }
+      }
+
+      Adw.PreferencesGroup group_variables {
+        title: _("Game Environment");
+      }
+    };
+  };
+}
