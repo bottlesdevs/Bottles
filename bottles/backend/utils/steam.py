@@ -117,9 +117,6 @@ class SteamUtils:
         """Sync Proton's WineD3D dependencies into a Bottles prefix."""
         dist_directory = SteamUtils.get_dist_directory(path)
         default_prefix = os.path.join(dist_directory, "share/default_pfx")
-        """
-            libvkd3d-utils-1 was first introduced in Proton 11
-        """
         dlls = ("libvkd3d-1.dll", "libvkd3d-shader-1.dll", "libvkd3d-utils-1.dll")
         directories = [("system32", "system32"), ("syswow64", "syswow64")]
         if arch == "win32":
