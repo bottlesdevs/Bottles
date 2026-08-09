@@ -41,6 +41,22 @@ template $LibraryEntry: Box {
     }
 
     [overlay]
+    Label label_source {
+      visible: false;
+      halign: start;
+      valign: start;
+      margin-top: 10;
+      margin-start: 10;
+      label: "UMU";
+
+      styles [
+        "tag",
+        "tag-umu",
+        "caption",
+      ]
+    }
+
+    [overlay]
     Revealer revealer_run {
       reveal-child: false;
       transition-type: crossfade;
@@ -127,6 +143,17 @@ template $LibraryEntry: Box {
 
         [end]
         Box {
+          Button btn_settings {
+            visible: false;
+            halign: center;
+            icon-name: "preferences-system-symbolic";
+            tooltip-text: _("Game Settings");
+
+            styles [
+              "flat"
+            ]
+          }
+
           Button btn_cover {
             halign: center;
             icon-name: "insert-image-symbolic";

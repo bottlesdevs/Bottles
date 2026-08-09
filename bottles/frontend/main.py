@@ -39,7 +39,7 @@ gi.require_version("Xdp", "1.0")
 gi.require_version("XdpGtk4", "1.0")
 
 # ruff: noqa: E402
-from gi.repository import Adw, Gio, GLib, GObject, Gtk  # type: ignore
+from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk  # type: ignore
 
 from bottles.frontend.utils.gtk import FontScaleManager
 from bottles.frontend.views.preferences import PreferencesWindow
@@ -285,6 +285,11 @@ class Bottles(Adw.Application):
         See: __register_actions()
         """
         Adw.Application.do_startup(self)
+        display = Gdk.Display.get_default()
+        if display is not None:
+            Gtk.IconTheme.get_for_display(display).add_resource_path(
+                "/com/usebottles/bottles/icons"
+            )
         self._font_scale_manager = FontScaleManager(Gio.Settings.new(APP_ID))
 
         # log the same environment summary shown in the GUI debug info, so a

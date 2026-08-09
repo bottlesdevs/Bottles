@@ -67,6 +67,16 @@ from bottles.backend.state import (
     SignalManager,
     Signals,
 )
+from bottles.backend.umu import (
+    UmuDatabaseClient,
+    UmuExecutor,
+    UmuDependencyInstaller,
+    UmuGameRepository,
+    UmuInstallation,
+    UmuProtonCatalog,
+    UmuProvider,
+    UmuProviderError,
+)
 from bottles.backend.utils import yaml
 from bottles.backend.utils.connection import ConnectionUtils
 from bottles.backend.utils.file import FileUtils
@@ -146,6 +156,24 @@ class Manager(metaclass=Singleton):
             force_offline=self.settings.get_boolean("force-offline")
         )
         self.data_mgr = DataManager()
+        umu_data_path = self.settings.get_string("umu-data-path")
+        if umu_data_path in ("", "default"):
+            umu_data_path = None
+        elif not os.path.isdir(umu_data_path) or not os.access(umu_data_path, os.W_OK):
+            logging.error(
+                f"UMU data path {umu_data_path} is not a writable directory! "
+                f"Falling back to the default path."
+            )
+            umu_data_path = None
+        self.umu_repository = UmuGameRepository(umu_data_path)
+        self.umu_repository.recover_interrupted_installations()
+        self.umu_database = UmuDatabaseClient(
+            self.umu_repository.root / "cache" / "umu-database.json"
+        )
+        self.umu_executor: Optional[UmuExecutor] = None
+        self._umu_installation: Optional[UmuInstallation] = None
+        self._umu_probe_complete = False
+        self.umu_error = ""
         _offline = True
 
         if check_connection and not self.utils_conn.force_offline:
@@ -182,6 +210,7 @@ class Manager(metaclass=Singleton):
         self.versioning_manager = VersioningManager(self)
         times["VersioningManager"] = time.time()
         self.component_manager = ComponentManager(self, _offline)
+        self.umu_proton_catalog = UmuProtonCatalog(self)
         self.installer_manager = InstallerManager(self, _offline)
         self.dependency_manager = DependencyManager(self, _offline)
         self.import_manager = ImportManager(self)
@@ -346,6 +375,82 @@ class Manager(metaclass=Singleton):
                 rv.data[data_key] = time.time()
 
         return rv
+
+    def get_umu_installation(self, refresh: bool = False) -> Optional[UmuInstallation]:
+        if self._umu_probe_complete and not refresh:
+            return None if self.umu_error else self._umu_installation
+
+        launcher_path = self.settings.get_string("umu-launcher-path")
+        if launcher_path in ("", "default"):
+            launcher_path = None
+
+        try:
+            installation = UmuProvider(explicit_path=launcher_path).resolve()
+        except UmuProviderError as error:
+            self._umu_probe_complete = True
+            self.umu_error = str(error)
+            if not self.__has_active_umu_processes():
+                self._umu_installation = None
+                self.umu_executor = None
+            return None
+
+        if installation == self._umu_installation and self.umu_executor is not None:
+            self._umu_probe_complete = True
+            self.umu_error = ""
+            return installation
+
+        if self.__has_active_umu_processes():
+            self._umu_probe_complete = True
+            self.umu_error = _("Stop all UMU games before changing the UMU launcher.")
+            return None
+
+        self._umu_installation = installation
+        self.umu_executor = UmuExecutor(
+            installation,
+            data_root=self.umu_repository.root,
+        )
+        self._umu_probe_complete = True
+        self.umu_error = ""
+        return installation
+
+    def __has_active_umu_processes(self) -> bool:
+        if self.umu_executor is None:
+            return False
+        if self.umu_executor.has_running_processes():
+            return True
+        return any(
+            self.umu_executor.is_running(game)
+            for game in self.umu_repository.list_games()
+        )
+
+    def get_umu_executor(self, for_launch: bool = True) -> Optional[UmuExecutor]:
+        if not self._umu_probe_complete:
+            self.get_umu_installation()
+        if for_launch and self.umu_error:
+            return None
+        return self.umu_executor
+
+    def install_umu_dependencies(
+        self,
+        game,
+        names,
+        progress_cb=None,
+        progress_progress_cb=None,
+    ) -> Result:
+        executor = self.get_umu_executor()
+        if executor is None:
+            return Result(False, message=self.umu_error)
+        installer = UmuDependencyInstaller(
+            self,
+            self.umu_repository,
+            executor,
+        )
+        return installer.install(
+            game,
+            names,
+            progress_cb=progress_cb,
+            progress_progress_cb=progress_progress_cb,
+        )
 
     def __del__(self):
         # best-effort shutdown of playtime tracker

@@ -1,0 +1,392 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $UmuInstallDialog: Adw.Dialog {
+  content-width: 560;
+  content-height: 680;
+  title: _("Install a Windows Game");
+
+  child: Adw.ToolbarView {
+    [top]
+    Adw.HeaderBar {
+      show-start-title-buttons: false;
+      show-end-title-buttons: false;
+
+      Button btn_back {
+        label: _("_Cancel");
+        use-underline: true;
+      }
+
+      title-widget: Adw.WindowTitle window_title {
+        title: _("Install a Windows Game");
+        subtitle: _("Introduction");
+      };
+
+      [end]
+      Button btn_next {
+        label: _("_Continue");
+        use-underline: true;
+
+        styles [
+          "suggested-action",
+        ]
+      }
+    }
+
+    content: Stack stack {
+      transition-type: slide_left_right;
+
+      StackPage {
+        name: "intro";
+
+        child: Adw.StatusPage status_intro {
+          icon-name: "input-gaming-symbolic";
+
+          Box {
+            orientation: vertical;
+            spacing: 18;
+            halign: center;
+
+            ListBox {
+              width-request: 420;
+              selection-mode: none;
+
+              Adw.ActionRow row_identity {
+                title: _("Compatibility Profile");
+                icon-name: "info-symbolic";
+              }
+
+              Adw.ActionRow row_store {
+                title: _("Store");
+                icon-name: "folder-download-symbolic";
+              }
+
+              styles [
+                "boxed-list",
+              ]
+            }
+          }
+        };
+      }
+
+      StackPage {
+        name: "installer";
+
+        child: Adw.PreferencesPage page_files {
+          title: _("Choose the Installer");
+          description: _("Select the installer you downloaded for this game.");
+
+          Adw.PreferencesGroup {
+            Adw.ComboRow combo_source {
+              title: _("File Type");
+              model: StringList source_modes {};
+            }
+
+            Adw.ActionRow row_installer {
+              title: _("Installer File");
+              subtitle: _("Select a Windows .exe or .msi installer.");
+              activatable-widget: btn_installer;
+
+              [suffix]
+              Button btn_installer {
+                valign: center;
+                icon-name: "document-open-symbolic";
+                tooltip-text: _("Choose Installer");
+
+                styles [
+                  "flat",
+                ]
+              }
+            }
+
+            Adw.ActionRow row_installer_validation {
+              visible: false;
+              title: _("Valid Windows installer");
+              icon-name: "selection-mode-symbolic";
+
+              styles [
+                "success",
+              ]
+            }
+          }
+
+          Adw.PreferencesGroup {
+            Adw.ActionRow {
+              title: _("The installer stays on your device");
+              subtitle: _("Bottles runs this file locally and does not upload it.");
+              icon-name: "info-symbolic";
+            }
+          }
+        };
+      }
+
+      StackPage {
+        name: "setup";
+
+        child: Adw.PreferencesPage {
+          title: _("Review the Setup");
+          description: _("Bottles will create a managed Proton prefix for this game.");
+
+          Adw.PreferencesGroup {
+            title: _("Game");
+
+            Adw.EntryRow entry_name {
+              title: _("Name");
+              show-apply-button: false;
+            }
+
+            Adw.ActionRow row_setup_identity {
+              title: _("Compatibility Profile");
+            }
+
+            Adw.ActionRow row_setup_store {
+              title: _("Store");
+            }
+          }
+
+          Adw.PreferencesGroup {
+            title: _("Compatibility");
+
+            Adw.ActionRow row_proton {
+              title: _("Proton");
+              activatable: true;
+
+              [suffix]
+              Box {
+                spacing: 6;
+
+                Label label_proton {
+                  valign: center;
+                  ellipsize: middle;
+                  max-width-chars: 24;
+
+                  styles [
+                    "dim-label",
+                  ]
+                }
+
+                Image {
+                  valign: center;
+                  icon-name: "go-next-symbolic";
+
+                  styles [
+                    "dim-label",
+                  ]
+                }
+              }
+            }
+          }
+        };
+      }
+
+      StackPage {
+        name: "installing";
+
+        child: WindowHandle {
+          child: ScrolledWindow {
+            child: Adw.Clamp {
+              maximum-size: 475;
+
+              child: Box {
+                orientation: vertical;
+                margin-top: 42;
+                margin-bottom: 42;
+                margin-start: 12;
+                margin-end: 12;
+                spacing: 24;
+
+                Box {
+                  orientation: vertical;
+                  spacing: 6;
+
+                  Label label_install_title {
+                    label: _("Preparing and Running Installer");
+                    wrap: true;
+                    justify: center;
+
+                    styles [
+                      "title-1",
+                    ]
+                  }
+
+                  Label label_install_description {
+                    label: _("Bottles may download Proton and its runtime first. Complete and close the Windows installer to continue.");
+                    wrap: true;
+                    justify: center;
+
+                    styles [
+                      "dim-label",
+                    ]
+                  }
+                }
+
+                ProgressBar progress_install {
+                  pulse-step: 0.04;
+                }
+
+                ListBox {
+                  selection-mode: none;
+
+                  Adw.ActionRow row_prepare {
+                    title: _("Prepare and run the installer");
+
+                    [suffix]
+                    Box {
+                      Spinner spinner_prepare {
+                        spinning: true;
+                        valign: center;
+                      }
+
+                      Image check_prepare {
+                        visible: false;
+                        valign: center;
+                        icon-name: "selection-mode-symbolic";
+
+                        styles [
+                          "accent",
+                        ]
+                      }
+                    }
+                  }
+
+                  Adw.ActionRow row_run {
+                    title: _("Wait for the installer to close");
+
+                    [suffix]
+                    Box {
+                      Spinner spinner_run {
+                        visible: false;
+                        valign: center;
+                      }
+
+                      Image check_run {
+                        visible: false;
+                        valign: center;
+                        icon-name: "selection-mode-symbolic";
+
+                        styles [
+                          "accent",
+                        ]
+                      }
+                    }
+                  }
+
+                  Adw.ActionRow row_finish {
+                    title: _("Finish the managed prefix");
+
+                    [suffix]
+                    Box {
+                      Spinner spinner_finish {
+                        visible: false;
+                        valign: center;
+                      }
+
+                      Image check_finish {
+                        visible: false;
+                        valign: center;
+                        icon-name: "selection-mode-symbolic";
+
+                        styles [
+                          "accent",
+                        ]
+                      }
+                    }
+                  }
+
+                  styles [
+                    "boxed-list",
+                  ]
+                }
+              };
+            };
+          };
+        };
+      }
+
+      StackPage {
+        name: "executable";
+
+        child: Adw.PreferencesPage {
+          title: _("Choose the Game Executable");
+          description: _("Select the .exe installed inside the new game prefix.");
+
+          Adw.PreferencesGroup {
+            Adw.ActionRow row_executable {
+              title: _("Game Executable");
+              subtitle: _("Choose the file that starts the game.");
+              activatable-widget: btn_executable;
+
+              [suffix]
+              Button btn_executable {
+                valign: center;
+                icon-name: "document-open-symbolic";
+                tooltip-text: _("Choose Game Executable");
+
+                styles [
+                  "flat",
+                ]
+              }
+            }
+
+            Adw.ActionRow row_executable_validation {
+              visible: false;
+              title: _("Valid game executable");
+              icon-name: "selection-mode-symbolic";
+
+              styles [
+                "success",
+              ]
+            }
+          }
+
+          Adw.PreferencesGroup {
+            Adw.ActionRow row_prefix {
+              title: _("Managed Prefix");
+              icon-name: "folder-symbolic";
+            }
+          }
+        };
+      }
+
+      StackPage {
+        name: "complete";
+
+        child: Adw.StatusPage status_complete {
+          icon-name: "selection-mode-symbolic";
+          title: _("Game Ready");
+
+          Button btn_done {
+            label: _("_Done");
+            use-underline: true;
+            halign: center;
+
+            styles [
+              "pill",
+              "suggested-action",
+            ]
+          }
+        };
+      }
+
+      StackPage {
+        name: "error";
+
+        child: Adw.StatusPage status_error {
+          icon-name: "dialog-warning-symbolic";
+          title: _("Installation Failed");
+
+          Button btn_retry {
+            label: _("_Try Again");
+            use-underline: true;
+            halign: center;
+
+            styles [
+              "pill",
+              "suggested-action",
+            ]
+          }
+        };
+      }
+    };
+  };
+}

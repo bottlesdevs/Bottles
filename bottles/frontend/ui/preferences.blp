@@ -8,6 +8,7 @@ template $PreferencesWindow: Adw.PreferencesWindow {
   hide-on-close: true;
 
   Adw.PreferencesPage {
+    name: "general";
     icon-name: "preferences-system-symbolic";
     title: _("General");
 
@@ -158,7 +159,7 @@ template $PreferencesWindow: Adw.PreferencesWindow {
           tooltip-text: _("Read Documentation");
           valign: center;
           visible: false;
-          icon-name: "help-browser-symbolic";
+          icon-name: "external-link-symbolic";
 
           styles [
             "flat",
@@ -320,6 +321,7 @@ template $PreferencesWindow: Adw.PreferencesWindow {
   }
 
   Adw.PreferencesPage {
+    name: "runners";
     icon-name: "system-run-symbolic";
     title: _("Runners");
 
@@ -331,7 +333,7 @@ template $PreferencesWindow: Adw.PreferencesWindow {
           name: "installers_offline";
 
           child: Adw.StatusPage {
-            icon-name: "network-error-symbolic";
+            icon-name: "dialog-error-symbolic";
             title: _("You're offline :(");
             vexpand: true;
             hexpand: true;
@@ -367,6 +369,240 @@ template $PreferencesWindow: Adw.PreferencesWindow {
   }
 
   Adw.PreferencesPage {
+    name: "umu";
+    icon-name: "input-gaming-symbolic";
+    title: _("UMU");
+
+    Adw.PreferencesGroup {
+      Stack umu_stack {
+        transition-type: crossfade;
+
+        StackPage {
+          name: "umu_loading";
+
+          child: Adw.StatusPage {
+            vexpand: true;
+            hexpand: true;
+
+            Spinner umu_spinner {
+              valign: center;
+            }
+          };
+        }
+
+        StackPage {
+          name: "umu_unavailable";
+
+          child: Adw.StatusPage {
+            icon-name: "dialog-information-symbolic";
+            title: _("UMU Is Not Available");
+            description: _("This build does not include UMU prefix management support.");
+            vexpand: true;
+            hexpand: true;
+          };
+        }
+
+        StackPage {
+          name: "umu_error";
+
+          child: Adw.StatusPage status_umu_error {
+            icon-name: "warning-symbolic";
+            title: _("UMU Status Could Not Be Loaded");
+
+            Button btn_umu_error_retry {
+              halign: center;
+              label: _("_Try Again");
+              use-underline: true;
+
+              styles [
+                "pill",
+              ]
+            }
+          };
+        }
+
+        StackPage {
+          name: "umu_available";
+
+          child: Adw.PreferencesPage {
+            Adw.PreferencesGroup {
+              title: _("Overview");
+              description: _("Manage UMU game prefixes separately from Bottles and Steam Proton prefixes.");
+
+              Adw.ActionRow row_umu_launcher {
+                title: _("Launcher");
+
+                [suffix]
+                Box {
+                  spacing: 6;
+
+                  Label label_umu_source {
+                    valign: center;
+
+                    styles [
+                      "tag",
+                      "caption",
+                    ]
+                  }
+
+                  Label label_umu_version {
+                    valign: center;
+
+                    styles [
+                      "dim-label",
+                    ]
+                  }
+
+                  Button btn_umu_refresh {
+                    valign: center;
+                    icon-name: "view-refresh-symbolic";
+                    tooltip-text: _("Check Launcher Again");
+
+                    styles [
+                      "flat",
+                    ]
+                  }
+                }
+              }
+
+              Adw.ActionRow row_umu_games {
+                title: _("UMU Games");
+
+                [suffix]
+                Label label_umu_games {
+                  valign: center;
+
+                  styles [
+                    "dim-label",
+                  ]
+                }
+              }
+
+              Adw.ActionRow row_umu_proton {
+                title: _("Default Proton");
+                activatable: true;
+
+                [suffix]
+                Box {
+                  spacing: 6;
+
+                  Label label_umu_proton {
+                    valign: center;
+                    ellipsize: middle;
+                    max-width-chars: 28;
+
+                    styles [
+                      "dim-label",
+                    ]
+                  }
+
+                  Image {
+                    valign: center;
+                    icon-name: "go-next-symbolic";
+
+                    styles [
+                      "dim-label",
+                    ]
+                  }
+                }
+              }
+
+              Adw.ComboRow combo_umu_dependency {
+                title: _("Dependency Installer");
+                subtitle: _("Used when a game needs Windows components.");
+
+                model: StringList {
+                  strings [
+                    _("Bottles"),
+                    _("Winetricks"),
+                  ]
+                };
+              }
+            }
+
+            Adw.PreferencesGroup {
+              title: _("Storage");
+              description: _("Choose where Bottles stores managed UMU games and prefixes. UMU keeps its downloaded runtime in the standard user data directory.");
+
+              Adw.ActionRow row_umu_path {
+                title: _("Managed Games and Prefixes");
+
+                [suffix]
+                Box {
+                  spacing: 6;
+
+                  Button btn_umu_path_reset {
+                    valign: center;
+                    visible: false;
+                    icon-name: "edit-undo-symbolic";
+                    tooltip-text: _("Reset to Default");
+
+                    styles [
+                      "flat",
+                    ]
+                  }
+
+                  Button btn_umu_path {
+                    valign: center;
+                    icon-name: "folder-open-symbolic";
+                    tooltip-text: _("Open Current Folder");
+
+                    styles [
+                      "flat",
+                    ]
+
+                    accessibility {
+                      label: _("Open Managed Games and Prefixes Folder");
+                    }
+                  }
+
+                  Button btn_umu_path_change {
+                    valign: center;
+                    label: _("Change");
+                  }
+                }
+              }
+
+              Adw.ActionRow row_umu_runtime {
+                title: _("UMU Runtime Data");
+                subtitle: _("The standard ~/.local/share/umu directory is exposed to the Flatpak.");
+
+                [suffix]
+                Button btn_umu_runtime {
+                  valign: center;
+                  icon-name: "folder-open-symbolic";
+                  tooltip-text: _("Open Runtime Data Directory");
+
+                  styles [
+                    "flat",
+                  ]
+                }
+              }
+
+              Adw.ActionRow row_umu_standard {
+                title: _("Detected Prefixes");
+                subtitle: "~/Games/umu";
+
+                [suffix]
+                Button btn_umu_standard {
+                  valign: center;
+                  icon-name: "folder-open-symbolic";
+                  tooltip-text: _("Open Standard Prefix Directory");
+
+                  styles [
+                    "flat",
+                  ]
+                }
+              }
+            }
+          };
+        }
+      }
+    }
+  }
+
+  Adw.PreferencesPage {
+    name: "cache";
     icon-name: "folder-open-symbolic";
     title: _("Cache");
 
@@ -496,6 +732,7 @@ template $PreferencesWindow: Adw.PreferencesWindow {
   }
 
   Adw.PreferencesPage {
+    name: "dll-components";
     icon-name: "applications-games-symbolic";
     title: _("DLL Components");
 
@@ -507,7 +744,7 @@ template $PreferencesWindow: Adw.PreferencesWindow {
          name: "dlls_offline";
 
          child: Adw.StatusPage {
-           icon-name: "network-error-symbolic";
+           icon-name: "dialog-error-symbolic";
            title: _("You're offline :(");
            vexpand: true;
            hexpand: true;

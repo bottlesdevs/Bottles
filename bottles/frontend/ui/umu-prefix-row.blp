@@ -1,0 +1,41 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $UmuPrefixRow: Adw.ActionRow {
+  activatable: true;
+  use-markup: false;
+
+  [prefix]
+  Image {
+    icon-name: "input-gaming-symbolic";
+  }
+
+  Box {
+    spacing: 6;
+
+    Label label_state {
+      valign: center;
+      visible: false;
+
+      styles [
+        "tag",
+        "caption",
+        "warning",
+      ]
+    }
+
+    Button btn_browse {
+      valign: center;
+      icon-name: "folder-open-symbolic";
+      tooltip-text: _("Open Prefix Folder");
+
+      styles [
+        "flat",
+      ]
+
+      accessibility {
+        label: _("Open Prefix Folder");
+      }
+    }
+  }
+}

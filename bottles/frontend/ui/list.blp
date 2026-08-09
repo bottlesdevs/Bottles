@@ -30,6 +30,19 @@ template $BottleView: Adw.Bin {
           }
         }
 
+        Adw.PreferencesGroup group_umu {
+          title: _("UMU Prefixes");
+          visible: false;
+
+          ListBox list_umu {
+            selection-mode: none;
+
+            styles [
+              "boxed-list",
+            ]
+          }
+        }
+
         Adw.PreferencesGroup group_steam {
           title: _("Steam Proton");
 
