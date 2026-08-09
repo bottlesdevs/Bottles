@@ -2296,7 +2296,7 @@ class Manager(metaclass=Singleton):
         """
         updates = []
 
-        if not config.Parameters.show_component_updates:
+        if not self.settings.get_boolean("show-component-updates"):
             return updates
 
         if config.Environment == "Steam":

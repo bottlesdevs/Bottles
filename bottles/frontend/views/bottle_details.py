@@ -571,7 +571,7 @@ class BottleView(Adw.PreferencesPage):
             self.group_updates.remove(row)
         self.__update_rows = []
 
-        show_updates = self.config.Parameters.show_component_updates
+        show_updates = self.manager.settings.get_boolean("show-component-updates")
         self.group_updates.set_visible(show_updates)
         if not show_updates:
             return

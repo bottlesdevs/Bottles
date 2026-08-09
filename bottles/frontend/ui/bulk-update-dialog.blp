@@ -44,6 +44,16 @@ template $BottlesBulkUpdateDialog: Adw.Dialog {
             title: _("Bottles");
             description: _("Only bottles with an available update are listed.");
           }
+
+          Adw.PreferencesGroup {
+            title: _("Cleanup");
+
+            Adw.SwitchRow switch_remove_old {
+              title: _("Remove Old Components");
+              subtitle: _("Delete updated versions only when no bottle still uses them.");
+              active: true;
+            }
+          }
         };
       };
     }

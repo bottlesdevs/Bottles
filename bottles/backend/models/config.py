@@ -146,7 +146,6 @@ class BottleParams(DictCompatMixIn):
     use_be_runtime: bool = True
     use_steam_runtime: bool = False
     winebridge: bool = False
-    show_component_updates: bool = True
     sandbox: bool = False
     versioning_compression: bool = False
     versioning_automatic: bool = False
@@ -312,6 +311,8 @@ class BottleConfig(DictCompatMixIn):
             data["Parameters"]["fsr_sharpening_strength"] = data["Parameters"].pop(
                 "fsr_level"
             )
+
+        data["Parameters"].pop("show_component_updates", None)
 
         # migrate typo fields
         if "DXVK_NVAPI" in data:

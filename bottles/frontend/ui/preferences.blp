@@ -72,6 +72,16 @@ template $PreferencesWindow: Adw.PreferencesWindow {
       }
 
       Adw.ActionRow {
+        title: _("Show Component Updates");
+        subtitle: _("Show runner and component update suggestions for all bottles.");
+        activatable-widget: switch_component_updates;
+
+        Switch switch_component_updates {
+          valign: center;
+        }
+      }
+
+      Adw.ActionRow {
         title: _("Show Funding Dialog");
         subtitle: _("Whether to show the funding dialog to support Bottles development.");
         activatable-widget: switch_show_funding;
