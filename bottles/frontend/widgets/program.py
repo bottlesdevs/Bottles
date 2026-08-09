@@ -85,6 +85,8 @@ class ProgramEntry(Adw.ActionRow):
         self.is_steam = is_steam
         self.__desktop_entry_exists = False
         self.__desktop_entry_query_pending = False
+        self.__program_icon_job = None
+        self.__program_icon_path = None
 
         self.set_title(GLib.markup_escape_text(self.program["name"]))
 
@@ -123,6 +125,26 @@ class ProgramEntry(Adw.ActionRow):
         self.img_program = Gtk.Image()
         self.img_program.set_pixel_size(32)
         self.img_program.set_valign(Gtk.Align.CENTER)
+        extract_program_icon = False
+        program_name = self.program.get("name", "")
+        program_path = self.program.get("path")
+        if (
+            program_icon == "com.usebottles.bottles-program"
+            and not is_steam
+            and program_name
+            and program_path
+            and not any(separator in program_name for separator in ("/", "\\"))
+        ):
+            self.__program_icon_path = os.path.join(
+                ManagerUtils.get_bottle_path(self.config),
+                "icons",
+                f"{program_name}.png",
+            )
+            if os.path.isfile(self.__program_icon_path):
+                program_icon = self.__program_icon_path
+                self.program["icon"] = program_icon
+            else:
+                extract_program_icon = True
         if isinstance(program_icon, str) and os.path.isfile(program_icon):
             self.img_program.set_from_file(program_icon)
         elif isinstance(program_icon, str) and not any(
@@ -132,6 +154,14 @@ class ProgramEntry(Adw.ActionRow):
         else:
             self.img_program.set_from_icon_name("com.usebottles.bottles-program")
         self.add_prefix(self.img_program)
+        if extract_program_icon:
+            self.__program_icon_job = RunAsync(
+                ManagerUtils.extract_icon,
+                callback=self.__program_icon_ready,
+                config=self.config,
+                program_name=program_name,
+                program_path=program_path,
+            )
 
         external_programs = []
         for v in self.config.External_Programs.values():
@@ -165,6 +195,11 @@ class ProgramEntry(Adw.ActionRow):
         # Update subtitle with playtime info
         if not is_steam:
             self.__update_subtitle()
+
+    def __program_icon_ready(self, icon, error):
+        if error is None and isinstance(icon, str) and os.path.isfile(icon):
+            self.program["icon"] = icon
+            self.img_program.set_from_file(icon)
 
     def __update_subtitle(self):
         """Update the subtitle with playtime information."""
@@ -822,9 +857,19 @@ class ProgramEntry(Adw.ActionRow):
                 data["steam"] = True
             else:
                 self.save_program()
-                data["icon"] = ManagerUtils.extract_icon(
-                    self.config, self.program["name"], self.program["path"]
-                )
+                icon_job = getattr(self, "_ProgramEntry__program_icon_job", None)
+                if icon_job is not None:
+                    icon_job.join()
+                icon = self.program.get("icon")
+                icon_path = getattr(self, "_ProgramEntry__program_icon_path", None)
+                if not (isinstance(icon, str) and os.path.isfile(icon)):
+                    if icon_path and os.path.isfile(icon_path):
+                        icon = icon_path
+                    else:
+                        icon = ManagerUtils.extract_icon(
+                            self.config, self.program["name"], self.program["path"]
+                        )
+                data["icon"] = icon
 
             library_manager.add_to_library(data, self.config)
 

@@ -138,7 +138,12 @@ def test_program_widget_switches_desktop_entry_action(monkeypatch):
     monkeypatch.setattr(
         program_module,
         "RunAsync",
-        lambda task_func, callback: callback(task_func(), None),
+        lambda task_func, callback, **kwargs: callback(task_func(**kwargs), None),
+    )
+    monkeypatch.setattr(
+        program_module.ManagerUtils,
+        "extract_icon",
+        lambda **_kwargs: "com.usebottles.bottles-program",
     )
     monkeypatch.setattr(
         program_module.ManagerUtils,
@@ -405,6 +410,54 @@ def test_regular_program_library_entry_is_unchanged(monkeypatch):
     assert captured["updated"] is True
 
 
+def test_library_waits_for_program_icon_extraction(monkeypatch, tmp_path):
+    captured = {}
+    icon_path = tmp_path / "Example Game.png"
+
+    class LibraryManager:
+        def add_to_library(self, data, _config):
+            captured["data"] = data
+
+    class IconJob:
+        @staticmethod
+        def join():
+            icon_path.write_text("icon", encoding="utf-8")
+
+    def run_async(task, callback):
+        callback(task(), False)
+
+    entry = SimpleNamespace(
+        window=SimpleNamespace(
+            update_library=lambda: None,
+            show_toast=lambda _message: None,
+        ),
+        config=BottleConfig(Name="Games", Path="Games"),
+        program={
+            "name": "Example Game",
+            "id": "program-id",
+            "path": "C:\\Games\\example.exe",
+        },
+        is_steam=False,
+        btn_add_library=Button(),
+        btn_add_steam_library=Button(),
+        save_program=lambda: None,
+        _ProgramEntry__program_icon_job=IconJob(),
+        _ProgramEntry__program_icon_path=str(icon_path),
+    )
+
+    monkeypatch.setattr(program_module, "LibraryManager", LibraryManager)
+    monkeypatch.setattr(program_module, "RunAsync", run_async)
+    monkeypatch.setattr(
+        program_module.ManagerUtils,
+        "extract_icon",
+        lambda *_args: pytest.fail("The completed icon job must be reused"),
+    )
+
+    ProgramEntry.add_to_library(entry, None)
+
+    assert captured["data"]["icon"] == str(icon_path)
+
+
 def test_uninstall_program_refreshes_cached_programs(monkeypatch):
     calls = []
     config = BottleConfig(Name="Games", Path="Games")
@@ -526,6 +579,60 @@ def test_program_widget_uses_library_icon(monkeypatch, tmp_path):
         check_boot=False,
     )
 
+    assert entry.img_program.get_icon_name() is None
+    assert entry.img_program.get_paintable() is not None
+
+
+def test_program_widget_extracts_its_own_icon(monkeypatch, tmp_path):
+    icon_path = tmp_path / "icons" / "Example Game.png"
+    icon_path.parent.mkdir()
+    captured = {}
+
+    class LibraryManager:
+        @staticmethod
+        def get_library():
+            return {}
+
+    def extract_icon(**kwargs):
+        captured.update(kwargs)
+        icon_path.write_text(
+            '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32">'
+            '<rect width="32" height="32" fill="#3584e4"/></svg>',
+            encoding="utf-8",
+        )
+        return str(icon_path)
+
+    def run_async(task_func, callback, **kwargs):
+        callback(task_func(**kwargs), None)
+
+    config = BottleConfig(Name="Games", Path="Games")
+    monkeypatch.setattr(program_module, "LibraryManager", LibraryManager)
+    monkeypatch.setattr(program_module, "RunAsync", run_async)
+    monkeypatch.setattr(program_module.ManagerUtils, "extract_icon", extract_icon)
+    monkeypatch.setattr(
+        program_module.ManagerUtils, "get_bottle_path", lambda _config: str(tmp_path)
+    )
+    window = SimpleNamespace(
+        page_details=SimpleNamespace(view_bottle=object()),
+        manager=SimpleNamespace(
+            steam_manager=SimpleNamespace(is_steam_supported=False),
+        ),
+    )
+
+    entry = ProgramEntry(
+        window,
+        config,
+        {
+            "name": "Example Game",
+            "id": "program-id",
+            "path": "C:\\Example Game\\game.exe",
+            "icon": "com.usebottles.bottles-program",
+        },
+        check_boot=False,
+    )
+
+    assert captured["program_path"] == "C:\\Example Game\\game.exe"
+    assert entry.program["icon"] == str(icon_path)
     assert entry.img_program.get_icon_name() is None
     assert entry.img_program.get_paintable() is not None
 

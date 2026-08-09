@@ -333,7 +333,9 @@ class ManagerUtils:
                     ico_dest_temp = f"{ico_dest_temp}.ico"
                 im = ImageMagickUtils(ico_dest_temp)
                 im.convert(ico_dest)
-                icon = ico_dest
+                os.remove(ico_dest_temp)
+                if os.path.isfile(ico_dest):
+                    icon = ico_dest
             else:
                 shutil.move(ico_dest_temp, ico_dest)
                 icon = ico_dest
