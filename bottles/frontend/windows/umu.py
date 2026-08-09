@@ -24,6 +24,7 @@ from gi.repository import Adw, Gio, GLib, Gtk
 from bottles.backend.logger import Logger
 from bottles.backend.managers.library import LibraryManager
 from bottles.backend.umu import (
+    DEFAULT_PROTON_VALUE,
     RESERVED_ENVIRONMENT_KEYS,
     UMU_STORE_IDS,
     UmuDatabaseEntry,
@@ -108,7 +109,7 @@ def _validate_windows_file(path, allowed_suffixes):
 
 def _proton_title(catalog, value):
     for choice in catalog.list_choices(include_unstable=True):
-        if choice.value == value:
+        if choice.value == value or choice.component_name == value:
             return choice.title
     return Path(value).name or value
 
@@ -159,9 +160,14 @@ class UmuProtonDialog(Adw.Dialog):
             ),
             "steam": _("Discovered in Steam."),
         }
+        subtitle = subtitles[choice.source]
+        if choice.key == "auto:protosoda":
+            subtitle = _(
+                "Recommended for Bottles and managed through Bottles Components."
+            )
         row = Adw.ActionRow(
             title=choice.title,
-            subtitle=subtitles[choice.source],
+            subtitle=subtitle,
             use_markup=False,
         )
         row.add_prefix(Gtk.Image(icon_name="input-gaming-symbolic"))
@@ -179,7 +185,9 @@ class UmuProtonDialog(Adw.Dialog):
         row.add_suffix(source)
 
         if choice.value is not None:
-            selected = choice.value == self.selected
+            selected = (
+                choice.value == self.selected or choice.component_name == self.selected
+            )
             row.set_activatable(True)
             row.connect("activated", self.__select, choice)
             row.add_suffix(
@@ -205,7 +213,7 @@ class UmuProtonDialog(Adw.Dialog):
 
     def __select(self, _row, choice):
         try:
-            value = self.catalog.validate_value(choice.value)
+            value = self.catalog.validate_selection(choice.value)
         except ValueError as error:
             self.window.show_toast(str(error))
             self.__populate()
@@ -706,7 +714,7 @@ class UmuInstallDialog(Adw.Dialog):
         self.installer = None
         self.executable = None
         self.game = None
-        self.proton = window.settings.get_string("umu-proton") or "UMU-Proton"
+        self.proton = window.settings.get_string("umu-proton") or DEFAULT_PROTON_VALUE
         self._pulse_source = None
         self._stop_requested = False
         self._install_status = None
@@ -918,10 +926,11 @@ class UmuInstallDialog(Adw.Dialog):
         self.__update_navigation()
 
     def __new_game(self, state):
+        proton = self.window.manager.umu_proton_catalog.pin_value(self.proton)
         game = self.repository.new_game(
             self.entry_name.get_text().strip(),
             self.installer,
-            proton=self.proton,
+            proton=proton,
             game_id=self.database_entry.umu_id,
             store=self.database_entry.store,
         )
@@ -938,7 +947,7 @@ class UmuInstallDialog(Adw.Dialog):
     def __add_portable_game(self):
         try:
             self.game = self.__new_game("ready")
-        except UmuRepositoryError as error:
+        except (ValueError, UmuRepositoryError) as error:
             self.window.show_toast(str(error))
             return
         LibraryManager().sync_umu_game(self.game)
@@ -957,7 +966,7 @@ class UmuInstallDialog(Adw.Dialog):
                 self.game = self.__new_game("installing")
             else:
                 self.game = self.repository.update(self.game, state="installing")
-        except UmuRepositoryError as error:
+        except (ValueError, UmuRepositoryError) as error:
             self.window.show_toast(str(error))
             return
 
@@ -1181,7 +1190,7 @@ class UmuAddGameDialog(Adw.Dialog):
         self.repository = window.manager.umu_repository
         self.executable = None
         self.prefix = None
-        self.proton = window.settings.get_string("umu-proton") or "UMU-Proton"
+        self.proton = window.settings.get_string("umu-proton") or DEFAULT_PROTON_VALUE
         self.importing = None
 
         for label in (_("Run an Installer"), _("Use an Existing Executable")):
@@ -1343,10 +1352,15 @@ class UmuAddGameDialog(Adw.Dialog):
             return
 
         importing = self.combo_mode.get_selected() == 1
+        try:
+            proton = self.window.manager.umu_proton_catalog.pin_value(self.proton)
+        except ValueError as error:
+            self.window.show_toast(str(error))
+            return
         game = self.repository.new_game(
             self.entry_name.get_text().strip(),
             self.executable,
-            proton=self.proton,
+            proton=proton,
             game_id=self.entry_game_id.get_text().strip(),
             store=_selected_id(self.combo_store, STORE_IDS),
         )
@@ -1713,7 +1727,7 @@ class UmuGameDialog(Adw.Dialog):
                 name=self.entry_name.get_text().strip(),
                 executable=Path(self.executable),
                 prefix=prefix,
-                proton=self.proton,
+                proton=self.window.manager.umu_proton_catalog.pin_value(self.proton),
                 game_id=self.entry_game_id.get_text().strip(),
                 store=_selected_id(self.combo_store, STORE_IDS),
                 arguments=self.arguments,

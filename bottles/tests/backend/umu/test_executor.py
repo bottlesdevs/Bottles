@@ -1,3 +1,5 @@
+from dataclasses import replace
+
 import pytest
 
 from bottles.backend.umu import (
@@ -59,6 +61,26 @@ def test_prepare_builds_argv_without_shell_expansion(tmp_path):
     assert command.env["STORE"] == "gog"
     assert command.env["PROTONPATH"] == "GE-Proton"
     assert command.env["STEAM_COMPAT_INSTALL_PATH"] == str(command.cwd)
+
+
+def test_prepare_resolves_managed_proton(tmp_path):
+    repository = UmuGameRepository(tmp_path / "umu")
+    game = replace(_game(repository, tmp_path), proton="ProtoSoda")
+    proton = tmp_path / "ProtoSoda"
+    proton.mkdir()
+    installation = UmuInstallation(
+        path=tmp_path / "umu-run",
+        version="1.4.4",
+        source="managed",
+    )
+    executor = UmuExecutor(
+        installation,
+        data_root=repository.root,
+        base_environment={},
+        proton_resolver=lambda value: str(proton) if value == "ProtoSoda" else value,
+    )
+
+    assert executor.prepare(game).env["PROTONPATH"] == str(proton)
 
 
 def test_prepare_rejects_reserved_environment_override(tmp_path):

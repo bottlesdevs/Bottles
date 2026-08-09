@@ -51,7 +51,11 @@ from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.registry_rule import RegistryRule
 from bottles.backend.runner import Runner
 from bottles.backend.state import EventManager, Events
-from bottles.backend.umu import UMU_STORE_IDS, UmuRepositoryError
+from bottles.backend.umu import (
+    DEFAULT_PROTON_VALUE,
+    UMU_STORE_IDS,
+    UmuRepositoryError,
+)
 from bottles.backend.utils import json, yaml
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.cmd import CMD
@@ -385,6 +389,8 @@ class CLI:
     def manage_umu(self):
         manager = Manager(g_settings=self.settings, is_cli=True)
         manager.check_app_dirs()
+        manager.organize_components()
+        EventManager.wait(Events.ComponentsOrganizing)
         repository = manager.umu_repository
         action = self.args.action
 
@@ -418,7 +424,12 @@ class CLI:
                 sys.stderr.write(f"Executable not found: {executable}\n")
                 raise SystemExit(1)
             proton = self.args.proton or self.settings.get_string("umu-proton")
-            proton = proton or "UMU-Proton"
+            proton = proton or DEFAULT_PROTON_VALUE
+            try:
+                proton = manager.umu_proton_catalog.pin_value(proton)
+            except ValueError as error:
+                sys.stderr.write(f"{error}\n")
+                raise SystemExit(1) from error
             game = repository.new_game(
                 self.args.name,
                 executable,
