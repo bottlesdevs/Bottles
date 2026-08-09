@@ -1,0 +1,126 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $LibraryAddEntry: Box {
+  orientation: vertical;
+  width-request: 128;
+  height-request: 348;
+  overflow: hidden;
+
+  MenuButton {
+    width-request: 226;
+    height-request: 348;
+    hexpand: true;
+    vexpand: true;
+    always-show-arrow: false;
+    popover: pop_add;
+    tooltip-text: _("Add to Library");
+
+    Box {
+      orientation: vertical;
+      hexpand: true;
+      vexpand: true;
+
+      Box {
+        hexpand: true;
+        vexpand: true;
+        halign: center;
+        valign: center;
+
+        Image {
+          icon-name: "list-add-symbolic";
+          pixel-size: 64;
+
+          styles [
+            "dim-label",
+          ]
+        }
+      }
+
+      Box {
+        margin-bottom: 10;
+        margin-start: 10;
+        margin-end: 10;
+
+        styles [
+          "osd",
+          "toolbar",
+          "library-entry-details",
+        ]
+
+        Box {
+          orientation: vertical;
+          hexpand: true;
+          valign: center;
+          margin-top: 8;
+          margin-bottom: 8;
+          margin-start: 8;
+          margin-end: 8;
+
+          Label {
+            halign: start;
+            label: _("Add to Library");
+
+            styles [
+              "title",
+            ]
+          }
+
+          Label {
+            halign: start;
+            label: _("Choose a source");
+
+            styles [
+              "caption",
+            ]
+          }
+        }
+      }
+    }
+
+    styles [
+      "flat",
+      "library-add-cover",
+    ]
+  }
+
+  styles [
+    "card",
+  ]
+}
+
+Popover pop_add {
+  styles [
+    "menu",
+  ]
+
+  Box {
+    orientation: vertical;
+    margin-top: 6;
+    margin-bottom: 6;
+    margin-start: 6;
+    margin-end: 6;
+
+    Button btn_umu {
+      Adw.ButtonContent {
+        icon-name: "input-gaming-symbolic";
+        label: _("Add Windows Game");
+      }
+
+      styles [
+        "flat",
+      ]
+    }
+
+    Button btn_bottle {
+      Adw.ButtonContent {
+        icon-name: "application-x-executable-symbolic";
+        label: _("Program from a Bottle");
+      }
+
+      styles [
+        "flat",
+      ]
+    }
+  }
+}

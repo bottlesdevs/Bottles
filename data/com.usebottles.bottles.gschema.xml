@@ -147,5 +147,29 @@
       <summary>Show funding dialog</summary>
       <description>Toggle the funding dialog.</description>
     </key>
+    <key type="s" name="umu-launcher-path">
+      <default>''</default>
+      <summary>UMU launcher path</summary>
+      <description>Use this UMU launcher instead of the system or bundled copy.</description>
+    </key>
+    <key type="s" name="umu-data-path">
+      <default>''</default>
+      <summary>UMU managed data path</summary>
+      <description>Store Bottles-managed UMU game definitions and prefixes in this directory.</description>
+    </key>
+    <key type="s" name="umu-proton">
+      <default>'UMU-Proton'</default>
+      <summary>Default UMU Proton selection</summary>
+      <description>Proton selection used for new UMU games.</description>
+    </key>
+    <key type="s" name="umu-dependency-tool">
+      <choices>
+        <choice value="bottles"/>
+        <choice value="winetricks"/>
+      </choices>
+      <default>'bottles'</default>
+      <summary>Default UMU dependency installer</summary>
+      <description>Choose the dependency source used for new UMU games.</description>
+    </key>
 	</schema>
 </schemalist>

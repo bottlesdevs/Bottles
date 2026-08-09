@@ -14,6 +14,7 @@ bottles_sources = [
   'state.py',
   'component.py',
   'library.py',
+  'umu.py',
 ]
 
 install_data(bottles_sources, install_dir: widgetsdir)

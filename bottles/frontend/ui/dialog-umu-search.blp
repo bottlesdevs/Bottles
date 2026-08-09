@@ -1,0 +1,149 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $UmuSearchDialog: Adw.Dialog {
+  content-width: 620;
+  content-height: 640;
+  title: _("Add a Windows Game");
+
+  child: Adw.ToolbarView {
+    [top]
+    Adw.HeaderBar {
+      show-start-title-buttons: false;
+      show-end-title-buttons: false;
+
+      title-widget: Adw.ViewSwitcher {
+        stack: stack_pages;
+        policy: wide;
+      };
+
+      Button btn_cancel {
+        label: _("_Cancel");
+        use-underline: true;
+      }
+    }
+
+    content: Adw.ViewStack stack_pages {
+      Adw.ViewStackPage {
+        name: "search";
+        title: _("Search");
+        icon-name: "system-search-symbolic";
+        child: Adw.PreferencesPage {
+          Adw.PreferencesGroup {
+            title: _("Find Your Game");
+            description: _("Select a known game to apply its compatibility fixes automatically.");
+
+            SearchEntry entry_search {
+              sensitive: false;
+              placeholder-text: _("Search by title or store");
+            }
+          }
+
+          Adw.PreferencesGroup group_results {
+            Stack stack_results {
+              transition-type: crossfade;
+
+              StackPage {
+                name: "loading";
+
+                child: Adw.ActionRow {
+                  title: _("Loading game database...");
+
+                  [suffix]
+                  Spinner spinner {
+                    valign: center;
+                    spinning: true;
+                  }
+                };
+              }
+
+              StackPage {
+                name: "results";
+
+                child: ScrolledWindow {
+                  min-content-height: 240;
+                  max-content-height: 420;
+                  propagate-natural-height: true;
+
+                  ListBox list_results {
+                    selection-mode: none;
+
+                    styles [
+                      "boxed-list",
+                    ]
+                  }
+                };
+              }
+
+              StackPage {
+                name: "empty";
+
+                child: Adw.ActionRow {
+                  title: _("No matching games");
+                  subtitle: _("Try another title or continue with a custom setup.");
+                  icon-name: "system-search-symbolic";
+
+                  [suffix]
+                  Button btn_empty_custom {
+                    valign: center;
+                    label: _("Set Up Custom Game");
+
+                    styles [
+                      "pill",
+                    ]
+                  }
+                };
+              }
+
+              StackPage {
+                name: "error";
+
+                child: Adw.ActionRow {
+                  title: _("Game database unavailable");
+                  subtitle: _("Check the connection or use the Custom tab.");
+                  icon-name: "warning-symbolic";
+
+                  [suffix]
+                  Button btn_retry {
+                    valign: center;
+                    label: _("Try Again");
+
+                    styles [
+                      "pill",
+                    ]
+                  }
+                };
+              }
+            }
+          }
+        };
+      }
+
+      Adw.ViewStackPage {
+        name: "custom";
+        title: _("Custom");
+        icon-name: "applications-games-symbolic";
+        child: Adw.PreferencesPage {
+          Adw.PreferencesGroup {
+            title: _("Custom Game");
+            description: _("Use a local installer or an executable from an existing prefix.");
+
+            Adw.ActionRow row_install {
+              activatable: true;
+              title: _("Run an Installer");
+              subtitle: _("Create a managed prefix and run a local Windows installer.");
+              icon-name: "system-software-install-symbolic";
+            }
+
+            Adw.ActionRow row_existing {
+              activatable: true;
+              title: _("Use an Existing Executable");
+              subtitle: _("Add a game that is already installed in a Proton prefix.");
+              icon-name: "application-x-executable-symbolic";
+            }
+          }
+        };
+      }
+    };
+  };
+}

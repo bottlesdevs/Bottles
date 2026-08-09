@@ -13,6 +13,7 @@ subdir('utils')
 subdir('dlls')
 subdir('repos')
 subdir('managers')
+subdir('umu')
 
 bottles_sources = [
   '__init__.py',

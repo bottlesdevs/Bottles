@@ -17,6 +17,9 @@
     "--socket=pulseaudio",
     "--device=all",
     "--filesystem=xdg-data/applications:create",
+    "--filesystem=xdg-data/umu:create",
+    "--filesystem=xdg-data/Steam/compatibilitytools.d:create",
+    "--filesystem=~/Games/umu:create",
     "--filesystem=xdg-desktop:create",
     "--system-talk-name=org.freedesktop.UDisks2",
     "--env=LD_LIBRARY_PATH=/app/lib:/app/lib/i386-linux-gnu",
@@ -133,6 +136,7 @@
     },
     "fvs2.yaml",
     "pypi-deps.yaml",
+    "umu-launcher.yaml",
     {
       "name": "vmtouch",
       "buildsystem": "simple",

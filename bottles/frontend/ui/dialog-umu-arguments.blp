@@ -1,0 +1,43 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $UmuArgumentsDialog: Adw.Dialog {
+  content-width: 520;
+  content-height: 260;
+  title: _("Launch Arguments");
+
+  child: Adw.ToolbarView {
+    [top]
+    Adw.HeaderBar {
+      show-start-title-buttons: false;
+      show-end-title-buttons: false;
+
+      Button btn_cancel {
+        label: _("_Cancel");
+        use-underline: true;
+      }
+
+      [end]
+      Button btn_save {
+        label: _("_Save");
+        use-underline: true;
+
+        styles [
+          "suggested-action",
+        ]
+      }
+    }
+
+    content: Adw.PreferencesPage {
+      Adw.PreferencesGroup {
+        title: _("Arguments");
+        description: _("These arguments are passed to the game executable when it starts.");
+
+        Adw.EntryRow entry_arguments {
+          title: _("Example: -windowed -nointro");
+          show-apply-button: false;
+        }
+      }
+    };
+  };
+}

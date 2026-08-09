@@ -22,7 +22,8 @@ from gi.repository import Adw, GObject, Gtk
 
 from bottles.backend.managers.library import LibraryManager
 from bottles.frontend.utils.gtk import GtkUtils
-from bottles.frontend.widgets.library import LibraryEntry
+from bottles.frontend.utils.umu import get_umu_store_title
+from bottles.frontend.widgets.library import LibraryAddEntry, LibraryEntry
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/library.ui")
@@ -31,8 +32,10 @@ class LibraryView(Adw.Bin):
 
     # region Widgets
     scroll_window = Gtk.Template.Child()
+    stack_content = Gtk.Template.Child()
     main_flow = Gtk.Template.Child()
-    status_page = Gtk.Template.Child()
+    search_bar = Gtk.Template.Child()
+    entry_search = Gtk.Template.Child()
     style_provider = Gtk.CssProvider()
     # endregion
 
@@ -42,6 +45,8 @@ class LibraryView(Adw.Bin):
         super().__init__(**kwargs)
         self.window = window
         self.css = b""
+        self.entry_search.connect("search-changed", self.__search)
+        self.main_flow.set_filter_func(self.__filter_entry)
         self.update()
 
     def update(self):
@@ -51,16 +56,64 @@ class LibraryView(Adw.Bin):
         while self.main_flow.get_first_child() is not None:
             self.main_flow.remove(self.main_flow.get_first_child())
 
-        self.status_page.set_visible(len(entries) == 0)
-        self.scroll_window.set_visible(not len(entries) == 0)
-
-        self.items_per_line = len(entries)
+        self.items_per_line = len(entries) + 1
 
         for u, e in entries.items():
             # We suppress exceptions so that it doesn't continue if the init fails
             with contextlib.suppress(Exception):
                 entry = LibraryEntry(self, u, e)
                 self.main_flow.append(entry)
+
+        self.main_flow.append(LibraryAddEntry(self))
+        self.__search()
+
+    def __search(self, *_args):
+        self.main_flow.invalidate_filter()
+        query = self.entry_search.get_text().strip()
+        if not query:
+            self.stack_content.set_visible_child_name("library")
+            return
+
+        child = self.main_flow.get_first_child()
+        while child is not None:
+            entry = child.get_child()
+            if not isinstance(entry, LibraryAddEntry) and self.__filter_entry(child):
+                self.stack_content.set_visible_child_name("library")
+                return
+            child = child.get_next_sibling()
+        self.stack_content.set_visible_child_name("empty")
+
+    def __filter_entry(self, child):
+        entry = child.get_child()
+        if isinstance(entry, LibraryAddEntry):
+            return True
+        query = self.entry_search.get_text().strip().casefold()
+        if not query:
+            return True
+        values = (
+            entry.name,
+            entry.entry.get("source", ""),
+            entry.entry.get("bottle", {}).get("name", ""),
+        )
+        if entry.is_umu:
+            states = {
+                "draft": _("Choose Executable"),
+                "installing": _("Installing"),
+                "failed": _("Installation Failed"),
+                "stopped": _("Installation Stopped"),
+                "ready": _("Ready"),
+            }
+            values += (
+                get_umu_store_title(entry.game.store),
+                states.get(entry.game.state, entry.game.state),
+            )
+        return query in " ".join(str(value or "") for value in values).casefold()
+
+    def show_bottle_programs(self, *_args):
+        self.window.show_list_view()
+        self.window.show_toast(
+            _("Open a Bottle and choose Add to Library from one of its programs.")
+        )
 
     def remove_entry(self, entry):
         @GtkUtils.run_in_main_loop

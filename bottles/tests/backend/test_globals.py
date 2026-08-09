@@ -24,7 +24,7 @@ def test_wine_compatible_base_keeps_safe_path(tmp_path, monkeypatch):
 
 
 def test_wine_compatible_base_uses_flatpak_data_mount(tmp_path, monkeypatch):
-    base = tmp_path / "user." / "data" / "bottles"
+    base = tmp_path / "user" / "data" / "bottles"
     data_home = base.parent
     data_home.mkdir(parents=True)
     original_isdir = Path.is_dir

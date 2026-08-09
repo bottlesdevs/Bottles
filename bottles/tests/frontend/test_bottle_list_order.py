@@ -117,6 +117,7 @@ def test_bottle_list_empty_state(titles, terms, expected):
         pref_page=widget("list"),
         bottle_status=widget("empty"),
         no_bottles_found=widget("no-results"),
+        umu_provider=SimpleNamespace(available=False),
     )
 
     BottleView._BottleView__update_empty_state(view, terms)
@@ -126,6 +127,28 @@ def test_bottle_list_empty_state(titles, terms, expected):
         visible["empty"],
         visible["no-results"],
     ) == expected
+
+
+def test_umu_actions_replace_empty_state():
+    visible = {}
+
+    def widget(name):
+        return SimpleNamespace(
+            set_visible=lambda value: visible.__setitem__(name, value)
+        )
+
+    view = SimpleNamespace(
+        _BottleView__bottles={},
+        _BottleView__filter_bottles=BottleView._BottleView__filter_bottles,
+        pref_page=widget("list"),
+        bottle_status=widget("empty"),
+        no_bottles_found=widget("no-results"),
+        umu_provider=SimpleNamespace(available=True),
+    )
+
+    BottleView._BottleView__update_empty_state(view, "")
+
+    assert visible == {"list": True, "empty": False, "no-results": False}
 
 
 def test_search_updates_filters_and_empty_state():
@@ -139,6 +162,7 @@ def test_search_updates_filters_and_empty_state():
         _BottleView__filter_bottles=filter_bottles,
         _BottleView__update_empty_state=empty_states.append,
         list_bottles=bottle_list,
+        list_umu=bottle_list,
         list_steam=bottle_list,
     )
 
@@ -147,6 +171,7 @@ def test_search_updates_filters_and_empty_state():
     )
 
     assert filters == [
+        (filter_bottles, "missing"),
         (filter_bottles, "missing"),
         (filter_bottles, "missing"),
     ]

@@ -19,12 +19,16 @@ import os
 import subprocess
 import webbrowser
 from gettext import gettext as _
+from gettext import ngettext
+from pathlib import Path
 
 from gi.repository import Adw, Gio, GLib, Gtk
 
+from bottles.backend.globals import Paths
 from bottles.backend.managers.data import DataManager, UserDataKeys
 from bottles.backend.state import EventManager, Events
 from bottles.backend.utils.generic import sort_by_version
+from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.flatpak import resolve_bottles_directory
 from bottles.frontend.utils.gtk import FONT_SCALE_VALUES
@@ -32,6 +36,7 @@ from bottles.frontend.utils.localization import (
     UI_LANGUAGES,
     get_ui_language_environment,
 )
+from bottles.frontend.utils.umu import UmuFrontendProvider
 from bottles.frontend.widgets.component import ComponentEntry, ComponentExpander
 
 
@@ -47,6 +52,10 @@ class PreferencesWindow(Adw.PreferencesWindow):
     dlls_spinner = Gtk.Template.Child()
     cache_stack = Gtk.Template.Child()
     cache_spinner = Gtk.Template.Child()
+    umu_stack = Gtk.Template.Child()
+    umu_spinner = Gtk.Template.Child()
+    status_umu_error = Gtk.Template.Child()
+    btn_umu_error_retry = Gtk.Template.Child()
 
     row_theme = Gtk.Template.Child()
     switch_theme = Gtk.Template.Child()
@@ -90,6 +99,22 @@ class PreferencesWindow(Adw.PreferencesWindow):
     btn_cache_clear_all = Gtk.Template.Child()
     btn_cache_clear_temp = Gtk.Template.Child()
     btn_cache_clear_templates = Gtk.Template.Child()
+    row_umu_path = Gtk.Template.Child()
+    row_umu_runtime = Gtk.Template.Child()
+    row_umu_standard = Gtk.Template.Child()
+    row_umu_launcher = Gtk.Template.Child()
+    row_umu_proton = Gtk.Template.Child()
+    label_umu_proton = Gtk.Template.Child()
+    combo_umu_dependency = Gtk.Template.Child()
+    label_umu_games = Gtk.Template.Child()
+    label_umu_source = Gtk.Template.Child()
+    label_umu_version = Gtk.Template.Child()
+    btn_umu_refresh = Gtk.Template.Child()
+    btn_umu_path = Gtk.Template.Child()
+    btn_umu_path_change = Gtk.Template.Child()
+    btn_umu_path_reset = Gtk.Template.Child()
+    btn_umu_runtime = Gtk.Template.Child()
+    btn_umu_standard = Gtk.Template.Child()
 
     # endregion
 
@@ -101,6 +126,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.window = window
         self.settings = window.settings
         self.manager = window.manager
+        self.umu_provider = UmuFrontendProvider.from_backend(self.manager)
         self.data = DataManager()
         self.style_manager = Adw.StyleManager.get_default()
 
@@ -115,6 +141,8 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.__ui_language_values = [code for code, _name in UI_LANGUAGES]
         self.__updating_ui_language = False
         self.__updating_font_scale = False
+        self.__updating_umu_settings = False
+        self.__umu_dependency_values = ["bottles", "winetricks"]
 
         self.current_bottles_path = self.data.get(UserDataKeys.CustomBottlesPath)
         if self.current_bottles_path:
@@ -300,6 +328,17 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.btn_cache_clear_templates.connect(
             "clicked", self.__confirm_clear_templates_cache
         )
+        self.btn_umu_refresh.connect("clicked", self.__refresh_umu)
+        self.btn_umu_error_retry.connect("clicked", self.__refresh_umu)
+        self.btn_umu_path.connect("clicked", self.__open_umu_path)
+        self.btn_umu_path_change.connect("clicked", self.__choose_umu_path)
+        self.btn_umu_path_reset.connect("clicked", self.__reset_umu_path)
+        self.btn_umu_runtime.connect("clicked", self.__open_umu_runtime)
+        self.btn_umu_standard.connect("clicked", self.__open_umu_standard)
+        self.row_umu_proton.connect("activated", self.__choose_umu_proton)
+        self.combo_umu_dependency.connect(
+            "notify::selected", self.__on_umu_dependency_selected
+        )
 
         if not self.manager.steam_manager.is_steam_supported:
             self.switch_steam.set_sensitive(False)
@@ -312,6 +351,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
             self.row_theme.set_visible(True)
 
         self.populate_cache_list()
+        self.__update_umu_status()
 
     def empty_list(self):
         for w in self.__registry:
@@ -374,6 +414,184 @@ class PreferencesWindow(Adw.PreferencesWindow):
         webbrowser.open(
             "https://docs.usebottles.com/flatpak/cant-enable-steam-proton-manager"
         )
+
+    def __update_umu_status(self, refresh=False):
+        self.umu_stack.set_visible_child_name("umu_loading")
+        self.umu_spinner.start()
+        RunAsync(
+            self.umu_provider.get_status,
+            callback=self.__apply_umu_status,
+            refresh=refresh,
+        )
+
+    def __apply_umu_status(self, status, error=False):
+        self.umu_spinner.stop()
+        if error or not status:
+            self.status_umu_error.set_description(
+                str(error) if error else _("No status information was returned.")
+            )
+            self.umu_stack.set_visible_child_name("umu_error")
+            return
+        if not status["available"]:
+            self.umu_stack.set_visible_child_name("umu_unavailable")
+            return
+
+        installation = status["installation"]
+        if installation is None:
+            self.row_umu_launcher.add_css_class("error")
+            self.row_umu_launcher.set_subtitle(
+                status["error"] or _("No usable UMU launcher was found.")
+            )
+            self.label_umu_source.set_label(_("Unavailable"))
+            self.label_umu_version.set_visible(False)
+        else:
+            source_labels = {
+                "system": _("System"),
+                "bundled": _("Bundled"),
+                "explicit": _("Custom"),
+                "managed": _("Managed"),
+            }
+            self.row_umu_launcher.remove_css_class("error")
+            self.row_umu_launcher.set_subtitle(str(installation.path))
+            self.label_umu_source.set_label(
+                source_labels.get(installation.source, installation.source)
+            )
+            self.label_umu_version.set_label(installation.version)
+            self.label_umu_version.set_visible(True)
+
+        count = status["game_count"]
+        game_count = ngettext("{0} game", "{0} games", count).format(count)
+        discovered = status["discovered_count"]
+        if discovered:
+            game_count = _("{0}, {1} detected").format(game_count, discovered)
+        self.label_umu_games.set_label(game_count)
+        self.row_umu_path.set_subtitle(status["root"])
+        self.btn_umu_path.set_sensitive(bool(status["root"]))
+        self.btn_umu_path_reset.set_visible(
+            bool(self.settings.get_string("umu-data-path"))
+        )
+        self.row_umu_runtime.set_subtitle("~/.local/share/umu")
+        self.btn_umu_runtime.set_sensitive(bool(status["runtime_root"]))
+        self.row_umu_standard.set_subtitle("~/Games/umu")
+        self.btn_umu_standard.set_sensitive(bool(status["standard_prefix_root"]))
+        self.__updating_umu_settings = True
+        self.label_umu_proton.set_label(
+            self.__umu_proton_title(status["default_proton"])
+        )
+        dependency_tool = status["dependency_tool"]
+        try:
+            dependency_index = self.__umu_dependency_values.index(dependency_tool)
+        except ValueError:
+            dependency_index = 0
+        self.combo_umu_dependency.set_selected(dependency_index)
+        self.__updating_umu_settings = False
+        self.umu_stack.set_visible_child_name("umu_available")
+
+    def __refresh_umu(self, *_args):
+        self.__update_umu_status(refresh=True)
+        if hasattr(self.window, "page_list"):
+            self.window.page_list.update_bottles_list(refresh_updates=False)
+
+    def __open_umu_path(self, *_args):
+        root = str(self.umu_provider.repository.root)
+        if root:
+            ManagerUtils.open_filemanager(path_type="custom", custom_path=root)
+
+    def __open_umu_runtime(self, *_args):
+        root = str(Path.home().joinpath(".local", "share", "umu"))
+        ManagerUtils.open_filemanager(path_type="custom", custom_path=root)
+
+    def __open_umu_standard(self, *_args):
+        root = str(Path.home().joinpath("Games", "umu"))
+        ManagerUtils.open_filemanager(path_type="custom", custom_path=root)
+
+    def __choose_umu_path(self, *_args):
+        def set_path(_dialog, response):
+            if response != Gtk.ResponseType.ACCEPT:
+                return
+
+            path = resolve_bottles_directory(self.window, dialog.get_file().get_path())
+            if path is None:
+                return
+            self.__change_umu_path(path)
+
+        dialog = Gtk.FileChooserNative.new(
+            title=_("Select UMU Data Path"),
+            action=Gtk.FileChooserAction.SELECT_FOLDER,
+            parent=self.window,
+        )
+        dialog.set_modal(True)
+        dialog.connect("response", set_path)
+        dialog.show()
+
+    def __reset_umu_path(self, *_args):
+        self.__change_umu_path("")
+
+    def __change_umu_path(self, value):
+        if value == self.settings.get_string("umu-data-path"):
+            return
+
+        def apply():
+            self.settings.set_string("umu-data-path", value)
+            self.row_umu_path.set_subtitle(
+                value or str(Path(Paths.base).joinpath("umu"))
+            )
+            self.btn_umu_path_reset.set_visible(bool(value))
+            self.prompt_restart(force=True)
+
+        if not self.umu_provider.repository.list_games():
+            apply()
+            return
+
+        warning = Adw.AlertDialog.new(
+            _("Change the UMU Data Folder?"),
+            _(
+                "Existing games will not be moved. They will disappear from "
+                "Bottles until you switch back to the current folder."
+            ),
+        )
+        warning.add_response("cancel", _("Cancel"))
+        warning.add_response("change", _("Change"))
+        warning.set_response_appearance(
+            "change", Adw.ResponseAppearance.DESTRUCTIVE
+        )
+
+        def response(_dialog, response_id):
+            if response_id == "change":
+                apply()
+
+        warning.connect("response", response)
+        warning.present(self)
+
+    def __umu_proton_title(self, value):
+        for choice in self.manager.umu_proton_catalog.list_choices(
+            include_unstable=True
+        ):
+            if choice.value == value:
+                return choice.title
+        return Path(value).name or value
+
+    def __choose_umu_proton(self, *_args):
+        from bottles.frontend.windows.umu import UmuProtonDialog
+
+        UmuProtonDialog(
+            self.window,
+            self.settings.get_string("umu-proton"),
+            self.__set_umu_proton,
+        ).present(self)
+
+    def __set_umu_proton(self, value, title):
+        self.settings.set_string("umu-proton", value)
+        self.label_umu_proton.set_label(title)
+
+    def __on_umu_dependency_selected(self, combo, _pspec):
+        if self.__updating_umu_settings:
+            return
+        index = combo.get_selected()
+        if index < len(self.__umu_dependency_values):
+            self.settings.set_string(
+                "umu-dependency-tool", self.__umu_dependency_values[index]
+            )
 
     def __choose_bottles_path(self, widget):
         def set_path(_dialog, response):
@@ -751,7 +969,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
                 "count": 0,
                 "expander": exp_proton_ge,
                 "offline_runners": [],
-            }
+            },
         ]
         other_wine_runners = [
             {
@@ -773,9 +991,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.__populate_runners_helper(
             "runner",
             self.manager.supported_wine_runners,
-            identifiable_wine_runners
-            + deprecated_wine_runners
-            + other_wine_runners,
+            identifiable_wine_runners + deprecated_wine_runners + other_wine_runners,
         )
         self.__populate_runners_helper(
             "runner:proton",

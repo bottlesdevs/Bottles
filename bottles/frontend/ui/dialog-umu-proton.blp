@@ -1,0 +1,62 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $UmuProtonDialog: Adw.Dialog {
+  content-width: 560;
+  content-height: 640;
+  title: _("Choose Proton");
+
+  child: Adw.ToolbarView {
+    [top]
+    Adw.HeaderBar {
+      show-start-title-buttons: false;
+      show-end-title-buttons: false;
+
+      Button btn_cancel {
+        label: _("_Cancel");
+        use-underline: true;
+      }
+    }
+
+    content: Box {
+      orientation: vertical;
+
+      SearchEntry entry_search {
+        margin-top: 18;
+        margin-bottom: 12;
+        margin-start: 18;
+        margin-end: 18;
+        placeholder-text: _("Search Proton versions...");
+      }
+
+      Stack stack_results {
+        transition-type: crossfade;
+        vexpand: true;
+
+        StackPage {
+          name: "choices";
+
+          child: ScrolledWindow {
+            hscrollbar-policy: never;
+
+            Adw.PreferencesPage {
+              Adw.PreferencesGroup group_choices {
+                description: _("UMU can manage Proton automatically, or use a version installed by Bottles or Steam.");
+              }
+            }
+          };
+        }
+
+        StackPage {
+          name: "empty";
+
+          child: Adw.StatusPage {
+            icon-name: "system-search-symbolic";
+            title: _("No Proton Versions Found");
+            description: _("Try a different search.");
+          };
+        }
+      }
+    };
+  };
+}
