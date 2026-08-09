@@ -15,6 +15,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import fnmatch
+import glob
 import os
 import shutil
 import subprocess
@@ -63,13 +65,29 @@ class CabExtract:
         return self.__extract()
 
     def __checks(self):
-        if not os.path.exists(self.path) and "*" not in self.path:
+        if not os.path.exists(self.path) and not glob.has_magic(self.path):
             logging.error(f"Cab file {self.path} not found")
             return False
 
         return True
 
+    @staticmethod
+    def __matching_files(destination: str, expected: str) -> dict:
+        return {
+            os.path.join(root, name): os.lstat(os.path.join(root, name)).st_ctime_ns
+            for root, _, names in os.walk(destination)
+            for name in names
+            if fnmatch.fnmatch(name.lower(), expected)
+        }
+
     def __extract(self) -> bool:
+        paths = [self.path]
+        if not os.path.exists(self.path) and glob.has_magic(self.path):
+            paths = sorted(glob.glob(self.path))
+        if not paths:
+            logging.error(f"Cab file {self.path} not found")
+            return False
+
         if not os.path.exists(self.destination):
             os.makedirs(self.destination)
 
@@ -81,17 +99,26 @@ class CabExtract:
                     preventing broken symlinks
                     """
                     file_path = os.path.join(self.destination, file)
-                    if os.path.exists(file_path):
+                    if os.path.lexists(file_path):
                         if os.path.islink(file_path):
                             os.unlink(file_path)
 
-                    command = [
-                        self.cabextract_bin,
-                        "-F", f"*{file}*",
-                        "-d", self.destination,
-                        "-q", self.path,
-                    ]
-                    subprocess.run(command, check=False)
+                    expected = file.split("/")[-1].lower()
+                    for matched in self.__matching_files(self.destination, expected):
+                        if os.path.islink(matched):
+                            os.unlink(matched)
+                    files_before = self.__matching_files(self.destination, expected)
+                    for path in paths:
+                        command = [
+                            self.cabextract_bin,
+                            "-F",
+                            f"*{file}*",
+                            "-d",
+                            self.destination,
+                            "-q",
+                            path,
+                        ]
+                        subprocess.run(command, check=True)
 
                     if len(file.split("/")) > 1:
                         _file = file.split("/")[-1]
@@ -101,13 +128,23 @@ class CabExtract:
                                 os.path.join(self.destination, _dir, _file),
                                 os.path.join(self.destination, _file),
                             )
+
+                    if (
+                        self.__matching_files(self.destination, expected)
+                        == files_before
+                    ):
+                        logging.error(f"Cannot find extracted file: {file}")
+                        return False
             else:
-                command_list = [
-                    self.cabextract_bin,
-                    "-d", self.destination,
-                    "-q", self.path,
-                ]
-                subprocess.run(command_list, check=False)
+                for path in paths:
+                    command_list = [
+                        self.cabextract_bin,
+                        "-d",
+                        self.destination,
+                        "-q",
+                        path,
+                    ]
+                    subprocess.run(command_list, check=True)
 
             logging.info(f"Cabinet {self.name} extracted successfully")
             return True
