@@ -61,6 +61,15 @@ from bottles.frontend.windows.vmtouch import VmtouchDialog
 
 logging = Logger()
 
+FLATPAK_INSTALL_COMMANDS = {
+    "gamescope": "flatpak install flathub org.freedesktop.Platform.VulkanLayer.gamescope//25.08",
+    "hdr": "flatpak install flathub org.freedesktop.Platform.VulkanLayer.HdrWsi//25.08",
+    "vkbasalt": "flatpak install flathub org.freedesktop.Platform.VulkanLayer.vkBasalt//25.08",
+    "lsfg_vk": "flatpak install flathub org.freedesktop.Platform.VulkanLayer.lsfgvk//25.08",
+    "mangohud": "flatpak install flathub org.freedesktop.Platform.VulkanLayer.MangoHud//25.08",
+    "obsvkc": "flatpak install flathub org.freedesktop.Platform.VulkanLayer.OBSVkCapture//25.08",
+}
+
 
 # noinspection PyUnusedLocal
 @Gtk.Template(resource_path="/com/usebottles/bottles/details-preferences.ui")
@@ -180,18 +189,7 @@ class PreferencesView(Adw.PreferencesPage):
         _flatpak_not_available = _("{} To add this feature, please run").format(
             _not_available
         )
-        _add_flathub = (
-            "flatpak remote-add --if-not-exists flathub "
-            "https://flathub.org/repo/flathub.flatpakrepo"
-        )
-        self._install_commands = {
-            "gamescope": f"{_add_flathub} && flatpak install flathub org.freedesktop.Platform.VulkanLayer.gamescope",
-            "hdr": f"{_add_flathub} && flatpak install flathub org.freedesktop.Platform.VulkanLayer.HdrWsi",
-            "vkbasalt": f"{_add_flathub} && flatpak install flathub org.freedesktop.Platform.VulkanLayer.vkBasalt",
-            "lsfg_vk": f"{_add_flathub} && flatpak install flathub org.freedesktop.Platform.VulkanLayer.lsfgvk//25.08",
-            "mangohud": f"{_add_flathub} && flatpak install flathub org.freedesktop.Platform.VulkanLayer.MangoHud",
-            "obsvkc": f"{_add_flathub} && flatpak install flathub com.obsproject.Studio.Plugin.OBSVkCapture",
-        }
+        self._install_commands = FLATPAK_INSTALL_COMMANDS
 
         is_flatpak = "FLATPAK_ID" in os.environ
 
