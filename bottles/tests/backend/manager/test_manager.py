@@ -12,7 +12,7 @@ from bottles.backend.managers import steam as steam_module
 from bottles.backend.managers.data import DataManager, UserDataKeys
 from bottles.backend.managers.manager import Manager
 from bottles.backend.managers.steam import SteamManager
-from bottles.backend.models.config import BottleConfig, BottleParams
+from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils.connection import ConnectionUtils
 from bottles.backend.utils.gsettings_stub import GSettingsStub
 from bottles.backend.utils.manager import ManagerUtils
@@ -466,13 +466,24 @@ def test_create_bottle_checks_every_essential_component_before_retry():
     assert calls == ["runner", "dxvk", "vkd3d"]
 
 
-def test_component_updates_can_be_disabled(mocker):
+class ComponentUpdateSettings:
+    def __init__(self, show_updates=True, release_candidate=False):
+        self.show_updates = show_updates
+        self.release_candidate = release_candidate
+
+    def get_boolean(self, key: str) -> bool:
+        return {
+            "show-component-updates": self.show_updates,
+            "release-candidate": self.release_candidate,
+        }[key]
+
+
+def test_component_updates_can_be_disabled_globally(mocker):
     manager = object.__new__(Manager)
+    manager.settings = ComponentUpdateSettings(show_updates=False)
     manager._Manager__collect_runner_update = mocker.Mock()
     manager._Manager__collect_winebridge_update = mocker.Mock()
-    config = BottleConfig(
-        Parameters=BottleParams(show_component_updates=False),
-    )
+    config = BottleConfig()
 
     assert Manager.get_component_updates(manager, config) == []
     manager._Manager__collect_runner_update.assert_not_called()
@@ -481,12 +492,11 @@ def test_component_updates_can_be_disabled(mocker):
 
 def test_component_update_checks_are_enabled_by_default():
     manager = object.__new__(Manager)
-    manager.settings = GSettingsStub()
+    manager.settings = ComponentUpdateSettings()
     manager.supported_wine_runners = {"soda-11.0-1": {}}
     manager.supported_proton_runners = {}
     config = BottleConfig(Runner="soda-10.0-1")
 
-    assert config.Parameters.show_component_updates is True
     assert Manager.get_component_updates(manager, config) == [
         {
             "id": "runner",
@@ -511,14 +521,8 @@ def test_custom_runner_is_not_compared_with_an_unrelated_family():
 
 
 def _make_update_manager(release_candidate: bool) -> Manager:
-    class Settings:
-        @staticmethod
-        def get_boolean(key: str) -> bool:
-            assert key == "release-candidate"
-            return release_candidate
-
     manager = object.__new__(Manager)
-    manager.settings = Settings()
+    manager.settings = ComponentUpdateSettings(release_candidate=release_candidate)
     manager.supported_wine_runners = {}
     manager.supported_proton_runners = {}
     manager.supported_d7vk = {}

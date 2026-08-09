@@ -51,6 +51,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
     row_theme = Gtk.Template.Child()
     switch_theme = Gtk.Template.Child()
     switch_notifications = Gtk.Template.Child()
+    switch_component_updates = Gtk.Template.Child()
     switch_show_funding = Gtk.Template.Child()
     switch_force_offline = Gtk.Template.Child()
     switch_home_drive = Gtk.Template.Child()
@@ -146,6 +147,12 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.settings.bind(
             "notifications",
             self.switch_notifications,
+            "active",
+            Gio.SettingsBindFlags.DEFAULT,
+        )
+        self.settings.bind(
+            "show-component-updates",
+            self.switch_component_updates,
             "active",
             Gio.SettingsBindFlags.DEFAULT,
         )
@@ -282,6 +289,9 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.settings.connect("changed::dark-theme", self.__toggle_night)
         self.settings.connect("changed::release-candidate", self.__toggle_rc)
         self.settings.connect("changed::update-date", self.__toggle_update_date)
+        self.settings.connect(
+            "changed::show-component-updates", self.__toggle_component_updates
+        )
         self.btn_bottles_path.connect("clicked", self.__choose_bottles_path)
         self.btn_bottles_path_reset.connect("clicked", self.__reset_bottles_path)
         self.btn_steam_proton_doc.connect("clicked", self.__open_steam_proton_doc)
@@ -347,6 +357,12 @@ class PreferencesWindow(Adw.PreferencesWindow):
 
     def __toggle_update_date(self, widget, state):
         self.window.page_list.update_bottles_list()
+
+    def __toggle_component_updates(self, *_args):
+        if hasattr(self.window, "page_list"):
+            self.window.page_list.update_component_updates_banner()
+        if hasattr(self.window, "page_details"):
+            self.window.page_details.view_bottle.populate_updates()
 
     def __toggle_rc(self, widget, state):
         self.ui_update()
@@ -669,7 +685,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
                 "Based on Wine upstream, Staging, Staging-TkG and Proton patchset optionally available."
             ),
         )
-        exp_lutris = ComponentExpander("Lutris")
+        exp_lutris = ComponentExpander("Lutris", _("Unmaintained legacy runners."))
         exp_vaniglia = ComponentExpander(
             "Vaniglia", _("Based on Wine upstream, includes Staging patches.")
         )
@@ -680,6 +696,10 @@ class PreferencesWindow(Adw.PreferencesWindow):
                 "includes Staging and custom patches. "
                 "Requires the Steam Runtime turned on."
             ),
+        )
+        exp_proton_cachyos = ComponentExpander(
+            "Proton CachyOS",
+            _("CachyOS Proton builds. Requires the Steam Runtime."),
         )
         exp_other_wine = ComponentExpander(_("Other Wine runners"))
         exp_other_proton = ComponentExpander(_("Other Proton runners"))
@@ -699,15 +719,17 @@ class PreferencesWindow(Adw.PreferencesWindow):
                 "offline_runners": [],
             },
             {
-                "prefix": "wine-ge",
-                "count": 0,
-                "expander": exp_wine_ge,
-                "offline_runners": [],
-            },
-            {
                 "prefix": "kron4ek",
                 "count": 0,
                 "expander": exp_kron4ek,
+                "offline_runners": [],
+            },
+        ]
+        deprecated_wine_runners = [
+            {
+                "prefix": "wine-ge",
+                "count": 0,
+                "expander": exp_wine_ge,
                 "offline_runners": [],
             },
             {
@@ -718,6 +740,12 @@ class PreferencesWindow(Adw.PreferencesWindow):
             },
         ]
         identifiable_proton_runners = [
+            {
+                "prefix": "proton-cachyos",
+                "count": 0,
+                "expander": exp_proton_cachyos,
+                "offline_runners": [],
+            },
             {
                 "prefix": "ge-proton",
                 "count": 0,
@@ -745,7 +773,9 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.__populate_runners_helper(
             "runner",
             self.manager.supported_wine_runners,
-            identifiable_wine_runners + other_wine_runners,
+            identifiable_wine_runners
+            + deprecated_wine_runners
+            + other_wine_runners,
         )
         self.__populate_runners_helper(
             "runner:proton",
@@ -758,6 +788,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
             + identifiable_proton_runners
             + other_wine_runners
             + other_proton_runners
+            + deprecated_wine_runners
         ):
             if runner["count"] > 0:
                 self.list_runners.add(runner["expander"])
