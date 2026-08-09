@@ -27,12 +27,15 @@ jobs:
               return value !== "" && value !== "_No response_"
             }
             let required = []
+            let recognizedTemplate = true
             if (labels.has("network issue")) {
               required = ["Prerequisites", "What happened", "What you expected to happen", "How to reproduce it", "Ping proxy.usebottles.com", "Dig proxy.usebottles.com"]
             } else if (labels.has("bug") || title.startsWith("[Bug]:")) {
               required = ["Describe the bug", "To Reproduce", "Package", "Distribution", "Debugging Information"]
             } else if (labels.has("feature request") || title.startsWith("[Request]:")) {
               required = ["Tell us the problem or your need", "Describe the solution you'd like"]
+            } else if (!labels.has("feedback")) {
+              recognizedTemplate = false
             }
             const close = async (comment) => {
               const current = await github.rest.issues.get({ ...context.repo, issue_number: issue.number })
@@ -43,7 +46,7 @@ jobs:
               }
               await github.rest.issues.update({ ...context.repo, issue_number: issue.number, state: "closed", state_reason: "not_planned" })
             }
-            if (titleLength < 10 || required.some((heading) => !hasValue(heading))) {
+            if (!recognizedTemplate || titleLength < 10 || required.some((heading) => !hasValue(heading))) {
               await close("Invalid issue, please follow the template.\n\nhttps://github.com/bottlesdevs/Bottles/issues/new/choose")
               return
             }
