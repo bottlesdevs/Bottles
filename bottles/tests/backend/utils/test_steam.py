@@ -51,6 +51,30 @@ def test_associated_runtime_is_unknown_without_toolmanifest(tmp_path: Path) -> N
     assert SteamUtils.get_associated_runtime(str(proton_path)) is None
 
 
+def test_sync_proton_vkd3d_copies_wined3d_dependencies(tmp_path: Path) -> None:
+    proton_path = tmp_path / "Proton"
+    default_prefix = proton_path / "files/share/default_pfx/drive_c/windows"
+    prefix = tmp_path / "prefix"
+    dlls = (
+        "libvkd3d-1.dll",
+        "libvkd3d-shader-1.dll",
+        "libvkd3d-utils-1.dll",
+    )
+    for directory in ("system32", "syswow64"):
+        source = default_prefix / directory
+        source.mkdir(parents=True)
+        for dll in dlls:
+            (source / dll).write_bytes(f"{directory}/{dll}".encode())
+
+    SteamUtils.sync_proton_vkd3d(str(proton_path), str(prefix), "win64")
+
+    for directory in ("system32", "syswow64"):
+        for dll in dlls:
+            assert (prefix / "drive_c/windows" / directory / dll).read_bytes() == (
+                f"{directory}/{dll}".encode()
+            )
+
+
 def _write_protonfixes(path: Path, replacement: str) -> None:
     package = path / "protonfixes"
     package.mkdir(parents=True)
