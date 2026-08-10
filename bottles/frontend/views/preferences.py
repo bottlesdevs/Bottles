@@ -1017,8 +1017,10 @@ class PreferencesWindow(Adw.PreferencesWindow):
         )
 
         for runner in (
-            identifiable_wine_runners
-            + identifiable_proton_runners
+            identifiable_wine_runners[:3]
+            + identifiable_proton_runners[:1]
+            + identifiable_wine_runners[3:]
+            + identifiable_proton_runners[1:]
             + other_wine_runners
             + other_proton_runners
             + deprecated_wine_runners

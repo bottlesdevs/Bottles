@@ -127,7 +127,9 @@ class BottleView(Adw.PreferencesPage):
         icon_name = get_runner_icon_name(runner)
         self.img_runner.set_visible(icon_name is not None)
         if icon_name:
-            self.img_runner.set_icon_name(icon_name)
+            self.img_runner.set_from_resource(
+                f"/com/usebottles/bottles/icons/scalable/apps/{icon_name}.svg"
+            )
 
     def __init__(self, details, config, **kwargs):
         super().__init__(**kwargs)
