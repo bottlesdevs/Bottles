@@ -152,6 +152,7 @@ class BottleParams(DictCompatMixIn):
     versioning_exclusion_patterns: bool = False
     vmtouch: bool = False
     vmtouch_cache_cwd: bool = False
+    adaptive_launch: bool = False
 
 
 @dataclass

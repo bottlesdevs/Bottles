@@ -18,6 +18,11 @@ from bottles.backend.models.process import (
 from bottles.backend.models.result import Result
 from bottles.backend.state import SignalManager, Signals
 from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.wine.adaptive import (
+    PROFILE_ENV,
+    AdaptiveLaunchProfile,
+    is_supported_runner,
+)
 from bottles.backend.wine.cmd import CMD
 from bottles.backend.wine.explorer import Explorer
 from bottles.backend.wine.msiexec import MsiExec
@@ -110,7 +115,15 @@ class WineExecutor:
         self.exec_path = shlex.quote(exec_path)
         self.args = args
         self.terminal = terminal
-        self.environment = environment
+        self.environment = environment.copy()
+        if self.config.Parameters.adaptive_launch and is_supported_runner(
+            self.config.Runner
+        ):
+            profile = AdaptiveLaunchProfile(self.config, exec_path)
+            prepared = profile.prepare()
+            self.environment[PROFILE_ENV] = str(profile.path)
+            if prepared:
+                logging.info(f"Adaptive launch prepared {prepared} files")
         self.pre_script = pre_script
         self.post_script = post_script
         self.pre_script_args = pre_script_args

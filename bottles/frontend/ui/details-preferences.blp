@@ -302,6 +302,16 @@ template $DetailsPreferences: Adw.PreferencesPage {
       }
     }
 
+    Adw.ActionRow row_adaptive_launch {
+      activatable-widget: switch_adaptive_launch;
+      title: _("Adaptive Launch");
+      subtitle: _("Learn which modules a program loads and prepare them on future launches.");
+
+      Switch switch_adaptive_launch {
+        valign: center;
+      }
+    }
+
     Adw.ActionRow row_obsvkc {
       activatable-widget: switch_obsvkc;
       title: _("OBS Game Capture");

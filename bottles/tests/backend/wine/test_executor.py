@@ -302,6 +302,49 @@ def test_program_d7vk_false_adds_builtin_override(tmp_path):
     )
 
 
+def test_soda_adaptive_launch_prepares_a_profile(tmp_path, monkeypatch):
+    executable = tmp_path / "program.exe"
+    executable.touch()
+    bottle = tmp_path / "bottle"
+    config = _make_config(path=str(bottle))
+    config.Custom_Path = str(bottle)
+    config.Runner = "soda-11.0-5"
+    config.Parameters.adaptive_launch = True
+    prepared = {}
+
+    class FakeProfile:
+        def __init__(self, _config, path):
+            prepared["executable"] = path
+            self.path = tmp_path / "profile"
+
+        def prepare(self):
+            prepared["called"] = True
+            return 3
+
+    monkeypatch.setattr("bottles.backend.wine.executor.AdaptiveLaunchProfile", FakeProfile)
+
+    executor = WineExecutor(config=config, exec_path=str(executable))
+
+    assert prepared == {"executable": str(executable), "called": True}
+    assert executor.environment["SODA_ADAPTIVE_PROFILE"] == str(tmp_path / "profile")
+
+
+def test_adaptive_launch_is_ignored_by_other_runners(tmp_path, monkeypatch):
+    executable = tmp_path / "program.exe"
+    executable.touch()
+    config = _make_config()
+    config.Runner = "wine-ge-8-26"
+    config.Parameters.adaptive_launch = True
+    monkeypatch.setattr(
+        "bottles.backend.wine.executor.AdaptiveLaunchProfile",
+        lambda *_args: pytest.fail("profile should not be created"),
+    )
+
+    executor = WineExecutor(config=config, exec_path=str(executable))
+
+    assert "SODA_ADAPTIVE_PROFILE" not in executor.environment
+
+
 def test_winecommand_reports_nonzero_exit_status(monkeypatch):
     process = SimpleNamespace(
         returncode=7,

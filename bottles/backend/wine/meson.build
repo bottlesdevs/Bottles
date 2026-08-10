@@ -3,6 +3,7 @@ winedir = join_paths(pkgdatadir, 'bottles/backend/wine')
 
 bottles_sources = [
   '__init__.py',
+  'adaptive.py',
   'catalogs.py',
   'winecommand.py',
   'wineprogram.py',

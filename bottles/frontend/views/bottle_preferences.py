@@ -93,6 +93,7 @@ class PreferencesView(Adw.PreferencesPage):
     row_mangohud = Gtk.Template.Child()
     row_gamemode = Gtk.Template.Child()
     row_vmtouch = Gtk.Template.Child()
+    row_adaptive_launch = Gtk.Template.Child()
     row_obsvkc = Gtk.Template.Child()
     row_wayland = Gtk.Template.Child()
     row_hdr = Gtk.Template.Child()
@@ -122,6 +123,7 @@ class PreferencesView(Adw.PreferencesPage):
     switch_steam_runtime = Gtk.Template.Child()
     switch_sandbox = Gtk.Template.Child()
     switch_vmtouch = Gtk.Template.Child()
+    switch_adaptive_launch = Gtk.Template.Child()
     combo_runner = Gtk.Template.Child()
     combo_d7vk = Gtk.Template.Child()
     combo_dxvk = Gtk.Template.Child()
@@ -321,6 +323,9 @@ class PreferencesView(Adw.PreferencesPage):
             "state-set", self.__toggle_feature_cb, "discrete_gpu"
         )
         self.switch_vmtouch.connect("state-set", self.__toggle_feature_cb, "vmtouch")
+        self.switch_adaptive_launch.connect(
+            "state-set", self.__toggle_feature_cb, "adaptive_launch"
+        )
         self.combo_runner.connect("notify::selected", self.__set_runner)
         self.combo_d7vk.connect("notify::selected", self.__set_d7vk)
         self.combo_dxvk.connect("notify::selected", self.__set_dxvk)
@@ -360,6 +365,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.btn_manage_mangohud.set_sensitive(mangohud_available)
         self.switch_obsvkc.set_sensitive(obs_vkc_available)
         self.switch_vmtouch.set_sensitive(vmtouch_available)
+        self.__update_adaptive_launch_support()
 
         vulkan_supported = VulkanUtils.check_support()
         if not vulkan_supported:
@@ -613,6 +619,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_winebridge.handler_block_by_func(self.__toggle_feature_cb)
         self.switch_obsvkc.handler_block_by_func(self.__toggle_feature_cb)
         self.switch_gamemode.handler_block_by_func(self.__toggle_feature_cb)
+        self.switch_adaptive_launch.handler_block_by_func(self.__toggle_feature_cb)
         self.switch_gamescope.handler_block_by_func(self.__toggle_gamescope)
         self.switch_sandbox.handler_block_by_func(self.__toggle_feature_cb)
         self.switch_discrete.handler_block_by_func(self.__toggle_feature_cb)
@@ -648,6 +655,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_sandbox.set_active(parameters.sandbox)
         self.switch_steam_runtime.set_active(parameters.use_steam_runtime)
         self.switch_vmtouch.set_active(parameters.vmtouch)
+        self.switch_adaptive_launch.set_active(parameters.adaptive_launch)
         self.spin_frame_rate_limit.set_value(parameters.frame_rate_limit)
 
         # self.toggle_sync.set_active(parameters["sync"] == "wine")
@@ -770,6 +778,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_winebridge.handler_unblock_by_func(self.__toggle_feature_cb)
         self.switch_obsvkc.handler_unblock_by_func(self.__toggle_feature_cb)
         self.switch_gamemode.handler_unblock_by_func(self.__toggle_feature_cb)
+        self.switch_adaptive_launch.handler_unblock_by_func(self.__toggle_feature_cb)
         self.switch_gamescope.handler_unblock_by_func(self.__toggle_gamescope)
         self.switch_sandbox.handler_unblock_by_func(self.__toggle_feature_cb)
         self.switch_discrete.handler_unblock_by_func(self.__toggle_feature_cb)
@@ -786,6 +795,14 @@ class PreferencesView(Adw.PreferencesPage):
         self.spin_frame_rate_limit.handler_unblock_by_func(self.__set_frame_rate_limit)
 
         self.__set_steam_rules()
+        self.__update_adaptive_launch_support()
+
+    def __update_adaptive_launch_support(self) -> None:
+        supported = bool(re.match(r"^soda(?:-|$)", self.config.Runner, re.IGNORECASE))
+        message = "" if supported else _("Use Soda as the runner to enable Adaptive Launch.")
+        self.switch_adaptive_launch.set_sensitive(supported)
+        self.switch_adaptive_launch.set_tooltip_text(message)
+        self.row_adaptive_launch.set_tooltip_text(message)
 
     def __show_display_settings(self, widget):
         new_window = DisplayDialog(
@@ -921,6 +938,7 @@ class PreferencesView(Adw.PreferencesPage):
 
                 if "config" in result.data:
                     self.config = result.data["config"]
+                self.__update_adaptive_launch_support()
                 if self.config.Parameters.use_steam_runtime:
                     self.switch_steam_runtime.handler_block_by_func(
                         self.__toggle_feature_cb
