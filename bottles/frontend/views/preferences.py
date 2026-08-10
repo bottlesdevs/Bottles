@@ -888,10 +888,14 @@ class PreferencesWindow(Adw.PreferencesWindow):
 
     def populate_runners_list(self):
         exp_soda = ComponentExpander(
-            "Soda", _("Based on Valve's Wine, includes Staging and Proton patches.")
+            "Soda",
+            _("Based on Valve's Wine, includes Staging and Proton patches."),
+            icon_name="soda-runner",
         )
         exp_caffe = ComponentExpander(
-            "Caffe", _("Based on Wine upstream, includes Staging and Proton patches.")
+            "Caffe",
+            _("Based on Wine upstream, includes Staging and Proton patches."),
+            icon_name="caffe-runner",
         )
         exp_wine_ge = ComponentExpander(
             "wine-GE",
@@ -905,7 +909,14 @@ class PreferencesWindow(Adw.PreferencesWindow):
         )
         exp_lutris = ComponentExpander("Lutris", _("Unmaintained legacy runners."))
         exp_vaniglia = ComponentExpander(
-            "Vaniglia", _("Based on Wine upstream, includes Staging patches.")
+            "Vaniglia",
+            _("Based on Wine upstream, includes Staging patches."),
+            icon_name="vaniglia-runner",
+        )
+        exp_protosoda = ComponentExpander(
+            "ProtoSoda",
+            _("Soda adapted for Proton and UMU."),
+            icon_name="protosoda-runner",
         )
         exp_proton_ge = ComponentExpander(
             "proton-GE",
@@ -958,6 +969,12 @@ class PreferencesWindow(Adw.PreferencesWindow):
             },
         ]
         identifiable_proton_runners = [
+            {
+                "prefix": "protosoda",
+                "count": 0,
+                "expander": exp_protosoda,
+                "offline_runners": [],
+            },
             {
                 "prefix": "proton-cachyos",
                 "count": 0,

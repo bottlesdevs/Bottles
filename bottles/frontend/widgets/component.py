@@ -326,9 +326,13 @@ class ComponentEntry(Adw.ActionRow):
 
 
 class ComponentExpander(Adw.ExpanderRow):
-    def __init__(self, title, subtitle=None, **kwargs):
+    def __init__(self, title, subtitle=None, icon_name=None, **kwargs):
         super().__init__(**kwargs)
 
         self.set_title(title)
         if subtitle:
             self.set_subtitle(subtitle)
+        if icon_name:
+            icon = Gtk.Image(icon_name=icon_name)
+            icon.set_pixel_size(32)
+            self.add_prefix(icon)

@@ -41,7 +41,11 @@ from bottles.backend.wine.wineboot import WineBoot
 from bottles.backend.wine.winecfg import WineCfg
 from bottles.backend.wine.winedbg import WineDbg
 from bottles.backend.wine.wineserver import WineServer
-from bottles.frontend.utils.common import format_runner_name, open_doc_url
+from bottles.frontend.utils.common import (
+    format_runner_name,
+    get_runner_icon_name,
+    open_doc_url,
+)
 from bottles.frontend.utils.filters import add_all_filters, add_executable_filters
 from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.utils.playtime import PlaytimeService
@@ -60,6 +64,7 @@ class BottleView(Adw.PreferencesPage):
 
     # region Widgets
     label_runner = Gtk.Template.Child()
+    img_runner = Gtk.Template.Child()
     label_state = Gtk.Template.Child()
     label_environment = Gtk.Template.Child()
     label_arch = Gtk.Template.Child()
@@ -116,6 +121,13 @@ class BottleView(Adw.PreferencesPage):
     target = Gtk.DropTarget(formats=content, actions=Gdk.DragAction.COPY)
 
     style_provider = Gtk.CssProvider()
+
+    def set_runner_identity(self, runner: str):
+        self.label_runner.set_text(format_runner_name(runner))
+        icon_name = get_runner_icon_name(runner)
+        self.img_runner.set_visible(icon_name is not None)
+        if icon_name:
+            self.img_runner.set_icon_name(icon_name)
 
     def __init__(self, details, config, **kwargs):
         super().__init__(**kwargs)
@@ -285,7 +297,7 @@ class BottleView(Adw.PreferencesPage):
 
         # set name and runner
         self.label_name.set_text(self.config.Name)
-        self.label_runner.set_text(format_runner_name(self.config.Runner))
+        self.set_runner_identity(self.config.Runner)
 
         # set environment
         self.label_environment.set_text(_(self.config.Environment))

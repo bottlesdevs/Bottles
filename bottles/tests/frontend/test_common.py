@@ -10,7 +10,7 @@ bottles_resource = Gio.Resource.load("/app/share/bottles/bottles.gresource")
 bottles_resource._register()
 
 from bottles.backend.utils.manager import ManagerUtils
-from bottles.frontend.utils.common import format_runner_name
+from bottles.frontend.utils.common import format_runner_name, get_runner_icon_name
 from bottles.frontend.views.bottle_preferences import PreferencesView
 
 
@@ -31,6 +31,21 @@ def test_native_system_runner_name_is_unchanged(monkeypatch):
     monkeypatch.delenv("FLATPAK_ID", raising=False)
 
     assert format_runner_name("sys-wine-11.0") == "sys-wine-11.0"
+
+
+@pytest.mark.parametrize(
+    ("runner", "expected"),
+    [
+        ("soda-11.0-4", "soda-runner"),
+        ("Caffe-9.7", "caffe-runner"),
+        ("vaniglia-8.0", "vaniglia-runner"),
+        ("protosoda-11.1-2", "protosoda-runner"),
+        ("GE-Proton10-20", None),
+        ("sys-wine-11.0", None),
+    ],
+)
+def test_runner_icon_name(runner, expected):
+    assert get_runner_icon_name(runner) == expected
 
 
 def test_runner_dropdown_uses_display_names_without_changing_ids(monkeypatch):

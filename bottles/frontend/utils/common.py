@@ -27,5 +27,18 @@ def format_runner_name(runner: str) -> str:
     return runner
 
 
+def get_runner_icon_name(runner: str) -> str | None:
+    runner = runner.lower()
+    for prefix, icon_name in (
+        ("protosoda", "protosoda-runner"),
+        ("vaniglia", "vaniglia-runner"),
+        ("caffe", "caffe-runner"),
+        ("soda", "soda-runner"),
+    ):
+        if runner == prefix or runner.startswith(f"{prefix}-"):
+            return icon_name
+    return None
+
+
 def open_doc_url(widget, page):
     webbrowser.open_new_tab(f"https://docs.usebottles.com/{page}")
