@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import os
 import subprocess
 from enum import Enum
 from functools import lru_cache
@@ -71,6 +72,8 @@ class GPUUtils:
 
     @staticmethod
     def is_nouveau():
+        if os.path.isdir("/sys/module/nouveau"):
+            return True
         _proc = subprocess.Popen(
             "lsmod | grep nouveau",
             stdout=subprocess.PIPE,

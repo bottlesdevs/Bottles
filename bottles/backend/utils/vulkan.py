@@ -58,7 +58,7 @@ class VulkanUtils:
                             pass
                     if not should_skip:
                         loaders["nvidia"] += [file]
-                elif "nouveau" in file.lower():
+                elif "nouveau" in file.lower() or "nvk" in file.lower():
                     loaders["nouveau"] += [file]
                 elif "amd" in file.lower() or "radeon" in file.lower():
                     loaders["amd"] += [file]
