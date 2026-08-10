@@ -6,7 +6,10 @@ from bottles.backend.wine.adaptive import AdaptiveLaunchProfile, is_supported_ru
 
 def test_adaptive_launch_only_supports_soda():
     assert is_supported_runner("soda-11.0-5")
-    assert is_supported_runner("Soda")
+    assert is_supported_runner("soda-11.1-1")
+    assert is_supported_runner("soda-12.0-1")
+    assert not is_supported_runner("soda-11.0-4")
+    assert not is_supported_runner("Soda")
     assert not is_supported_runner("protosoda-11.0-1")
     assert not is_supported_runner("wine-ge-8-26")
 

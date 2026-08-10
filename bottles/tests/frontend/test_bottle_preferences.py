@@ -97,7 +97,13 @@ def test_gamescope_toggle_refreshes_hdr_sensitivity():
 
 @pytest.mark.parametrize(
     ("runner", "supported"),
-    [("soda-11.0-5", True), ("protosoda-11.0-1", False), ("wine-ge-8-26", False)],
+    [
+        ("soda-11.0-4", False),
+        ("soda-11.0-5", True),
+        ("soda-12.0-1", True),
+        ("protosoda-11.0-1", False),
+        ("wine-ge-8-26", False),
+    ],
 )
 def test_adaptive_launch_requires_soda(runner, supported):
     from bottles.frontend.views.bottle_preferences import PreferencesView
@@ -107,11 +113,17 @@ def test_adaptive_launch_requires_soda(runner, supported):
         config=config,
         switch_adaptive_launch=Mock(),
         row_adaptive_launch=Mock(),
+        _adaptive_launch_warning=Mock(),
     )
 
     PreferencesView._PreferencesView__update_adaptive_launch_support(view)
 
     view.switch_adaptive_launch.set_sensitive.assert_called_once_with(supported)
-    message = "" if supported else "Use Soda as the runner to enable Adaptive Launch."
+    message = (
+        ""
+        if supported
+        else "Soda 11.0-5 or newer is required to enable Adaptive Launch."
+    )
     view.switch_adaptive_launch.set_tooltip_text.assert_called_once_with(message)
     view.row_adaptive_launch.set_tooltip_text.assert_called_once_with(message)
+    view._adaptive_launch_warning.set_visible.assert_called_once_with(not supported)

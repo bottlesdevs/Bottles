@@ -44,6 +44,7 @@ from bottles.backend.utils.gpu import GPUUtils, GPUVendors
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.threading import RunAsync
 from bottles.backend.utils.vulkan import VulkanUtils
+from bottles.backend.wine.adaptive import is_supported_runner
 from bottles.backend.wine.regkeys import RegKeys
 from bottles.frontend.utils.common import format_runner_name
 from bottles.frontend.utils.gtk import GtkUtils
@@ -452,6 +453,7 @@ class PreferencesView(Adw.PreferencesPage):
         )
 
         row.add_suffix(menu_button)
+        return menu_button
 
     def __copy_command_to_clipboard(self, _widget, command: str):
         display = Gdk.Display.get_default()
@@ -798,8 +800,19 @@ class PreferencesView(Adw.PreferencesPage):
         self.__update_adaptive_launch_support()
 
     def __update_adaptive_launch_support(self) -> None:
-        supported = bool(re.match(r"^soda(?:-|$)", self.config.Runner, re.IGNORECASE))
-        message = "" if supported else _("Use Soda as the runner to enable Adaptive Launch.")
+        supported = is_supported_runner(self.config.Runner)
+        message = (
+            ""
+            if supported
+            else _("Soda 11.0-5 or newer is required to enable Adaptive Launch.")
+        )
+        if not hasattr(self, "_adaptive_launch_warning"):
+            self._adaptive_launch_warning = self.__add_unavailable_indicator(
+                self.row_adaptive_launch,
+                None,
+                _("Soda 11.0-5 or newer is required to enable Adaptive Launch."),
+            )
+        self._adaptive_launch_warning.set_visible(not supported)
         self.switch_adaptive_launch.set_sensitive(supported)
         self.switch_adaptive_launch.set_tooltip_text(message)
         self.row_adaptive_launch.set_tooltip_text(message)

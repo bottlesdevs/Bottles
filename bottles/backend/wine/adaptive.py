@@ -1,5 +1,6 @@
 import hashlib
 import os
+import re
 from pathlib import Path
 
 from bottles.backend.logger import Logger
@@ -12,11 +13,16 @@ PROFILE_ENV = "SODA_ADAPTIVE_PROFILE"
 _MAX_PROFILE_SIZE = 4 * 1024 * 1024
 _MAX_FILES = 512
 _MAX_PREFETCH_SIZE = 1024 * 1024 * 1024
+_MINIMUM_SODA_VERSION = (11, 0, 5)
 
 
 def is_supported_runner(runner: str) -> bool:
-    normalized = (runner or "").lower()
-    return normalized == "soda" or normalized.startswith("soda-")
+    match = re.match(
+        r"^soda-(\d+)\.(\d+)-(\d+)(?:-|$)", runner or "", re.IGNORECASE
+    )
+    if not match:
+        return False
+    return tuple(map(int, match.groups())) >= _MINIMUM_SODA_VERSION
 
 
 class AdaptiveLaunchProfile:
