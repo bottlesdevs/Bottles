@@ -330,6 +330,11 @@ class LibraryEntry(Gtk.Box):
         dialog.set_title(_("Select Cover Image"))
         dialog.set_filters(filters)
         dialog.set_default_filter(image_filter)
+        pictures = GLib.get_user_special_dir(
+            GLib.UserDirectory.DIRECTORY_PICTURES
+        )
+        if pictures:
+            dialog.set_initial_folder(Gio.File.new_for_path(pictures))
         dialog.open(self.window, callback=set_cover)
 
     def run_executable(self, widget, with_terminal=False):

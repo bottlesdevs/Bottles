@@ -35,9 +35,71 @@ from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.frontend.views import bottle_details
 from bottles.frontend.views.bottle_details import BottleView
+from bottles.frontend.widgets import library as library_module
 from bottles.frontend.widgets import program as program_module
 from bottles.frontend.widgets.library import LibraryEntry
 from bottles.frontend.widgets.program import ProgramEntry
+
+
+def test_cover_picker_opens_in_pictures(monkeypatch):
+    class Filter:
+        def set_name(self, _name):
+            pass
+
+        def add_pattern(self, _pattern):
+            pass
+
+    class Store(list):
+        @staticmethod
+        def new(_type):
+            return Store()
+
+    class Dialog:
+        def set_title(self, _title):
+            pass
+
+        def set_filters(self, _filters):
+            pass
+
+        def set_default_filter(self, _filter):
+            pass
+
+        def set_initial_folder(self, folder):
+            self.initial_folder = folder
+
+        def open(self, _window, callback):
+            self.callback = callback
+
+    dialog = Dialog()
+    monkeypatch.setattr(
+        library_module,
+        "Gtk",
+        SimpleNamespace(
+            FileDialog=SimpleNamespace(new=lambda: dialog),
+            FileFilter=Filter,
+        ),
+    )
+    monkeypatch.setattr(
+        library_module,
+        "Gio",
+        SimpleNamespace(
+            File=SimpleNamespace(new_for_path=lambda path: path),
+            ListStore=Store,
+        ),
+    )
+    monkeypatch.setattr(
+        library_module,
+        "GLib",
+        SimpleNamespace(
+            UserDirectory=SimpleNamespace(DIRECTORY_PICTURES=4),
+            get_user_special_dir=lambda _directory: "/home/user/Pictures",
+        ),
+    )
+
+    entry = SimpleNamespace(window=object())
+    LibraryEntry._LibraryEntry__choose_cover(entry)
+
+    assert dialog.initial_folder == "/home/user/Pictures"
 
 
 class Button:
