@@ -900,7 +900,7 @@ class Manager(metaclass=Singleton):
                 "Runners found:\n - {0}".format("\n - ".join(self.runners_available))
             )
 
-        tmp_runners = [x for x in self.runners_available if not x.startswith("sys-")]
+        tmp_runners = self.get_managed_wine_runners()
 
         if len(tmp_runners) == 0 and install_latest:
             logging.warning("No managed runners found.")
@@ -925,6 +925,15 @@ class Manager(metaclass=Singleton):
                 return False
 
         return True
+
+    def get_managed_wine_runners(self) -> list[str]:
+        """Return managed runners that can create regular Wine bottles."""
+        return [
+            runner
+            for runner in self.runners_available
+            if not runner.startswith("sys-")
+            and not SteamUtils.is_proton(ManagerUtils.get_runner_path(runner))
+        ]
 
     def check_runtimes(self, install_latest: bool = True) -> bool:
         self.runtimes_available = []
