@@ -137,7 +137,7 @@ class InstallerDialog(Adw.Window):
                 self.img_icon_install.set_visible(False)
                 return
 
-            with urllib.request.urlopen(url) as res:
+            with urllib.request.urlopen(url, timeout=10) as res:
                 stream = Gio.MemoryInputStream.new_from_data(res.read(), None)
                 pixbuf = GdkPixbuf.Pixbuf.new_from_stream(stream, None)
                 self.img_icon.set_pixel_size(78)
