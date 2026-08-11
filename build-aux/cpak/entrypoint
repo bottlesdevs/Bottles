@@ -1,0 +1,14 @@
+#!/bin/sh
+set -eu
+
+data_home="${XDG_DATA_HOME:-$HOME/.local/share}"
+winebridge_dir="$data_home/bottles/winebridge"
+bundled_version="$(cat /app/share/bottles/winebridge/VERSION)"
+
+if [ ! -f "$winebridge_dir/VERSION" ] || [ "$(cat "$winebridge_dir/VERSION")" != "$bundled_version" ]; then
+    mkdir -p "$winebridge_dir"
+    cp /app/share/bottles/winebridge/WineBridge.exe "$winebridge_dir/WineBridge.exe"
+    cp /app/share/bottles/winebridge/VERSION "$winebridge_dir/VERSION"
+fi
+
+exec /usr/bin/bottles-real "$@"

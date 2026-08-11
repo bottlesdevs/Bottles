@@ -16,7 +16,7 @@ body:
         Please visit [WineHQ](https://www.winehq.org) and [ProtonDB](https://www.protondb.com).
 
         ## 🙅 NO ISSUES FOR UNOFFICIAL PACKAGES
-        **We support the official [Flathub package](https://flathub.org/apps/details/com.usebottles.bottles) and the official [Cpak package](https://github.com/Containerpak/store).**
+        **We support the official [Flathub package](https://flathub.org/apps/details/com.usebottles.bottles) and the official [cpak package](https://github.com/Containerpak/store).**
 
         ```text
         *******************************************************************************
@@ -28,7 +28,7 @@ body:
         *  1. DO NOT OPEN ISSUES FOR WINDOWS PROGRAMS NOT WORKING IN BOTTLES!         *
         *     (This is usually a Wine/Proton problem, NOT a Bottles bug)              *
         *                                                                             *
-        *  2. USE THE OFFICIAL FLATHUB OR CPAK PACKAGE!                              *
+        *  2. USE THE OFFICIAL FLATHUB OR cpak PACKAGE!                              *
         *     (Distribution packages are not supported)                              *
         *                                                                             *
         *  3. USE A CLEAR, SPECIFIC TITLE WITH AT LEAST 10 CHARACTERS!                *
@@ -70,12 +70,12 @@ body:
       description: |
         How did you install Bottles?
 
-        If you use Bottles from your distribution package manager, install the official [Flathub package](https://flathub.org/apps/details/com.usebottles.bottles) or [Cpak package](https://github.com/Containerpak/store) and try to reproduce the bug there.
+        If you use Bottles from your distribution package manager, install the official [Flathub package](https://flathub.org/apps/details/com.usebottles.bottles) or [cpak package](https://github.com/Containerpak/store) and try to reproduce the bug there.
       options:
         - Flatpak from Flathub
         - Flatpak from Flathub Beta
         - Flatpak from GitHub Artifacts
-        - Cpak
+        - cpak
     validations:
       required: true
 
@@ -99,7 +99,7 @@ body:
 
         Flatpak: `flatpak run --command=bottles-cli com.usebottles.bottles info health-check`
 
-        Cpak: `cpak run github.com/containerpak/bottles @bottles-cli info health-check`
+        cpak: `cpak run github.com/bottlesdevs/bottles @bottles-cli info health-check`
       render: shell
       placeholder: |
         Display:
@@ -142,7 +142,7 @@ body:
     id: log
     attributes:
       label: Troubleshooting Logs
-      description: If applicable, run `flatpak run com.usebottles.bottles` or `cpak run github.com/containerpak/bottles @bottles`, reproduce the issue and paste the logs here.
+      description: If applicable, run `flatpak run com.usebottles.bottles` or `cpak run github.com/bottlesdevs/bottles @bottles`, reproduce the issue and paste the logs here.
       render: shell
       placeholder: |
         [Errno 2] No such file or directory: '/home/USER/.var/app/com.usebottles.bottles/data/bottles/bottles/Opera-GX__185/bottle.yml'  File "/app/share/bottles/bottles/frontend/utils/threading.py", line 61, in __target

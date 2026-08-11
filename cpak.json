@@ -1,0 +1,60 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Containerpak/cpak/v2/schema/manifest-v2.json",
+  "manifest_version": "2.0",
+  "name": "Bottles",
+  "description": "Run and manage your Windows applications on Linux with Wine and Proton.",
+  "version": "65.4",
+  "image": "ghcr.io/bottlesdevs/bottles:main",
+  "image_ref": "source",
+  "binaries": ["/usr/bin/bottles"],
+  "desktop_entries": ["/usr/share/applications/com.usebottles.bottles.desktop"],
+  "dependencies": [
+    {
+      "origin": "github.com/containerpak/umu"
+    }
+  ],
+  "addons": [],
+  "idle_time": 0,
+  "override": {
+    "socketX11": true,
+    "socketWayland": true,
+    "socketPulseAudio": true,
+    "socketSessionBus": true,
+    "socketSystemBus": false,
+    "socketSshAgent": false,
+    "socketCups": false,
+    "socketGpgAgent": false,
+    "socketAtSpiBus": false,
+    "socketBluetooth": false,
+    "deviceDri": false,
+    "deviceKvm": false,
+    "deviceShm": false,
+    "deviceAlsa": false,
+    "deviceVideo": false,
+    "deviceFuse": false,
+    "deviceTun": false,
+    "deviceUsb": false,
+    "deviceAll": true,
+    "notification": true,
+    "openURI": false,
+    "filesystem": [
+      {"path": "home", "access": "read-write"},
+      {"path": "/etc/machine-id", "access": "read-only"}
+    ],
+    "env": [
+      "LANG=C.UTF-8",
+      "LC_ALL=C.UTF-8",
+      "PATH=/app/bin:/usr/bin:/usr/local/bin:/usr/lib/extensions/vulkan/MangoHud/bin/:/usr/lib/extensions/vulkan/OBSVkCapture/bin/:/usr/lib/extensions/vulkan/gamescope/bin/",
+      "LD_LIBRARY_PATH=/app/lib:/app/lib/i386-linux-gnu:/usr/lib",
+      "GST_PLUGIN_SYSTEM_PATH=/app/lib/gstreamer-1.0:/usr/lib/x86_64-linux-gnu/gstreamer-1.0:/usr/lib/i386-linux-gnu/gstreamer-1.0"
+    ],
+    "network": true,
+    "process": false,
+    "userNamespaces": false,
+    "memoryMaxMB": 0,
+    "cpuQuota": 0,
+    "pidsMax": 0,
+    "asRoot": false,
+    "allowedHostCommands": []
+  }
+}
