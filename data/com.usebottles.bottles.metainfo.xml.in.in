@@ -85,6 +85,25 @@
     <display_length compare="ge">768</display_length>
   </requires>
   <releases>
+    <release version="66.0" date="2026-08-11">
+      <description translate="no">
+        <ul>
+          <li>Integrated UMU with Library-managed games, prefixes, per-game Proton settings, dependencies and command line support</li>
+          <li>Added ProtoSoda as the default UMU runner with the Soda compatibility work in a Proton environment</li>
+          <li>Added Adaptive Launch profiling for bottles using Soda 11.0-5 or newer</li>
+          <li>Added an experimental official cpak package built from the Bottles source tree and release tags</li>
+          <li>Added official runner logos and bundled the symbolic icons required by the interface</li>
+          <li>Improved runner and graphics component updates with a shared bulk update flow</li>
+          <li>Added Steam Linux Runtime 4 support for Proton 11 and synchronized its VKD3D utilities</li>
+          <li>Fixed bottle creation and preferences failing with incomplete templates, multiple profiles or unavailable GameMode</li>
+          <li>Fixed dependency reinstall and limited uninstall to recipes that provide a real uninstaller</li>
+          <li>Fixed custom bottle creation when selecting the configured default directory</li>
+          <li>Fixed GameMode, MangoHud and other host wrappers used with Steam Runtime</li>
+          <li>Fixed program icons, Library covers, cabinet wildcards, SOCKS proxies and cover picker paths</li>
+          <li>Fixed Flatpak add-on commands, NVK detection and onboarding without an installed Wine runner</li>
+        </ul>
+      </description>
+    </release>
     <release version="65.4" date="2026-08-06">
       <description translate="no">
         <ul>
