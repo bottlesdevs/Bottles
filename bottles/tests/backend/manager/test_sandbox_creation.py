@@ -6,6 +6,42 @@ from bottles.backend.managers import manager as manager_module
 from bottles.backend.managers.manager import Manager
 
 
+def test_default_directory_selection_does_not_create_a_placeholder(
+    monkeypatch, tmp_path
+):
+    cancel_event = Event()
+    manager = object.__new__(Manager)
+    manager.runners_available = ["soda-11.0"]
+    manager.dxvk_available = ["dxvk-2.7"]
+    manager.vkd3d_available = ["vkd3d-3.0"]
+    manager.nvapi_available = ["nvapi-1.0"]
+    manager.latencyflex_available = ["latencyflex-1.0"]
+
+    def stop_after_directory(_path):
+        cancel_event.set()
+
+    monkeypatch.setattr(manager_module.Paths, "bottles", str(tmp_path))
+    monkeypatch.setattr(manager_module.FileUtils, "chattr_f", stop_after_directory)
+
+    result = Manager.create_bottle(
+        manager,
+        name="Default",
+        environment="custom",
+        path=str(tmp_path),
+        runner="soda-11.0",
+        dxvk="dxvk-2.7",
+        vkd3d="vkd3d-3.0",
+        nvapi="nvapi-1.0",
+        latencyflex="latencyflex-1.0",
+        cancel_event=cancel_event,
+    )
+
+    assert not result.ok
+    assert not result.data["config"].Custom_Path
+    assert result.data["config"].Path == "Default"
+    assert (tmp_path / "Default").is_dir()
+
+
 @pytest.mark.parametrize("sandbox", [False, True])
 def test_create_bottle_applies_sandbox_before_wineboot(monkeypatch, tmp_path, sandbox):
     captured = {}

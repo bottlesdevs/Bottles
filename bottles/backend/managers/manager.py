@@ -1918,7 +1918,10 @@ class Manager(metaclass=Singleton):
         )
 
         # get bottle path
-        if path == "":
+        uses_default_path = not path or os.path.realpath(path) == os.path.realpath(
+            Paths.bottles
+        )
+        if uses_default_path:
             # if no path is specified, use the name as path
             bottle_custom_path = False
             bottle_complete_path = os.path.join(Paths.bottles, bottle_name_path)
