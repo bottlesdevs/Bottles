@@ -1,0 +1,33 @@
+name: Add release badges
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  badges:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v9
+        with:
+          script: |
+            const marker = "<!-- install-badges -->"
+            const release = context.payload.release
+            const body = release.body || ""
+            if (body.includes(marker)) return
+
+            const badges = `${marker}
+
+## Get Bottles
+
+[![Download on Flathub](https://flathub.org/api/badge?svg&locale=en)](https://flathub.org/apps/com.usebottles.bottles)
+[![Get it with cpak](https://cpak.it/badges/get-it-with-cpak.svg)](https://cpak.it/store/Utilities/github.com/bottlesdevs/bottles)`
+
+            await github.rest.repos.updateRelease({
+              ...context.repo,
+              release_id: release.id,
+              body: `${body.trim()}\n\n${badges}`,
+            })
