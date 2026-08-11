@@ -1174,6 +1174,47 @@ def test_dedicated_sandbox_uses_selected_runtime_path(
     assert (str(entry_point) in command) is use_steam_runtime
 
 
+@pytest.mark.parametrize(
+    ("parameter", "wrapper"),
+    (("gamemode", "/usr/bin/gamemoderun"), ("mangohud", "/usr/bin/mangohud")),
+)
+def test_host_wrappers_run_outside_steam_runtime(
+    monkeypatch, tmp_path, parameter, wrapper
+):
+    runtime_path = tmp_path / "SteamLinuxRuntime_sniper"
+    runtime_path.mkdir()
+    entry_point = runtime_path / "_v2-entry-point"
+    entry_point.touch()
+    config = BottleConfig(Name="Test", Runner="ge-proton")
+    config.Parameters.use_steam_runtime = True
+    setattr(config.Parameters, parameter, True)
+
+    monkeypatch.setattr(winecommand, "gamemode_available", "/usr/bin/gamemoderun")
+    monkeypatch.setattr(winecommand, "mangohud_available", "/usr/bin/mangohud")
+    monkeypatch.setattr(winecommand, "gamescope_available", False)
+    monkeypatch.setattr(winecommand, "obs_vkc_available", False)
+    monkeypatch.setattr(
+        winecommand.RuntimeManager,
+        "get_runtimes",
+        lambda _category: {
+            "sniper": {"name": "sniper", "entry_point": str(entry_point)}
+        },
+    )
+
+    winecmd = WineCommand.__new__(WineCommand)
+    winecmd.config = config
+    winecmd.minimal = False
+    winecmd.arguments = ""
+    winecmd.runner = "/runner/files/bin/wine"
+    winecmd.runner_runtime = "sniper"
+    winecmd.gamescope_activated = False
+
+    command = winecmd.get_cmd("game.exe")
+
+    assert command.index(wrapper) < command.index(str(entry_point))
+    assert command.index(str(entry_point)) < command.index(winecmd.runner)
+
+
 def test_dedicated_sandbox_shares_forwarded_document_read_write(monkeypatch, tmp_path):
     bottle_path = tmp_path / "TestBottle"
     bottle_path.mkdir()
