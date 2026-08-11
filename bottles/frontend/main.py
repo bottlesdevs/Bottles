@@ -19,7 +19,7 @@ import gettext
 import locale
 import sys
 import webbrowser
-from os import path
+from os import environ, path
 
 import gi
 
@@ -93,7 +93,14 @@ class Bottles(Adw.Application):
         super().__init__(
             application_id=APP_ID,
             resource_base_path="/com/usebottles/bottles",
-            flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE,
+            flags=(
+                Gio.ApplicationFlags.HANDLES_COMMAND_LINE
+                | (
+                    Gio.ApplicationFlags.NON_UNIQUE
+                    if environ.get("BOTTLES_CPAK")
+                    else Gio.ApplicationFlags.NONE
+                )
+            ),
             register_session=True,
         )
         self.__create_action("quit", self.__quit, ["<primary>q", "<primary>w"])
