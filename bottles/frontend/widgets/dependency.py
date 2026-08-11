@@ -97,17 +97,12 @@ class DependencyEntry(Adw.ActionRow):
             button and show the btn_remove button
             """
             self.btn_install.set_visible(False)
-            self.btn_remove.set_visible(True)
             self.btn_reinstall.set_visible(True)
-
-        if dependency[0] in self.config.Uninstallers.keys():
-            """
-            If the dependency has no uninstaller, disable the
-            btn_remove button
-            """
-            uninstaller = self.config.Uninstallers[dependency[0]]
-            if uninstaller in [False, "NO_UNINSTALLER"]:
-                self.btn_remove.set_sensitive(False)
+            uninstaller = self.config.Uninstallers.get(dependency[0])
+            self.btn_remove.set_visible(
+                isinstance(uninstaller, str)
+                and uninstaller not in ["", "NO_UNINSTALLER"]
+            )
 
         cached_by_arch = dependency[1].get("Cached", {})
         cached = (
@@ -252,12 +247,16 @@ class DependencyEntry(Adw.ActionRow):
         self.spinner.stop()
         if not removed:
             self.btn_install.set_visible(False)
+            self.btn_reinstall.set_visible(True)
             if installer:
                 self.btn_remove.set_visible(True)
                 self.btn_remove.set_sensitive(True)
+            else:
+                self.btn_remove.set_visible(False)
         else:
             self.btn_remove.set_visible(False)
             self.btn_install.set_visible(True)
+            self.btn_reinstall.set_visible(False)
 
         self.check_select.set_active(False)
         self.check_select.set_visible(self.btn_install.get_visible())

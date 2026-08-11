@@ -802,10 +802,14 @@ class Manager(metaclass=Singleton):
         logging.info(f"Removing {dependency} dependency from {config.Name}")
         uninstallers = config.Uninstallers
 
-        # run dependency uninstaller if available
-        if dependency in uninstallers:
-            uninstaller = uninstallers[dependency]
-            Uninstaller(config).from_name(uninstaller)
+        uninstaller = uninstallers.get(dependency)
+        if not isinstance(uninstaller, str) or uninstaller in ["", "NO_UNINSTALLER"]:
+            return Result(
+                status=False,
+                message=f"No uninstaller is available for {dependency}.",
+            )
+
+        Uninstaller(config).from_name(uninstaller)
 
         # remove dependency from bottle configuration
         if dependency in config.Installed_Dependencies:
@@ -813,6 +817,13 @@ class Manager(metaclass=Singleton):
 
         self.update_config(
             config, key="Installed_Dependencies", value=config.Installed_Dependencies
+        )
+        self.update_config(
+            config,
+            key=dependency,
+            value=None,
+            scope="Uninstallers",
+            remove=True,
         )
         return Result(status=True, data={"removed": True})
 

@@ -470,11 +470,11 @@ class DependencyManager:
             """
             uninstaller = manifest.get("Uninstaller")
 
-        if dependency[0] not in config.Installed_Dependencies:
-            self.__manager.update_config(
-                config, dependency[0], uninstaller, "Uninstallers"
-            )
-            installed_new = True
+        if not isinstance(uninstaller, str) or not uninstaller:
+            uninstaller = "NO_UNINSTALLER"
+        self.__manager.update_config(
+            config, dependency[0], uninstaller, "Uninstallers"
+        )
 
         # Remove entry from task manager
         TaskManager.remove(task_id)
@@ -486,9 +486,10 @@ class DependencyManager:
             RegistryRuleManager.apply_rules(config, trigger="dependencies")
         self.__notify_progress_fraction(progress_progress_cb, None)
         self.__notify_progress(progress_cb, _("Finalizing installation..."), task=task)
-        if not uninstaller:
-            return Result(status=True, data={"uninstaller": False})
-        return Result(status=True, data={"uninstaller": True})
+        return Result(
+            status=True,
+            data={"uninstaller": uninstaller != "NO_UNINSTALLER"},
+        )
 
     def __perform_steps(
         self,

@@ -48,6 +48,44 @@ def test_installed_dependency_row_shows_its_name():
     assert entry.get_title() == "arial32"
 
 
+def test_installed_dependency_actions_use_recorded_uninstaller():
+    window = _make_window(online=True, cache_calls=[])
+    config = BottleConfig(
+        Name="Bottle",
+        Installed_Dependencies=["dotnet40"],
+        Uninstallers={"dotnet40": "Microsoft .NET Framework 4 Extended"},
+    )
+
+    entry = DependencyEntry(
+        window=window,
+        config=config,
+        dependency=("dotnet40", MANIFEST),
+    )
+
+    assert entry.btn_reinstall.get_visible()
+    assert entry.btn_remove.get_visible()
+
+
+@pytest.mark.parametrize("uninstaller", (None, False, "NO_UNINSTALLER"))
+def test_installed_dependency_without_uninstaller_cannot_be_removed(uninstaller):
+    window = _make_window(online=True, cache_calls=[])
+    uninstallers = {} if uninstaller is None else {"arial32": uninstaller}
+    config = BottleConfig(
+        Name="Bottle",
+        Installed_Dependencies=["arial32"],
+        Uninstallers=uninstallers,
+    )
+
+    entry = DependencyEntry(
+        window=window,
+        config=config,
+        dependency=("arial32", MANIFEST),
+    )
+
+    assert entry.btn_reinstall.get_visible()
+    assert not entry.btn_remove.get_visible()
+
+
 @pytest.mark.parametrize(
     ("online", "expects_lookup"),
     ((True, False), (False, True)),

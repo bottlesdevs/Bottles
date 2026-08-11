@@ -274,6 +274,6 @@ class DependenciesView(Adw.Bin):
                 for dep in self.config.Installed_Dependencies:
                     if dep in dependencies:
                         dep = (dep, dependencies[dep])
-                        GLib.idle_add(new_dependency, dep, True)
+                        GLib.idle_add(new_dependency, dep)
 
         RunAsync(process_dependencies, callback=callback)
