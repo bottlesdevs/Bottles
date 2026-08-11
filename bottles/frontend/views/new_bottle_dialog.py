@@ -23,6 +23,7 @@ from typing import Any, Optional
 from gi.repository import Adw, Gio, GLib, GObject, Gtk, Pango, Xdp
 from pathvalidate import sanitize_filename
 
+from bottles.backend.globals import is_cpak
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.state import Task, TaskManager
@@ -92,7 +93,9 @@ class BottlesNewBottleDialog(Adw.Dialog):
         )
         # common variables and references
         self.window = GtkUtils.get_parent_window()
-        if not self.window or not Xdp.Portal.running_under_sandbox():
+        if not self.window or (
+            not is_cpak() and not Xdp.Portal.running_under_sandbox()
+        ):
             return
 
         self.app = self.window.get_application()

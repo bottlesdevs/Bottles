@@ -18,6 +18,7 @@
 import contextlib
 import os
 
+from bottles.backend.globals import is_official_package
 from bottles.backend.logger import Logger
 from bottles.backend.params import APP_VERSION
 from bottles.backend.utils import yaml
@@ -120,7 +121,7 @@ class HealthChecker:
 
     def get_results(self, plain: bool = False):
         results = {
-            "Official Package": "FLATPAK_ID" in os.environ,
+            "Official Package": is_official_package(),
             "Version": APP_VERSION,
             "DE/WM": self.desktop,
             "Display": {

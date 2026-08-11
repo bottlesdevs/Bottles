@@ -23,6 +23,14 @@ from typing import Dict
 from bottles.backend.utils import json, yaml
 
 
+def is_cpak() -> bool:
+    return "CPAK_CONTAINER_ID" in os.environ
+
+
+def is_official_package() -> bool:
+    return "FLATPAK_ID" in os.environ or is_cpak()
+
+
 def _has_windows_unsafe_component(path: str) -> bool:
     return any(
         part.endswith((".", " "))

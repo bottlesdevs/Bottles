@@ -24,6 +24,7 @@ from os import environ, path
 import gi
 
 from bottles.backend.health import HealthChecker
+from bottles.backend.globals import is_official_package
 from bottles.backend.logger import Logger
 from bottles.frontend.params import (
     APP_ID,
@@ -412,6 +413,12 @@ class Bottles(Adw.Application):
             "/com/usebottles/bottles/appdata",
             f"{APP_MAJOR_VERSION}.{APP_MINOR_VERSION}",
         )
+        version = f"{APP_MAJOR_VERSION}.{APP_MINOR_VERSION}"
+        if is_official_package():
+            about_dialog.set_version(f"{version} ({_('Official Package')})")
+        else:
+            about_dialog.set_version(f"{version} ({_('Unofficial Package')})")
+            about_dialog.set_comments(_("Might not work as expected."))
         about_dialog.set_developers(developers)
         about_dialog.set_translator_credits(_("translator_credits"))
         about_dialog.set_artists(artists)

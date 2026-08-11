@@ -26,6 +26,7 @@ from bottles.backend.globals import (
     gamemode_available,
     gamescope_available,
     hdr_wsi_available,
+    is_cpak,
     lsfg_vk_available,
     mangohud_available,
     obs_vkc_available,
@@ -184,7 +185,7 @@ class PreferencesView(Adw.PreferencesPage):
                 )
             )
 
-        if not Xdp.Portal.running_under_sandbox():
+        if not is_cpak() and not Xdp.Portal.running_under_sandbox():
             return
 
         _not_available = _("This feature is unavailable on your system.")

@@ -4,6 +4,8 @@ from bottles.backend.globals import (
     Paths,
     _get_wine_compatible_base,
     _has_windows_unsafe_component,
+    is_cpak,
+    is_official_package,
 )
 
 
@@ -43,6 +45,21 @@ def test_wine_compatible_base_uses_flatpak_data_mount(tmp_path, monkeypatch):
 
 def test_windows_unsafe_component_detects_trailing_space():
     assert _has_windows_unsafe_component("/tmp/user /data/bottles")
+
+
+def test_official_package_detection(monkeypatch):
+    monkeypatch.delenv("FLATPAK_ID", raising=False)
+    monkeypatch.delenv("CPAK_CONTAINER_ID", raising=False)
+    assert not is_cpak()
+    assert not is_official_package()
+
+    monkeypatch.setenv("CPAK_CONTAINER_ID", "bottles")
+    assert is_cpak()
+    assert is_official_package()
+
+    monkeypatch.delenv("CPAK_CONTAINER_ID")
+    monkeypatch.setenv("FLATPAK_ID", "com.usebottles.bottles")
+    assert is_official_package()
 
 
 def test_lsfg_vk_detects_flatpak_extension(monkeypatch):

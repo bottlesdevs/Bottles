@@ -21,6 +21,7 @@ from gettext import ngettext
 
 from gi.repository import Adw, GLib, Gtk, Xdp
 
+from bottles.backend.globals import is_cpak
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.state import EventManager, Events, SignalManager, Signals
@@ -129,7 +130,7 @@ class BottlesBottleRow(Adw.ActionRow):
 
     def run_executable(self, *_args):
         """Display file dialog for executable"""
-        if not Xdp.Portal.running_under_sandbox():
+        if not is_cpak() and not Xdp.Portal.running_under_sandbox():
             return
 
         def set_path(_dialog, response):
