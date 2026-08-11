@@ -98,7 +98,7 @@ class Bottles(Adw.Application):
                 | (
                     Gio.ApplicationFlags.NON_UNIQUE
                     if environ.get("BOTTLES_CPAK")
-                    else Gio.ApplicationFlags.NONE
+                    else 0
                 )
             ),
             register_session=True,
