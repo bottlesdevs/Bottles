@@ -21,10 +21,10 @@ jobs:
 
             const badges = `${marker}
 
-## Get Bottles
+            ## Get Bottles
 
-[![Download on Flathub](https://flathub.org/api/badge?svg&locale=en)](https://flathub.org/apps/com.usebottles.bottles)
-[![Get it with cpak](https://cpak.it/badges/get-it-with-cpak.svg)](https://cpak.it/store/Utilities/github.com/bottlesdevs/bottles)`
+            [![Download on Flathub](https://flathub.org/api/badge?svg&locale=en)](https://flathub.org/apps/com.usebottles.bottles)
+            [![Get it with cpak](https://cpak.it/badges/get-it-with-cpak.svg)](https://cpak.it/store/Utilities/github.com/bottlesdevs/bottles)`
 
             await github.rest.repos.updateRelease({
               ...context.repo,
