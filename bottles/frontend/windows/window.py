@@ -139,7 +139,7 @@ class BottlesWindow(Adw.ApplicationWindow):
             manager.set_color_scheme(Adw.ColorScheme.FORCE_DARK)
 
         # Be VERY explicit that non-sandboxed environments are unsupported
-        if not Xdp.Portal.running_under_sandbox():
+        if not os.environ.get("CPAK_CONTAINER_ID") and not Xdp.Portal.running_under_sandbox():
 
             def response(dialog, response, *args):
                 if response == "close":

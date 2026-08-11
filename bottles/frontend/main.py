@@ -97,7 +97,7 @@ class Bottles(Adw.Application):
                 Gio.ApplicationFlags.HANDLES_COMMAND_LINE
                 | (
                     Gio.ApplicationFlags.NON_UNIQUE
-                    if environ.get("BOTTLES_CPAK")
+                    if environ.get("CPAK_CONTAINER_ID")
                     else 0
                 )
             ),
