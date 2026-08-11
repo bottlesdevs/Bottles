@@ -148,7 +148,7 @@ class CrashReportDialog(Adw.Window):
             json.JSONDecodeError,
             TypeError,
         ):
-            with urllib.request.urlopen(api_url) as r:
+            with urllib.request.urlopen(api_url, timeout=10) as r:
                 data = r.read().decode("utf-8")
                 data = json.loads(data)
 
