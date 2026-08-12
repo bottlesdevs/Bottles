@@ -41,6 +41,9 @@ def _has_windows_unsafe_component(path: str) -> bool:
 
 def _get_wine_compatible_base(path: str) -> str:
     path = os.path.abspath(path)
+    if not _has_windows_unsafe_component(path):
+        return path
+
     flatpak_data = "/var/data"
     try:
         data_home = os.path.dirname(path)
