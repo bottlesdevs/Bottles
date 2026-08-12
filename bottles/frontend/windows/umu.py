@@ -1222,7 +1222,7 @@ class UmuAddGameDialog(Adw.Dialog):
         self.btn_cancel.connect("clicked", lambda *_args: self.close())
         self.btn_add.connect("clicked", self.__add)
         self.btn_executable.connect("clicked", self.__choose_executable)
-        self.btn_prefix.connect("clicked", self.__prefix_action)
+        self.btn_prefix.connect("clicked", self.__choose_prefix)
         self.btn_proton.connect("clicked", self.__choose_proton)
         self.combo_mode.connect("notify::selected", self.__mode_changed)
         self.entry_name.connect("changed", self.__validate)

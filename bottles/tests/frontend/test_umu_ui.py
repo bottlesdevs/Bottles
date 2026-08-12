@@ -196,6 +196,33 @@ def test_custom_installer_opens_install_wizard(monkeypatch):
     assert calls == ["closed", window, ("present", window)]
 
 
+def test_add_game_prefix_button_opens_folder_selection(monkeypatch):
+    calls = []
+
+    class Catalog:
+        @staticmethod
+        def list_choices(**_kwargs):
+            return []
+
+    window = SimpleNamespace(
+        manager=SimpleNamespace(
+            umu_repository=object(),
+            umu_proton_catalog=Catalog(),
+        ),
+        settings=SimpleNamespace(get_string=lambda _key: "GE-Proton"),
+    )
+    monkeypatch.setattr(
+        umu_module.UmuAddGameDialog,
+        "_UmuAddGameDialog__choose_prefix",
+        lambda *_args: calls.append("prefix"),
+    )
+
+    dialog = umu_module.UmuAddGameDialog(window, mode="import")
+    dialog.btn_prefix.emit("clicked")
+
+    assert calls == ["prefix"]
+
+
 def test_umu_dependency_dialog_installs_without_a_second_step(monkeypatch):
     calls = []
     game = SimpleNamespace(id="game-id", extra={})
