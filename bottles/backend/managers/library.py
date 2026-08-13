@@ -273,6 +273,19 @@ class LibraryManager:
                 return
             logging.warning(f"Entry not found in library, nothing to remove: {_uuid}")
 
+    def remove_bottle_entries(self, bottle_name: str):
+        with self.__lock:
+            self.load_library(silent=True)
+            entries = [
+                entry_id
+                for entry_id, entry in self.__library.items()
+                if (entry.get("bottle") or {}).get("name") == bottle_name
+            ]
+            for entry_id in entries:
+                del self.__library[entry_id]
+            if entries:
+                self.save_library()
+
     def remove_umu_game(self, game_id: str):
         with self.__lock:
             self.load_library(silent=True)

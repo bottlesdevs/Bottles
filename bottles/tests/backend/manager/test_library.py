@@ -382,3 +382,24 @@ def test_remove_umu_game_keeps_other_entries(tmp_path, library_manager):
     entries = list(manager.get_library().values())
     assert len(entries) == 1
     assert entries[0]["id"] == second.library_id
+
+
+def test_remove_bottle_entries_ignores_umu_entries(tmp_path, library_manager):
+    manager, _bottle_path = library_manager
+    program_folder = tmp_path / "program"
+    program_folder.mkdir()
+    config = _config(program_folder)
+    bottle_id = manager.add_to_library(_entry(), config)
+    umu_id = manager.add_to_library(
+        {
+            "id": "umu:1",
+            "source": "umu",
+            "source_id": "1",
+            "name": "UMU Game",
+        }
+    )
+
+    manager.remove_bottle_entries(config.Name)
+
+    assert bottle_id not in manager.get_library()
+    assert umu_id in manager.get_library()

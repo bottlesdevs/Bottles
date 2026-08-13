@@ -2773,10 +2773,7 @@ class Manager(metaclass=Singleton):
 
         logging.info("Removing library entries associated with this bottle…")
         library_manager = LibraryManager()
-        entries = library_manager.get_library().copy()
-        for _uuid, entry in entries.items():
-            if entry.get("bottle").get("name") == config.Name:
-                library_manager.remove_from_library(_uuid)
+        library_manager.remove_bottle_entries(config.Name)
 
         if config.Custom_Path:
             logging.info("Removing placeholder…")

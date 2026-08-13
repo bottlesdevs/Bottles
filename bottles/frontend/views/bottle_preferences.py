@@ -489,7 +489,7 @@ class PreferencesView(Adw.PreferencesPage):
         entries = library_manager.get_library()
 
         for uuid, entry in entries.items():
-            bottle = entry.get("bottle")
+            bottle = entry.get("bottle") or {}
             if bottle.get("name") == old_name:
                 logging.info(f"Updating library entry for {entry.get('name')}")
                 entries[uuid]["bottle"]["name"] = new_name
