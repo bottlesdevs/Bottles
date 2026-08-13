@@ -67,3 +67,32 @@ def test_nouveau_gpu_uses_nvk_icd(monkeypatch):
 
     assert nvidia["envs"] == {"DRI_PRIME": "1"}
     assert nvidia["icd"] == "/nouveau.json"
+
+
+def test_nvidia_gpu_falls_back_to_available_nvk_icd(monkeypatch):
+    class FakeProcess:
+        def __init__(self, command, **_kwargs):
+            self.command = command
+
+        def communicate(self):
+            if "NVIDIA" in self.command:
+                return b"01:00.0 VGA compatible controller: NVIDIA Corporation", b""
+            return b"", b""
+
+    monkeypatch.setattr(gpu_module.subprocess, "Popen", FakeProcess)
+    monkeypatch.setattr(GPUUtils, "is_nouveau", lambda _self: False)
+    monkeypatch.setattr(gpu_module, "get_nvidia_dll_path", lambda: None)
+
+    gpu = GPUUtils()
+    monkeypatch.setattr(
+        gpu.vk,
+        "get_vk_icd",
+        lambda vendor, as_string=False: (
+            "/nouveau_icd.x86_64.json" if vendor == "nouveau" else ""
+        ),
+    )
+
+    nvidia = gpu.get_gpu()["vendors"]["nvidia"]
+
+    assert nvidia["envs"] == {"DRI_PRIME": "1"}
+    assert nvidia["icd"] == "/nouveau_icd.x86_64.json"

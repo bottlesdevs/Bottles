@@ -117,9 +117,10 @@ class GPUUtils:
         found = []
         result = {"vendors": {}, "prime": {"integrated": None, "discrete": None}}
 
-        if self.is_nouveau():
+        nouveau_icd = self.vk.get_vk_icd("nouveau", as_string=True)
+        if self.is_nouveau() or (not gpus["nvidia"]["icd"] and nouveau_icd):
             gpus["nvidia"]["envs"] = {"DRI_PRIME": "1"}
-            gpus["nvidia"]["icd"] = self.vk.get_vk_icd("nouveau", as_string=True)
+            gpus["nvidia"]["icd"] = nouveau_icd
 
         for _check in checks:
             _query = checks[_check]["query"]
