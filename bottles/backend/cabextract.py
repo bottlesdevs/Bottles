@@ -80,6 +80,20 @@ class CabExtract:
             if fnmatch.fnmatch(name.lower(), expected)
         }
 
+    @staticmethod
+    def __replace_case_duplicates(files_before: dict, files_after: dict):
+        previous = {
+            path.lower(): path
+            for path in files_before
+            if not os.path.islink(path)
+        }
+        for path, timestamp in files_after.items():
+            if files_before.get(path) == timestamp:
+                continue
+            destination = previous.get(path.lower())
+            if destination and destination != path:
+                os.replace(path, destination)
+
     def __extract(self) -> bool:
         paths = [self.path]
         if not os.path.exists(self.path) and glob.has_magic(self.path):
@@ -129,12 +143,11 @@ class CabExtract:
                                 os.path.join(self.destination, _file),
                             )
 
-                    if (
-                        self.__matching_files(self.destination, expected)
-                        == files_before
-                    ):
+                    files_after = self.__matching_files(self.destination, expected)
+                    if files_after == files_before:
                         logging.error(f"Cannot find extracted file: {file}")
                         return False
+                    self.__replace_case_duplicates(files_before, files_after)
             else:
                 for path in paths:
                     command_list = [

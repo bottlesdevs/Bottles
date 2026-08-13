@@ -109,6 +109,32 @@ def test_extract_replaces_broken_matching_symlink(
     assert not missing_target.exists()
 
 
+def test_extract_replaces_case_insensitive_duplicate(
+    monkeypatch, tmp_path: Path
+) -> None:
+    archive = tmp_path / "archive.cab"
+    archive.touch()
+    destination = tmp_path / "output"
+    destination.mkdir()
+    builtin = destination / "xaudio2_0.dll"
+    native = destination / "XAudio2_0.dll"
+    builtin.write_bytes(b"builtin")
+
+    def extract(command, check):
+        assert check is True
+        native.write_bytes(b"native")
+
+    monkeypatch.setattr(cabextract_module.subprocess, "run", extract)
+    extractor = CabExtract()
+    extractor.cabextract_bin = "cabextract"
+
+    assert extractor.run(
+        str(archive), files=["xaudio*.dll"], destination=str(destination)
+    )
+    assert builtin.read_bytes() == b"native"
+    assert not native.exists()
+
+
 def test_extract_accepts_literal_path_with_glob_characters(
     monkeypatch, tmp_path: Path
 ) -> None:
