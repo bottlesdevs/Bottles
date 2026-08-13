@@ -524,8 +524,20 @@ class WineExecutor:
     def __launch_with_bridge(self):
         if self.use_winebridge and self.exec_type == "exe":
             winebridge = WineBridge(self.config)
-            if winebridge.is_available():
-                winepath = WinePath(self.config)
+            winepath = WinePath(self.config)
+            raw_path = os.path.realpath(self._raw_exec_path)
+            bottle_path = os.path.realpath(
+                ManagerUtils.get_bottle_path(self.config)
+            )
+            try:
+                is_in_bottle = (
+                    os.path.commonpath((raw_path, bottle_path)) == bottle_path
+                )
+            except ValueError:
+                is_in_bottle = False
+            if winebridge.is_available() and (
+                not winepath.is_unix(self._raw_exec_path) or is_in_bottle
+            ):
                 exec_path = (
                     winepath.to_windows(self._raw_exec_path, native=True)
                     if winepath.is_unix(self._raw_exec_path)

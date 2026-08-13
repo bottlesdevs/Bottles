@@ -648,6 +648,10 @@ def test_winebridge_launch_preserves_spaces_in_executable_path(monkeypatch):
 
     monkeypatch.setattr("bottles.backend.wine.executor.WineBridge", FakeWineBridge)
     monkeypatch.setattr("bottles.backend.wine.executor.WinePath", FakeWinePath)
+    monkeypatch.setattr(
+        "bottles.backend.wine.executor.ManagerUtils.get_bottle_path",
+        lambda _config: "/mnt/storage/DO NOT RENAME OR MOVE",
+    )
 
     executor = WineExecutor.__new__(WineExecutor)
     executor.config = _make_config()
@@ -665,6 +669,57 @@ def test_winebridge_launch_preserves_spaces_in_executable_path(monkeypatch):
     assert result.status is True
     assert captured["exec_path"] == executable.replace("/", "\\")
     assert captured["terminal"] is False
+
+
+def test_external_executable_bypasses_winebridge(monkeypatch):
+    executable = "/games/KeePass/KeePass.exe"
+    calls = []
+
+    class FakeWineBridge:
+        def __init__(self, _config):
+            pass
+
+        @staticmethod
+        def is_available():
+            return True
+
+    class FakeWinePath:
+        def __init__(self, _config):
+            pass
+
+        @staticmethod
+        def is_unix(path):
+            return path.startswith("/")
+
+        @staticmethod
+        def is_windows(_path):
+            return False
+
+    monkeypatch.setattr("bottles.backend.wine.executor.WineBridge", FakeWineBridge)
+    monkeypatch.setattr("bottles.backend.wine.executor.WinePath", FakeWinePath)
+    monkeypatch.setattr(
+        "bottles.backend.wine.executor.ManagerUtils.get_bottle_path",
+        lambda _config: "/prefix",
+    )
+    monkeypatch.setattr(
+        WineExecutor,
+        "_WineExecutor__launch_exe",
+        lambda _self: calls.append("wine") or Result(True),
+    )
+
+    executor = WineExecutor.__new__(WineExecutor)
+    executor.config = _make_config()
+    executor.use_winebridge = True
+    executor.use_virt_desktop = False
+    executor.hide_console = False
+    executor.exec_type = "exe"
+    executor._raw_exec_path = executable
+    executor.exec_path = shlex.quote(executable)
+
+    result = executor._WineExecutor__launch_with_bridge()
+
+    assert result.status is True
+    assert calls == ["wine"]
 
 
 def test_wine_env_respects_allowed_keys(monkeypatch):
