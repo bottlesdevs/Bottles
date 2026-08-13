@@ -1215,6 +1215,44 @@ def test_host_wrappers_run_outside_steam_runtime(
     assert command.index(str(entry_point)) < command.index(winecmd.runner)
 
 
+@pytest.mark.parametrize(
+    ("runtime", "entry_point", "separator"),
+    (
+        ("sniper", "_v2-entry-point", " -- "),
+        ("scout", "run.sh", " "),
+    ),
+)
+def test_steam_runtime_uses_supported_command_separator(
+    monkeypatch, tmp_path, runtime, entry_point, separator
+):
+    runtime_path = tmp_path / runtime
+    runtime_path.mkdir()
+    entry_point = runtime_path / entry_point
+    entry_point.touch()
+    config = BottleConfig(Name="Test", Runner="wine")
+    config.Parameters.use_steam_runtime = True
+
+    monkeypatch.setattr(
+        winecommand.RuntimeManager,
+        "get_runtimes",
+        lambda _category: {
+            runtime: {"name": runtime, "entry_point": str(entry_point)}
+        },
+    )
+
+    winecmd = WineCommand.__new__(WineCommand)
+    winecmd.config = config
+    winecmd.minimal = True
+    winecmd.arguments = ""
+    winecmd.runner = "/runner/bin/wine"
+    winecmd.runner_runtime = runtime
+    winecmd.gamescope_activated = False
+
+    command = winecmd.get_cmd("game.exe")
+
+    assert command == f"{entry_point}{separator}{winecmd.runner} game.exe"
+
+
 def test_dedicated_sandbox_shares_forwarded_document_read_write(monkeypatch, tmp_path):
     bottle_path = tmp_path / "TestBottle"
     bottle_path.mkdir()

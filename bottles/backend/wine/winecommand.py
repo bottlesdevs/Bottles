@@ -840,7 +840,8 @@ class WineCommand:
             if _picked:
                 logging.info(f"Using Steam runtime {_picked['name']}")
                 self.steam_runtime_root = os.path.dirname(_picked["entry_point"])
-                command = f"{_picked['entry_point']} -- {command}"
+                separator = "-- " if _picked["name"] != "scout" else ""
+                command = f"{_picked['entry_point']} {separator}{command}"
             else:
                 logging.warning(
                     "Steam runtime was requested and found but there are no valid combinations"
