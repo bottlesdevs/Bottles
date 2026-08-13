@@ -527,7 +527,7 @@ class ComponentManager:
             logging.error("Extraction failed! Archive ends earlier than expected.")
             return False
 
-        if root_dir.endswith("x86_64"):
+        if root_dir.endswith("x86_64") and root_dir != name:
             try:
                 """
                 If the folder ends with x86_64, remove this from its name.
