@@ -31,7 +31,9 @@ class UserDataKeys:
     EagleIntelAnnouncementSeen = "eagle_intel_announcement_seen"
     FundingDismissed = "funding_dialog_dismissed_next"
     LastFundingPrompt = "last_funding_prompt_date"
+    LastFundingMajor = "last_funding_major"
     FundingPromptCount = "funding_prompt_count"
+    FundingSupporter = "funding_supporter"
     PersonalRepositories = "personal_repositories"
     TrustedExecutables = "trusted_executables"
 

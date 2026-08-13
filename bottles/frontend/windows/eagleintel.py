@@ -20,16 +20,17 @@ from gettext import gettext as _
 from gi.repository import Adw, GObject, Gtk
 
 
-class EagleIntelDialog(Adw.Window):
+class EagleIntelDialog(Adw.Dialog):
     __gsignals__ = {
         "response": (GObject.SignalFlags.RUN_LAST, None, (str,)),
     }
 
     def __init__(self, parent):
-        super().__init__(modal=True, transient_for=parent)
-        self.set_default_size(600, 560)
+        super().__init__()
+        self.set_content_width(600)
+        self.set_content_height(560)
         self.set_title(_("Eagle Intelligence"))
-        self.connect("close-request", self.__on_close_request)
+        self.connect("closed", self.__on_closed)
 
         icon_theme = Gtk.IconTheme.get_for_display(self.get_display())
         icon_theme.add_resource_path("/com/usebottles/bottles/icons")
@@ -63,7 +64,7 @@ class EagleIntelDialog(Adw.Window):
         scrolled.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         scrolled.set_child(status_page)
         content.set_content(scrolled)
-        self.set_content(content)
+        self.set_child(content)
 
-    def __on_close_request(self, *_args):
+    def __on_closed(self, *_args):
         self.emit("response", "close")

@@ -41,7 +41,7 @@ from bottles.frontend.widgets.component import ComponentEntry, ComponentExpander
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/preferences.ui")
-class PreferencesWindow(Adw.PreferencesWindow):
+class PreferencesWindow(Adw.PreferencesDialog):
     __gtype_name__ = "PreferencesWindow"
     __registry = []
 
@@ -120,7 +120,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
-        self.set_transient_for(window)
 
         # common variables and references
         self.window = window
@@ -189,6 +188,9 @@ class PreferencesWindow(Adw.PreferencesWindow):
             self.switch_show_funding,
             "active",
             Gio.SettingsBindFlags.DEFAULT,
+        )
+        self.switch_show_funding.connect(
+            "notify::active", self.__funding_setting_changed
         )
         self.settings.bind(
             "playtime-enabled",
@@ -371,6 +373,10 @@ class PreferencesWindow(Adw.PreferencesWindow):
             self.row_eagle_security.set_subtitle(
                 _("Disabled. Executables will run without being checked for threats.")
             )
+
+    def __funding_setting_changed(self, switch, _pspec):
+        if switch.get_active():
+            self.data.remove(UserDataKeys.FundingDismissed)
 
     def ui_update(self):
         # Show locally installed runners/DLLs right away so the pages never get

@@ -364,7 +364,7 @@ class Bottles(Adw.Application):
 
     def __show_preferences(self, *args):
         preferences_window = PreferencesWindow(self.win)
-        preferences_window.present()
+        preferences_window.present(self.win)
 
     def __new_bottle(self, *args):
         self.win.show_add_view()
@@ -423,7 +423,7 @@ class Bottles(Adw.Application):
         about_dialog.set_translator_credits(_("translator_credits"))
         about_dialog.set_artists(artists)
         about_dialog.set_debug_info(HealthChecker().get_results(plain=True))
-        about_dialog.add_link(_("Donate"), "https://usebottles.com/funding")
+        about_dialog.add_link(_("Support Bottles"), "https://usebottles.com/funding")
         about_dialog.add_legal_section(
             _("Eagle Intelligence Data"),
             _("Data derived from ProtonDB and winetricks"),
