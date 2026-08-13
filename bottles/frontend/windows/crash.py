@@ -23,6 +23,7 @@ from gettext import gettext as _
 from gi.repository import Adw, Gtk
 
 from bottles.backend.utils import json
+from bottles.backend.utils.threading import RunAsync
 
 
 class SimilarReportEntry(Adw.ActionRow):
@@ -71,8 +72,17 @@ class CrashReportDialog(Adw.Window):
         self.check_unlock_send.connect("toggled", self.__on_unlock_send)
 
         self.label_output.set_text(log)
-        __similar_reports = self.__get_similar_issues(log)
-        if len(__similar_reports) >= 5:
+        RunAsync(
+            self.__get_similar_issues,
+            callback=self.__show_similar_issues,
+            log=log,
+        )
+
+    def __show_similar_issues(self, similar_reports, error):
+        if error is not None or similar_reports is None:
+            similar_reports = []
+
+        if len(similar_reports) >= 5:
             """
             This issue was reported 5 times, preventing the user from
             sending it again.
@@ -86,14 +96,14 @@ class CrashReportDialog(Adw.Window):
             self.btn_send.set_tooltip_text(prevent_text)
             self.label_notice.set_text(prevent_text)
 
-        elif len(__similar_reports) > 0:
+        elif len(similar_reports) > 0:
             """
             If there are similar reports, show the box_related and
             append them to list_reports. Otherwise, make the btn_send
             sensitive, so the user can send the report.
             """
             i = 0
-            for issue in __similar_reports:
+            for issue in similar_reports:
                 self.list_reports.add(SimilarReportEntry(issue))
                 i += 1
                 if i == 5:
