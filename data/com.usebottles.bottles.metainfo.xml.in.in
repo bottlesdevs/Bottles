@@ -85,6 +85,18 @@
     <display_length compare="ge">768</display_length>
   </requires>
   <releases>
+    <release version="66.2" date="2026-08-13">
+      <description translate="no">
+        <ul>
+          <li>Fixed Steam Runtime arguments and Scout runtime launches</li>
+          <li>Fixed mixed Library entries and case-insensitive DLL duplicates</li>
+          <li>Fixed NVK detection when the preferred ICD is unavailable</li>
+          <li>Fixed launching external executables with Wine</li>
+          <li>Prevented installer and crash report network requests from blocking the interface</li>
+          <li>Improved funding controls and kept dialogs attached to the main window</li>
+        </ul>
+      </description>
+    </release>
     <release version="66.1" date="2026-08-12">
       <description translate="no">
         <ul>
