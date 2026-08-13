@@ -423,10 +423,15 @@ def test_hide_console_routes_exe_through_start(monkeypatch):
             pass
 
         @staticmethod
+        def is_unix(_path):
+            return False
+
+        @staticmethod
         def is_windows(_path):
             return False
 
-    def fake_start(self):
+    def fake_start(self, host_cwd=False):
+        assert host_cwd is False
         calls.append("start")
         return Result(True)
 
@@ -448,6 +453,7 @@ def test_hide_console_routes_exe_through_start(monkeypatch):
     executor.use_virt_desktop = False
     executor.hide_console = True
     executor.exec_type = "exe"
+    executor._raw_exec_path = r"C:\games\example.exe"
     executor.exec_path = "/games/example.exe"
 
     result = executor._WineExecutor__launch_with_bridge()
@@ -671,9 +677,9 @@ def test_winebridge_launch_preserves_spaces_in_executable_path(monkeypatch):
     assert captured["terminal"] is False
 
 
-def test_external_executable_bypasses_winebridge(monkeypatch):
-    executable = "/games/KeePass/KeePass.exe"
-    calls = []
+def test_external_executable_uses_wine_start(monkeypatch):
+    executable = "/games/KeePass Portable/KeePass.exe"
+    captured = {}
 
     class FakeWineBridge:
         def __init__(self, _config):
@@ -702,9 +708,13 @@ def test_external_executable_bypasses_winebridge(monkeypatch):
         lambda _config: "/prefix",
     )
     monkeypatch.setattr(
+        "bottles.backend.wine.executor.Start.run",
+        lambda _self, **kwargs: captured.update(kwargs) or Result(True),
+    )
+    monkeypatch.setattr(
         WineExecutor,
-        "_WineExecutor__launch_exe",
-        lambda _self: calls.append("wine") or Result(True),
+        "_WineExecutor__set_monitors",
+        lambda _self: None,
     )
 
     executor = WineExecutor.__new__(WineExecutor)
@@ -715,11 +725,24 @@ def test_external_executable_bypasses_winebridge(monkeypatch):
     executor.exec_type = "exe"
     executor._raw_exec_path = executable
     executor.exec_path = shlex.quote(executable)
+    executor.terminal = False
+    executor.args = "--test"
+    executor.environment = {"WINEDEBUG": "+seh"}
+    executor.pre_script = None
+    executor.post_script = None
+    executor.pre_script_args = None
+    executor.post_script_args = None
+    executor.cwd = "/games/KeePass Portable"
+    executor.sandbox_override = None
 
     result = executor._WineExecutor__launch_with_bridge()
 
     assert result.status is True
-    assert calls == ["wine"]
+    assert captured["file"] == shlex.quote(executable)
+    assert captured["cwd"] == "/games/KeePass Portable"
+    assert captured["args"] == "--test"
+    assert captured["environment"] == {"WINEDEBUG": "+seh"}
+    assert captured["host_cwd"] is True
 
 
 def test_wine_env_respects_allowed_keys(monkeypatch):

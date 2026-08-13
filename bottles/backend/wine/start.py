@@ -25,23 +25,28 @@ class Start(WineProgram):
         cwd: Optional[str] = None,
         background: bool = False,
         sandbox_override: Optional[str] = None,
+        host_cwd: bool = False,
     ):
         winepath = WinePath(self.config)
         start_options = "/b " if background else ""
         working_dir = cwd
-        if working_dir not in [None, ""] and winepath.is_unix(working_dir):
+        is_unix_file = winepath.is_unix(file)
+        if (
+            not (host_cwd and is_unix_file)
+            and working_dir not in [None, ""]
+            and winepath.is_unix(working_dir)
+        ):
             working_dir = winepath.to_windows(
                 working_dir,
                 sandbox_override=sandbox_override,
             )
         directory_option = (
-            f"/d {shlex.quote(working_dir)} " if working_dir else ""
+            f"/d {shlex.quote(working_dir)} "
+            if working_dir and not (host_cwd and is_unix_file)
+            else ""
         )
 
-        if winepath.is_unix(file):
-            # running unix paths with start is not recommended
-            # as it can miss important files due to the wrong
-            # current working directory
+        if is_unix_file:
             _args = f"{start_options}/wait {directory_option}/unix {file}"
         else:
             _args = f"{start_options}/wait {directory_option}{file}"
