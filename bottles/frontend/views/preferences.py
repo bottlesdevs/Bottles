@@ -929,12 +929,12 @@ class PreferencesWindow(Adw.PreferencesDialog):
             _(
                 "Based on most recent bleeding-edge Valve's Proton Experimental, "
                 "includes Staging and custom patches. "
-                "Requires the Steam Runtime turned on."
+                "Using the Steam Runtime is recommended."
             ),
         )
         exp_proton_cachyos = ComponentExpander(
             "Proton CachyOS",
-            _("CachyOS Proton builds. Requires the Steam Runtime."),
+            _("CachyOS Proton builds. Using the Steam Runtime is recommended."),
         )
         exp_other_wine = ComponentExpander(_("Other Wine runners"))
         exp_other_proton = ComponentExpander(_("Other Proton runners"))
