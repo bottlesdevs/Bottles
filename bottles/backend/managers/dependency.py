@@ -789,10 +789,12 @@ class DependencyManager:
                 logging.error(f"Cannot find extracted file: {_file_name_path}")
                 return False
 
-            if os.path.exists(os.path.join(dest, rename)):
-                os.remove(os.path.join(dest, rename))
+            rename_path = os.path.join(dest, rename)
+            if os.path.normpath(_file_name_path) != os.path.normpath(rename_path):
+                if os.path.exists(rename_path):
+                    os.remove(rename_path)
 
-            shutil.move(_file_name_path, os.path.join(dest, rename))
+                shutil.move(_file_name_path, rename_path)
 
         if not res:
             return False
