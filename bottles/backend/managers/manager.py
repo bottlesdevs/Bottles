@@ -2754,11 +2754,13 @@ class Manager(metaclass=Singleton):
         TODO: will be replaced by the BottlesManager class.
         """
         logging.info("Stopping bottle…")
-        wineboot = WineBoot(config)
         wineserver = WineServer(config)
 
-        wineboot.kill(True)
-        wineserver.wait()
+        if config.Parameters.sandbox:
+            wineserver.force_kill()
+        else:
+            WineBoot(config).kill(True)
+            wineserver.wait()
 
         if not config.Path:
             logging.error("Empty path found. Disasters unavoidable.")

@@ -46,6 +46,38 @@ def test_manager_default_gsettings_stub():
     assert Manager().settings.get_boolean("anything") is False
 
 
+def test_delete_sandboxed_bottle_does_not_restart_wine(
+    mocker, monkeypatch, tmp_path
+):
+    bottles_path = tmp_path / "bottles"
+    bottle_path = bottles_path / "Sandboxed"
+    bottle_path.mkdir(parents=True)
+    config = BottleConfig(
+        Name="Sandboxed",
+        Path="Sandboxed",
+        Runner="soda-11.0-5",
+        Environment="Gaming",
+    )
+    config.Parameters.sandbox = True
+
+    monkeypatch.setattr(manager_module.Paths, "bottles", str(bottles_path))
+    monkeypatch.setattr(
+        manager_module.Paths, "applications", str(tmp_path / "applications")
+    )
+    wineboot = mocker.patch.object(manager_module, "WineBoot")
+    wineserver = mocker.patch.object(manager_module, "WineServer").return_value
+    library = mocker.patch.object(manager_module, "LibraryManager").return_value
+    manager = object.__new__(Manager)
+    manager.update_bottles = mocker.Mock()
+
+    assert manager.delete_bottle(config) is True
+    assert not bottle_path.exists()
+    wineboot.assert_not_called()
+    wineserver.force_kill.assert_called_once_with()
+    wineserver.wait.assert_not_called()
+    library.remove_bottle_entries.assert_called_once_with("Sandboxed")
+
+
 def test_check_runners_discovers_external_steam_proton(tmp_path, monkeypatch):
     runners = tmp_path / "runners"
     (runners / "soda-11.0").mkdir(parents=True)
