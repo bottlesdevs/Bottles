@@ -37,6 +37,7 @@ class FakeDialog:
 @pytest.fixture
 def harness(monkeypatch):
     events = []
+    callbacks = []
     dialog = FakeDialog(events)
 
     monkeypatch.setattr(
@@ -47,11 +48,11 @@ def harness(monkeypatch):
             ResponseAppearance=SimpleNamespace(DESTRUCTIVE=object()),
         ),
     )
-    monkeypatch.setattr(
-        bottle_details,
-        "RunAsync",
-        lambda *_args, **_kwargs: events.append("delete"),
-    )
+    def run_async(*_args, **kwargs):
+        events.append("delete")
+        callbacks.append(kwargs["callback"])
+
+    monkeypatch.setattr(bottle_details, "RunAsync", run_async)
     monkeypatch.setattr(
         bottle_details.GLib,
         "idle_add",
@@ -64,15 +65,15 @@ def harness(monkeypatch):
         window=SimpleNamespace(
             page_list=SimpleNamespace(
                 disable_bottle=lambda _config: events.append("navigate"),
-                update_bottles_list=lambda: None,
+                update_bottles_list=lambda: events.append("refresh"),
             )
         ),
     )
-    return view, dialog, events
+    return view, dialog, events, callbacks
 
 
 def test_delete_closes_the_dialog_before_leaving_the_page(harness):
-    view, dialog, events = harness
+    view, dialog, events, _callbacks = harness
 
     BottleView._BottleView__confirm_delete(view, None)
     dialog.response(dialog, "ok")
@@ -83,9 +84,22 @@ def test_delete_closes_the_dialog_before_leaving_the_page(harness):
 
 
 def test_cancelling_delete_only_closes_the_dialog(harness):
-    view, dialog, events = harness
+    view, dialog, events, callbacks = harness
 
     BottleView._BottleView__confirm_delete(view, None)
     dialog.response(dialog, "cancel")
 
     assert events == ["destroy"]
+    assert callbacks == []
+
+
+def test_delete_refreshes_list_from_async_callback(harness):
+    view, dialog, events, callbacks = harness
+
+    BottleView._BottleView__confirm_delete(view, None)
+    dialog.response(dialog, "ok")
+    assert "refresh" not in events
+
+    callbacks[0](True, None)
+
+    assert events[-1] == "refresh"
