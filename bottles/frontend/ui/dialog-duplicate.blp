@@ -35,6 +35,7 @@ template $DuplicateDialog: Adw.Window {
       [end]
       Button btn_duplicate {
         label: _("Duplicate");
+        sensitive: false;
 
         styles [
           "suggested-action",
@@ -92,6 +93,16 @@ template $DuplicateDialog: Adw.Window {
         child: Adw.StatusPage page_duplicated {
           icon-name: "object-select-symbolic";
           title: _("Bottle Duplicated");
+        };
+      }
+
+      StackPage {
+        name: "page_failed";
+
+        child: Adw.StatusPage page_failed {
+          icon-name: "dialog-error-symbolic";
+          title: _("Bottle Duplication Failed");
+          description: _("The bottle could not be duplicated.");
         };
       }
     }

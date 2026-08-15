@@ -15,9 +15,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import time
+from gettext import gettext as _
 
 from gi.repository import Adw, GLib, Gtk
+
 from bottles.backend.managers.backup import BackupManager
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.gtk import GtkUtils
@@ -33,6 +34,7 @@ class DuplicateDialog(Adw.Window):
     btn_duplicate = Gtk.Template.Child()
     stack_switcher = Gtk.Template.Child()
     progressbar = Gtk.Template.Child()
+    page_failed = Gtk.Template.Child()
 
     # endregion
 
@@ -57,8 +59,9 @@ class DuplicateDialog(Adw.Window):
             self.pulse_id = None
 
     def __check_entry_name(self, *_args):
-        is_duplicate = self.entry_name.get_text() in self.parent.manager.local_bottles
-        if is_duplicate:
+        name = self.entry_name.get_text()
+        is_invalid = not name.strip() or name in self.parent.manager.local_bottles
+        if is_invalid:
             self.entry_name.add_css_class("error")
             self.btn_duplicate.set_sensitive(False)
         else:
@@ -90,7 +93,15 @@ class DuplicateDialog(Adw.Window):
         if self.pulse_id:
             GLib.source_remove(self.pulse_id)
             self.pulse_id = None
-        # TODO: handle result.status == False
+
+        if error or result is None or not result.status:
+            message = str(error) if error else result.message if result else ""
+            self.page_failed.set_description(
+                message or _("The bottle could not be duplicated.")
+            )
+            self.stack_switcher.set_visible_child_name("page_failed")
+            return
+
         self.parent.manager.update_bottles()
         self.stack_switcher.set_visible_child_name("page_duplicated")
 
