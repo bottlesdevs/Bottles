@@ -67,8 +67,9 @@ def test_delete_sandboxed_bottle_does_not_restart_wine(
     wineboot = mocker.patch.object(manager_module, "WineBoot")
     wineserver = mocker.patch.object(manager_module, "WineServer").return_value
     library = mocker.patch.object(manager_module, "LibraryManager").return_value
+    signal_send = mocker.patch.object(manager_module.SignalManager, "send")
     manager = object.__new__(Manager)
-    manager.update_bottles = mocker.Mock()
+    manager.check_bottles = mocker.Mock()
 
     assert manager.delete_bottle(config) is True
     assert not bottle_path.exists()
@@ -76,6 +77,8 @@ def test_delete_sandboxed_bottle_does_not_restart_wine(
     wineserver.force_kill.assert_called_once_with()
     wineserver.wait.assert_not_called()
     library.remove_bottle_entries.assert_called_once_with("Sandboxed")
+    manager.check_bottles.assert_called_once_with(silent=True)
+    signal_send.assert_not_called()
 
 
 def test_check_runners_discovers_external_steam_proton(tmp_path, monkeypatch):

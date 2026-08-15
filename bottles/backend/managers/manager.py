@@ -2789,7 +2789,10 @@ class Manager(metaclass=Singleton):
         path = ManagerUtils.get_bottle_path(config)
         subprocess.run(["rm", "-rf", path], stdout=subprocess.DEVNULL)
 
-        self.update_bottles(silent=True)
+        # The UI invokes delete_bottle in a worker thread. Refresh only the
+        # backend state here; its RunAsync callback rebuilds the GTK list on
+        # the main loop.
+        self.check_bottles(silent=True)
 
         logging.info(f"Deleted the bottle in: {path}")
         return True
