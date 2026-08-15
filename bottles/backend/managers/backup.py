@@ -737,21 +737,40 @@ class BackupManager:
         """
         logging.info(f"Duplicating bottle: {config.Name} as {name}")
 
-        sanitized_name = pathvalidate.sanitize_filename(name, platform="universal")
+        if not name.strip():
+            return Result(status=False, message=_("Bottle name cannot be empty."))
+
+        sanitized_name = pathvalidate.sanitize_filename(
+            name.replace(" ", "-"), platform="universal"
+        )
+        if not sanitized_name:
+            return Result(status=False, message=_("Bottle name is not valid."))
+
         source_path = ManagerUtils.get_bottle_path(config)
         destination_path = os.path.join(Paths.bottles, sanitized_name)
 
+        duplicate_name = name
+        suffix = 1
+        while os.path.lexists(destination_path):
+            duplicate_name = f"{name}__{suffix}"
+            destination_path = os.path.join(
+                Paths.bottles, f"{sanitized_name}__{suffix}"
+            )
+            suffix += 1
+
         return BackupManager._duplicate_bottle_directory(
-            config, source_path, destination_path, name
+            config, source_path, destination_path, duplicate_name
         )
 
     @staticmethod
     def _duplicate_bottle_directory(
         config: BottleConfig, source_path: str, destination_path: str, new_name: str
     ) -> Result:
+        destination_created = False
+        duplicate_succeeded = False
         try:
-            if not os.path.exists(destination_path):
-                os.makedirs(destination_path)
+            os.makedirs(destination_path)
+            destination_created = True
             for item in [
                 "drive_c",
                 "system.reg",
@@ -780,7 +799,11 @@ class BackupManager:
                 yaml.dump(config_data, config_file, indent=4)
 
             logging.info(f"Bottle duplicated successfully as {new_name}.")
+            duplicate_succeeded = True
             return Result(status=True)
-        except (FileNotFoundError, PermissionError, OSError) as e:
+        except (OSError, shutil.Error) as e:
             logging.error(f"Error duplicating bottle: {e}")
-            return Result(status=False)
+            return Result(status=False, message=str(e))
+        finally:
+            if destination_created and not duplicate_succeeded:
+                shutil.rmtree(destination_path, ignore_errors=True)

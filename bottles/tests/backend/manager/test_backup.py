@@ -1,4 +1,5 @@
 import os
+import shutil
 import tarfile
 from concurrent.futures import CancelledError
 from pathlib import Path
@@ -7,6 +8,7 @@ from types import SimpleNamespace
 
 import pytest
 
+from bottles.backend.globals import Paths
 from bottles.backend.managers.backup import BackupManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.state import SignalManager, Task, TaskManager
@@ -143,6 +145,102 @@ def test_duplicate_bottle_preserves_hidden_files(tmp_path):
     assert (
         destination / "drive_c/.hidden-directory/payload.dat"
     ).read_bytes() == b"payload"
+
+
+def test_duplicate_bottle_replaces_spaces_in_destination_path(tmp_path, monkeypatch):
+    monkeypatch.setattr(Paths, "bottles", str(tmp_path))
+    source = tmp_path / "Source"
+    (source / "drive_c").mkdir(parents=True)
+    with (source / "bottle.yml").open("w") as config_file:
+        yaml.dump({"Name": "Source", "Path": "Source"}, config_file)
+
+    result = BackupManager.duplicate_bottle(
+        BottleConfig(Name="Source", Path="Source"), "Destination Bottle"
+    )
+
+    assert result.status
+    assert (tmp_path / "Destination-Bottle").is_dir()
+    assert not (tmp_path / "Destination Bottle").exists()
+    with (tmp_path / "Destination-Bottle/bottle.yml").open() as config_file:
+        duplicate_config = yaml.load(config_file)
+    assert duplicate_config["Name"] == "Destination Bottle"
+
+
+def test_duplicate_bottle_appends_next_available_suffix(tmp_path, monkeypatch):
+    monkeypatch.setattr(Paths, "bottles", str(tmp_path))
+    source = tmp_path / "Source"
+    (source / "drive_c").mkdir(parents=True)
+    with (source / "bottle.yml").open("w") as config_file:
+        yaml.dump({"Name": "Source", "Path": "Source"}, config_file)
+
+    for destination_name in ("Destination-Bottle", "Destination-Bottle__1"):
+        destination = tmp_path / destination_name
+        destination.mkdir()
+        (destination / "marker").write_text("existing")
+
+    result = BackupManager.duplicate_bottle(
+        BottleConfig(Name="Source", Path="Source"), "Destination Bottle"
+    )
+
+    assert result.status
+    assert (tmp_path / "Destination-Bottle/marker").read_text() == "existing"
+    assert (tmp_path / "Destination-Bottle__1/marker").read_text() == "existing"
+    with (tmp_path / "Destination-Bottle__2/bottle.yml").open() as config_file:
+        duplicate_config = yaml.load(config_file)
+    assert duplicate_config["Name"] == "Destination Bottle__2"
+
+
+def test_duplicate_bottle_rejects_empty_name(tmp_path, monkeypatch):
+    monkeypatch.setattr(Paths, "bottles", str(tmp_path))
+
+    result = BackupManager.duplicate_bottle(
+        BottleConfig(Name="Source", Path="Source"), "   "
+    )
+
+    assert not result.status
+    assert not list(tmp_path.iterdir())
+
+
+def test_duplicate_bottle_does_not_overwrite_existing_destination(tmp_path):
+    source = tmp_path / "source"
+    destination = tmp_path / "destination"
+    (source / "drive_c").mkdir(parents=True)
+    destination.mkdir()
+    marker = destination / "marker"
+    marker.write_text("existing")
+
+    result = BackupManager._duplicate_bottle_directory(
+        BottleConfig(Name="Source", Path="Source"),
+        str(source),
+        str(destination),
+        "Destination",
+    )
+
+    assert not result.status
+    assert marker.read_text() == "existing"
+
+
+def test_duplicate_bottle_removes_partial_destination_after_failure(
+    tmp_path, monkeypatch
+):
+    source = tmp_path / "source"
+    destination = tmp_path / "destination"
+    (source / "drive_c").mkdir(parents=True)
+
+    def fail_copytree(*_args, **_kwargs):
+        raise shutil.Error("copy failed")
+
+    monkeypatch.setattr(shutil, "copytree", fail_copytree)
+
+    result = BackupManager._duplicate_bottle_directory(
+        BottleConfig(Name="Source", Path="Source"),
+        str(source),
+        str(destination),
+        "Destination",
+    )
+
+    assert not result.status
+    assert not destination.exists()
 
 
 def test_full_backup_is_atomic_when_cancelled_during_file_copy(tmp_path, monkeypatch):
