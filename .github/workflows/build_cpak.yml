@@ -48,6 +48,7 @@ jobs:
           file: build-aux/cpak/Containerfile
           platforms: linux/amd64
           push: true
+          pull: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
