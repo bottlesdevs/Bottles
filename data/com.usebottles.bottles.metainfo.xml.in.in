@@ -85,6 +85,16 @@
     <display_length compare="ge">768</display_length>
   </requires>
   <releases>
+    <release version="66.7" date="2026-08-16">
+      <description translate="no">
+        <ul>
+          <li>Fixed duplicate bottles overwriting existing copies or leaving partial data after errors</li>
+          <li>Fixed the bottle list not refreshing after deletion</li>
+          <li>Fixed repository timeouts on networks with broken IPv6 resolution</li>
+          <li>Fixed UMU runtime access in the Flathub package</li>
+        </ul>
+      </description>
+    </release>
     <release version="66.6" date="2026-08-14">
       <description translate="no">
         <ul>
