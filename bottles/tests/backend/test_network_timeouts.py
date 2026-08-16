@@ -248,6 +248,26 @@ class ImmediateAsync:
         pass
 
 
+class IPv4RetryCurl(IndexCurl):
+    def __init__(self, requests):
+        super().__init__({}, requests)
+        self.attempt = 0
+
+    def perform(self):
+        self.requests.append(
+            (self.options[pycurl.URL], self.options.get(pycurl.IPRESOLVE))
+        )
+        self.attempt += 1
+        if self.attempt == 1:
+            raise pycurl.error(
+                pycurl.E_OPERATION_TIMEDOUT,
+                "Resolving timed out after 5000 milliseconds",
+            )
+
+        self.response_code = 200
+        self.options[pycurl.WRITEDATA].write(b"entry:\n  Category: test\n")
+
+
 def make_repository_manager(monkeypatch, personal_repositories=None):
     signals = []
     for env_var in (
@@ -297,7 +317,13 @@ def test_repository_index_uses_immutable_github_fallback(monkeypatch, tmp_path):
 
     manager._RepositoryManager__get_index()
 
-    assert requests == list(outcomes)
+    index_requests = [
+        f"{primary}64.1.yml",
+        f"{primary}64.1.yml",
+        f"{fallback}64.1.yml",
+        f"{fallback}index.yml",
+    ]
+    assert requests == index_requests
     assert repository["url"] == fallback
     assert repository["index"] == f"{fallback}index.yml"
     assert repository["catalog"] == b"runtime-0.6.3:\n  Category: runtimes\n"
@@ -309,12 +335,12 @@ def test_repository_index_uses_immutable_github_fallback(monkeypatch, tmp_path):
     repo = manager.get_repo("components")
     assert repo.url == fallback
     assert repo.catalog == {"runtime-0.6.3": {"Category": "runtimes"}}
-    assert requests == list(outcomes)
+    assert requests == index_requests
     manifest_url = f"{fallback}/runtimes/runtime-0.6.3.yml"
     manifest_data = b"Name: Runtime\n"
     outcomes[manifest_url] = (200, manifest_data)
     assert repo.get("runtime-0.6.3") == {"Name": "Runtime"}
-    assert requests == list(outcomes)
+    assert requests == [*index_requests, manifest_url]
     cache_files = list(tmp_path.glob("repositories/components/*/catalog.yml"))
     assert len(cache_files) == 1
     assert cache_files[0].read_bytes() == repository["catalog"]
@@ -326,7 +352,7 @@ def test_repository_index_uses_immutable_github_fallback(monkeypatch, tmp_path):
     offline_repo.catalog = Repo._Repo__get_catalog(offline_repo, "", offline=True)
     assert offline_repo.catalog == repo.catalog
     assert offline_repo.get("runtime-0.6.3") == {"Name": "Runtime"}
-    assert requests == list(outcomes)
+    assert requests == [*index_requests, manifest_url]
 
 
 def test_repository_index_keeps_primary_when_available(monkeypatch):
@@ -355,6 +381,22 @@ def test_repository_index_keeps_primary_when_available(monkeypatch):
     assert curl.options[pycurl.CONNECTTIMEOUT] == 5
     assert curl.options[pycurl.TIMEOUT] == 10
     assert curl.closed is True
+
+
+def test_repository_index_retries_resolution_timeout_with_ipv4(monkeypatch):
+    manager, signals = make_repository_manager(monkeypatch)
+    repository = keep_component_repository(manager)
+    url = f"{repository['sources'][0]}64.1.yml"
+    requests = []
+    curl = IPv4RetryCurl(requests)
+    monkeypatch.setattr(repository_module.pycurl, "Curl", lambda: curl)
+
+    manager._RepositoryManager__get_index()
+
+    assert requests == [(url, None), (url, pycurl.IPRESOLVE_V4)]
+    assert repository["catalog"] == b"entry:\n  Category: test\n"
+    assert len(signals) == 1
+    assert signals[0][1].ok is True
 
 
 def test_repository_index_falls_back_after_truncated_transfer(monkeypatch):
@@ -418,7 +460,7 @@ def test_default_repository_fallbacks_are_commit_pinned(monkeypatch):
 
     assert repositories["components"]["sources"][1] == (
         "https://raw.githubusercontent.com/bottlesdevs/components/"
-        "5038c9e39fc90ed237587ce18796e832f917eab2/"
+        "f0789e69477aafa5a207bad13dead7ac144972bc/"
     )
     assert repositories["dependencies"]["sources"][1] == (
         "https://raw.githubusercontent.com/bottlesdevs/dependencies/"
@@ -491,7 +533,15 @@ def test_repository_index_reports_one_failure_after_all_sources(
 
     manager._RepositoryManager__get_index()
 
-    assert requests == list(outcomes)
+    if isinstance(primary_outcome, pycurl.error):
+        assert requests == [
+            f"{primary}64.1.yml",
+            f"{primary}64.1.yml",
+            f"{fallback}64.1.yml",
+            f"{fallback}64.1.yml",
+        ]
+    else:
+        assert requests == list(outcomes)
     assert repository["catalog"] is None
     assert len(signals) == 1
     assert signals[0][1].ok is False

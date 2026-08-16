@@ -145,6 +145,23 @@ class RepositoryManager:
         if res.status:
             self.do_get_index = False
 
+    @staticmethod
+    def __perform_index_request(c, buffer):
+        try:
+            c.perform()
+        except pycurl.error as error:
+            if error.args[0] not in (
+                pycurl.E_COULDNT_RESOLVE_HOST,
+                pycurl.E_COULDNT_CONNECT,
+                pycurl.E_OPERATION_TIMEDOUT,
+            ):
+                raise
+
+            buffer.seek(0)
+            buffer.truncate()
+            c.setopt(pycurl.IPRESOLVE, pycurl.IPRESOLVE_V4)
+            c.perform()
+
     def __get_index(self):
         total = len(self.__repositories)
 
@@ -174,7 +191,7 @@ class RepositoryManager:
                             c.setopt(c.TIMEOUT, 10)
                             c.setopt(c.NOPROGRESS, False)
                             c.setopt(c.XFERINFOFUNCTION, self.__curl_progress)
-                            c.perform()
+                            self.__perform_index_request(c, buffer)
                             response_code = c.getinfo(c.RESPONSE_CODE)
                         except pycurl.error as e:
                             logging.error(
