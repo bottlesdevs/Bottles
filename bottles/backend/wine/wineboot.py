@@ -16,7 +16,7 @@ class WineBoot(WineProgram):
         if status == -2:
             return self.nv_stop_all_processes()
 
-        states = {-1: "force", 0: "-k", 1: "-r", 2: "-s", 3: "-u", 4: "-i"}
+        states = {-1: "force", 0: "-k", 1: "-r", 2: "-s", 3: "-u", 4: "-i", 5: "-e", 11: "-e -f -k -r", 12: "-e -f -k -s"}
         envs = {
             "WINEDEBUG": "-all",
             "DISPLAY": ":3.0",
@@ -30,7 +30,8 @@ class WineBoot(WineProgram):
         if status in (-1, 0) and self.config.Parameters.sandbox:
             self.__terminate_sandbox()
 
-        if status == 0 and not WineServer(self.config).is_alive():
+        # No need to spin up the wineserver if we are trying to stop processes
+        if status in (0, 1, 2, 11, 12) and not WineServer(self.config).is_alive():
             logging.info("There is no running wineserver.")
             return
 
@@ -69,6 +70,9 @@ class WineBoot(WineProgram):
 
     def init(self):
         return self.send_status(4)
+
+    def end_session(self):
+        return self.send_status(5)
 
     def __terminate_sandbox(self):
         from bottles.backend.managers.sandbox import SandboxManager
