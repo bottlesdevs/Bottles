@@ -58,3 +58,24 @@ jobs:
 
       - name: Publish summary
         run: echo "ghcr.io/bottlesdevs/bottles@${{ steps.build.outputs.digest }}" >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: sigstore/cosign-installer@d7543c93d881b35a8faa02e8e3605f69b7a1ce62
+
+      - name: Install cpak-sign
+        run: |
+          curl -fsSLO https://github.com/Containerpak/cpak/releases/latest/download/cpak-sign-linux-amd64
+          install -Dm755 cpak-sign-linux-amd64 /usr/local/bin/cpak-sign
+
+      - name: Sign the package state
+        env:
+          CPAK_REGISTRY_USERNAME: ${{ github.actor }}
+          CPAK_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          repository="$(printf '%s' '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')"
+          cpak-sign state \
+            --origin "github.com/${repository}" \
+            --image "ghcr.io/${repository}:main" \
+            --generation "${{ github.run_number }}"
+          cosign sign-blob --yes --new-bundle-format=true \
+            --bundle cpak-state.sigstore.json cpak-state
+          cpak-sign attach --image "ghcr.io/${repository}"
