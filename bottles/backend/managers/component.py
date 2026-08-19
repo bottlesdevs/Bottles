@@ -17,6 +17,7 @@
 
 import contextlib
 import os
+import sys
 import shutil
 import stat
 import tarfile
@@ -162,6 +163,9 @@ class ComponentManager:
 
             if component[1].get("Category") == "runners":
                 if "soda" in component[0].lower() or "caffe" in component[0].lower():
+                    # Mitigation to avoid mcsoda from appearing on non MacOS systems
+                    if "mcsoda" in component[0].lower() and sys.platform != "darwin":
+                        continue
                     if not is_glibc_min_available():
                         logging.warning(
                             f"{component[0]} was found but it requires "
