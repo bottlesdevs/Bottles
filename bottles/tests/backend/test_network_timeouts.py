@@ -1,3 +1,4 @@
+from pathlib import Path
 from types import SimpleNamespace
 
 import pycurl
@@ -101,9 +102,18 @@ def test_repository_closes_timed_out_request(monkeypatch, tmp_path):
     assert curl.closed is True
 
 
-def test_component_probe_has_timeouts(monkeypatch, tmp_path):
-    curl = FakeCurl(response_code=503)
-    monkeypatch.setattr(component_module.pycurl, "Curl", lambda: curl)
+def test_component_download_uses_stream_downloader(monkeypatch, tmp_path):
+    request = {}
+
+    class DownloadStub:
+        def __init__(self, **kwargs):
+            request.update(kwargs)
+
+        def download(self):
+            Path(request["file"]).write_bytes(b"runner")
+            return Result(True)
+
+    monkeypatch.setattr(component_module, "Downloader", DownloadStub)
     monkeypatch.setattr(Paths, "temp", str(tmp_path))
 
     component = object.__new__(ComponentManager)
@@ -115,9 +125,8 @@ def test_component_probe_has_timeouts(monkeypatch, tmp_path):
         "runner.tar.xz",
     )
 
-    assert result.ok is False
-    assert curl.options[pycurl.CONNECTTIMEOUT] == 10
-    assert curl.options[pycurl.TIMEOUT] == 30
+    assert result.ok is True
+    assert request["url"] == "https://example.test/runner.tar.xz"
 
 
 def test_stream_download_has_timeouts(monkeypatch, tmp_path):
@@ -126,7 +135,9 @@ def test_stream_download_has_timeouts(monkeypatch, tmp_path):
     def get(url, **kwargs):
         request["url"] = url
         request.update(kwargs)
-        return SimpleNamespace(headers={}, content=b"runner")
+        return SimpleNamespace(
+            headers={}, content=b"runner", raise_for_status=lambda: None
+        )
 
     monkeypatch.setattr(downloader_module.requests, "get", get)
 
@@ -142,6 +153,10 @@ def test_stream_download_has_timeouts(monkeypatch, tmp_path):
 def test_stream_timeout_removes_partial_download(monkeypatch, tmp_path):
     class Response:
         headers = {"content-length": "8"}
+
+        @staticmethod
+        def raise_for_status():
+            return None
 
         @staticmethod
         def iter_content(_size):

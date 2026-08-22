@@ -27,8 +27,6 @@ from functools import lru_cache
 from threading import Event
 from typing import Optional
 
-import pycurl
-
 from bottles.backend.downloader import Downloader
 from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
@@ -324,66 +322,24 @@ class ComponentManager:
             return Result(False, message="File is not available in offline mode.")
 
         if not os.path.isfile(file_path):
-            """
-            As some urls can be redirect, we need to take care of this
-            and make sure to use the final url. This check should be
-            skipped for large files (e.g. runners).
-            """
-            c = pycurl.Curl()
-            _proxy = os.environ.get("http_proxy") or os.environ.get("https_proxy")
-            if _proxy:
-                c.setopt(pycurl.PROXY, _proxy)
-            try:
-                c.setopt(c.URL, download_url)  # type: ignore
-                c.setopt(c.FOLLOWLOCATION, True)  # type: ignore
-                c.setopt(c.HTTPHEADER, ["User-Agent: curl/7.79.1"])  # type: ignore
-                c.setopt(c.NOBODY, True)  # type: ignore
-                c.setopt(pycurl.CONNECTTIMEOUT, 10)
-                c.setopt(pycurl.TIMEOUT, 30)
-                c.perform()
+            res = Downloader(
+                url=download_url,
+                file=temp_dest,
+                update_func=update_func,
+                cancel_event=cancel_event,
+            ).download()
 
-                req_code = c.getinfo(c.RESPONSE_CODE)  # type: ignore
-                download_url = c.getinfo(c.EFFECTIVE_URL)  # type: ignore
-            except pycurl.error:
-                logging.exception(f"Failed to download [{download_url}]")
+            if not res.ok:
+                if not external_task:
+                    TaskManager.remove(task_id)
+                return res
+
+            if not os.path.isfile(temp_dest):
                 if not external_task:
                     TaskManager.remove(task_id)
                 return Result(False)
-            finally:
-                c.close()
 
-            if req_code == 200:
-                """
-                If the status code is 200, the resource should be available
-                and the download should be started. Any exceptions return
-                False and the download is removed from the download manager.
-                """
-                res = Downloader(
-                    url=download_url,
-                    file=temp_dest,
-                    update_func=update_func,
-                    cancel_event=cancel_event,
-                ).download()
-
-                if not res.ok:
-                    if not external_task:
-                        TaskManager.remove(task_id)
-                    return res
-
-                if not os.path.isfile(temp_dest):
-                    """Fail if the file is not available in the /temp directory."""
-                    if not external_task:
-                        TaskManager.remove(task_id)
-                    return Result(False)
-
-                just_downloaded = True
-            else:
-                logging.warning(
-                    f"Failed to download [{download_url}] with code: {req_code} != 200"
-                )
-                if not external_task:
-                    TaskManager.remove(task_id)
-                return Result(False)
+            just_downloaded = True
 
         file_path = os.path.join(Paths.temp, existing_file)
         if rename and just_downloaded:

@@ -71,6 +71,7 @@ class Downloader:
                     headers=headers,
                     timeout=(10, 30),
                 )
+                response.raise_for_status()
                 total_size = int(response.headers.get("content-length", 0))
                 received_size = 0
 
@@ -103,10 +104,10 @@ class Downloader:
                 "Your system may have a wrong date/time or wrong certificates."
             )
             return Result(False, message="Download failed due to a SSL error.")
-        except (requests.exceptions.RequestException, OSError):
+        except (requests.exceptions.RequestException, OSError) as error:
             with suppress(OSError):
                 os.remove(self.file)
-            logging.error("Download failed! Check your internet connection.")
+            logging.error(f"Failed to download [{self.url}]: {error}")
             return Result(
                 False, message="Download failed! Check your internet connection."
             )
