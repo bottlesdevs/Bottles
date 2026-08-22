@@ -656,6 +656,36 @@ def test_desktop_entry_exec_uses_flatpak_file_forwarding_for_host(monkeypatch):
     )
 
 
+def test_umu_desktop_entry_exec_uses_game_id(monkeypatch):
+    monkeypatch.delenv("FLATPAK_ID", raising=False)
+    config = {"Name": "UMU-test"}
+    program = {
+        "name": "Test Game",
+        "executable": "game.exe",
+        "umu_game": "e33f87f0-648e-44d2-bb73-78c9f60f77cf",
+    }
+
+    assert ManagerUtils.get_desktop_entry_exec(config, program, for_host=True) == (
+        'bottles-cli umu run --game "e33f87f0-648e-44d2-bb73-78c9f60f77cf"'
+    )
+
+
+def test_umu_desktop_entry_exec_uses_flatpak_cli(monkeypatch):
+    monkeypatch.setenv("FLATPAK_ID", "com.usebottles.bottles")
+    config = {"Name": "UMU-test"}
+    program = {
+        "name": "Test Game",
+        "executable": "game.exe",
+        "umu_game": "e33f87f0-648e-44d2-bb73-78c9f60f77cf",
+    }
+
+    assert ManagerUtils.get_desktop_entry_exec(config, program, for_host=True) == (
+        "flatpak run --command=bottles-cli "
+        '"com.usebottles.bottles" umu run --game '
+        '"e33f87f0-648e-44d2-bb73-78c9f60f77cf"'
+    )
+
+
 def test_has_desktop_entry_detects_dynamic_launcher(monkeypatch):
     config = BottleConfig(Name="Documents")
     program = {"name": "Document Editor", "executable": "editor.exe"}

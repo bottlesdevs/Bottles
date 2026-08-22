@@ -597,6 +597,19 @@ class ManagerUtils:
 
     @staticmethod
     def get_desktop_entry_exec(config, program: dict, for_host: bool = False) -> str:
+        umu_game = program.get("umu_game")
+        if umu_game:
+            command = "bottles-cli"
+            flatpak_id = os.environ.get("FLATPAK_ID")
+            if for_host and flatpak_id:
+                command = "flatpak run --command=bottles-cli {}".format(
+                    ManagerUtils.quote_desktop_entry_exec_arg(flatpak_id)
+                )
+            return "{} umu run --game {}".format(
+                command,
+                ManagerUtils.quote_desktop_entry_exec_arg(umu_game),
+            )
+
         _, mime_types, _ = ManagerUtils.resolve_file_associations(
             program.get("file_extensions", [])
         )

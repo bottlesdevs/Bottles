@@ -708,7 +708,6 @@ class SteamManager:
         SignalManager.send(Signals.GShowUri, Result(data=uri))
 
     def add_shortcut(self, program_name: str, program_path: str):
-        logging.info(f"Adding shortcut for {program_name}")
         if "FLATPAK_ID" in os.environ:
             cmd = "flatpak"
             args = f"run --command=bottles-cli {os.environ['FLATPAK_ID']} run -b {{0}} -p {{1}}"
@@ -716,6 +715,25 @@ class SteamManager:
             cmd = "bottles-cli"
             args = "run -b {0} -p {1}"
 
+        return self.__add_command_shortcut(
+            program_name,
+            cmd,
+            args.format(
+                shlex.quote(self.config.Name), shlex.quote(program_name)
+            ),
+            ManagerUtils.get_bottle_path(self.config),
+            ManagerUtils.extract_icon(self.config, program_name, program_path),
+        )
+
+    def __add_command_shortcut(
+        self,
+        program_name: str,
+        command: str,
+        arguments: str,
+        start_dir: str,
+        icon: str,
+    ):
+        logging.info(f"Adding shortcut for {program_name}")
         if self.userdata_path is None:
             logging.warning("Userdata path is not set")
             return Result(False)
@@ -723,13 +741,11 @@ class SteamManager:
         confs = glob(os.path.join(self.userdata_path, "*/config/"))
         shortcut = {
             "AppName": program_name,
-            "Exe": cmd,
-            "StartDir": ManagerUtils.get_bottle_path(self.config),
-            "icon": ManagerUtils.extract_icon(self.config, program_name, program_path),
+            "Exe": command,
+            "StartDir": start_dir,
+            "icon": icon,
             "ShortcutPath": "",
-            "LaunchOptions": args.format(
-                shlex.quote(self.config.Name), shlex.quote(program_name)
-            ),
+            "LaunchOptions": arguments,
             "IsHidden": 0,
             "AllowDesktopConfig": 1,
             "AllowOverlay": 1,
@@ -760,3 +776,22 @@ class SteamManager:
 
         logging.info(f"Added shortcut for {program_name}")
         return Result(True)
+
+    def add_umu_shortcut(self, game):
+        program = {
+            "name": game.name,
+            "executable": game.executable.name,
+            "umu_game": str(game.id),
+        }
+        config = {"Name": f"UMU-{game.id}"}
+        command = ManagerUtils.get_desktop_entry_exec(
+            config, program, for_host=True
+        )
+        executable, *arguments = shlex.split(command)
+        return self.__add_command_shortcut(
+            game.name,
+            executable,
+            shlex.join(arguments),
+            str(game.executable.parent),
+            "com.usebottles.bottles",
+        )
