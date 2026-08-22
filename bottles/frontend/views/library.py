@@ -137,7 +137,7 @@ class LibraryView(Adw.Bin):
 
     def __delete_entry(self, entry):
         library_manager = LibraryManager()
-        library_manager.remove_from_library(entry.uuid)
+        library_manager.remove_from_library(entry.uuid, entry.config)
 
     def go_back(self, widget=False):
         self.window.main_leaf.navigate(Adw.NavigationDirection.BACK)

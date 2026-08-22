@@ -240,7 +240,7 @@ class LibraryEntry(Gtk.Box):
 
     def __remove_from_library(self):
         library_manager = LibraryManager()
-        library_manager.remove_from_library(self.uuid)
+        library_manager.remove_from_library(self.uuid, getattr(self, "config", None))
 
     def __handle_initialization_failure(self, message: str):
         logging.warning(message, jn=False)
