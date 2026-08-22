@@ -445,7 +445,6 @@ class BottlesWindow(Adw.ApplicationWindow):
                 g_settings=self.settings,
                 check_connection=self.utils_conn.aborted_connections == 0,
             )
-            mng.get_umu_installation()
             return mng
 
         self.show_loading_view()

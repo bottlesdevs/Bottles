@@ -36,9 +36,13 @@ def _descendants(widget):
 
 def test_empty_umu_row_only_offers_install():
     calls = []
+
+    def unexpected_probe():
+        pytest.fail("the UMU launcher must not be probed while building the list")
+
     view = SimpleNamespace(
         window=SimpleNamespace(
-            manager=SimpleNamespace(get_umu_installation=lambda: object()),
+            manager=SimpleNamespace(get_umu_installation=unexpected_probe),
             show_umu_search=lambda *args: calls.append(args),
         )
     )
