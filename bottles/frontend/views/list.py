@@ -301,14 +301,9 @@ class BottleView(Adw.Bin):
             self.update_component_updates_banner()
 
     def __build_umu_empty_row(self):
-        launcher_available = self.window.manager.get_umu_installation() is not None
         row = Adw.ActionRow(
             title=_("No UMU Prefixes Yet"),
-            subtitle=(
-                _("Install a Windows game to create one.")
-                if launcher_available
-                else _("Configure the UMU launcher in Preferences first.")
-            ),
+            subtitle=_("Install a Windows game to create one."),
         )
         actions = Gtk.Box(spacing=6, valign=Gtk.Align.CENTER)
 
