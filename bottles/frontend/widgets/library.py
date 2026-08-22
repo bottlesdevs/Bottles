@@ -74,7 +74,6 @@ class LibraryEntry(Gtk.Box):
     label_no_cover = Gtk.Template.Child()
     label_source = Gtk.Template.Child()
     img_cover = Gtk.Template.Child()
-    revealer_run = Gtk.Template.Child()
     revealer_details = Gtk.Template.Child()
     overlay = Gtk.Template.Child()
 
@@ -482,11 +481,9 @@ class LibraryEntry(Gtk.Box):
         self.__reset_buttons(True)
 
     def __on_motion_enter(self, *args):
-        self.revealer_run.set_reveal_child(True)
         self.revealer_details.set_reveal_child(True)
 
     def __on_motion_leave(self, *args):
-        self.revealer_run.set_reveal_child(False)
         self.revealer_details.set_reveal_child(False)
 
     # hide() and show() are essentialy workarounds to avoid keeping
