@@ -1006,18 +1006,9 @@ the Bottles preferences or choose a new one to run applications."
             dialog.set_response_appearance("ok", Adw.ResponseAppearance.DESTRUCTIVE)
             dialog.connect("response", handle_response)
             dialog.present()
-        elif status == 1:
-            """ 
-            Intercepting 'wineboot -r' (state 1) to send 'wineboot -e -f -k -r' (state 11) instead.
-            Attempts to gracefully close applications before executing the Wine reboot
-            """
-            RunAsync(wineboot.send_status, callback=reset, status=11)
-        elif status == 2:
-            """ 
-            Intercepting 'wineboot -s' (state 2) to send 'wineboot -e -f -k -s' (state 12) instead.
-            Attempts to gracefully close applications before executing the Wine shutdown
-            """
-            RunAsync(wineboot.send_status, callback=reset, status=12)
+        elif status in (1, 2):
+            graceful_status = {1: 11, 2: 12}[status]
+            RunAsync(wineboot.send_status, callback=reset, status=graceful_status)
 
     def __set_steam_rules(self):
         status = False if self.config.Environment == "Steam" else True

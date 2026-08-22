@@ -26,6 +26,8 @@ def test_wineboot_disables_unmanaged_mono(monkeypatch):
     wineboot.update()
     wineboot.restart()
     wineboot.shutdown()
+    wineboot.send_status(11)
+    wineboot.send_status(12)
     wineboot.force()
     wineboot.kill()
 
@@ -34,12 +36,16 @@ def test_wineboot_disables_unmanaged_mono(monkeypatch):
         "wineboot -u /nogui",
         "wineboot -r /nogui",
         "wineboot -s /nogui",
+        "wineboot -e -f -k -r /nogui",
+        "wineboot -e -f -k -s /nogui",
         "wineboot force /nogui",
         "wineboot -k /nogui",
     ]
     assert [launch.get("forced_dll_overrides") for launch in launches] == [
         "mscoree=d",
         "mscoree=d",
+        None,
+        None,
         None,
         None,
         None,

@@ -16,7 +16,17 @@ class WineBoot(WineProgram):
         if status == -2:
             return self.nv_stop_all_processes()
 
-        states = {-1: "force", 0: "-k", 1: "-r", 2: "-s", 3: "-u", 4: "-i", 5: "-e", 11: "-e -f -k -r", 12: "-e -f -k -s"}
+        states = {
+            -1: "force",
+            0: "-k",
+            1: "-r",
+            2: "-s",
+            3: "-u",
+            4: "-i",
+            5: "-e",
+            11: "-e -f -k -r",
+            12: "-e -f -k -s",
+        }
         envs = {
             "WINEDEBUG": "-all",
             "DISPLAY": ":3.0",
