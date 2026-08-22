@@ -132,6 +132,13 @@ def test_managed_runner_takes_precedence_over_steam_copy(tmp_path, monkeypatch):
     assert ManagerUtils.get_runner_path("GE-Proton10-4") == str(managed)
 
 
+def test_managed_proton_runner_satisfies_runner_setup_check():
+    manager = object.__new__(Manager)
+    manager.runners_available = ["GE-Proton10-4", "sys-wine-11.0"]
+
+    assert manager.get_managed_wine_runners() == ["GE-Proton10-4"]
+
+
 def test_manager_cli_checks_connection_when_online(mocker):
     check_connection = mocker.patch.object(
         ConnectionUtils,
