@@ -43,7 +43,6 @@ from bottles.frontend.widgets.component import ComponentEntry, ComponentExpander
 @Gtk.Template(resource_path="/com/usebottles/bottles/preferences.ui")
 class PreferencesWindow(Adw.PreferencesDialog):
     __gtype_name__ = "PreferencesWindow"
-    __registry = []
 
     # region Widgets
     installers_stack = Gtk.Template.Child()
@@ -166,6 +165,7 @@ class PreferencesWindow(Adw.PreferencesDialog):
             row.connect("changed", self.__on_personal_repo_changed, repo_name)
 
         self.__cache_registry = []
+        self.__registry = []
 
         # bind widgets
         self.settings.bind(
