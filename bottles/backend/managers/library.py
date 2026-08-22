@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import filecmp
 import os
 import shutil
 import threading
@@ -163,6 +164,11 @@ class LibraryManager:
 
         try:
             grids_path.mkdir(parents=True, exist_ok=True)
+            for candidate in grids_path.iterdir():
+                if candidate.is_file() and filecmp.cmp(
+                    source_path, candidate, shallow=False
+                ):
+                    return f"{uri_prefix}{candidate.name}"
             shutil.copy2(source_path, destination)
         except OSError as error:
             logging.warning(f"Could not import library thumbnail: {error}")
@@ -200,23 +206,11 @@ class LibraryManager:
         managed_prefix = "umu-grid:" if config is None else "grid:"
         if (
             old_thumbnail
+            and old_thumbnail != thumbnail
             and old_thumbnail.startswith(managed_prefix)
             and not thumbnail_is_shared
         ):
-            old_filename = old_thumbnail.removeprefix(managed_prefix)
-            if os.path.basename(old_filename) == old_filename:
-                if config is None:
-                    old_path = Path(Paths.base) / "umu" / "covers" / old_filename
-                else:
-                    old_path = (
-                        Path(ManagerUtils.get_bottle_path(config))
-                        / "grids"
-                        / old_filename
-                    )
-                try:
-                    os.remove(old_path)
-                except FileNotFoundError:
-                    pass
+            self.__remove_thumbnail(old_thumbnail, config)
 
         return True
 
@@ -260,16 +254,49 @@ class LibraryManager:
 
         return False
 
-    def remove_from_library(self, _uuid: str):
+    @staticmethod
+    def __remove_thumbnail(
+        thumbnail: str, config: Optional[BottleConfig] = None
+    ) -> None:
+        managed_prefix = "umu-grid:" if config is None else "grid:"
+        if not thumbnail.startswith(managed_prefix):
+            return
+
+        filename = thumbnail.removeprefix(managed_prefix)
+        if os.path.basename(filename) != filename:
+            return
+        if config is None:
+            path = Path(Paths.base) / "umu" / "covers" / filename
+        else:
+            path = Path(ManagerUtils.get_bottle_path(config)) / "grids" / filename
+        try:
+            os.remove(path)
+        except FileNotFoundError:
+            pass
+
+    def remove_from_library(
+        self, _uuid: str, config: Optional[BottleConfig] = None
+    ):
         """
         Removes an entry from the library.yml file.
         """
         with self.__lock:
             self.load_library(silent=True)
-            if self.__library.get(_uuid):
+            entry = self.__library.get(_uuid)
+            if entry:
                 logging.info(f"Removing entry from library: {_uuid}")
+                thumbnail = entry.get("thumbnail")
+                thumbnail_is_shared = any(
+                    uuid != _uuid and item.get("thumbnail") == thumbnail
+                    for uuid, item in self.__library.items()
+                )
                 del self.__library[_uuid]
                 self.save_library()
+                if thumbnail and not thumbnail_is_shared:
+                    if entry.get("source") == "umu":
+                        self.__remove_thumbnail(thumbnail)
+                    elif config is not None:
+                        self.__remove_thumbnail(thumbnail, config)
                 return
             logging.warning(f"Entry not found in library, nothing to remove: {_uuid}")
 
