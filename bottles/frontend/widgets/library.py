@@ -24,6 +24,7 @@ from bottles.backend.managers.library import LibraryManager
 from bottles.backend.managers.thumbnail import ThumbnailManager
 from bottles.backend.models.result import Result
 from bottles.backend.umu import UmuRepositoryError
+from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.threading import RunAsync
 from bottles.backend.wine.executor import WineExecutor
 from bottles.backend.wine.winedbg import WineDbg
@@ -64,6 +65,9 @@ class LibraryEntry(Gtk.Box):
     btn_launch_steam = Gtk.Template.Child()
     btn_cover = Gtk.Template.Child()
     btn_settings = Gtk.Template.Child()
+    btn_umu_actions = Gtk.Template.Child()
+    btn_umu_desktop = Gtk.Template.Child()
+    btn_umu_steam = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
     label_name = Gtk.Template.Child()
     label_bottle = Gtk.Template.Child()
@@ -133,6 +137,8 @@ class LibraryEntry(Gtk.Box):
             self.label_bottle.set_text(f"UMU / {detail}")
             self.label_source.set_visible(True)
             self.btn_settings.set_visible(True)
+            self.btn_umu_actions.set_visible(True)
+            self.btn_umu_actions.set_sensitive(self.game.state == "ready")
             executor = self.manager.get_umu_executor(for_launch=False)
             if executor is not None and executor.is_running(self.game):
                 self.btn_remove.set_visible(False)
@@ -196,6 +202,8 @@ class LibraryEntry(Gtk.Box):
         self.btn_launch_steam.connect("clicked", self.run_steam)
         self.btn_cover.connect("clicked", self.__choose_cover)
         self.btn_settings.connect("clicked", self.__show_settings)
+        self.btn_umu_desktop.connect("clicked", self.__add_umu_desktop_entry)
+        self.btn_umu_steam.connect("clicked", self.__add_umu_steam_shortcut)
         self.btn_stop.connect("clicked", self.stop_process)
         self.btn_remove.connect("clicked", self.__remove_entry)
 
@@ -291,6 +299,60 @@ class LibraryEntry(Gtk.Box):
 
     def __show_settings(self, *_args):
         self.window.show_umu_game_settings(str(self.game.id))
+
+    def __umu_launcher_data(self):
+        return (
+            {"Name": f"UMU-{self.game.id}"},
+            {
+                "name": self.game.name,
+                "executable": self.game.executable.name,
+                "umu_game": str(self.game.id),
+            },
+        )
+
+    def __add_umu_desktop_entry(self, *_args):
+        config, program = self.__umu_launcher_data()
+        self.btn_umu_desktop.set_sensitive(False)
+
+        def complete(result):
+            self.btn_umu_desktop.set_sensitive(True)
+            if result.ok:
+                self.window.show_toast(
+                    _('Desktop Entry created for "{0}"').format(self.game.name)
+                )
+            else:
+                self.window.show_toast(
+                    _('Could not create a Desktop Entry for "{0}"').format(
+                        self.game.name
+                    )
+                )
+
+        ManagerUtils.create_desktop_entry(
+            config,
+            program,
+            skip_icon=True,
+            callback=complete,
+        )
+
+    def __add_umu_steam_shortcut(self, *_args):
+        self.btn_umu_steam.set_sensitive(False)
+
+        def complete(result, error=False):
+            self.btn_umu_steam.set_sensitive(True)
+            if not error and result and result.ok:
+                self.window.show_toast(
+                    _('Added "{0}" to Steam').format(self.game.name)
+                )
+            else:
+                self.window.show_toast(
+                    _('Could not add "{0}" to Steam').format(self.game.name)
+                )
+
+        RunAsync(
+            self.manager.steam_manager.add_umu_shortcut,
+            callback=complete,
+            game=self.game,
+        )
 
     def __choose_cover(self, *_args):
         def set_cover(dialog, result):

@@ -1,5 +1,7 @@
 import shlex
 from pathlib import Path
+from types import SimpleNamespace
+from uuid import UUID
 
 import pytest
 
@@ -196,6 +198,35 @@ def test_steam_shortcut_quotes_apostrophes(
         "-p",
         "Alice's Game",
     ]
+
+
+def test_umu_shortcut_uses_umu_cli(tmp_path, monkeypatch):
+    config_dir = tmp_path / "userdata" / "123" / "config"
+    config_dir.mkdir(parents=True)
+    game_id = UUID("e33f87f0-648e-44d2-bb73-78c9f60f77cf")
+    game = SimpleNamespace(
+        id=game_id,
+        name="Test Game",
+        executable=tmp_path / "prefix" / "game.exe",
+    )
+    manager = object.__new__(SteamManager)
+    manager.userdata_path = str(tmp_path / "userdata")
+    monkeypatch.delenv("FLATPAK_ID", raising=False)
+
+    result = manager.add_umu_shortcut(game)
+
+    with open(config_dir / "shortcuts.vdf", "rb") as shortcuts_file:
+        shortcut = vdf.binary_loads(shortcuts_file.read())["shortcuts"]["0"]
+
+    assert result.ok
+    assert shortcut["Exe"] == "bottles-cli"
+    assert shlex.split(shortcut["LaunchOptions"]) == [
+        "umu",
+        "run",
+        "--game",
+        str(game_id),
+    ]
+    assert shortcut["StartDir"] == str(game.executable.parent)
 
 
 def test_list_compatibility_tools_keeps_only_valid_proton(tmp_path, monkeypatch):
