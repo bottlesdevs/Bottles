@@ -99,6 +99,7 @@ class BottlesWindow(Adw.ApplicationWindow):
         )
         self._show_funding = False
         self._funding_dialog = None
+        self._preferences_window = None
 
         show_funding_setting = self.settings.get_boolean("show-funding")
         dismissed = self.data_mgr.get(UserDataKeys.FundingDismissed, False)
@@ -583,7 +584,10 @@ class BottlesWindow(Adw.ApplicationWindow):
         self.main_leaf.set_visible_child(self.page_importer)
 
     def show_prefs_view(self, widget=False, view=0, page=None):
-        preferences_window = PreferencesWindow(self)
+        if self._preferences_window is None:
+            self._preferences_window = PreferencesWindow(self)
+
+        preferences_window = self._preferences_window
         if page:
             preferences_window.set_visible_page_name(page)
         elif view:
