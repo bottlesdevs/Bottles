@@ -509,8 +509,9 @@ def test_set_d7vk_persists_one_candidate_config(monkeypatch, tmp_path):
     assert dumped[0]["D7VK"] == "d7vk-v2.0"
     assert dumped[0]["Parameters"]["d7vk"] is True
     assert result.data["config"] is manager.local_bottles[config.Name]
-    assert config.D7VK == ""
-    assert config.Parameters.d7vk is False
+    assert result.data["config"] is config
+    assert config.D7VK == "d7vk-v2.0"
+    assert config.Parameters.d7vk is True
 
 
 def test_reconcile_d7vk_reverts_an_interrupted_enable(monkeypatch, tmp_path):

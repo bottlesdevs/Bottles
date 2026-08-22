@@ -2698,12 +2698,15 @@ class Manager(metaclass=Singleton):
         if not saved.ok:
             return Result(False, message=saved.message)
 
+        config.D7VK = candidate.D7VK
+        config.Parameters.d7vk = candidate.Parameters.d7vk
+        config.Update_Date = candidate.Update_Date
         if candidate.Name in self.local_bottles:
-            self.local_bottles[candidate.Name] = candidate
-        if candidate.Environment == "Steam":
-            self.steam_manager.update_bottle(candidate)
-        RegistryRuleManager.apply_rules(candidate, trigger="components")
-        return Result(True, data={"config": candidate})
+            self.local_bottles[candidate.Name] = config
+        if config.Environment == "Steam":
+            self.steam_manager.update_bottle(config)
+        RegistryRuleManager.apply_rules(config, trigger="components")
+        return Result(True, data={"config": config})
 
     def __rollback_d7vk(self, previous: BottleConfig, failure: Result) -> Result:
         if not self.reconcile_d7vk(previous):
