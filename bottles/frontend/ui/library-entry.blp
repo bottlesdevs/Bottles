@@ -79,39 +79,28 @@ template $LibraryEntry: Box {
     }
 
     [overlay]
-    Revealer revealer_run {
-      reveal-child: false;
-      transition-type: crossfade;
-      valign: center;
+    Button btn_run {
+      hexpand: true;
+      vexpand: true;
+      tooltip-text: _("Launch");
 
-      Box {
-        valign: center;
-        halign: center;
+      styles [
+        "flat",
+        "library-entry-launch",
+      ]
+    }
 
-        Button btn_run {
-          valign: center;
-          halign: center;
-          label: _("Launch");
+    [overlay]
+    Button btn_launch_steam {
+      visible: false;
+      hexpand: true;
+      vexpand: true;
+      tooltip-text: _("Launch with Steam");
 
-          styles [
-            "osd",
-            "pill",
-          ]
-        }
-
-        [overlay]
-        Button btn_launch_steam {
-          valign: center;
-          halign: center;
-          visible: false;
-          label: _("Launch with Steam");
-
-          styles [
-            "osd",
-            "pill",
-          ]
-        }
-      }
+      styles [
+        "flat",
+        "library-entry-launch",
+      ]
     }
 
     [overlay]
@@ -225,5 +214,6 @@ template $LibraryEntry: Box {
 
   styles [
     "card",
+    "library-entry",
   ]
 }

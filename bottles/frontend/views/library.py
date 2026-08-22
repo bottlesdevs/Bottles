@@ -56,15 +56,18 @@ class LibraryView(Adw.Bin):
         while self.main_flow.get_first_child() is not None:
             self.main_flow.remove(self.main_flow.get_first_child())
 
-        self.items_per_line = len(entries) + 1
+        entry_count = 0
 
         for u, e in entries.items():
             # We suppress exceptions so that it doesn't continue if the init fails
             with contextlib.suppress(Exception):
                 entry = LibraryEntry(self, u, e)
                 self.main_flow.append(entry)
+                entry_count += 1
 
-        self.main_flow.append(LibraryAddEntry(self))
+        if entry_count == 0:
+            self.main_flow.append(LibraryAddEntry(self))
+        self.items_per_line = max(entry_count, 1)
         self.__search()
 
     def __search(self, *_args):
@@ -116,9 +119,11 @@ class LibraryView(Adw.Bin):
         )
 
     def remove_entry(self, entry):
+        previous_items_per_line = self.items_per_line
+
         @GtkUtils.run_in_main_loop
         def undo_callback(*args):
-            self.items_per_line += 1
+            self.items_per_line = previous_items_per_line
             entry.show()
 
         @GtkUtils.run_in_main_loop
@@ -126,7 +131,7 @@ class LibraryView(Adw.Bin):
             self.__delete_entry(entry)
 
         entry.hide()
-        self.items_per_line -= 1
+        self.items_per_line = max(self.items_per_line - 1, 1)
         self.window.show_toast(
             message=_('"{0}" removed from the library.').format(entry.name),
             timeout=5,
@@ -138,6 +143,7 @@ class LibraryView(Adw.Bin):
     def __delete_entry(self, entry):
         library_manager = LibraryManager()
         library_manager.remove_from_library(entry.uuid, entry.config)
+        self.update()
 
     def go_back(self, widget=False):
         self.window.main_leaf.navigate(Adw.NavigationDirection.BACK)

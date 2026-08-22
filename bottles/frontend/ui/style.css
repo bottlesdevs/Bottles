@@ -141,8 +141,27 @@ entry.heading_1 {
 /* Library */
 .library-entry {
   border: 1px solid alpha(currentColor, .07);
-  border-radius: 4px;
+  border-radius: 12px;
   background-color: alpha(currentColor, .04);
+  box-shadow: none;
+}
+
+.library-entry:hover {
+  border-color: alpha(@accent_color, .8);
+  box-shadow: none;
+}
+
+.library-entry-launch {
+  border-radius: 12px;
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+
+.library-entry-launch:hover,
+.library-entry-launch:active {
+  background: transparent;
+  box-shadow: none;
 }
 
 .library-entry-details {
