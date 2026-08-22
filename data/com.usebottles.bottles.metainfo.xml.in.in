@@ -85,6 +85,20 @@
     <display_length compare="ge">768</display_length>
   </requires>
   <releases>
+    <release version="66.8" date="2026-08-22">
+      <description translate="no">
+        <ul>
+          <li>Improved Library cards and added desktop and Steam shortcuts for UMU games</li>
+          <li>Fixed Preferences windows accumulating and slowing down the application</li>
+          <li>Fixed D7VK selections appearing to reset until Bottles was restarted</li>
+          <li>Fixed dependency downloads from servers that reject HEAD requests</li>
+          <li>Accepted managed Proton runners during the first-run setup</li>
+          <li>Delayed UMU directory creation until UMU is used</li>
+          <li>Removed unused Library covers after their final entry is deleted</li>
+          <li>Fixed shutdown and reboot actions, cursor sizing and platform-specific runner visibility</li>
+        </ul>
+      </description>
+    </release>
     <release version="66.7" date="2026-08-16">
       <description translate="no">
         <ul>
