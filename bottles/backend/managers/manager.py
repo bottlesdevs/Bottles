@@ -943,7 +943,6 @@ class Manager(metaclass=Singleton):
             runner
             for runner in self.runners_available
             if not runner.startswith("sys-")
-            and not SteamUtils.is_proton(ManagerUtils.get_runner_path(runner))
         ]
 
     def check_runtimes(self, install_latest: bool = True) -> bool:
