@@ -11,6 +11,21 @@ from bottles.backend.utils import manager
 from bottles.backend.utils.manager import ManagerUtils
 
 
+def test_open_filemanager_encodes_custom_path(monkeypatch):
+    results = []
+    monkeypatch.setattr(
+        manager.SignalManager,
+        "send",
+        lambda _signal, result: results.append(result.data),
+    )
+
+    ManagerUtils.open_filemanager(
+        path_type="custom", custom_path="/media/Games/Bottles Test"
+    )
+
+    assert results == ["file:///media/Games/Bottles%20Test"]
+
+
 class DynamicLauncherPortal:
     def __init__(self):
         self.desktop_entry = None
