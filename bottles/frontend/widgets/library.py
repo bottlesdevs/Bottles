@@ -26,6 +26,7 @@ from bottles.backend.models.result import Result
 from bottles.backend.umu import UmuRepositoryError
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.threading import RunAsync
+from bottles.backend.wine.wineboot import WineBoot
 from bottles.backend.wine.executor import WineExecutor
 from bottles.backend.wine.winedbg import WineDbg
 from bottles.frontend.utils.gtk import GtkUtils
@@ -476,9 +477,18 @@ class LibraryEntry(Gtk.Box):
             RunAsync(executor.terminate, callback=complete, game_or_process=self.game)
             return
 
-        winedbg = WineDbg(self.config)
-        winedbg.kill_process(name=self.program["executable"])
-        self.__reset_buttons(True)
+        self.btn_stop.set_sensitive(False)
+
+        def complete(_result=None, error=False):
+            self.__reset_buttons(True)
+            if error:
+                self.window.show_toast(_("The game could not be stopped."))
+
+        RunAsync(
+            WineBoot(self.config).kill,
+            callback=complete,
+            force_if_stalled=True,
+        )
 
     def __on_motion_enter(self, *args):
         self.revealer_details.set_reveal_child(True)

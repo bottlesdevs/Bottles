@@ -722,6 +722,44 @@ def test_library_entry_resolves_steam_game_without_wine_program():
     assert program is data
 
 
+def test_library_stop_terminates_the_bottle(monkeypatch):
+    calls = []
+    button = SimpleNamespace(
+        set_sensitive=lambda value: calls.append(("button", value))
+    )
+    entry = SimpleNamespace(
+        is_umu=False,
+        config=object(),
+        program={"name": "Example Game", "executable": "game.exe"},
+        window=SimpleNamespace(
+            show_toast=lambda message: calls.append(("toast", message))
+        ),
+        btn_stop=button,
+        _LibraryEntry__reset_buttons=lambda status: calls.append(("reset", status)),
+    )
+
+    class WineBoot:
+        def __init__(self, config):
+            assert config is entry.config
+
+        @staticmethod
+        def kill(force_if_stalled=False):
+            calls.append(("kill", force_if_stalled))
+
+    def run_async(task_func, callback, **kwargs):
+        result = task_func(**kwargs)
+        callback(result)
+
+    monkeypatch.setattr(library_module, "WineBoot", WineBoot)
+    monkeypatch.setattr(library_module, "RunAsync", run_async)
+
+    LibraryEntry.stop_process(entry, None)
+
+    assert ("button", False) in calls
+    assert ("kill", True) in calls
+    assert ("reset", True) in calls
+
+
 def test_steam_library_widget_launches_through_steam():
     launched = []
     config = steam_config()
