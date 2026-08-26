@@ -19,6 +19,20 @@ def test_creates_shared_wine_and_proton_user_profile(tmp_path):
     assert steamuser.resolve() == user_dir
 
 
+def test_profile_alias_uses_real_users_directory_for_linked_home(tmp_path):
+    real_home = tmp_path / "var" / "home"
+    real_home.mkdir(parents=True)
+    linked_home = tmp_path / "home"
+    linked_home.symlink_to(real_home, target_is_directory=True)
+    prefix = linked_home / "mirko" / ".local" / "share" / "bottles" / "Test"
+
+    assert WineUtils.ensure_user_profile_alias(str(prefix), "mirko") is True
+
+    steamuser = prefix / "drive_c" / "users" / "steamuser"
+    assert os.readlink(steamuser) == "mirko"
+    assert steamuser.resolve() == prefix.resolve() / "drive_c" / "users" / "mirko"
+
+
 def test_preserves_existing_steamuser_profile(tmp_path):
     prefix = tmp_path / "prefix"
     steamuser = prefix / "drive_c" / "users" / "steamuser"
