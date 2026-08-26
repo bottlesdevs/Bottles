@@ -90,8 +90,8 @@ class ManagerUtils:
         if path_type == "custom" and custom_path != "":
             path = custom_path
 
-        path = f"file://{path}"
-        SignalManager.send(Signals.GShowUri, Result(data=path))
+        uri = Gio.File.new_for_path(path).get_uri()
+        SignalManager.send(Signals.GShowUri, Result(data=uri))
 
     @staticmethod
     def get_bottle_path(config: BottleConfig) -> str:

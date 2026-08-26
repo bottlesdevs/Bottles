@@ -22,7 +22,8 @@ from bottles.frontend.windows.window import BottlesWindow
 
 
 class PortalStub:
-    calls = []
+    directory_calls = []
+    uri_calls = []
     sandboxed = True
 
     @classmethod
@@ -30,14 +31,18 @@ class PortalStub:
         return cls.sandboxed
 
     def open_uri(self, *args):
-        self.calls.append(args)
+        self.uri_calls.append(args)
+
+    def open_directory(self, *args):
+        self.directory_calls.append(args)
 
 
-def test_show_uri_uses_portal_in_flatpak(monkeypatch):
+def test_show_uri_opens_directory_through_portal_in_flatpak(monkeypatch):
     uri = "file:///tmp/Test"
     parent = object()
     gtk_calls = []
-    PortalStub.calls = []
+    PortalStub.directory_calls = []
+    PortalStub.uri_calls = []
     PortalStub.sandboxed = True
 
     monkeypatch.setenv("FLATPAK_ID", "com.usebottles.bottles")
@@ -47,17 +52,41 @@ def test_show_uri_uses_portal_in_flatpak(monkeypatch):
 
     BottlesWindow.g_show_uri_handler.__wrapped__(SimpleNamespace(), Result(data=uri))
 
-    assert len(PortalStub.calls) == 1
-    assert PortalStub.calls[0][0] is parent
-    assert PortalStub.calls[0][1] == uri
-    assert PortalStub.calls[0][3:] == (None, None)
+    assert len(PortalStub.directory_calls) == 1
+    assert PortalStub.directory_calls[0][0] is parent
+    assert PortalStub.directory_calls[0][1] == uri
+    assert PortalStub.directory_calls[0][3:] == (None, None)
+    assert not PortalStub.uri_calls
+    assert not gtk_calls
+
+
+def test_show_uri_opens_web_uri_through_portal_in_flatpak(monkeypatch):
+    uri = "https://usebottles.com"
+    parent = object()
+    gtk_calls = []
+    PortalStub.directory_calls = []
+    PortalStub.uri_calls = []
+
+    monkeypatch.setenv("FLATPAK_ID", "com.usebottles.bottles")
+    monkeypatch.setattr(window.Xdp, "Portal", PortalStub)
+    monkeypatch.setattr(window.XdpGtk4, "parent_new_gtk", lambda _window: parent)
+    monkeypatch.setattr(window.Gtk, "show_uri", lambda *args: gtk_calls.append(args))
+
+    BottlesWindow.g_show_uri_handler.__wrapped__(SimpleNamespace(), Result(data=uri))
+
+    assert len(PortalStub.uri_calls) == 1
+    assert PortalStub.uri_calls[0][0] is parent
+    assert PortalStub.uri_calls[0][1] == uri
+    assert PortalStub.uri_calls[0][3:] == (None, None)
+    assert not PortalStub.directory_calls
     assert not gtk_calls
 
 
 def test_show_uri_keeps_native_handler_in_other_sandboxes(monkeypatch):
     uri = "https://usebottles.com"
     gtk_calls = []
-    PortalStub.calls = []
+    PortalStub.directory_calls = []
+    PortalStub.uri_calls = []
     PortalStub.sandboxed = True
 
     monkeypatch.delenv("FLATPAK_ID", raising=False)
@@ -68,13 +97,15 @@ def test_show_uri_keeps_native_handler_in_other_sandboxes(monkeypatch):
 
     assert len(gtk_calls) == 1
     assert gtk_calls[0][1] == uri
-    assert not PortalStub.calls
+    assert not PortalStub.directory_calls
+    assert not PortalStub.uri_calls
 
 
 def test_show_uri_keeps_native_handler_outside_sandbox(monkeypatch):
     uri = "https://usebottles.com"
     gtk_calls = []
-    PortalStub.calls = []
+    PortalStub.directory_calls = []
+    PortalStub.uri_calls = []
     PortalStub.sandboxed = False
 
     monkeypatch.delenv("FLATPAK_ID", raising=False)
@@ -85,4 +116,5 @@ def test_show_uri_keeps_native_handler_outside_sandbox(monkeypatch):
 
     assert len(gtk_calls) == 1
     assert gtk_calls[0][1] == uri
-    assert not PortalStub.calls
+    assert not PortalStub.directory_calls
+    assert not PortalStub.uri_calls
