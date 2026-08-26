@@ -139,7 +139,7 @@ class WineUtils:
                         raise ValueError
                     continue
 
-                relative_target = os.path.relpath(profile_target, users_dir)
+                relative_target = os.path.relpath(profile_target, users_real)
                 os.symlink(relative_target, profile_path)
                 created_paths.append(profile_path)
         except (OSError, ValueError):
