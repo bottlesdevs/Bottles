@@ -191,6 +191,7 @@ class RepositoryManager:
                             c.setopt(c.TIMEOUT, 10)
                             c.setopt(c.NOPROGRESS, False)
                             c.setopt(c.XFERINFOFUNCTION, self.__curl_progress)
+                            c.setopt(pycurl.USERAGENT,f"Bottles/{APP_VERSION}")
                             self.__perform_index_request(c, buffer)
                             response_code = c.getinfo(c.RESPONSE_CODE)
                         except pycurl.error as e:

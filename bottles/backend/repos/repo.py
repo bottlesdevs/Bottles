@@ -25,6 +25,7 @@ import pycurl
 from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
 from bottles.backend.state import EventManager, Events
+from bottles.backend.params import APP_VERSION
 from bottles.backend.utils import yaml
 from bottles.backend.utils.threading import RunAsync
 
@@ -82,6 +83,7 @@ class Repo:
                 c.setopt(c.URL, index)
                 c.setopt(c.FOLLOWLOCATION, True)
                 c.setopt(c.WRITEDATA, buffer)
+                c.setopt(pycurl.USERAGENT,f"Bottles/{APP_VERSION}")
                 c.setopt(pycurl.CONNECTTIMEOUT, 10)
                 c.setopt(pycurl.TIMEOUT, 30)
                 c.perform()
@@ -129,6 +131,7 @@ class Repo:
                 c.setopt(c.URL, url)
                 c.setopt(c.FOLLOWLOCATION, True)
                 c.setopt(c.WRITEDATA, buffer)
+                c.setopt(pycurl.USERAGENT,f"Bottles/{APP_VERSION}")
                 c.setopt(pycurl.CONNECTTIMEOUT, 10)
                 c.setopt(pycurl.TIMEOUT, 30)
                 c.perform()
