@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   packages: write
   attestations: write
   id-token: write
@@ -59,6 +59,21 @@ jobs:
       - name: Publish summary
         run: echo "ghcr.io/bottlesdevs/bottles@${{ steps.build.outputs.digest }}" >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Pin published image
+        env:
+          IMAGE_DIGEST: ${{ steps.build.outputs.digest }}
+        run: |
+          repository="$(jq -r '.image | split("@")[0]' cpak.json)"
+          jq --arg image "${repository}@${IMAGE_DIGEST}" '.image = $image' cpak.json > cpak.json.next
+          mv cpak.json.next cpak.json
+          if ! git diff --quiet -- cpak.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add cpak.json
+            git commit -m "chore: pin published image [skip ci]"
+            git push origin "HEAD:${{ github.event.repository.default_branch }}"
+          fi
+
       - uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6
 
       - name: Install cpak-sign
@@ -74,7 +89,6 @@ jobs:
           repository="$(printf '%s' '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')"
           cpak-sign state \
             --origin "github.com/${repository}" \
-            --image "ghcr.io/${repository}:main" \
             --generation "${{ github.run_number }}"
           cosign sign-blob --yes --new-bundle-format=true \
             --bundle cpak-state.sigstore.json cpak-state

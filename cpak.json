@@ -1,13 +1,17 @@
 {
-  "$schema": "https://raw.githubusercontent.com/Containerpak/cpak/v2/schema/manifest-v2.json",
-  "manifest_version": "2.0",
+  "$schema": "https://raw.githubusercontent.com/Containerpak/cpak/v2/schema/manifest-v3.json",
+  "manifest_version": "3.0",
   "name": "Bottles",
   "description": "Run and manage your Windows applications on Linux with Wine and Proton.",
   "version": "66.9",
-  "image": "ghcr.io/bottlesdevs/bottles:main",
-  "image_ref": "source",
-  "binaries": ["/usr/bin/bottles", "/usr/bin/bottles-cli"],
-  "desktop_entries": ["/usr/share/applications/com.usebottles.bottles.desktop"],
+  "image": "ghcr.io/bottlesdevs/bottles@sha256:ecc2c3c88c4d2266d21e4a1a12ef5a637e3eccc2b024be381c8523c594bf654b",
+  "binaries": [
+    "/usr/bin/bottles",
+    "/usr/bin/bottles-cli"
+  ],
+  "desktop_entries": [
+    "/usr/share/applications/com.usebottles.bottles.desktop"
+  ],
   "dependencies": [
     {
       "origin": "github.com/containerpak/umu"
@@ -16,16 +20,11 @@
   "addons": [],
   "idle_time": 0,
   "override": {
-    "socketX11": true,
     "socketWayland": true,
     "socketPulseAudio": true,
-    "socketSessionBus": true,
-    "socketSystemBus": false,
     "socketSshAgent": false,
     "socketCups": false,
     "socketGpgAgent": false,
-    "socketAtSpiBus": false,
-    "socketBluetooth": false,
     "deviceDri": false,
     "deviceKvm": false,
     "deviceShm": false,
@@ -38,7 +37,10 @@
     "notification": true,
     "openURI": true,
     "filesystem": [
-      {"path": "home", "access": "read-write"}
+      {
+        "path": "home",
+        "access": "read-write"
+      }
     ],
     "env": [
       "PATH=/app/bin:/usr/bin:/usr/local/bin:/usr/lib/extensions/vulkan/MangoHud/bin/:/usr/lib/extensions/vulkan/OBSVkCapture/bin/:/usr/lib/extensions/vulkan/gamescope/bin/",
@@ -51,7 +53,6 @@
     "memoryMaxMB": 0,
     "cpuQuota": 0,
     "pidsMax": 0,
-    "asRoot": false,
-    "allowedHostCommands": []
+    "asRoot": false
   }
 }
