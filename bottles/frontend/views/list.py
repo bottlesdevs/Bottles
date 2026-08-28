@@ -409,6 +409,7 @@ class BottleView(Adw.Bin):
 
     def show_page(self, page: str) -> None:
         if config := self.window.manager.local_bottles.get(page):
+            self.window.page_details.view_preferences.update_combo_components()
             self.window.show_details_view(config=config)
 
     def disable_bottle(self, config):
