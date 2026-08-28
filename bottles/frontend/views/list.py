@@ -148,7 +148,7 @@ class BottlesBottleRow(Adw.ActionRow):
                 _executor = WineExecutor(
                     self.config, exec_path=run_path, sandbox_override=sandbox_override
                 )
-                RunAsync(_executor.run)
+                RunAsync(_executor.run, self._on_executable_finished)
 
             guard_sandbox_launch(self.window, self.config, path, proceed)
 
@@ -164,6 +164,10 @@ class BottlesBottleRow(Adw.ActionRow):
         dialog.set_modal(True)
         dialog.connect("response", set_path)
         dialog.show()
+
+    def _on_executable_finished(self, _result=None, _error=None):
+        """Refresh discovered programs after an executable exits."""
+        self.manager.get_programs(self.config, force_update=True)
 
     def show_details(self, widget=None, config=None):
         if config is None:

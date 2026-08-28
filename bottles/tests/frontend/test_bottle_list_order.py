@@ -6,6 +6,7 @@ from gi.repository import Gio
 Gio.resources_register(Gio.Resource.load("/app/share/bottles/bottles.gresource"))
 
 from bottles.frontend.views.list import (  # noqa: E402
+    BottlesBottleRow,
     BottleView,
     _bottle_order_id,
     _ordered_bottles,
@@ -51,6 +52,23 @@ def test_replace_group_order_keeps_unavailable_and_other_group_entries():
         "bottle:Beta",
         "bottle:Alpha",
     ]
+
+
+def test_bottle_row_refreshes_programs_after_executable_finishes():
+    calls = []
+    config = _config("Test")
+    row = SimpleNamespace(
+        config=config,
+        manager=SimpleNamespace(
+            get_programs=lambda called_config, **kwargs: calls.append(
+                (called_config, kwargs)
+            )
+        ),
+    )
+
+    BottlesBottleRow._on_executable_finished(row)
+
+    assert calls == [(config, {"force_update": True})]
 
 
 def test_reorder_bottle_updates_only_its_group():
