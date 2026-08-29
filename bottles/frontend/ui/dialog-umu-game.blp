@@ -168,6 +168,11 @@ template $UmuGameDialog: Adw.Dialog {
             ]
           }
         }
+
+        Adw.SwitchRow switch_sandbox {
+          title: _("Dedicated Sandbox");
+          subtitle: _("Restrict this game to its prefix, files, and UMU runtime data.");
+        }
       }
 
       Adw.PreferencesGroup {

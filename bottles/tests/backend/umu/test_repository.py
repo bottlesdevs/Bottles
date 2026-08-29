@@ -24,6 +24,7 @@ def test_repository_round_trip(tmp_path):
         arguments=("-nostartupmovies", "value with spaces"),
         working_directory=tmp_path / "game files",
         environment={"PROTON_ENABLE_NVAPI": "1"},
+        sandbox=True,
     )
 
     path = repository.save(game)
@@ -32,9 +33,27 @@ def test_repository_round_trip(tmp_path):
     assert path == repository.config_path(game.id)
     assert loaded == game
     assert loaded.environment == {"PROTON_ENABLE_NVAPI": "1"}
+    assert loaded.sandbox is True
     assert loaded.library_id == f"umu:{game.id}"
     assert repository.prefix_path(game) == repository.prefixes_root / str(game.id)
     assert repository.list_games() == [game]
+
+
+def test_repository_rejects_invalid_sandbox_value(tmp_path):
+    repository = UmuGameRepository(tmp_path / "umu")
+    game = repository.new_game(
+        "Invalid sandbox",
+        "/games/invalid.exe",
+        proton="UMU-Proton",
+    )
+    data = game.to_dict()
+    data["sandbox"] = "yes"
+    path = repository.config_path(game.id)
+    path.parent.mkdir(parents=True)
+    path.write_text(yaml.dump(data, sort_keys=False), encoding="utf-8")
+
+    with pytest.raises(UmuRepositoryError, match="Cannot load"):
+        repository.load(game.id)
 
 
 def test_repository_preserves_unknown_fields(tmp_path):

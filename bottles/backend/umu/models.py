@@ -117,6 +117,7 @@ class UmuGame:
     arguments: tuple[str, ...] = ()
     working_directory: Path | None = None
     environment: dict[str, str] = field(default_factory=dict)
+    sandbox: bool = False
     extra: dict[str, Any] = field(default_factory=dict)
 
     def __post_init__(self):
@@ -167,6 +168,8 @@ class UmuGame:
             object.__setattr__(self, "working_directory", working_directory_path)
 
         object.__setattr__(self, "environment", _clean_environment(self.environment))
+        if not isinstance(self.sandbox, bool):
+            raise UmuModelError("Invalid dedicated sandbox flag")
         if not isinstance(self.extra, Mapping):
             raise UmuModelError("Invalid game metadata")
         object.__setattr__(self, "extra", deepcopy(dict(self.extra)))
@@ -200,6 +203,7 @@ class UmuGame:
             "arguments": values.pop("arguments", ()),
             "working_directory": values.pop("working_directory", None),
             "environment": values.pop("environment", {}),
+            "sandbox": values.pop("sandbox", False),
         }
         return cls(**known, extra=values)
 
@@ -221,6 +225,7 @@ class UmuGame:
                     str(self.working_directory) if self.working_directory else None
                 ),
                 "environment": dict(self.environment),
+                "sandbox": self.sandbox,
             }
         )
         return data

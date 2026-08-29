@@ -114,7 +114,10 @@ class SandboxManager:
             _cmd.append("--clearenv")
 
         if self.envs:
-            _cmd += [f"--setenv {k} {shlex.quote(v)}" for k, v in self.envs.items()]
+            _cmd += [
+                f"--setenv {shlex.quote(k)} {shlex.quote(v)}"
+                for k, v in self.envs.items()
+            ]
 
         if self.share_host_ro:
             _cmd.append("--ro-bind / /")
@@ -161,7 +164,9 @@ class SandboxManager:
         _cmd = ["flatpak-spawn", "--sandbox", "--watch-bus"]
 
         if self.envs and not self.clear_env:
-            _cmd += [f"--env={k}={shlex.quote(v)}" for k, v in self.envs.items()]
+            _cmd += [
+                shlex.quote(f"--env={key}={value}") for key, value in self.envs.items()
+            ]
 
         if self.chdir:
             quoted_dir = shlex.quote(self.chdir)

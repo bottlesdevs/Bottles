@@ -127,6 +127,15 @@ template $UmuAddGameDialog: Adw.Dialog {
       }
 
       Adw.PreferencesGroup {
+        title: _("Security");
+
+        Adw.SwitchRow switch_sandbox {
+          title: _("Dedicated Sandbox");
+          subtitle: _("Restrict this game to its prefix, game files, and the UMU runtime.");
+        }
+      }
+
+      Adw.PreferencesGroup {
         Adw.ActionRow {
           title: _("Separate Game Environment");
           subtitle: _("This game uses its own Proton prefix and does not appear as a Bottle.");

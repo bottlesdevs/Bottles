@@ -22,7 +22,12 @@ Gio.resources_register(Gio.Resource.load(str(resource_path)))
 from bottles.frontend.views.list import BottleView
 from bottles.frontend.widgets.umu import UmuPrefixRow
 from bottles.frontend.windows import umu as umu_module
-from bottles.frontend.windows.umu import UmuDependencyDialog, UmuSearchDialog
+from bottles.frontend.windows.umu import (
+    UmuAddGameDialog,
+    UmuDependencyDialog,
+    UmuInstallDialog,
+    UmuSearchDialog,
+)
 from bottles.frontend.windows.window import BottlesWindow
 
 
@@ -225,6 +230,90 @@ def test_add_game_prefix_button_opens_folder_selection(monkeypatch):
     dialog.btn_prefix.emit("clicked")
 
     assert calls == ["prefix"]
+
+
+def test_add_game_passes_dedicated_sandbox_to_repository(monkeypatch):
+    calls = []
+    game = SimpleNamespace(extra={})
+
+    class Catalog:
+        @staticmethod
+        def list_choices(**_kwargs):
+            return []
+
+        @staticmethod
+        def pin_value(value):
+            return value
+
+    class Repository:
+        def new_game(self, *args, **kwargs):
+            calls.append(("new", args, kwargs))
+            return game
+
+        def update(self, current, **changes):
+            calls.append(("update", current, changes))
+            return current
+
+    class Library:
+        def sync_umu_game(self, current):
+            calls.append(("sync", current))
+
+    window = SimpleNamespace(
+        manager=SimpleNamespace(
+            umu_repository=Repository(),
+            umu_proton_catalog=Catalog(),
+        ),
+        settings=SimpleNamespace(
+            get_string=lambda key: ("GE-Proton" if key == "umu-proton" else "bottles")
+        ),
+        launch_umu_installer=lambda current: calls.append(("launch", current)),
+    )
+    monkeypatch.setattr(umu_module, "LibraryManager", Library)
+    dialog = UmuAddGameDialog(window)
+    dialog.entry_name.set_text("Sandboxed game")
+    dialog.entry_game_id.set_text("umu-default")
+    dialog.executable = "/games/setup.exe"
+    dialog.switch_sandbox.set_active(True)
+    dialog.btn_add.set_sensitive(True)
+
+    dialog._UmuAddGameDialog__add()
+
+    assert calls[0][2]["sandbox"] is True
+    assert ("launch", game) in calls
+
+
+def test_install_wizard_passes_dedicated_sandbox_to_repository():
+    calls = []
+    game = SimpleNamespace(extra={})
+
+    class Repository:
+        def new_game(self, *args, **kwargs):
+            calls.append(("new", args, kwargs))
+            return game
+
+        def update(self, current, **changes):
+            calls.append(("update", current, changes))
+            return current
+
+    dialog = SimpleNamespace(
+        window=SimpleNamespace(
+            manager=SimpleNamespace(
+                umu_proton_catalog=SimpleNamespace(pin_value=lambda value: value)
+            ),
+            settings=SimpleNamespace(get_string=lambda _key: "bottles"),
+        ),
+        repository=Repository(),
+        entry_name=SimpleNamespace(get_text=lambda: "Sandboxed game"),
+        installer="/games/setup.exe",
+        proton="GE-Proton",
+        database_entry=SimpleNamespace(umu_id="umu-default", store="none"),
+        switch_sandbox=SimpleNamespace(get_active=lambda: True),
+        _UmuInstallDialog__portable=False,
+    )
+
+    UmuInstallDialog._UmuInstallDialog__new_game(dialog, "installing")
+
+    assert calls[0][2]["sandbox"] is True
 
 
 def test_umu_dependency_dialog_installs_without_a_second_step(monkeypatch):

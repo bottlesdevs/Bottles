@@ -62,6 +62,7 @@ class UmuGameRepository:
         arguments: tuple[str, ...] | list[str] = (),
         working_directory: str | Path | None = None,
         environment: dict[str, str] | None = None,
+        sandbox: bool = False,
     ) -> UmuGame:
         item_id = uuid4()
         prefix = UmuPrefix(path=f"prefixes/{item_id}")
@@ -78,6 +79,7 @@ class UmuGameRepository:
                 Path(working_directory) if working_directory is not None else None
             ),
             environment=environment or {},
+            sandbox=sandbox,
         )
 
     def _prepare_game_directory(self, game: UmuGame) -> Path:
