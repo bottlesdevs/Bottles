@@ -3,9 +3,12 @@
 import os
 from pathlib import Path
 from types import SimpleNamespace
+from unittest.mock import Mock
 
 import pytest
 from gi.repository import Gio
+
+from bottles.backend.models.result import Result
 
 resource_path = Path(
     os.environ.get("BOTTLES_TEST_RESOURCE", "/app/share/bottles/bottles.gresource")
@@ -48,3 +51,25 @@ def test_preferences_window_is_reused(monkeypatch):
     assert len(PreferencesWindowStub.instances) == 1
     assert window._preferences_window.page_name == "umu"
     assert window._preferences_window.presented_with is window
+
+
+@pytest.mark.parametrize(
+    ("force_offline", "online", "revealed"),
+    [
+        (True, False, False),
+        (False, False, True),
+        (False, True, False),
+    ],
+)
+def test_offline_banner_respects_forced_offline_mode(force_offline, online, revealed):
+    banner = Mock()
+    window = SimpleNamespace(
+        settings=SimpleNamespace(
+            get_boolean=lambda key: force_offline if key == "force-offline" else False
+        ),
+        banner_offline=banner,
+    )
+
+    BottlesWindow.network_changed_handler.__wrapped__(window, Result(online))
+
+    banner.set_revealed.assert_called_once_with(revealed)
