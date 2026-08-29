@@ -1,19 +1,22 @@
 from dataclasses import replace
+from uuid import uuid4
 
 import pytest
 
 from bottles.backend.umu import (
     ReservedEnvironmentError,
     UmuExecutor,
+    UmuGame,
     UmuGameRepository,
     UmuInstallation,
+    UmuPrefix,
     UmuProcessError,
     UmuWinetricksError,
 )
 from bottles.backend.umu import executor as executor_module
 
 
-def _game(repository, tmp_path, environment=None):
+def _game(repository, tmp_path, environment=None, sandbox=False):
     return repository.new_game(
         "Example",
         tmp_path / "Game Files" / "game;name.exe",
@@ -23,6 +26,7 @@ def _game(repository, tmp_path, environment=None):
         arguments=("--option", "value with spaces", "$(touch ignored)"),
         working_directory=tmp_path / "Game Files",
         environment=environment,
+        sandbox=sandbox,
     )
 
 
@@ -183,6 +187,61 @@ def test_run_uses_popen_without_shell(monkeypatch, tmp_path):
     assert kwargs["encoding"] == "utf-8"
     assert kwargs["errors"] == "replace"
     assert kwargs["cwd"] == str(game.working_directory.resolve())
+
+
+def test_run_uses_dedicated_sandbox_when_enabled(monkeypatch, tmp_path):
+    repository = UmuGameRepository(tmp_path / "umu")
+    game_folder = tmp_path / "Game Files"
+    game_folder.mkdir()
+    game = _game(repository, tmp_path, sandbox=True)
+    executor = _executor(
+        repository,
+        tmp_path,
+        {"DISPLAY": ":1", "XDG_DATA_HOME": str(tmp_path / "data")},
+    )
+
+    class Process:
+        pid = 123
+
+        @staticmethod
+        def poll():
+            return None
+
+    calls = []
+
+    def popen(argv, **kwargs):
+        calls.append((argv, kwargs))
+        return Process()
+
+    monkeypatch.setattr(executor_module.subprocess, "Popen", popen)
+
+    executor.run(game)
+
+    argv, kwargs = calls[0]
+    prefix = repository.prefix_path(game)
+    assert argv.startswith("bwrap --clearenv")
+    assert f"--bind {prefix} {prefix}" in argv
+    assert f"--bind {tmp_path / 'data' / 'umu'} {tmp_path / 'data' / 'umu'}" in argv
+    assert "--unshare-net" in argv
+    assert "'$(touch ignored)'" in argv
+    assert kwargs["shell"] is True
+    assert kwargs["start_new_session"] is True
+
+
+def test_dedicated_sandbox_rejects_filesystem_root_as_prefix(monkeypatch, tmp_path):
+    game = UmuGame(
+        id=uuid4(),
+        name="Unsafe prefix",
+        executable=tmp_path / "game.exe",
+        prefix=UmuPrefix("/", managed=False),
+        proton="UMU-Proton",
+        sandbox=True,
+    )
+    executor = _executor(UmuGameRepository(tmp_path / "umu"), tmp_path)
+    monkeypatch.setattr(executor_module, "prefix_has_process", lambda _prefix: False)
+
+    with pytest.raises(UmuProcessError, match="filesystem root"):
+        executor.run(game)
 
 
 @pytest.mark.parametrize(

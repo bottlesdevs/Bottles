@@ -694,6 +694,7 @@ class UmuInstallDialog(Adw.Dialog):
     row_executable = Gtk.Template.Child()
     row_executable_validation = Gtk.Template.Child()
     row_prefix = Gtk.Template.Child()
+    switch_sandbox = Gtk.Template.Child()
 
     def __init__(
         self,
@@ -933,6 +934,7 @@ class UmuInstallDialog(Adw.Dialog):
             proton=proton,
             game_id=self.database_entry.umu_id,
             store=self.database_entry.store,
+            sandbox=self.switch_sandbox.get_active(),
         )
         dependency_tool = self.window.settings.get_string("umu-dependency-tool")
         extra = {
@@ -1174,6 +1176,7 @@ class UmuAddGameDialog(Adw.Dialog):
     btn_proton = Gtk.Template.Child()
     entry_game_id = Gtk.Template.Child()
     combo_store = Gtk.Template.Child()
+    switch_sandbox = Gtk.Template.Child()
     modes = Gtk.Template.Child()
     stores = Gtk.Template.Child()
 
@@ -1363,6 +1366,7 @@ class UmuAddGameDialog(Adw.Dialog):
             proton=proton,
             game_id=self.entry_game_id.get_text().strip(),
             store=_selected_id(self.combo_store, STORE_IDS),
+            sandbox=self.switch_sandbox.get_active(),
         )
         dependency_tool = self.window.settings.get_string("umu-dependency-tool")
         extra = {
@@ -1412,6 +1416,7 @@ class UmuGameDialog(Adw.Dialog):
     btn_working_directory = Gtk.Template.Child()
     btn_working_directory_reset = Gtk.Template.Child()
     row_environment = Gtk.Template.Child()
+    switch_sandbox = Gtk.Template.Child()
     combo_dependency_tool = Gtk.Template.Child()
     dependency_tools = Gtk.Template.Child()
     row_dependency_selection = Gtk.Template.Child()
@@ -1438,6 +1443,7 @@ class UmuGameDialog(Adw.Dialog):
         )
         self.arguments = tuple(game.arguments)
         self.environment = dict(game.environment)
+        self.switch_sandbox.set_active(game.sandbox)
         self.installed_dependency_rows = []
 
         for label in _store_labels():
@@ -1735,6 +1741,7 @@ class UmuGameDialog(Adw.Dialog):
                     Path(self.working_directory) if self.working_directory else None
                 ),
                 environment=self.environment,
+                sandbox=self.switch_sandbox.get_active(),
                 extra=extra,
                 state=state,
             )

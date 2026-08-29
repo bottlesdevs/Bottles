@@ -311,6 +311,9 @@ class CLI:
         umu_parser.add_argument("--game-id", default="umu-default")
         umu_parser.add_argument("--store", choices=UMU_STORE_IDS, default="none")
         umu_parser.add_argument("--proton", help="Proton version or path")
+        umu_parser.add_argument(
+            "--sandbox", action="store_true", help="Use a dedicated sandbox"
+        )
 
         self.__process_args()
 
@@ -436,6 +439,7 @@ class CLI:
                 proton=proton,
                 game_id=self.args.game_id,
                 store=self.args.store,
+                sandbox=self.args.sandbox,
             )
             extra = {
                 **game.extra,

@@ -1,5 +1,6 @@
 import os
 import re
+import shlex
 import signal
 import subprocess
 import sys
@@ -11,6 +12,7 @@ from pathlib import Path
 from uuid import UUID
 
 from bottles.backend.globals import Paths
+from bottles.backend.managers.sandbox import SandboxManager
 from bottles.backend.umu.models import UmuGame
 from bottles.backend.umu.processes import prefix_has_process
 from bottles.backend.umu.proton import UmuProtonCatalog
@@ -222,11 +224,17 @@ class UmuExecutor:
                 del self._processes[game.id]
             if prefix_has_process(game.prefix.resolve(self.data_root)):
                 raise UmuProcessError(f"The UMU prefix is already in use: {game.id}")
+            argv: list[str] | str = list(command.argv)
+            shell = False
+            if game.sandbox:
+                sandbox = self._sandbox_manager(game, command)
+                argv = sandbox.get_cmd(shlex.join(command.argv))
+                shell = True
             process = subprocess.Popen(
-                list(command.argv),
+                argv,
                 cwd=str(command.cwd) if command.cwd is not None else None,
                 env=command.env.copy(),
-                shell=False,
+                shell=shell,
                 start_new_session=True,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.STDOUT,
@@ -244,6 +252,38 @@ class UmuExecutor:
             )
             tracked.reader.start()
         return process
+
+    def _sandbox_manager(self, game: UmuGame, command: UmuCommand) -> SandboxManager:
+        prefix = game.prefix.resolve(self.data_root)
+        prefix.mkdir(parents=True, exist_ok=True)
+
+        data_home = Path(
+            self.base_environment.get("XDG_DATA_HOME", Paths.xdg_data_home)
+        ).expanduser()
+        runtime = data_home.joinpath("umu").resolve(strict=False)
+        runtime.mkdir(parents=True, exist_ok=True)
+
+        sandbox_cwd = (command.cwd or prefix).resolve(strict=False)
+        required_writable_paths = (prefix, runtime, sandbox_cwd)
+        if any(path == Path(path.anchor) for path in required_writable_paths):
+            raise UmuProcessError(
+                "Dedicated sandbox paths cannot use the filesystem root"
+            )
+
+        writable_paths = set(required_writable_paths)
+        executable_directory = self._absolute_path(game.executable).parent
+        if (
+            executable_directory != Path(executable_directory.anchor)
+            and executable_directory.is_dir()
+        ):
+            writable_paths.add(executable_directory)
+
+        return SandboxManager(
+            envs=command.env,
+            chdir=str(sandbox_cwd),
+            clear_env=True,
+            share_paths_rw=[str(path) for path in sorted(writable_paths)],
+        )
 
     def run(self, game: UmuGame) -> subprocess.Popen[str]:
         return self._start(game, self.prepare(game))

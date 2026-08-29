@@ -176,6 +176,15 @@ template $UmuInstallDialog: Adw.Dialog {
               }
             }
           }
+
+          Adw.PreferencesGroup {
+            title: _("Security");
+
+            Adw.SwitchRow switch_sandbox {
+              title: _("Dedicated Sandbox");
+              subtitle: _("Restrict this game to its prefix, files, and UMU runtime data.");
+            }
+          }
         };
       }
 

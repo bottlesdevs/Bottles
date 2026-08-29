@@ -126,6 +126,16 @@ def test_flatpak_clear_environment_quotes_variable_names(monkeypatch):
     assert "'VALUE; touch /tmp/not-run=content'" in command
 
 
+def test_bwrap_quotes_environment_variable_names(monkeypatch):
+    monkeypatch.delenv("FLATPAK_ID", raising=False)
+
+    command = SandboxManager(
+        envs={"VALUE; touch /tmp/not-run": "content"},
+    ).get_cmd("true")
+
+    assert "--setenv 'VALUE; touch /tmp/not-run' content" in command
+
+
 def test_flatpak_usb_flag_requires_capability(monkeypatch):
     monkeypatch.setenv("FLATPAK_ID", "com.usebottles.bottles")
     monkeypatch.setattr(
