@@ -146,7 +146,8 @@ entry.heading_1 {
   box-shadow: none;
 }
 
-.library-entry:hover {
+.library-entry:hover,
+.library-entry:focus-within {
   border-color: alpha(@accent_color, .8);
   box-shadow: none;
 }
@@ -159,9 +160,12 @@ entry.heading_1 {
 }
 
 .library-entry-launch:hover,
-.library-entry-launch:active {
+.library-entry-launch:active,
+.library-entry-launch:focus,
+.library-entry-launch:focus-visible {
   background: transparent;
   box-shadow: none;
+  outline: none;
 }
 
 .library-entry-details {
