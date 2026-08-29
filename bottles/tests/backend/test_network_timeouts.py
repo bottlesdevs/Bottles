@@ -16,6 +16,8 @@ from bottles.backend.repos import repo as repo_module
 from bottles.backend.repos.component import ComponentRepo
 from bottles.backend.repos.repo import Repo
 from bottles.backend.state import Signals, Status
+from bottles.backend.utils import connection as connection_module
+from bottles.backend.utils.connection import ConnectionUtils
 
 
 class FakeCurl:
@@ -23,6 +25,8 @@ class FakeCurl:
     FOLLOWLOCATION = pycurl.FOLLOWLOCATION
     HTTPHEADER = pycurl.HTTPHEADER
     NOBODY = pycurl.NOBODY
+    NOPROGRESS = pycurl.NOPROGRESS
+    XFERINFOFUNCTION = pycurl.XFERINFOFUNCTION
     WRITEDATA = pycurl.WRITEDATA
     RESPONSE_CODE = pycurl.RESPONSE_CODE
     EFFECTIVE_URL = pycurl.EFFECTIVE_URL
@@ -83,6 +87,37 @@ def test_repository_manifest_request_has_timeouts(monkeypatch, tmp_path):
     assert manifest == {"entry": "value"}
     assert curl.options[pycurl.CONNECTTIMEOUT] == 10
     assert curl.options[pycurl.TIMEOUT] == 30
+
+
+def test_connection_check_uses_reachable_bottles_service(monkeypatch):
+    curl = FakeCurl()
+    monkeypatch.setattr(connection_module.pycurl, "Curl", lambda: curl)
+    connection = ConnectionUtils()
+
+    assert connection.check_connection() is True
+    assert curl.options[pycurl.URL] == (
+        "https://proxy.usebottles.com/repo/components/"
+    )
+    assert curl.options[pycurl.USERAGENT].startswith("Bottles/")
+
+
+def test_connection_check_retries_ipv4(monkeypatch):
+    curl = FakeCurl()
+    attempts = 0
+
+    def perform():
+        nonlocal attempts
+        attempts += 1
+        if attempts == 1:
+            raise pycurl.error(pycurl.E_COULDNT_CONNECT, "unreachable")
+
+    curl.perform = perform
+    monkeypatch.setattr(connection_module.pycurl, "Curl", lambda: curl)
+    connection = ConnectionUtils()
+
+    assert connection.check_connection() is True
+    assert attempts == 2
+    assert curl.options[pycurl.IPRESOLVE] == pycurl.IPRESOLVE_V4
 
 
 def test_repository_closes_timed_out_request(monkeypatch, tmp_path):
