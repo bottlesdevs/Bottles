@@ -24,6 +24,7 @@ import pycurl
 
 from bottles.backend.logger import Logger
 from bottles.backend.models.result import Result
+from bottles.backend.params import APP_VERSION
 from bottles.backend.state import Notification, SignalManager, Signals
 
 logging = Logger()
@@ -40,7 +41,7 @@ class ConnectionUtils:
     last_check = None
 
     _check_urls = (
-        "https://ping.usebottles.com",
+        "https://proxy.usebottles.com/repo/components/",
         "https://github.com",
         "https://cloudflare.com",
     )
@@ -85,12 +86,23 @@ class ConnectionUtils:
         c.setopt(c.NOBODY, True)
         c.setopt(c.NOPROGRESS, False)
         c.setopt(c.XFERINFOFUNCTION, self.__curl_progress)
+        c.setopt(pycurl.USERAGENT, f"Bottles/{APP_VERSION}")
         # bound the check so a stalled/filtered connection cannot hang the
         # whole startup; on timeout we simply fall back to offline mode
         c.setopt(pycurl.CONNECTTIMEOUT, 5)
         c.setopt(pycurl.TIMEOUT, 10)
         try:
-            c.perform()
+            try:
+                c.perform()
+            except pycurl.error as error:
+                if error.args[0] not in (
+                    pycurl.E_COULDNT_RESOLVE_HOST,
+                    pycurl.E_COULDNT_CONNECT,
+                    pycurl.E_OPERATION_TIMEDOUT,
+                ):
+                    raise
+                c.setopt(pycurl.IPRESOLVE, pycurl.IPRESOLVE_V4)
+                c.perform()
             return c.getinfo(pycurl.HTTP_CODE) == 200
         finally:
             c.close()
