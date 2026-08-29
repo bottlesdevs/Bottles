@@ -91,6 +91,40 @@ def test_add_to_library_prefers_cover_next_to_program(
     assert cover.read_bytes() == PNG_DATA
 
 
+@pytest.mark.parametrize("extension", ["jpg", "jpeg", "webp", "PNG"])
+def test_add_to_library_accepts_supported_program_cover_extensions(
+    extension, tmp_path, library_manager
+):
+    manager, bottle_path = library_manager
+    program_folder = tmp_path / "program"
+    program_folder.mkdir()
+    _write_cover(program_folder / f"example.exe.{extension}")
+
+    manager.add_to_library(_entry(), _config(program_folder))
+
+    entry = next(iter(manager.get_library().values()))
+    cover = bottle_path / "grids" / entry["thumbnail"].removeprefix("grid:")
+    assert cover.read_bytes() == PNG_DATA
+
+
+def test_add_to_library_prefers_png_when_multiple_local_covers_exist(
+    tmp_path, library_manager
+):
+    manager, bottle_path = library_manager
+    program_folder = tmp_path / "program"
+    program_folder.mkdir()
+    jpg_cover = program_folder / "example.exe.jpg"
+    png_cover = program_folder / "example.exe.png"
+    jpg_cover.write_bytes(PNG_DATA + b"jpg")
+    png_cover.write_bytes(PNG_DATA + b"png")
+
+    manager.add_to_library(_entry(), _config(program_folder))
+
+    entry = next(iter(manager.get_library().values()))
+    cover = bottle_path / "grids" / entry["thumbnail"].removeprefix("grid:")
+    assert cover.read_bytes() == PNG_DATA + b"png"
+
+
 def test_add_to_library_uses_bottle_cover_before_remote(
     monkeypatch, tmp_path, library_manager
 ):
