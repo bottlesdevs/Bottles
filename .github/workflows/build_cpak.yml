@@ -60,6 +60,7 @@ jobs:
         run: echo "ghcr.io/bottlesdevs/bottles@${{ steps.build.outputs.digest }}" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Pin published image
+        if: github.ref == 'refs/heads/main'
         env:
           IMAGE_DIGEST: ${{ steps.build.outputs.digest }}
         run: |
