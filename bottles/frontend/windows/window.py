@@ -248,7 +248,8 @@ class BottlesWindow(Adw.ApplicationWindow):
     # region Backend signal handlers
     @GtkUtils.run_in_main_loop
     def network_changed_handler(self, res: Result):
-        self.banner_offline.set_revealed(not res.status)
+        force_offline = self.settings.get_boolean("force-offline")
+        self.banner_offline.set_revealed(not res.status and not force_offline)
 
     @GtkUtils.run_in_main_loop
     def g_notification_handler(self, res: Result):
