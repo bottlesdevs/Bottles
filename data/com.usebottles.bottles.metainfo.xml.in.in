@@ -85,6 +85,19 @@
     <display_length compare="ge">768</display_length>
   </requires>
   <releases>
+    <release version="66.10" date="2026-08-29">
+      <description translate="no">
+        <ul>
+          <li>Added dedicated sandboxing for UMU prefixes</li>
+          <li>Added automatic local cover detection and improved Library card states</li>
+          <li>Improved runner loading, including locally installed runners while offline</li>
+          <li>Fixed component selectors after bottle creation and program refresh after executable discovery</li>
+          <li>Hidden the offline warning when offline mode is enabled explicitly</li>
+          <li>Replaced the retired connectivity endpoint and added IPv4 fallback</li>
+          <li>Updated the official cpak package to manifest v3 with bundled UMU</li>
+        </ul>
+      </description>
+    </release>
     <release version="66.9" date="2026-08-26">
       <description translate="no">
         <ul>
