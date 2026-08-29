@@ -54,6 +54,79 @@ class FileChooserNativeStub:
         return FolderStub()
 
 
+class ExpanderStub:
+    def __init__(self):
+        self.expanded = False
+        self.rows = []
+
+    def get_expanded(self):
+        return self.expanded
+
+    def add_row(self, row):
+        self.rows.append(row)
+
+
+def test_runner_entries_are_created_on_first_expansion(monkeypatch):
+    entries = []
+    expander = ExpanderStub()
+    runner = {
+        "prefix": "soda",
+        "count": 0,
+        "expander": expander,
+        "offline_runners": [],
+        "expander_queue": [],
+        "expanded": False,
+    }
+    view = SimpleNamespace(
+        window=object(),
+        manager=SimpleNamespace(
+            get_offline_components=lambda _component_type: ["soda-9.0-1"]
+        ),
+        _PreferencesWindow__registry=[],
+        _PreferencesWindow__display_unstable_candidate=lambda *_args: True,
+    )
+
+    monkeypatch.setattr(
+        preferences,
+        "ComponentEntry",
+        lambda _window, component, component_type: entries.append(
+            (component, component_type)
+        ),
+    )
+
+    preferences.PreferencesWindow._PreferencesWindow__populate_runners_helper(
+        view, "runner", {}, [runner]
+    )
+    preferences.PreferencesWindow._PreferencesWindow__on_runner_expander_expanded(
+        view, expander, None, runner
+    )
+    assert entries == []
+
+    expander.expanded = True
+    preferences.PreferencesWindow._PreferencesWindow__on_runner_expander_expanded(
+        view, expander, None, runner
+    )
+    preferences.PreferencesWindow._PreferencesWindow__on_runner_expander_expanded(
+        view, expander, None, runner
+    )
+
+    assert entries == [
+        (
+            [
+                "soda-9.0-1",
+                {
+                    "Installed": True,
+                    "Channel": "unstable",
+                    "Category": "runners",
+                    "Sub-category": "wine",
+                },
+            ],
+            "runner",
+        )
+    ]
+    assert len(expander.rows) == 1
+
+
 def test_filesystem_override_command_uses_current_app_id(monkeypatch):
     monkeypatch.setenv("FLATPAK_ID", "com.usebottles.bottles.Devel")
     monkeypatch.setattr(
