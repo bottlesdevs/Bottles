@@ -20,6 +20,7 @@ from bottles.backend.wine.winecommand import (
     apply_frame_rate_limit,
     apply_hidraw_preferences,
     apply_hdr_preferences,
+    apply_openxr_preferences,
     apply_wayland_preferences,
 )
 
@@ -45,6 +46,39 @@ def test_build_placeholder_map_uses_program_values():
     assert placeholders["PROGRAM_DIR"] == "/opt/games"
     assert placeholders["BOTTLE_NAME"] == "TestBottle"
     assert placeholders["BOTTLE_PATH"] == expected_bottle_path
+
+
+def test_openxr_preferences_install_soda_manifest(tmp_path):
+    runner = tmp_path / "runner"
+    source = runner / "share/openxr/wineopenxr64.json"
+    source.parent.mkdir(parents=True)
+    source.write_text(
+        '{"runtime":{"library_path":"C:\\\\windows\\\\system32\\\\wineopenxr.dll"}}'
+    )
+    bottle = tmp_path / "bottle"
+    bottle.mkdir()
+    env = WineEnv(clean=True)
+
+    apply_openxr_preferences(env, "soda-11.0-7", str(runner), str(bottle))
+
+    target = bottle / "drive_c/openxr/wineopenxr64.json"
+    assert target.read_bytes() == source.read_bytes()
+    assert env.get()["envs"]["SODA_OPENXR_RUNTIME"] == "host"
+
+
+def test_openxr_preferences_preserve_runtime_override(tmp_path):
+    runner = tmp_path / "runner"
+    source = runner / "share/openxr/wineopenxr64.json"
+    source.parent.mkdir(parents=True)
+    source.write_text('{"runtime":{"library_path":"wineopenxr.dll"}}')
+    bottle = tmp_path / "bottle"
+    bottle.mkdir()
+    env = WineEnv(clean=True)
+    env.add("SODA_OPENXR_RUNTIME", "steam")
+
+    apply_openxr_preferences(env, "soda-11.0-7", str(runner), str(bottle))
+
+    assert env.get()["envs"]["SODA_OPENXR_RUNTIME"] == "steam"
 
 
 def test_replace_placeholders_handles_unknown_tokens():

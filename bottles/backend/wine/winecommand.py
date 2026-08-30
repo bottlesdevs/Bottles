@@ -265,6 +265,52 @@ def apply_hidraw_preferences(env: "WineEnv", params) -> None:
         env.add("PROTON_ENABLE_HIDRAW", ",".join(selected), override=True)
 
 
+def apply_openxr_preferences(
+    env: "WineEnv", runner_name: str, runner_path: str, bottle_path: str
+) -> None:
+    if not runner_name.lower().startswith("soda-"):
+        return
+
+    source = os.path.join(runner_path, "share/openxr/wineopenxr64.json")
+    if not os.path.isfile(source):
+        return
+
+    target_dir = os.path.join(bottle_path, "drive_c/openxr")
+    try:
+        os.makedirs(target_dir, exist_ok=True)
+        if os.path.commonpath(
+            (os.path.realpath(bottle_path), os.path.realpath(target_dir))
+        ) != os.path.realpath(bottle_path):
+            raise OSError("OpenXR manifest path escapes the bottle")
+
+        with open(source, "rb") as manifest:
+            data = manifest.read(4097)
+        if len(data) > 4096 or b"wineopenxr.dll" not in data:
+            raise OSError("Invalid OpenXR manifest")
+
+        target = os.path.join(target_dir, "wineopenxr64.json")
+        if os.path.isfile(target):
+            with open(target, "rb") as current:
+                if current.read(4097) == data:
+                    env.add("SODA_OPENXR_RUNTIME", "host")
+                    return
+
+        fd, temporary = tempfile.mkstemp(prefix=".wineopenxr-", dir=target_dir)
+        try:
+            with os.fdopen(fd, "wb") as manifest:
+                manifest.write(data)
+                manifest.flush()
+                os.fsync(manifest.fileno())
+            os.chmod(temporary, 0o644)
+            os.replace(temporary, target)
+        finally:
+            if os.path.exists(temporary):
+                os.remove(temporary)
+        env.add("SODA_OPENXR_RUNTIME", "host")
+    except OSError as error:
+        logging.warning(f"Could not prepare Soda OpenXR: {error}")
+
+
 def _needs_steam_virtual_gamepad_workaround(runner_name: Optional[str]) -> bool:
     """Return True if the runner should force SteamVirtualGamepadInfo."""
 
@@ -447,6 +493,8 @@ class WineCommand:
 
             for e in environment:
                 env.add(e, environment[e], override=True)
+
+        apply_openxr_preferences(env, config.Runner, runner_path, bottle)
 
         # Language
         if config.Language != "sys":
