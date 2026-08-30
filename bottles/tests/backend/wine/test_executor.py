@@ -103,7 +103,7 @@ def test_openxr_preferences_reject_drive_c_outside_bottle(tmp_path):
 def test_fex_preferences_enable_bundled_soda_config(tmp_path, monkeypatch):
     runner = tmp_path / "runner"
     config = runner / "share/fex-emu/Config.json"
-    unixlib = runner / "lib/wine/aarch64-unix/libwow64fex.dll.so"
+    unixlib = runner / "lib/wine/aarch64-unix/libwow64fex.so"
     config.parent.mkdir(parents=True)
     unixlib.parent.mkdir(parents=True)
     config.write_text("{}")
@@ -121,7 +121,7 @@ def test_fex_preferences_enable_bundled_soda_config(tmp_path, monkeypatch):
 def test_fex_preferences_preserve_user_overrides(tmp_path, monkeypatch):
     runner = tmp_path / "runner"
     config = runner / "share/fex-emu/Config.json"
-    unixlib = runner / "lib/wine/aarch64-unix/libwow64fex.dll.so"
+    unixlib = runner / "lib/wine/aarch64-unix/libwow64fex.so"
     config.parent.mkdir(parents=True)
     unixlib.parent.mkdir(parents=True)
     config.write_text("{}")
