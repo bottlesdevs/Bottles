@@ -328,7 +328,7 @@ def apply_fex_preferences(env: "WineEnv", runner_name: str, runner_path: str) ->
         return
 
     config = os.path.join(runner_path, "share/fex-emu/Config.json")
-    unixlib = os.path.join(runner_path, "lib/wine/aarch64-unix/libwow64fex.dll.so")
+    unixlib = os.path.join(runner_path, "lib/wine/aarch64-unix/libwow64fex.so")
     if not os.path.isfile(config) or not os.path.isfile(unixlib):
         return
 
