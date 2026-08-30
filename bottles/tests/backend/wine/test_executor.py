@@ -321,12 +321,41 @@ def test_soda_adaptive_launch_prepares_a_profile(tmp_path, monkeypatch):
             prepared["called"] = True
             return 3
 
-    monkeypatch.setattr("bottles.backend.wine.executor.AdaptiveLaunchProfile", FakeProfile)
+    monkeypatch.setattr(
+        "bottles.backend.wine.executor.AdaptiveLaunchProfile", FakeProfile
+    )
 
     executor = WineExecutor(config=config, exec_path=str(executable))
 
     assert prepared == {"executable": str(executable), "called": True}
     assert executor.environment["SODA_ADAPTIVE_PROFILE"] == str(tmp_path / "profile")
+
+
+def test_soda_adaptive_launch_v2_uses_a_trace_directory(tmp_path, monkeypatch):
+    executable = tmp_path / "program.exe"
+    executable.touch()
+    bottle = tmp_path / "bottle"
+    config = _make_config(path=str(bottle))
+    config.Custom_Path = str(bottle)
+    config.Runner = "soda-11.0-7"
+    config.Parameters.adaptive_launch = True
+
+    class FakeProfile:
+        def __init__(self, _config, _path):
+            self.trace_dir = tmp_path / "trace"
+
+        def prepare(self):
+            self.trace_dir.mkdir()
+            return 0
+
+    monkeypatch.setattr(
+        "bottles.backend.wine.executor.AdaptiveLaunchProfile", FakeProfile
+    )
+
+    executor = WineExecutor(config=config, exec_path=str(executable))
+
+    assert executor.environment["SODA_ADAPTIVE_TRACE_DIR"] == str(tmp_path / "trace")
+    assert "SODA_ADAPTIVE_PROFILE" not in executor.environment
 
 
 def test_adaptive_launch_is_ignored_by_other_runners(tmp_path, monkeypatch):
@@ -343,6 +372,7 @@ def test_adaptive_launch_is_ignored_by_other_runners(tmp_path, monkeypatch):
     executor = WineExecutor(config=config, exec_path=str(executable))
 
     assert "SODA_ADAPTIVE_PROFILE" not in executor.environment
+    assert "SODA_ADAPTIVE_TRACE_DIR" not in executor.environment
 
 
 def test_winecommand_reports_nonzero_exit_status(monkeypatch):

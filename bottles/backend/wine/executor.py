@@ -20,8 +20,10 @@ from bottles.backend.state import SignalManager, Signals
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.adaptive import (
     PROFILE_ENV,
+    TRACE_ENV,
     AdaptiveLaunchProfile,
     is_supported_runner,
+    is_v2_runner,
 )
 from bottles.backend.wine.cmd import CMD
 from bottles.backend.wine.explorer import Explorer
@@ -121,7 +123,11 @@ class WineExecutor:
         ):
             profile = AdaptiveLaunchProfile(self.config, exec_path)
             prepared = profile.prepare()
-            self.environment[PROFILE_ENV] = str(profile.path)
+            if is_v2_runner(self.config.Runner):
+                if profile.trace_dir is not None:
+                    self.environment[TRACE_ENV] = str(profile.trace_dir)
+            else:
+                self.environment[PROFILE_ENV] = str(profile.path)
             if prepared:
                 logging.info(f"Adaptive launch prepared {prepared} files")
         self.pre_script = pre_script
