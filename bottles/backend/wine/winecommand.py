@@ -22,7 +22,11 @@ from bottles.backend.managers.sandbox import SandboxManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.utils.display import DisplayUtils
-from bottles.backend.utils.generic import detect_encoding, is_ntsync_available
+from bottles.backend.utils.generic import (
+    detect_encoding,
+    get_host_architecture,
+    is_ntsync_available,
+)
 from bottles.backend.utils.gpu import GPUUtils
 from bottles.backend.utils.hidraw import normalize_hidraw_id
 from bottles.backend.utils.lsfgvk import get_lsfg_vk_dll_path
@@ -311,6 +315,22 @@ def apply_openxr_preferences(
         logging.warning(f"Could not prepare Soda OpenXR: {error}")
 
 
+def apply_fex_preferences(env: "WineEnv", runner_name: str, runner_path: str) -> None:
+    if (
+        get_host_architecture() != "aarch64"
+        or not runner_name.lower().startswith("soda-")
+    ):
+        return
+
+    config = os.path.join(runner_path, "share/fex-emu/Config.json")
+    unixlib = os.path.join(runner_path, "lib/wine/aarch64-unix/libwow64fex.dll.so")
+    if not os.path.isfile(config) or not os.path.isfile(unixlib):
+        return
+
+    env.add("FEX_APP_CONFIG", config)
+    env.add("FEX_APP_CONFIG_LOCATION", os.path.dirname(config))
+
+
 def _needs_steam_virtual_gamepad_workaround(runner_name: Optional[str]) -> bool:
     """Return True if the runner should force SteamVirtualGamepadInfo."""
 
@@ -495,6 +515,7 @@ class WineCommand:
                 env.add(e, environment[e], override=True)
 
         apply_openxr_preferences(env, config.Runner, runner_path, bottle)
+        apply_fex_preferences(env, config.Runner, runner_path)
 
         # Language
         if config.Language != "sys":
@@ -570,6 +591,9 @@ class WineCommand:
                 "lib64/wine/i386-unix",
             ]
             gst_libs = ["lib/gstreamer-1.0", "lib32/gstreamer-1.0"]
+
+        if get_host_architecture() == "aarch64":
+            runner_libs.insert(2, "lib/wine/aarch64-unix")
 
         if not config.Runner.startswith("sys-"):
             for lib in runner_libs:

@@ -18,6 +18,7 @@ import codecs
 import contextlib
 import functools
 import os
+import platform
 import random
 import re
 import shlex
@@ -28,6 +29,11 @@ from typing import Optional
 import chardet
 
 from bottles.backend.globals import locale_encodings
+
+
+def get_host_architecture() -> str:
+    machine = platform.machine().lower()
+    return {"amd64": "x86_64", "arm64": "aarch64"}.get(machine, machine)
 
 
 def validate_url(url: str):

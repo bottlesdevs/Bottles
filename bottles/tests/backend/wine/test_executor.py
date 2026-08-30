@@ -17,6 +17,7 @@ from bottles.backend.wine.executor import WineExecutor
 from bottles.backend.wine.winecommand import (
     WineCommand,
     WineEnv,
+    apply_fex_preferences,
     apply_frame_rate_limit,
     apply_hidraw_preferences,
     apply_hdr_preferences,
@@ -79,6 +80,44 @@ def test_openxr_preferences_preserve_runtime_override(tmp_path):
     apply_openxr_preferences(env, "soda-11.0-7", str(runner), str(bottle))
 
     assert env.get()["envs"]["SODA_OPENXR_RUNTIME"] == "steam"
+
+
+def test_fex_preferences_enable_bundled_soda_config(tmp_path, monkeypatch):
+    runner = tmp_path / "runner"
+    config = runner / "share/fex-emu/Config.json"
+    unixlib = runner / "lib/wine/aarch64-unix/libwow64fex.dll.so"
+    config.parent.mkdir(parents=True)
+    unixlib.parent.mkdir(parents=True)
+    config.write_text("{}")
+    unixlib.touch()
+    env = WineEnv(clean=True)
+    monkeypatch.setattr(winecommand, "get_host_architecture", lambda: "aarch64")
+
+    apply_fex_preferences(env, "soda-11.0-7", str(runner))
+
+    resolved = env.get()["envs"]
+    assert resolved["FEX_APP_CONFIG"] == str(config)
+    assert resolved["FEX_APP_CONFIG_LOCATION"] == str(config.parent)
+
+
+def test_fex_preferences_preserve_user_overrides(tmp_path, monkeypatch):
+    runner = tmp_path / "runner"
+    config = runner / "share/fex-emu/Config.json"
+    unixlib = runner / "lib/wine/aarch64-unix/libwow64fex.dll.so"
+    config.parent.mkdir(parents=True)
+    unixlib.parent.mkdir(parents=True)
+    config.write_text("{}")
+    unixlib.touch()
+    env = WineEnv(clean=True)
+    env.add("FEX_APP_CONFIG", "/custom/config.json")
+    env.add("FEX_APP_CONFIG_LOCATION", "/custom")
+    monkeypatch.setattr(winecommand, "get_host_architecture", lambda: "aarch64")
+
+    apply_fex_preferences(env, "soda-11.0-7", str(runner))
+
+    resolved = env.get()["envs"]
+    assert resolved["FEX_APP_CONFIG"] == "/custom/config.json"
+    assert resolved["FEX_APP_CONFIG_LOCATION"] == "/custom"
 
 
 def test_replace_placeholders_handles_unknown_tokens():
@@ -1036,6 +1075,7 @@ def test_winecommand_filters_host_environment(monkeypatch, tmp_path):
         "lib32/wine/x86_64-unix",
         "lib32",
         "lib64/wine/x86_64-unix",
+        "lib/wine/aarch64-unix",
         "lib/wine/i386-unix",
         "lib32/wine/i386-unix",
         "lib64/wine/i386-unix",
@@ -1092,6 +1132,7 @@ def test_winecommand_filters_host_environment(monkeypatch, tmp_path):
         "bottles.backend.wine.winecommand.RuntimeManager.get_runtime_env",
         lambda *_: [],
     )
+    monkeypatch.setattr(winecommand, "get_host_architecture", lambda: "aarch64")
 
     winecmd = WineCommand.__new__(WineCommand)
     winecmd.config = config
@@ -1106,6 +1147,7 @@ def test_winecommand_filters_host_environment(monkeypatch, tmp_path):
     assert env["DISPLAY"] == ":1"
     assert "DXVK_HDR" not in env
     assert "SHOULD_NOT_PASS" not in env
+    assert str(runner_path / "lib/wine/aarch64-unix") in env["LD_LIBRARY_PATH"]
 
 
 def test_winecommand_syncs_proton_vkd3d(monkeypatch, tmp_path):
