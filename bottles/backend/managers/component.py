@@ -55,20 +55,52 @@ def _select_component_file(manifest: dict) -> Optional[dict]:
         return None
 
     architecture = get_host_architecture()
-    fallback = None
+    host_platform = sys.platform
+    selected = None
+    selected_score = -1
     for file in files:
         if not isinstance(file, dict):
             continue
         file_architecture = file.get("architecture")
-        if file_architecture is None:
-            if fallback is None:
-                fallback = file
-        elif (
-            isinstance(file_architecture, str)
-            and file_architecture.lower() == architecture
+        file_platform = file.get("platform")
+        if file_architecture is not None and (
+            not isinstance(file_architecture, str)
+            or file_architecture.lower() != architecture
         ):
-            return file
-    return fallback
+            continue
+        if file_platform is not None and (
+            not isinstance(file_platform, str)
+            or file_platform.lower() != host_platform
+        ):
+            continue
+
+        score = int(file_architecture is not None) * 2 + int(
+            file_platform is not None
+        )
+        if score > selected_score:
+            selected = file
+            selected_score = score
+    return selected
+
+
+def _component_matches_host(component: dict) -> bool:
+    architectures = component.get("Architectures")
+    platforms = component.get("Platforms")
+    if architectures is not None and (
+        not isinstance(architectures, list)
+        or get_host_architecture()
+        not in {
+            value.lower() for value in architectures if isinstance(value, str)
+        }
+    ):
+        return False
+    if platforms is not None and (
+        not isinstance(platforms, list)
+        or sys.platform
+        not in {value.lower() for value in platforms if isinstance(value, str)}
+    ):
+        return False
+    return True
 
 
 def find_cached_file(
@@ -182,6 +214,8 @@ class ComponentManager:
                 or not isinstance(component[1].get("Category"), str)
                 or not isinstance(component[1].get("Channel"), str)
             ):
+                continue
+            if not _component_matches_host(component[1]):
                 continue
 
             if component[1].get("Category") == "runners":
@@ -560,7 +594,7 @@ class ComponentManager:
                 False,
                 message=(
                     f"Component {component_name} is not available for "
-                    f"{get_host_architecture()}."
+                    f"{sys.platform}/{get_host_architecture()}."
                 ),
             )
         if (

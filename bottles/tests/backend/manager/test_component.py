@@ -109,6 +109,34 @@ def test_component_cache_selects_host_architecture(tmp_path, monkeypatch):
     assert component_manager.is_component_cached("soda-11.0-7") is False
 
 
+def test_component_cache_rejects_other_platform(tmp_path, monkeypatch):
+    monkeypatch.setattr(Paths, "temp", str(tmp_path))
+    (tmp_path / "soda-aarch64.tar.xz").write_bytes(b"runner")
+    manifest = {
+        "File": [
+            {
+                "architecture": "aarch64",
+                "platform": "linux",
+                "file_name": "soda-aarch64.tar.xz",
+            }
+        ]
+    }
+    component_manager = object.__new__(ComponentManager)
+    component_manager._ComponentManager__repo = SimpleNamespace(
+        get=lambda name, plain=False: manifest
+    )
+    monkeypatch.setattr(
+        component_module, "get_host_architecture", lambda: "aarch64"
+    )
+    monkeypatch.setattr(component_module.sys, "platform", "darwin")
+
+    assert component_manager.is_component_cached("soda-11.0-7") is False
+
+    monkeypatch.setattr(component_module.sys, "platform", "linux")
+
+    assert component_manager.is_component_cached("soda-11.0-7") is True
+
+
 def test_external_runner_cannot_be_uninstalled(tmp_path):
     runner = tmp_path / "GE-Proton10-4"
     runner.mkdir()

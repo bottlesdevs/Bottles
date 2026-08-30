@@ -423,6 +423,53 @@ def test_component_catalog_is_available_without_connection():
     }
 
 
+def test_component_catalog_filters_host_platform_and_architecture(monkeypatch):
+    catalog = {
+        "linux-arm-runner": {
+            "Category": "runners",
+            "Sub-category": "wine",
+            "Channel": "stable",
+            "Platforms": ["linux"],
+            "Architectures": ["aarch64"],
+        },
+        "mac-arm-runner": {
+            "Category": "runners",
+            "Sub-category": "wine",
+            "Channel": "stable",
+            "Platforms": ["darwin"],
+            "Architectures": ["aarch64"],
+        },
+        "linux-x86-runner": {
+            "Category": "runners",
+            "Sub-category": "wine",
+            "Channel": "stable",
+            "Platforms": ["linux"],
+            "Architectures": ["x86_64"],
+        },
+    }
+    manager = SimpleNamespace(
+        runtimes_available=[],
+        runners_available=[],
+        d7vk_available=[],
+        dxvk_available=[],
+        vkd3d_available=[],
+        nvapi_available=[],
+        latencyflex_available=[],
+        winebridge_available=[],
+    )
+    component_manager = object.__new__(ComponentManager)
+    component_manager._ComponentManager__manager = manager
+    component_manager._ComponentManager__repo = SimpleNamespace(catalog=catalog)
+    monkeypatch.setattr(
+        component_module, "get_host_architecture", lambda: "aarch64"
+    )
+    monkeypatch.setattr(component_module.sys, "platform", "linux")
+
+    assert component_manager.fetch_catalog()["wine"] == {
+        "linux-arm-runner": catalog["linux-arm-runner"]
+    }
+
+
 def test_component_catalog_marks_checksum_valid_cache(tmp_path, monkeypatch):
     monkeypatch.setattr(Paths, "temp", str(tmp_path))
     payload = tmp_path / "cached.tar.xz"
