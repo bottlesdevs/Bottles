@@ -205,3 +205,31 @@ def test_adaptive_v2_does_not_prefetch_symlinks(tmp_path, monkeypatch):
 
     assert profile.prepare() == 0
     assert calls == []
+
+
+def test_adaptive_v2_preserves_non_utf8_paths(tmp_path, monkeypatch):
+    bottle = tmp_path / "bottle"
+    executable = tmp_path / "game.exe"
+    executable.write_bytes(b"MZ")
+    raw_library = os.fsencode(tmp_path) + b"/module-\xff.dll"
+    fd = os.open(raw_library, os.O_WRONLY | os.O_CREAT, 0o600)
+    try:
+        os.write(fd, b"dll")
+    finally:
+        os.close(fd)
+
+    config = BottleConfig(Path=str(bottle), Custom_Path=str(bottle))
+    config.Runner = "soda-11.0-7"
+    profile = AdaptiveLaunchProfile(config, str(executable))
+    trace_dir = profile.traces / "finished"
+    trace_dir.mkdir(parents=True)
+    trace = trace_dir / "42.trace"
+    trace.write_bytes(b"SODAAL2\0" + raw_library + b"\0")
+    finished = time.time() - 61
+    os.utime(trace, (finished, finished))
+    os.utime(trace_dir, (finished, finished))
+    monkeypatch.setattr(os, "posix_fadvise", lambda *_args: None)
+
+    assert profile.prepare() == 1
+    data = json.loads(profile.path.read_text())
+    assert data["sessions"][0]["paths"] == [os.fsdecode(raw_library)]

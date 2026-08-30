@@ -413,7 +413,7 @@ class AdaptiveLaunchProfile:
     def _save_profile(self, profile) -> bool:
         while True:
             data = json.dumps(
-                profile, ensure_ascii=False, separators=(",", ":"), sort_keys=True
+                profile, ensure_ascii=True, separators=(",", ":"), sort_keys=True
             ).encode()
             if len(data) <= _MAX_PROFILE_SIZE:
                 return _write_atomic(self.path, data)
