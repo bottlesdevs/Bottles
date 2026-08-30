@@ -82,6 +82,24 @@ def test_openxr_preferences_preserve_runtime_override(tmp_path):
     assert env.get()["envs"]["SODA_OPENXR_RUNTIME"] == "steam"
 
 
+def test_openxr_preferences_reject_drive_c_outside_bottle(tmp_path):
+    runner = tmp_path / "runner"
+    source = runner / "share/openxr/wineopenxr64.json"
+    source.parent.mkdir(parents=True)
+    source.write_text('{"runtime":{"library_path":"wineopenxr.dll"}}')
+    bottle = tmp_path / "bottle"
+    outside = tmp_path / "outside"
+    bottle.mkdir()
+    outside.mkdir()
+    (bottle / "drive_c").symlink_to(outside, target_is_directory=True)
+    env = WineEnv(clean=True)
+
+    apply_openxr_preferences(env, "soda-11.0-7", str(runner), str(bottle))
+
+    assert not (outside / "openxr").exists()
+    assert "SODA_OPENXR_RUNTIME" not in env.get()["envs"]
+
+
 def test_fex_preferences_enable_bundled_soda_config(tmp_path, monkeypatch):
     runner = tmp_path / "runner"
     config = runner / "share/fex-emu/Config.json"

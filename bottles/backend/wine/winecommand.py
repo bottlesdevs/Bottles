@@ -281,10 +281,15 @@ def apply_openxr_preferences(
 
     target_dir = os.path.join(bottle_path, "drive_c/openxr")
     try:
+        bottle_root = os.path.realpath(bottle_path)
+        target_parent = os.path.realpath(os.path.dirname(target_dir))
+        if os.path.commonpath((bottle_root, target_parent)) != bottle_root:
+            raise OSError("OpenXR manifest path escapes the bottle")
+
         os.makedirs(target_dir, exist_ok=True)
         if os.path.commonpath(
-            (os.path.realpath(bottle_path), os.path.realpath(target_dir))
-        ) != os.path.realpath(bottle_path):
+            (bottle_root, os.path.realpath(target_dir))
+        ) != bottle_root:
             raise OSError("OpenXR manifest path escapes the bottle")
 
         with open(source, "rb") as manifest:
