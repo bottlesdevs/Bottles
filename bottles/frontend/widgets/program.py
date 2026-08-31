@@ -85,6 +85,7 @@ class ProgramEntry(Adw.ActionRow):
         self.is_steam = is_steam
         self.__desktop_entry_exists = False
         self.__desktop_entry_query_pending = False
+        self.__library_entry_uuid = None
         self.__program_icon_job = None
         self.__program_icon_path = None
 
@@ -118,7 +119,8 @@ class ProgramEntry(Adw.ActionRow):
         library_manager = LibraryManager()
         for _uuid, entry in library_manager.get_library().items():
             if entry.get("id") == program.get("id"):
-                self.btn_add_library.set_visible(False)
+                self.__library_entry_uuid = _uuid
+                self.__set_library_state(True)
                 self.btn_add_steam_library.set_visible(False)
                 program_icon = entry.get("icon") or program_icon
 
@@ -181,7 +183,7 @@ class ProgramEntry(Adw.ActionRow):
         self.btn_browse.connect("clicked", self.browse_program_folder)
         self.btn_add_entry.connect("clicked", self.manage_entry)
         self.btn_file_associations.connect("clicked", self.show_file_associations)
-        self.btn_add_library.connect("clicked", self.add_to_library)
+        self.btn_add_library.connect("clicked", self.manage_library)
         self.btn_add_steam_library.connect("clicked", self.add_to_library)
         self.btn_add_steam.connect("clicked", self.add_to_steam)
         self.btn_remove.connect("clicked", self.remove_program)
@@ -838,7 +840,14 @@ class ProgramEntry(Adw.ActionRow):
         dialog.present()
 
     def add_to_library(self, _widget):
-        def update(_result, _error=False):
+        def update(entry_uuid, error=False):
+            if error or entry_uuid is None:
+                self.btn_add_library.set_sensitive(True)
+                self.btn_add_steam_library.set_sensitive(True)
+                return
+            self.__library_entry_uuid = entry_uuid
+            self.__set_library_state(True)
+            self.btn_add_steam_library.set_visible(False)
             self.window.update_library()
             self.window.show_toast(
                 _('"{0}" added to your library').format(self.program["name"])
@@ -871,11 +880,44 @@ class ProgramEntry(Adw.ActionRow):
                         )
                 data["icon"] = icon
 
-            library_manager.add_to_library(data, self.config)
+            return library_manager.add_to_library(data, self.config)
 
-        self.btn_add_library.set_visible(False)
-        self.btn_add_steam_library.set_visible(False)
+        self.btn_add_library.set_sensitive(False)
+        self.btn_add_steam_library.set_sensitive(False)
         RunAsync(add_to_library, update)
+
+    def manage_library(self, widget):
+        if self.__library_entry_uuid is not None:
+            self.remove_from_library(widget)
+            return
+        self.add_to_library(widget)
+
+    def remove_from_library(self, _widget):
+        entry_uuid = self.__library_entry_uuid
+        if entry_uuid is None:
+            return
+
+        def update(_result, error=False):
+            if error:
+                self.btn_add_library.set_sensitive(True)
+                return
+            self.__library_entry_uuid = None
+            self.__set_library_state(False)
+            self.window.update_library()
+            self.window.show_toast(
+                _('"{0}" removed from your library').format(self.program["name"])
+            )
+
+        self.btn_add_library.set_sensitive(False)
+        RunAsync(
+            lambda: LibraryManager().remove_from_library(entry_uuid, self.config),
+            update,
+        )
+
+    def __set_library_state(self, exists):
+        label = _("Remove from Library") if exists else _("Add to Library")
+        self.btn_add_library.set_property("text", label)
+        self.btn_add_library.set_sensitive(True)
 
     def add_to_steam(self, _widget):
         def update(result, _error=False):
