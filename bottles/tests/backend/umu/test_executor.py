@@ -87,6 +87,91 @@ def test_prepare_resolves_managed_proton(tmp_path):
     assert executor.prepare(game).env["PROTONPATH"] == str(proton)
 
 
+def test_prepare_enables_adaptive_launch_for_protosoda(monkeypatch, tmp_path):
+    repository = UmuGameRepository(tmp_path / "umu")
+    game = replace(_game(repository, tmp_path), proton="ProtoSoda")
+    proton = tmp_path / "runners" / "protosoda-11.0-2"
+    prepared = {}
+
+    class FakeProfile:
+        @classmethod
+        def from_root(cls, root, runner, executable):
+            prepared.update(
+                root=root,
+                runner=runner,
+                executable=executable,
+            )
+            profile = cls()
+            profile.trace_dir = tmp_path / "trace"
+            return profile
+
+        def prepare(self):
+            prepared["called"] = True
+            return 2
+
+    monkeypatch.setattr(executor_module, "AdaptiveLaunchProfile", FakeProfile)
+    executor = UmuExecutor(
+        UmuInstallation(
+            path=tmp_path / "umu-run",
+            version="1.4.4",
+            source="managed",
+        ),
+        data_root=repository.root,
+        base_environment={},
+        proton_resolver=lambda _value: str(proton),
+    )
+
+    command = executor.prepare(game)
+
+    assert prepared == {
+        "root": repository.prefix_path(game),
+        "runner": "protosoda-11.0-2",
+        "executable": str(game.executable.resolve()),
+        "called": True,
+    }
+    assert command.env["SODA_ADAPTIVE_TRACE_DIR"] == str(tmp_path / "trace")
+
+
+def test_prepare_does_not_enable_adaptive_launch_for_old_protosoda(
+    monkeypatch, tmp_path
+):
+    repository = UmuGameRepository(tmp_path / "umu")
+    game = replace(_game(repository, tmp_path), proton="ProtoSoda")
+    proton = tmp_path / "runners" / "protosoda-11.0-1"
+    monkeypatch.setattr(
+        executor_module,
+        "AdaptiveLaunchProfile",
+        lambda *_args, **_kwargs: pytest.fail("profile should not be created"),
+    )
+    executor = UmuExecutor(
+        UmuInstallation(
+            path=tmp_path / "umu-run",
+            version="1.4.4",
+            source="managed",
+        ),
+        data_root=repository.root,
+        base_environment={},
+        proton_resolver=lambda _value: str(proton),
+    )
+
+    command = executor.prepare(game)
+
+    assert "SODA_ADAPTIVE_TRACE_DIR" not in command.env
+
+
+def test_prepare_rejects_adaptive_trace_override(tmp_path):
+    repository = UmuGameRepository(tmp_path / "umu")
+    game = _game(
+        repository,
+        tmp_path,
+        {"SODA_ADAPTIVE_TRACE_DIR": "/tmp/escape"},
+    )
+    executor = _executor(repository, tmp_path)
+
+    with pytest.raises(ReservedEnvironmentError, match="SODA_ADAPTIVE_TRACE_DIR"):
+        executor.prepare(game)
+
+
 def test_prepare_rejects_reserved_environment_override(tmp_path):
     repository = UmuGameRepository(tmp_path / "umu")
     game = _game(repository, tmp_path, {"WINEPREFIX": "/tmp/escape"})

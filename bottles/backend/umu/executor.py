@@ -17,6 +17,12 @@ from bottles.backend.umu.models import UmuGame
 from bottles.backend.umu.processes import prefix_has_process
 from bottles.backend.umu.proton import UmuProtonCatalog
 from bottles.backend.umu.provider import UmuInstallation
+from bottles.backend.wine.adaptive import (
+    PROFILE_ENV,
+    TRACE_ENV,
+    AdaptiveLaunchProfile,
+    is_v2_runner,
+)
 
 RESERVED_ENVIRONMENT_KEYS = frozenset(
     {
@@ -25,6 +31,8 @@ RESERVED_ENVIRONMENT_KEYS = frozenset(
         "PROTONPATH",
         "PROTON_VERB",
         "RUNTIMEPATH",
+        PROFILE_ENV,
+        TRACE_ENV,
         "STEAM_COMPAT_APP_ID",
         "STEAM_COMPAT_DATA_PATH",
         "STEAM_COMPAT_INSTALL_PATH",
@@ -134,6 +142,16 @@ class UmuExecutor:
             }
         )
         if not prefix_only:
+            runner = Path(proton).name
+            if is_v2_runner(runner):
+                profile = AdaptiveLaunchProfile.from_root(
+                    prefix,
+                    runner,
+                    str(self._absolute_path(game.executable)),
+                )
+                profile.prepare()
+                if profile.trace_dir is not None:
+                    environment[TRACE_ENV] = str(profile.trace_dir)
             install_path = (
                 self._absolute_path(game.working_directory)
                 if game.working_directory

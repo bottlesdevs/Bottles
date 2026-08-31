@@ -25,6 +25,7 @@ _MAX_PREFETCH_SIZE = 1024 * 1024 * 1024
 _TRACE_GRACE_SECONDS = 60
 _MINIMUM_SODA_VERSION = (11, 0, 5)
 _MINIMUM_V2_VERSION = (11, 0, 7)
+_MINIMUM_PROTOSODA_V2_VERSION = (11, 0, 2)
 
 
 def _runner_version(runner: str):
@@ -41,7 +42,17 @@ def is_supported_runner(runner: str) -> bool:
 
 def is_v2_runner(runner: str) -> bool:
     version = _runner_version(runner)
-    return version is not None and version >= _MINIMUM_V2_VERSION
+    if version is not None:
+        return version >= _MINIMUM_V2_VERSION
+    match = re.match(
+        r"^protosoda-(\d+)\.(\d+)-(\d+)(?:-|$)",
+        runner or "",
+        re.IGNORECASE,
+    )
+    return bool(
+        match
+        and tuple(map(int, match.groups())) >= _MINIMUM_PROTOSODA_V2_VERSION
+    )
 
 
 def _open_regular(path: Path):
@@ -172,11 +183,21 @@ def _prefetch(paths) -> int:
 
 class AdaptiveLaunchProfile:
     def __init__(self, config: BottleConfig, executable: str):
+        self._initialize(
+            Path(ManagerUtils.get_bottle_path(config)), config.Runner, executable
+        )
+
+    @classmethod
+    def from_root(cls, root: str | Path, runner: str, executable: str):
+        profile = cls.__new__(cls)
+        profile._initialize(Path(root), runner, executable)
+        return profile
+
+    def _initialize(self, bottle: Path, runner: str, executable: str) -> None:
         identity = os.path.realpath(executable)
-        bottle = Path(ManagerUtils.get_bottle_path(config))
         legacy_digest = hashlib.sha256(os.fsencode(identity)).hexdigest()[:20]
         self.legacy_path = bottle / ".adaptive-launch" / f"{legacy_digest}.profile"
-        self.runner = config.Runner
+        self.runner = runner
         self.v2 = is_v2_runner(self.runner)
         self.trace_dir = None
 

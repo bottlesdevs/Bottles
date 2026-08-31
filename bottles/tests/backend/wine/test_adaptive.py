@@ -24,6 +24,8 @@ def test_adaptive_launch_v2_starts_with_soda_11_0_7():
     assert not is_v2_runner("soda-11.0-6")
     assert is_v2_runner("soda-11.0-7")
     assert is_v2_runner("soda-12.0-1")
+    assert not is_v2_runner("protosoda-11.0-1")
+    assert is_v2_runner("protosoda-11.0-2")
     assert not is_v2_runner("wine-ge-8-26")
 
 
