@@ -85,6 +85,18 @@
     <display_length compare="ge">768</display_length>
   </requires>
   <releases>
+    <release version="66.11" date="2026-08-31">
+      <description translate="no">
+        <ul>
+          <li>Added per-session Adaptive Launch learning for Soda runners</li>
+          <li>Added host OpenXR support for 64-bit Windows applications outside Steam</li>
+          <li>Added ARM64 Soda runners with bundled FEX support</li>
+          <li>Fixed platform-specific component selection and bundled FEX detection</li>
+          <li>Fixed UMU dedicated sandbox access to managed Proton runners</li>
+          <li>Fixed custom MangoHud configurations when system environment variables are limited</li>
+        </ul>
+      </description>
+    </release>
     <release version="66.9" date="2026-08-26">
       <description translate="no">
         <ul>
