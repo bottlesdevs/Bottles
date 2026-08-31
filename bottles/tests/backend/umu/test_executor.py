@@ -197,6 +197,37 @@ def test_prepare_replaces_reserved_base_environment(tmp_path):
     assert command.env["DISPLAY"] == ":2"
 
 
+def test_prepare_removes_missing_session_bus(tmp_path):
+    repository = UmuGameRepository(tmp_path / "umu")
+    game = _game(repository, tmp_path)
+    executor = _executor(
+        repository,
+        tmp_path,
+        {"DBUS_SESSION_BUS_ADDRESS": f"unix:path={tmp_path / 'missing-bus'}"},
+    )
+
+    command = executor.prepare(game)
+
+    assert "DBUS_SESSION_BUS_ADDRESS" not in command.env
+
+
+def test_prepare_preserves_existing_session_bus(tmp_path):
+    repository = UmuGameRepository(tmp_path / "umu")
+    game = _game(repository, tmp_path)
+    bus = tmp_path / "bus"
+    bus.touch()
+    address = f"unix:path={bus}"
+    executor = _executor(
+        repository,
+        tmp_path,
+        {"DBUS_SESSION_BUS_ADDRESS": address},
+    )
+
+    command = executor.prepare(game)
+
+    assert command.env["DBUS_SESSION_BUS_ADDRESS"] == address
+
+
 def test_prepare_prefix_uses_empty_executable(tmp_path):
     repository = UmuGameRepository(tmp_path / "umu")
     game = _game(repository, tmp_path)

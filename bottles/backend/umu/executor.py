@@ -61,6 +61,7 @@ class UmuWinetricksError(ValueError):
 
 
 _WINETRICKS_VERB_PATTERN = re.compile(r"^[a-zA-Z0-9_][a-zA-Z0-9_-]*(=[a-zA-Z0-9]*)?$")
+_SESSION_BUS_PREFIX = "unix:path="
 
 
 @dataclass(frozen=True)
@@ -116,6 +117,15 @@ class UmuExecutor:
         self._termination_lock = threading.Lock()
 
     @staticmethod
+    def _remove_missing_session_bus(environment: dict[str, str]) -> None:
+        address = environment.get("DBUS_SESSION_BUS_ADDRESS", "")
+        if not address.startswith(_SESSION_BUS_PREFIX) or ";" in address:
+            return
+        path = address.removeprefix(_SESSION_BUS_PREFIX).split(",", 1)[0]
+        if path and not Path(path).exists():
+            environment.pop("DBUS_SESSION_BUS_ADDRESS", None)
+
+    @staticmethod
     def _absolute_path(path: Path) -> Path:
         return path.expanduser().resolve(strict=False)
 
@@ -129,6 +139,7 @@ class UmuExecutor:
 
         prefix = game.prefix.resolve(self.data_root)
         environment = self.base_environment.copy()
+        self._remove_missing_session_bus(environment)
         for key in RESERVED_ENVIRONMENT_KEYS:
             environment.pop(key, None)
         environment.update(game.environment)
