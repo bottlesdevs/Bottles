@@ -278,10 +278,22 @@ class UmuExecutor:
         ):
             writable_paths.add(executable_directory)
 
+        readable_paths = set()
+        proton_path = Path(command.env["PROTONPATH"]).expanduser()
+        if proton_path.is_absolute():
+            proton_path = proton_path.resolve(strict=False)
+            if proton_path == Path(proton_path.anchor):
+                raise UmuProcessError(
+                    "The UMU Proton path cannot use the filesystem root"
+                )
+            if proton_path.is_dir():
+                readable_paths.add(proton_path)
+
         return SandboxManager(
             envs=command.env,
             chdir=str(sandbox_cwd),
             clear_env=True,
+            share_paths_ro=[str(path) for path in sorted(readable_paths)],
             share_paths_rw=[str(path) for path in sorted(writable_paths)],
         )
 
