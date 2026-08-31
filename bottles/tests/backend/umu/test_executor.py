@@ -228,6 +228,48 @@ def test_run_uses_dedicated_sandbox_when_enabled(monkeypatch, tmp_path):
     assert kwargs["start_new_session"] is True
 
 
+def test_dedicated_sandbox_exposes_managed_proton(monkeypatch, tmp_path):
+    repository = UmuGameRepository(tmp_path / "umu")
+    game_folder = tmp_path / "Game Files"
+    game_folder.mkdir()
+    game = replace(_game(repository, tmp_path, sandbox=True), proton="ProtoSoda")
+    proton = tmp_path / "runners" / "protosoda-11.0-1"
+    proton.mkdir(parents=True)
+    proton.joinpath("toolmanifest.vdf").touch()
+    installation = UmuInstallation(
+        path=tmp_path / "umu-run",
+        version="1.4.4",
+        source="managed",
+    )
+    executor = UmuExecutor(
+        installation,
+        data_root=repository.root,
+        base_environment={"XDG_DATA_HOME": str(tmp_path / "data")},
+        proton_resolver=lambda value: str(proton) if value == "ProtoSoda" else value,
+    )
+
+    class Process:
+        pid = 123
+
+        @staticmethod
+        def poll():
+            return None
+
+    calls = []
+
+    def popen(argv, **kwargs):
+        calls.append((argv, kwargs))
+        return Process()
+
+    monkeypatch.setenv("FLATPAK_ID", "com.usebottles.bottles")
+    monkeypatch.setattr(executor_module.subprocess, "Popen", popen)
+
+    executor.run(game)
+
+    argv, _kwargs = calls[0]
+    assert f"--sandbox-expose-path-ro={proton}" in argv
+
+
 def test_dedicated_sandbox_rejects_filesystem_root_as_prefix(monkeypatch, tmp_path):
     game = UmuGame(
         id=uuid4(),
