@@ -17,6 +17,7 @@
 
 import contextlib
 import os
+import re
 import sys
 import shutil
 import stat
@@ -47,6 +48,25 @@ from bottles.backend.utils.generic import (
 from bottles.backend.utils.manager import ManagerUtils
 
 logging = Logger()
+
+_PROTON_SERIAL_LINK = re.compile(
+    r"^[^/]+/files/share/default_pfx/dosdevices/com([1-9]|[12][0-9]|3[0-2])$"
+)
+_PROTON_SERIAL_TARGET = re.compile(r"^/dev/ttyS([0-9]|[12][0-9]|3[01])$")
+
+
+def _component_tar_filter(member: tarfile.TarInfo, destination: str):
+    if member.issym() and os.path.isabs(member.linkname):
+        link = _PROTON_SERIAL_LINK.fullmatch(member.name)
+        target = _PROTON_SERIAL_TARGET.fullmatch(member.linkname)
+        if not link or not target or int(link.group(1)) - 1 != int(target.group(1)):
+            raise ValueError("Archive contains an invalid absolute link")
+        filtered = tarfile.data_filter(
+            member.replace(linkname=target.group(0).lstrip("/"), deep=False),
+            destination,
+        )
+        return filtered.replace(linkname=member.linkname, deep=False)
+    return tarfile.data_filter(member, destination)
 
 
 def _select_component_file(manifest: dict) -> Optional[dict]:
@@ -515,7 +535,7 @@ class ComponentManager:
             else:
                 with tarfile.open(archive_path) as tar:
                     root_dir = tar.getnames()[0]
-                    tar.extractall(path)
+                    tar.extractall(path, filter=_component_tar_filter)
         except (
             OSError,
             ValueError,
