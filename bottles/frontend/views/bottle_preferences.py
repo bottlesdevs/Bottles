@@ -884,13 +884,17 @@ class PreferencesView(Adw.PreferencesPage):
             "fsync",
             "ntsync",
         ]
+        sync = sync_types[self.combo_sync.get_selected()]
+        if sync == self.config.Parameters.sync:
+            return
+
         self.queue.add_task()
         self.combo_sync.set_sensitive(False)
         RunAsync(
             self.manager.update_config,
             config=self.config,
             key="sync",
-            value=sync_types[self.combo_sync.get_selected()],
+            value=sync,
             scope="Parameters",
         )
         self.combo_sync.set_sensitive(True)
