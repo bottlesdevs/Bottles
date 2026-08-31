@@ -19,8 +19,15 @@ def _reload(config):
 @pytest.mark.parametrize(
     "excluded_defaults",
     [
-        ["XMODIFIERS"],
-        ["MANGOHUD_CONFIG", "XMODIFIERS"],
+        ["XDG_CONFIG_HOME"],
+        ["XCURSOR_SIZE", "XDG_CONFIG_HOME"],
+        ["XCURSOR_SIZE", "XDG_CONFIG_HOME", "XMODIFIERS"],
+        [
+            "MANGOHUD_CONFIG",
+            "XCURSOR_SIZE",
+            "XDG_CONFIG_HOME",
+            "XMODIFIERS",
+        ],
     ],
 )
 def test_load_migrates_default_inherited_environment(monkeypatch, excluded_defaults):
@@ -34,11 +41,13 @@ def test_load_migrates_default_inherited_environment(monkeypatch, excluded_defau
         Inherited_Environment_Variables=legacy_defaults,
     )
     monkeypatch.setenv("XMODIFIERS", "@im=fcitx")
+    monkeypatch.setenv("XDG_CONFIG_HOME", "/var/config")
 
     loaded = _reload(config)
     env = WineEnv(allowed_keys=loaded.Inherited_Environment_Variables)
 
     assert env.get()["envs"]["XMODIFIERS"] == "@im=fcitx"
+    assert env.get()["envs"]["XDG_CONFIG_HOME"] == "/var/config"
 
 
 @pytest.mark.parametrize(

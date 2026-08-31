@@ -19,6 +19,7 @@ class Samples:
         "USER",
         "WAYLAND_DISPLAY",
         "XAUTHORITY",
+        "XDG_CONFIG_HOME",
         "XDG_RUNTIME_DIR",
         "XMODIFIERS",
         "XCURSOR_SIZE",
