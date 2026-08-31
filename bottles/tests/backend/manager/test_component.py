@@ -1,3 +1,4 @@
+import io
 import tarfile
 from types import SimpleNamespace
 
@@ -75,6 +76,79 @@ def test_component_manager_strips_archive_only_aarch64_suffix(
     assert ComponentManager.extract(component_name, "runner", archive_path.name)
     assert (runners_path / component_name / "wine").read_text() == "runner"
     assert not (runners_path / archive_root).exists()
+
+
+def test_component_manager_extracts_proton_serial_links(tmp_path, monkeypatch):
+    temp_path = tmp_path / "temp"
+    runners_path = tmp_path / "runners"
+    source_path = tmp_path / "source"
+    component_name = "protosoda-11.0-2"
+    serial = source_path / "files/share/default_pfx/dosdevices/com1"
+    temp_path.mkdir()
+    runners_path.mkdir()
+    serial.parent.mkdir(parents=True)
+    serial.symlink_to("/dev/ttyS0")
+    (source_path / "proton").write_text("runner")
+    archive_path = temp_path / f"{component_name}.tar.gz"
+
+    with tarfile.open(archive_path, "w:gz") as archive:
+        archive.add(source_path, arcname=component_name)
+
+    monkeypatch.setattr(Paths, "temp", str(temp_path))
+    monkeypatch.setattr(Paths, "runners", str(runners_path))
+
+    assert ComponentManager.extract(component_name, "runner:proton", archive_path.name)
+    installed = runners_path / component_name
+    assert (installed / "proton").read_text() == "runner"
+    assert (installed / "files/share/default_pfx/dosdevices/com1").readlink() == (
+        serial.readlink()
+    )
+
+
+def test_component_manager_rejects_other_absolute_links(tmp_path, monkeypatch):
+    temp_path = tmp_path / "temp"
+    runners_path = tmp_path / "runners"
+    source_path = tmp_path / "source"
+    component_name = "unsafe-runner"
+    link = source_path / "files/share/default_pfx/dosdevices/com1"
+    temp_path.mkdir()
+    runners_path.mkdir()
+    link.parent.mkdir(parents=True)
+    link.symlink_to("/etc/passwd")
+    archive_path = temp_path / f"{component_name}.tar.gz"
+
+    with tarfile.open(archive_path, "w:gz") as archive:
+        archive.add(source_path, arcname=component_name)
+
+    monkeypatch.setattr(Paths, "temp", str(temp_path))
+    monkeypatch.setattr(Paths, "runners", str(runners_path))
+
+    assert not ComponentManager.extract(
+        component_name, "runner:proton", archive_path.name
+    )
+    assert not (runners_path / component_name).exists()
+
+
+def test_component_manager_rejects_tar_path_traversal(tmp_path, monkeypatch):
+    temp_path = tmp_path / "temp"
+    runners_path = tmp_path / "runners"
+    component_name = "unsafe-runner"
+    temp_path.mkdir()
+    runners_path.mkdir()
+    archive_path = temp_path / f"{component_name}.tar.gz"
+    member = tarfile.TarInfo("../escape")
+    member.size = 6
+
+    with tarfile.open(archive_path, "w:gz") as archive:
+        archive.addfile(member, io.BytesIO(b"unsafe"))
+
+    monkeypatch.setattr(Paths, "temp", str(temp_path))
+    monkeypatch.setattr(Paths, "runners", str(runners_path))
+
+    assert not ComponentManager.extract(
+        component_name, "runner:proton", archive_path.name
+    )
+    assert not (tmp_path / "escape").exists()
 
 
 def test_component_cache_selects_host_architecture(tmp_path, monkeypatch):
