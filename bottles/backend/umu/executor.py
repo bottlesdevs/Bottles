@@ -114,6 +114,8 @@ class UmuExecutor:
         self.proton_resolver = proton_resolver or UmuProtonCatalog.validate_value
         self._processes: dict[UUID, _TrackedProcess] = {}
         self._process_lock = threading.Lock()
+        self._runtime_lock = threading.Lock()
+        self._prepared_sandbox_runtimes: set[tuple[str, Path]] = set()
         self._termination_lock = threading.Lock()
 
     @staticmethod
@@ -244,7 +246,70 @@ class UmuExecutor:
                 ):
                     tracked.status = status
 
+    @staticmethod
+    def _runtime_root(environment: Mapping[str, str]) -> Path:
+        if folders_path := environment.get("UMU_FOLDERS_PATH"):
+            data_home = Path(folders_path)
+        else:
+            home = Path(environment.get("HOME", str(Path.home())))
+            if environment.get("container") == "flatpak":
+                data_home = Path(
+                    environment.get(
+                        "HOST_XDG_DATA_HOME", home.joinpath(".local", "share")
+                    )
+                )
+            else:
+                data_home = Path(
+                    environment.get(
+                        "XDG_DATA_HOME", home.joinpath(".local", "share")
+                    )
+                )
+        return data_home.expanduser().absolute().joinpath("umu")
+
+    def _ensure_sandbox_runtime(self, command: UmuCommand) -> None:
+        proton = command.env["PROTONPATH"]
+        runtime = self._runtime_root(command.env)
+        runtime_key = (proton, runtime)
+        with self._runtime_lock:
+            if runtime_key in self._prepared_sandbox_runtimes:
+                return
+
+            runtime.mkdir(parents=True, exist_ok=True)
+            marker = runtime.joinpath(
+                f".bottles-runtime-{os.getpid()}-{time.monotonic_ns()}"
+            )
+            environment = command.env.copy()
+            environment["UMU_NO_PROTON"] = "1"
+            process = subprocess.Popen(
+                [str(self.installation.path), "/usr/bin/touch", str(marker)],
+                env=environment,
+                shell=False,
+                start_new_session=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                text=True,
+                encoding="utf-8",
+                errors="replace",
+                bufsize=1,
+            )
+            if process.stdout is not None:
+                for line in process.stdout:
+                    try:
+                        sys.stdout.write(line)
+                        sys.stdout.flush()
+                    except (OSError, UnicodeError):
+                        pass
+            return_code = process.wait()
+            runtime_ready = marker.is_file()
+            marker.unlink(missing_ok=True)
+            if return_code or not runtime_ready:
+                raise UmuProcessError("UMU runtime setup failed")
+            self._prepared_sandbox_runtimes.add(runtime_key)
+
     def _start(self, game: UmuGame, command: UmuCommand) -> subprocess.Popen[str]:
+        sandbox = self._sandbox_manager(game, command) if game.sandbox else None
+        if sandbox is not None:
+            self._ensure_sandbox_runtime(command)
         with self._process_lock:
             running = self._processes.get(game.id)
             if running is not None:
@@ -255,8 +320,7 @@ class UmuExecutor:
                 raise UmuProcessError(f"The UMU prefix is already in use: {game.id}")
             argv: list[str] | str = list(command.argv)
             shell = False
-            if game.sandbox:
-                sandbox = self._sandbox_manager(game, command)
+            if sandbox is not None:
                 argv = sandbox.get_cmd(shlex.join(command.argv))
                 shell = True
             process = subprocess.Popen(
@@ -286,10 +350,7 @@ class UmuExecutor:
         prefix = game.prefix.resolve(self.data_root)
         prefix.mkdir(parents=True, exist_ok=True)
 
-        data_home = Path(
-            self.base_environment.get("XDG_DATA_HOME", Paths.xdg_data_home)
-        ).expanduser()
-        runtime = data_home.joinpath("umu").resolve(strict=False)
+        runtime = self._runtime_root(command.env)
         runtime.mkdir(parents=True, exist_ok=True)
 
         sandbox_cwd = (command.cwd or prefix).resolve(strict=False)
