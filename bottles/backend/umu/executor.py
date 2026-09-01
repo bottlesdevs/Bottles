@@ -359,6 +359,15 @@ class UmuExecutor:
             )
 
         writable_paths = set(required_writable_paths)
+        cache_home_value = self.base_environment.get("XDG_CACHE_HOME")
+        if cache_home_value is None and (home := self.base_environment.get("HOME")):
+            cache_home_value = str(Path(home).joinpath(".cache"))
+        if cache_home_value:
+            cache_home = self._absolute_path(Path(cache_home_value))
+            if cache_home != Path(cache_home.anchor):
+                cache_home.mkdir(parents=True, exist_ok=True)
+                writable_paths.add(cache_home)
+
         executable_directory = self._absolute_path(game.executable).parent
         if (
             executable_directory != Path(executable_directory.anchor)

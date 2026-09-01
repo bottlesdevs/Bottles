@@ -121,6 +121,10 @@ class SandboxManager:
 
         if self.share_host_ro:
             _cmd.append("--ro-bind / /")
+            _cmd.append("--tmpfs /tmp")
+            if "CPAK_CONTAINER_ID" in os.environ:
+                _cmd.append("--dev-bind /dev /dev")
+                _cmd.append("--bind /proc /proc")
 
         if self.chdir:
             _cmd.append(f"--chdir {shlex.quote(self.chdir)}")
@@ -155,7 +159,8 @@ class SandboxManager:
             _cmd.append("--dev-bind /dev/video0 /dev/video0")
 
         _cmd.append("--share-net" if self.share_net else "--unshare-net")
-        _cmd.append("--share-user" if self.share_user else "--unshare-user")
+        if not self.share_user:
+            _cmd.append("--unshare-user")
         _cmd.append(cmd)
 
         return _cmd

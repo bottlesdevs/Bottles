@@ -458,6 +458,69 @@ def test_dedicated_sandbox_can_share_network(monkeypatch, tmp_path):
     )
 
 
+def test_dedicated_sandbox_exposes_base_cache(monkeypatch, tmp_path):
+    repository = UmuGameRepository(tmp_path / "umu")
+    game_folder = tmp_path / "Game Files"
+    game_folder.mkdir()
+    cache_home = tmp_path / "cache"
+    game = _game(repository, tmp_path, sandbox=True)
+    executor = _executor(
+        repository,
+        tmp_path,
+        {"DISPLAY": ":1", "XDG_CACHE_HOME": str(cache_home)},
+    )
+    monkeypatch.delenv("FLATPAK_ID", raising=False)
+
+    command = executor._sandbox_manager(game, executor.prepare(game)).get_cmd("true")
+
+    assert cache_home.is_dir()
+    assert f"--bind {cache_home} {cache_home}" in command
+
+
+def test_dedicated_sandbox_does_not_expose_game_cache_override(
+    monkeypatch, tmp_path
+):
+    repository = UmuGameRepository(tmp_path / "umu")
+    game_folder = tmp_path / "Game Files"
+    game_folder.mkdir()
+    base_cache = tmp_path / "base-cache"
+    game_cache = tmp_path / "game-cache"
+    game = _game(
+        repository,
+        tmp_path,
+        environment={"XDG_CACHE_HOME": str(game_cache)},
+        sandbox=True,
+    )
+    executor = _executor(
+        repository,
+        tmp_path,
+        {"DISPLAY": ":1", "XDG_CACHE_HOME": str(base_cache)},
+    )
+    monkeypatch.delenv("FLATPAK_ID", raising=False)
+
+    command = executor._sandbox_manager(game, executor.prepare(game)).get_cmd("true")
+
+    assert f"--bind {base_cache} {base_cache}" in command
+    assert f"--bind {game_cache} {game_cache}" not in command
+
+
+def test_dedicated_sandbox_does_not_expose_root_as_cache(monkeypatch, tmp_path):
+    repository = UmuGameRepository(tmp_path / "umu")
+    game_folder = tmp_path / "Game Files"
+    game_folder.mkdir()
+    game = _game(repository, tmp_path, sandbox=True)
+    executor = _executor(
+        repository,
+        tmp_path,
+        {"DISPLAY": ":1", "XDG_CACHE_HOME": "/"},
+    )
+    monkeypatch.delenv("FLATPAK_ID", raising=False)
+
+    command = executor._sandbox_manager(game, executor.prepare(game)).get_cmd("true")
+
+    assert "--bind / /" not in command
+
+
 def test_runtime_root_uses_flatpak_host_data_home(tmp_path):
     host_data_home = tmp_path / "host-data"
 
