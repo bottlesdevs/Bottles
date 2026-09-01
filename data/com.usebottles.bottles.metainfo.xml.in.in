@@ -85,6 +85,18 @@
     <display_length compare="ge">768</display_length>
   </requires>
   <releases>
+    <release version="67.1" date="2026-09-02">
+      <description translate="no">
+        <ul>
+          <li>Fixed UMU runtime preparation inside the dedicated sandbox</li>
+          <li>Fixed SteamRT4 and ProtoSoda startup inside the Cpak sandbox</li>
+          <li>Restored persistent settings in Cpak without a session D-Bus</li>
+          <li>Restored the add menu for creating bottles and installing UMU games</li>
+          <li>Restored disabled command arguments in program launch options</li>
+          <li>Added an opt-in network permission for sandboxed UMU games</li>
+        </ul>
+      </description>
+    </release>
     <release version="67.0" date="2026-08-31">
       <description translate="no">
         <ul>
