@@ -133,6 +133,12 @@ template $UmuAddGameDialog: Adw.Dialog {
           title: _("Dedicated Sandbox");
           subtitle: _("Restrict this game to its prefix, game files, and the UMU runtime.");
         }
+
+        Adw.SwitchRow switch_network {
+          title: _("Share Network");
+          subtitle: _("Allow this game to access the network inside its dedicated sandbox.");
+          sensitive: bind switch_sandbox.active;
+        }
       }
 
       Adw.PreferencesGroup {

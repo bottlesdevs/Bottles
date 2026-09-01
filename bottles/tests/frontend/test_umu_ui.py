@@ -315,11 +315,13 @@ def test_add_game_passes_dedicated_sandbox_to_repository(monkeypatch):
     dialog.entry_game_id.set_text("umu-default")
     dialog.executable = "/games/setup.exe"
     dialog.switch_sandbox.set_active(True)
+    dialog.switch_network.set_active(True)
     dialog.btn_add.set_sensitive(True)
 
     dialog._UmuAddGameDialog__add()
 
     assert calls[0][2]["sandbox"] is True
+    assert calls[0][2]["share_net"] is True
     assert ("launch", game) in calls
 
 
@@ -349,12 +351,14 @@ def test_install_wizard_passes_dedicated_sandbox_to_repository():
         proton="GE-Proton",
         database_entry=SimpleNamespace(umu_id="umu-default", store="none"),
         switch_sandbox=SimpleNamespace(get_active=lambda: True),
+        switch_network=SimpleNamespace(get_active=lambda: True),
         _UmuInstallDialog__portable=False,
     )
 
     UmuInstallDialog._UmuInstallDialog__new_game(dialog, "installing")
 
     assert calls[0][2]["sandbox"] is True
+    assert calls[0][2]["share_net"] is True
 
 
 def test_umu_dependency_dialog_installs_without_a_second_step(monkeypatch):

@@ -17,7 +17,7 @@ from bottles.backend.umu import (
 from bottles.backend.umu import executor as executor_module
 
 
-def _game(repository, tmp_path, environment=None, sandbox=False):
+def _game(repository, tmp_path, environment=None, sandbox=False, share_net=False):
     return repository.new_game(
         "Example",
         tmp_path / "Game Files" / "game;name.exe",
@@ -28,6 +28,7 @@ def _game(repository, tmp_path, environment=None, sandbox=False):
         working_directory=tmp_path / "Game Files",
         environment=environment,
         sandbox=sandbox,
+        share_net=share_net,
     )
 
 
@@ -432,6 +433,29 @@ def test_dedicated_sandbox_uses_flatpak_umu_path(monkeypatch, tmp_path):
     assert f"--sandbox-expose-path={runtime}" in argv
     assert f"--sandbox-expose-path={tmp_path / 'flatpak-data' / 'umu'}" not in argv
     assert "--no-network" in argv
+
+
+def test_dedicated_sandbox_can_share_network(monkeypatch, tmp_path):
+    repository = UmuGameRepository(tmp_path / "umu")
+    game_folder = tmp_path / "Game Files"
+    game_folder.mkdir()
+    game = _game(repository, tmp_path, sandbox=True, share_net=True)
+    executor = _executor(
+        repository,
+        tmp_path,
+        {
+            "container": "flatpak",
+            "HOME": str(tmp_path / "home"),
+            "XDG_DATA_HOME": str(tmp_path / "flatpak-data"),
+        },
+    )
+
+    monkeypatch.setenv("FLATPAK_ID", "com.usebottles.bottles")
+    command = executor.prepare(game)
+
+    assert "--no-network" not in executor._sandbox_manager(game, command).get_cmd(
+        "true"
+    )
 
 
 def test_runtime_root_uses_flatpak_host_data_home(tmp_path):
