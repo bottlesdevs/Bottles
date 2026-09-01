@@ -136,6 +136,44 @@ def test_bwrap_quotes_environment_variable_names(monkeypatch):
     assert "--setenv 'VALUE; touch /tmp/not-run' content" in command
 
 
+def test_bwrap_preserves_cpak_runtime_mounts(monkeypatch):
+    monkeypatch.delenv("FLATPAK_ID", raising=False)
+    monkeypatch.setenv("CPAK_CONTAINER_ID", "test-container")
+    monkeypatch.setattr(
+        "bottles.backend.managers.sandbox.os.path.isdir", lambda _: True
+    )
+
+    command = SandboxManager(share_display=False).get_cmd("true")
+
+    assert "--tmpfs /tmp" in command
+    assert "--dev-bind /dev /dev" in command
+    assert "--bind /proc /proc" in command
+    assert command.index("--dev-bind /dev /dev") < command.index("--tmpfs /dev/input")
+    assert command.index("--dev-bind /dev /dev") < command.index(
+        "--tmpfs /dev/bus/usb"
+    )
+
+
+def test_bwrap_does_not_expose_native_runtime_mounts(monkeypatch):
+    monkeypatch.delenv("FLATPAK_ID", raising=False)
+    monkeypatch.delenv("CPAK_CONTAINER_ID", raising=False)
+
+    command = SandboxManager(share_display=False).get_cmd("true")
+
+    assert "--tmpfs /tmp" in command
+    assert "--dev-bind /dev /dev" not in command
+    assert "--bind /proc /proc" not in command
+
+
+def test_bwrap_shared_user_namespace_omits_user_flag(monkeypatch):
+    monkeypatch.delenv("FLATPAK_ID", raising=False)
+
+    command = SandboxManager(share_user=True).get_cmd("true")
+
+    assert "--unshare-user" not in command
+    assert "--share-user" not in command
+
+
 def test_flatpak_usb_flag_requires_capability(monkeypatch):
     monkeypatch.setenv("FLATPAK_ID", "com.usebottles.bottles")
     monkeypatch.setattr(
