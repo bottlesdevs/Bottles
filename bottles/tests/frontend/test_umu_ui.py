@@ -22,6 +22,7 @@ Gio.resources_register(Gio.Resource.load(str(resource_path)))
 from bottles.frontend.views.list import BottleView
 from bottles.frontend.widgets.umu import UmuPrefixRow
 from bottles.frontend.windows import umu as umu_module
+from bottles.frontend.windows import window as window_module
 from bottles.frontend.windows.umu import (
     UmuAddGameDialog,
     UmuDependencyDialog,
@@ -112,6 +113,46 @@ def test_detected_prefix_opens_database_search():
     )
 
     assert calls == [{"detected_prefix": "/home/user/Games/umu/game"}]
+
+
+def test_create_bottle_action_is_independent_from_active_page(monkeypatch):
+    calls = []
+
+    class Dialog:
+        def present(self, parent):
+            calls.append(parent)
+
+    monkeypatch.setattr(window_module, "BottlesNewBottleDialog", Dialog)
+    window = SimpleNamespace(
+        pop_add=SimpleNamespace(popdown=lambda: calls.append("closed")),
+        stack_main=SimpleNamespace(get_visible_child_name=lambda: "page_library"),
+        show_umu_search=lambda: calls.append("umu"),
+    )
+
+    BottlesWindow.show_add_view(window)
+
+    assert calls == ["closed", window]
+
+
+def test_install_umu_action_opens_database_search(monkeypatch):
+    calls = []
+
+    class Dialog:
+        def __init__(self, parent, detected_prefix=None):
+            calls.append((parent, detected_prefix))
+
+        def present(self, parent):
+            calls.append(parent)
+
+    monkeypatch.setattr(window_module, "UmuSearchDialog", Dialog)
+    window = SimpleNamespace(
+        manager=SimpleNamespace(get_umu_installation=lambda: object()),
+        pop_add=SimpleNamespace(popdown=lambda: calls.append("closed")),
+    )
+
+    BottlesWindow.show_umu_search(window)
+
+    assert calls == ["closed", (window, None), window]
 
 
 def test_database_selection_preserves_identity_and_detected_prefix(monkeypatch):
