@@ -47,7 +47,8 @@
     "env": [
       "PATH=/app/bin:/usr/bin:/usr/local/bin:/usr/lib/extensions/vulkan/MangoHud/bin/:/usr/lib/extensions/vulkan/OBSVkCapture/bin/:/usr/lib/extensions/vulkan/gamescope/bin/",
       "LD_LIBRARY_PATH=/app/lib:/app/lib/i386-linux-gnu:/usr/lib",
-      "GST_PLUGIN_SYSTEM_PATH=/app/lib/gstreamer-1.0:/usr/lib/x86_64-linux-gnu/gstreamer-1.0:/usr/lib/i386-linux-gnu/gstreamer-1.0"
+      "GST_PLUGIN_SYSTEM_PATH=/app/lib/gstreamer-1.0:/usr/lib/x86_64-linux-gnu/gstreamer-1.0:/usr/lib/i386-linux-gnu/gstreamer-1.0",
+      "GSETTINGS_BACKEND=keyfile"
     ],
     "network": true,
     "process": false,

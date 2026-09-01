@@ -69,6 +69,8 @@ class BottlesWindow(Adw.ApplicationWindow):
     # region Widgets
     stack_main = Gtk.Template.Child()
     btn_add = Gtk.Template.Child()
+    btn_create_bottle = Gtk.Template.Child()
+    btn_install_umu = Gtk.Template.Child()
     btn_search = Gtk.Template.Child()
     btn_donate = Gtk.Template.Child()
     btn_noconnection = Gtk.Template.Child()
@@ -78,6 +80,7 @@ class BottlesWindow(Adw.ApplicationWindow):
     view_switcher_title = Gtk.Template.Child()
     view_switcher_bar = Gtk.Template.Child()
     main_leaf = Gtk.Template.Child()
+    pop_add = Gtk.Template.Child()
     toasts = Gtk.Template.Child()
     # endregion
 
@@ -184,7 +187,8 @@ class BottlesWindow(Adw.ApplicationWindow):
 
         # Signal connections
         self.btn_donate.connect("clicked", self.__show_funding_dialog)
-        self.btn_add.connect("clicked", self.show_add_view)
+        self.btn_create_bottle.connect("clicked", self.show_add_view)
+        self.btn_install_umu.connect("clicked", self.show_umu_search)
         self.btn_search.connect("toggled", self.__toggle_search)
         self.btn_noconnection.connect("clicked", self.check_for_connection)
         self.banner_offline.connect("button-clicked", self.check_for_connection)
@@ -492,9 +496,7 @@ class BottlesWindow(Adw.ApplicationWindow):
         GLib.idle_add(self.__continue_startup_dialogs)
 
     def show_add_view(self, widget=False):
-        if self.stack_main.get_visible_child_name() == "page_library":
-            self.show_umu_search()
-            return
+        self.pop_add.popdown()
         new_bottle_dialog = BottlesNewBottleDialog()
         new_bottle_dialog.present(self)
 
@@ -508,6 +510,7 @@ class BottlesWindow(Adw.ApplicationWindow):
         UmuAddGameDialog(self, mode=mode).present(self)
 
     def show_umu_search(self, *_args, detected_prefix=None):
+        self.pop_add.popdown()
         if self.manager.get_umu_installation() is None:
             self.show_umu_unavailable()
             return
@@ -753,15 +756,11 @@ class BottlesWindow(Adw.ApplicationWindow):
 
     def __on_page_changed(self, stack, *args):
         page = stack.get_visible_child_name()
-        is_bottles_list = page == "page_list"
         if hasattr(self, "page_list"):
             self.page_list.search_bar.set_search_mode(False)
             self.page_library.search_bar.set_search_mode(False)
         self.btn_search.set_active(False)
         self.btn_search.set_visible(page in ("page_list", "page_library"))
-        self.btn_add.set_tooltip_text(
-            _("Create New Bottle") if is_bottles_list else _("Add a Windows Game")
-        )
 
     def __toggle_search(self, button):
         if not hasattr(self, "page_list"):

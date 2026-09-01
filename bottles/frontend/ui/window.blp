@@ -19,9 +19,11 @@ template $BottlesWindow: Adw.ApplicationWindow {
             stack: stack_main;
           };
 
-          Button btn_add {
-            tooltip-text: _("Create New Bottle");
+          MenuButton btn_add {
+            tooltip-text: _("Add");
             icon-name: "list-add-symbolic";
+            always-show-arrow: false;
+            popover: pop_add;
           }
 
           Box box_actions {}
@@ -76,6 +78,28 @@ template $BottlesWindow: Adw.ApplicationWindow {
           reveal: bind view_switcher_title.title-visible;
         }
       }
+    }
+  }
+}
+
+Popover pop_add {
+  styles [
+    "menu",
+  ]
+
+  Box {
+    orientation: vertical;
+    margin-top: 6;
+    margin-bottom: 6;
+    margin-start: 6;
+    margin-end: 6;
+
+    $GtkModelButton btn_create_bottle {
+      text: _("Create a Bottle");
+    }
+
+    $GtkModelButton btn_install_umu {
+      text: _("Install a Game with UMU");
     }
   }
 }
