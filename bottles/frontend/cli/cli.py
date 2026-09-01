@@ -314,6 +314,11 @@ class CLI:
         umu_parser.add_argument(
             "--sandbox", action="store_true", help="Use a dedicated sandbox"
         )
+        umu_parser.add_argument(
+            "--share-network",
+            action="store_true",
+            help="Allow network access in the dedicated sandbox",
+        )
 
         self.__process_args()
 
@@ -440,6 +445,7 @@ class CLI:
                 game_id=self.args.game_id,
                 store=self.args.store,
                 sandbox=self.args.sandbox,
+                share_net=self.args.share_network,
             )
             extra = {
                 **game.extra,

@@ -118,6 +118,7 @@ class UmuGame:
     working_directory: Path | None = None
     environment: dict[str, str] = field(default_factory=dict)
     sandbox: bool = False
+    share_net: bool = False
     extra: dict[str, Any] = field(default_factory=dict)
 
     def __post_init__(self):
@@ -170,6 +171,8 @@ class UmuGame:
         object.__setattr__(self, "environment", _clean_environment(self.environment))
         if not isinstance(self.sandbox, bool):
             raise UmuModelError("Invalid dedicated sandbox flag")
+        if not isinstance(self.share_net, bool):
+            raise UmuModelError("Invalid network sharing flag")
         if not isinstance(self.extra, Mapping):
             raise UmuModelError("Invalid game metadata")
         object.__setattr__(self, "extra", deepcopy(dict(self.extra)))
@@ -204,6 +207,7 @@ class UmuGame:
             "working_directory": values.pop("working_directory", None),
             "environment": values.pop("environment", {}),
             "sandbox": values.pop("sandbox", False),
+            "share_net": values.pop("share_net", False),
         }
         return cls(**known, extra=values)
 
@@ -226,6 +230,7 @@ class UmuGame:
                 ),
                 "environment": dict(self.environment),
                 "sandbox": self.sandbox,
+                "share_net": self.share_net,
             }
         )
         return data

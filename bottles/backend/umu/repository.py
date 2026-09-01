@@ -63,6 +63,7 @@ class UmuGameRepository:
         working_directory: str | Path | None = None,
         environment: dict[str, str] | None = None,
         sandbox: bool = False,
+        share_net: bool = False,
     ) -> UmuGame:
         item_id = uuid4()
         prefix = UmuPrefix(path=f"prefixes/{item_id}")
@@ -80,6 +81,7 @@ class UmuGameRepository:
             ),
             environment=environment or {},
             sandbox=sandbox,
+            share_net=share_net,
         )
 
     def _prepare_game_directory(self, game: UmuGame) -> Path:

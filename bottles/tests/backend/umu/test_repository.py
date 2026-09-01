@@ -25,6 +25,7 @@ def test_repository_round_trip(tmp_path):
         working_directory=tmp_path / "game files",
         environment={"PROTON_ENABLE_NVAPI": "1"},
         sandbox=True,
+        share_net=True,
     )
 
     path = repository.save(game)
@@ -34,6 +35,7 @@ def test_repository_round_trip(tmp_path):
     assert loaded == game
     assert loaded.environment == {"PROTON_ENABLE_NVAPI": "1"}
     assert loaded.sandbox is True
+    assert loaded.share_net is True
     assert loaded.library_id == f"umu:{game.id}"
     assert repository.prefix_path(game) == repository.prefixes_root / str(game.id)
     assert repository.list_games() == [game]
@@ -48,6 +50,23 @@ def test_repository_rejects_invalid_sandbox_value(tmp_path):
     )
     data = game.to_dict()
     data["sandbox"] = "yes"
+    path = repository.config_path(game.id)
+    path.parent.mkdir(parents=True)
+    path.write_text(yaml.dump(data, sort_keys=False), encoding="utf-8")
+
+    with pytest.raises(UmuRepositoryError, match="Cannot load"):
+        repository.load(game.id)
+
+
+def test_repository_rejects_invalid_network_sharing_value(tmp_path):
+    repository = UmuGameRepository(tmp_path / "umu")
+    game = repository.new_game(
+        "Invalid network sharing",
+        "/games/invalid.exe",
+        proton="UMU-Proton",
+    )
+    data = game.to_dict()
+    data["share_net"] = "yes"
     path = repository.config_path(game.id)
     path.parent.mkdir(parents=True)
     path.write_text(yaml.dump(data, sort_keys=False), encoding="utf-8")
