@@ -38,9 +38,20 @@
     "notification": true,
     "openURI": true,
     "hostApplications": false,
+    "filePicker": {
+      "openFile": true,
+      "openFolder": true,
+      "saveFile": true,
+      "persistent": true,
+      "containingFolder": true
+    },
     "filesystem": [
       {
-        "path": "home",
+        "path": "home/.local/share/bottles",
+        "access": "read-write"
+      },
+      {
+        "path": "home/.local/share/icons",
         "access": "read-write"
       }
     ],
