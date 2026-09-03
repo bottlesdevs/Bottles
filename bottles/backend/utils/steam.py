@@ -148,6 +148,36 @@ class SteamUtils:
                     logging.warning(f"Failed to update {destination}: {exc}")
 
     @staticmethod
+    def sync_proton_fonts(path: str, prefix: str) -> None:
+        """Link the fonts shipped by Proton into a Bottles prefix."""
+        dist_directory = SteamUtils.get_dist_directory(path)
+        destination_dir = os.path.join(prefix, "drive_c/windows/Fonts")
+
+        for directory in ("share/fonts", "share/wine/fonts"):
+            source_dir = os.path.join(dist_directory, directory)
+            if not os.path.isdir(source_dir):
+                continue
+
+            for filename in os.listdir(source_dir):
+                if not filename.casefold().endswith((".ttf", ".ttc")):
+                    continue
+
+                source = os.path.join(source_dir, filename)
+                if not os.path.isfile(source):
+                    continue
+
+                destination = os.path.join(destination_dir, filename)
+                try:
+                    if os.path.lexists(destination):
+                        if not os.path.islink(destination):
+                            continue
+                        os.unlink(destination)
+                    os.makedirs(destination_dir, exist_ok=True)
+                    os.symlink(source, destination)
+                except OSError as exc:
+                    logging.warning(f"Failed to link {destination}: {exc}")
+
+    @staticmethod
     def prepare_proton_fsr4(
         path: str, prefix: str, env: dict[str, str], sandbox=None
     ) -> bool:

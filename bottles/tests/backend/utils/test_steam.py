@@ -75,6 +75,45 @@ def test_sync_proton_vkd3d_copies_wined3d_dependencies(tmp_path: Path) -> None:
             )
 
 
+def test_sync_proton_fonts_links_fonts_from_both_directories(tmp_path: Path) -> None:
+    proton_path = tmp_path / "Proton"
+    prefix = tmp_path / "prefix"
+    wine_fonts = proton_path / "files/share/wine/fonts"
+    shared_fonts = proton_path / "files/share/fonts"
+    wine_fonts.mkdir(parents=True)
+    shared_fonts.mkdir(parents=True)
+    (wine_fonts / "tahoma.ttf").write_bytes(b"tahoma")
+    (shared_fonts / "NotoSans.ttc").write_bytes(b"noto")
+    (shared_fonts / "README.txt").write_text("not a font", encoding="utf-8")
+
+    SteamUtils.sync_proton_fonts(str(proton_path), str(prefix))
+
+    fonts = prefix / "drive_c/windows/Fonts"
+    assert (fonts / "tahoma.ttf").is_symlink()
+    assert (fonts / "tahoma.ttf").resolve() == wine_fonts / "tahoma.ttf"
+    assert (fonts / "NotoSans.ttc").is_symlink()
+    assert (fonts / "NotoSans.ttc").resolve() == shared_fonts / "NotoSans.ttc"
+    assert not (fonts / "README.txt").exists()
+
+
+def test_sync_proton_fonts_replaces_only_existing_symlinks(tmp_path: Path) -> None:
+    proton_path = tmp_path / "Proton"
+    prefix_fonts = tmp_path / "prefix/drive_c/windows/Fonts"
+    source_fonts = proton_path / "files/share/wine/fonts"
+    source_fonts.mkdir(parents=True)
+    prefix_fonts.mkdir(parents=True)
+    (source_fonts / "tahoma.ttf").write_bytes(b"new")
+    (source_fonts / "arial.ttf").write_bytes(b"runner")
+    (prefix_fonts / "tahoma.ttf").symlink_to(tmp_path / "removed-runner/tahoma.ttf")
+    (prefix_fonts / "arial.ttf").write_bytes(b"custom")
+
+    SteamUtils.sync_proton_fonts(str(proton_path), str(prefix_fonts.parents[2]))
+
+    assert (prefix_fonts / "tahoma.ttf").resolve() == source_fonts / "tahoma.ttf"
+    assert not (prefix_fonts / "arial.ttf").is_symlink()
+    assert (prefix_fonts / "arial.ttf").read_bytes() == b"custom"
+
+
 def _write_protonfixes(path: Path, replacement: str) -> None:
     package = path / "protonfixes"
     package.mkdir(parents=True)

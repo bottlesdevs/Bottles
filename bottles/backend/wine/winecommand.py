@@ -483,6 +483,7 @@ class WineCommand:
         if SteamUtils.is_proton(runner_path):
             proton_path = runner_path
             SteamUtils.sync_proton_vkd3d(runner_path, bottle, arch)
+            SteamUtils.sync_proton_fonts(runner_path, bottle)
             runner_path = SteamUtils.get_dist_directory(runner_path)
 
         # Clean some env variables which can cause trouble
