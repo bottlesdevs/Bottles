@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import urllib.error
 import urllib.request
 from gettext import gettext as _
 
@@ -22,6 +23,24 @@ from gi.repository import Adw, GdkPixbuf, Gio, GLib, Gtk
 
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.gtk import GtkUtils
+
+
+INSTALLER_ICON_USER_AGENT = "Bottles"
+
+
+def fetch_installer_icon(url: str | None) -> bytes | None:
+    if url is None:
+        return None
+
+    request = urllib.request.Request(
+        url,
+        headers={"User-Agent": INSTALLER_ICON_USER_AGENT},
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=10) as response:
+            return response.read()
+    except (urllib.error.HTTPError, urllib.error.URLError, OSError, ValueError):
+        return None
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/local-resource-entry.ui")
@@ -132,11 +151,7 @@ class InstallerDialog(Adw.Window):
     def __set_icon(self):
         def fetch_icon():
             url = self.manager.installer_manager.get_icon_url(self.installer[0])
-            if url is None:
-                return None
-
-            with urllib.request.urlopen(url, timeout=10) as res:
-                return res.read()
+            return fetch_installer_icon(url)
 
         def set_icon(data, error):
             if error is not None or data is None:
