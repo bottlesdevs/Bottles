@@ -18,16 +18,18 @@ import webbrowser
 from gettext import gettext as _
 from urllib.parse import urlencode
 
-from gi.repository import Adw, GObject, Gtk
+from gi.repository import Adw, Gdk, GObject, Graphene, Gtk
 
 
 PAYPAL_DONATION_URL = "https://www.paypal.com/donate"
+REVOLUT_DONATION_URL = "https://revolut.me/mirkobrombin"
 FUNDING_URL = "https://usebottles.com/funding/"
 NEXT_ANNOUNCEMENT_URL = (
     "https://usebottles.com/blog/2023-10-05-bottles-next-a-new-chapter.md"
 )
 DONATION_AMOUNTS = (5, 10, 20, 50)
 MIN_DONATION_AMOUNT = 3
+REVOLUT_LOGO_SIZE = (72, 16)
 
 
 def build_paypal_donation_url(amount: int) -> str:
@@ -46,6 +48,40 @@ def build_paypal_donation_url(amount: int) -> str:
         }
     )
     return f"{PAYPAL_DONATION_URL}?{params}"
+
+
+class WordmarkPaintable(GObject.Object, Gdk.Paintable):
+    def __init__(self, widget: Gtk.Widget, icon_name: str, size: tuple[int, int]):
+        super().__init__()
+        self._widget = widget
+        self._icon_name = icon_name
+        self._width, self._height = size
+
+    def do_get_intrinsic_width(self) -> int:
+        return self._width
+
+    def do_get_intrinsic_height(self) -> int:
+        return self._height
+
+    def do_get_intrinsic_aspect_ratio(self) -> float:
+        return self._width / self._height
+
+    def do_snapshot(self, snapshot: Gtk.Snapshot, width: float, height: float):
+        theme = Gtk.IconTheme.get_for_display(self._widget.get_display())
+        icon = theme.lookup_icon(
+            self._icon_name,
+            None,
+            self._width,
+            self._widget.get_scale_factor(),
+            self._widget.get_direction(),
+            Gtk.IconLookupFlags.FORCE_SYMBOLIC,
+        )
+        color = self._widget.get_color()
+
+        snapshot.push_clip(Graphene.Rect().init(0, 0, width, height))
+        snapshot.translate(Graphene.Point().init(0, (height - width) / 2))
+        icon.snapshot_symbolic(snapshot, width, width, [color] * 4)
+        snapshot.pop()
 
 
 class FundingDialog(Adw.Dialog):
@@ -148,9 +184,39 @@ class FundingDialog(Adw.Dialog):
         self.btn_paypal.add_css_class("pill")
         self.btn_paypal.set_margin_start(18)
         self.btn_paypal.set_margin_end(18)
-        self.btn_paypal.set_margin_bottom(16)
         self.btn_paypal.connect("clicked", self.__donate_with_paypal)
         donation_card.append(self.btn_paypal)
+
+        payment_row = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
+        payment_row.set_homogeneous(True)
+        payment_row.set_margin_start(18)
+        payment_row.set_margin_end(18)
+        payment_row.set_margin_bottom(16)
+
+        btn_card = Gtk.Button()
+        btn_card.add_css_class("pill")
+        btn_card.connect("clicked", self.__open_support_url, REVOLUT_DONATION_URL)
+        card_content = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+        card_content.set_halign(Gtk.Align.CENTER)
+        card_content.append(Gtk.Image.new_from_icon_name("credit-card-symbolic"))
+        card_content.append(Gtk.Label(label=_("Credit/Debit Card")))
+        btn_card.set_child(card_content)
+        payment_row.append(btn_card)
+
+        btn_revolut = Gtk.Button()
+        btn_revolut.add_css_class("pill")
+        btn_revolut.set_tooltip_text("Revolut")
+        btn_revolut.update_property([Gtk.AccessibleProperty.LABEL], ["Revolut"])
+        btn_revolut.connect("clicked", self.__open_support_url, REVOLUT_DONATION_URL)
+        revolut_logo = Gtk.Picture.new_for_paintable(
+            WordmarkPaintable(btn_revolut, "revolut-symbolic", REVOLUT_LOGO_SIZE)
+        )
+        revolut_logo.set_can_shrink(False)
+        revolut_logo.set_halign(Gtk.Align.CENTER)
+        revolut_logo.set_valign(Gtk.Align.CENTER)
+        btn_revolut.set_child(revolut_logo)
+        payment_row.append(btn_revolut)
+        donation_card.append(payment_row)
         page.append(donation_card)
         self.__amount_changed()
 
