@@ -344,6 +344,7 @@ def test_run_uses_dedicated_sandbox_when_enabled(monkeypatch, tmp_path):
     assert argv.startswith("bwrap --clearenv")
     assert f"--bind {prefix} {prefix}" in argv
     assert f"--bind {tmp_path / 'data' / 'umu'} {tmp_path / 'data' / 'umu'}" in argv
+    assert "--ro-bind / /" not in argv
     assert "--unshare-net" in argv
     assert "'$(touch ignored)'" in argv
     assert kwargs["shell"] is True
@@ -391,6 +392,7 @@ def test_dedicated_sandbox_exposes_managed_proton(monkeypatch, tmp_path):
 
     argv, _kwargs = calls[0]
     assert f"--sandbox-expose-path-ro={proton}" in argv
+    assert "--sandbox-expose-path-ro=/ " not in argv
 
 
 def test_dedicated_sandbox_uses_flatpak_umu_path(monkeypatch, tmp_path):
