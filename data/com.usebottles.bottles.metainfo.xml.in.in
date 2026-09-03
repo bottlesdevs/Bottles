@@ -85,6 +85,18 @@
     <display_length compare="ge">768</display_length>
   </requires>
   <releases>
+    <release version="67.2" date="2026-09-03">
+      <description translate="no">
+        <ul>
+          <li>Fixed Proton font links not being refreshed after runner updates</li>
+          <li>Fixed the UMU dedicated sandbox exposing the host filesystem read-only</li>
+          <li>Fixed installer icons failing to load from hosts that reject anonymous requests</li>
+          <li>Added card and Revolut donation options to the funding dialog</li>
+          <li>Shared files granted through the Cpak file chooser with the dedicated sandbox</li>
+          <li>Restricted the Cpak filesystem access to Bottles data</li>
+        </ul>
+      </description>
+    </release>
     <release version="67.1" date="2026-09-02">
       <description translate="no">
         <ul>
