@@ -11,6 +11,7 @@ from bottles.backend.globals import (
     Paths,
     gamemode_available,
     gamescope_available,
+    is_cpak,
     lsfg_vk_version,
     mangohud_available,
     obs_vkc_available,
@@ -1085,6 +1086,9 @@ class WineCommand:
         # cannot find its entry point inside the dedicated sandbox. Symlinks are
         # resolved so the real target gets shared, not just the link.
         share_paths_ro = [Paths.runners, Paths.temp]
+        cpak_grants = "/run/cpak/grants"
+        if is_cpak() and os.path.isdir(cpak_grants):
+            share_paths_ro.append(cpak_grants)
 
         runner_root = (
             self.config.RunnerPath

@@ -1497,3 +1497,38 @@ def test_dedicated_sandbox_shares_forwarded_document_read_write(monkeypatch, tmp
     assert document in sandbox.share_paths_rw
     assert command_document in sandbox.share_paths_rw
     assert other_path not in sandbox.share_paths_rw
+
+
+def test_dedicated_sandbox_shares_cpak_file_grants(monkeypatch, tmp_path):
+    bottle_path = tmp_path / "TestBottle"
+    bottle_path.mkdir()
+    config = BottleConfig(Name="Test", Path=str(bottle_path), Runner="sys-wine")
+
+    monkeypatch.setattr(
+        "bottles.backend.wine.winecommand.ManagerUtils.get_bottle_path",
+        lambda _config: str(bottle_path),
+    )
+    monkeypatch.setattr(
+        "bottles.backend.wine.winecommand.ManagerUtils.get_runner_path",
+        lambda _runner: "sys-wine",
+    )
+    monkeypatch.setattr(winecommand, "is_cpak", lambda: True)
+    original_isdir = os.path.isdir
+    monkeypatch.setattr(
+        winecommand.os.path,
+        "isdir",
+        lambda path: path == "/run/cpak/grants" or original_isdir(path),
+    )
+
+    winecmd = WineCommand.__new__(WineCommand)
+    winecmd.config = config
+    winecmd.arguments = ""
+    winecmd.command = "wine /run/cpak/grants/id/setup.exe"
+    winecmd.cwd = str(bottle_path)
+    winecmd.runner_runtime = ""
+    winecmd.steam_runtime_root = None
+    winecmd.env = {}
+
+    sandbox = winecmd._get_sandbox_manager()
+
+    assert "/run/cpak/grants" in sandbox.share_paths_ro
