@@ -268,12 +268,7 @@ class BottlesWindow(Adw.ApplicationWindow):
         if "FLATPAK_ID" in os.environ:
             portal = Xdp.Portal()
             parent = XdpGtk4.parent_new_gtk(self)
-            if uri.startswith("file:"):
-                portal.open_directory(
-                    parent, uri, Xdp.OpenUriFlags.NONE, None, None
-                )
-            else:
-                portal.open_uri(parent, uri, Xdp.OpenUriFlags.NONE, None, None)
+            portal.open_uri(parent, uri, Xdp.OpenUriFlags.NONE, None, None)
             return
 
         Gtk.show_uri(self, uri, Gdk.CURRENT_TIME)
