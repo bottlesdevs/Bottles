@@ -1069,6 +1069,13 @@ raise SystemExit(status if status >= 0 else 128 - status)
 
         if gamescope_available and self.gamescope_activated:
             gamescope_cmd = [gamescope_available]
+            gamescope_extension = "/usr/lib/extensions/vulkan/gamescope"
+            if gamescope_available.startswith(f"{gamescope_extension}/"):
+                gamescope_cmd = [
+                    "env",
+                    f"LD_LIBRARY_PATH={gamescope_extension}/lib${{LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}}",
+                    gamescope_available,
+                ]
             if return_steam_cmd:
                 gamescope_cmd = ["gamescope"]
             effective_environment = config.Environment_Variables.copy()

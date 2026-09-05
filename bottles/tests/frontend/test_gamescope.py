@@ -106,6 +106,20 @@ def test_windowed_gamescope_command_has_no_window_type_flags(monkeypatch):
     assert WineCommand._get_gamescope_cmd(command) == "gamescope"
 
 
+def test_flatpak_gamescope_exports_its_extension_libraries(monkeypatch):
+    config = BottleConfig()
+    config.Parameters.gamescope_fullscreen = False
+    command = SimpleNamespace(config=config, gamescope_activated=True)
+    path = "/usr/lib/extensions/vulkan/gamescope/bin/gamescope"
+    monkeypatch.setattr(winecommand, "gamescope_available", path)
+
+    assert WineCommand._get_gamescope_cmd(command) == (
+        "env LD_LIBRARY_PATH=/usr/lib/extensions/vulkan/gamescope/lib"
+        "${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH} "
+        f"{path}"
+    )
+
+
 def test_hdr_gamescope_command_enables_hdr(monkeypatch):
     config = BottleConfig()
     config.Parameters.hdr = True
