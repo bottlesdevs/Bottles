@@ -1314,16 +1314,24 @@ def test_wayland_sandbox_clears_parent_display(monkeypatch, tmp_path):
     )
 
 
-@pytest.mark.parametrize("use_steam_runtime", [False, True])
+@pytest.mark.parametrize(
+    ("use_steam_runtime", "runtime_symlink"),
+    ((False, False), (True, False), (True, True)),
+)
 def test_dedicated_sandbox_uses_selected_runtime_path(
-    monkeypatch, tmp_path, use_steam_runtime
+    monkeypatch, tmp_path, use_steam_runtime, runtime_symlink
 ):
     bottle_path = tmp_path / "TestBottle"
     bottle_path.mkdir()
     runner_path = tmp_path / "ge-proton"
     runner_path.mkdir()
     runtime_path = tmp_path / "SteamLinuxRuntime_sniper"
-    runtime_path.mkdir()
+    if runtime_symlink:
+        runtime_target = tmp_path / "SteamLinuxRuntime_sniper_target"
+        runtime_target.mkdir()
+        runtime_path.symlink_to(runtime_target, target_is_directory=True)
+    else:
+        runtime_path.mkdir()
     entry_point = runtime_path / "_v2-entry-point"
     entry_point.touch()
 
@@ -1372,8 +1380,13 @@ def test_dedicated_sandbox_uses_selected_runtime_path(
 
     invalid_runtime_path = os.path.realpath("sniper")
     assert invalid_runtime_path not in sandbox.share_paths_ro
-    assert (str(runtime_path) in sandbox.share_paths_ro) is use_steam_runtime
-    assert (str(entry_point) in command) is use_steam_runtime
+    resolved_runtime = os.path.realpath(runtime_path)
+    resolved_entry_point = os.path.realpath(entry_point)
+    assert (resolved_runtime in sandbox.share_paths_ro) is use_steam_runtime
+    assert (resolved_entry_point in command) is use_steam_runtime
+    if use_steam_runtime and runtime_symlink:
+        assert str(runtime_path) not in sandbox.share_paths_ro
+        assert str(entry_point) not in command
 
 
 @pytest.mark.parametrize(

@@ -26,6 +26,25 @@ def test_open_filemanager_encodes_custom_path(monkeypatch):
     assert results == ["file:///media/Games/Bottles%20Test"]
 
 
+def test_open_filemanager_targets_bottle_drive_c(monkeypatch):
+    results = []
+    config = BottleConfig(Name="Test", Path="Test")
+    monkeypatch.setattr(
+        manager.ManagerUtils,
+        "get_bottle_path",
+        lambda _config: "/home/user/Bottles/Test",
+    )
+    monkeypatch.setattr(
+        manager.SignalManager,
+        "send",
+        lambda _signal, result: results.append(result.data),
+    )
+
+    ManagerUtils.open_filemanager(config)
+
+    assert results == ["file:///home/user/Bottles/Test/drive_c"]
+
+
 class DynamicLauncherPortal:
     def __init__(self):
         self.desktop_entry = None
