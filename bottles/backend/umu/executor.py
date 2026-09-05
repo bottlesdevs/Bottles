@@ -427,7 +427,7 @@ class UmuExecutor:
         runtime.mkdir(parents=True, exist_ok=True)
 
         sandbox_cwd = (command.cwd or prefix).resolve(strict=False)
-        required_writable_paths = (prefix, runtime, sandbox_cwd)
+        required_writable_paths = (prefix, sandbox_cwd)
         if any(path == Path(path.anchor) for path in required_writable_paths):
             raise UmuProcessError(
                 "Dedicated sandbox paths cannot use the filesystem root"
@@ -450,7 +450,7 @@ class UmuExecutor:
         ):
             writable_paths.add(executable_directory)
 
-        readable_paths = set(command.readable_paths)
+        readable_paths = {*command.readable_paths, runtime}
         proton_path = Path(command.env["PROTONPATH"]).expanduser()
         if proton_path.is_absolute():
             proton_path = proton_path.resolve(strict=False)

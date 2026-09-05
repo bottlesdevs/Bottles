@@ -375,7 +375,7 @@ def test_run_uses_dedicated_sandbox_when_enabled(monkeypatch, tmp_path):
     prefix = repository.prefix_path(game)
     assert argv.startswith("bwrap --clearenv")
     assert f"--bind {prefix} {prefix}" in argv
-    assert f"--bind {tmp_path / 'data' / 'umu'} {tmp_path / 'data' / 'umu'}" in argv
+    assert f"--ro-bind {tmp_path / 'data' / 'umu'} {tmp_path / 'data' / 'umu'}" in argv
     assert "--ro-bind / /" not in argv
     assert "--unshare-net" in argv
     assert "'$(touch ignored)'" in argv
@@ -537,7 +537,8 @@ def test_dedicated_sandbox_uses_flatpak_umu_path(monkeypatch, tmp_path):
 
     argv, _kwargs = calls[0]
     runtime = home / ".local" / "share" / "umu"
-    assert f"--sandbox-expose-path={runtime}" in argv
+    assert f"--sandbox-expose-path-ro={runtime}" in argv
+    assert f"--sandbox-expose-path={runtime}" not in argv
     assert f"--sandbox-expose-path={tmp_path / 'flatpak-data' / 'umu'}" not in argv
     assert "--no-network" in argv
 
