@@ -15,6 +15,7 @@ from bottles.backend.umu import (
     UmuWinetricksError,
 )
 from bottles.backend.umu import executor as executor_module
+from bottles.backend.utils import vdf
 
 
 def _game(repository, tmp_path, environment=None, sandbox=False, share_net=False):
@@ -45,6 +46,27 @@ def _executor(repository, tmp_path, base_environment=None):
     )
 
 
+def _installed_proton(tmp_path, require_tool_appid=None):
+    proton = tmp_path / "runners" / "protosoda-11.0-1"
+    proton.mkdir(parents=True)
+    proton.joinpath("proton").touch()
+    proton.joinpath("files").mkdir()
+    runtime = (
+        f'  "require_tool_appid" "{require_tool_appid}"\n' if require_tool_appid else ""
+    )
+    proton.joinpath("toolmanifest.vdf").write_text(
+        '"manifest"\n'
+        "{\n"
+        '  "version" "2"\n'
+        '  "commandline" "/proton %verb%"\n'
+        f"{runtime}"
+        '  "use_sessions" "1"\n'
+        '  "compatmanager_layer_name" "proton"\n'
+        "}\n"
+    )
+    return proton
+
+
 def test_prepare_builds_argv_without_shell_expansion(tmp_path):
     repository = UmuGameRepository(tmp_path / "umu")
     game = _game(repository, tmp_path, {"PROTON_LOG": "1"})
@@ -66,6 +88,7 @@ def test_prepare_builds_argv_without_shell_expansion(tmp_path):
     assert command.env["GAMEID"] == "umu-1234"
     assert command.env["STORE"] == "gog"
     assert command.env["PROTONPATH"] == "GE-Proton"
+    assert "UMU_NO_RUNTIME" not in command.env
     assert command.env["STEAM_COMPAT_INSTALL_PATH"] == str(command.cwd)
 
 
@@ -180,6 +203,15 @@ def test_prepare_rejects_reserved_environment_override(tmp_path):
     executor = _executor(repository, tmp_path)
 
     with pytest.raises(ReservedEnvironmentError, match="WINEPREFIX"):
+        executor.prepare(game)
+
+
+def test_prepare_rejects_runtime_override(tmp_path):
+    repository = UmuGameRepository(tmp_path / "umu")
+    game = _game(repository, tmp_path, {"UMU_NO_RUNTIME": "1"})
+    executor = _executor(repository, tmp_path)
+
+    with pytest.raises(ReservedEnvironmentError, match="UMU_NO_RUNTIME"):
         executor.prepare(game)
 
 
@@ -343,7 +375,7 @@ def test_run_uses_dedicated_sandbox_when_enabled(monkeypatch, tmp_path):
     prefix = repository.prefix_path(game)
     assert argv.startswith("bwrap --clearenv")
     assert f"--bind {prefix} {prefix}" in argv
-    assert f"--bind {tmp_path / 'data' / 'umu'} {tmp_path / 'data' / 'umu'}" in argv
+    assert f"--ro-bind {tmp_path / 'data' / 'umu'} {tmp_path / 'data' / 'umu'}" in argv
     assert "--ro-bind / /" not in argv
     assert "--unshare-net" in argv
     assert "'$(touch ignored)'" in argv
@@ -356,9 +388,7 @@ def test_dedicated_sandbox_exposes_managed_proton(monkeypatch, tmp_path):
     game_folder = tmp_path / "Game Files"
     game_folder.mkdir()
     game = replace(_game(repository, tmp_path, sandbox=True), proton="ProtoSoda")
-    proton = tmp_path / "runners" / "protosoda-11.0-1"
-    proton.mkdir(parents=True)
-    proton.joinpath("toolmanifest.vdf").touch()
+    proton = _installed_proton(tmp_path, "4183110")
     installation = UmuInstallation(
         path=tmp_path / "umu-run",
         version="1.4.4",
@@ -391,15 +421,90 @@ def test_dedicated_sandbox_exposes_managed_proton(monkeypatch, tmp_path):
     executor.run(game)
 
     argv, _kwargs = calls[0]
+    command = executor.prepare(game)
+    sandbox_proton = Path(command.env["PROTONPATH"])
+    assert command.env["UMU_NO_RUNTIME"] == "1"
+    assert sandbox_proton != proton
     assert f"--sandbox-expose-path-ro={proton}" in argv
+    assert f"--sandbox-expose-path-ro={sandbox_proton}" in argv
     assert "--sandbox-expose-path-ro=/ " not in argv
+    assert sandbox_proton.joinpath("proton").resolve() == proton / "proton"
+    assert sandbox_proton.joinpath("files").resolve() == proton / "files"
+    manifest = vdf.loads(sandbox_proton.joinpath("toolmanifest.vdf").read_text())[
+        "manifest"
+    ]
+    assert "require_tool_appid" not in manifest
+
+
+def test_flatpak_sandbox_keeps_proton_without_required_runtime(monkeypatch, tmp_path):
+    repository = UmuGameRepository(tmp_path / "umu")
+    game_folder = tmp_path / "Game Files"
+    game_folder.mkdir()
+    game = replace(_game(repository, tmp_path, sandbox=True), proton="ProtoSoda")
+    proton = _installed_proton(tmp_path)
+    executor = UmuExecutor(
+        UmuInstallation(
+            path=tmp_path / "umu-run",
+            version="1.4.4",
+            source="managed",
+        ),
+        data_root=repository.root,
+        base_environment={"FLATPAK_ID": "com.usebottles.bottles"},
+        proton_resolver=lambda _value: str(proton),
+    )
+    monkeypatch.setenv("FLATPAK_ID", "com.usebottles.bottles")
+
+    command = executor.prepare(game)
+
+    assert command.env["PROTONPATH"] == str(proton.resolve())
+    assert command.env["UMU_NO_RUNTIME"] == "1"
+    assert command.readable_paths == (proton.resolve(),)
+
+
+def test_flatpak_sandbox_rejects_downloadable_proton(monkeypatch, tmp_path):
+    repository = UmuGameRepository(tmp_path / "umu")
+    game_folder = tmp_path / "Game Files"
+    game_folder.mkdir()
+    game = _game(repository, tmp_path, sandbox=True)
+    executor = _executor(
+        repository,
+        tmp_path,
+        {"FLATPAK_ID": "com.usebottles.bottles"},
+    )
+    monkeypatch.setenv("FLATPAK_ID", "com.usebottles.bottles")
+
+    with pytest.raises(UmuProcessError, match="installed Proton"):
+        executor.prepare(game)
+
+
+def test_flatpak_sandbox_rejects_filesystem_root(monkeypatch, tmp_path):
+    repository = UmuGameRepository(tmp_path / "umu")
+    game = _game(repository, tmp_path, sandbox=True)
+    executor = UmuExecutor(
+        UmuInstallation(
+            path=tmp_path / "umu-run",
+            version="1.4.4",
+            source="managed",
+        ),
+        data_root=repository.root,
+        base_environment={"FLATPAK_ID": "com.usebottles.bottles"},
+        proton_resolver=lambda _value: "/",
+    )
+    monkeypatch.setenv("FLATPAK_ID", "com.usebottles.bottles")
+
+    with pytest.raises(UmuProcessError, match="filesystem root"):
+        executor.prepare(game)
 
 
 def test_dedicated_sandbox_uses_flatpak_umu_path(monkeypatch, tmp_path):
     repository = UmuGameRepository(tmp_path / "umu")
     game_folder = tmp_path / "Game Files"
     game_folder.mkdir()
-    game = _game(repository, tmp_path, sandbox=True)
+    proton = _installed_proton(tmp_path)
+    game = replace(
+        _game(repository, tmp_path, sandbox=True),
+        proton=str(proton),
+    )
     home = tmp_path / "home"
     executor = _executor(
         repository,
@@ -432,7 +537,8 @@ def test_dedicated_sandbox_uses_flatpak_umu_path(monkeypatch, tmp_path):
 
     argv, _kwargs = calls[0]
     runtime = home / ".local" / "share" / "umu"
-    assert f"--sandbox-expose-path={runtime}" in argv
+    assert f"--sandbox-expose-path-ro={runtime}" in argv
+    assert f"--sandbox-expose-path={runtime}" not in argv
     assert f"--sandbox-expose-path={tmp_path / 'flatpak-data' / 'umu'}" not in argv
     assert "--no-network" in argv
 
@@ -441,7 +547,11 @@ def test_dedicated_sandbox_can_share_network(monkeypatch, tmp_path):
     repository = UmuGameRepository(tmp_path / "umu")
     game_folder = tmp_path / "Game Files"
     game_folder.mkdir()
-    game = _game(repository, tmp_path, sandbox=True, share_net=True)
+    proton = _installed_proton(tmp_path)
+    game = replace(
+        _game(repository, tmp_path, sandbox=True, share_net=True),
+        proton=str(proton),
+    )
     executor = _executor(
         repository,
         tmp_path,
@@ -479,9 +589,7 @@ def test_dedicated_sandbox_exposes_base_cache(monkeypatch, tmp_path):
     assert f"--bind {cache_home} {cache_home}" in command
 
 
-def test_dedicated_sandbox_does_not_expose_game_cache_override(
-    monkeypatch, tmp_path
-):
+def test_dedicated_sandbox_does_not_expose_game_cache_override(monkeypatch, tmp_path):
     repository = UmuGameRepository(tmp_path / "umu")
     game_folder = tmp_path / "Game Files"
     game_folder.mkdir()
@@ -540,7 +648,11 @@ def test_runtime_root_uses_flatpak_host_data_home(tmp_path):
 
 def test_dedicated_sandbox_prepares_runtime_outside_sandbox(monkeypatch, tmp_path):
     repository = UmuGameRepository(tmp_path / "umu")
-    game = _game(repository, tmp_path, sandbox=True)
+    proton = _installed_proton(tmp_path)
+    game = replace(
+        _game(repository, tmp_path, sandbox=True),
+        proton=str(proton),
+    )
     home = tmp_path / "home"
     executor = _executor(
         repository,

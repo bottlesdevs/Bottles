@@ -1,3 +1,4 @@
+import shlex
 from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import Mock
@@ -105,6 +106,20 @@ def test_windowed_gamescope_command_has_no_window_type_flags(monkeypatch):
     assert WineCommand._get_gamescope_cmd(command) == "gamescope"
 
 
+def test_flatpak_gamescope_exports_its_extension_libraries(monkeypatch):
+    config = BottleConfig()
+    config.Parameters.gamescope_fullscreen = False
+    command = SimpleNamespace(config=config, gamescope_activated=True)
+    path = "/usr/lib/extensions/vulkan/gamescope/bin/gamescope"
+    monkeypatch.setattr(winecommand, "gamescope_available", path)
+
+    assert WineCommand._get_gamescope_cmd(command) == (
+        "env LD_LIBRARY_PATH=/usr/lib/extensions/vulkan/gamescope/lib"
+        "${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH} "
+        f"{path}"
+    )
+
+
 def test_hdr_gamescope_command_enables_hdr(monkeypatch):
     config = BottleConfig()
     config.Parameters.hdr = True
@@ -162,3 +177,33 @@ def test_launch_arguments_enable_gamescope_hdr(monkeypatch, tmp_path):
 
     assert result.startswith("gamescope --hdr-enabled -- ")
     assert environment["PROTON_ENABLE_HDR"] == "1"
+
+
+def test_gamescope_launcher_cleans_its_process_group(monkeypatch, tmp_path):
+    config = BottleConfig()
+    config.Parameters.gamescope = True
+    config.Parameters.gamescope_fullscreen = False
+    command = WineCommand.__new__(WineCommand)
+    command.config = config
+    command.runner = "/usr/bin/wine"
+    command.runner_runtime = ""
+    command.minimal = False
+    command.gamescope_activated = True
+    command.arguments = ""
+    monkeypatch.setattr(winecommand, "gamescope_available", "gamescope")
+    monkeypatch.setattr(winecommand, "gamemode_available", False)
+    monkeypatch.setattr(winecommand, "mangohud_available", False)
+    monkeypatch.setattr(winecommand, "obs_vkc_available", False)
+    monkeypatch.setattr(winecommand.Paths, "temp", str(tmp_path))
+
+    result = command.get_cmd("app.exe")
+
+    arguments = shlex.split(result)
+    separator = arguments.index("--")
+    reaper = Path(arguments[separator + 1]).read_text()
+    payload_path = Path(arguments[separator + 2])
+    payload = payload_path.read_text()
+    assert "prctl(36, 1, 0, 0, 0)" in reaper
+    assert "signal.SIGTERM" in reaper
+    assert "signal.SIGKILL" in reaper
+    assert payload == '#!/usr/bin/env sh\n/usr/bin/wine app.exe "$@"'

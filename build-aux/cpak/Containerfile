@@ -1,4 +1,4 @@
-FROM ghcr.io/containerpak/umu@sha256:0c1ac46703d16614ec5a1b28103fc3219c909a132c8443d7d3ce75a0bc83422c AS umu
+FROM ghcr.io/containerpak/umu@sha256:8b21c84fa40486a96d157ce576d44d951eeb48fa70404c9123eea61fd900fcf8 AS umu
 
 FROM ghcr.io/containerpak/gtk-sdk:main AS builder
 
@@ -32,14 +32,21 @@ RUN mkdir -p /app/share/bottles/winebridge && \
 
 FROM ghcr.io/containerpak/wine:main
 
-RUN apt update && apt install -y --no-install-recommends \
-    bzip2 ca-certificates curl gzip libc-bin libcurl4 libdrm2 libegl1 libfreetype6 libfreetype6:i386 libgl1 libglib2.0-0 libglib2.0-bin libgles2 libgnutls30t64 libgnutls30t64:i386 libgstreamer1.0-0 libunwind8 libunwind8:i386 libusb-1.0-0 libusb-1.0-0:i386 \
+RUN arch="$(dpkg --print-architecture)" && \
+    case "$arch" in amd64|arm64) ;; *) exit 1 ;; esac && \
+    apt update && apt install -y --no-install-recommends \
+    bzip2 ca-certificates curl gzip libc-bin libcurl4 libdrm2 libegl1 libfreetype6 libgl1 libglib2.0-0 libglib2.0-bin libgles2 libgnutls30t64 libgstreamer1.0-0 libunwind8 libusb-1.0-0 \
     libgstreamer-plugins-base1.0-0 libnotify4 libsdl2-2.0-0 libsecret-1-0 libvulkan1 \
     cabextract dconf-cli dconf-gsettings-backend desktop-file-utils imagemagick p7zip-full pciutils tar unzip vmtouch vulkan-tools x11-utils xdg-utils xz-utils zstd \
     python3 python3-gi python3-gi-cairo python3-cairo python3-dbus python3-requests python3-vkbasalt \
     libwebkit2gtk-4.1-0 gir1.2-adw-1 gir1.2-gdkpixbuf-2.0 gir1.2-gtk-4.0 \
     gir1.2-gst-plugins-base-1.0 gir1.2-gtksource-5 gir1.2-notify-0.7 \
     gir1.2-xdp-1.0 gir1.2-xdpgtk4-1.0 && \
+    if [ "$arch" = amd64 ]; then \
+        apt install -y --no-install-recommends \
+        libfreetype6:i386 libgnutls30t64:i386 libunwind8:i386 \
+        libusb-1.0-0:i386; \
+    fi && \
     rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /staging/usr/ /usr/

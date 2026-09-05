@@ -854,3 +854,33 @@ def test_steam_library_widget_launches_through_steam():
     entry.btn_launch_steam.emit("clicked")
 
     assert launched == ["123"]
+
+
+def test_umu_actions_keep_library_details_visible():
+    revealed = []
+    entry = SimpleNamespace(
+        _LibraryEntry__pointer_inside=True,
+        _LibraryEntry__umu_actions_popover=SimpleNamespace(
+            get_visible=lambda: False
+        ),
+        revealer_details=SimpleNamespace(set_reveal_child=revealed.append),
+    )
+    entry._LibraryEntry__sync_details_revealer = lambda: (
+        LibraryEntry._LibraryEntry__sync_details_revealer(entry)
+    )
+
+    LibraryEntry._LibraryEntry__on_motion_leave(entry)
+    assert revealed[-1] is False
+
+    entry._LibraryEntry__umu_actions_popover = SimpleNamespace(
+        get_visible=lambda: True
+    )
+    LibraryEntry._LibraryEntry__on_umu_actions_visible(entry)
+    LibraryEntry._LibraryEntry__on_motion_leave(entry)
+    assert revealed[-1] is True
+
+    entry._LibraryEntry__umu_actions_popover = SimpleNamespace(
+        get_visible=lambda: False
+    )
+    LibraryEntry._LibraryEntry__on_umu_actions_visible(entry)
+    assert revealed[-1] is False

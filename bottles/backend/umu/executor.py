@@ -8,6 +8,7 @@ import threading
 import time
 from collections.abc import Callable, Mapping, Sequence
 from dataclasses import dataclass
+from hashlib import sha256
 from pathlib import Path
 from uuid import UUID
 
@@ -17,6 +18,7 @@ from bottles.backend.umu.models import UmuGame
 from bottles.backend.umu.processes import prefix_has_process
 from bottles.backend.umu.proton import UmuProtonCatalog
 from bottles.backend.umu.provider import UmuInstallation
+from bottles.backend.utils import vdf
 from bottles.backend.wine.adaptive import (
     PROFILE_ENV,
     TRACE_ENV,
@@ -43,6 +45,7 @@ RESERVED_ENVIRONMENT_KEYS = frozenset(
         "SteamAppId",
         "SteamGameId",
         "UMU_ID",
+        "UMU_NO_RUNTIME",
         "WINEPREFIX",
     }
 )
@@ -69,6 +72,7 @@ class UmuCommand:
     argv: tuple[str, ...]
     env: dict[str, str]
     cwd: Path | None = None
+    readable_paths: tuple[Path, ...] = ()
 
 
 @dataclass
@@ -131,7 +135,69 @@ class UmuExecutor:
     def _absolute_path(path: Path) -> Path:
         return path.expanduser().resolve(strict=False)
 
-    def _environment(self, game: UmuGame, *, prefix_only: bool) -> dict[str, str]:
+    def _sandbox_proton(
+        self, game: UmuGame, proton: str
+    ) -> tuple[str, tuple[Path, ...]]:
+        if not game.sandbox or not (
+            "FLATPAK_ID" in self.base_environment
+            or self.base_environment.get("container") == "flatpak"
+            or "FLATPAK_ID" in os.environ
+        ):
+            return proton, ()
+
+        source = Path(proton).expanduser()
+        if not source.is_absolute() or not source.is_dir():
+            raise UmuProcessError(
+                "Dedicated Flatpak sandboxes require an installed Proton version"
+            )
+        source = source.resolve()
+        if source == Path(source.anchor):
+            raise UmuProcessError(
+                "Dedicated Flatpak sandboxes cannot use the filesystem root as Proton"
+            )
+        manifest_path = source / "toolmanifest.vdf"
+        try:
+            manifest_data = manifest_path.read_bytes()
+            manifest = vdf.loads(manifest_data.decode("utf-8", errors="replace"))
+            properties = manifest["manifest"]
+            if not isinstance(properties, dict):
+                raise TypeError
+        except (KeyError, OSError, SyntaxError, TypeError, ValueError) as error:
+            raise UmuProcessError("The selected Proton manifest is invalid") from error
+
+        if "require_tool_appid" not in properties:
+            return str(source), (source,)
+        while "require_tool_appid" in properties:
+            properties.pop("require_tool_appid")
+
+        digest = sha256(f"{source}\0".encode() + manifest_data).hexdigest()[:20]
+        shadow = self.data_root / "sandbox-tools" / digest
+        shadow.mkdir(parents=True, exist_ok=True)
+        for child in source.iterdir():
+            if child.name == "toolmanifest.vdf":
+                continue
+            target = shadow / child.name
+            if target.is_symlink():
+                if target.resolve(strict=False) != child.resolve(strict=False):
+                    raise UmuProcessError("The Proton sandbox cache is invalid")
+                continue
+            if target.exists():
+                raise UmuProcessError("The Proton sandbox cache is invalid")
+            target.symlink_to(child, target_is_directory=child.is_dir())
+        shadow_manifest = shadow / "toolmanifest.vdf"
+        temporary_manifest = (
+            shadow / f".toolmanifest-{os.getpid()}-{threading.get_ident()}"
+        )
+        temporary_manifest.write_text(
+            vdf.dumps(manifest, pretty=True),
+            encoding="utf-8",
+        )
+        temporary_manifest.replace(shadow_manifest)
+        return str(shadow), (source,)
+
+    def _environment(
+        self, game: UmuGame, *, prefix_only: bool
+    ) -> tuple[dict[str, str], tuple[Path, ...]]:
         overridden = RESERVED_ENVIRONMENT_KEYS.intersection(game.environment)
         if overridden:
             names = ", ".join(sorted(overridden))
@@ -145,7 +211,9 @@ class UmuExecutor:
         for key in RESERVED_ENVIRONMENT_KEYS:
             environment.pop(key, None)
         environment.update(game.environment)
-        proton = self.proton_resolver(game.proton)
+        resolved_proton = self.proton_resolver(game.proton)
+        runner = Path(resolved_proton).name
+        proton, readable_paths = self._sandbox_proton(game, resolved_proton)
         environment.update(
             {
                 "GAMEID": game.game_id,
@@ -154,8 +222,9 @@ class UmuExecutor:
                 "WINEPREFIX": str(prefix),
             }
         )
+        if readable_paths:
+            environment["UMU_NO_RUNTIME"] = "1"
         if not prefix_only:
-            runner = Path(proton).name
             if is_v2_runner(runner):
                 profile = AdaptiveLaunchProfile.from_root(
                     prefix,
@@ -173,7 +242,7 @@ class UmuExecutor:
             environment["STEAM_COMPAT_INSTALL_PATH"] = str(install_path)
         else:
             environment.pop("STEAM_COMPAT_INSTALL_PATH", None)
-        return environment
+        return environment, readable_paths
 
     def prepare(self, game: UmuGame) -> UmuCommand:
         executable = self._absolute_path(game.executable)
@@ -182,20 +251,24 @@ class UmuExecutor:
             if game.working_directory
             else None
         )
+        environment, readable_paths = self._environment(game, prefix_only=False)
         return UmuCommand(
             argv=(
                 str(self.installation.path),
                 str(executable),
                 *game.arguments,
             ),
-            env=self._environment(game, prefix_only=False),
+            env=environment,
             cwd=cwd,
+            readable_paths=readable_paths,
         )
 
     def prepare_prefix(self, game: UmuGame) -> UmuCommand:
+        environment, readable_paths = self._environment(game, prefix_only=True)
         return UmuCommand(
             argv=(str(self.installation.path), ""),
-            env=self._environment(game, prefix_only=True),
+            env=environment,
+            readable_paths=readable_paths,
         )
 
     def prepare_winetricks(self, game: UmuGame, verbs: Sequence[str]) -> UmuCommand:
@@ -208,9 +281,11 @@ class UmuExecutor:
             ):
                 raise UmuWinetricksError(f"Invalid Winetricks verb: {verb}")
             validated.append(verb)
+        environment, readable_paths = self._environment(game, prefix_only=True)
         return UmuCommand(
             argv=(str(self.installation.path), "winetricks", *validated),
-            env=self._environment(game, prefix_only=True),
+            env=environment,
+            readable_paths=readable_paths,
         )
 
     @staticmethod
@@ -352,7 +427,7 @@ class UmuExecutor:
         runtime.mkdir(parents=True, exist_ok=True)
 
         sandbox_cwd = (command.cwd or prefix).resolve(strict=False)
-        required_writable_paths = (prefix, runtime, sandbox_cwd)
+        required_writable_paths = (prefix, sandbox_cwd)
         if any(path == Path(path.anchor) for path in required_writable_paths):
             raise UmuProcessError(
                 "Dedicated sandbox paths cannot use the filesystem root"
@@ -375,7 +450,7 @@ class UmuExecutor:
         ):
             writable_paths.add(executable_directory)
 
-        readable_paths = set()
+        readable_paths = {*command.readable_paths, runtime}
         proton_path = Path(command.env["PROTONPATH"]).expanduser()
         if proton_path.is_absolute():
             proton_path = proton_path.resolve(strict=False)

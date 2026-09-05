@@ -4,7 +4,7 @@
   "name": "Bottles",
   "description": "Run and manage your Windows applications on Linux with Wine and Proton.",
   "version": "67.2",
-  "image": "ghcr.io/bottlesdevs/bottles@sha256:004745731bde7c977a0daf59928231cadfdb5296c5734dbda8109ab47be92e42",
+  "image": "ghcr.io/bottlesdevs/bottles@sha256:3b4eb03dbcd0cf0413a9179076d71a95aa0a3cb9ac636ae2ee19ab43f576ae6f",
   "binaries": [
     "/usr/bin/bottles",
     "/usr/bin/bottles-cli"
@@ -16,7 +16,11 @@
   "addons": [],
   "idle_time": 0,
   "override": {
-    "displayX11": false,
+    "displayX11": true,
+    "clipboard": {
+      "hostToApp": true,
+      "appToHost": true
+    },
     "socketWayland": true,
     "socketPulseAudio": true,
     "socketSshAgent": false,
@@ -57,8 +61,8 @@
     ],
     "env": [
       "PATH=/app/bin:/usr/bin:/usr/local/bin:/usr/lib/extensions/vulkan/MangoHud/bin/:/usr/lib/extensions/vulkan/OBSVkCapture/bin/:/usr/lib/extensions/vulkan/gamescope/bin/",
-      "LD_LIBRARY_PATH=/app/lib:/app/lib/i386-linux-gnu:/usr/lib",
-      "GST_PLUGIN_SYSTEM_PATH=/app/lib/gstreamer-1.0:/usr/lib/x86_64-linux-gnu/gstreamer-1.0:/usr/lib/i386-linux-gnu/gstreamer-1.0",
+      "LD_LIBRARY_PATH=/app/lib:/app/lib/i386-linux-gnu:/usr/lib:/usr/lib/aarch64-linux-gnu:/usr/lib/x86_64-linux-gnu",
+      "GST_PLUGIN_SYSTEM_PATH=/app/lib/gstreamer-1.0:/usr/lib/aarch64-linux-gnu/gstreamer-1.0:/usr/lib/x86_64-linux-gnu/gstreamer-1.0:/usr/lib/i386-linux-gnu/gstreamer-1.0",
       "GSETTINGS_BACKEND=keyfile"
     ],
     "network": true,

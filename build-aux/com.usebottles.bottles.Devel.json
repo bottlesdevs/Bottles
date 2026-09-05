@@ -22,9 +22,9 @@
     "--filesystem=~/Games/umu:create",
     "--filesystem=xdg-desktop:create",
     "--system-talk-name=org.freedesktop.UDisks2",
-    "--env=LD_LIBRARY_PATH=/app/lib:/app/lib/i386-linux-gnu",
+    "--env=LD_LIBRARY_PATH=/usr/lib/extensions/vulkan/gamescope/lib:/app/lib/i386-linux-gnu/codecs-extra/lib:/app/lib:/app/lib/i386-linux-gnu",
     "--env=PATH=/app/bin:/app/utils/bin:/usr/bin:/usr/lib/extensions/vulkan/MangoHud/bin/:/usr/bin:/usr/lib/extensions/vulkan/OBSVkCapture/bin/:/usr/lib/extensions/vulkan/gamescope/bin/",
-    "--env=GST_PLUGIN_SYSTEM_PATH=/app/lib/gstreamer-1.0:/usr/lib/x86_64-linux-gnu/gstreamer-1.0:/usr/lib/i386-linux-gnu/gstreamer-1.0",
+    "--env=GST_PLUGIN_SYSTEM_PATH=/app/lib/gstreamer-1.0:/app/lib/i386-linux-gnu/gstreamer-1.0:/usr/lib/x86_64-linux-gnu/gstreamer-1.0:/usr/lib/i386-linux-gnu/gstreamer-1.0",
     "--require-version=1.1.2"
   ],
   "inherit-extensions": [
@@ -44,9 +44,9 @@
     },
     "org.freedesktop.Platform.codecs_extra.i386": {
       "directory": "lib/i386-linux-gnu/codecs-extra",
-      "version": "25.08",
-      "autodelete": true,
-      "add-ld-path": "lib/i386-linux-gnu/codecs-extra"
+      "version": "25.08-extra",
+      "autodelete": false,
+      "add-ld-path": "lib"
     },
     "com.valvesoftware.Steam.CompatibilityTool": {
       "subdirectories": true,

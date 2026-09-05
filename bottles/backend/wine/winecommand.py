@@ -945,28 +945,93 @@ class WineCommand:
                 # dedicated sandbox) instead of the system /tmp, otherwise
                 # Gamescope running inside the sandbox cannot see it.
                 os.makedirs(Paths.temp, exist_ok=True)
-                gamescope_run = tempfile.NamedTemporaryFile(
+                gamescope_payload = tempfile.NamedTemporaryFile(
                     mode="w", suffix=".sh", dir=Paths.temp
                 ).name
+                gamescope_reaper = tempfile.NamedTemporaryFile(
+                    mode="w", suffix=".py", dir=Paths.temp
+                ).name
 
-                # Create the sh script where Gamescope will execute it
-                file = ["#!/usr/bin/env sh\n"]
-                file.append(f"{command} $@")
+                payload = ["#!/usr/bin/env sh\n"]
+                payload.append(f'{command} "$@"')
                 if mangohud_available and params.mangohud:
-                    file.append(" &\nmangoapp")
-                with open(gamescope_run, "w") as f:
-                    f.write("".join(file))
+                    payload.append(" &\nmangoapp")
+                with open(gamescope_payload, "w") as f:
+                    f.write("".join(payload))
+                os.chmod(
+                    gamescope_payload,
+                    os.stat(gamescope_payload).st_mode | stat.S_IEXEC,
+                )
+
+                reaper = """#!/usr/bin/env python3
+import ctypes
+import os
+import signal
+import subprocess
+import sys
+import time
+
+
+def descendants():
+    pending = [os.getpid()]
+    found = []
+    while pending:
+        parent = pending.pop()
+        try:
+            children = open(
+                f"/proc/{parent}/task/{parent}/children", encoding="ascii"
+            ).read()
+        except OSError:
+            continue
+        for value in children.split():
+            child = int(value)
+            if child not in found:
+                found.append(child)
+                pending.append(child)
+    return found
+
+
+if ctypes.CDLL(None).prctl(36, 1, 0, 0, 0) != 0:
+    os.execv(sys.argv[1], sys.argv[1:])
+
+process = subprocess.Popen(sys.argv[1:])
+status = process.wait()
+for sig in (signal.SIGTERM, signal.SIGKILL):
+    for child in descendants():
+        try:
+            os.kill(child, sig)
+        except ProcessLookupError:
+            pass
+    if sig == signal.SIGTERM:
+        deadline = time.monotonic() + 0.5
+        while descendants() and time.monotonic() < deadline:
+            time.sleep(0.05)
+
+while True:
+    try:
+        child, _ = os.waitpid(-1, os.WNOHANG)
+        if child == 0:
+            break
+    except ChildProcessError:
+        break
+raise SystemExit(status if status >= 0 else 128 - status)
+"""
+                with open(gamescope_reaper, "w") as f:
+                    f.write(reaper)
+                os.chmod(
+                    gamescope_reaper,
+                    os.stat(gamescope_reaper).st_mode | stat.S_IEXEC,
+                )
 
                 # Update command
-                command = f"{self._get_gamescope_cmd(return_steam_cmd, environment)} -- {gamescope_run}"
+                command = (
+                    f"{self._get_gamescope_cmd(return_steam_cmd, environment)} -- "
+                    f"{shlex.quote(gamescope_reaper)} {shlex.quote(gamescope_payload)}"
+                )
                 logging.info(f"Running Gamescope command: '{command}'")
-                logging.info(f"{gamescope_run} contains:")
-                with open(gamescope_run, "r") as f:
+                logging.info(f"{gamescope_payload} contains:")
+                with open(gamescope_payload, "r") as f:
                     logging.info(f"\n\n{f.read()}")
-
-                # Set file as executable
-                st = os.stat(gamescope_run)
-                os.chmod(gamescope_run, st.st_mode | stat.S_IEXEC)
 
             if obs_vkc_available and params.obsvkc:
                 command = f"{obs_vkc_available} {command}"
@@ -1004,6 +1069,13 @@ class WineCommand:
 
         if gamescope_available and self.gamescope_activated:
             gamescope_cmd = [gamescope_available]
+            gamescope_extension = "/usr/lib/extensions/vulkan/gamescope"
+            if gamescope_available.startswith(f"{gamescope_extension}/"):
+                gamescope_cmd = [
+                    "env",
+                    f"LD_LIBRARY_PATH={gamescope_extension}/lib${{LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}}",
+                    gamescope_available,
+                ]
             if return_steam_cmd:
                 gamescope_cmd = ["gamescope"]
             effective_environment = config.Environment_Variables.copy()

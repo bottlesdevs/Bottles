@@ -17,3 +17,20 @@ jobs:
         bundle: bottles.flatpak
         manifest-path: build-aux/com.usebottles.bottles.Devel.json
         cache-key: flatpak-builder-${{ github.sha }}
+    - name: Test 32-bit media codecs
+      run: |
+        curl -fL https://deb.debian.org/debian/pool/main/g/gstreamer1.0/gstreamer1.0-tools_1.26.2-2_i386.deb -o /tmp/gstreamer-tools-i386.deb
+        echo 'cca853f66856ec889891e3d509786c3fd7169469a5c92c7751851e53b2b9fa3c  /tmp/gstreamer-tools-i386.deb' | sha256sum -c -
+        mkdir /tmp/gstreamer-tools-i386
+        cd /tmp/gstreamer-tools-i386
+        ar x /tmp/gstreamer-tools-i386.deb data.tar.xz
+        tar -xf data.tar.xz
+        flatpak install --user --noninteractive "$GITHUB_WORKSPACE/bottles.flatpak"
+        flatpak run --user \
+          --filesystem=/tmp/gstreamer-tools-i386:ro \
+          --command=/tmp/gstreamer-tools-i386/usr/bin/gst-inspect-1.0 \
+          com.usebottles.bottles.Devel avdec_wmv3
+        flatpak run --user \
+          --filesystem=/tmp/gstreamer-tools-i386:ro \
+          --command=/tmp/gstreamer-tools-i386/usr/bin/gst-inspect-1.0 \
+          com.usebottles.bottles.Devel avdec_wmapro
