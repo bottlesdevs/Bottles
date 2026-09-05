@@ -89,6 +89,7 @@ class LibraryEntry(Gtk.Box):
         self.uuid = uuid
         self.entry = entry
         self.source = entry.get("source")
+        self.__pointer_inside = False
         if self.source is None:
             self.source = "steam" if entry.get("steam", False) else "bottle"
         self.is_steam = self.source == "steam"
@@ -202,6 +203,10 @@ class LibraryEntry(Gtk.Box):
         self.btn_launch_steam.connect("clicked", self.run_steam)
         self.btn_cover.connect("clicked", self.__choose_cover)
         self.btn_settings.connect("clicked", self.__show_settings)
+        self.__umu_actions_popover = self.btn_umu_actions.get_popover()
+        self.__umu_actions_popover.connect(
+            "notify::visible", self.__on_umu_actions_visible
+        )
         self.btn_umu_desktop.connect("clicked", self.__add_umu_desktop_entry)
         self.btn_umu_steam.connect("clicked", self.__add_umu_steam_shortcut)
         self.btn_stop.connect("clicked", self.stop_process)
@@ -491,10 +496,20 @@ class LibraryEntry(Gtk.Box):
         )
 
     def __on_motion_enter(self, *args):
-        self.revealer_details.set_reveal_child(True)
+        self.__pointer_inside = True
+        self.__sync_details_revealer()
 
     def __on_motion_leave(self, *args):
-        self.revealer_details.set_reveal_child(False)
+        self.__pointer_inside = False
+        self.__sync_details_revealer()
+
+    def __on_umu_actions_visible(self, *_args):
+        self.__sync_details_revealer()
+
+    def __sync_details_revealer(self):
+        self.revealer_details.set_reveal_child(
+            self.__pointer_inside or self.__umu_actions_popover.get_visible()
+        )
 
     # hide() and show() are essentialy workarounds to avoid keeping
     # the empty space of the hidden entry in the GtkFlowBox
