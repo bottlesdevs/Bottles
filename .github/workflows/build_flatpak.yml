@@ -25,7 +25,7 @@ jobs:
         cd /tmp/gstreamer-tools-i386
         ar x /tmp/gstreamer-tools-i386.deb data.tar.xz
         tar -xf data.tar.xz
-        flatpak install --user --noninteractive bottles.flatpak
+        flatpak install --user --noninteractive "$GITHUB_WORKSPACE/bottles.flatpak"
         flatpak run --user \
           --filesystem=/tmp/gstreamer-tools-i386:ro \
           --command=/tmp/gstreamer-tools-i386/usr/bin/gst-inspect-1.0 \
