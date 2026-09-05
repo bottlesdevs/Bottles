@@ -16,7 +16,11 @@
   "addons": [],
   "idle_time": 0,
   "override": {
-    "displayX11": false,
+    "displayX11": true,
+    "clipboard": {
+      "hostToApp": true,
+      "appToHost": true
+    },
     "socketWayland": true,
     "socketPulseAudio": true,
     "socketSshAgent": false,
