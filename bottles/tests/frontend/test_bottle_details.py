@@ -180,3 +180,23 @@ def test_update_programs_controls_cache_refresh(monkeypatch, force_update):
     BottleView.update_programs(view, force_update=force_update)
 
     assert calls == [{"force_update": force_update}]
+
+
+def test_populate_updates_hides_empty_group():
+    visibility = []
+    view = SimpleNamespace(
+        config=BottleConfig(Name="Test"),
+        manager=SimpleNamespace(
+            settings=SimpleNamespace(get_boolean=lambda _key: True),
+            get_component_updates=lambda _config: [],
+        ),
+        group_updates=SimpleNamespace(
+            remove=lambda _row: None,
+            set_visible=visibility.append,
+        ),
+        _BottleView__update_rows=[],
+    )
+
+    BottleView.populate_updates(view)
+
+    assert visibility == [False]

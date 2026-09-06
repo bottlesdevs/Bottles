@@ -108,7 +108,6 @@ class BottleView(Adw.PreferencesPage):
     group_updates = Gtk.Template.Child()
     actions = Gtk.Template.Child()
     row_no_programs = Gtk.Template.Child()
-    row_no_updates = Gtk.Template.Child()
     bottom_bar = Gtk.Template.Child()
     drop_overlay = Gtk.Template.Child()
     box_backup_progress = Gtk.Template.Child()
@@ -586,12 +585,12 @@ class BottleView(Adw.PreferencesPage):
         self.__update_rows = []
 
         show_updates = self.manager.settings.get_boolean("show-component-updates")
-        self.group_updates.set_visible(show_updates)
         if not show_updates:
+            self.group_updates.set_visible(False)
             return
 
         updates = self.manager.get_component_updates(self.config)
-        self.row_no_updates.set_visible(len(updates) == 0)
+        self.group_updates.set_visible(bool(updates))
 
         for update in updates:
             row = self.__build_update_row(update)
