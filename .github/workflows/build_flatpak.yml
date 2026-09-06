@@ -17,7 +17,7 @@ jobs:
         bundle: bottles.flatpak
         manifest-path: build-aux/com.usebottles.bottles.Devel.json
         cache-key: flatpak-builder-${{ github.sha }}
-    - name: Test 32-bit media codecs
+    - name: Test multiarch runtime
       run: |
         curl -fL https://deb.debian.org/debian/pool/main/g/gstreamer1.0/gstreamer1.0-tools_1.26.2-2_i386.deb -o /tmp/gstreamer-tools-i386.deb
         echo 'cca853f66856ec889891e3d509786c3fd7169469a5c92c7751851e53b2b9fa3c  /tmp/gstreamer-tools-i386.deb' | sha256sum -c -
@@ -25,7 +25,44 @@ jobs:
         cd /tmp/gstreamer-tools-i386
         ar x /tmp/gstreamer-tools-i386.deb data.tar.xz
         tar -xf data.tar.xz
+        curl -fL https://github.com/bottlesdevs/wine/releases/download/soda-11.0-8/soda-11.0-8-x86_64.tar.xz -o /tmp/soda.tar.xz
+        echo 'd764aa6697f06fffb4f883930d265f45546381dfc10da17e419ac3ea0b0b8041  /tmp/soda.tar.xz' | sha256sum -c -
+        mkdir /tmp/soda
+        tar -xJf /tmp/soda.tar.xz -C /tmp/soda
+        flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+        install_ref() {
+          attempts=0
+          until flatpak install --user --noninteractive flathub "$1"; do
+            attempts=$((attempts + 1))
+            test "$attempts" -lt 5 || return 1
+            sleep $((attempts * 5))
+          done
+        }
+        install_ref org.freedesktop.Platform.Compat.i386//26.08
+        install_ref org.freedesktop.Platform.codecs_extra.i386//26.08-extra
         flatpak install --user --noninteractive "$GITHUB_WORKSPACE/bottles.flatpak"
+        flatpak run --user --command=sh com.usebottles.bottles.Devel -ec '
+          grep -Fx /app/lib32 /app/etc/ld.so.conf
+          grep -Fx /app/lib/i386-linux-gnu/codecs-extra/lib /app/etc/ld.so.conf
+          grep -Fx /app/lib/i386-linux-gnu /app/etc/ld.so.conf
+          test -r /app/lib/i386-linux-gnu/libc.so.6
+          test -d /app/lib/i386-linux-gnu/dri/intel-vaapi-driver
+          test -d /app/i386/nvidia-vaapi-driver
+          gst-inspect-1.0 avdec_wmv3
+        '
+        flatpak run --user \
+          --filesystem=/tmp/soda:ro \
+          --command=sh \
+          com.usebottles.bottles.Devel -ec '
+            export WINEDEBUG=-all
+            export WINEPREFIX=/tmp/soda-prefix
+            runner=/tmp/soda/soda-11.0-8-x86_64/bin/wine
+            wineserver=/tmp/soda/soda-11.0-8-x86_64/bin/wineserver
+            timeout 120 "$runner" wineboot -u
+            timeout 30 "$runner" "$WINEPREFIX/drive_c/windows/system32/cmd.exe" /c exit
+            timeout 30 "$runner" "$WINEPREFIX/drive_c/windows/syswow64/cmd.exe" /c exit
+            "$wineserver" -k
+          '
         flatpak run --user \
           --filesystem=/tmp/gstreamer-tools-i386:ro \
           --command=/tmp/gstreamer-tools-i386/usr/bin/gst-inspect-1.0 \

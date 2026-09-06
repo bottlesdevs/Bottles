@@ -3,8 +3,11 @@
   "sdk": "org.gnome.Sdk",
   "runtime": "org.gnome.Platform",
   "base": "org.winehq.Wine",
-  "base-version": "stable-25.08",
-  "runtime-version": "49",
+  "base-version": "stable-26.08",
+  "runtime-version": "50",
+  "x-gl-version": "1.4",
+  "x-gl-versions": "26.08;26.08-extra;1.4",
+  "x-gl-merge-dirs": "vulkan/icd.d;glvnd/egl_vendor.d;egl/egl_external_platform.d;OpenCL/vendors;lib/dri;lib/d3d;lib/gbm;vulkan/explicit_layer.d;vulkan/implicit_layer.d;vdpau",
   "command": "bottles",
   "finish-args": [
     "--allow=devel",
@@ -24,27 +27,69 @@
     "--system-talk-name=org.freedesktop.UDisks2",
     "--env=LD_LIBRARY_PATH=/usr/lib/extensions/vulkan/gamescope/lib:/app/lib/i386-linux-gnu/codecs-extra/lib:/app/lib:/app/lib/i386-linux-gnu",
     "--env=PATH=/app/bin:/app/utils/bin:/usr/bin:/usr/lib/extensions/vulkan/MangoHud/bin/:/usr/bin:/usr/lib/extensions/vulkan/OBSVkCapture/bin/:/usr/lib/extensions/vulkan/gamescope/bin/",
-    "--env=GST_PLUGIN_SYSTEM_PATH=/app/lib/gstreamer-1.0:/app/lib/i386-linux-gnu/gstreamer-1.0:/usr/lib/x86_64-linux-gnu/gstreamer-1.0:/usr/lib/i386-linux-gnu/gstreamer-1.0",
+    "--env=GST_PLUGIN_SYSTEM_PATH=/app/lib/gstreamer-1.0:/app/lib32/gstreamer-1.0:/app/lib/i386-linux-gnu/codecs-extra/lib/gstreamer-1.0:/app/lib/i386-linux-gnu/gstreamer-1.0:/usr/lib/extensions/gstreamer-1.0:/usr/lib/x86_64-linux-gnu/codecs-extra/lib/gstreamer-1.0:/usr/lib/i386-linux-gnu/codecs-extra/lib/gstreamer-1.0:/usr/lib/x86_64-linux-gnu/gstreamer-1.0:/usr/lib/i386-linux-gnu/gstreamer-1.0",
     "--require-version=1.1.2"
   ],
   "inherit-extensions": [
-    "org.freedesktop.Platform.GL32",
     "org.winehq.Wine.gecko",
     "org.winehq.Wine.mono"
   ],
   "add-extensions": {
     "org.freedesktop.Platform.Compat.i386": {
       "directory": "lib/i386-linux-gnu",
-      "version": "25.08"
+      "version": "26.08"
     },
     "org.freedesktop.Platform.Compat.i386.Debug": {
       "directory": "lib/debug/lib/i386-linux-gnu",
-      "version": "25.08",
+      "version": "26.08",
       "no-autodownload": true
+    },
+    "org.freedesktop.Platform.GL32": {
+      "directory": "lib/i386-linux-gnu/GL",
+      "version": "1.4",
+      "versions": "26.08;26.08-extra;1.4",
+      "subdirectories": true,
+      "no-autodownload": true,
+      "autodelete": false,
+      "add-ld-path": "lib",
+      "merge-dirs": "vulkan/icd.d;glvnd/egl_vendor.d;egl/egl_external_platform.d;OpenCL/vendors;lib/dri;lib/d3d;lib/gbm;vulkan/explicit_layer.d;vulkan/implicit_layer.d;vdpau",
+      "download-if": "active-gl-driver",
+      "enable-if": "active-gl-driver",
+      "autoprune-unless": "active-gl-driver"
+    },
+    "org.freedesktop.Platform.GL32.Debug": {
+      "directory": "lib/debug/lib/i386-linux-gnu/GL",
+      "version": "1.4",
+      "versions": "26.08;26.08-extra;1.4",
+      "subdirectories": true,
+      "no-autodownload": true,
+      "merge-dirs": "vulkan/icd.d;glvnd/egl_vendor.d;egl/egl_external_platform.d;OpenCL/vendors;lib/dri;lib/d3d;lib/gbm;vulkan/explicit_layer.d;vulkan/implicit_layer.d;vdpau",
+      "enable-if": "active-gl-driver",
+      "autoprune-unless": "active-gl-driver"
+    },
+    "org.freedesktop.Platform.VAAPI.Intel.i386": {
+      "directory": "lib/i386-linux-gnu/dri/intel-vaapi-driver",
+      "version": "26.08",
+      "versions": "26.08",
+      "autodelete": false,
+      "no-autodownload": true,
+      "add-ld-path": "lib",
+      "download-if": "have-intel-gpu",
+      "autoprune-unless": "have-intel-gpu"
+    },
+    "org.freedesktop.Platform.VAAPI.nvidia.i386": {
+      "directory": "i386/nvidia-vaapi-driver",
+      "version": "26.08",
+      "versions": "26.08",
+      "autodelete": false,
+      "no-autodownload": true,
+      "add-ld-path": "lib",
+      "download-if": "have-kernel-module-nvidia",
+      "autoprune-unless": "have-kernel-module-nvidia"
     },
     "org.freedesktop.Platform.codecs_extra.i386": {
       "directory": "lib/i386-linux-gnu/codecs-extra",
-      "version": "25.08-extra",
+      "version": "26.08-extra",
       "autodelete": false,
       "add-ld-path": "lib"
     },
@@ -341,6 +386,26 @@
             "version-query": ".tag_name",
             "url-query": "\"https://github.com/bottlesdevs/runtime/releases/download/\" + $version + \"/runtime-\" + $version + \".tar.gz\""
           }
+        }
+      ]
+    },
+    {
+      "name": "bundle-setup",
+      "buildsystem": "simple",
+      "build-commands": [
+        "install -Dm644 ld.so.conf -t /app/etc",
+        "mkdir -p /app/lib/i386-linux-gnu",
+        "mkdir -p /app/lib/debug/lib/i386-linux-gnu",
+        "mkdir -p /app/lib/i386-linux-gnu/GL",
+        "mkdir -p /app/lib/debug/lib/i386-linux-gnu/GL",
+        "mkdir -p /app/lib/i386-linux-gnu/dri/intel-vaapi-driver",
+        "mkdir -p /app/i386/nvidia-vaapi-driver",
+        "mkdir -p /app/lib/i386-linux-gnu/codecs-extra"
+      ],
+      "sources": [
+        {
+          "type": "file",
+          "path": "ld.so.conf"
         }
       ]
     },
