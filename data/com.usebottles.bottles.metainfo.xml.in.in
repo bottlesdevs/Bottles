@@ -85,6 +85,17 @@
     <display_length compare="ge">768</display_length>
   </requires>
   <releases>
+    <release version="67.3" date="2026-09-07">
+      <description translate="no">
+        <ul>
+          <li>Restored Flatpak compatibility for 32-bit runners and media codecs</li>
+          <li>Fixed Steam runtime launches when the runtime path uses a symbolic link</li>
+          <li>Fixed opening selected directories from the Flatpak package</li>
+          <li>Added the ARM64 Cpak package with Soda runner support</li>
+          <li>Hidden the component update section when no updates are available</li>
+        </ul>
+      </description>
+    </release>
     <release version="67.2" date="2026-09-03">
       <description translate="no">
         <ul>
