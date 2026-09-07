@@ -38,8 +38,8 @@ jobs:
             sleep $((attempts * 5))
           done
         }
-        install_ref org.freedesktop.Platform.Compat.i386//26.08
-        install_ref org.freedesktop.Platform.codecs_extra.i386//26.08-extra
+        install_ref org.freedesktop.Platform.Compat.i386//25.08
+        install_ref org.freedesktop.Platform.codecs_extra.i386//25.08-extra
         flatpak install --user --noninteractive "$GITHUB_WORKSPACE/bottles.flatpak"
         flatpak run --user --command=sh com.usebottles.bottles.Devel -ec '
           grep -Fx /app/lib32 /app/etc/ld.so.conf
