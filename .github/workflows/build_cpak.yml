@@ -94,11 +94,11 @@ jobs:
           IMAGE: ${{ steps.identity.outputs.image }}
         run: |
           mkdir -p /tmp/soda-arm64
-          gh release download soda-11.0-7 \
+          gh release download soda-11.0-10 \
             --repo bottlesdevs/wine \
-            --pattern 'soda-11.0-7-aarch64.tar.xz' \
+            --pattern 'soda-11.0-10-aarch64.tar.xz' \
             --dir /tmp/soda-arm64
-          tar -C /tmp/soda-arm64 -xJf /tmp/soda-arm64/soda-11.0-7-aarch64.tar.xz
+          tar -C /tmp/soda-arm64 -xJf /tmp/soda-arm64/soda-11.0-10-aarch64.tar.xz
           runner="$(find /tmp/soda-arm64 -mindepth 1 -maxdepth 1 -type d -name 'soda-*-aarch64' -print -quit)"
           test -n "$runner"
           docker run --rm \

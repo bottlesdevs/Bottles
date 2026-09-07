@@ -510,7 +510,7 @@ def test_default_repository_fallbacks_are_commit_pinned(monkeypatch):
 
     assert repositories["components"]["sources"][1] == (
         "https://raw.githubusercontent.com/bottlesdevs/components/"
-        "f63f670e12f015003b3f751cd53777377d9ec725/"
+        "181d0ab9645f02d177f14ac8fde4a5eab8cac5a9/"
     )
     assert repositories["dependencies"]["sources"][1] == (
         "https://raw.githubusercontent.com/bottlesdevs/dependencies/"
