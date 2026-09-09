@@ -2,6 +2,9 @@
 
 import os
 import shlex
+import subprocess
+import time
+from pathlib import Path
 from types import SimpleNamespace
 
 import pytest
@@ -26,10 +29,71 @@ from bottles.backend.wine.winecommand import (
 )
 
 
+def _gamescope_command(config, runner):
+    command = WineCommand.__new__(WineCommand)
+    command.config = config
+    command.runner = str(runner)
+    command.runner_runtime = ""
+    command.minimal = False
+    command.gamescope_activated = True
+    command.arguments = ""
+    return command
+
+
 def _make_config(
     name: str = "TestBottle", path: str = "TestBottlePath"
 ) -> BottleConfig:
     return BottleConfig(Name=name, Path=path, Custom_Path="", Environment="Custom")
+
+
+def test_gamescope_mangohud_payload_exits_with_the_game(monkeypatch, tmp_path):
+    config = BottleConfig()
+    config.Parameters.gamescope = True
+    config.Parameters.gamescope_fullscreen = False
+    config.Parameters.mangohud = True
+
+    bin_dir = tmp_path / "bin"
+    bin_dir.mkdir()
+    mangoapp_pid = tmp_path / "mangoapp.pid"
+    runner = bin_dir / "runner"
+    runner.write_text(
+        "#!/usr/bin/env sh\n"
+        f'while [ ! -s "{mangoapp_pid}" ]; do sleep 0.01; done\n'
+        "exit 23\n"
+    )
+    runner.chmod(0o755)
+    mangoapp = bin_dir / "mangoapp"
+    mangoapp.write_text(
+        "#!/usr/bin/env sh\n"
+        f'echo $$ > "{mangoapp_pid}"\n'
+        "while :; do sleep 1; done\n"
+    )
+    mangoapp.chmod(0o755)
+
+    command = _gamescope_command(config, runner)
+    monkeypatch.setattr(winecommand, "gamescope_available", "gamescope")
+    monkeypatch.setattr(winecommand, "gamemode_available", False)
+    monkeypatch.setattr(winecommand, "mangohud_available", "mangohud")
+    monkeypatch.setattr(winecommand, "obs_vkc_available", False)
+    monkeypatch.setattr(winecommand.Paths, "temp", str(tmp_path))
+
+    gamescope_command = command.get_cmd("app.exe")
+    arguments = shlex.split(gamescope_command)
+    payload = Path(arguments[arguments.index("--") + 2])
+    environment = os.environ | {"PATH": f"{bin_dir}:{os.environ['PATH']}"}
+
+    result = subprocess.run([payload], env=environment, timeout=5, check=False)
+
+    pid = int(mangoapp_pid.read_text())
+    for _ in range(50):
+        try:
+            os.kill(pid, 0)
+        except ProcessLookupError:
+            break
+        time.sleep(0.01)
+    else:
+        pytest.fail("mangoapp remained alive after the game exited")
+    assert result.returncode == 23
 
 
 def test_build_placeholder_map_uses_program_values():

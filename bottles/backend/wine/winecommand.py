@@ -953,9 +953,18 @@ class WineCommand:
                 ).name
 
                 payload = ["#!/usr/bin/env sh\n"]
-                payload.append(f'{command} "$@"')
                 if mangohud_available and params.mangohud:
-                    payload.append(" &\nmangoapp")
+                    payload.append(
+                        "mangoapp &\n"
+                        "mangoapp_pid=$!\n"
+                        f'{command} "$@"\n'
+                        "status=$?\n"
+                        'kill "$mangoapp_pid" 2>/dev/null || true\n'
+                        'wait "$mangoapp_pid" 2>/dev/null || true\n'
+                        'exit "$status"'
+                    )
+                else:
+                    payload.append(f'{command} "$@"')
                 with open(gamescope_payload, "w") as f:
                     f.write("".join(payload))
                 os.chmod(
