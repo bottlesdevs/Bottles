@@ -1,76 +1,90 @@
 using Gtk 4.0;
 using Adw 1;
 
-template $DetailsVersioning: Adw.PreferencesPage {
-  Adw.PreferencesPage pref_page {
+template $DetailsVersioning: Adw.Bin {
+  Box {
+    orientation: vertical;
+
     Adw.Banner banner_dirty {
       title: _("You have unsaved changes. Create a snapshot to save them.");
       revealed: false;
       button-label: _("Create Snapshot");
     }
 
-    Adw.PreferencesGroup {
-      Adw.ComboRow combo_branch {
-        title: _("Branch");
-        subtitle: _("Switch to another workspace.");
-        model: StringList str_list_branch {};
+    Adw.PreferencesPage pref_page {
+      Adw.PreferencesGroup {
+        Adw.ComboRow combo_branch {
+          title: _("Branch");
+          subtitle: _("Switch to another workspace.");
 
-        [suffix]
-        Button btn_manage_branches {
-          tooltip-text: _("Manage Branches");
-          valign: center;
-          icon-name: "document-edit-symbolic";
-          styles [ "flat" ]
-        }
+          model: StringList str_list_branch {};
 
-        [suffix]
-        Button btn_add_branch {
-          tooltip-text: _("Create new Branch");
-          valign: center;
-          icon-name: "list-add-symbolic";
-          styles [ "flat" ]
+          [suffix]
+          Button btn_manage_branches {
+            tooltip-text: _("Manage Branches");
+            valign: center;
+            icon-name: "document-edit-symbolic";
+
+            styles [
+              "flat",
+            ]
+          }
+
+          [suffix]
+          Button btn_add_branch {
+            tooltip-text: _("Create new Branch");
+            valign: center;
+            icon-name: "list-add-symbolic";
+
+            styles [
+              "flat",
+            ]
+          }
         }
       }
-    }
 
-    Adw.PreferencesGroup {
-      Box box_spinner {
-        orientation: vertical;
-        halign: center;
-        valign: center;
-        spacing: 12;
-        margin-top: 24;
-        margin-bottom: 24;
-        visible: false;
-
-        Spinner spinner {
-          width-request: 32;
-          height-request: 32;
+      Adw.PreferencesGroup {
+        Box box_spinner {
+          orientation: vertical;
           halign: center;
-        }
+          valign: center;
+          spacing: 12;
+          margin-top: 24;
+          margin-bottom: 24;
+          visible: false;
 
-        Label label_spinner {
-          label: _("Switching branch…");
-          styles [ "dim-label" ]
+          Spinner spinner {
+            width-request: 32;
+            height-request: 32;
+            halign: center;
+          }
+
+          Label label_spinner {
+            label: _("Switching branch...");
+
+            styles [
+              "dim-label",
+            ]
+          }
+        }
+      }
+
+      Adw.PreferencesGroup {
+        ListBox list_states {
+          selection-mode: none;
+
+          styles [
+            "boxed-list",
+          ]
         }
       }
     }
 
-    Adw.PreferencesGroup {
-      ListBox list_states {
-        selection-mode: none;
-
-        styles [
-          "boxed-list",
-        ]
-      }
+    Adw.StatusPage status_page {
+      icon-name: "preferences-system-time-symbolic";
+      title: _("No Snapshots Found");
+      description: _("Create your first snapshot to start saving states of your preferences.");
     }
-  }
-
-  Adw.StatusPage status_page {
-    icon-name: "preferences-system-time-symbolic";
-    title: _("No Snapshots Found");
-    description: _("Create your first snapshot to start saving states of your preferences.");
   }
 }
 
