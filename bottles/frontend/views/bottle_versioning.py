@@ -31,7 +31,7 @@ from bottles.frontend.windows.versioning_manage_branches import VersioningManage
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/details-versioning.ui")
-class VersioningView(Adw.PreferencesPage):
+class VersioningView(Adw.Bin):
     __gtype_name__ = "DetailsVersioning"
     __registry = []
 
@@ -286,4 +286,3 @@ class VersioningView(Adw.PreferencesPage):
             config=self.config,
             message=message,
         )
-
