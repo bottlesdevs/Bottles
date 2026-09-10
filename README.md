@@ -84,6 +84,34 @@ Due to GNOME Builder limitations, Builder cannot build Bottles for the time bein
 ## Code of Conduct
 This project follows the [GNOME Code of Conduct](https://wiki.gnome.org/Foundation/CodeOfConduct). You are expected to follow it in all Bottles spaces, such as this repository, the project's social media, messenger chats and forums. Bigotry and harassment will not be tolerated.
 
+## Use of Generative AI
+Some maintainers use generative AI tools as assistants while working in Bottles, in the spirit of Open Source, we want to be transparent about how, specifically:
+
+- Code comments and documentation
+- Boilerplate and repetitive code
+- Issue triage (spotting duplicates, outdated reports, grouping similar issues)
+
+Tools vary between contributors (currently mostly Claude and Codex): each AI-assisted commit states the tool and model used in its `Assisted-by` trailer.
+
+### What we don't use it for
+Architecture, complex logic, the security and sandboxing model and user experience are designed and written by the maintainers, manually.
+
+### Human review
+Every line of generated code, documentation and comments are reviewed by a maintainer before it is merged.
+
+Also, starting from the 10th Sep 2026, the following commit pattern must be used for contributions made with or helped with the AI:
+
+```plain
+feat: add support for X
+
+Assisted-by: <tool>:<model-version>
+AI scope: what the AI generated in this commit, and the prompt used (or a short summary of it)
+```
+
+Trivial completions (single lines, renames, formatting) don't need to be marked.
+
+Not following this layout will lead to a closed Pull Request.
+
 ## Sponsors
 <a href="https://www.jetbrains.com/?from=bottles"><img height="55" src="https://unifiedban.solutions/static/images/jetbrains-logos/jetbrains.png" /></a>&nbsp;&nbsp;&nbsp;
 <a href="https://www.gitbook.com/?ref=bottles"><img height="55" src="https://www.gitbook.com/cdn-cgi/image/height=55,fit=contain,dpr=1,format=auto/https%3A%2F%2F2775338190-files.gitbook.io%2F~%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FNkEGS7hzeqa35sMXQZ4X%252Flogo%252FTO5E3RjWKeaJmYYWMGWV%252Fspaces_gitbook_avatar-rectangle.png%3Falt%3Dmedia%26token%3Da34e957e-f044-4bee-abee-23946d2e9cfb" /></a>&nbsp;&nbsp;&nbsp;
