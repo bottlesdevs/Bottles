@@ -1,0 +1,41 @@
+name: AI disclosure
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, edited]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          persist-credentials: false
+
+      - name: Test disclosure policy
+        run: node --test .github/scripts/check-ai-disclosure.test.cjs
+
+      - name: Check pull request
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        with:
+          script: |
+            const { checkDisclosure } = require("./.github/scripts/check-ai-disclosure.cjs");
+            const commits = await github.paginate(github.rest.pulls.listCommits, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+              per_page: 100,
+            });
+            const errors = checkDisclosure(
+              context.payload.pull_request.body || "",
+              commits.map((commit) => ({
+                sha: commit.sha,
+                message: commit.commit.message,
+              })),
+            );
+            if (errors.length > 0) core.setFailed(errors.join("\n"));
