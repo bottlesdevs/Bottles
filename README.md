@@ -105,12 +105,15 @@ Also, starting from the 10th Sep 2026, the following commit pattern must be used
 feat: add support for X
 
 Assisted-by: <tool>:<model-version>
-AI scope: what the AI generated in this commit, and the prompt used (or a short summary of it)
+AI-Scope: what the AI generated in this commit, and the prompt used (or a short summary of it)
 ```
 
 Trivial completions (single lines, renames, formatting) don't need to be marked.
 
 Not following this layout will lead to a closed Pull Request.
+
+Coding agents must also follow [AGENTS.md](AGENTS.md) before changing files,
+creating commits, or opening pull requests.
 
 ## Sponsors
 <a href="https://www.jetbrains.com/?from=bottles"><img height="55" src="https://unifiedban.solutions/static/images/jetbrains-logos/jetbrains.png" /></a>&nbsp;&nbsp;&nbsp;
