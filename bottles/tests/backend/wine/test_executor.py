@@ -556,6 +556,42 @@ def test_winecommand_reports_nonzero_exit_status(monkeypatch):
     assert result.message == "Command exited with status 7."
 
 
+def test_executable_launch_reports_winecommand_failure(monkeypatch):
+    command_result = Result(False, data="setup failed", message="status 7")
+
+    class Command:
+        def __init__(self, *_args, **_kwargs):
+            pass
+
+        def run(self):
+            return command_result
+
+    monkeypatch.setattr("bottles.backend.wine.executor.WineCommand", Command)
+    monkeypatch.setattr(
+        WineExecutor,
+        "_WineExecutor__set_monitors",
+        lambda _self: None,
+    )
+    executor = WineExecutor.__new__(WineExecutor)
+    executor.config = _make_config()
+    executor.exec_path = "setup.exe"
+    executor.args = "/silent"
+    executor.terminal = False
+    executor.environment = {}
+    executor.pre_script = None
+    executor.post_script = None
+    executor.pre_script_args = None
+    executor.post_script_args = None
+    executor.cwd = None
+    executor.sandbox_override = None
+
+    result = executor._WineExecutor__launch_exe()
+
+    assert not result.ok
+    assert result.data == {"output": command_result}
+    assert result.message == "status 7"
+
+
 def test_component_override_bypasses_winebridge(monkeypatch):
     def fake_init(self, **kwargs):
         self.use_winebridge = kwargs["program_winebridge"]

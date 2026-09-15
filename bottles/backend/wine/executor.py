@@ -616,7 +616,7 @@ class WineExecutor:
         )
         res = winecmd.run()
         self.__set_monitors()
-        return Result(status=True, data={"output": res})
+        return Result(status=res.ok, data={"output": res}, message=res.message)
 
     def __launch_msi(self):
         msiexec = MsiExec(self.config)

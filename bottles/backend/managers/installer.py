@@ -176,11 +176,13 @@ class InstallerManager:
         for st in steps:
             # Step type: run_script
             if st.get("action") == "run_script":
-                self.__step_run_script(config, st)
+                if not self.__step_run_script(config, st):
+                    return False
 
             # Step type: run_winecommand
             if st.get("action") == "run_winecommand":
-                self.__step_run_winecommand(config, st)
+                if not self.__step_run_winecommand(config, st):
+                    return False
 
             # Step type: update_config
             if st.get("action") == "update_config":
@@ -215,7 +217,12 @@ class InstallerManager:
                         environment=st.get("environment"),
                         monitoring=st.get("monitoring", []),
                     )
-                    executor.run()
+                    result = executor.run()
+                    if not result.ok:
+                        logging.error(
+                            f"Failed to install {st.get('file_name')}: {result.message}"
+                        )
+                        return False
                 else:
                     logging.error(
                         f"Failed to download {st.get('file_name')}, or checksum failed."
@@ -229,7 +236,7 @@ class InstallerManager:
         commands = step.get("commands")
 
         if not commands:
-            return
+            return False
 
         for command in commands:
             _winecommand = WineCommand(
@@ -237,8 +244,12 @@ class InstallerManager:
                 command=command.get("command"),
                 arguments=command.get("arguments"),
                 minimal=command.get("minimal"),
+                communicate=command.get("wait", False),
             )
-            _winecommand.run()
+            if not _winecommand.run().ok:
+                return False
+
+        return True
 
     @staticmethod
     def __step_run_script(config: BottleConfig, step: dict):
@@ -262,14 +273,19 @@ class InstallerManager:
                 return False
 
         logging.info("Executing installer script…")
-        subprocess.Popen(
+        process = subprocess.Popen(
             f"bash -c '{script}'",
             shell=True,
             cwd=ManagerUtils.get_bottle_path(config),
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
-        ).communicate()
+        )
+        process.communicate()
+        if process.returncode:
+            logging.error(f"Installer script exited with status {process.returncode}.")
+            return False
         logging.info("Finished executing installer script.")
+        return True
 
     @staticmethod
     def __step_update_config(config: BottleConfig, step: dict):
