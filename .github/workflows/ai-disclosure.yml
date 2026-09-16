@@ -21,7 +21,7 @@ jobs:
         run: node --test .github/scripts/check-ai-disclosure.test.cjs
 
       - name: Check pull request
-        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
         with:
           script: |
             const { checkDisclosure } = require("./.github/scripts/check-ai-disclosure.cjs");
