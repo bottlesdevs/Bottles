@@ -155,3 +155,31 @@ def test_validate_template_does_not_follow_symlinks(monkeypatch, tmp_path):
         file.truncate(300_000_000)
 
     assert TemplateManager._TemplateManager__validate_template(template_uuid) is True
+
+
+def test_new_template_does_not_modify_bottle_config(monkeypatch, tmp_path):
+    bottle = tmp_path / "Bottle"
+    (bottle / "drive_c/windows").mkdir(parents=True)
+    templates = tmp_path / "templates"
+    templates.mkdir()
+    config = BottleConfig(Name="Bottle", Path=str(bottle))
+
+    monkeypatch.setattr(template_module.Paths, "templates", str(templates))
+    monkeypatch.setattr(TemplateManager, "get_templates", lambda: [])
+    monkeypatch.setattr(
+        TemplateManager,
+        "_TemplateManager__validate_template",
+        lambda _uuid: True,
+    )
+    monkeypatch.setattr(
+        template_module.ManagerUtils,
+        "get_bottle_path",
+        lambda _config: str(bottle),
+    )
+
+    TemplateManager.new("Custom", config)
+
+    assert config.Name == "Bottle"
+    assert config.Path == str(bottle)
+    assert hasattr(config, "Creation_Date")
+    assert hasattr(config, "Update_Date")

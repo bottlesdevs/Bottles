@@ -46,11 +46,12 @@ class TemplateManager:
         _uuid = str(uuid.uuid4())
         logging.info(f"Creating new template: {_uuid}")
         bottle = ManagerUtils.get_bottle_path(config)
+        template_config = config.copy()
 
-        delattr(config, "Name")
-        delattr(config, "Path")
-        delattr(config, "Creation_Date")
-        delattr(config, "Update_Date")
+        delattr(template_config, "Name")
+        delattr(template_config, "Path")
+        delattr(template_config, "Creation_Date")
+        delattr(template_config, "Update_Date")
 
         ignored = ["dosdevices", "states", ".fvs", "*.yml", ".*", "*.tmp"]
 
@@ -70,7 +71,7 @@ class TemplateManager:
             "uuid": _uuid,
             "env": env,
             "created": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            "config": config,
+            "config": template_config,
         }
 
         with open(os.path.join(_path, "template.yml"), "w") as f:
