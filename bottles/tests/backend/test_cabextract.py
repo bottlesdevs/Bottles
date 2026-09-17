@@ -135,6 +135,35 @@ def test_extract_replaces_case_insensitive_duplicate(
     assert not native.exists()
 
 
+def test_extract_replaces_existing_file_from_nested_cab_path(
+    monkeypatch, tmp_path: Path
+) -> None:
+    archive = tmp_path / "archive.cab"
+    archive.touch()
+    destination = tmp_path / "output"
+    destination.mkdir()
+    builtin = destination / "sppc.dll"
+    nested = destination / "amd64_microsoft-windows-sppc" / "sppc.dll"
+    builtin.write_bytes(b"builtin")
+
+    def extract(command, check):
+        assert check is True
+        nested.parent.mkdir()
+        nested.write_bytes(b"native")
+
+    monkeypatch.setattr(cabextract_module.subprocess, "run", extract)
+    extractor = CabExtract()
+    extractor.cabextract_bin = "cabextract"
+
+    assert extractor.run(
+        str(archive),
+        files=["amd64_microsoft-windows-sppc/sppc.dll"],
+        destination=str(destination),
+    )
+    assert builtin.read_bytes() == b"native"
+    assert not nested.exists()
+
+
 def test_extract_accepts_literal_path_with_glob_characters(
     monkeypatch, tmp_path: Path
 ) -> None:

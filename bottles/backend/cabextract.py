@@ -137,11 +137,10 @@ class CabExtract:
                     if len(file.split("/")) > 1:
                         _file = file.split("/")[-1]
                         _dir = file.replace(_file, "")
-                        if not os.path.exists(os.path.join(self.destination, _file)):
-                            shutil.move(
-                                os.path.join(self.destination, _dir, _file),
-                                os.path.join(self.destination, _file),
-                            )
+                        source = os.path.join(self.destination, _dir, _file)
+                        destination = os.path.join(self.destination, _file)
+                        if os.path.exists(source):
+                            os.replace(source, destination)
 
                     files_after = self.__matching_files(self.destination, expected)
                     if files_after == files_before:
