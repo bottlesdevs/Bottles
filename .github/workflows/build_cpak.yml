@@ -84,6 +84,7 @@ jobs:
               test -x /usr/bin/bottles-real
               test -x /usr/bin/bottles-cli
               test -x /usr/local/bin/umu-run
+              ldconfig -p | grep -F "libpcsclite.so.1"
               bottles-cli --version
             '
 
