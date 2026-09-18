@@ -82,6 +82,40 @@ def test_installer_preserves_file_associations_for_existing_program(
     ]
 
 
+def test_installer_registers_program_without_icon(mocker, monkeypatch, tmp_path):
+    manager = mocker.Mock()
+    installer = object.__new__(InstallerManager)
+    installer._InstallerManager__manager = manager
+    config = BottleConfig(Name="Test", Path=str(tmp_path))
+    manifest = {
+        "Name": "Editor",
+        "Executable": {
+            "file": "editor.exe",
+            "name": "Editor",
+            "path": "Program Files/Editor/editor.exe",
+        },
+    }
+
+    monkeypatch.setattr(installer, "get_installer", lambda _name: manifest)
+    monkeypatch.setattr(
+        "bottles.backend.managers.installer.ManagerUtils.get_bottle_path",
+        lambda _config: str(tmp_path),
+    )
+    desktop_entry = mocker.patch(
+        "bottles.backend.managers.installer.ManagerUtils.create_desktop_entry"
+    )
+
+    result = installer.install(config, ("editor",), lambda: None)
+
+    assert result.status is True
+    desktop_entry.assert_called_once_with(
+        config,
+        mocker.ANY,
+        False,
+        "",
+    )
+
+
 def test_run_winecommand_waits_and_reports_failure(mocker):
     winecommand = mocker.patch(
         "bottles.backend.managers.installer.WineCommand",
