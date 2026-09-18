@@ -89,6 +89,7 @@ class InstallersView(Adw.Bin):
             config = BottleConfig()
         self.config = config
         installers = self.manager.supported_installers.items()
+        include_unstable = self.window.settings.get_boolean("release-candidate")
 
         self.list_installers.set_sensitive(False)
 
@@ -118,6 +119,10 @@ class InstallersView(Adw.Bin):
                 if len(installer) != 2:
                     continue
                 if installer[1].get("Arch", "win64") != self.config.Arch:
+                    continue
+                if not self.manager.installer_manager.supports_channel(
+                    installer, include_unstable
+                ):
                     continue
                 GLib.idle_add(new_installer, installer)
                 i += 1

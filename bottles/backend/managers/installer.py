@@ -87,6 +87,11 @@ class InstallerManager:
         """Wrapper for the repo method."""
         return self.__repo.get_icon(installer)
 
+    @staticmethod
+    def supports_channel(installer, include_unstable=False):
+        channel = installer[1].get("Channel", "stable")
+        return include_unstable or channel not in ("rc", "unstable")
+
     def __download_icon(self, config, executable: dict, manifest):
         """
         Download the installer icon from the repository to the bottle

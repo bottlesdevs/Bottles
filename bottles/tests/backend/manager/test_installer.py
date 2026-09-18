@@ -5,6 +5,21 @@ from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 
 
+@pytest.mark.parametrize(
+    ("channel", "include_unstable", "expected"),
+    [
+        ("stable", False, True),
+        ("rc", False, False),
+        ("unstable", False, False),
+        ("unstable", True, True),
+    ],
+)
+def test_installer_respects_release_channel(channel, include_unstable, expected):
+    installer = ("test", {"Channel": channel})
+
+    assert InstallerManager.supports_channel(installer, include_unstable) is expected
+
+
 @pytest.mark.parametrize("current_value", [True, False])
 def test_installer_applies_window_decoration_parameter(mocker, current_value):
     registry = mocker.patch(
