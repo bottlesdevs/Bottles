@@ -124,6 +124,10 @@ class InstallersView(Adw.Bin):
                     installer, include_unstable
                 ):
                     continue
+                if not self.manager.installer_manager.supports_runner(
+                    installer, self.config.Runner
+                ):
+                    continue
                 GLib.idle_add(new_installer, installer)
                 i += 1
 

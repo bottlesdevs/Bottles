@@ -92,6 +92,19 @@ class InstallerManager:
         channel = installer[1].get("Channel", "stable")
         return include_unstable or channel not in ("rc", "unstable")
 
+    @staticmethod
+    def supports_runner(installer, runner):
+        runners = installer[1].get("Runners")
+        if not runners:
+            return True
+        if not isinstance(runners, list):
+            return False
+        return any(
+            isinstance(candidate, str)
+            and (runner == candidate or runner.startswith(f"{candidate}-"))
+            for candidate in runners
+        )
+
     def __download_icon(self, config, executable: dict, manifest):
         """
         Download the installer icon from the repository to the bottle

@@ -20,6 +20,27 @@ def test_installer_respects_release_channel(channel, include_unstable, expected)
     assert InstallerManager.supports_channel(installer, include_unstable) is expected
 
 
+@pytest.mark.parametrize(
+    ("runners", "runner", "expected"),
+    [
+        (None, "soda-11.0-10", True),
+        (["soda-11.0-11-experimental"], "soda-11.0-11-experimental", True),
+        (
+            ["soda-11.0-11-experimental"],
+            "soda-11.0-11-experimental-x86_64",
+            True,
+        ),
+        (["soda-11.0-11-experimental"], "soda-11.0-10", False),
+        ("soda-11.0-11-experimental", "soda-11.0-11-experimental", False),
+    ],
+)
+def test_installer_respects_compatible_runners(runners, runner, expected):
+    metadata = {} if runners is None else {"Runners": runners}
+    installer = ("test", metadata)
+
+    assert InstallerManager.supports_runner(installer, runner) is expected
+
+
 @pytest.mark.parametrize("current_value", [True, False])
 def test_installer_applies_window_decoration_parameter(mocker, current_value):
     registry = mocker.patch(
