@@ -84,7 +84,15 @@ jobs:
               test -x /usr/bin/bottles-real
               test -x /usr/bin/bottles-cli
               test -x /usr/local/bin/umu-run
-              ldconfig -p | grep -F "libpcsclite.so.1"
+              case "$EXPECTED_ARCH" in
+                amd64)
+                  test -e /usr/lib/x86_64-linux-gnu/libpcsclite.so.1
+                  test -e /usr/lib/i386-linux-gnu/libpcsclite.so.1
+                  ;;
+                arm64)
+                  test -e /usr/lib/aarch64-linux-gnu/libpcsclite.so.1
+                  ;;
+              esac
               bottles-cli --version
             '
 
