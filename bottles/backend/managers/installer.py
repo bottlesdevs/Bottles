@@ -378,7 +378,7 @@ class InstallerManager:
             i = int(len(manifest.get("Steps")))
             steps["sections"] += i * ["steps"]
             steps["total"] += i
-        if manifest.get("Executable"):
+        if manifest.get("Executable") or manifest.get("Executables"):
             steps["sections"].append("exe")
             steps["total"] += 1
         if manifest.get("Checks"):
@@ -414,24 +414,35 @@ class InstallerManager:
         manifest = self.get_installer(installer[0])
         _config = config
 
-        bottle = ManagerUtils.get_bottle_path(config)
         installers = manifest.get("Installers")
         dependencies = manifest.get("Dependencies")
         parameters = manifest.get("Parameters")
         executable = manifest.get("Executable")
+        executables = manifest.get("Executables")
         steps = manifest.get("Steps")
         checks = manifest.get("Checks")
 
-        if not isinstance(executable, dict) or not executable.get("file") or not executable.get("name"):
-            logging.error("Installer manifest has no valid Executable block.")
+        if executables is None:
+            executables = [executable]
+            skip_missing = False
+        else:
+            skip_missing = True
+
+        if not isinstance(executables, list) or not executables or any(
+            not isinstance(item, dict)
+            or not item.get("file")
+            or not item.get("name")
+            for item in executables
+        ):
+            logging.error("Installer manifest has no valid executable block.")
             return Result(
                 False,
                 data={"message": "Installer is not well configured."},
             )
 
-        # download icon
-        if executable.get("icon"):
-            self.__download_icon(_config, executable, manifest)
+        for item in executables:
+            if item.get("icon"):
+                self.__download_icon(_config, item, manifest)
 
         # install dependent installers
         if installers:
@@ -493,14 +504,39 @@ class InstallerManager:
                         },
                     )
 
-        # register executable
+        registered = 0
+        for item in executables:
+            if self.__register_executable(_config, item, skip_missing):
+                registered += 1
+
+        if not registered:
+            logging.error("No installer executable was found.")
+            return Result(
+                False,
+                data={"message": "Checks failed, the program is not installed."},
+            )
+
+        if is_final:
+            step_fn()
+
+        logging.info(
+            f"Program installed: {manifest['Name']} in {config.Name}.", jn=True
+        )
+        return Result(True)
+
+    def __register_executable(self, config, executable, skip_missing=False):
+        bottle = ManagerUtils.get_bottle_path(config)
         exec_path = executable.get("path", "")
         if exec_path.startswith("userdir/"):
             _userdir = WineUtils.get_user_dir(bottle)
             exec_path = exec_path.replace(
                 "userdir/", f"/users/{_userdir}/"
             )
-            executable["path"] = exec_path
+
+        if skip_missing:
+            unix_path = os.path.join(bottle, "drive_c", exec_path.lstrip("/"))
+            if not os.path.isfile(unix_path):
+                return False
 
         _path = f"C:\\{exec_path}".replace("/", "\\")
         _uuid = str(uuid.uuid4())
@@ -545,12 +581,6 @@ class InstallerManager:
         bottles_icons_path = os.path.join(ManagerUtils.get_bottle_path(config), "icons")
         icon = executable.get("icon")
         icon_path = os.path.join(bottles_icons_path, icon) if icon else ""
-        ManagerUtils.create_desktop_entry(_config, _program, False, icon_path)
+        ManagerUtils.create_desktop_entry(config, _program, False, icon_path)
 
-        if is_final:
-            step_fn()
-
-        logging.info(
-            f"Program installed: {manifest['Name']} in {config.Name}.", jn=True
-        )
-        return Result(True)
+        return True

@@ -152,6 +152,140 @@ def test_installer_registers_program_without_icon(mocker, monkeypatch, tmp_path)
     )
 
 
+def test_installer_registers_multiple_installed_programs(
+    mocker, monkeypatch, tmp_path
+):
+    manager = mocker.Mock()
+    installer = object.__new__(InstallerManager)
+    installer._InstallerManager__manager = manager
+    config = BottleConfig(Name="Test", Path=str(tmp_path))
+    manifest = {
+        "Name": "Office",
+        "Executables": [
+            {
+                "file": "WINWORD.EXE",
+                "name": "Microsoft Word",
+                "path": "Program Files/Microsoft Office/WINWORD.EXE",
+            },
+            {
+                "file": "EXCEL.EXE",
+                "name": "Microsoft Excel",
+                "path": "Program Files/Microsoft Office/EXCEL.EXE",
+            },
+        ],
+    }
+    office = tmp_path / "drive_c" / "Program Files" / "Microsoft Office"
+    office.mkdir(parents=True)
+    (office / "WINWORD.EXE").touch()
+    (office / "EXCEL.EXE").touch()
+
+    monkeypatch.setattr(installer, "get_installer", lambda _name: manifest)
+    monkeypatch.setattr(
+        "bottles.backend.managers.installer.ManagerUtils.get_bottle_path",
+        lambda _config: str(tmp_path),
+    )
+    desktop_entry = mocker.patch(
+        "bottles.backend.managers.installer.ManagerUtils.create_desktop_entry"
+    )
+
+    def update_config(config, key, value, scope=None):
+        if scope == "External_Programs":
+            config.External_Programs[key] = value
+        else:
+            setattr(config, key, value)
+
+    manager.update_config.side_effect = update_config
+
+    result = installer.install(config, ("office",), lambda: None)
+
+    assert result.status is True
+    assert {program["name"] for program in config.External_Programs.values()} == {
+        "Microsoft Word",
+        "Microsoft Excel",
+    }
+    assert desktop_entry.call_count == 2
+
+
+def test_installer_skips_missing_optional_programs(mocker, monkeypatch, tmp_path):
+    manager = mocker.Mock()
+    installer = object.__new__(InstallerManager)
+    installer._InstallerManager__manager = manager
+    config = BottleConfig(Name="Test", Path=str(tmp_path))
+    manifest = {
+        "Name": "Office",
+        "Executables": [
+            {
+                "file": "WINWORD.EXE",
+                "name": "Microsoft Word",
+                "path": "Program Files/Microsoft Office/WINWORD.EXE",
+            },
+            {
+                "file": "MSACCESS.EXE",
+                "name": "Microsoft Access",
+                "path": "Program Files/Microsoft Office/MSACCESS.EXE",
+            },
+        ],
+    }
+    office = tmp_path / "drive_c" / "Program Files" / "Microsoft Office"
+    office.mkdir(parents=True)
+    (office / "WINWORD.EXE").touch()
+
+    monkeypatch.setattr(installer, "get_installer", lambda _name: manifest)
+    monkeypatch.setattr(
+        "bottles.backend.managers.installer.ManagerUtils.get_bottle_path",
+        lambda _config: str(tmp_path),
+    )
+    mocker.patch(
+        "bottles.backend.managers.installer.ManagerUtils.create_desktop_entry"
+    )
+
+    def update_config(config, key, value, scope=None):
+        config.External_Programs[key] = value
+
+    manager.update_config.side_effect = update_config
+
+    result = installer.install(config, ("office",), lambda: None)
+
+    assert result.status is True
+    assert [program["name"] for program in config.External_Programs.values()] == [
+        "Microsoft Word"
+    ]
+
+
+def test_installer_fails_when_all_optional_programs_are_missing(
+    mocker, monkeypatch, tmp_path
+):
+    manager = mocker.Mock()
+    installer = object.__new__(InstallerManager)
+    installer._InstallerManager__manager = manager
+    config = BottleConfig(Name="Test", Path=str(tmp_path))
+    manifest = {
+        "Name": "Office",
+        "Executables": [
+            {
+                "file": "WINWORD.EXE",
+                "name": "Microsoft Word",
+                "path": "Program Files/Microsoft Office/WINWORD.EXE",
+            }
+        ],
+    }
+
+    monkeypatch.setattr(installer, "get_installer", lambda _name: manifest)
+    monkeypatch.setattr(
+        "bottles.backend.managers.installer.ManagerUtils.get_bottle_path",
+        lambda _config: str(tmp_path),
+    )
+    desktop_entry = mocker.patch(
+        "bottles.backend.managers.installer.ManagerUtils.create_desktop_entry"
+    )
+
+    result = installer.install(config, ("office",), lambda: None)
+
+    assert result.status is False
+    assert config.External_Programs == {}
+    desktop_entry.assert_not_called()
+
+
 def test_run_winecommand_waits_and_reports_failure(mocker):
     winecommand = mocker.patch(
         "bottles.backend.managers.installer.WineCommand",
