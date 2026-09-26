@@ -88,9 +88,12 @@ jobs:
                 amd64)
                   test -e /usr/lib/x86_64-linux-gnu/libpcsclite.so.1
                   test -e /usr/lib/i386-linux-gnu/libpcsclite.so.1
+                  test -e /usr/lib/x86_64-linux-gnu/libxkbregistry.so.0
+                  test -e /usr/lib/i386-linux-gnu/libxkbregistry.so.0
                   ;;
                 arm64)
                   test -e /usr/lib/aarch64-linux-gnu/libpcsclite.so.1
+                  test -e /usr/lib/aarch64-linux-gnu/libxkbregistry.so.0
                   ;;
               esac
               bottles-cli --version
