@@ -257,6 +257,20 @@ class InstallerManager:
             return False
 
         for command in commands:
+            skip_paths = command.get("skip_if_files_exist", [])
+            if skip_paths:
+                bottle = ManagerUtils.get_bottle_path(config)
+                drive_c = os.path.realpath(os.path.join(bottle, "drive_c"))
+                if all(
+                    os.path.commonpath(
+                        (drive_c, os.path.realpath(os.path.join(drive_c, path)))
+                    )
+                    == drive_c
+                    and os.path.isfile(os.path.join(drive_c, path))
+                    for path in skip_paths
+                ):
+                    continue
+
             _winecommand = WineCommand(
                 config,
                 command=command.get("command"),
@@ -264,7 +278,10 @@ class InstallerManager:
                 minimal=command.get("minimal"),
                 communicate=command.get("wait", False),
             )
-            if not _winecommand.run().ok:
+            result = _winecommand.run()
+            success_codes = command.get("success_codes", [])
+            returncode = getattr(_winecommand, "returncode", None)
+            if not result.ok and returncode not in success_codes:
                 return False
 
         return True

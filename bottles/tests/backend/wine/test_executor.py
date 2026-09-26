@@ -554,6 +554,7 @@ def test_winecommand_reports_nonzero_exit_status(monkeypatch):
     assert not result.ok
     assert result.data == "registry failed"
     assert result.message == "Command exited with status 7."
+    assert command.returncode == 7
 
 
 def test_executable_launch_reports_winecommand_failure(monkeypatch):

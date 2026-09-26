@@ -317,6 +317,110 @@ def test_run_winecommand_waits_and_reports_failure(mocker):
     )
 
 
+def test_run_winecommand_accepts_configured_exit_status(mocker):
+    winecommand = mocker.patch(
+        "bottles.backend.managers.installer.WineCommand",
+        autospec=True,
+    )
+    winecommand.return_value.returncode = 49
+    winecommand.return_value.run.return_value = Result(False, message="failed")
+
+    result = InstallerManager._InstallerManager__step_run_winecommand(
+        BottleConfig(Name="Test"),
+        {
+            "commands": [
+                {
+                    "command": "sc",
+                    "arguments": "create TestService",
+                    "wait": True,
+                    "success_codes": [0, 49],
+                }
+            ]
+        },
+    )
+
+    assert result is True
+
+
+@pytest.mark.parametrize(
+    ("installed", "expected_calls"),
+    [
+        (["WINWORD.EXE", "EXCEL.EXE"], 0),
+        (["WINWORD.EXE"], 1),
+    ],
+)
+def test_run_winecommand_skips_only_when_all_files_exist(
+    mocker, monkeypatch, tmp_path, installed, expected_calls
+):
+    bottle = tmp_path / "Test"
+    office = bottle / "drive_c" / "Program Files" / "Microsoft Office"
+    office.mkdir(parents=True)
+    for name in installed:
+        (office / name).touch()
+    monkeypatch.setattr(
+        "bottles.backend.managers.installer.ManagerUtils.get_bottle_path",
+        lambda _config: str(bottle),
+    )
+    winecommand = mocker.patch(
+        "bottles.backend.managers.installer.WineCommand",
+        autospec=True,
+    )
+    winecommand.return_value.run.return_value = Result(True)
+
+    result = InstallerManager._InstallerManager__step_run_winecommand(
+        BottleConfig(Name="Test"),
+        {
+            "commands": [
+                {
+                    "command": "setup.exe",
+                    "wait": True,
+                    "skip_if_files_exist": [
+                        "Program Files/Microsoft Office/WINWORD.EXE",
+                        "Program Files/Microsoft Office/EXCEL.EXE",
+                    ],
+                }
+            ]
+        },
+    )
+
+    assert result is True
+    assert winecommand.call_count == expected_calls
+
+
+def test_run_winecommand_does_not_skip_for_paths_outside_drive_c(
+    mocker, monkeypatch, tmp_path
+):
+    bottle = tmp_path / "Test"
+    drive_c = bottle / "drive_c"
+    drive_c.mkdir(parents=True)
+    (bottle / "outside.exe").touch()
+    monkeypatch.setattr(
+        "bottles.backend.managers.installer.ManagerUtils.get_bottle_path",
+        lambda _config: str(bottle),
+    )
+    winecommand = mocker.patch(
+        "bottles.backend.managers.installer.WineCommand",
+        autospec=True,
+    )
+    winecommand.return_value.run.return_value = Result(True)
+
+    result = InstallerManager._InstallerManager__step_run_winecommand(
+        BottleConfig(Name="Test"),
+        {
+            "commands": [
+                {
+                    "command": "setup.exe",
+                    "wait": True,
+                    "skip_if_files_exist": ["../outside.exe"],
+                }
+            ]
+        },
+    )
+
+    assert result is True
+    winecommand.assert_called_once()
+
+
 def test_installer_step_reports_failed_executable(mocker):
     manager = mocker.Mock()
     manager.component_manager.download.return_value = True
