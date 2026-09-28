@@ -142,7 +142,7 @@ class ProgramEntry(Adw.ActionRow):
                 "icons",
                 f"{program_name}.png",
             )
-            if os.path.isfile(self.__program_icon_path):
+            if ManagerUtils.is_png_image(self.__program_icon_path):
                 program_icon = self.__program_icon_path
                 self.program["icon"] = program_icon
             else:

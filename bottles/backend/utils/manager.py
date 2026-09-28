@@ -31,7 +31,6 @@ from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.state import SignalManager, Signals
-from bottles.backend.utils.generic import get_mime
 from bottles.backend.utils.imagemagick import ImageMagickUtils
 
 gi.require_version("Xdp", "1.0")
@@ -313,7 +312,7 @@ class ManagerUtils:
             if winepath.is_windows(program_path):
                 program_path = winepath.to_unix(program_path)
 
-            ico_dest_temp = os.path.join(bottle_icons_path, f"_{program_name}.png")
+            ico_dest_temp = os.path.join(bottle_icons_path, f"_{program_name}.ico")
             ico_dest = os.path.join(bottle_icons_path, f"{program_name}.png")
             ico = icoextract.IconExtractor(program_path)
             os.makedirs(bottle_icons_path, exist_ok=True)
@@ -325,24 +324,23 @@ class ManagerUtils:
                 os.remove(ico_dest)
 
             ico.export_icon(ico_dest_temp)
-            # Some ICO files are incorrectly identified as TARGA
-            # See https://bugs.astron.com/view.php?id=723
-            if get_mime(ico_dest_temp) in ["image/vnd.microsoft.icon", "image/x-tga"]:
-                if not ico_dest_temp.endswith(".ico"):
-                    shutil.move(ico_dest_temp, f"{ico_dest_temp}.ico")
-                    ico_dest_temp = f"{ico_dest_temp}.ico"
-                im = ImageMagickUtils(ico_dest_temp)
-                im.convert(ico_dest)
-                os.remove(ico_dest_temp)
-                if os.path.isfile(ico_dest):
-                    icon = ico_dest
-            else:
-                shutil.move(ico_dest_temp, ico_dest)
+            im = ImageMagickUtils(ico_dest_temp)
+            im.convert(ico_dest)
+            os.remove(ico_dest_temp)
+            if ManagerUtils.is_png_image(ico_dest):
                 icon = ico_dest
         except:  # TODO: handle those
             pass
 
         return icon
+
+    @staticmethod
+    def is_png_image(path: str) -> bool:
+        try:
+            with open(path, "rb") as image:
+                return image.read(8) == b"\x89PNG\r\n\x1a\n"
+        except OSError:
+            return False
 
     @staticmethod
     def create_desktop_entry(

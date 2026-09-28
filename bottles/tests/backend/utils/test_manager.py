@@ -292,6 +292,17 @@ def test_desktop_entry_filename_sanitizes_bottle_and_program_names():
     )
 
 
+def test_png_image_validation(tmp_path):
+    png = tmp_path / "icon.png"
+    png.write_bytes(b"\x89PNG\r\n\x1a\ncontents")
+    ico = tmp_path / "icon.ico"
+    ico.write_bytes(b"\x00\x00\x01\x00contents")
+
+    assert ManagerUtils.is_png_image(str(png)) is True
+    assert ManagerUtils.is_png_image(str(ico)) is False
+    assert ManagerUtils.is_png_image(str(tmp_path / "missing.png")) is False
+
+
 class FallbackLauncherPortal:
     def __init__(
         self,
