@@ -168,6 +168,7 @@ def test_installer_registers_multiple_installed_programs(
                 "file": "WINWORD.EXE",
                 "name": "Microsoft Word",
                 "path": "Program Files/Microsoft Office/WINWORD.EXE",
+                "pre_script": "%BOTTLE_PATH%/drive_c/office-pre-launch.sh",
             },
             {
                 "file": "EXCEL.EXE",
@@ -205,6 +206,12 @@ def test_installer_registers_multiple_installed_programs(
         "Microsoft Word",
         "Microsoft Excel",
     }
+    word = next(
+        program
+        for program in config.External_Programs.values()
+        if program["name"] == "Microsoft Word"
+    )
+    assert word["pre_script"] == "%BOTTLE_PATH%/drive_c/office-pre-launch.sh"
     assert desktop_entry.call_count == 2
 
 

@@ -794,12 +794,26 @@ class InstallerManager:
             "id": _uuid,
         }
 
-        if "dxvk" in executable:
-            _program["dxvk"] = executable["dxvk"]
-        if "vkd3d" in executable:
-            _program["vkd3d"] = executable["vkd3d"]
-        if "dxvk_nvapi" in executable:
-            _program["dxvk_nvapi"] = executable["dxvk_nvapi"]
+        optional_fields = (
+            "d7vk",
+            "dxvk",
+            "vkd3d",
+            "dxvk_nvapi",
+            "gamescope",
+            "virtual_desktop",
+            "winebridge",
+            "hide_console",
+            "sync",
+            "environment",
+            "folder",
+            "pre_script",
+            "post_script",
+            "pre_script_args",
+            "post_script_args",
+        )
+        for field in optional_fields:
+            if field in executable:
+                _program[field] = executable[field]
 
         duplicates = [
             k for k, v in config.External_Programs.items() if v["path"] == _path
