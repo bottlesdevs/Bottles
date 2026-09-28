@@ -15,9 +15,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import time
 import urllib.error
 import urllib.request
 from gettext import gettext as _
+from typing import Optional
 
 from gi.repository import Adw, GdkPixbuf, Gio, GLib, Gtk
 
@@ -108,6 +110,11 @@ class InstallerDialog(Adw.Window):
     status_installed = Gtk.Template.Child()
     status_error = Gtk.Template.Child()
     progressbar = Gtk.Template.Child()
+    label_activity = Gtk.Template.Child()
+    label_elapsed = Gtk.Template.Child()
+    btn_details = Gtk.Template.Child()
+    details_revealer = Gtk.Template.Child()
+    details_view = Gtk.Template.Child()
     group_resources = Gtk.Template.Child()
     install_status_page = Gtk.Template.Child()
     img_icon = Gtk.Template.Child()
@@ -124,6 +131,12 @@ class InstallerDialog(Adw.Window):
         self.manager = window.manager
         self.config = config
         self.installer = installer
+        self.__sections = []
+        self.__steps = 0
+        self.__current_step = 0
+        self.__log_lines = []
+        self.__elapsed_source = None
+        self.__started_at = None
 
         self.__steps_phrases = {
             "deps": _("Installing Windows dependencies…"),
@@ -147,6 +160,7 @@ class InstallerDialog(Adw.Window):
         self.btn_install.connect("clicked", self.__check_resources)
         self.btn_proceed.connect("clicked", self.__install)
         self.btn_close.connect("clicked", self.__close)
+        self.btn_details.connect("clicked", self.__toggle_details)
 
     def __set_icon(self):
         def fetch_icon():
@@ -190,11 +204,15 @@ class InstallerDialog(Adw.Window):
     def __install(self, *_args):
         self.set_deletable(False)
         self.stack.set_visible_child_name("page_install")
+        self.__started_at = time.monotonic()
+        self.__elapsed_source = GLib.timeout_add_seconds(1, self.__update_elapsed)
+        self.label_activity.set_label(_("Preparing installer..."))
 
         @GtkUtils.run_in_main_loop
         def set_status(result, error=False):
             if result is None:
-                self.__error(_("Installer failed with an unknown error (no result)"))
+                message = str(error) if error else _("Installer failed unexpectedly")
+                self.__error(message)
                 return
 
             if result.ok:
@@ -211,19 +229,25 @@ class InstallerDialog(Adw.Window):
             installer=self.installer,
             step_fn=self.next_step,
             local_resources=self.__final_resources,
+            progress_fn=self.update_progress,
+            activity_fn=self.update_activity,
+            log_fn=self.add_log,
         )
 
     def __installed(self):
+        self.__stop_activity()
         self.set_deletable(False)
         self.stack.set_visible_child_name("page_installed")
         self.window.page_details.view_bottle.update_programs(force_update=True)
         self.window.page_details.go_back_sidebar()
 
     def __error(self, error):
+        self.__stop_activity()
         self.set_deletable(True)
         self.status_error.set_description(error)
         self.stack.set_visible_child_name("page_error")
 
+    @GtkUtils.run_in_main_loop
     def next_step(self, detail=None):
         """Next step"""
         section = self.__sections[self.__current_step]
@@ -233,9 +257,65 @@ class InstallerDialog(Adw.Window):
         else:
             phrase = self.__steps_phrases[section]
 
-        self.progressbar.set_text(phrase)
+        self.label_activity.set_label(phrase)
         self.__current_step += 1
         self.progressbar.set_fraction(self.__current_step * (1 / self.__steps))
+        self.progressbar.set_show_text(False)
+
+    @GtkUtils.run_in_main_loop
+    def update_progress(self, fraction: Optional[float]):
+        if fraction is None:
+            fraction = self.__current_step / self.__steps if self.__steps else 0
+            self.progressbar.set_fraction(fraction)
+            self.progressbar.set_show_text(False)
+            return
+
+        fraction = max(0.0, min(1.0, fraction))
+        self.progressbar.set_fraction(fraction)
+        self.progressbar.set_text(f"{int(fraction * 100)}%")
+        self.progressbar.set_show_text(True)
+
+    @GtkUtils.run_in_main_loop
+    def update_activity(self, command: Optional[str]):
+        if command:
+            self.label_activity.set_label(_("Running {0}...").format(command))
+            return
+        self.label_activity.set_label(_("Preparing the next step..."))
+
+    @GtkUtils.run_in_main_loop
+    def add_log(self, line: str):
+        if not line:
+            return
+
+        self.__log_lines.append(line)
+        self.__log_lines = self.__log_lines[-200:]
+        self.details_view.get_buffer().set_text("\n".join(self.__log_lines))
+        self.btn_details.set_visible(True)
+
+    def __update_elapsed(self):
+        if self.__started_at is None:
+            return GLib.SOURCE_REMOVE
+
+        elapsed = int(time.monotonic() - self.__started_at)
+        hours, elapsed = divmod(elapsed, 3600)
+        minutes, seconds = divmod(elapsed, 60)
+        if hours:
+            value = f"{hours:d}:{minutes:02d}:{seconds:02d}"
+        else:
+            value = f"{minutes:02d}:{seconds:02d}"
+        self.label_elapsed.set_label(_("Active for {0}").format(value))
+        return GLib.SOURCE_CONTINUE
+
+    def __stop_activity(self):
+        if self.__elapsed_source:
+            GLib.source_remove(self.__elapsed_source)
+            self.__elapsed_source = None
+        self.__started_at = None
+
+    def __toggle_details(self, *_args):
+        reveal = not self.details_revealer.get_reveal_child()
+        self.details_revealer.set_reveal_child(reveal)
+        self.btn_details.set_label(_("Hide Details") if reveal else _("Show Details"))
 
     def set_steps(self, steps):
         """Set steps"""
@@ -248,4 +328,5 @@ class InstallerDialog(Adw.Window):
             self.btn_proceed.set_sensitive(True)
 
     def __close(self, *_args):
+        self.__stop_activity()
         self.destroy()

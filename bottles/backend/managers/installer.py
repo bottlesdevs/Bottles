@@ -14,11 +14,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+import glob
 import os
+import re
 import subprocess
+import threading
 import uuid
 from functools import lru_cache
-from typing import Optional
+from typing import Callable, Optional
 
 import markdown
 import pycurl
@@ -189,18 +192,45 @@ class InstallerManager:
 
         return True
 
-    def __perform_steps(self, config: BottleConfig, steps: list):
+    def __perform_steps(
+        self,
+        config: BottleConfig,
+        steps: list,
+        step_fn: Optional[Callable] = None,
+        progress_fn: Optional[Callable[[Optional[float]], None]] = None,
+        activity_fn: Optional[Callable[[Optional[str]], None]] = None,
+        log_fn: Optional[Callable[[str], None]] = None,
+    ):
         """Perform a list of actions"""
         for st in steps:
+            if step_fn:
+                step_fn()
+
             # Step type: run_script
             if st.get("action") == "run_script":
-                if not self.__step_run_script(config, st):
-                    return False
+                if activity_fn:
+                    activity_fn("installer script")
+                if log_fn:
+                    log_fn("Started installer script")
+                result = self.__step_run_script(config, st, log_fn=log_fn)
+                if not result.ok:
+                    return result
+                if log_fn:
+                    log_fn("Finished installer script")
+                if activity_fn:
+                    activity_fn(None)
 
             # Step type: run_winecommand
             if st.get("action") == "run_winecommand":
-                if not self.__step_run_winecommand(config, st):
-                    return False
+                result = self.__step_run_winecommand(
+                    config,
+                    st,
+                    progress_fn=progress_fn,
+                    activity_fn=activity_fn,
+                    log_fn=log_fn,
+                )
+                if not result.ok:
+                    return result
 
             # Step type: update_config
             if st.get("action") == "update_config":
@@ -235,26 +265,157 @@ class InstallerManager:
                         environment=st.get("environment"),
                         monitoring=st.get("monitoring", []),
                     )
+                    file_name = os.path.basename(file_path)
+                    if activity_fn:
+                        activity_fn(file_name)
+                    if log_fn:
+                        log_fn(f"Started {file_name}")
                     result = executor.run()
+                    if activity_fn:
+                        activity_fn(None)
                     if not result.ok:
-                        logging.error(
-                            f"Failed to install {st.get('file_name')}: {result.message}"
-                        )
-                        return False
+                        message = result.message or f"Failed to run {file_name}."
+                        logging.error(message)
+                        if log_fn:
+                            log_fn(message)
+                        return Result(False, message=message)
+                    if log_fn:
+                        log_fn(f"Finished {file_name}")
                 else:
-                    logging.error(
+                    message = (
                         f"Failed to download {st.get('file_name')}, or checksum failed."
                     )
-                    return False
-        return True
+                    logging.error(message)
+                    if log_fn:
+                        log_fn(message)
+                    return Result(False, message=message)
+        return Result(True)
 
     @staticmethod
-    def __step_run_winecommand(config: BottleConfig, step: dict):
+    def __progress_paths(config: BottleConfig, path: str) -> list[str]:
+        if not isinstance(path, str) or not path:
+            return []
+
+        drive_c = os.path.realpath(
+            os.path.join(ManagerUtils.get_bottle_path(config), "drive_c")
+        )
+        pattern = os.path.abspath(os.path.join(drive_c, path))
+
+        try:
+            if os.path.commonpath([drive_c, pattern]) != drive_c:
+                return []
+        except ValueError:
+            return []
+
+        paths = []
+        for candidate in glob.glob(pattern):
+            candidate = os.path.realpath(candidate)
+            try:
+                if os.path.commonpath([drive_c, candidate]) != drive_c:
+                    continue
+            except ValueError:
+                continue
+            if os.path.isfile(candidate):
+                paths.append(candidate)
+        return paths
+
+    @classmethod
+    def __progress_positions(
+        cls, config: BottleConfig, progress: dict
+    ) -> dict[str, int]:
+        positions = {}
+        encoding = progress.get("encoding", "utf-8")
+
+        for path in cls.__progress_paths(config, progress.get("path", "")):
+            try:
+                with open(path, "r", encoding=encoding, errors="replace") as log:
+                    log.seek(0, os.SEEK_END)
+                    positions[path] = log.tell()
+            except (LookupError, OSError):
+                continue
+        return positions
+
+    @classmethod
+    def __watch_progress(
+        cls,
+        config: BottleConfig,
+        progress: dict,
+        positions: dict[str, int],
+        stop: threading.Event,
+        progress_fn: Callable[[Optional[float]], None],
+        log_fn: Optional[Callable[[str], None]] = None,
+    ):
+        try:
+            pattern = re.compile(progress.get("pattern", ""))
+        except (re.error, TypeError):
+            logging.error("Invalid installer progress pattern.")
+            return
+
+        maximum = progress.get("maximum", 100)
+        encoding = progress.get("encoding", "utf-8")
+        last_fraction = None
+        final_pass = False
+
+        while True:
+            for path in cls.__progress_paths(config, progress.get("path", "")):
+                try:
+                    if os.path.getsize(path) < positions.get(path, 0):
+                        positions[path] = 0
+
+                    with open(path, "r", encoding=encoding, errors="replace") as log:
+                        log.seek(positions.get(path, 0))
+                        while True:
+                            line_start = log.tell()
+                            line = log.readline()
+                            if not line:
+                                break
+                            if not line.endswith("\n"):
+                                positions[path] = line_start
+                                break
+                            positions[path] = log.tell()
+
+                            match = pattern.search(line)
+                            if not match:
+                                continue
+
+                            if log_fn:
+                                log_fn(line.strip()[:500])
+
+                            try:
+                                fraction = float(match.group(1)) / float(maximum)
+                            except (
+                                IndexError,
+                                TypeError,
+                                ValueError,
+                                ZeroDivisionError,
+                            ):
+                                continue
+
+                            fraction = max(0.0, min(1.0, fraction))
+                            if fraction != last_fraction:
+                                progress_fn(fraction)
+                                last_fraction = fraction
+                except (LookupError, OSError):
+                    continue
+
+            if final_pass:
+                break
+            final_pass = stop.wait(0.25)
+
+    @classmethod
+    def __step_run_winecommand(
+        cls,
+        config: BottleConfig,
+        step: dict,
+        progress_fn: Optional[Callable[[Optional[float]], None]] = None,
+        activity_fn: Optional[Callable[[Optional[str]], None]] = None,
+        log_fn: Optional[Callable[[str], None]] = None,
+    ):
         """Run a wine command"""
         commands = step.get("commands")
 
         if not commands:
-            return False
+            return Result(True)
 
         for command in commands:
             skip_paths = command.get("skip_if_files_exist", [])
@@ -271,6 +432,29 @@ class InstallerManager:
                 ):
                     continue
 
+            command_name = os.path.basename(
+                command.get("command", "").replace("\\", "/")
+            )
+            activity = command.get("label") or command_name
+            if activity_fn:
+                activity_fn(activity)
+            if log_fn:
+                log_fn(f"Started {command_name}")
+
+            progress = command.get("progress")
+            stop = None
+            watcher = None
+            if progress and progress_fn:
+                progress_fn(None)
+                positions = cls.__progress_positions(config, progress)
+                stop = threading.Event()
+                watcher = threading.Thread(
+                    target=cls.__watch_progress,
+                    args=(config, progress, positions, stop, progress_fn, log_fn),
+                    daemon=True,
+                )
+                watcher.start()
+
             _winecommand = WineCommand(
                 config,
                 command=command.get("command"),
@@ -278,16 +462,44 @@ class InstallerManager:
                 minimal=command.get("minimal"),
                 communicate=command.get("wait", False),
             )
-            result = _winecommand.run()
+            try:
+                result = _winecommand.run()
+            finally:
+                if stop:
+                    stop.set()
+                if watcher:
+                    watcher.join()
+                if progress_fn:
+                    progress_fn(None)
+                if activity_fn:
+                    activity_fn(None)
+
             success_codes = command.get("success_codes", [])
             returncode = getattr(_winecommand, "returncode", None)
             if not result.ok and returncode not in success_codes:
-                return False
+                message = result.message or f"Failed to run {command_name}."
+                logging.error(message)
+                if log_fn:
+                    if result.has_data:
+                        for line in str(result.data).splitlines():
+                            log_fn(line[:500])
+                    log_fn(message)
+                return Result(False, message=message)
 
-        return True
+            if result.has_data and log_fn:
+                for line in str(result.data).splitlines():
+                    log_fn(line[:500])
+            if log_fn:
+                log_fn(f"Finished {command_name}")
+
+        return Result(True)
 
     @staticmethod
-    def __step_run_script(config: BottleConfig, step: dict):
+    def __step_run_script(
+        config: BottleConfig,
+        step: dict,
+        log_fn: Optional[Callable[[str], None]] = None,
+    ):
         placeholders = {
             "!bottle_path": ManagerUtils.get_bottle_path(config),
             "!bottle_drive": f"{ManagerUtils.get_bottle_path(config)}/drive_c",
@@ -305,7 +517,7 @@ class InstallerManager:
                 logging.error(
                     value,
                 )
-                return False
+                return Result(False, message=value)
 
         logging.info("Executing installer script…")
         process = subprocess.Popen(
@@ -314,13 +526,18 @@ class InstallerManager:
             cwd=ManagerUtils.get_bottle_path(config),
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
+            text=True,
         )
-        process.communicate()
+        stdout, stderr = process.communicate()
+        if log_fn:
+            for line in f"{stdout}\n{stderr}".splitlines():
+                log_fn(line[:500])
         if process.returncode:
-            logging.error(f"Installer script exited with status {process.returncode}.")
-            return False
+            message = f"Installer script exited with status {process.returncode}."
+            logging.error(message)
+            return Result(False, message=message)
         logging.info("Finished executing installer script.")
-        return True
+        return Result(True)
 
     @staticmethod
     def __step_update_config(config: BottleConfig, step: dict):
@@ -427,6 +644,9 @@ class InstallerManager:
         step_fn: callable,
         is_final: bool = True,
         local_resources: Optional[dict] = None,
+        progress_fn: Optional[Callable[[Optional[float]], None]] = None,
+        activity_fn: Optional[Callable[[Optional[str]], None]] = None,
+        log_fn: Optional[Callable[[str], None]] = None,
     ):
         manifest = self.get_installer(installer[0])
         _config = config
@@ -465,7 +685,8 @@ class InstallerManager:
         if installers:
             logging.info("Installing dependent installers")
             for i in installers:
-                if not self.install(config, i, step_fn, False):
+                result = self.install(config, i, step_fn, False)
+                if not result.ok:
                     logging.error("Failed to install dependent installer(s)")
                     return Result(
                         False,
@@ -500,12 +721,20 @@ class InstallerManager:
         # execute steps
         if steps:
             logging.info("Executing installer steps")
-            if is_final:
-                step_fn()
-
-            if not self.__perform_steps(_config, steps):
+            result = self.__perform_steps(
+                _config,
+                steps,
+                step_fn=step_fn if is_final else None,
+                progress_fn=progress_fn if is_final else None,
+                activity_fn=activity_fn if is_final else None,
+                log_fn=log_fn if is_final else None,
+            )
+            if not result.ok:
+                message = result.message or "Installer step failed."
                 return Result(
-                    False, data={"message": "Installer is not well configured."}
+                    False,
+                    data={"message": message},
+                    message=message,
                 )
 
         # execute checks

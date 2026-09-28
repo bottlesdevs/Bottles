@@ -96,16 +96,73 @@ template $InstallerDialog: Adw.Window {
             title: "name";
             description: _("This could take a while.");
 
-            ProgressBar progressbar {
+            Box {
+              orientation: vertical;
+              spacing: 12;
               width-request: 300;
-              halign: center;
               margin-top: 10;
-              margin-bottom: 12;
-              show-text: true;
 
-              styles [
-                "installer",
-              ]
+              ProgressBar progressbar {
+                show-text: false;
+
+                styles [
+                  "installer",
+                ]
+              }
+
+              Box {
+                spacing: 8;
+
+                Label label_activity {
+                  label: _("Preparing installer...");
+                  hexpand: true;
+                  xalign: 0;
+                }
+
+                Label label_elapsed {
+                  label: _("00:00");
+                  xalign: 1;
+
+                  styles [
+                    "dim-label",
+                  ]
+                }
+              }
+
+              Button btn_details {
+                label: _("Show Details");
+                visible: false;
+                halign: center;
+
+                styles [
+                  "flat",
+                ]
+              }
+
+              Revealer details_revealer {
+                reveal-child: false;
+                transition-type: slide_down;
+
+                child: ScrolledWindow {
+                  height-request: 140;
+                  overflow: hidden;
+
+                  child: TextView details_view {
+                    editable: false;
+                    cursor-visible: false;
+                    monospace: true;
+                    wrap-mode: word_char;
+                    left-margin: 8;
+                    right-margin: 8;
+                    top-margin: 8;
+                    bottom-margin: 8;
+                  };
+
+                  styles [
+                    "card",
+                  ]
+                };
+              }
             }
           }
         };

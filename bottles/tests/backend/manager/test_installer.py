@@ -1,3 +1,5 @@
+import threading
+
 import pytest
 
 from bottles.backend.managers.installer import InstallerManager
@@ -307,7 +309,7 @@ def test_run_winecommand_waits_and_reports_failure(mocker):
         },
     )
 
-    assert result is False
+    assert not result.ok
     winecommand.assert_called_once_with(
         mocker.ANY,
         command="reg",
@@ -339,7 +341,7 @@ def test_run_winecommand_accepts_configured_exit_status(mocker):
         },
     )
 
-    assert result is True
+    assert result.ok
 
 
 @pytest.mark.parametrize(
@@ -383,7 +385,7 @@ def test_run_winecommand_skips_only_when_all_files_exist(
         },
     )
 
-    assert result is True
+    assert result.ok
     assert winecommand.call_count == expected_calls
 
 
@@ -417,7 +419,7 @@ def test_run_winecommand_does_not_skip_for_paths_outside_drive_c(
         },
     )
 
-    assert result is True
+    assert result.ok
     winecommand.assert_called_once()
 
 
@@ -443,4 +445,122 @@ def test_installer_step_reports_failed_executable(mocker):
         ],
     )
 
-    assert result is False
+    assert not result.ok
+
+
+def test_run_winecommand_reports_activity(mocker):
+    winecommand = mocker.patch(
+        "bottles.backend.managers.installer.WineCommand",
+        autospec=True,
+    )
+    winecommand.return_value.run.return_value = Result(True)
+    activities = []
+    logs = []
+
+    result = InstallerManager._InstallerManager__step_run_winecommand(
+        BottleConfig(Name="Test"),
+        {
+            "commands": [
+                {
+                    "command": "C:/setup.exe",
+                    "label": "Microsoft 365 setup",
+                    "arguments": "/configure config.xml",
+                    "wait": True,
+                    "minimal": True,
+                }
+            ]
+        },
+        activity_fn=activities.append,
+        log_fn=logs.append,
+    )
+
+    assert result.ok
+    assert activities == ["Microsoft 365 setup", None]
+    assert logs == ["Started setup.exe", "Finished setup.exe"]
+
+
+def test_installer_progress_follows_new_log_entries(mocker, tmp_path):
+    bottle = tmp_path / "bottle"
+    log_dir = bottle / "drive_c/users/test/AppData/Local/Temp"
+    log_dir.mkdir(parents=True)
+    log_path = log_dir / "CPAK-test.log"
+    log_path.write_text("progress=10\n", encoding="utf-16-le")
+    mocker.patch(
+        "bottles.backend.managers.installer.ManagerUtils.get_bottle_path",
+        return_value=str(bottle),
+    )
+    config = BottleConfig(Name="Test")
+    progress = {
+        "path": "users/*/AppData/Local/Temp/CPAK-*.log",
+        "encoding": "utf-16-le",
+        "pattern": r"progress=([0-9]+)",
+    }
+    positions = InstallerManager._InstallerManager__progress_positions(
+        config, progress
+    )
+    stop = threading.Event()
+    values = []
+    lines = []
+    watcher = threading.Thread(
+        target=InstallerManager._InstallerManager__watch_progress,
+        args=(config, progress, positions, stop, values.append, lines.append),
+    )
+    watcher.start()
+
+    with log_path.open("a", encoding="utf-16-le") as log:
+        log.write("progress=40\n")
+
+    stop.set()
+    watcher.join(1)
+
+    assert values == [0.4]
+    assert lines == ["progress=40"]
+
+
+def test_run_winecommand_reports_progress_before_returning(mocker, tmp_path):
+    bottle = tmp_path / "bottle"
+    log_dir = bottle / "drive_c/users/test/AppData/Local/Temp"
+    log_dir.mkdir(parents=True)
+    log_path = log_dir / "installer.log"
+    mocker.patch(
+        "bottles.backend.managers.installer.ManagerUtils.get_bottle_path",
+        return_value=str(bottle),
+    )
+    winecommand = mocker.patch(
+        "bottles.backend.managers.installer.WineCommand",
+        autospec=True,
+    )
+
+    def finish_command():
+        log_path.write_text("total progress=55\n", encoding="utf-8")
+        return Result(True)
+
+    winecommand.return_value.run.side_effect = finish_command
+    values = []
+    lines = []
+
+    result = InstallerManager._InstallerManager__step_run_winecommand(
+        BottleConfig(Name="Test"),
+        {
+            "commands": [
+                {
+                    "command": "setup.exe",
+                    "wait": True,
+                    "progress": {
+                        "path": "users/*/AppData/Local/Temp/installer.log",
+                        "pattern": r"total progress=([0-9]+)",
+                    },
+                }
+            ]
+        },
+        progress_fn=values.append,
+        log_fn=lines.append,
+    )
+
+    assert result.ok
+    assert values == [None, 0.55, None]
+    assert lines == [
+        "Started setup.exe",
+        "total progress=55",
+        "Finished setup.exe",
+    ]
