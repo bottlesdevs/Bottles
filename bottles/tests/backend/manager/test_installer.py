@@ -43,6 +43,26 @@ def test_installer_respects_compatible_runners(runners, runner, expected):
     assert InstallerManager.supports_runner(installer, runner) is expected
 
 
+def test_installer_refreshes_catalog_and_cached_manifests(mocker):
+    repository = mocker.Mock()
+    repository.catalog = {"old": {"Name": "Old"}}
+
+    def refresh():
+        repository.catalog = {"new": {"Name": "New"}}
+
+    repository.refresh.side_effect = refresh
+    installer = object.__new__(InstallerManager)
+    installer._InstallerManager__repo = repository
+    installer._InstallerManager__utils_conn = mocker.Mock(check_connection=lambda: True)
+
+    assert installer.fetch_catalog() == {"old": {"Name": "Old"}}
+    repository.get.return_value = {"Version": 1}
+    assert installer.get_installer("office") == {"Version": 1}
+    repository.get.return_value = {"Version": 2}
+    assert installer.refresh_catalog() == {"new": {"Name": "New"}}
+    assert installer.get_installer("office") == {"Version": 2}
+
+
 @pytest.mark.parametrize("current_value", [True, False])
 def test_installer_applies_window_decoration_parameter(mocker, current_value):
     registry = mocker.patch(

@@ -46,6 +46,7 @@ class Repo:
     ):
         self.url = url
         self.cache_url = cache_url or url
+        self.index = index
         self.offline = offline
         self.catalog = None
 
@@ -65,6 +66,10 @@ class Repo:
             index=index,
             offline=offline,
         )
+
+    def refresh(self) -> dict:
+        self.catalog = self.__get_catalog(self.index, self.offline)
+        return self.catalog
 
     def __get_catalog(self, index: str, offline: bool = False):
         cache_path = self.__get_cache_path("catalog.yml")

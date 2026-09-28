@@ -37,6 +37,24 @@ def test_catalog_callback_mode_is_configurable(monkeypatch, callback_in_main_loo
     assert callback_modes == [callback_in_main_loop]
 
 
+def test_repository_refresh_reloads_the_current_index(monkeypatch):
+    repository = object.__new__(ComponentRepo)
+    repository.index = "https://repo.example.test/index.yml"
+    repository.offline = False
+    repository.catalog = {"old": {}}
+    calls = []
+
+    def get_catalog(_repository, index, offline=False):
+        calls.append((index, offline))
+        return {"new": {}}
+
+    monkeypatch.setattr(repo_module.Repo, "_Repo__get_catalog", get_catalog)
+
+    assert repository.refresh() == {"new": {}}
+    assert repository.catalog == {"new": {}}
+    assert calls == [(repository.index, False)]
+
+
 @pytest.mark.parametrize(
     ("manager_type", "repository_name"),
     [

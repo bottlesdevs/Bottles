@@ -86,6 +86,13 @@ class InstallerManager:
         catalog = dict(sorted(catalog.items()))
         return catalog
 
+    def refresh_catalog(self) -> dict:
+        self.__repo.refresh()
+        self.fetch_catalog.cache_clear()
+        self.get_installer.cache_clear()
+        self.get_review.cache_clear()
+        return self.fetch_catalog()
+
     def get_icon_url(self, installer):
         """Wrapper for the repo method."""
         return self.__repo.get_icon(installer)
