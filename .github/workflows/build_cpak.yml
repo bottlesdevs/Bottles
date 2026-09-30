@@ -193,8 +193,8 @@ jobs:
 
       - name: Install cpak-sign
         run: |
-          curl -fsSLO https://github.com/Containerpak/cpak/releases/download/v2.12.7/cpak-sign-linux-amd64
-          echo '4b77884bc2464aa500540523e23ac84e6bd1a07df148e0df0334389d2f09ad6c  cpak-sign-linux-amd64' | sha256sum -c -
+          curl -fsSLO https://github.com/Containerpak/cpak/releases/download/v2.14.0/cpak-sign-linux-amd64
+          echo '474aa7302475d06aa725ba36dd38751c32da1950cf5dbeb9f25cfc535d1f302c  cpak-sign-linux-amd64' | sha256sum -c -
           install -Dm755 cpak-sign-linux-amd64 /usr/local/bin/cpak-sign
 
       - name: Sign the package state
