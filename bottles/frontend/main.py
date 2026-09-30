@@ -42,6 +42,7 @@ gi.require_version("XdpGtk4", "1.0")
 # ruff: noqa: E402
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk  # type: ignore
 
+from bottles.backend.identity import CALLBACK_SCHEME, forward_identity_callback
 from bottles.frontend.utils.gtk import FontScaleManager
 from bottles.frontend.windows.window import BottlesWindow
 
@@ -207,9 +208,6 @@ class Bottles(Adw.Application):
                     )
 
         uri = commands.lookup_value(GLib.OPTION_REMAINING)
-        logging.info(
-            _("Launching with URI: {0}").format(uri),
-        )
         if uri:
             return self.__process_uri(uri)
 
@@ -249,6 +247,16 @@ class Bottles(Adw.Application):
         e.g. xdg-open bottles:run/<bottle>/<program>
         """
         uri = uri[0]
+
+        if uri.partition(":")[0].lower() == CALLBACK_SCHEME:
+            if forward_identity_callback(uri):
+                return 0
+            logging.warning(_("Unable to deliver the Microsoft identity callback"))
+            return 1
+
+        logging.info(
+            _("Launching with URI: {0}").format(uri),
+        )
 
         if uri.startswith("bottles:run/"):
             if len(uri.split("/")) != 3:

@@ -21,6 +21,8 @@ bottles_sources = [
   'runner.py',
   'diff.py',
   'health.py',
+  'identity.py',
+  'identity_ui.py',
   'downloader.py',
   'logger.py',
   'cabextract.py',

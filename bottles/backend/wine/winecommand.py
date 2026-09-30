@@ -17,6 +17,7 @@ from bottles.backend.globals import (
     obs_vkc_available,
     vmtouch_available,
 )
+from bottles.backend.identity import start_identity_bridge
 from bottles.backend.logger import Logger
 from bottles.backend.managers.runtime import RuntimeManager
 from bottles.backend.managers.sandbox import SandboxManager
@@ -337,6 +338,26 @@ def apply_fex_preferences(env: "WineEnv", runner_name: str, runner_path: str) ->
     env.add("FEX_APP_CONFIG_LOCATION", os.path.dirname(config))
 
 
+def apply_identity_bridge(
+    env: "WineEnv", runner_name: str, runner_path: str, bottle_path: str
+) -> None:
+    unixlib = "windows.security.authentication.onlineid.so"
+    locations = (
+        os.path.join(runner_path, "lib/wine/x86_64-unix", unixlib),
+        os.path.join(runner_path, "lib64/wine/x86_64-unix", unixlib),
+        os.path.join(runner_path, "lib/wine/i386-unix", unixlib),
+        os.path.join(runner_path, "lib/wine/aarch64-unix", unixlib),
+        os.path.join(runner_path, "lib64/wine/aarch64-unix", unixlib),
+    )
+    if not runner_name.lower().startswith("soda-") or not any(
+        os.path.isfile(location) for location in locations
+    ):
+        return
+    socket_path = start_identity_bridge(bottle_path)
+    if socket_path:
+        env.add("SODA_IDENTITY_BRIDGE_SOCKET", socket_path, override=True)
+
+
 def _needs_steam_virtual_gamepad_workaround(runner_name: Optional[str]) -> bool:
     """Return True if the runner should force SteamVirtualGamepadInfo."""
 
@@ -523,6 +544,7 @@ class WineCommand:
                 env.add(e, environment[e], override=True)
 
         apply_openxr_preferences(env, config.Runner, runner_path, bottle)
+        apply_identity_bridge(env, config.Runner, runner_path, bottle)
         apply_fex_preferences(env, config.Runner, runner_path)
 
         # Language

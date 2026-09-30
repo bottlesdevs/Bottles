@@ -24,6 +24,7 @@ from bottles.backend.wine.winecommand import (
     apply_frame_rate_limit,
     apply_hidraw_preferences,
     apply_hdr_preferences,
+    apply_identity_bridge,
     apply_openxr_preferences,
     apply_wayland_preferences,
 )
@@ -144,6 +145,58 @@ def test_openxr_preferences_preserve_runtime_override(tmp_path):
     apply_openxr_preferences(env, "soda-11.0-7", str(runner), str(bottle))
 
     assert env.get()["envs"]["SODA_OPENXR_RUNTIME"] == "steam"
+
+
+@pytest.mark.parametrize(
+    "location",
+    [
+        "lib/wine/x86_64-unix",
+        "lib64/wine/x86_64-unix",
+        "lib/wine/i386-unix",
+        "lib/wine/aarch64-unix",
+        "lib64/wine/aarch64-unix",
+    ],
+)
+def test_identity_bridge_is_exposed_for_compatible_soda_runner(
+    tmp_path, monkeypatch, location
+):
+    runner = tmp_path / "runner"
+    unixlib = (
+        runner
+        / location
+        / "windows.security.authentication.onlineid.so"
+    )
+    unixlib.parent.mkdir(parents=True)
+    unixlib.touch()
+    bottle = tmp_path / "bottle"
+    bottle.mkdir()
+    env = WineEnv(clean=True)
+    monkeypatch.setattr(
+        winecommand, "start_identity_bridge", lambda context: "/run/user/1000/bridge.sock"
+    )
+
+    apply_identity_bridge(env, "soda-11.0-23", str(runner), str(bottle))
+
+    assert env.get()["envs"]["SODA_IDENTITY_BRIDGE_SOCKET"] == (
+        "/run/user/1000/bridge.sock"
+    )
+
+
+def test_identity_bridge_requires_runner_unixlib(tmp_path, monkeypatch):
+    called = False
+
+    def start(_context):
+        nonlocal called
+        called = True
+        return "/run/user/1000/bridge.sock"
+
+    monkeypatch.setattr(winecommand, "start_identity_bridge", start)
+    env = WineEnv(clean=True)
+
+    apply_identity_bridge(env, "soda-11.0-23", str(tmp_path), str(tmp_path))
+
+    assert not called
+    assert "SODA_IDENTITY_BRIDGE_SOCKET" not in env.get()["envs"]
 
 
 def test_openxr_preferences_reject_drive_c_outside_bottle(tmp_path):

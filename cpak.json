@@ -42,6 +42,12 @@
     "notification": true,
     "openURI": true,
     "hostApplications": false,
+    "hostActions": [
+      {
+        "provider": "secrets",
+        "capabilities": ["read-owned", "write-owned"]
+      }
+    ],
     "filePicker": {
       "openFile": true,
       "openFolder": true,
