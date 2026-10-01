@@ -105,6 +105,11 @@ class TerminalUtils:
             logging.warning("No terminal available.")
             return False
 
+        unset_child_display = False
+        if "DISPLAY" not in env and os.environ.get("DISPLAY"):
+            env["DISPLAY"] = os.environ["DISPLAY"]
+            unset_child_display = True
+
         if colors not in self.colors:
             colors = "default"
 
@@ -138,6 +143,8 @@ class TerminalUtils:
             child_command = (
                 ["bash"] if "ENABLE_BASH" in os.environ else ["bash", "-c", command]
             )
+            if unset_child_display:
+                child_command = ["env", "-u", "DISPLAY", *child_command]
             if child_gpu_environment:
                 child_command = ["env", *child_gpu_environment, *child_command]
             cmd_for_shell = shlex.quote(shlex.join(child_command))
@@ -162,21 +169,30 @@ class TerminalUtils:
             cwd = Paths.base
 
         elif term_bin == "xfce4-terminal":
-            cmd_for_shell = f"sh -c {shlex.quote(command)}"
+            child_command = ["sh", "-c", command]
+            if unset_child_display:
+                child_command = ["env", "-u", "DISPLAY", *child_command]
+            cmd_for_shell = shlex.join(child_command)
             try:
                 full_cmd = template % cmd_for_shell
             except Exception:
                 full_cmd = f"{template} {cmd_for_shell}"
 
         elif term_bin in ["kitty", "foot", "konsole", "gnome-terminal", "wezterm"]:
-            cmd_for_shell = f"sh -c {shlex.quote(command)}"
+            child_command = ["sh", "-c", command]
+            if unset_child_display:
+                child_command = ["env", "-u", "DISPLAY", *child_command]
+            cmd_for_shell = shlex.join(child_command)
             try:
                 full_cmd = template % cmd_for_shell
             except Exception:
                 full_cmd = f"{template} {cmd_for_shell}"
 
         else:
-            cmd_for_shell = f"bash -c {shlex.quote(command)}"
+            child_command = ["bash", "-c", command]
+            if unset_child_display:
+                child_command = ["env", "-u", "DISPLAY", *child_command]
+            cmd_for_shell = shlex.join(child_command)
             try:
                 full_cmd = template % cmd_for_shell
             except Exception:

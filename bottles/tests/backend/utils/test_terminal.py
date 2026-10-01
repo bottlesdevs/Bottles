@@ -22,6 +22,7 @@ def test_easyterm_keeps_gpu_environment_on_child_only(monkeypatch, mocker):
     popen = mocker.patch("bottles.backend.utils.terminal.subprocess.Popen")
     popen.return_value.communicate.return_value = (b"", None)
     monkeypatch.delenv("ENABLE_BASH", raising=False)
+    monkeypatch.delenv("DISPLAY", raising=False)
     command = "wine '/games/My Game.exe'"
     env = {**GPU_ENV, "KEEP_ME": "yes"}
 
@@ -57,6 +58,47 @@ def test_other_terminals_keep_gpu_environment(mocker):
     assert all(wrapper_env[key] == value for key, value in GPU_ENV.items())
 
 
+def test_xterm_gets_host_display_without_passing_it_to_wine(monkeypatch, mocker):
+    terminal = TerminalUtils()
+    terminal.terminal = ["xterm", "-e %s"]
+    mocker.patch.object(terminal, "check_support", return_value=True)
+    popen = mocker.patch("bottles.backend.utils.terminal.subprocess.Popen")
+    popen.return_value.communicate.return_value = (b"", None)
+    monkeypatch.setenv("DISPLAY", ":42")
+
+    assert terminal.execute("wine cmd", env={"WAYLAND_DISPLAY": "wayland-0"}) is True
+
+    wrapper_env = popen.call_args.kwargs["env"]
+    command = shlex.split(popen.call_args.args[0])
+    assert wrapper_env["DISPLAY"] == ":42"
+    assert command == [
+        "xterm",
+        "-e",
+        "env",
+        "-u",
+        "DISPLAY",
+        "bash",
+        "-c",
+        "wine cmd",
+    ]
+
+
+def test_terminal_keeps_requested_child_display(monkeypatch, mocker):
+    terminal = TerminalUtils()
+    terminal.terminal = ["xterm", "-e %s"]
+    mocker.patch.object(terminal, "check_support", return_value=True)
+    popen = mocker.patch("bottles.backend.utils.terminal.subprocess.Popen")
+    popen.return_value.communicate.return_value = (b"", None)
+    monkeypatch.setenv("DISPLAY", ":42")
+
+    assert terminal.execute("wine cmd", env={"DISPLAY": ":7"}) is True
+
+    wrapper_env = popen.call_args.kwargs["env"]
+    command = shlex.split(popen.call_args.args[0])
+    assert wrapper_env["DISPLAY"] == ":7"
+    assert command == ["xterm", "-e", "bash", "-c", "wine cmd"]
+
+
 def test_easyterm_interactive_bash_keeps_gpu_environment(monkeypatch, mocker):
     terminal = TerminalUtils()
     terminal.terminal = terminal.terminals[0]
@@ -64,6 +106,7 @@ def test_easyterm_interactive_bash_keeps_gpu_environment(monkeypatch, mocker):
     popen = mocker.patch("bottles.backend.utils.terminal.subprocess.Popen")
     popen.return_value.communicate.return_value = (b"", None)
     monkeypatch.setenv("ENABLE_BASH", "1")
+    monkeypatch.delenv("DISPLAY", raising=False)
 
     assert terminal.execute("ignored", env=GPU_ENV.copy()) is True
 
