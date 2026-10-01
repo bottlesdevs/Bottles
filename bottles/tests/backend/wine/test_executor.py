@@ -1185,6 +1185,22 @@ def test_gamescope_removes_hdr_wsi_when_hdr_is_disabled():
     assert "ENABLE_HDR_WSI" not in env.get()["envs"]
 
 
+def test_native_wayland_enables_egl(monkeypatch):
+    monkeypatch.setattr(
+        "bottles.backend.wine.winecommand.DisplayUtils.display_server_type",
+        lambda: "wayland",
+    )
+    env = WineEnv(clean=True)
+    env.add("DISPLAY", ":1")
+    env.add("WAYLAND_DISPLAY", "wayland-0")
+
+    apply_wayland_preferences(env, BottleParams(wayland=True))
+
+    resolved = env.get()["envs"]
+    assert "DISPLAY" not in resolved
+    assert resolved["WINE_USE_EGL"] == "1"
+
+
 def test_hdr_preferences_require_native_wayland_for_hdr():
     env = WineEnv(clean=True)
     params = BottleParams(hdr=True, wayland=False)

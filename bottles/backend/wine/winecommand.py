@@ -143,6 +143,7 @@ def apply_wayland_preferences(
     if not env.has("WAYLAND_DISPLAY") and wayland_display:
         env.add("WAYLAND_DISPLAY", wayland_display, override=True)
     if env.has("WAYLAND_DISPLAY") or wayland_display:
+        env.add("WINE_USE_EGL", "1", override=True)
         if proton_wayland_enabled:
             if env.has("PROTON_WAYLAND_MONITOR"):
                 env.add(
@@ -155,7 +156,6 @@ def apply_wayland_preferences(
                 ["winex11.drv=d", "winewayland.drv=b"],
                 sep=";",
             )
-            env.add("WINE_USE_EGL", "1", override=True)
             env.add("WINE_DISABLE_FULLSCREEN_HACK", "1", override=True)
             env.add("WINE_MOVE_HACK", "1")
             env.add("PROTON_USE_XALIA", "0", override=True)
