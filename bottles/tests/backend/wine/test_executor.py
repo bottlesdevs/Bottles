@@ -493,11 +493,43 @@ def test_program_dxvk_false_adds_builtin_override(tmp_path):
     )
 
 
+def test_global_dxvk_false_adds_builtin_override(tmp_path):
+    executable = tmp_path / "program.exe"
+    executable.touch()
+    config = _make_config()
+    config.Parameters.dxvk = False
+
+    executor = WineExecutor(
+        config=config,
+        exec_path=str(executable),
+    )
+
+    assert executor.environment["WINEDLLOVERRIDES"] == (
+        f"{DXVKComponent.get_override_keys()}=b"
+    )
+
+
+def test_program_dxvk_true_overrides_global_disabled_state(tmp_path):
+    executable = tmp_path / "program.exe"
+    executable.touch()
+    config = _make_config()
+    config.Parameters.dxvk = False
+
+    executor = WineExecutor(
+        config=config,
+        exec_path=str(executable),
+        program_dxvk=True,
+    )
+
+    assert "WINEDLLOVERRIDES" not in executor.environment
+
+
 def test_program_d7vk_false_adds_builtin_override(tmp_path):
     executable = tmp_path / "program.exe"
     executable.touch()
     config = _make_config()
     config.Parameters.d7vk = True
+    config.Parameters.dxvk = True
 
     executor = WineExecutor(
         config=config,

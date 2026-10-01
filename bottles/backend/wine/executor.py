@@ -153,12 +153,14 @@ class WineExecutor:
             env_dll_overrides.append(override_d7vk)
 
         # None = use global DXVK value
-        if program_dxvk is not None:
-            # DXVK is globally activated, but disabled for the program
-            if not program_dxvk and self.config.Parameters.dxvk:
-                # Disable DXVK for the program
-                override_dxvk = DXVKComponent.get_override_keys() + "=b"
-                env_dll_overrides.append(override_dxvk)
+        dxvk_enabled = (
+            self.config.Parameters.dxvk
+            if program_dxvk is None
+            else program_dxvk
+        )
+        if not dxvk_enabled:
+            override_dxvk = DXVKComponent.get_override_keys() + "=b"
+            env_dll_overrides.append(override_dxvk)
 
         if program_vkd3d is not None:
             if not program_vkd3d and self.config.Parameters.vkd3d:
