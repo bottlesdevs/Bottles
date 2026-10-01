@@ -1164,7 +1164,8 @@ def start_identity_bridge(context: str) -> Optional[str]:
             if bridge.process.poll() is None:
                 return bridge.socket_path
             del _bridges[context]
-        directory = os.path.join(Paths.temp, "identity")
+        base = os.environ.get("XDG_RUNTIME_DIR") or Paths.temp
+        directory = os.path.join(base, "bottles-identity")
         os.makedirs(directory, mode=0o700, exist_ok=True)
         socket_path = os.path.join(directory, f"{secrets.token_hex(16)}.sock")
         module = "bottles.backend.identity"

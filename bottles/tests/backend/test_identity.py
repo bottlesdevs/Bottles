@@ -390,6 +390,7 @@ def test_bridge_process_is_reaped(tmp_path, monkeypatch):
             reaped.set()
 
     monkeypatch.setattr("bottles.backend.identity.Paths.temp", str(tmp_path))
+    monkeypatch.setenv("XDG_RUNTIME_DIR", str(tmp_path))
     monkeypatch.setattr(
         "bottles.backend.identity.subprocess.Popen", lambda *_args, **_kwargs: Process()
     )
@@ -401,16 +402,41 @@ def test_bridge_process_is_reaped(tmp_path, monkeypatch):
     assert reaped.wait(1)
 
 
-def test_bridge_starts_outside_package_directory(tmp_path, monkeypatch):
+@pytest.mark.parametrize("runtime", [False, True])
+def test_bridge_starts_outside_package_directory(tmp_path, monkeypatch, runtime):
     monkeypatch.chdir(tmp_path)
-    for name in ("PYTHONPATH", "DISPLAY", "WAYLAND_DISPLAY"):
+    for name in ("PYTHONPATH", "DISPLAY", "WAYLAND_DISPLAY", "XDG_RUNTIME_DIR"):
         monkeypatch.delenv(name, raising=False)
     monkeypatch.setattr("bottles.backend.identity.Paths.temp", os.environ["TMPDIR"])
+    if runtime:
+        monkeypatch.setenv("XDG_RUNTIME_DIR", os.environ["TMPDIR"])
     context = f"context-{time.time_ns()}"
     socket_path = start_identity_bridge(context)
     try:
         assert socket_path
         assert _bridge_ready(socket_path)
+    finally:
+        bridge = _bridges.get(context)
+        if bridge:
+            bridge.process.terminate()
+            bridge.process.wait(timeout=3)
+
+
+def test_bridge_starts_with_long_data_path(tmp_path, monkeypatch):
+    for name in ("DISPLAY", "WAYLAND_DISPLAY"):
+        monkeypatch.delenv(name, raising=False)
+    runtime = os.environ["TMPDIR"]
+    data_path = str(tmp_path / ("data" * 30))
+    monkeypatch.setenv("XDG_RUNTIME_DIR", runtime)
+    monkeypatch.setattr("bottles.backend.identity.Paths.temp", data_path)
+    context = f"context-{time.time_ns()}"
+    socket_path = start_identity_bridge(context)
+    try:
+        assert socket_path
+        assert socket_path.startswith(runtime + os.sep)
+        assert _bridge_ready(socket_path)
+        assert os.stat(os.path.dirname(socket_path)).st_mode & 0o777 == 0o700
+        assert os.stat(socket_path).st_mode & 0o777 == 0o700
     finally:
         bridge = _bridges.get(context)
         if bridge:
