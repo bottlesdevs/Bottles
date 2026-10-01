@@ -5,6 +5,9 @@ from types import SimpleNamespace
 import gi
 
 gi.require_version("Adw", "1")
+gi.require_version("Gdk", "4.0")
+gi.require_version("Gtk", "4.0")
+gi.require_version("GtkSource", "5")
 gi.require_version("Xdp", "1.0")
 gi.require_version("XdpGtk4", "1.0")
 
@@ -54,6 +57,24 @@ def test_show_uri_uses_portal_in_flatpak(monkeypatch):
     assert not gtk_calls
 
 
+def test_show_local_uri_uses_cpak_broker(monkeypatch, mocker):
+    uri = "file:///home/test/.local/share/bottles/runners/soda"
+    gtk_calls = []
+    subprocess_new = mocker.patch.object(window.Gio.Subprocess, "new")
+
+    monkeypatch.delenv("FLATPAK_ID", raising=False)
+    monkeypatch.setattr(window, "is_cpak", lambda: True)
+    monkeypatch.setattr(window.Gtk, "show_uri", lambda *args: gtk_calls.append(args))
+
+    BottlesWindow.g_show_uri_handler.__wrapped__(SimpleNamespace(), Result(data=uri))
+
+    subprocess_new.assert_called_once_with(
+        ["xdg-open", "/home/test/.local/share/bottles/runners/soda"],
+        window.Gio.SubprocessFlags.NONE,
+    )
+    assert not gtk_calls
+
+
 def test_show_uri_keeps_native_handler_in_other_sandboxes(monkeypatch):
     uri = "https://usebottles.com"
     gtk_calls = []
@@ -61,6 +82,7 @@ def test_show_uri_keeps_native_handler_in_other_sandboxes(monkeypatch):
     PortalStub.sandboxed = True
 
     monkeypatch.delenv("FLATPAK_ID", raising=False)
+    monkeypatch.setattr(window, "is_cpak", lambda: False)
     monkeypatch.setattr(window.Xdp, "Portal", PortalStub)
     monkeypatch.setattr(window.Gtk, "show_uri", lambda *args: gtk_calls.append(args))
 
@@ -78,6 +100,7 @@ def test_show_uri_keeps_native_handler_outside_sandbox(monkeypatch):
     PortalStub.sandboxed = False
 
     monkeypatch.delenv("FLATPAK_ID", raising=False)
+    monkeypatch.setattr(window, "is_cpak", lambda: False)
     monkeypatch.setattr(window.Xdp, "Portal", PortalStub)
     monkeypatch.setattr(window.Gtk, "show_uri", lambda *args: gtk_calls.append(args))
 
