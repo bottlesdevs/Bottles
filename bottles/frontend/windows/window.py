@@ -23,7 +23,7 @@ from gettext import gettext as _
 
 from gi.repository import Adw, Gdk, Gio, GLib, Gtk, Xdp, XdpGtk4
 
-from bottles.backend.globals import Paths
+from bottles.backend.globals import Paths, is_cpak
 from bottles.backend.health import HealthChecker
 from bottles.backend.logger import Logger
 from bottles.backend.managers.data import DataManager, UserDataKeys
@@ -270,6 +270,15 @@ class BottlesWindow(Adw.ApplicationWindow):
             parent = XdpGtk4.parent_new_gtk(self)
             portal.open_uri(parent, uri, Xdp.OpenUriFlags.NONE, None, None)
             return
+
+        if is_cpak():
+            path = Gio.File.new_for_uri(uri).get_path()
+            if path is not None:
+                Gio.Subprocess.new(
+                    ["xdg-open", path],
+                    Gio.SubprocessFlags.NONE,
+                )
+                return
 
         Gtk.show_uri(self, uri, Gdk.CURRENT_TIME)
 
