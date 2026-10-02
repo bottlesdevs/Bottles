@@ -234,7 +234,10 @@ def test_unavailable_keyring_reports_error_without_opening_browser(monkeypatch):
     with pytest.raises(AuthenticationStorageError):
         provider.authorize("client", "common", "openid", "")
     assert opened == []
-    assert completed == [(False, "Secure credential storage is unavailable. Start or unlock your keyring and try again.")]
+    assert completed == [(
+        False,
+        "Secure credential storage is unavailable. Start or unlock a Secret Service provider, such as GNOME Keyring or KWallet, and try again.",
+    )]
 
 
 def test_protocol_round_trip():
@@ -732,6 +735,61 @@ def test_identity_callback_is_forwarded_to_the_waiting_listener(
     assert not os.path.exists(listener.socket_path)
 
 
+def test_identity_callback_forwards_the_activation_token(monkeypatch, tmp_path):
+    monkeypatch.setattr("bottles.backend.identity.Paths.temp", str(tmp_path))
+    state = "s" * 43
+    client_id = "d3590ed6-52b3-4102-aeff-aad2292ab01c"
+    activation_tokens = []
+    listener = RedirectListener(
+        state,
+        client_id,
+        activation_callback=activation_tokens.append,
+    )
+    result = []
+    thread = threading.Thread(target=lambda: result.append(listener.wait(2)))
+    thread.start()
+
+    uri = f"{listener.redirect_uri}?code=authorization-code&state={state}"
+    assert forward_identity_callback(uri, "activation/token+value==")
+    thread.join(2)
+
+    assert not thread.is_alive()
+    assert activation_tokens == ["activation/token+value=="]
+    assert result == [
+        {
+            "code": "authorization-code",
+            "error": None,
+            "error_description": None,
+        }
+    ]
+
+
+@pytest.mark.parametrize("activation_token", ["token\nvalue", "t" * 4097])
+def test_identity_callback_rejects_an_invalid_activation_token(
+    activation_token,
+):
+    state = "s" * 43
+    uri = (
+        "ms-appx-web://microsoft.aad.brokerplugin/"
+        "d3590ed6-52b3-4102-aeff-aad2292ab01c"
+        f"?code=authorization-code&state={state}"
+    )
+
+    assert not forward_identity_callback(uri, activation_token)
+
+
+def test_identity_callback_rejects_an_embedded_activation_token():
+    state = "s" * 43
+    uri = (
+        "ms-appx-web://microsoft.aad.brokerplugin/"
+        "d3590ed6-52b3-4102-aeff-aad2292ab01c"
+        f"?code=authorization-code&state={state}"
+        "&_bottles_activation_token=spoofed"
+    )
+
+    assert not forward_identity_callback(uri, "trusted")
+
+
 def test_identity_callback_forwards_an_authorization_error(monkeypatch, tmp_path):
     monkeypatch.setattr("bottles.backend.identity.Paths.temp", str(tmp_path))
     state = "s" * 43
@@ -1200,7 +1258,7 @@ def test_cpak_store_uses_only_the_scoped_shim(monkeypatch):
 
     def request(args, **kwargs):
         assert args == ["cpak-secrets"]
-        assert kwargs["stderr"] == subprocess.DEVNULL
+        assert kwargs["stderr"] == subprocess.PIPE
         data = json.loads(kwargs["input"])
         attrs = data["attributes"]
         key = tuple(sorted(attrs.items()))
@@ -1242,15 +1300,27 @@ def test_cpak_store_uses_only_the_scoped_shim(monkeypatch):
     assert store.load("client", "") is None
 
 
-@pytest.mark.parametrize("failure", ("missing-shim", "denied", "scope", "malformed"))
+@pytest.mark.parametrize("failure", ("missing-shim", "denied", "scope", "malformed", "private-stderr"))
 def test_cpak_keyring_failure_never_falls_back_to_host_bus(monkeypatch, failure):
     monkeypatch.setenv("CPAK_CONTAINER_ID", "synthetic")
+
+    warnings = []
 
     def request(args, **kwargs):
         if failure == "missing-shim":
             raise FileNotFoundError()
         if failure == "denied":
-            raise subprocess.CalledProcessError(1, args)
+            raise subprocess.CalledProcessError(
+                1,
+                args,
+                stderr="secure credential storage is unavailable or locked",
+            )
+        if failure == "private-stderr":
+            raise subprocess.CalledProcessError(
+                1,
+                args,
+                stderr="account@example.invalid token=private-token-value",
+            )
         if failure == "malformed":
             return subprocess.CompletedProcess(args, 0, "[]")
         return subprocess.CompletedProcess(args, 0, json.dumps({
@@ -1262,6 +1332,15 @@ def test_cpak_keyring_failure_never_falls_back_to_host_bus(monkeypatch, failure)
         pytest.fail("cpak fell back to direct keyring access")
 
     monkeypatch.setattr("bottles.backend.identity.subprocess.run", request)
+    monkeypatch.setattr("bottles.backend.identity.logging.warning", warnings.append)
     monkeypatch.setattr("bottles.backend.identity.Secret.password_lookup_sync", forbidden)
     with pytest.raises(AuthenticationStorageError):
         SecretTokenStore("context").load("client", "account")
+    assert len(warnings) == 1
+    assert "synthetic" not in warnings[0]
+    assert "account@example.invalid" not in warnings[0]
+    assert "private-token-value" not in warnings[0]
+    if failure == "denied":
+        assert warnings == [
+            "cpak credential broker failed: secure credential storage is unavailable or locked"
+        ]

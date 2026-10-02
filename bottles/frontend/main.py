@@ -249,7 +249,10 @@ class Bottles(Adw.Application):
         uri = uri[0]
 
         if uri.partition(":")[0].lower() == CALLBACK_SCHEME:
-            if forward_identity_callback(uri):
+            if forward_identity_callback(
+                uri,
+                environ.get("XDG_ACTIVATION_TOKEN", ""),
+            ):
                 return 0
             logging.warning(_("Unable to deliver the Microsoft identity callback"))
             return 1

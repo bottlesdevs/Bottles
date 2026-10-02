@@ -30,7 +30,7 @@ import threading
 import time
 from dataclasses import dataclass
 from typing import Callable, Optional
-from urllib.parse import parse_qs, urlencode, urlparse
+from urllib.parse import parse_qs, quote, urlencode, urlparse
 
 import gi
 import requests
@@ -51,9 +51,11 @@ RESPONSE_BIT = 0x8000
 MAX_PAYLOAD = 1024 * 1024
 MAX_FIELD_COUNT = 64
 MAX_CALLBACK_URI = 64 * 1024
+MAX_ACTIVATION_TOKEN = 4096
 
 CALLBACK_SCHEME = "ms-appx-web"
 CALLBACK_HOST = "microsoft.aad.brokerplugin"
+CALLBACK_ACTIVATION_TOKEN = "_bottles_activation_token"
 CALLBACK_SIZE = struct.Struct("<I")
 
 HEADER = struct.Struct("<IHHIIi")
@@ -147,7 +149,7 @@ def _secret_call(callback, *args):
         return callback(*args)
     except GLib.Error as exc:
         raise AuthenticationStorageError(
-            "Secure credential storage is unavailable. Start or unlock your keyring and try again."
+            "Secure credential storage is unavailable. Start or unlock a Secret Service provider, such as GNOME Keyring or KWallet, and try again."
         ) from exc
 
 
@@ -344,7 +346,7 @@ class SecretTokenStore:
                     "attributes": attributes,
                     "value": value,
                 }),
-                text=True, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
+                text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                 timeout=130, check=True,
             )
             if len(response.stdout) > 12 * 1024 * 1024:
@@ -369,8 +371,16 @@ class SecretTokenStore:
                     raise ValueError("credential scope mismatch")
             return result
         except (OSError, subprocess.SubprocessError, ValueError) as exc:
+            reason = exc.__class__.__name__
+            broker_error = (getattr(exc, "stderr", "") or "").strip()
+            if broker_error in (
+                "secure credential storage is unavailable or locked",
+                "secret operation is not permitted",
+            ):
+                reason = broker_error
+            logging.warning(f"cpak credential broker failed: {reason}")
             raise AuthenticationStorageError(
-                "Secure credential storage is unavailable. Start or unlock your keyring and try again."
+                "Secure credential storage is unavailable. Start or unlock a Secret Service provider, such as GNOME Keyring or KWallet, and try again."
             ) from exc
 
     def _write(self, attributes, label, value):
@@ -550,9 +560,21 @@ def _parse_callback_uri(uri: str) -> tuple[str, dict[str, list[str]]]:
     return states[0], query
 
 
-def forward_identity_callback(uri: str) -> bool:
+def forward_identity_callback(uri: str, activation_token: str = "") -> bool:
     try:
-        state, _query = _parse_callback_uri(uri)
+        state, query = _parse_callback_uri(uri)
+        if CALLBACK_ACTIVATION_TOKEN in query:
+            return False
+        if activation_token:
+            _validate_text(
+                activation_token,
+                "activation token",
+                MAX_ACTIVATION_TOKEN,
+            )
+            uri += (
+                f"&{CALLBACK_ACTIVATION_TOKEN}="
+                f"{quote(activation_token, safe='')}"
+            )
         payload = uri.encode("utf-8")
         if len(payload) > MAX_CALLBACK_URI:
             return False
@@ -577,10 +599,12 @@ class RedirectListener:
         state: str,
         client_id: str,
         cancel_event: Optional[threading.Event] = None,
+        activation_callback: Optional[Callable[[str], None]] = None,
     ):
         self.state = state
         self.client_id = client_id.lower()
         self.cancel_event = cancel_event
+        self.activation_callback = activation_callback
         self.disconnect_event = None
         self.result = None
         self.socket_path = _callback_socket_path(state)
@@ -643,6 +667,18 @@ class RedirectListener:
             or parsed.path.lstrip("/").lower() != self.client_id
         ):
             raise ProtocolError("identity callback does not match")
+        activation_tokens = query.get(CALLBACK_ACTIVATION_TOKEN, [])
+        if len(activation_tokens) > 1:
+            raise ProtocolError("invalid identity activation token")
+        if activation_tokens:
+            activation_token = activation_tokens[0]
+            _validate_text(
+                activation_token,
+                "activation token",
+                MAX_ACTIVATION_TOKEN,
+            )
+            if self.activation_callback:
+                self.activation_callback(activation_token)
         return {
             "code": query.get("code", [None])[0],
             "error": query.get("error", [None])[0],

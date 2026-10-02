@@ -82,7 +82,15 @@ class IdentityBridgeApplication(Adw.Application):
 
     def _listener(self, state, client_id):
         self.cancel_event.clear()
-        return RedirectListener(state, client_id, self.cancel_event)
+        return RedirectListener(
+            state,
+            client_id,
+            self.cancel_event,
+            self._activation_received,
+        )
+
+    def _activation_received(self, startup_id):
+        GLib.idle_add(self._present_window, startup_id)
 
     def _open_uri(self, uri):
         GLib.idle_add(self._show_authentication, uri)
@@ -166,13 +174,17 @@ class IdentityBridgeApplication(Adw.Application):
             )
         return GLib.SOURCE_REMOVE
 
-    def _present_window(self):
+    def _present_window(self, startup_id=None):
         if not self.window or self.window_closing:
-            return
+            return GLib.SOURCE_REMOVE
+        surface = self.window.get_surface()
+        if startup_id and isinstance(surface, Gdk.Toplevel):
+            surface.set_startup_id(startup_id)
         self.window.present()
         surface = self.window.get_surface()
         if isinstance(surface, Gdk.Toplevel):
             surface.focus(Gdk.CURRENT_TIME)
+        return GLib.SOURCE_REMOVE
 
     def _open_browser(self, _button):
         if not self.authorization_uri:
@@ -222,6 +234,7 @@ class IdentityBridgeApplication(Adw.Application):
         if success:
             self.status.set_label(_("Microsoft 365 is connected."))
             self.button.set_label(_("Done"))
+            self._present_window()
             self.close_source = GLib.timeout_add(900, self._close_window)
         else:
             self.status.set_label(message or _("Microsoft 365 sign-in failed."))
