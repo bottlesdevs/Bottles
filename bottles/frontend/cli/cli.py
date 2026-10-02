@@ -855,6 +855,13 @@ class CLI:
                     except ValueError:
                         pass
 
+                if k == "renderer":
+                    try:
+                        RegKeys(bottle).set_renderer(v)
+                    except ValueError as error:
+                        sys.stderr.write(f"{error}\n")
+                        sys.exit(1)
+
                 mng.update_config(bottle, k, v, scope="Parameters")
 
         if _env_var is not None and "=" in _env_var:
