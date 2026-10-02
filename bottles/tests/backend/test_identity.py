@@ -548,6 +548,32 @@ def test_invalid_id_token_is_not_stored_or_cached(monkeypatch, invalid):
     assert completed == [(False, f"unexpected ID token {invalid}")]
 
 
+@pytest.mark.parametrize("audience,reason", (
+    ("CLIENT", "client ID case mismatch"),
+    ("private-account@example.invalid", "different client"),
+    (["client", "private-token-value"], "audience list"),
+    (None, "invalid audience type"),
+    ({"private-token-value": "private-account@example.invalid"}, "invalid audience type"),
+))
+def test_audience_failure_logs_only_the_reason(monkeypatch, audience, reason):
+    warnings = []
+    monkeypatch.setattr(
+        "bottles.backend.identity.logging.warning",
+        lambda message, **_kwargs: warnings.append(message),
+    )
+    token = {
+        "access_token": "private-access-token",
+        "refresh_token": "private-refresh-token",
+        "id_token": _id_token(audience),
+        "expires_in": 3600,
+    }
+
+    with pytest.raises(AuthenticationError, match="unexpected ID token audience"):
+        MicrosoftIdentityProvider._result_from_token(token, "client")
+
+    assert warnings == [f"ID token audience rejected: {reason}"]
+
+
 def test_office_ticket_uses_the_licensing_resource(monkeypatch):
     client_id = "d3590ed6-52b3-4102-aeff-aad2292ab01c"
     nonce = base64.urlsafe_b64encode(b"n" * 32).rstrip(b"=").decode()

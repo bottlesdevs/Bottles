@@ -912,6 +912,16 @@ class MicrosoftIdentityProvider:
         claims = _decode_claims(id_token)
         audience = claims.get("aud")
         if audience != client_id:
+            if isinstance(audience, str):
+                reason = (
+                    "client ID case mismatch"
+                    if audience.lower() == client_id.lower() else "different client"
+                )
+            elif isinstance(audience, list):
+                reason = "audience list"
+            else:
+                reason = "invalid audience type"
+            logging.warning(f"ID token audience rejected: {reason}", jn=False)
             raise AuthenticationError("unexpected ID token audience")
         if expected_nonce and claims.get("nonce") != expected_nonce:
             raise AuthenticationError("unexpected ID token nonce")
