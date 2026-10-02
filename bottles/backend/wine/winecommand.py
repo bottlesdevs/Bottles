@@ -405,6 +405,7 @@ class WineCommand:
         cwd: Optional[str] = None,
         sandbox_override: Optional[str] = None,
         forced_dll_overrides: Optional[str] = None,
+        capture_exit_code: bool = False,
     ):
         _environment = environment.copy()
         self.config = self._get_config(config)
@@ -414,6 +415,12 @@ class WineCommand:
         #   None  -> follow the bottle setting
         #   "off" -> run this launch without the dedicated sandbox
         self.sandbox_override = sandbox_override
+        self._exit_code_batch = None
+        self._exit_code_marker = None
+        if capture_exit_code and communicate:
+            command, arguments = self._prepare_exit_code_capture(
+                command, arguments or ""
+            )
         self.arguments = arguments
         self.cwd = self._get_cwd(cwd)
         self.runner, self.runner_runtime = self._get_runner_info()
@@ -436,6 +443,58 @@ class WineCommand:
         self.colors = colors
         self.vmtouch_files = None
         self.returncode = None
+
+    def _prepare_exit_code_capture(
+        self, command: str, arguments: str
+    ) -> tuple[str, str]:
+        temp_dir = os.path.join(
+            ManagerUtils.get_bottle_path(self.config), "drive_c", "windows", "temp"
+        )
+        os.makedirs(temp_dir, exist_ok=True)
+        batch = tempfile.NamedTemporaryFile(
+            mode="w",
+            suffix=".bat",
+            dir=temp_dir,
+            delete=False,
+            newline="",
+        )
+        marker = f"BOTTLES_EXIT_CODE_{os.path.basename(batch.name)[:-4]}"
+        command_line = f"{command} {arguments}".rstrip()
+        with batch:
+            batch.write(
+                "@echo off\r\n"
+                f"{command_line}\r\n"
+                'set "BOTTLES_EXIT_CODE=%ERRORLEVEL%"\r\n'
+                f"echo {marker}=%BOTTLES_EXIT_CODE%\r\n"
+                "exit /b %BOTTLES_EXIT_CODE%\r\n"
+            )
+        self._exit_code_batch = batch.name
+        self._exit_code_marker = marker
+        windows_path = f"C:\\windows\\temp\\{os.path.basename(batch.name)}"
+        return "cmd.exe", f"/d /c {shlex.quote(windows_path)}"
+
+    def _extract_exit_code(self, output: str, fallback: int) -> tuple[str, int]:
+        marker = getattr(self, "_exit_code_marker", None)
+        if not marker:
+            return output, fallback
+
+        pattern = re.compile(rf"^{re.escape(marker)}=(\d+)\r?$", re.MULTILINE)
+        matches = list(pattern.finditer(output))
+        if not matches:
+            return output, fallback
+
+        status = int(matches[-1].group(1))
+        output = pattern.sub("", output).rstrip("\r\n")
+        return output, status
+
+    def _clear_exit_code_capture(self) -> None:
+        batch = getattr(self, "_exit_code_batch", None)
+        if batch:
+            try:
+                os.unlink(batch)
+            except FileNotFoundError:
+                pass
+            self._exit_code_batch = None
 
     def _get_config(self, config: BottleConfig) -> BottleConfig:
         if cnf := config.data.get("config"):
@@ -1317,13 +1376,16 @@ raise SystemExit(status if status >= 0 else 128 - status)
                     start_new_session=True,
                 )
             except FileNotFoundError:
+                self._clear_exit_code_capture()
                 return Result(False, message="File not found")
 
         if not self.communicate:
             return Result(True)
 
-        stdout_data, _ = proc.communicate()
-        self.returncode = proc.returncode
+        try:
+            stdout_data, _ = proc.communicate()
+        finally:
+            self._clear_exit_code_capture()
 
         if vmtouch_available and self.config.Parameters.vmtouch:
             # don't call vmtouch_free while running via external terminal
@@ -1344,11 +1406,13 @@ raise SystemExit(status if status >= 0 else 128 - status)
             logging.warning("stdout decoding failed")
             rv = str(stdout_data)[2:-1]  # trim b''
 
-        if proc.returncode:
+        rv, self.returncode = self._extract_exit_code(rv, proc.returncode)
+
+        if self.returncode:
             return Result(
                 False,
                 data=rv,
-                message=f"Command exited with status {proc.returncode}.",
+                message=f"Command exited with status {self.returncode}.",
             )
 
         # "ShellExecuteEx" exception may occur while executing command,

@@ -343,6 +343,7 @@ def test_run_winecommand_waits_and_reports_failure(mocker):
         arguments="query HKCU",
         minimal=True,
         communicate=True,
+        capture_exit_code=False,
     )
 
 
@@ -352,6 +353,31 @@ def test_run_winecommand_accepts_configured_exit_status(mocker):
         autospec=True,
     )
     winecommand.return_value.returncode = 49
+    winecommand.return_value.run.return_value = Result(False, message="failed")
+
+    result = InstallerManager._InstallerManager__step_run_winecommand(
+        BottleConfig(Name="Test"),
+        {
+            "commands": [
+                {
+                    "command": "sc",
+                    "arguments": "create TestService",
+                    "wait": True,
+                    "success_codes": [0, 49],
+                }
+            ]
+        },
+    )
+
+    assert result.ok
+
+
+def test_run_winecommand_accepts_truncated_configured_exit_status(mocker):
+    winecommand = mocker.patch(
+        "bottles.backend.managers.installer.WineCommand",
+        autospec=True,
+    )
+    winecommand.return_value.returncode = 1073
     winecommand.return_value.run.return_value = Result(False, message="failed")
 
     result = InstallerManager._InstallerManager__step_run_winecommand(
@@ -504,6 +530,14 @@ def test_run_winecommand_reports_activity(mocker):
     assert result.ok
     assert activities == ["Microsoft 365 setup", None]
     assert logs == ["Started setup.exe", "Finished setup.exe"]
+    winecommand.assert_called_once_with(
+        mocker.ANY,
+        command="C:/setup.exe",
+        arguments="/configure config.xml",
+        minimal=True,
+        communicate=True,
+        capture_exit_code=True,
+    )
 
 
 def test_installer_progress_follows_new_log_entries(mocker, tmp_path):

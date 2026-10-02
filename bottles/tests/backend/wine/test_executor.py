@@ -642,6 +642,35 @@ def test_winecommand_reports_nonzero_exit_status(monkeypatch):
     assert command.returncode == 7
 
 
+def test_winecommand_reports_full_windows_exit_status(monkeypatch):
+    process = SimpleNamespace(
+        returncode=108,
+        communicate=lambda: (b"setup failed\nBOTTLES_EXIT_CODE_test=17004\r\n", None),
+    )
+    monkeypatch.setattr(
+        winecommand.subprocess, "Popen", lambda *_args, **_kwargs: process
+    )
+
+    command = WineCommand.__new__(WineCommand)
+    command.runner = "/usr/bin/wine"
+    command.env = {}
+    command.command = "wine cmd.exe /d /c test.bat"
+    command.config = _make_config()
+    command.terminal = False
+    command.sandbox_override = None
+    command.communicate = True
+    command.cwd = None
+    command._exit_code_batch = None
+    command._exit_code_marker = "BOTTLES_EXIT_CODE_test"
+
+    result = command.run()
+
+    assert not result.ok
+    assert result.data == "setup failed"
+    assert result.message == "Command exited with status 17004."
+    assert command.returncode == 17004
+
+
 def test_executable_launch_reports_winecommand_failure(monkeypatch):
     command_result = Result(False, data="setup failed", message="status 7")
 

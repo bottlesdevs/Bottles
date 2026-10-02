@@ -448,6 +448,13 @@ class InstallerManager:
             if log_fn:
                 log_fn(f"Started {command_name}")
 
+            capture_exit_code = command.get("capture_exit_code")
+            if capture_exit_code is None:
+                capture_exit_code = bool(
+                    command.get("wait", False)
+                    and command.get("command", "").lower().endswith(".exe")
+                )
+
             progress = command.get("progress")
             stop = None
             watcher = None
@@ -468,6 +475,7 @@ class InstallerManager:
                 arguments=command.get("arguments"),
                 minimal=command.get("minimal"),
                 communicate=command.get("wait", False),
+                capture_exit_code=capture_exit_code,
             )
             try:
                 result = _winecommand.run()
@@ -483,7 +491,14 @@ class InstallerManager:
 
             success_codes = command.get("success_codes", [])
             returncode = getattr(_winecommand, "returncode", None)
-            if not result.ok and returncode not in success_codes:
+            if (
+                not result.ok
+                and returncode not in success_codes
+                and not (
+                    isinstance(returncode, int)
+                    and returncode & 0xFF in success_codes
+                )
+            ):
                 message = result.message or f"Failed to run {command_name}."
                 logging.error(message)
                 if log_fn:
