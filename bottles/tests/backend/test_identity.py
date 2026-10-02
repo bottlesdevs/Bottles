@@ -707,13 +707,9 @@ def test_authorization_prompts_when_the_requested_account_changes(monkeypatch):
 
 def test_identity_callback_is_forwarded_to_the_waiting_listener(
     monkeypatch,
+    tmp_path,
 ):
-    socket_path = os.path.join(
-        os.environ["TMPDIR"], f"callback-{time.time_ns()}.sock"
-    )
-    monkeypatch.setattr(
-        "bottles.backend.identity._callback_socket_path", lambda _state: socket_path
-    )
+    monkeypatch.setattr("bottles.backend.identity.Paths.temp", str(tmp_path))
     state = "s" * 43
     client_id = "d3590ed6-52b3-4102-aeff-aad2292ab01c"
     listener = RedirectListener(state, client_id)
@@ -736,13 +732,8 @@ def test_identity_callback_is_forwarded_to_the_waiting_listener(
     assert not os.path.exists(listener.socket_path)
 
 
-def test_identity_callback_forwards_an_authorization_error(monkeypatch):
-    socket_path = os.path.join(
-        os.environ["TMPDIR"], f"callback-{time.time_ns()}.sock"
-    )
-    monkeypatch.setattr(
-        "bottles.backend.identity._callback_socket_path", lambda _state: socket_path
-    )
+def test_identity_callback_forwards_an_authorization_error(monkeypatch, tmp_path):
+    monkeypatch.setattr("bottles.backend.identity.Paths.temp", str(tmp_path))
     state = "s" * 43
     client_id = "d3590ed6-52b3-4102-aeff-aad2292ab01c"
     listener = RedirectListener(state, client_id)
@@ -767,13 +758,8 @@ def test_identity_callback_forwards_an_authorization_error(monkeypatch):
     ]
 
 
-def test_identity_callback_rejects_a_different_client(monkeypatch):
-    socket_path = os.path.join(
-        os.environ["TMPDIR"], f"callback-{time.time_ns()}.sock"
-    )
-    monkeypatch.setattr(
-        "bottles.backend.identity._callback_socket_path", lambda _state: socket_path
-    )
+def test_identity_callback_rejects_a_different_client(monkeypatch, tmp_path):
+    monkeypatch.setattr("bottles.backend.identity.Paths.temp", str(tmp_path))
     state = "s" * 43
     cancel_event = threading.Event()
     listener = RedirectListener(
@@ -813,13 +799,10 @@ def test_identity_callback_rejects_a_different_client(monkeypatch):
         "",
     ],
 )
-def test_identity_callback_rejects_an_ambiguous_result(monkeypatch, result):
-    socket_path = os.path.join(
-        os.environ["TMPDIR"], f"callback-{time.time_ns()}.sock"
-    )
-    monkeypatch.setattr(
-        "bottles.backend.identity._callback_socket_path", lambda _state: socket_path
-    )
+def test_identity_callback_rejects_an_ambiguous_result(
+    monkeypatch, tmp_path, result
+):
+    monkeypatch.setattr("bottles.backend.identity.Paths.temp", str(tmp_path))
     state = "s" * 43
     cancel_event = threading.Event()
     listener = RedirectListener(
@@ -846,6 +829,46 @@ def test_identity_callback_rejects_an_ambiguous_result(monkeypatch, result):
 
     assert not thread.is_alive()
     assert canceled == [True]
+
+
+def test_identity_callback_crosses_isolated_runtime_directories(
+    monkeypatch, tmp_path
+):
+    data_path = tmp_path / ("long-data-directory-" * 6)
+    monkeypatch.setattr("bottles.backend.identity.Paths.temp", str(data_path))
+    state = "s" * 43
+    client_id = "d3590ed6-52b3-4102-aeff-aad2292ab01c"
+    listener = RedirectListener(state, client_id)
+    assert len(listener.socket_path.encode()) > 107
+    result = []
+    thread = threading.Thread(target=lambda: result.append(listener.wait(3)))
+    thread.start()
+    monkeypatch.setenv("XDG_RUNTIME_DIR", str(tmp_path / "other-runtime"))
+
+    uri = f"{listener.redirect_uri}?code=authorization-code&state={state}"
+    assert forward_identity_callback(uri)
+    thread.join(3)
+
+    assert not thread.is_alive()
+    assert result == [
+        {
+            "code": "authorization-code",
+            "error": None,
+            "error_description": None,
+        }
+    ]
+
+
+def test_identity_callback_requires_a_waiting_listener(monkeypatch, tmp_path):
+    monkeypatch.setattr("bottles.backend.identity.Paths.temp", str(tmp_path))
+    state = "s" * 43
+    uri = (
+        "ms-appx-web://microsoft.aad.brokerplugin/"
+        "d3590ed6-52b3-4102-aeff-aad2292ab01c"
+        f"?code=authorization-code&state={state}"
+    )
+
+    assert not forward_identity_callback(uri)
 
 
 def test_authorization_fails_when_the_browser_cannot_open():

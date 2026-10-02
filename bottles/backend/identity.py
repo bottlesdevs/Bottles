@@ -516,8 +516,16 @@ class SecretTokenStore:
 
 def _callback_socket_path(state: str) -> str:
     name = hashlib.sha256(state.encode("ascii")).hexdigest()[:32]
-    base = os.environ.get("XDG_RUNTIME_DIR") or Paths.temp
-    return os.path.join(base, "bottles-identity", f"{name}.sock")
+    return os.path.join(Paths.temp, "identity-callbacks", f"{name}.sock")
+
+
+def _callback_socket_address(path: str) -> tuple[int, str]:
+    directory = os.path.dirname(path)
+    os.makedirs(directory, mode=0o700, exist_ok=True)
+    flags = os.O_RDONLY | os.O_DIRECTORY | getattr(os, "O_NOFOLLOW", 0)
+    descriptor = os.open(directory, flags)
+    os.fchmod(descriptor, 0o700)
+    return descriptor, f"/proc/self/fd/{descriptor}/{os.path.basename(path)}"
 
 
 def _parse_callback_uri(uri: str) -> tuple[str, dict[str, list[str]]]:
@@ -548,11 +556,17 @@ def forward_identity_callback(uri: str) -> bool:
         payload = uri.encode("utf-8")
         if len(payload) > MAX_CALLBACK_URI:
             return False
-        with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as connection:
-            connection.settimeout(2)
-            connection.connect(_callback_socket_path(state))
-            connection.sendall(CALLBACK_SIZE.pack(len(payload)) + payload)
-            return _recv_exact(connection, 1) == b"\x01"
+        descriptor, address = _callback_socket_address(
+            _callback_socket_path(state)
+        )
+        try:
+            with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as connection:
+                connection.settimeout(2)
+                connection.connect(address)
+                connection.sendall(CALLBACK_SIZE.pack(len(payload)) + payload)
+                return _recv_exact(connection, 1) == b"\x01"
+        finally:
+            os.close(descriptor)
     except (OSError, ProtocolError, UnicodeError):
         return False
 
@@ -570,14 +584,18 @@ class RedirectListener:
         self.disconnect_event = None
         self.result = None
         self.socket_path = _callback_socket_path(state)
-        directory = os.path.dirname(self.socket_path)
-        os.makedirs(directory, mode=0o700, exist_ok=True)
-        os.chmod(directory, 0o700)
+        self.socket_directory, socket_address = _callback_socket_address(
+            self.socket_path
+        )
         self.server = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
-        self.server.bind(self.socket_path)
-        os.chmod(self.socket_path, 0o600)
-        self.server.listen(1)
-        self.server.settimeout(1)
+        try:
+            self.server.bind(socket_address)
+            os.chmod(self.socket_path, 0o600)
+            self.server.listen(1)
+            self.server.settimeout(1)
+        except OSError:
+            self.close()
+            raise
 
     @property
     def redirect_uri(self) -> str:
@@ -604,20 +622,7 @@ class RedirectListener:
                         if not size or size > MAX_CALLBACK_URI:
                             raise ProtocolError("invalid identity callback size")
                         uri = _recv_exact(connection, size).decode("utf-8")
-                        state, query = _parse_callback_uri(uri)
-                        parsed = urlparse(uri)
-                        if (
-                            state != self.state
-                            or parsed.path.lstrip("/").lower() != self.client_id
-                        ):
-                            raise ProtocolError("identity callback does not match")
-                        self.result = {
-                            "code": query.get("code", [None])[0],
-                            "error": query.get("error", [None])[0],
-                            "error_description": query.get(
-                                "error_description", [None]
-                            )[0],
-                        }
+                        self.result = self._callback_result(uri)
                         connection.sendall(b"\x01")
                     except (OSError, ProtocolError, UnicodeError):
                         try:
@@ -630,6 +635,20 @@ class RedirectListener:
             raise AuthenticationError("authentication timed out")
         return self.result
 
+    def _callback_result(self, uri: str) -> dict:
+        state, query = _parse_callback_uri(uri)
+        parsed = urlparse(uri)
+        if (
+            state != self.state
+            or parsed.path.lstrip("/").lower() != self.client_id
+        ):
+            raise ProtocolError("identity callback does not match")
+        return {
+            "code": query.get("code", [None])[0],
+            "error": query.get("error", [None])[0],
+            "error_description": query.get("error_description", [None])[0],
+        }
+
     def close(self) -> None:
         if self.server:
             self.server.close()
@@ -638,6 +657,9 @@ class RedirectListener:
             os.unlink(self.socket_path)
         except FileNotFoundError:
             pass
+        if self.socket_directory is not None:
+            os.close(self.socket_directory)
+            self.socket_directory = None
 
 
 class MicrosoftIdentityProvider:
