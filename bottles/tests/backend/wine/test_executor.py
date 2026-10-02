@@ -1230,6 +1230,24 @@ def test_native_wayland_enables_egl(monkeypatch):
     assert resolved["WINE_USE_EGL"] == "1"
 
 
+@pytest.mark.parametrize("session_type", [None, ""])
+def test_native_wayland_without_session_type(monkeypatch, session_type):
+    if session_type is None:
+        monkeypatch.delenv("XDG_SESSION_TYPE", raising=False)
+    else:
+        monkeypatch.setenv("XDG_SESSION_TYPE", session_type)
+    monkeypatch.setenv("WAYLAND_DISPLAY", "wayland-0")
+    env = WineEnv(clean=True)
+    env.add("DISPLAY", ":1")
+    env.add("WAYLAND_DISPLAY", "wayland-0")
+
+    apply_wayland_preferences(env, BottleParams(wayland=True))
+
+    resolved = env.get()["envs"]
+    assert "DISPLAY" not in resolved
+    assert resolved["WINE_USE_EGL"] == "1"
+
+
 def test_hdr_preferences_require_native_wayland_for_hdr():
     env = WineEnv(clean=True)
     params = BottleParams(hdr=True, wayland=False)

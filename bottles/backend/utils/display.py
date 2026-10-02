@@ -55,4 +55,7 @@ class DisplayUtils:
     @staticmethod
     def display_server_type():
         """Return the display server type"""
-        return os.environ.get("XDG_SESSION_TYPE", "x11").lower()
+        session_type = os.environ.get("XDG_SESSION_TYPE")
+        if session_type:
+            return session_type.lower()
+        return "wayland" if os.environ.get("WAYLAND_DISPLAY") else "x11"
