@@ -156,7 +156,7 @@ class SandboxManager:
             _cmd.append("--tmpfs /dev/bus/usb")
 
         if self.share_display:
-            _cmd.append("--dev-bind /dev/video0 /dev/video0")
+            _cmd.append("--dev-bind-try /dev/video0 /dev/video0")
 
         _cmd.append("--share-net" if self.share_net else "--unshare-net")
         if not self.share_user:
