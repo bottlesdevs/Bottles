@@ -291,6 +291,12 @@ def _field(value: str) -> bytes:
     return value.encode("utf-8")
 
 
+def _normalize_client_id(value: str) -> str:
+    if re.fullmatch(r"[0-9a-fA-F]{8}(?:-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}", value):
+        return value.lower()
+    return value
+
+
 def _resolve_client_id(fields: dict[int, bytes]) -> str:
     client_id = _text(fields, FIELD_CLIENT_ID)
     caller_id = _text(fields, FIELD_CALLER_ID).lower()
@@ -754,6 +760,7 @@ class MicrosoftIdentityProvider:
     ) -> AuthorizationResult:
         scopes = self._normalize_scopes(scopes)
         self._validate_request(client_id, authority, scopes, login_hint)
+        client_id = _normalize_client_id(client_id)
         try:
             return self.get_token(client_id, authority, scopes, "", login_hint)
         except AuthenticationStorageError as exc:
@@ -846,6 +853,7 @@ class MicrosoftIdentityProvider:
     ) -> AuthorizationResult:
         scopes = self._normalize_scopes(scopes)
         self._validate_request(client_id, authority, scopes, login_hint)
+        client_id = _normalize_client_id(client_id)
         stored = self.store.load(client_id, account_id)
         if self.cancel_event and self.cancel_event.is_set():
             raise AuthenticationCanceled("authentication canceled")
@@ -1030,6 +1038,7 @@ class IdentityBridgeServer:
                 if client_id and not CLIENT_ID_PATTERN.fullmatch(client_id):
                     raise ProtocolError("invalid client ID")
                 client_id = CALLER_CLIENT_IDS.get(client_id.lower(), client_id)
+                client_id = _normalize_client_id(client_id)
                 authority = _authority(fields, "common")
                 accounts = self.provider.store.accounts(client_id, authority)
                 if len(accounts) > MAX_ACCOUNTS:
@@ -1084,6 +1093,7 @@ class IdentityBridgeServer:
                     result_fields(result),
                 )
             if request.opcode == OP_CLEAR:
+                client_id = _normalize_client_id(client_id)
                 cleared = self.provider.store.clear(client_id, account_id)
                 status = STATUS_OK if cleared else STATUS_NOT_FOUND
                 return Message(

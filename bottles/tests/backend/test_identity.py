@@ -27,6 +27,7 @@ from bottles.backend.identity import (
     FIELD_SCOPES,
     MAGIC,
     OP_AUTHORIZE,
+    OP_CLEAR,
     OP_GET_TOKEN,
     OP_LIST_ACCOUNTS,
     OP_PING,
@@ -53,6 +54,7 @@ from bottles.backend.identity import (
     receive_message,
     start_identity_bridge,
     _authority,
+    _normalize_client_id,
     result_fields,
 )
 
@@ -157,6 +159,16 @@ class Listener:
 
     def close(self):
         pass
+
+
+@pytest.mark.parametrize("client_id", (
+    "Opaque.Client-ID",
+    "12345678123412341234123456789ABC",
+    "12345678-1234-1234-1234-123456789ABG",
+    "12345678-1234-1234-1234-123456789ABC.extra",
+))
+def test_client_normalization_preserves_non_guid_identifiers(client_id):
+    assert _normalize_client_id(client_id) == client_id
 
 
 def test_bridge_disconnect_cancels_authorization(tmp_path):
@@ -471,7 +483,12 @@ def test_provider_rejects_control_characters_in_login_hint():
         )
 
 
-def test_authorization_uses_system_browser_and_pkce(monkeypatch):
+@pytest.mark.parametrize("requested_client", (
+    "d3590ed6-52b3-4102-aeff-aad2292ab01c",
+    "D3590ED6-52B3-4102-AEFF-AAD2292AB01C",
+    "D3590ed6-52B3-4102-aeff-AAD2292ab01c",
+))
+def test_authorization_uses_system_browser_and_pkce(monkeypatch, requested_client):
     client_id = "d3590ed6-52b3-4102-aeff-aad2292ab01c"
     nonce = base64.urlsafe_b64encode(b"n" * 32).rstrip(b"=").decode()
     token = {
@@ -488,15 +505,15 @@ def test_authorization_uses_system_browser_and_pkce(monkeypatch):
         "bottles.backend.identity.secrets.token_bytes",
         lambda size: b"n" * size if size == 32 else b"v" * size,
     )
-    provider = MicrosoftIdentityProvider(
-        Store(), session, opened.append, Listener
-    )
+    store = Store()
+    provider = MicrosoftIdentityProvider(store, session, opened.append, Listener)
 
     result = provider.authorize(
-        client_id, "organizations", "openid profile offline_access", "user@example.com"
+        requested_client, "organizations", "openid profile offline_access", "user@example.com"
     )
 
     query = parse_qs(urlparse(opened[0]).query)
+    assert query["client_id"] == [client_id]
     assert query["redirect_uri"] == [
         "ms-appx-web://microsoft.aad.brokerplugin/" + client_id
     ]
@@ -507,6 +524,13 @@ def test_authorization_uses_system_browser_and_pkce(monkeypatch):
     assert session.requests[0][1]["code_verifier"]
     assert session.requests[0][3] is False
     assert session.requests[0][1]["client_info"] == "1"
+    assert session.requests[0][1]["client_id"] == client_id
+    assert provider.get_token(
+        client_id.upper(), "organizations", "openid profile", "account-id"
+    ) is result
+    assert len(session.requests) == 1
+    assert (client_id, result.account_id) in store.values
+    assert next(iter(provider.cache))[0] == client_id
     assert result.access_token == "access"
     fields = result_fields(result)
     assert fields[FIELD_SCOPES] == b"openid profile email"
@@ -516,7 +540,9 @@ def test_authorization_uses_system_browser_and_pkce(monkeypatch):
 
 
 @pytest.mark.parametrize("invalid", ["audience", "nonce"])
-def test_invalid_id_token_is_not_stored_or_cached(monkeypatch, invalid):
+@pytest.mark.parametrize("uppercase", (False, True))
+def test_invalid_id_token_is_not_stored_or_cached(monkeypatch, invalid, uppercase):
+    client_id = "d3590ed6-52b3-4102-aeff-aad2292ab01c"
     nonce = base64.urlsafe_b64encode(b"n" * 32).rstrip(b"=").decode()
     monkeypatch.setattr(
         "bottles.backend.identity.secrets.token_bytes", lambda size: b"n" * size
@@ -526,7 +552,7 @@ def test_invalid_id_token_is_not_stored_or_cached(monkeypatch, invalid):
         "refresh_token": "refresh",
         "expires_in": 3600,
         "id_token": _id_token(
-            "other-client" if invalid == "audience" else "client",
+            "other-client" if invalid == "audience" else client_id,
             "other-nonce" if invalid == "nonce" else nonce,
         ),
     }
@@ -541,7 +567,7 @@ def test_invalid_id_token_is_not_stored_or_cached(monkeypatch, invalid):
     )
 
     with pytest.raises(AuthenticationError, match=f"unexpected ID token {invalid}"):
-        provider.authorize("client", "common", "openid", "")
+        provider.authorize(client_id.upper() if uppercase else client_id, "common", "openid", "")
 
     assert store.values == {}
     assert provider.cache == {}
@@ -627,7 +653,8 @@ def test_telemetry_ticket_does_not_open_the_browser():
     assert not opened
 
 
-def test_authorization_reuses_the_current_account():
+@pytest.mark.parametrize("uppercase", (False, True))
+def test_authorization_reuses_the_current_account(uppercase):
     client_id = "d3590ed6-52b3-4102-aeff-aad2292ab01c"
 
     class CurrentStore(Store):
@@ -656,13 +683,14 @@ def test_authorization_reuses_the_current_account():
     )
 
     result = provider.authorize(
-        client_id,
+        client_id.upper() if uppercase else client_id,
         "common",
         "service::https://licensing.m365.svc.cloud.microsoft/::MBI_SSL_SHORT",
         "",
     )
 
     assert result.access_token == "new-access"
+    assert session.requests[0][1]["client_id"] == client_id
     assert not opened
 
 
@@ -970,7 +998,8 @@ def test_authorization_fails_when_the_browser_cannot_open():
         )
 
 
-def test_refresh_rotates_the_stored_token():
+@pytest.mark.parametrize("uppercase", (False, True))
+def test_refresh_rotates_the_stored_token(uppercase):
     client_id = "d3590ed6-52b3-4102-aeff-aad2292ab01c"
     store = Store()
     store.values[(client_id, "account-id")] = {
@@ -990,13 +1019,34 @@ def test_refresh_rotates_the_stored_token():
     provider = MicrosoftIdentityProvider(store, session, lambda _uri: None)
 
     result = provider.get_token(
-        client_id, "organizations", "openid profile", "account-id"
+        client_id.upper() if uppercase else client_id, "organizations", "openid profile", "account-id"
     )
 
     assert result.access_token == "new-access"
     assert store.values[(client_id, "account-id")]["refresh_token"] == "new-refresh"
     assert session.requests[0][1]["refresh_token"] == "old-refresh"
     assert session.requests[0][1]["client_info"] == "1"
+    assert session.requests[0][1]["client_id"] == client_id
+
+
+def test_clear_normalizes_the_client_guid():
+    client_id = "d3590ed6-52b3-4102-aeff-aad2292ab01c"
+    store = Store()
+    store.values[(client_id, "account-id")] = {}
+
+    class Provider:
+        pass
+
+    provider = Provider()
+    provider.store = store
+    server = IdentityBridgeServer("unused", "context", provider)
+    response = server.dispatch(Message(OP_CLEAR, 3, 0, {
+        FIELD_CLIENT_ID: client_id.upper().encode(),
+        FIELD_ACCOUNT_ID: b"account-id",
+    }))
+
+    assert response.status == STATUS_OK
+    assert store.values == {}
 
 
 def test_server_dispatches_authorization_without_exposing_refresh_token():
@@ -1248,7 +1298,11 @@ def test_secret_store_enumerates_scoped_accounts(monkeypatch):
         store.accounts("client", "common")
 
 
-def test_account_enumeration_returns_metadata_only():
+@pytest.mark.parametrize("client_id", (
+    b"2b379600-b42b-4fe9-a59c-a312fb934935",
+    b"D3590ED6-52B3-4102-AEFF-AAD2292AB01C",
+))
+def test_account_enumeration_returns_metadata_only(client_id):
     class AccountStore:
         def accounts(self, client, authority):
             assert client == "d3590ed6-52b3-4102-aeff-aad2292ab01c"
@@ -1260,7 +1314,7 @@ def test_account_enumeration_returns_metadata_only():
 
     server = IdentityBridgeServer("unused", "context", Provider())
     response = server.dispatch(Message(OP_LIST_ACCOUNTS, 3, 0, {
-        FIELD_CLIENT_ID: b"2b379600-b42b-4fe9-a59c-a312fb934935",
+        FIELD_CLIENT_ID: client_id,
         FIELD_AUTHORITY: b"common",
     }))
     assert response.status == STATUS_OK
