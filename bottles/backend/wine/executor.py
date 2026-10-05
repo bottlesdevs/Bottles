@@ -144,6 +144,10 @@ class WineExecutor:
             if program_winebridge is not None
             else getattr(self.config.Parameters, "winebridge", True)
         )
+        if self.config.Parameters.eagle_tracing:
+            from bottles.backend.managers.eagletracing import tracing_supported
+            if tracing_supported(self.config):
+                self.use_winebridge = False
         self._play_session_id = -1
 
         env_dll_overrides = []

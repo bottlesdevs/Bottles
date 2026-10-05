@@ -158,6 +158,7 @@ class BottleParams(DictCompatMixIn):
     vmtouch: bool = False
     vmtouch_cache_cwd: bool = False
     adaptive_launch: bool = False
+    eagle_tracing: bool = False
 
 
 @dataclass

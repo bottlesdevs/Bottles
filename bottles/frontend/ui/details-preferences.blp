@@ -312,6 +312,26 @@ template $DetailsPreferences: Adw.PreferencesPage {
       }
     }
 
+    Adw.ActionRow row_eagle_tracing {
+      activatable-widget: switch_eagle_tracing;
+      title: _("Eagle Tracing");
+      subtitle: _("Collect debug details on program launches in logs/runs. Review logs before sharing; tracing can slow programs down.");
+
+      Button btn_eagle_logs {
+        tooltip-text: _("Open Trace Logs");
+        valign: center;
+        icon-name: "folder-symbolic";
+
+        styles [
+          "flat",
+        ]
+      }
+
+      Switch switch_eagle_tracing {
+        valign: center;
+      }
+    }
+
     Adw.ActionRow row_obsvkc {
       activatable-widget: switch_obsvkc;
       title: _("OBS Game Capture");

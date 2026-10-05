@@ -34,6 +34,7 @@ from bottles.backend.globals import (
     vmtouch_available,
 )
 from bottles.backend.logger import Logger
+from bottles.backend.managers.eagletracing import tracing_supported
 from bottles.backend.managers.library import LibraryManager
 from bottles.backend.managers.runtime import RuntimeManager
 from bottles.backend.models.config import BottleConfig
@@ -85,6 +86,7 @@ class PreferencesView(Adw.PreferencesPage):
     btn_manage_mangohud = Gtk.Template.Child()
     btn_manage_sandbox = Gtk.Template.Child()
     btn_manage_vmtouch = Gtk.Template.Child()
+    btn_eagle_logs = Gtk.Template.Child()
     btn_cwd_reset = Gtk.Template.Child()
     btn_cwd = Gtk.Template.Child()
     row_nvapi = Gtk.Template.Child()
@@ -96,6 +98,7 @@ class PreferencesView(Adw.PreferencesPage):
     row_gamemode = Gtk.Template.Child()
     row_vmtouch = Gtk.Template.Child()
     row_adaptive_launch = Gtk.Template.Child()
+    row_eagle_tracing = Gtk.Template.Child()
     row_obsvkc = Gtk.Template.Child()
     row_wayland = Gtk.Template.Child()
     row_hdr = Gtk.Template.Child()
@@ -126,6 +129,7 @@ class PreferencesView(Adw.PreferencesPage):
     switch_sandbox = Gtk.Template.Child()
     switch_vmtouch = Gtk.Template.Child()
     switch_adaptive_launch = Gtk.Template.Child()
+    switch_eagle_tracing = Gtk.Template.Child()
     combo_runner = Gtk.Template.Child()
     combo_d7vk = Gtk.Template.Child()
     combo_dxvk = Gtk.Template.Child()
@@ -328,6 +332,10 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_adaptive_launch.connect(
             "state-set", self.__toggle_feature_cb, "adaptive_launch"
         )
+        self.switch_eagle_tracing.connect(
+            "state-set", self.__toggle_feature_cb, "eagle_tracing"
+        )
+        self.btn_eagle_logs.connect("clicked", self.__open_eagle_logs)
         self.combo_runner.connect("notify::selected", self.__set_runner)
         self.combo_d7vk.connect("notify::selected", self.__set_d7vk)
         self.combo_dxvk.connect("notify::selected", self.__set_dxvk)
@@ -623,6 +631,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_obsvkc.handler_block_by_func(self.__toggle_feature_cb)
         self.switch_gamemode.handler_block_by_func(self.__toggle_feature_cb)
         self.switch_adaptive_launch.handler_block_by_func(self.__toggle_feature_cb)
+        self.switch_eagle_tracing.handler_block_by_func(self.__toggle_feature_cb)
         self.switch_gamescope.handler_block_by_func(self.__toggle_gamescope)
         self.switch_sandbox.handler_block_by_func(self.__toggle_feature_cb)
         self.switch_discrete.handler_block_by_func(self.__toggle_feature_cb)
@@ -659,6 +668,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_steam_runtime.set_active(parameters.use_steam_runtime)
         self.switch_vmtouch.set_active(parameters.vmtouch)
         self.switch_adaptive_launch.set_active(parameters.adaptive_launch)
+        self.switch_eagle_tracing.set_active(parameters.eagle_tracing)
         self.spin_frame_rate_limit.set_value(parameters.frame_rate_limit)
 
         # self.toggle_sync.set_active(parameters["sync"] == "wine")
@@ -782,6 +792,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_obsvkc.handler_unblock_by_func(self.__toggle_feature_cb)
         self.switch_gamemode.handler_unblock_by_func(self.__toggle_feature_cb)
         self.switch_adaptive_launch.handler_unblock_by_func(self.__toggle_feature_cb)
+        self.switch_eagle_tracing.handler_unblock_by_func(self.__toggle_feature_cb)
         self.switch_gamescope.handler_unblock_by_func(self.__toggle_gamescope)
         self.switch_sandbox.handler_unblock_by_func(self.__toggle_feature_cb)
         self.switch_discrete.handler_unblock_by_func(self.__toggle_feature_cb)
@@ -801,6 +812,16 @@ class PreferencesView(Adw.PreferencesPage):
         self.__update_adaptive_launch_support()
 
     def __update_adaptive_launch_support(self) -> None:
+        tracing = tracing_supported(self.config)
+        if not tracing and self.config.Parameters.eagle_tracing:
+            self.__toggle_feature(False, "eagle_tracing")
+        self.switch_eagle_tracing.handler_block_by_func(self.__toggle_feature_cb)
+        self.switch_eagle_tracing.set_active(self.config.Parameters.eagle_tracing)
+        self.switch_eagle_tracing.handler_unblock_by_func(self.__toggle_feature_cb)
+        self.switch_eagle_tracing.set_sensitive(tracing)
+        self.row_eagle_tracing.set_tooltip_text(
+            "" if tracing else _("Soda 11.0-26 or newer with Eagle tracing is required.")
+        )
         supported = is_supported_runner(self.config.Runner)
         message = (
             ""
@@ -817,6 +838,11 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_adaptive_launch.set_sensitive(supported)
         self.switch_adaptive_launch.set_tooltip_text(message)
         self.row_adaptive_launch.set_tooltip_text(message)
+
+    def __open_eagle_logs(self, _widget):
+        path = os.path.join(ManagerUtils.get_bottle_path(self.config), "logs", "runs")
+        os.makedirs(path, mode=0o700, exist_ok=True)
+        ManagerUtils.open_filemanager(path_type="custom", custom_path=path)
 
     def __show_display_settings(self, widget):
         new_window = DisplayDialog(
@@ -842,6 +868,8 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __toggle_feature_cb(self, _widget: Gtk.Widget, state: bool, key: str) -> None:
         self.__toggle_feature(state=state, key=key)
+        if key == "eagle_tracing":
+            self.__update_adaptive_launch_support()
 
     def __toggle_wayland(self, _widget: Gtk.Widget, state: bool) -> None:
         self.__toggle_feature(state=state, key="wayland")
