@@ -54,8 +54,8 @@ class RepositoryManager:
         },
         "installers": {
             "sources": (
+                "https://raw.githubusercontent.com/bottlesdevs/programs/0ec12fdbce9fbffe0511a501a5218aae48d36e44/",
                 "https://proxy.usebottles.com/repo/programs/",
-                "https://raw.githubusercontent.com/bottlesdevs/programs/d1160b816ca44a1cc803ab9a0050071517cc1960/",
             ),
             "index": "",
             "cls": InstallerRepo,
