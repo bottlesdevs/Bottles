@@ -1249,6 +1249,39 @@ def test_secret_store_tracks_the_current_account(monkeypatch):
     assert store.load("client", "") is None
 
 
+@pytest.mark.parametrize("uppercase", (False, True))
+def test_secret_store_loads_home_account_id(monkeypatch, uppercase):
+    account = "00000000-0000-0000-0000-000000000abc"
+    tenant = "00000000-0000-0000-0000-000000000def"
+    value = {"refresh_token": "refresh", "account_id": account, "tenant_id": tenant}
+    reads = []
+    store = SecretTokenStore("context")
+
+    def read(attributes):
+        reads.append(attributes)
+        if attributes == {"context": "context", "client": "client", "account": account}:
+            return json.dumps(value)
+
+    monkeypatch.setattr(store, "_read", read)
+    home_account = f"{account}.{tenant}"
+    assert store.load("client", home_account.upper() if uppercase else home_account) == value
+    assert len(reads) == 2
+    assert all(item["context"] == "context" and item["client"] == "client" for item in reads)
+
+
+@pytest.mark.parametrize("stored_account,stored_tenant", (
+    ("account", "other-tenant"),
+    ("other-account", "tenant"),
+    ("account", ""),
+))
+def test_secret_store_rejects_mismatched_home_account(monkeypatch, stored_account, stored_tenant):
+    store = SecretTokenStore("context")
+    value = {"refresh_token": "refresh", "account_id": stored_account, "tenant_id": stored_tenant}
+    monkeypatch.setattr(store, "_read", lambda attributes: json.dumps(value) if attributes["account"] == "account" else None)
+
+    assert store.load("client", "account.tenant") is None
+
+
 def test_secret_store_enumerates_scoped_accounts(monkeypatch):
     from bottles.backend.identity import PERSONAL_TENANT
 

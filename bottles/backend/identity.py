@@ -470,6 +470,11 @@ class SecretTokenStore:
             except (json.JSONDecodeError, KeyError, TypeError) as exc:
                 raise AuthenticationError("invalid credential store account") from exc
         value = self._read(self._attributes(client_id, account_id))
+        home_account = None
+        if not value and account_id.count(".") == 1 and all(account_id.split(".")):
+            object_id, tenant_id = account_id.split(".")
+            home_account = (_normalize_client_id(object_id), _normalize_client_id(tenant_id))
+            value = self._read(self._attributes(client_id, home_account[0]))
         if not value:
             return None
         try:
@@ -478,6 +483,11 @@ class SecretTokenStore:
             raise AuthenticationError("invalid credential store entry") from exc
         if not isinstance(result, dict) or not result.get("refresh_token"):
             raise AuthenticationError("incomplete credential store entry")
+        if home_account and (
+            result.get("account_id") != home_account[0]
+            or result.get("tenant_id") != home_account[1]
+        ):
+            return None
         return result
 
     def accounts(self, client_id: str, authority: str) -> list[tuple[str, str]]:
