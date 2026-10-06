@@ -6,7 +6,7 @@ name: Build Flatpak
 jobs:
   flatpak:
     name: "build-packages"
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     container:
       image: bilelmoussaoui/flatpak-github-actions:gnome-47
       options: --privileged
@@ -48,6 +48,9 @@ jobs:
           test -r /app/lib/i386-linux-gnu/libc.so.6
           test -d /app/lib/i386-linux-gnu/dri/intel-vaapi-driver
           test -d /app/i386/nvidia-vaapi-driver
+          test -r /app/share/bottles/bottles/backend/managers/eagletracing.py
+          test -r /app/share/bottles/bottles/backend/identity.py
+          python3 -c "from gi.repository import Gio; resource = Gio.Resource.load(\"/app/share/bottles/bottles.gresource\"); ui = resource.lookup_data(\"/com/usebottles/bottles/details-preferences.ui\", Gio.ResourceLookupFlags.NONE).get_data(); assert b\"switch_eagle_tracing\" in ui"
           gst-inspect-1.0 avdec_wmv3
         '
         flatpak run --user \
