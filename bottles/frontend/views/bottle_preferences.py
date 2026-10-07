@@ -841,7 +841,12 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __open_eagle_logs(self, _widget):
         path = os.path.join(ManagerUtils.get_bottle_path(self.config), "logs", "runs")
-        os.makedirs(path, mode=0o700, exist_ok=True)
+        try:
+            os.makedirs(path, mode=0o700, exist_ok=True)
+        except OSError as error:
+            logging.error(f"Could not create Eagle log folder: {error}")
+            self.window.show_toast(_("Could not open folder"))
+            return
         ManagerUtils.open_filemanager(path_type="custom", custom_path=path)
 
     def __show_display_settings(self, widget):

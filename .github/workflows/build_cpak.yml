@@ -102,6 +102,25 @@ jobs:
               bottles-cli --version
             '
 
+      - name: Test folder handling
+        env:
+          IMAGE: ${{ steps.identity.outputs.image }}
+        run: |
+          docker run --rm \
+            --entrypoint sh \
+            --volume "$GITHUB_WORKSPACE:/tests:ro" \
+            "$IMAGE" -ceu '
+              apt-get update
+              apt-get install -y --no-install-recommends xauth xvfb python3-pytest python3-pytest-mock
+              mkdir -p /app/share/bottles
+              ln -s /usr/share/bottles/bottles.gresource /app/share/bottles/bottles.gresource
+              cd /tests
+              export PYTHONDONTWRITEBYTECODE=1
+              xvfb-run -a python3 -m pytest -q \
+                bottles/tests/frontend/test_open_uri.py \
+                bottles/tests/frontend/test_bottle_preferences.py::test_open_eagle_logs_keeps_window_alive_when_directory_is_unwritable
+            '
+
       - name: Verify Soda on arm64
         if: matrix.arch == 'arm64'
         env:

@@ -151,3 +151,22 @@ def test_adaptive_launch_requires_soda(runner, supported):
     view.switch_adaptive_launch.set_tooltip_text.assert_called_once_with(message)
     view.row_adaptive_launch.set_tooltip_text.assert_called_once_with(message)
     view._adaptive_launch_warning.set_visible.assert_called_once_with(not supported)
+
+
+def test_open_eagle_logs_keeps_window_alive_when_directory_is_unwritable(monkeypatch):
+    from bottles.frontend.views import bottle_preferences
+    from bottles.frontend.views.bottle_preferences import PreferencesView
+
+    def denied(*args, **kwargs):
+        raise PermissionError("log directory is not writable")
+
+    monkeypatch.setattr(
+        bottle_preferences.ManagerUtils, "get_bottle_path", lambda _config: "/home/test/bottle"
+    )
+    monkeypatch.setattr(bottle_preferences.os, "makedirs", denied)
+    opened = Mock()
+    monkeypatch.setattr(bottle_preferences.ManagerUtils, "open_filemanager", opened)
+    view = SimpleNamespace(config=Mock(), window=SimpleNamespace(show_toast=Mock()))
+    PreferencesView._PreferencesView__open_eagle_logs(view, None)
+    view.window.show_toast.assert_called_once()
+    opened.assert_not_called()

@@ -274,10 +274,22 @@ class BottlesWindow(Adw.ApplicationWindow):
         if is_cpak():
             path = Gio.File.new_for_uri(uri).get_path()
             if path is not None:
-                Gio.Subprocess.new(
-                    ["xdg-open", path],
-                    Gio.SubprocessFlags.NONE,
-                )
+                def opened(process, result):
+                    try:
+                        process.wait_check_finish(result)
+                    except GLib.Error as error:
+                        logging.error(f"Could not open folder: {error}")
+                        self.show_toast(_("Could not open folder"))
+
+                try:
+                    process = Gio.Subprocess.new(
+                        ["xdg-open", path],
+                        Gio.SubprocessFlags.NONE,
+                    )
+                    process.wait_check_async(None, opened)
+                except GLib.Error as error:
+                    logging.error(f"Could not open folder: {error}")
+                    self.show_toast(_("Could not open folder"))
                 return
 
         Gtk.show_uri(self, uri, Gdk.CURRENT_TIME)
