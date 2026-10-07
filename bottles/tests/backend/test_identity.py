@@ -394,6 +394,17 @@ def test_bridge_readiness_rejects_stale_socket():
     os.unlink(socket_path)
 
 
+def test_bridge_readiness_closes_directory_on_permission_error(tmp_path, monkeypatch):
+    def deny(_descriptor, _mode):
+        raise PermissionError("directory permission denied")
+
+    monkeypatch.setattr("bottles.backend.identity.os.fchmod", deny)
+    before = len(os.listdir("/proc/self/fd"))
+
+    assert not _bridge_ready(str(tmp_path / "bridge.sock"))
+    assert len(os.listdir("/proc/self/fd")) == before
+
+
 def test_bridge_process_is_reaped(tmp_path, monkeypatch):
     reaped = threading.Event()
 
@@ -449,6 +460,29 @@ def test_bridge_starts_with_long_data_path(tmp_path, monkeypatch):
     try:
         assert socket_path
         assert socket_path.startswith(runtime + os.sep)
+        assert _bridge_ready(socket_path)
+        assert os.stat(os.path.dirname(socket_path)).st_mode & 0o777 == 0o700
+        assert os.stat(socket_path).st_mode & 0o777 == 0o700
+    finally:
+        bridge = _bridges.get(context)
+        if bridge:
+            bridge.process.terminate()
+            bridge.process.wait(timeout=3)
+
+
+@pytest.mark.parametrize("runtime", [False, True])
+def test_bridge_starts_with_long_socket_path(tmp_path, monkeypatch, runtime):
+    for name in ("DISPLAY", "WAYLAND_DISPLAY", "XDG_RUNTIME_DIR"):
+        monkeypatch.delenv(name, raising=False)
+    directory = str(tmp_path / ("runtime-directory-" * 6))
+    monkeypatch.setattr("bottles.backend.identity.Paths.temp", directory)
+    if runtime:
+        monkeypatch.setenv("XDG_RUNTIME_DIR", directory)
+    context = f"context-{time.time_ns()}"
+    socket_path = start_identity_bridge(context)
+    try:
+        assert socket_path
+        assert len(socket_path.encode()) > 107
         assert _bridge_ready(socket_path)
         assert os.stat(os.path.dirname(socket_path)).st_mode & 0o777 == 0o700
         assert os.stat(socket_path).st_mode & 0o777 == 0o700
