@@ -1,9 +1,57 @@
+import os
+import shutil
+import subprocess
+import sys
 from types import SimpleNamespace
 from unittest.mock import Mock
 
 import pytest
 
 from bottles.backend import identity_ui
+
+
+def test_closed_sign_in_window_can_be_reopened():
+    if not shutil.which("xvfb-run") or not shutil.which("dbus-run-session"):
+        pytest.skip("Xvfb or D-Bus is unavailable")
+    code = """
+import time
+from bottles.backend.identity_ui import IdentityBridgeApplication
+from gi.repository import GLib
+
+def dispatch():
+    deadline = time.monotonic() + 0.2
+    while time.monotonic() < deadline:
+        while GLib.MainContext.default().pending():
+            GLib.MainContext.default().iteration(False)
+        time.sleep(0.01)
+
+app = IdentityBridgeApplication("unused.sock", "test")
+assert app.register(None)
+app._show_authentication()
+app._show_result(False, "sign-in failed")
+old_window = app.window
+app._close_window()
+dispatch()
+assert app.window is None
+assert not app.window_closing
+app._show_authentication()
+assert app.window is not old_window and app.window.get_visible()
+app._window_destroyed(old_window)
+assert app.window is not None
+app._close_window()
+dispatch()
+assert app.window is None
+"""
+    environment = os.environ.copy()
+    environment.update(GDK_BACKEND="x11", GSK_RENDERER="cairo", WAYLAND_DISPLAY="")
+    result = subprocess.run(
+        ["dbus-run-session", "--", "xvfb-run", "-a", sys.executable, "-c", code],
+        env=environment,
+        capture_output=True,
+        text=True,
+        timeout=15,
+    )
+    assert result.returncode == 0, result.stderr
 
 
 @pytest.mark.parametrize("fails", [False, True])

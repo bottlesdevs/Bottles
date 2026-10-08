@@ -102,7 +102,7 @@ jobs:
               bottles-cli --version
             '
 
-      - name: Test folder handling
+      - name: Test identity and folder handling
         env:
           IMAGE: ${{ steps.identity.outputs.image }}
         run: |
@@ -116,7 +116,13 @@ jobs:
               ln -s /usr/share/bottles/bottles.gresource /app/share/bottles/bottles.gresource
               cd /tests
               export PYTHONDONTWRITEBYTECODE=1
+              export TMPDIR="$HOME/artifacts/bottles-identity-ci"
+              mkdir -p "$TMPDIR"
+              export TMP="$TMPDIR" TEMP="$TMPDIR"
+              command -v dbus-run-session
               xvfb-run -a python3 -m pytest -q \
+                bottles/tests/backend/test_identity.py \
+                bottles/tests/backend/test_identity_ui.py \
                 bottles/tests/frontend/test_open_uri.py \
                 bottles/tests/frontend/test_bottle_preferences.py::test_open_eagle_logs_keeps_window_alive_when_directory_is_unwritable
             '

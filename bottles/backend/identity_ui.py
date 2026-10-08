@@ -261,6 +261,7 @@ class IdentityBridgeApplication(Adw.Application):
         self.window_closing = True
         if self.authentication_active:
             self.cancel_event.set()
+        GLib.idle_add(self._window_destroyed, _window)
         return False
 
     def _window_destroyed(self, _window):
