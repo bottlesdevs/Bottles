@@ -32,6 +32,7 @@ from bottles.backend.identity import (
     OP_LIST_ACCOUNTS,
     OP_PING,
     RESPONSE_BIT,
+    STATUS_AUTH_FAILED,
     STATUS_INVALID_REQUEST,
     STATUS_OK,
     AuthenticationCanceled,
@@ -605,7 +606,10 @@ def test_invalid_id_token_is_not_stored_or_cached(monkeypatch, invalid, uppercas
 
     assert store.values == {}
     assert provider.cache == {}
-    assert completed == [(False, f"unexpected ID token {invalid}")]
+    message = f"unexpected ID token {invalid}"
+    if invalid == "audience":
+        message += " (different client)"
+    assert completed == [(False, message)]
 
 
 @pytest.mark.parametrize("audience,reason", (
@@ -628,13 +632,48 @@ def test_audience_failure_logs_only_the_reason(monkeypatch, audience, reason):
         "expires_in": 3600,
     }
 
-    with pytest.raises(AuthenticationError, match="unexpected ID token audience"):
+    with pytest.raises(AuthenticationError, match="unexpected ID token audience") as error:
         MicrosoftIdentityProvider._result_from_token(token, "client")
 
     assert warnings == [f"ID token audience rejected: {reason}"]
+    assert str(error.value) == f"unexpected ID token audience ({reason})"
 
 
-def test_office_ticket_uses_the_licensing_resource(monkeypatch):
+@pytest.mark.parametrize("opcode", (OP_AUTHORIZE, OP_GET_TOKEN))
+def test_audience_reason_reaches_the_bridge_response(opcode):
+    store = Store()
+    stored = {"refresh_token": "private-stored-refresh", "id_token": _id_token("client")}
+    store.values[("client", "account-id")] = stored
+    token = {
+        "access_token": "private-access-token",
+        "refresh_token": "private-refresh-token",
+        "id_token": _id_token("private-account@example.invalid"),
+        "expires_in": 3600,
+    }
+    provider = MicrosoftIdentityProvider(
+        store, Session([token]), lambda _uri: None, Listener
+    )
+    fields = {FIELD_CLIENT_ID: b"client", FIELD_SCOPES: b"openid"}
+    if opcode == OP_GET_TOKEN:
+        fields[FIELD_ACCOUNT_ID] = b"account-id"
+    server = IdentityBridgeServer("socket", "context", provider)
+
+    response = server.dispatch(Message(opcode, 123, 0, fields))
+
+    assert response.status == STATUS_AUTH_FAILED
+    assert response.fields == {
+        FIELD_ERROR: b"unexpected ID token audience (different client)"
+    }
+    assert provider.cache == {}
+    assert store.values == {("client", "account-id"): stored}
+
+
+@pytest.mark.parametrize("scopes", (
+    "service::https://licensing.m365.svc.cloud.microsoft/::MBI_SSL_SHORT",
+    "service::https://licensing.m365.svc.cloud.microsoft/::MBI_SSL_SHORT openid profile",
+    "openid offline_access service::https://licensing.m365.svc.cloud.microsoft/::MBI_SSL_SHORT",
+))
+def test_office_ticket_uses_the_licensing_resource(monkeypatch, scopes):
     client_id = "d3590ed6-52b3-4102-aeff-aad2292ab01c"
     nonce = base64.urlsafe_b64encode(b"n" * 32).rstrip(b"=").decode()
     session = Session(
@@ -659,7 +698,7 @@ def test_office_ticket_uses_the_licensing_resource(monkeypatch):
     provider.authorize(
         client_id,
         "common",
-        "service::https://licensing.m365.svc.cloud.microsoft/::MBI_SSL_SHORT",
+        scopes,
         "",
     )
 
@@ -668,9 +707,14 @@ def test_office_ticket_uses_the_licensing_resource(monkeypatch):
         "openid profile email offline_access "
         "https://licensing.m365.svc.cloud.microsoft/.default"
     ]
+    assert session.requests[0][1]["scope"] == query["scope"][0]
 
 
-def test_telemetry_ticket_does_not_open_the_browser():
+@pytest.mark.parametrize("scopes", (
+    "https://events.data.microsoft.com/OneCollector/1.0/",
+    "https://events.data.microsoft.com/OneCollector/1.0/ openid profile",
+))
+def test_telemetry_ticket_does_not_open_the_browser(scopes):
     opened = []
     provider = MicrosoftIdentityProvider(
         Store(), Session([]), opened.append, Listener
@@ -680,7 +724,7 @@ def test_telemetry_ticket_does_not_open_the_browser():
         provider.authorize(
             "d3590ed6-52b3-4102-aeff-aad2292ab01c",
             "common",
-            "https://events.data.microsoft.com/OneCollector/1.0/",
+            scopes,
             "",
         )
 
@@ -688,7 +732,11 @@ def test_telemetry_ticket_does_not_open_the_browser():
 
 
 @pytest.mark.parametrize("uppercase", (False, True))
-def test_authorization_reuses_the_current_account(uppercase):
+@pytest.mark.parametrize("scopes", (
+    "service::https://licensing.m365.svc.cloud.microsoft/::MBI_SSL_SHORT",
+    "service::https://licensing.m365.svc.cloud.microsoft/::MBI_SSL_SHORT openid profile",
+))
+def test_authorization_reuses_the_current_account(uppercase, scopes):
     client_id = "d3590ed6-52b3-4102-aeff-aad2292ab01c"
 
     class CurrentStore(Store):
@@ -719,12 +767,16 @@ def test_authorization_reuses_the_current_account(uppercase):
     result = provider.authorize(
         client_id.upper() if uppercase else client_id,
         "common",
-        "service::https://licensing.m365.svc.cloud.microsoft/::MBI_SSL_SHORT",
+        scopes,
         "",
     )
 
     assert result.access_token == "new-access"
     assert session.requests[0][1]["client_id"] == client_id
+    assert session.requests[0][1]["scope"] == (
+        "openid profile email offline_access "
+        "https://licensing.m365.svc.cloud.microsoft/.default"
+    )
     assert not opened
 
 

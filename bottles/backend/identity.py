@@ -762,10 +762,10 @@ class MicrosoftIdentityProvider:
 
     @staticmethod
     def _normalize_scopes(scopes: str) -> str:
-        if scopes in UNSUPPORTED_IDENTITY_RESOURCES:
-            raise AuthenticationError("unsupported identity resource")
-        scopes = SCOPE_ALIASES.get(scopes, scopes)
         requested = scopes.split()
+        if any(item in UNSUPPORTED_IDENTITY_RESOURCES for item in requested):
+            raise AuthenticationError("unsupported identity resource")
+        requested = [SCOPE_ALIASES.get(item, item) for item in requested]
         defaults = ["openid", "profile", "email", "offline_access"]
         return " ".join(defaults + [item for item in requested if item not in defaults])
 
@@ -944,7 +944,7 @@ class MicrosoftIdentityProvider:
             else:
                 reason = "invalid audience type"
             logging.warning(f"ID token audience rejected: {reason}", jn=False)
-            raise AuthenticationError("unexpected ID token audience")
+            raise AuthenticationError(f"unexpected ID token audience ({reason})")
         if expected_nonce and claims.get("nonce") != expected_nonce:
             raise AuthenticationError("unexpected ID token nonce")
         now = int(time.time())
