@@ -121,6 +121,8 @@ jobs:
               export TMP="$TMPDIR" TEMP="$TMPDIR"
               command -v dbus-run-session
               xvfb-run -a python3 -m pytest -q \
+                bottles/tests/backend/test_downloader.py \
+                bottles/tests/backend/manager/test_component.py \
                 bottles/tests/backend/test_identity.py \
                 bottles/tests/backend/test_identity_ui.py \
                 bottles/tests/frontend/test_open_uri.py \

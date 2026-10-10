@@ -59,8 +59,9 @@ class Downloader:
 
     def download(self) -> Result:
         """Start the download."""
+        partial_file = f"{self.file}.part"
         try:
-            with open(self.file, "wb") as file:
+            with open(partial_file, "wb") as file:
                 self.start_time = time.time()
                 headers = {
                     "User-Agent": "curl/7.79.1"
@@ -90,15 +91,16 @@ class Downloader:
                     if self.update_func:
                         self.update_func(1, 1)
                         self.__progress(1, 1)
+            os.replace(partial_file, self.file)
         except DownloadCancelled:
             if self.update_func:
                 self.update_func(status=Status.CANCELLED)
             with suppress(FileNotFoundError):
-                os.remove(self.file)
+                os.remove(partial_file)
             return Result(False, message="cancelled")
         except requests.exceptions.SSLError:
             with suppress(OSError):
-                os.remove(self.file)
+                os.remove(partial_file)
             logging.error(
                 "Download failed due to a SSL error. "
                 "Your system may have a wrong date/time or wrong certificates."
@@ -106,7 +108,7 @@ class Downloader:
             return Result(False, message="Download failed due to a SSL error.")
         except (requests.exceptions.RequestException, OSError) as error:
             with suppress(OSError):
-                os.remove(self.file)
+                os.remove(partial_file)
             logging.error(f"Failed to download [{self.url}]: {error}")
             return Result(
                 False, message="Download failed! Check your internet connection."
