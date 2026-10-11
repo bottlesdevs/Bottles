@@ -20,6 +20,7 @@ from bottles.backend.utils.manager import ManagerUtils
 
 
 class DXVKComponent(DLLComponent):
+    restore_builtin = True
     dlls = {
         "x32": ["d3d8.dll", "d3d9.dll", "d3d10core.dll", "d3d11.dll", "dxgi.dll"],
         "x64": ["d3d8.dll", "d3d9.dll", "d3d10core.dll", "d3d11.dll", "dxgi.dll"],

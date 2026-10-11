@@ -1089,83 +1089,33 @@ class PreferencesView(Adw.PreferencesPage):
 
     def __set_dxvk(self, *_args):
         """Set the DXVK version to use for the bottle"""
+        selected = self.combo_dxvk.get_selected()
+        version = self.manager.dxvk_available[selected - 1] if selected else None
         self.set_dxvk_status(pending=True)
         self.queue.add_task()
-
-        if (self.combo_dxvk.get_selected()) == 0:
-            self.set_dxvk_status(pending=True)
-
-            if self.combo_vkd3d.get_selected() != 0:
-                logging.info("VKD3D is enabled, disabling")
-                self.combo_vkd3d.set_selected(0)
-
-            RunAsync(
-                task_func=self.manager.install_dll_component,
-                callback=self.set_dxvk_status,
-                config=self.config,
-                component="dxvk",
-                remove=True,
-            )
-
-            self.config = self.manager.update_config(
-                config=self.config, key="dxvk", value=False, scope="Parameters"
-            ).data["config"]
-        else:
-            dxvk = self.manager.dxvk_available[self.combo_dxvk.get_selected() - 1]
-            self.config = self.manager.update_config(
-                config=self.config, key="DXVK", value=dxvk
-            ).data["config"]
-
-            RunAsync(
-                task_func=self.__dll_component_task_func,
-                callback=self.set_dxvk_status,
-                config=self.config,
-                component="dxvk",
-            )
-
-            self.config = self.manager.update_config(
-                config=self.config, key="dxvk", value=True, scope="Parameters"
-            ).data["config"]
+        RunAsync(
+            task_func=self.manager.set_graphics_component,
+            callback=self.set_dxvk_status,
+            config=self.config,
+            component="dxvk",
+            enabled=selected != 0,
+            version=version,
+        )
 
     def __set_vkd3d(self, *_args):
         """Set the VKD3D version to use for the bottle"""
+        selected = self.combo_vkd3d.get_selected()
+        version = self.manager.vkd3d_available[selected - 1] if selected else None
         self.set_vkd3d_status(pending=True)
         self.queue.add_task()
-
-        if (self.combo_vkd3d.get_selected()) == 0:
-            self.set_vkd3d_status(pending=True)
-
-            RunAsync(
-                task_func=self.manager.install_dll_component,
-                callback=self.set_vkd3d_status,
-                config=self.config,
-                component="vkd3d",
-                remove=True,
-            )
-
-            self.config = self.manager.update_config(
-                config=self.config, key="vkd3d", value=False, scope="Parameters"
-            ).data["config"]
-        else:
-            if self.combo_dxvk.get_selected() == 0:
-                logging.info("DXVK is disabled, reenabling")
-                self.combo_dxvk.set_selected(1)
-
-            vkd3d = self.manager.vkd3d_available[self.combo_vkd3d.get_selected() - 1]
-            self.config = self.manager.update_config(
-                config=self.config, key="VKD3D", value=vkd3d
-            ).data["config"]
-
-            RunAsync(
-                task_func=self.__dll_component_task_func,
-                callback=self.set_vkd3d_status,
-                config=self.config,
-                component="vkd3d",
-            )
-
-            self.config = self.manager.update_config(
-                config=self.config, key="vkd3d", value=True, scope="Parameters"
-            ).data["config"]
+        RunAsync(
+            task_func=self.manager.set_graphics_component,
+            callback=self.set_vkd3d_status,
+            config=self.config,
+            component="vkd3d",
+            enabled=selected != 0,
+            version=version,
+        )
 
     def __set_nvapi(self, *_args):
         """Set the NVAPI version to use for the bottle"""
@@ -1259,17 +1209,39 @@ class PreferencesView(Adw.PreferencesPage):
             value=language[0],
         ).data["config"]
 
+    def __set_graphics_status(self, status, error, pending, spinner):
+        self.combo_dxvk.set_sensitive(not pending)
+        self.combo_vkd3d.set_sensitive(not pending)
+        if pending:
+            spinner.start()
+            spinner.set_visible(True)
+            return
+
+        if not error and isinstance(status, Result) and status.ok and status.data:
+            self.config = status.data["config"]
+        elif error or not isinstance(status, Result) or not status.ok:
+            logging.error("Failed to update graphics components")
+        for name, handler in (
+            ("dxvk", self.__set_dxvk),
+            ("vkd3d", self.__set_vkd3d),
+        ):
+            combo = getattr(self, f"combo_{name}")
+            available = getattr(self.manager, f"{name}_available")
+            version = getattr(self.config, name.upper())
+            selected = 0
+            if getattr(self.config.Parameters, name) and version in available:
+                selected = available.index(version) + 1
+            combo.handler_block_by_func(handler)
+            combo.set_selected(selected)
+            combo.handler_unblock_by_func(handler)
+        spinner.stop()
+        spinner.set_visible(False)
+        self.queue.end_task()
+
     @GtkUtils.run_in_main_loop
     def set_dxvk_status(self, status=None, error=None, pending=False):
         """Set the dxvk status"""
-        self.combo_dxvk.set_sensitive(not pending)
-        if pending:
-            self.spinner_dxvk.start()
-            self.spinner_dxvk.set_visible(True)
-        else:
-            self.spinner_dxvk.stop()
-            self.spinner_dxvk.set_visible(False)
-            self.queue.end_task()
+        self.__set_graphics_status(status, error, pending, self.spinner_dxvk)
 
     @GtkUtils.run_in_main_loop
     def set_d7vk_status(self, status=None, error=None, pending=False):
@@ -1298,14 +1270,7 @@ class PreferencesView(Adw.PreferencesPage):
     @GtkUtils.run_in_main_loop
     def set_vkd3d_status(self, status=None, error=None, pending=False):
         """Set the vkd3d status"""
-        self.combo_vkd3d.set_sensitive(not pending)
-        if pending:
-            self.spinner_vkd3d.start()
-            self.spinner_vkd3d.set_visible(True)
-        else:
-            self.spinner_vkd3d.stop()
-            self.spinner_vkd3d.set_visible(False)
-            self.queue.end_task()
+        self.__set_graphics_status(status, error, pending, self.spinner_vkd3d)
 
     @GtkUtils.run_in_main_loop
     def set_nvapi_status(self, status=None, error=None, pending=False):

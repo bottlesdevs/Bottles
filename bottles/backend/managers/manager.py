@@ -2656,6 +2656,92 @@ class Manager(metaclass=Singleton):
 
         return Result(True, data={"config": updated_config})
 
+    def set_graphics_component(
+        self,
+        config: BottleConfig,
+        component: str,
+        enabled: bool,
+        version: str | None = None,
+    ) -> Result:
+        if component not in ("dxvk", "vkd3d"):
+            return Result(False, message=_("Invalid graphics component."))
+
+        previous = deepcopy(config)
+        candidate = deepcopy(config)
+        selected = version or getattr(config, component.upper())
+        if enabled and not selected:
+            available = getattr(self, f"{component}_available")
+            selected = available[0] if available else ""
+        if enabled and not selected:
+            return Result(False, message=_("No graphics component version available."))
+        if enabled:
+            setattr(candidate, component.upper(), selected)
+        setattr(candidate.Parameters, component, enabled)
+        components = [component]
+        if component == "dxvk" and not enabled and previous.Parameters.vkd3d:
+            candidate.Parameters.vkd3d = False
+            components.insert(0, "vkd3d")
+        elif component == "vkd3d" and enabled and not previous.Parameters.dxvk:
+            candidate.DXVK = previous.DXVK or (
+                self.dxvk_available[0] if self.dxvk_available else ""
+            )
+            if not candidate.DXVK:
+                return Result(False, message=_("No DXVK version available."))
+            candidate.Parameters.dxvk = True
+            components.insert(0, "dxvk")
+
+        changed = []
+
+        def rollback(failure):
+            restored = True
+            for name in reversed(changed):
+                result = self.install_dll_component(
+                    previous,
+                    name,
+                    remove=not getattr(previous.Parameters, name),
+                    version=getattr(previous, name.upper()),
+                )
+                restored = result.ok and restored
+            if not restored:
+                return Result(
+                    False, message=_("Failed to restore graphics components.")
+                )
+            return failure
+
+        for name in components:
+            changed.append(name)
+            result = self.install_dll_component(
+                candidate,
+                name,
+                remove=not getattr(candidate.Parameters, name),
+                version=getattr(candidate, name.upper()),
+            )
+            if not result.ok:
+                return rollback(result)
+
+        current = deepcopy(config)
+        for name in components:
+            setattr(current, name.upper(), getattr(candidate, name.upper()))
+            setattr(current.Parameters, name, getattr(candidate.Parameters, name))
+        candidate = current
+        candidate.Update_Date = str(datetime.now().astimezone().replace(tzinfo=None))
+        bottle_path = ManagerUtils.get_bottle_path(candidate)
+        result = candidate.dump(os.path.join(bottle_path, "bottle.yml"))
+        if not result.ok:
+            return rollback(result)
+
+        config.DXVK = candidate.DXVK
+        config.VKD3D = candidate.VKD3D
+        config.Parameters.dxvk = candidate.Parameters.dxvk
+        config.Parameters.vkd3d = candidate.Parameters.vkd3d
+        config.Update_Date = candidate.Update_Date
+        if config.Name in self.local_bottles:
+            self.local_bottles[config.Name] = config
+        if config.Environment == "Steam":
+            self.steam_manager.update_bottle(config)
+        RegistryRuleManager.apply_rules(config, trigger="components")
+        return Result(True, data={"config": config})
+
     def set_d7vk(
         self, config: BottleConfig, enabled: bool, version: str | None = None
     ) -> Result:
@@ -2914,10 +3000,16 @@ class Manager(metaclass=Singleton):
                 status=False, data={"message": f"Invalid component: {component}"}
             )
 
-        if not remove and component == "d7vk" and not manager.checked_dlls:
+        if (
+            not remove
+            and component in ("d7vk", "dxvk", "vkd3d")
+            and not manager.checked_dlls
+        ):
             return Result(
                 status=False,
-                message=_("The selected D7VK installation is incomplete."),
+                message=_("The selected {0} installation is incomplete.").format(
+                    component.upper()
+                ),
             )
 
         if remove:

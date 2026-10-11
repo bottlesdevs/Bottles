@@ -26,6 +26,7 @@ from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.enum import Arch
 from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.utils.steam import SteamUtils
 from bottles.backend.wine.reg import Reg
 
 logging = Logger()
@@ -36,6 +37,7 @@ class DLLComponent:
     dlls: dict = {}
     checked_dlls: dict = {}
     version: str = ""
+    restore_builtin: bool = False
 
     def __init__(self, version: str):
         self.version = version
@@ -188,6 +190,33 @@ class DLLComponent:
                 return "syswow64"
         return ""
 
+    def __get_builtin_path(self, config: BottleConfig, system: str, dll: str):
+        runner = (
+            config.RunnerPath
+            if config.Environment == "Steam"
+            else ManagerUtils.get_runner_path(config.Runner)
+        )
+        if runner.startswith("sys-"):
+            wine = shutil.which("wine")
+            if not wine:
+                return None
+            runner = os.path.dirname(os.path.dirname(wine))
+        elif SteamUtils.is_proton(runner):
+            runner = SteamUtils.get_dist_directory(runner)
+
+        arch = "i386" if system == "syswow64" or config.Arch == Arch.WIN32 else "x86_64"
+        for directory in (
+            "lib",
+            "lib64",
+            "lib32",
+            "lib/x86_64-linux-gnu",
+            "lib/i386-linux-gnu",
+        ):
+            source = os.path.join(runner, directory, "wine", f"{arch}-windows", dll)
+            if os.path.isfile(source):
+                return source
+        return None
+
     def __install_dll(
         self, config: BottleConfig, path: str, dll: str, remove: bool = False
     ):
@@ -201,6 +230,9 @@ class DLLComponent:
             target = os.path.join(bottle, path, dll_name)
         else:
             target = None
+
+        if target is None:
+            return True
 
         print(f"{source} -> {target}")
 
@@ -249,8 +281,19 @@ class DLLComponent:
                     shutil.copyfile(backup, temporary)
                     os.replace(temporary, target)
                     backup_used = True
-                elif os.path.exists(target):
-                    os.remove(target)
+                else:
+                    builtin = (
+                        self.__get_builtin_path(config, path, dll_name)
+                        if self.restore_builtin
+                        else None
+                    )
+                    if builtin:
+                        fd, temporary = tempfile.mkstemp(dir=os.path.dirname(target))
+                        os.close(fd)
+                        shutil.copyfile(builtin, temporary)
+                        os.replace(temporary, target)
+                    elif os.path.exists(target):
+                        os.remove(target)
                 self.finish_uninstall(target, backup)
                 if backup_used:
                     os.remove(backup)

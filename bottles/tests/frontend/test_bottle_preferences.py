@@ -170,3 +170,88 @@ def test_open_eagle_logs_keeps_window_alive_when_directory_is_unwritable(monkeyp
     PreferencesView._PreferencesView__open_eagle_logs(view, None)
     view.window.show_toast.assert_called_once()
     opened.assert_not_called()
+
+
+def _make_graphics_view(config):
+    from bottles.frontend.views.bottle_preferences import PreferencesView
+
+    view = SimpleNamespace(
+        config=config,
+        manager=Mock(
+            dxvk_available=["dxvk-old", "dxvk-new"],
+            vkd3d_available=["vkd3d-old", "vkd3d-new"],
+        ),
+        combo_dxvk=Mock(),
+        combo_vkd3d=Mock(),
+        spinner_dxvk=Mock(),
+        spinner_vkd3d=Mock(),
+        queue=Mock(),
+    )
+    view._PreferencesView__set_dxvk = Mock()
+    view._PreferencesView__set_vkd3d = Mock()
+    view._PreferencesView__set_graphics_status = lambda *args: (
+        PreferencesView._PreferencesView__set_graphics_status(view, *args)
+    )
+    view.set_dxvk_status = lambda **kwargs: (
+        PreferencesView.set_dxvk_status.__wrapped__(view, **kwargs)
+    )
+    view.set_vkd3d_status = lambda **kwargs: (
+        PreferencesView.set_vkd3d_status.__wrapped__(view, **kwargs)
+    )
+    return view
+
+
+@pytest.mark.parametrize("component", ["dxvk", "vkd3d"])
+def test_graphics_removal_does_not_save_while_pending(monkeypatch, component):
+    from bottles.frontend.views import bottle_preferences
+    from bottles.frontend.views.bottle_preferences import PreferencesView
+
+    config = BottleConfig(DXVK="dxvk-old", VKD3D="vkd3d-old")
+    setattr(config.Parameters, component, True)
+    view = _make_graphics_view(config)
+    getattr(view, f"combo_{component}").get_selected.return_value = 0
+    jobs = []
+    monkeypatch.setattr(
+        bottle_preferences, "RunAsync", lambda **kwargs: jobs.append(kwargs)
+    )
+
+    getattr(PreferencesView, f"_PreferencesView__set_{component}")(view)
+
+    assert getattr(config.Parameters, component)
+    view.manager.update_config.assert_not_called()
+    view.combo_dxvk.set_sensitive.assert_called_once_with(False)
+    view.combo_vkd3d.set_sensitive.assert_called_once_with(False)
+    assert len(jobs) == 1 and jobs[0]["enabled"] is False
+
+
+@pytest.mark.parametrize("component", ["dxvk", "vkd3d"])
+def test_graphics_failure_restores_selector(component):
+    from bottles.backend.models.result import Result
+
+    config = BottleConfig(DXVK="dxvk-old", VKD3D="vkd3d-old")
+    setattr(config.Parameters, component, True)
+    view = _make_graphics_view(config)
+
+    getattr(view, f"set_{component}_status")(status=Result(False, message="failed"))
+
+    getattr(view, f"combo_{component}").set_selected.assert_called_once_with(1)
+    getattr(view, f"combo_{component}").handler_block_by_func.assert_called_once()
+    getattr(view, f"combo_{component}").handler_unblock_by_func.assert_called_once()
+    assert getattr(config.Parameters, component)
+    view.queue.end_task.assert_called_once()
+
+
+def test_graphics_success_updates_both_selectors():
+    from bottles.backend.models.result import Result
+
+    view = _make_graphics_view(BottleConfig())
+    updated = BottleConfig(DXVK="dxvk-new", VKD3D="vkd3d-new")
+    updated.Parameters.dxvk = True
+    updated.Parameters.vkd3d = True
+
+    view.set_vkd3d_status(status=Result(True, data={"config": updated}))
+
+    assert view.config is updated
+    view.combo_dxvk.set_selected.assert_called_once_with(2)
+    view.combo_vkd3d.set_selected.assert_called_once_with(2)
+    view.queue.end_task.assert_called_once()
