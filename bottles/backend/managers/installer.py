@@ -522,9 +522,11 @@ class InstallerManager:
         step: dict,
         log_fn: Optional[Callable[[str], None]] = None,
     ):
+        current_user = os.getenv("USER")
         placeholders = {
             "!bottle_path": ManagerUtils.get_bottle_path(config),
             "!bottle_drive": f"{ManagerUtils.get_bottle_path(config)}/drive_c",
+            "!bottle_userdir": f"{ManagerUtils.get_bottle_path(config)}/drive_c/users/{current_user}",
             "!bottle_name": config.Name,
             "!bottle_arch": config.Arch,
         }
