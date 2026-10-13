@@ -92,7 +92,7 @@ def test_authority_rejects_untrusted_or_ambiguous_uri(value):
         _authority({FIELD_AUTHORITY: value}, "common")
 
 
-def _id_token(client_id, nonce="nonce", username="user@example.com"):
+def _id_token(client_id, nonce="nonce", username="user@example.com", tenant="tenant-id"):
     header = base64.urlsafe_b64encode(b"{}").rstrip(b"=").decode()
     payload = base64.urlsafe_b64encode(
         json.dumps(
@@ -104,7 +104,7 @@ def _id_token(client_id, nonce="nonce", username="user@example.com"):
                 "given_name": "Test",
                 "family_name": "User",
                 "name": "Test User",
-                "tid": "tenant-id",
+                "tid": tenant,
             }
         ).encode()
     ).rstrip(b"=").decode()
@@ -637,6 +637,31 @@ def test_audience_failure_logs_only_the_reason(monkeypatch, audience, reason):
 
     assert warnings == [f"ID token audience rejected: {reason}"]
     assert str(error.value) == f"unexpected ID token audience ({reason})"
+
+
+@pytest.mark.parametrize("client_id,audience,tenant,nonce,accepted", (
+    ("00000000480728C5", "00000000-0000-0000-0000-0000480728C5", "9188040d-6c67-4c5b-b112-36a304b66dad", "nonce", True),
+    ("0123456789ABCDEF", "00000000-0000-0000-0123-456789abcdef", "9188040d-6c67-4c5b-b112-36a304b66dad", "nonce", True),
+    ("00000000480728C5", "00000000-0000-0000-0000-0000480728C6", "9188040d-6c67-4c5b-b112-36a304b66dad", "nonce", False),
+    ("00000000480728C5", "00000001-0000-0000-0000-0000480728C5", "9188040d-6c67-4c5b-b112-36a304b66dad", "nonce", False),
+    ("00000000480728C5", "00000000-0000-0000-0000-0000480728C5", "tenant-id", "nonce", False),
+    ("00000000480728C5", "00000000-0000-0000-0000-0000480728C5", "9188040d-6c67-4c5b-b112-36a304b66dad", "other", False),
+    ("480728C5", "00000000-0000-0000-0000-0000480728C5", "9188040d-6c67-4c5b-b112-36a304b66dad", "nonce", False),
+    ("00000000480728C5", ["00000000-0000-0000-0000-0000480728C5"], "9188040d-6c67-4c5b-b112-36a304b66dad", "nonce", False),
+))
+def test_personal_client_guid_audience(client_id, audience, tenant, nonce, accepted):
+    token = {
+        "access_token": "test-access-token",
+        "refresh_token": "test-refresh-token",
+        "id_token": _id_token(audience, nonce, tenant=tenant),
+        "expires_in": 3600,
+    }
+    if accepted:
+        result = MicrosoftIdentityProvider._result_from_token(token, client_id, "nonce")
+        assert result.account_id == "account-id"
+    else:
+        with pytest.raises(AuthenticationError):
+            MicrosoftIdentityProvider._result_from_token(token, client_id, "nonce")
 
 
 @pytest.mark.parametrize("opcode", (OP_AUTHORIZE, OP_GET_TOKEN))

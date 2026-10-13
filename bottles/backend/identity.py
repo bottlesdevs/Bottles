@@ -297,6 +297,17 @@ def _normalize_client_id(value: str) -> str:
     return value
 
 
+def _matches_token_audience(audience: object, client_id: str, tenant_id: object) -> bool:
+    if audience == client_id:
+        return True
+    if tenant_id != PERSONAL_TENANT or not isinstance(audience, str):
+        return False
+    if not re.fullmatch(r"[0-9a-fA-F]{16}", client_id):
+        return False
+    expected = f"00000000-0000-0000-{client_id[:4]}-{client_id[4:]}"
+    return audience.lower() == expected.lower()
+
+
 def _resolve_client_id(fields: dict[int, bytes]) -> str:
     client_id = _text(fields, FIELD_CLIENT_ID)
     caller_id = _text(fields, FIELD_CALLER_ID).lower()
@@ -933,7 +944,7 @@ class MicrosoftIdentityProvider:
             raise AuthenticationError("incomplete token response")
         claims = _decode_claims(id_token)
         audience = claims.get("aud")
-        if audience != client_id:
+        if not _matches_token_audience(audience, client_id, claims.get("tid")):
             if isinstance(audience, str):
                 reason = (
                     "client ID case mismatch"
