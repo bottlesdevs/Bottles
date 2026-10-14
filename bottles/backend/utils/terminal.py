@@ -201,9 +201,15 @@ class TerminalUtils:
         logging.info(f"Command: {full_cmd}")
 
         try:
-            proc_out = subprocess.Popen(
+            process = subprocess.Popen(
                 full_cmd, shell=True, env=env, stdout=subprocess.PIPE, cwd=cwd
-            ).communicate()[0]
+            )
+            proc_out = process.communicate()[0]
+            if process.returncode:
+                logging.warning(
+                    f"Terminal command exited with status {process.returncode}."
+                )
+                return False
             if proc_out:
                 try:
                     proc_out.decode("utf-8")

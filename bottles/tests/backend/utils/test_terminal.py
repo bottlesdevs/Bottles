@@ -21,6 +21,7 @@ def test_easyterm_keeps_gpu_environment_on_child_only(monkeypatch, mocker):
     mocker.patch.object(terminal, "check_support", return_value=True)
     popen = mocker.patch("bottles.backend.utils.terminal.subprocess.Popen")
     popen.return_value.communicate.return_value = (b"", None)
+    popen.return_value.returncode = 0
     monkeypatch.delenv("ENABLE_BASH", raising=False)
     monkeypatch.delenv("DISPLAY", raising=False)
     command = "wine '/games/My Game.exe'"
@@ -51,6 +52,7 @@ def test_other_terminals_keep_gpu_environment(mocker):
     mocker.patch.object(terminal, "check_support", return_value=True)
     popen = mocker.patch("bottles.backend.utils.terminal.subprocess.Popen")
     popen.return_value.communicate.return_value = (b"", None)
+    popen.return_value.returncode = 0
 
     assert terminal.execute("wine game.exe", env=GPU_ENV.copy()) is True
 
@@ -64,6 +66,7 @@ def test_xterm_gets_host_display_without_passing_it_to_wine(monkeypatch, mocker)
     mocker.patch.object(terminal, "check_support", return_value=True)
     popen = mocker.patch("bottles.backend.utils.terminal.subprocess.Popen")
     popen.return_value.communicate.return_value = (b"", None)
+    popen.return_value.returncode = 0
     monkeypatch.setenv("DISPLAY", ":42")
 
     assert terminal.execute("wine cmd", env={"WAYLAND_DISPLAY": "wayland-0"}) is True
@@ -89,6 +92,7 @@ def test_terminal_keeps_requested_child_display(monkeypatch, mocker):
     mocker.patch.object(terminal, "check_support", return_value=True)
     popen = mocker.patch("bottles.backend.utils.terminal.subprocess.Popen")
     popen.return_value.communicate.return_value = (b"", None)
+    popen.return_value.returncode = 0
     monkeypatch.setenv("DISPLAY", ":42")
 
     assert terminal.execute("wine cmd", env={"DISPLAY": ":7"}) is True
@@ -105,6 +109,7 @@ def test_easyterm_interactive_bash_keeps_gpu_environment(monkeypatch, mocker):
     mocker.patch.object(terminal, "check_support", return_value=True)
     popen = mocker.patch("bottles.backend.utils.terminal.subprocess.Popen")
     popen.return_value.communicate.return_value = (b"", None)
+    popen.return_value.returncode = 0
     monkeypatch.setenv("ENABLE_BASH", "1")
     monkeypatch.delenv("DISPLAY", raising=False)
 
@@ -136,6 +141,7 @@ def test_easyterm_uses_stable_wrapper_cwd(monkeypatch, mocker, tmp_path, request
     mocker.patch.object(terminal, "check_support", return_value=True)
     popen = mocker.patch("bottles.backend.utils.terminal.subprocess.Popen")
     popen.return_value.communicate.return_value = (b"", None)
+    popen.return_value.returncode = 0
     stable_cwd = str(tmp_path / "bottles")
     monkeypatch.setattr(terminal_module.Paths, "base", stable_cwd)
 
@@ -152,6 +158,7 @@ def test_easyterm_preserves_current_cwd_when_unspecified(monkeypatch, mocker, tm
     mocker.patch.object(terminal, "check_support", return_value=True)
     popen = mocker.patch("bottles.backend.utils.terminal.subprocess.Popen")
     popen.return_value.communicate.return_value = (b"", None)
+    popen.return_value.returncode = 0
     stable_cwd = str(tmp_path / "bottles")
     current_cwd = str(tmp_path / "current directory")
     monkeypatch.setattr(terminal_module.Paths, "base", stable_cwd)
@@ -170,6 +177,7 @@ def test_easyterm_uses_stable_cwd_when_getcwd_fails(monkeypatch, mocker, tmp_pat
     mocker.patch.object(terminal, "check_support", return_value=True)
     popen = mocker.patch("bottles.backend.utils.terminal.subprocess.Popen")
     popen.return_value.communicate.return_value = (b"", None)
+    popen.return_value.returncode = 0
     stable_cwd = str(tmp_path / "bottles")
     monkeypatch.setattr(terminal_module.Paths, "base", stable_cwd)
 
@@ -183,3 +191,15 @@ def test_easyterm_uses_stable_cwd_when_getcwd_fails(monkeypatch, mocker, tmp_pat
     easyterm_args = shlex.split(popen.call_args.args[0])
     assert easyterm_args[easyterm_args.index("-w") + 1] == stable_cwd
     assert popen.call_args.kwargs["cwd"] == stable_cwd
+
+
+@pytest.mark.parametrize("returncode", [1, 7, -15])
+def test_terminal_reports_process_failure(mocker, returncode):
+    terminal = TerminalUtils()
+    terminal.terminal = ["xterm", "-e %s"]
+    mocker.patch.object(terminal, "check_support", return_value=True)
+    popen = mocker.patch("bottles.backend.utils.terminal.subprocess.Popen")
+    popen.return_value.communicate.return_value = (b"", None)
+    popen.return_value.returncode = returncode
+
+    assert terminal.execute("wine cmd") is False
