@@ -5,6 +5,7 @@ import pytest
 from bottles.backend.managers.installer import InstallerManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
+from bottles.backend.repos.installer import InstallerRepo
 
 
 @pytest.mark.parametrize(
@@ -61,6 +62,48 @@ def test_installer_refreshes_catalog_and_cached_manifests(mocker):
     repository.get.return_value = {"Version": 2}
     assert installer.refresh_catalog() == {"new": {"Name": "New"}}
     assert installer.get_installer("office") == {"Version": 2}
+
+
+@pytest.mark.parametrize("connected", [True, False])
+def test_installer_uses_loaded_catalog_without_network(mocker, connected):
+    installer = object.__new__(InstallerManager)
+    installer._InstallerManager__repo = mocker.Mock(
+        catalog={"z": {"Name": "Last"}, "office": {"Name": "Office"}}
+    )
+    installer._InstallerManager__utils_conn = mocker.Mock()
+    installer._InstallerManager__utils_conn.check_connection.return_value = connected
+
+    assert list(installer.fetch_catalog()) == ["office", "z"]
+
+
+@pytest.mark.parametrize("initial_catalog", [None, {}])
+def test_installer_catalog_recovers_when_repository_becomes_ready(mocker, initial_catalog):
+    repository = mocker.Mock(catalog=initial_catalog)
+    installer = object.__new__(InstallerManager)
+    installer._InstallerManager__repo = repository
+    installer._InstallerManager__utils_conn = mocker.Mock(check_connection=lambda: True)
+
+    assert installer.fetch_catalog() == {}
+    repository.catalog = {"office": {"Name": "Office"}}
+    assert installer.fetch_catalog() == {"office": {"Name": "Office"}}
+
+
+def test_installer_catalog_loaded_from_repository_cache(monkeypatch, tmp_path):
+    monkeypatch.setattr("bottles.backend.repos.repo.Paths.temp", str(tmp_path))
+    repository = InstallerRepo(
+        "https://repo.example.test/",
+        "",
+        catalog_data=b"office:\n  Name: Office\n  Category: Office\n",
+    )
+    repository.offline = True
+    repository.catalog = None
+    repository.refresh()
+    installer = object.__new__(InstallerManager)
+    installer._InstallerManager__repo = repository
+
+    assert installer.fetch_catalog() == {
+        "office": {"Name": "Office", "Category": "Office"}
+    }
 
 
 @pytest.mark.parametrize("current_value", [True, False])

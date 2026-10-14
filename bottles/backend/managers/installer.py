@@ -48,7 +48,6 @@ class InstallerManager:
             offline,
             callback_in_main_loop=not manager.is_cli,
         )
-        self.__utils_conn = manager.utils_conn
         self.__component_manager = manager.component_manager
         self.__local_resources = {}
 
@@ -72,13 +71,12 @@ class InstallerManager:
         """
         return self.__repo.get(installer_name, plain)
 
-    @lru_cache
     def fetch_catalog(self) -> dict:
         """Fetch the installers catalog from the repository"""
         catalog = {}
         index = self.__repo.catalog
-        if not self.__utils_conn.check_connection():
-            return {}
+        if not isinstance(index, dict):
+            return catalog
 
         for installer in index.items():
             catalog[installer[0]] = installer[1]
@@ -88,7 +86,6 @@ class InstallerManager:
 
     def refresh_catalog(self) -> dict:
         self.__repo.refresh()
-        self.fetch_catalog.cache_clear()
         self.get_installer.cache_clear()
         self.get_review.cache_clear()
         return self.fetch_catalog()
