@@ -205,12 +205,12 @@ class EagleView(Gtk.Box):
     def __on_eagle_finished(self, res: Result) -> None:
         self.__mark_last_step_completed()
 
-        self.analysis_results = res.data
-        data = self.analysis_results
+        self.analysis_results = res.data if res.status else None
+        data = res.data or {}
         details = data.get("details", {})
         
         self.group_results.set_visible(True)
-        self.group_donate.set_visible(True)
+        self.group_donate.set_visible(res.status)
 
         # Clear existing rows
         if self._results_rows:
@@ -222,6 +222,23 @@ class EagleView(Gtk.Box):
         def _add_result(row):
             self.group_results.add(row)
             self._results_rows.append(row)
+
+        if not res.status:
+            message = data.get("error") if isinstance(data, dict) else str(data)
+            _add_result(self.__create_info_row(
+                _("Analysis failed"),
+                str(message).strip() if message else _("Could not analyse this file."),
+                "dialog-warning-symbolic",
+            ))
+            self.group_warnings.set_visible(False)
+            self.group_files.set_visible(False)
+            self.group_dependencies.set_visible(False)
+            self.list_suggestions.get_ancestor(Adw.PreferencesGroup).set_visible(False)
+            self.banner_disclaimer.set_revealed(False)
+            self.btn_launch.set_visible(False)
+            self.btn_report.set_visible(False)
+            self.stack.set_visible_child_name("results")
+            return
 
         _add_result(self.__create_info_row(
             _("Product Name"), 
@@ -663,7 +680,7 @@ class EagleView(Gtk.Box):
                     )
                 self.list_suggestions.append(row)
                 has_opts = True
-        self.list_suggestions.get_parent().set_visible(has_opts)
+        self.list_suggestions.get_ancestor(Adw.PreferencesGroup).set_visible(has_opts)
         self.group_dependencies.set_visible(has_deps)
 
         self.stack.set_visible_child_name("results")
