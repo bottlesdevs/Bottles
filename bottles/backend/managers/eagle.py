@@ -31,11 +31,13 @@ from gettext import gettext as _
 
 from bottles.backend.globals import Paths
 from bottles.backend.managers.intel import EagleIntel
+from bottles.backend.managers import eaglenative
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
 from bottles.backend.state import SignalManager, Signals
 from bottles.backend.logger import Logger
 from bottles.backend.params import APP_ID
+from bottles.backend.utils.manager import ManagerUtils
 
 from gi.repository import Gio, GLib
 
@@ -568,6 +570,24 @@ class EagleManager:
 
     def analyze(self, executable_path: str) -> None:
         """Perform comprehensive PE analysis with YARA pattern matching."""
+        runner = ""
+        if self.config.get("Environment") == "Steam":
+            runner = self.config.get("RunnerPath", "")
+        elif self.config.get("Runner") and not self.config.get("Runner").startswith("sys-"):
+            runner = ManagerUtils.get_runner_path(self.config.get("Runner"))
+        executable = eaglenative.command(runner)
+        if executable:
+            try:
+                settings = Gio.Settings.new(APP_ID)
+                results = eaglenative.analyze(
+                    executable, executable_path, settings.get_int("eagle-scan-limit"),
+                    lambda message: self._send_step(message, delay=False), Paths.temp,
+                )
+                SignalManager.send(Signals.EagleFinished, Result(status=True, data=results))
+            except Exception as error:
+                logging.error(f"[Eagle] {error}")
+                SignalManager.send(Signals.EagleFinished, Result(status=False, data={"error": str(error)}))
+            return
         self._send_step("Initialising Eagle...")
         basename = os.path.basename(executable_path)
         exe_dir = os.path.dirname(executable_path)
