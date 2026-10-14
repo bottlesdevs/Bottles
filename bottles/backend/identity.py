@@ -396,9 +396,18 @@ class SecretTokenStore:
             ):
                 reason = broker_error
             logging.warning(f"cpak credential broker failed: {reason}")
-            raise AuthenticationStorageError(
+            message = (
                 "Secure credential storage is unavailable. Start or unlock a Secret Service provider, such as GNOME Keyring or KWallet, and try again."
-            ) from exc
+            )
+            if isinstance(exc, FileNotFoundError):
+                message = (
+                    "The cpak credential broker is missing. Update cpak and check your saved permissions override, then restart Bottles."
+                )
+            elif broker_error == "secret operation is not permitted":
+                message = (
+                    "The cpak permissions do not allow credential storage. Check your saved permissions override and restart Bottles."
+                )
+            raise AuthenticationStorageError(message) from exc
 
     def _write(self, attributes, label, value):
         if is_cpak():

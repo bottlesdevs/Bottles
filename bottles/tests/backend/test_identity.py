@@ -1524,7 +1524,7 @@ def test_cpak_store_uses_only_the_scoped_shim(monkeypatch):
     assert store.load("client", "") is None
 
 
-@pytest.mark.parametrize("failure", ("missing-shim", "denied", "scope", "malformed", "private-stderr"))
+@pytest.mark.parametrize("failure", ("missing-shim", "denied", "permissions", "scope", "malformed", "private-stderr"))
 def test_cpak_keyring_failure_never_falls_back_to_host_bus(monkeypatch, failure):
     monkeypatch.setenv("CPAK_CONTAINER_ID", "synthetic")
 
@@ -1538,6 +1538,10 @@ def test_cpak_keyring_failure_never_falls_back_to_host_bus(monkeypatch, failure)
                 1,
                 args,
                 stderr="secure credential storage is unavailable or locked",
+            )
+        if failure == "permissions":
+            raise subprocess.CalledProcessError(
+                1, args, stderr="secret operation is not permitted",
             )
         if failure == "private-stderr":
             raise subprocess.CalledProcessError(
@@ -1558,8 +1562,16 @@ def test_cpak_keyring_failure_never_falls_back_to_host_bus(monkeypatch, failure)
     monkeypatch.setattr("bottles.backend.identity.subprocess.run", request)
     monkeypatch.setattr("bottles.backend.identity.logging.warning", warnings.append)
     monkeypatch.setattr("bottles.backend.identity.Secret.password_lookup_sync", forbidden)
-    with pytest.raises(AuthenticationStorageError):
+    with pytest.raises(AuthenticationStorageError) as error:
         SecretTokenStore("context").load("client", "account")
+    if failure == "missing-shim":
+        assert "cpak credential broker is missing" in str(error.value)
+        assert "unlock" not in str(error.value)
+    elif failure == "permissions":
+        assert "cpak permissions do not allow credential storage" in str(error.value)
+        assert "unlock" not in str(error.value)
+    else:
+        assert "Secure credential storage is unavailable" in str(error.value)
     assert len(warnings) == 1
     assert "synthetic" not in warnings[0]
     assert "account@example.invalid" not in warnings[0]
