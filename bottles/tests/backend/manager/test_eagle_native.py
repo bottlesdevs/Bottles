@@ -72,6 +72,20 @@ def test_invalid_and_failed_reports_are_errors(native_runner, tmp_path, output):
         eaglenative.analyze(str(executable), "fixture.exe", 1, lambda text: None, str(tmp_path / "work"))
 
 
+@pytest.mark.parametrize("messages", [
+    [{"status": True, "data": {}}, {"event": "step", "data": "late step"}],
+    [{"status": True, "data": {}, "event": "unknown"}],
+])
+def test_terminal_report_rejects_late_or_unknown_events(native_runner, tmp_path, messages):
+    _, executable = native_runner
+    output = "".join(json.dumps(message) + "\n" for message in messages)
+    executable.write_text("#!" + sys.executable + "\nimport sys\nsys.stdout.write(" + repr(output) + ")\n")
+    steps = []
+    with pytest.raises(ValueError, match="unexpected analysis response"):
+        eaglenative.analyze(str(executable), "fixture.exe", 1, steps.append, str(tmp_path / "work"))
+    assert steps == []
+
+
 def test_stderr_is_drained_and_failure_is_reported(native_runner, tmp_path):
     _, executable = native_runner
     executable.write_text("#!" + sys.executable + "\nimport sys\n"
