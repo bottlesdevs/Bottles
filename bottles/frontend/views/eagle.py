@@ -868,7 +868,7 @@ class EagleView(Gtk.Box):
             lines.append("")
         
         lines.append("## Detected Technologies")
-        for category in ["Graphics", "Audio", "Runtimes", "Frameworks", "Engines", "Input", "Protection", "Social/DRM", "Installer"]:
+        for category in ["Graphics", "Audio", "Runtimes", "Frameworks", "Engines", "Input", "Protection", "Social/DRM", "Installer", "Upscaling", "Physics", "Media", "Crypto", "System"]:
             items = details.get(category, [])
             if items:
                 lines.append(f"### {category}")
@@ -920,7 +920,14 @@ class EagleView(Gtk.Box):
                 lines.append(f"- `{fname}`")
             lines.append("")
 
-        warnings = details.get("Warning", [])
+        system_alerts = [
+            item for item in details.get("System", [])
+            if isinstance(item, dict) and item.get("severity") in ["high", "critical"]
+        ]
+        warnings = (
+            details.get("Security", []) + details.get("Warning", [])
+            + data.get("messages", []) + system_alerts
+        )
         if warnings:
             lines.append("## Compatibility Warnings")
             for warn in warnings:
@@ -952,8 +959,12 @@ class EagleView(Gtk.Box):
         overrides = [s for s in suggestions if not s.get("key", "").startswith("dep_")]
         if overrides:
             lines.append("## Suggested Overrides")
+            row = self.list_suggestions.get_first_child()
             for ovr in overrides:
                 selected = ovr.get("apply", bool(ovr.get("value")))
+                if row is not None:
+                    selected = row.get_active()
+                    row = row.get_next_sibling()
                 status = "[x]" if selected else "[ ]"
                 lines.append(f"- {status} {ovr.get('label', 'Unknown')}")
             lines.append("")
