@@ -21,6 +21,7 @@ def test_interrupted_download_is_not_cached(tmp_path, monkeypatch):
         headers={"content-length": "14"},
         raise_for_status=lambda: None,
         iter_content=chunks,
+        close=lambda: None,
     )
     monkeypatch.setattr(downloader_module.requests, "get", lambda *a, **kw: response)
 
@@ -56,6 +57,7 @@ def test_failed_download_preserves_existing_file(tmp_path, monkeypatch, cancel):
         headers={"content-length": "14"},
         raise_for_status=lambda: None,
         iter_content=chunks,
+        close=lambda: None,
     )
     monkeypatch.setattr(downloader_module.requests, "get", lambda *a, **kw: response)
 
@@ -69,7 +71,10 @@ def test_failed_download_preserves_existing_file(tmp_path, monkeypatch, cancel):
 def test_download_without_content_length(tmp_path, monkeypatch):
     destination = tmp_path / "dependency.exe"
     response = SimpleNamespace(
-        headers={}, raise_for_status=lambda: None, content=b"complete"
+        headers={},
+        raise_for_status=lambda: None,
+        iter_content=lambda size: iter([b"complete"]),
+        close=lambda: None,
     )
     monkeypatch.setattr(downloader_module.requests, "get", lambda *a, **kw: response)
 
@@ -78,3 +83,60 @@ def test_download_without_content_length(tmp_path, monkeypatch):
     ).download().ok
     assert destination.read_bytes() == b"complete"
     assert not destination.with_name("dependency.exe.part").exists()
+
+
+def test_cancelled_download_does_not_start_request(tmp_path, monkeypatch):
+    destination = tmp_path / "dependency.exe"
+    destination.write_bytes(b"previous")
+    event = Event()
+    event.set()
+
+    def request(*args, **kwargs):
+        pytest.fail("cancelled download started a request")
+
+    monkeypatch.setattr(downloader_module.requests, "get", request)
+    result = Downloader(
+        "https://example.org/dependency.exe", str(destination), cancel_event=event
+    ).download()
+
+    assert not result.ok
+    assert result.message == "cancelled"
+    assert destination.read_bytes() == b"previous"
+    assert not destination.with_name("dependency.exe.part").exists()
+
+
+@pytest.mark.parametrize("length", [None, "14"])
+@pytest.mark.parametrize("at_end", [False, True])
+def test_cancelled_stream_preserves_existing_file(tmp_path, monkeypatch, length, at_end):
+    destination = tmp_path / "dependency.exe"
+    destination.write_bytes(b"previous")
+    event = Event()
+    closed = []
+    updates = []
+
+    def chunks(size):
+        yield b"partial"
+        event.set()
+        if not at_end:
+            yield b"cancelled"
+
+    response = SimpleNamespace(
+        headers={"content-length": length} if length else {},
+        raise_for_status=lambda: None,
+        iter_content=chunks,
+        close=lambda: closed.append(True),
+    )
+    monkeypatch.setattr(downloader_module.requests, "get", lambda *a, **kw: response)
+    result = Downloader(
+        "https://example.org/dependency.exe",
+        str(destination),
+        cancel_event=event,
+        update_func=lambda *args, **kwargs: updates.append((args, kwargs)),
+    ).download()
+
+    assert not result.ok
+    assert result.message == "cancelled"
+    assert destination.read_bytes() == b"previous"
+    assert not destination.with_name("dependency.exe.part").exists()
+    assert closed == [True]
+    assert updates[-1] == ((), {"status": downloader_module.Status.CANCELLED})
