@@ -187,6 +187,10 @@ class InstallerDialog(Adw.Window):
         RunAsync(fetch_icon, callback=set_icon)
 
     def __check_resources(self, *_args):
+        manifest = self.manager.installer_manager.get_installer(self.installer[0])
+        if not isinstance(manifest, dict):
+            self.__error(_("Could not load the installer. Please try again."))
+            return
         self.__local_resources = self.manager.installer_manager.has_local_resources(
             self.installer
         )
@@ -217,7 +221,9 @@ class InstallerDialog(Adw.Window):
 
             if result.ok:
                 return self.__installed()
-            _err = result.data.get("message", _("Installer failed with unknown error"))
+            _err = result.message or (result.data or {}).get(
+                "message", _("Installer failed with unknown error")
+            )
             self.__error(_err)
 
         self.set_steps(self.manager.installer_manager.count_steps(self.installer))

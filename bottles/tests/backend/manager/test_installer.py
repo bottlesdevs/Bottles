@@ -56,6 +56,8 @@ def test_installer_refreshes_catalog_and_cached_manifests(mocker):
     installer._InstallerManager__repo = repository
     installer._InstallerManager__utils_conn = mocker.Mock(check_connection=lambda: True)
 
+    installer._InstallerManager__manifests = {}
+
     assert installer.fetch_catalog() == {"old": {"Name": "Old"}}
     repository.get.return_value = {"Version": 1}
     assert installer.get_installer("office") == {"Version": 1}
@@ -104,6 +106,35 @@ def test_installer_catalog_loaded_from_repository_cache(monkeypatch, tmp_path):
     assert installer.fetch_catalog() == {
         "office": {"Name": "Office", "Category": "Office"}
     }
+
+
+def test_installer_retries_missing_manifest_and_caches_success(mocker):
+    manager = mocker.Mock()
+    repository = manager.repository_manager.get_repo.return_value
+    repository.get.side_effect = [False, {"Name": "Office"}]
+    installer = InstallerManager(manager)
+
+    assert installer.get_installer("office") is False
+    assert installer.get_installer("office") == {"Name": "Office"}
+    assert installer.get_installer("office") == {"Name": "Office"}
+    assert repository.get.call_count == 2
+
+
+def test_installer_reports_missing_manifest_without_starting(mocker):
+    manager = mocker.Mock()
+    manager.repository_manager.get_repo.return_value.get.return_value = False
+    installer = InstallerManager(manager)
+    executor = mocker.patch("bottles.backend.managers.installer.WineExecutor")
+    step = mocker.Mock()
+
+    assert installer.has_local_resources(("office",)) == []
+    assert installer.count_steps(("office",)) == {"total": 0, "sections": []}
+    result = installer.install(BottleConfig(Name="Test"), ("office",), step)
+
+    assert result.ok is False
+    assert result.data["message"] == "Cannot find manifest for office."
+    step.assert_not_called()
+    executor.assert_not_called()
 
 
 @pytest.mark.parametrize("current_value", [True, False])

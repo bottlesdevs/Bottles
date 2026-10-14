@@ -4,6 +4,10 @@ from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import Mock
 
+import pytest
+
+from bottles.backend.models.result import Result
+
 
 class TemplateStub:
     def __init__(self, **_kwargs):
@@ -75,3 +79,41 @@ def test_installer_activity_displays_manifest_label():
     dialog.label_activity.set_label.assert_called_once_with(
         "Running Microsoft 365 setup..."
     )
+
+
+@pytest.mark.parametrize(
+    ("result", "message"),
+    [
+        (Result(False, message="Download failed."), "Download failed."),
+        (Result(False, data={"message": "Setup failed."}), "Setup failed."),
+        (Result(False), "Installer failed with unknown error"),
+    ],
+)
+def test_installer_failure_callback_displays_error(monkeypatch, result, message):
+    pending = []
+    method = InstallerDialog._InstallerDialog__install
+    monkeypatch.setitem(
+        method.__globals__, "RunAsync", lambda **kwargs: pending.append(kwargs)
+    )
+    monkeypatch.setattr(
+        method.__globals__["GLib"], "timeout_add_seconds", lambda *_args: 1
+    )
+    dialog = Mock()
+
+    method(dialog)
+    pending[0]["callback"].__wrapped__(result)
+
+    dialog._InstallerDialog__error.assert_called_once_with(message)
+
+
+def test_missing_manifest_stops_before_starting_installation():
+    dialog = Mock(installer=("office",))
+    dialog.manager.installer_manager.get_installer.return_value = False
+
+    InstallerDialog._InstallerDialog__check_resources(dialog)
+
+    dialog._InstallerDialog__error.assert_called_once_with(
+        "Could not load the installer. Please try again."
+    )
+    dialog.manager.installer_manager.has_local_resources.assert_not_called()
+    dialog._InstallerDialog__install.assert_not_called()
