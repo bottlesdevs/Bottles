@@ -676,11 +676,11 @@ class EagleManager:
             if arch == "ARM64":
                 insights["Warning"].append({
                     "name": "ARM64 binary",
-                    "description": "NOT SUPPORTED in Wine",
-                    "severity": "critical",
+                    "description": "Requires an ARM64-capable Wine runner.",
+                    "severity": "warning",
                     "source": "Main Executable"
                 })
-                self._send_step("[!] WARNING: ARM64 binary will not work in Wine")
+                self._send_step("[!] ARM64 requires a matching Wine runner")
 
             self._send_step("Checking PE characteristics...")
             char = pe.FILE_HEADER.Characteristics
