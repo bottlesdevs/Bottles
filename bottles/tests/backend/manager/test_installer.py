@@ -699,3 +699,56 @@ def test_run_winecommand_reports_progress_before_returning(mocker, tmp_path):
         "total progress=55",
         "Finished setup.exe",
     ]
+
+
+@pytest.mark.parametrize(
+    ("failure", "message"),
+    [
+        (
+            Result(False, message="Cannot find manifest for office-runtime."),
+            "Failed to install office-runtime. Cannot find manifest for office-runtime.",
+        ),
+        (
+            Result(False, data={"message": "Download failed."}),
+            "Failed to install office-runtime. Download failed.",
+        ),
+        (Result(False), "Failed to install office-runtime."),
+    ],
+)
+def test_installer_keeps_dependency_failure_details(mocker, failure, message):
+    manager = mocker.Mock()
+    manifest = {
+        "Name": "Editor",
+        "Executable": {"file": "editor.exe", "name": "Editor"},
+        "Dependencies": ["office-runtime", "next-runtime"],
+    }
+    manager.repository_manager.get_repo.return_value.get.return_value = manifest
+    manager.supported_dependencies = {"office-runtime": {"Category": "Essentials"}}
+    manager.dependency_manager.install.return_value = failure
+    installer = InstallerManager(manager)
+    config = BottleConfig(Name="Test")
+    executor = mocker.patch("bottles.backend.managers.installer.WineExecutor")
+    logs = []
+
+    result = installer.install(config, ("editor",), lambda *_args: None, log_fn=logs.append)
+
+    assert result.ok is False
+    assert result.message == message
+    assert result.data["message"] == message
+    assert logs == [message]
+    manager.dependency_manager.install.assert_called_once_with(
+        config, ["office-runtime", {"Category": "Essentials"}]
+    )
+    executor.assert_not_called()
+
+
+def test_installer_skips_installed_dependencies(mocker):
+    manager = mocker.Mock()
+    installer = InstallerManager(manager)
+    config = BottleConfig(Name="Test", Installed_Dependencies=["runtime"])
+
+    installer._InstallerManager__install_dependencies(
+        config, ["runtime"], lambda *_args: None
+    )
+
+    manager.dependency_manager.install.assert_not_called()

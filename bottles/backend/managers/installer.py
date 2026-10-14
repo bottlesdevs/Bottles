@@ -178,9 +178,13 @@ class InstallerManager:
             res = self.__manager.dependency_manager.install(_config, _dep)
 
             if not res.ok:
-                return False
+                detail = res.message or (res.data or {}).get("message")
+                message = f"Failed to install {dep}."
+                if detail:
+                    message += f" {detail}"
+                return Result(False, message=message)
 
-        return True
+        return Result(True)
 
     @staticmethod
     def __perform_checks(config, checks: dict):
@@ -736,11 +740,14 @@ class InstallerManager:
         # install dependencies
         if dependencies:
             logging.info("Installing dependencies")
-            if not self.__install_dependencies(
+            result = self.__install_dependencies(
                 _config, dependencies, step_fn, is_final
-            ):
+            )
+            if not result.ok:
+                if log_fn:
+                    log_fn(result.message)
                 return Result(
-                    False, data={"message": "Dependencies installation failed."}
+                    False, data={"message": result.message}, message=result.message
                 )
 
         # set parameters

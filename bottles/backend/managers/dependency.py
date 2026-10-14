@@ -18,7 +18,6 @@
 import os
 import shutil
 import traceback
-from functools import lru_cache
 from glob import glob
 from typing import Callable, Optional
 
@@ -57,12 +56,17 @@ class DependencyManager:
         )
         self.__offline = offline
         self.__checksum_cache = {}
+        self.__manifests = {}
 
-    @lru_cache
     def get_dependency(self, name: str, plain: bool = False) -> str | dict | bool:
-        return self.__repo.get(name, plain)
+        key = (name, plain)
+        if key not in self.__manifests:
+            manifest = self.__repo.get(name, plain)
+            if manifest:
+                self.__manifests[key] = manifest
+            return manifest
+        return self.__manifests[key]
 
-    @lru_cache
     def fetch_catalog(self) -> dict:
         """
         Fetch all dependencies from the Bottles repository
