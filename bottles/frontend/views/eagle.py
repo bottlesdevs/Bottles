@@ -75,6 +75,9 @@ class EagleView(Gtk.Box):
         """
         Starts the analysis process on the given executable path.
         """
+        if self.target_path is not None:
+            self.manager = EagleManager(self.config)
+        manager = self.manager
         self.target_path = executable_path
         self.analysis_results = None
         
@@ -116,7 +119,7 @@ class EagleView(Gtk.Box):
             self._results_rows.clear()
 
         def _analyze():
-            self.manager.analyze(executable_path)
+            manager.analyze(executable_path)
 
         RunAsync(_analyze)
 
@@ -176,6 +179,8 @@ class EagleView(Gtk.Box):
 
     @GtkUtils.run_in_main_loop
     def __on_eagle_step(self, res: Result) -> None:
+        if getattr(res, "eagle_source", None) is not self.manager:
+            return
         msg = res.data
         if not msg or not msg.strip():
             return
@@ -203,6 +208,8 @@ class EagleView(Gtk.Box):
 
     @GtkUtils.run_in_main_loop
     def __on_eagle_finished(self, res: Result) -> None:
+        if getattr(res, "eagle_source", None) is not self.manager:
+            return
         self.__mark_last_step_completed()
 
         self.analysis_results = res.data if res.status else None

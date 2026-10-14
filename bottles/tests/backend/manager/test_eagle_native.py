@@ -182,4 +182,16 @@ def test_manager_sends_native_report_or_failure_once(monkeypatch, fails):
     assert len(events) == 1
     assert events[0][0] == eagle_module.Signals.EagleFinished
     assert events[0][1].status is not fails
+    assert events[0][1].eagle_source is manager
     assert events[0][1].data == ({"error": "native failure"} if fails else {"name": "fixture.exe"})
+
+
+def test_step_signal_identifies_its_manager(monkeypatch):
+    manager = EagleManager.__new__(EagleManager)
+    events = []
+    monkeypatch.setattr(eagle_module.SignalManager, "send", lambda kind, result: events.append((kind, result)))
+    manager._send_step("fixture step", delay=False)
+    assert len(events) == 1
+    assert events[0][0] == eagle_module.Signals.EagleStep
+    assert events[0][1].data == "fixture step"
+    assert events[0][1].eagle_source is manager
