@@ -752,13 +752,21 @@ class EagleView(Gtk.Box):
         if arguments:
             program["arguments"] = " ".join(arguments)
         
-        config = manager.update_config(
-            config=config,
+        program_config = config.copy()
+        program_config.External_Programs = config.External_Programs.copy()
+        result = manager.update_config(
+            config=program_config,
             key=_uuid,
             value=program,
             scope="External_Programs",
             fallback=True,
-        ).data["config"]
+        )
+        if not result.status:
+            self.details.window.show_toast(
+                _("Could not save the program: {0}").format(result.message)
+            )
+            return
+        config = result.data["config"]
         
         view_bottle.config = config
         view_bottle.update_programs(config=config, force_add=program)

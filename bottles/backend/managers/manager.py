@@ -1676,7 +1676,9 @@ class Manager(metaclass=Singleton):
             else:
                 config[key] = value
 
-        config.dump(os.path.join(bottle_path, "bottle.yml"))
+        result = config.dump(os.path.join(bottle_path, "bottle.yml"))
+        if not result.status:
+            return Result(False, data={"config": config}, message=result.message)
 
         config.Update_Date = str(datetime.now())
 
