@@ -85,6 +85,33 @@ def test_download_without_content_length(tmp_path, monkeypatch):
     assert not destination.with_name("dependency.exe.part").exists()
 
 
+@pytest.mark.parametrize("length,total", [
+    ("8, 8", 8), ("08, 8", 8), ("unknown", 0), ("", 0), ("-8", 0), (None, 0),
+])
+def test_download_handles_repeated_or_invalid_content_length(tmp_path, monkeypatch, length, total):
+    destination = tmp_path / "dependency.exe"
+    destination.write_bytes(b"previous")
+    updates = []
+    closed = []
+    response = SimpleNamespace(
+        headers={"content-length": length},
+        raise_for_status=lambda: None,
+        iter_content=lambda size: iter([b"complete"]),
+        close=lambda: closed.append(True),
+    )
+    monkeypatch.setattr(downloader_module.requests, "get", lambda *a, **kw: response)
+    result = Downloader(
+        "https://example.org/dependency.exe", str(destination),
+        update_func=lambda *args, **kwargs: updates.append((args, kwargs)),
+    ).download()
+
+    assert result.ok
+    assert destination.read_bytes() == b"complete"
+    assert not destination.with_name("dependency.exe.part").exists()
+    assert updates == [((8, total) if total else (1, 1), {})]
+    assert closed == [True]
+
+
 def test_cancelled_download_does_not_start_request(tmp_path, monkeypatch):
     destination = tmp_path / "dependency.exe"
     destination.write_bytes(b"previous")
@@ -105,7 +132,7 @@ def test_cancelled_download_does_not_start_request(tmp_path, monkeypatch):
     assert not destination.with_name("dependency.exe.part").exists()
 
 
-@pytest.mark.parametrize("length", [None, "14"])
+@pytest.mark.parametrize("length", [None, "14", "14, 14", "-14", "unknown"])
 @pytest.mark.parametrize("at_end", [False, True])
 def test_cancelled_stream_preserves_existing_file(tmp_path, monkeypatch, length, at_end):
     destination = tmp_path / "dependency.exe"

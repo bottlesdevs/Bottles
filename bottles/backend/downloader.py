@@ -76,7 +76,14 @@ class Downloader:
                     timeout=(10, 30),
                 )
                 response.raise_for_status()
-                total_size = int(response.headers.get("content-length", 0))
+                try:
+                    lengths = {
+                        int(value.strip())
+                        for value in response.headers.get("content-length", "0").split(",")
+                    }
+                    total_size = max(0, lengths.pop()) if len(lengths) == 1 else 0
+                except (ValueError, AttributeError):
+                    total_size = 0
                 received_size = 0
 
                 for data in response.iter_content(1024 * 1024):  # 1MB buffer
