@@ -45,8 +45,27 @@ Use the development manifest in this repository when working on Bottles. To buil
 
 1. Install [`org.flatpak.Builder`](https://github.com/flathub/org.flatpak.Builder) from Flathub
 2. Clone `https://github.com/bottlesdevs/Bottles.git` (or your fork)
-3. Run `flatpak run org.flatpak.Builder --install --install-deps-from=flathub --default-branch=master --force-clean build-dir build-aux/com.usebottles.bottles.Devel.json` in the terminal from the root of the repository (use `--user` if necessary)
-4. Run `flatpak run com.usebottles.bottles.Devel` to launch it
+3. Render the Flatpak manifest from its template:
+
+```shell
+./build-aux/gen-manifest-flatpak.sh
+```
+
+GNOME and freedesktop SDK versions are declared at the top of `build-aux/gen-manifest-flatpak.sh`. Edit them there if you need to build against different SDKs.
+
+4. Run the following command from the root of the cloned repository (use `--user` if necessary):
+
+   ```shell
+   flatpak run org.flatpak.Builder \
+     --install \
+     --install-deps-from=flathub \
+     --default-branch=master \
+     --force-clean \
+     build-dir \
+     build-aux/com.usebottles.bottles.Devel.json
+   ```
+
+5. Run `flatpak run com.usebottles.bottles.Devel` to launch it
 
 ### Release Flatpak
 
