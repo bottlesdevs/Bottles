@@ -282,6 +282,9 @@ class BottlesWindow(Adw.ApplicationWindow):
                         self.show_toast(_("Could not open folder"))
 
                 try:
+                    path, hostname = GLib.filename_from_uri(uri)
+                    if hostname and hostname.lower() != "localhost":
+                        path = uri
                     process = Gio.Subprocess.new(
                         ["xdg-open", path],
                         Gio.SubprocessFlags.NONE,
