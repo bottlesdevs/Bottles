@@ -248,6 +248,75 @@ class PlaytimeService:
         """
         self.cache.clear()
 
+    def reset_program_playtime(
+        self, bottle_id: str, bottle_path: str, program_path: str
+    ) -> bool:
+        """
+        Reset all playtime data for a specific program.
+
+        Args:
+            bottle_id: The bottle identifier.
+            bottle_path: The bottle's full path (for path normalization).
+            program_path: The program executable path.
+
+        Returns:
+            True if successful, False otherwise.
+        """
+        if not self.is_enabled():
+            logging.debug("Playtime service: tracking disabled")
+            return False
+
+        program_id = _compute_program_id(bottle_id, bottle_path, program_path)
+
+        try:
+            success = self.manager.playtime_tracker.delete_program_stats(
+                bottle_id, program_id
+            )
+            if success:
+                # Invalidate cache so UI fetches fresh (empty) data
+                self.cache.invalidate(bottle_id, program_id)
+                logging.info(f"Successfully reset playtime for program_id={program_id}")
+            return success
+        except Exception as e:
+            logging.error(
+                f"Failed to reset playtime for bottle={bottle_id} path={program_path}: {e}",
+                exc_info=True
+            )
+            return False
+
+    def reset_program_playtime_by_id(self, bottle_id: str, program_id: str) -> bool:
+        """
+        Reset playtime data using already-computed IDs (no path needed).
+
+        Used by UI dialogs that already have bottle_id and program_id.
+
+        Args:
+            bottle_id: The bottle identifier.
+            program_id: The program identifier (SHA1 hash).
+
+        Returns:
+            True if successful, False otherwise.
+        """
+        if not self.is_enabled():
+            logging.debug("Playtime service: tracking disabled")
+            return False
+
+        try:
+            success = self.manager.playtime_tracker.delete_program_stats(
+                bottle_id, program_id
+            )
+            if success:
+                self.cache.invalidate(bottle_id, program_id)
+                logging.info(f"Successfully reset playtime for program_id={program_id}")
+            return success
+        except Exception as e:
+            logging.error(
+                f"Failed to reset playtime for bottle={bottle_id} "
+                f"program_id={program_id}: {e}",
+                exc_info=True,
+            )
+            return False
+
     def get_weekly_data(
         self, bottle_id: str, program_id: str, week_offset: int = 0
     ) -> List[int]:

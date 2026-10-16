@@ -1044,3 +1044,50 @@ class ProcessSessionTracker:
         except Exception as e:
             logging.error(f"Failed to get yearly session count: {e}", exc_info=True)
             return 0
+
+    def delete_program_stats(self, bottle_id: str, program_id: str) -> bool:
+        """
+        Delete all playtime data (totals and sessions) for a specific program.
+
+        Args:
+            bottle_id: Bottle identifier
+            program_id: Program identifier (SHA1 hash)
+
+        Returns:
+            True if successful, False otherwise.
+        """
+        if not self.enabled:
+            logging.debug("Playtime tracking disabled; cannot delete stats")
+            return False
+
+        try:
+            with self._lock:
+                cur = self._conn.cursor()
+
+                # Delete from sessions (used for graphs)
+                cur.execute(
+                    "DELETE FROM sessions WHERE bottle_id=? AND program_id=?",
+                    (bottle_id, program_id)
+                )
+                sessions_deleted = cur.rowcount
+
+                # Delete from totals (used for main label)
+                cur.execute(
+                    "DELETE FROM playtime_totals WHERE bottle_id=? AND program_id=?",
+                    (bottle_id, program_id)
+                )
+                totals_deleted = cur.rowcount
+
+                self._conn.commit()
+
+                logging.info(
+                    f"Deleted playtime stats for bottle={bottle_id} program_id={program_id}. "
+                    f"Sessions deleted: {sessions_deleted}, Totals deleted: {totals_deleted}"
+                )
+                return True
+        except Exception as e:
+            logging.error(
+                f"Failed to delete playtime stats for bottle={bottle_id} program_id={program_id}: {e}",
+                exc_info=True
+            )
+            return False
