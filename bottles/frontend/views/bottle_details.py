@@ -757,7 +757,7 @@ class BottleView(Adw.PreferencesPage):
             if response != Gtk.ResponseType.ACCEPT:
                 return
 
-            path = _dialog.get_file().get_path()
+            path = dialog.get_file().get_path()
             self.analyze_with_eagle(path)
 
         dialog = Gtk.FileChooserNative.new(
