@@ -460,16 +460,11 @@ class PlaytimeService:
             # Less than an hour: show minutes only
             minutes = td.seconds // 60
             return f"{minutes}m"
-        elif total_seconds < 86400:
-            # Less than a day: show hours and minutes
-            hours = td.seconds // 3600
-            minutes = (td.seconds % 3600) // 60
-            return f"{hours}h {minutes:02d}m"
         else:
-            # A day or more: show days and hours
-            days = td.days
-            hours = td.seconds // 3600
-            return f"{days}d {hours:02d}h"
+            # One hour or more: show total hours and minutes
+            hours = total_seconds // 3600
+            minutes = (total_seconds % 3600) // 60
+            return f"{hours}h {minutes:02d}m"
 
     @staticmethod
     def format_last_played(last_played: Optional[datetime]) -> str:
