@@ -120,6 +120,7 @@ jobs:
               mkdir -p "$TMPDIR"
               export TMP="$TMPDIR" TEMP="$TMPDIR"
               command -v dbus-run-session
+              xvfb-run -a /usr/bin/bottles-real --help
               xvfb-run -a python3 -m pytest -q \
                 bottles/tests/backend/test_downloader.py \
                 bottles/tests/backend/manager/test_component.py \
