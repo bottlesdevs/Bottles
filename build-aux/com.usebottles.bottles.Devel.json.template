@@ -4,7 +4,7 @@
   "runtime": "org.gnome.Platform",
   "base": "org.winehq.Wine",
   "base-version": "stable-25.08",
-  "runtime-version": "50",
+  "runtime-version": "@GNOME_VER@",
   "x-gl-version": "1.4",
   "x-gl-versions": "25.08;25.08-extra;1.4",
   "x-gl-merge-dirs": "vulkan/icd.d;glvnd/egl_vendor.d;egl/egl_external_platform.d;OpenCL/vendors;lib/dri;lib/d3d;lib/gbm;vulkan/explicit_layer.d;vulkan/implicit_layer.d;vdpau",
@@ -114,9 +114,9 @@
     }
   },
   "sdk-extensions": [
-    "org.freedesktop.Sdk.Compat.i386",
-    "org.freedesktop.Sdk.Extension.toolchain-i386",
-    "org.freedesktop.Sdk.Extension.golang"
+    "org.freedesktop.Sdk.Compat.i386/x86_64/@FREEDESKTOP_VER@",
+    "org.freedesktop.Sdk.Extension.toolchain-i386/x86_64/@FREEDESKTOP_VER@",
+    "org.freedesktop.Sdk.Extension.golang/x86_64/@FREEDESKTOP_VER@"
   ],
   "cleanup": [
     "/include",
