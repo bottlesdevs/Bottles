@@ -38,7 +38,7 @@ class RepositoryManager:
     __repositories = {
         "components": {
             "sources": (
-                "https://raw.githubusercontent.com/bottlesdevs/components/7debcc3c18b5fd0516be663791ac8821ca61429f/",
+                "https://raw.githubusercontent.com/bottlesdevs/components/2d307b6920cfaafa7d9e12015e9ed071a74887c1/",
                 "https://proxy.usebottles.com/repo/components/",
             ),
             "index": "",
@@ -54,7 +54,7 @@ class RepositoryManager:
         },
         "installers": {
             "sources": (
-                "https://raw.githubusercontent.com/bottlesdevs/programs/df6751cbda77c7095ef47709125b23dbb807ded7/",
+                "https://raw.githubusercontent.com/bottlesdevs/programs/f7bdfc339efc251d284f11d8cbe5e4dfe4f02c1a/",
                 "https://proxy.usebottles.com/repo/programs/",
             ),
             "index": "",
