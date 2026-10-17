@@ -754,11 +754,13 @@ class BottleView(Adw.PreferencesPage):
         """
 
         def set_path(_dialog, response):
-            if response != Gtk.ResponseType.ACCEPT:
-                return
-
-            path = dialog.get_file().get_path()
-            self.analyze_with_eagle(path)
+            try:
+                if response == Gtk.ResponseType.ACCEPT:
+                    path = _dialog.get_file().get_path()
+                    self.analyze_with_eagle(path)
+            finally:
+                self._eagle_dialog = None
+                _dialog.destroy()
 
         dialog = Gtk.FileChooserNative.new(
             title=_("Select Executable for Eagle Analysis"),
@@ -774,6 +776,7 @@ class BottleView(Adw.PreferencesPage):
             Gio.File.new_for_path(ManagerUtils.get_bottle_path(self.config))
         )
         dialog.connect("response", set_path)
+        self._eagle_dialog = dialog
         dialog.show()
 
     def __backup(self, widget, backup_type):

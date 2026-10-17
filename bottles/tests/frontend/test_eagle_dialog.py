@@ -43,6 +43,7 @@ def test_eagle_chooser_stays_alive_until_response(monkeypatch, tmp_path):
         assert dialog is not None
         dialog.emit("response", gtk.ResponseType.CANCEL)
         view.analyze_with_eagle.assert_not_called()
-        dialog.destroy()
+        assert view._eagle_dialog is None
+        assert not dialog.get_visible()
     finally:
         view.window.destroy()
