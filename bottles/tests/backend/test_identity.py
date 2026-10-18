@@ -32,6 +32,7 @@ from bottles.backend.identity import (
     OP_LIST_ACCOUNTS,
     OP_PING,
     RESPONSE_BIT,
+    STATUS_AUTH_FAILED,
     STATUS_INVALID_REQUEST,
     STATUS_OK,
     AuthenticationCanceled,
@@ -44,6 +45,7 @@ from bottles.backend.identity import (
     ProtocolError,
     RedirectListener,
     SecretTokenStore,
+    Secret,
     GLib,
     _BridgeProcess,
     _bridges,
@@ -398,6 +400,8 @@ def test_bridge_process_is_reaped(tmp_path, monkeypatch):
     reaped = threading.Event()
 
     class Process:
+        pid = 12345
+
         def poll(self):
             return None
 
@@ -459,6 +463,33 @@ def test_bridge_starts_with_long_data_path(tmp_path, monkeypatch):
             bridge.process.wait(timeout=3)
 
 
+@pytest.mark.parametrize("runtime", [False, True])
+def test_bridge_starts_with_long_runtime_path(tmp_path, monkeypatch, runtime):
+    for name in ("DISPLAY", "WAYLAND_DISPLAY", "XDG_RUNTIME_DIR"):
+        monkeypatch.delenv(name, raising=False)
+    base = tmp_path / ("runtime" * 20)
+    monkeypatch.setattr("bottles.backend.identity.Paths.temp", str(base))
+    if runtime:
+        monkeypatch.setenv("XDG_RUNTIME_DIR", str(base))
+    context = f"context-{time.time_ns()}"
+    socket_path = start_identity_bridge(context)
+    try:
+        assert socket_path
+        bridge = _bridges[context]
+        assert socket_path.startswith(f"/proc/{bridge.process.pid}/fd/")
+        assert len(os.fsencode(socket_path)) < 108
+        assert _bridge_ready(socket_path)
+        directory = os.path.dirname(socket_path)
+        assert os.path.samefile(directory, base / "bottles-identity")
+        assert os.stat(directory).st_mode & 0o777 == 0o700
+        assert os.stat(socket_path).st_mode & 0o777 == 0o700
+    finally:
+        bridge = _bridges.get(context)
+        if bridge:
+            bridge.process.terminate()
+            bridge.process.wait(timeout=3)
+
+
 def test_live_bridge_is_reused_while_busy(monkeypatch):
     context = f"context-{time.time_ns()}"
 
@@ -474,6 +505,56 @@ def test_live_bridge_is_reused_while_busy(monkeypatch):
     )
 
     assert start_identity_bridge(context) == bridge.socket_path
+
+
+def test_bridge_closes_socket_descriptor_when_launch_fails(tmp_path, monkeypatch):
+    base = tmp_path / ("runtime" * 20)
+    monkeypatch.setenv("XDG_RUNTIME_DIR", str(base))
+    descriptors = []
+
+    def fail_launch(*args, **kwargs):
+        descriptors.extend(kwargs["pass_fds"])
+        raise OSError("launch failed")
+
+    monkeypatch.setattr("bottles.backend.identity.subprocess.Popen", fail_launch)
+
+    assert start_identity_bridge(f"context-{time.time_ns()}") is None
+    assert len(descriptors) == 1
+    with pytest.raises(OSError):
+        os.fstat(descriptors[0])
+
+
+def test_bridge_rejects_a_symlinked_socket_directory(tmp_path, monkeypatch):
+    base = tmp_path / ("runtime" * 20)
+    base.mkdir()
+    target = tmp_path / "other"
+    target.mkdir(mode=0o755)
+    (base / "bottles-identity").symlink_to(target, target_is_directory=True)
+    monkeypatch.setenv("XDG_RUNTIME_DIR", str(base))
+    monkeypatch.setattr(
+        "bottles.backend.identity.subprocess.Popen",
+        lambda *_args, **_kwargs: pytest.fail("the symlink must be rejected before launch"),
+    )
+
+    assert start_identity_bridge(f"context-{time.time_ns()}") is None
+    assert os.stat(target).st_mode & 0o777 == 0o755
+
+
+def test_bridge_tracks_clients_through_its_socket_descriptor(monkeypatch):
+    address = "/proc/self/fd/3/bridge.sock"
+    server = IdentityBridgeServer(address, "context", provider=object())
+    expected = f"/proc/{os.getpid()}/fd/3/bridge.sock"
+
+    class Process:
+        pid = os.getpid() + 1
+
+        def get_env(self):
+            return f"SODA_IDENTITY_BRIDGE_SOCKET={expected}\x00"
+
+    monkeypatch.setattr("bottles.backend.identity.ProcUtils.get_procs", lambda: [Process()])
+
+    assert server.socket_path == expected
+    assert server._has_clients()
 
 
 def test_provider_rejects_control_characters_in_login_hint():
@@ -571,7 +652,10 @@ def test_invalid_id_token_is_not_stored_or_cached(monkeypatch, invalid, uppercas
 
     assert store.values == {}
     assert provider.cache == {}
-    assert completed == [(False, f"unexpected ID token {invalid}")]
+    message = f"unexpected ID token {invalid}"
+    if invalid == "audience":
+        message += " (different client)"
+    assert completed == [(False, message)]
 
 
 @pytest.mark.parametrize("audience,reason", (
@@ -594,10 +678,40 @@ def test_audience_failure_logs_only_the_reason(monkeypatch, audience, reason):
         "expires_in": 3600,
     }
 
-    with pytest.raises(AuthenticationError, match="unexpected ID token audience"):
+    with pytest.raises(AuthenticationError, match="unexpected ID token audience") as error:
         MicrosoftIdentityProvider._result_from_token(token, "client")
 
     assert warnings == [f"ID token audience rejected: {reason}"]
+    assert str(error.value) == f"unexpected ID token audience ({reason})"
+
+
+@pytest.mark.parametrize("opcode", (OP_AUTHORIZE, OP_GET_TOKEN))
+def test_audience_reason_reaches_the_bridge_response(opcode):
+    store = Store()
+    stored = {"refresh_token": "private-stored-refresh", "id_token": _id_token("client")}
+    store.values[("client", "account-id")] = stored
+    token = {
+        "access_token": "private-access-token",
+        "refresh_token": "private-refresh-token",
+        "id_token": _id_token("private-account@example.invalid"),
+        "expires_in": 3600,
+    }
+    provider = MicrosoftIdentityProvider(
+        store, Session([token]), lambda _uri: None, Listener
+    )
+    fields = {FIELD_CLIENT_ID: b"client", FIELD_SCOPES: b"openid"}
+    if opcode == OP_GET_TOKEN:
+        fields[FIELD_ACCOUNT_ID] = b"account-id"
+    server = IdentityBridgeServer("socket", "context", provider)
+
+    response = server.dispatch(Message(opcode, 123, 0, fields))
+
+    assert response.status == STATUS_AUTH_FAILED
+    assert response.fields == {
+        FIELD_ERROR: b"unexpected ID token audience (different client)"
+    }
+    assert provider.cache == {}
+    assert store.values == {("client", "account-id"): stored}
 
 
 def test_office_ticket_uses_the_licensing_resource(monkeypatch):
@@ -787,6 +901,39 @@ def test_identity_callback_is_forwarded_to_the_waiting_listener(
         }
     ]
     assert not os.path.exists(listener.socket_path)
+
+
+def test_identity_callbacks_keep_concurrent_attempts_separate(monkeypatch, tmp_path):
+    monkeypatch.setattr("bottles.backend.identity.Paths.temp", str(tmp_path))
+    client_id = "d3590ed6-52b3-4102-aeff-aad2292ab01c"
+    canceled = threading.Event()
+    listeners = [RedirectListener(state * 43, client_id, canceled) for state in ("s", "t")]
+    results = {}
+
+    def wait(index):
+        results[index] = listeners[index].wait(3)
+
+    threads = [threading.Thread(target=wait, args=(index,)) for index in range(2)]
+    for thread in threads:
+        thread.start()
+    try:
+        wrong = (
+            "ms-appx-web://microsoft.aad.brokerplugin/"
+            f"00000000-0000-0000-0000-000000000000?code=wrong&state={listeners[0].state}"
+        )
+        assert not forward_identity_callback(wrong)
+        for index in (1, 0):
+            listener = listeners[index]
+            uri = f"{listener.redirect_uri}?code=code-{index}&state={listener.state}"
+            assert forward_identity_callback(uri)
+    finally:
+        canceled.set()
+        for thread in threads:
+            thread.join(3)
+
+    assert all(not thread.is_alive() for thread in threads)
+    assert {index: result["code"] for index, result in results.items()} == {0: "code-0", 1: "code-1"}
+    assert all(not os.path.exists(listener.socket_path) for listener in listeners)
 
 
 def test_identity_callback_forwards_the_activation_token(monkeypatch, tmp_path):
@@ -1205,6 +1352,35 @@ def test_server_rejects_unexpected_fields():
     assert FIELD_ERROR in response.fields
 
 
+@pytest.mark.parametrize("locked", (True, False))
+def test_secret_store_distinguishes_locked_and_missing_accounts(monkeypatch, locked):
+    monkeypatch.delenv("CPAK_CONTAINER_ID", raising=False)
+    monkeypatch.setattr(
+        "bottles.backend.identity.Secret.password_lookup_sync", lambda *_args: None
+    )
+    searches = []
+
+    class Item:
+        def get_locked(self):
+            return locked
+
+    def search(_schema, attributes, flags, _cancellable):
+        searches.append((attributes, flags))
+        return [Item()]
+
+    monkeypatch.setattr("bottles.backend.identity.Secret.password_search_sync", search)
+    store = SecretTokenStore("context")
+    if locked:
+        with pytest.raises(AuthenticationStorageError, match="Start or unlock"):
+            store.load("client", "account")
+    else:
+        assert store.load("client", "account") is None
+    assert searches == [(
+        {"context": "context", "client": "client", "account": "account"},
+        Secret.SearchFlags.ALL,
+    )]
+
+
 def test_secret_store_tracks_the_current_account(monkeypatch):
     values = {}
 
@@ -1227,6 +1403,9 @@ def test_secret_store_tracks_the_current_account(monkeypatch):
     monkeypatch.setattr(
         "bottles.backend.identity.Secret.password_clear_sync", clear_secret
     )
+    monkeypatch.setattr(
+        "bottles.backend.identity.Secret.password_search_sync", lambda *_args: []
+    )
     result = AuthorizationResult(
         "access",
         "id",
@@ -1247,6 +1426,39 @@ def test_secret_store_tracks_the_current_account(monkeypatch):
     assert store.load("client", "")["refresh_token"] == "refresh"
     assert store.clear("client", "")
     assert store.load("client", "") is None
+
+
+@pytest.mark.parametrize("uppercase", (False, True))
+def test_secret_store_loads_home_account_id(monkeypatch, uppercase):
+    account = "00000000-0000-0000-0000-000000000abc"
+    tenant = "00000000-0000-0000-0000-000000000def"
+    value = {"refresh_token": "refresh", "account_id": account, "tenant_id": tenant}
+    reads = []
+    store = SecretTokenStore("context")
+
+    def read(attributes):
+        reads.append(attributes)
+        if attributes == {"context": "context", "client": "client", "account": account}:
+            return json.dumps(value)
+
+    monkeypatch.setattr(store, "_read", read)
+    home_account = f"{account}.{tenant}"
+    assert store.load("client", home_account.upper() if uppercase else home_account) == value
+    assert len(reads) == 2
+    assert all(item["context"] == "context" and item["client"] == "client" for item in reads)
+
+
+@pytest.mark.parametrize("stored_account,stored_tenant", (
+    ("account", "other-tenant"),
+    ("other-account", "tenant"),
+    ("account", ""),
+))
+def test_secret_store_rejects_mismatched_home_account(monkeypatch, stored_account, stored_tenant):
+    store = SecretTokenStore("context")
+    value = {"refresh_token": "refresh", "account_id": stored_account, "tenant_id": stored_tenant}
+    monkeypatch.setattr(store, "_read", lambda attributes: json.dumps(value) if attributes["account"] == "account" else None)
+
+    assert store.load("client", "account.tenant") is None
 
 
 def test_secret_store_enumerates_scoped_accounts(monkeypatch):

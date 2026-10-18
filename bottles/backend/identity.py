@@ -401,7 +401,17 @@ class SecretTokenStore:
         if is_cpak():
             entries = self._cpak_request("get", attributes)["entries"]
             return entries[0]["value"] if entries else None
-        return _secret_call(Secret.password_lookup_sync, SECRET_SCHEMA, attributes, None)
+        value = _secret_call(Secret.password_lookup_sync, SECRET_SCHEMA, attributes, None)
+        if value is None:
+            items = _secret_call(
+                Secret.password_search_sync, SECRET_SCHEMA, attributes,
+                Secret.SearchFlags.ALL, None,
+            )
+            if any(item.get_locked() for item in items):
+                raise AuthenticationStorageError(
+                    "Secure credential storage is unavailable. Start or unlock a Secret Service provider, such as GNOME Keyring or KWallet, and try again."
+                )
+        return value
 
     def _delete(self, attributes):
         if is_cpak():
@@ -470,6 +480,11 @@ class SecretTokenStore:
             except (json.JSONDecodeError, KeyError, TypeError) as exc:
                 raise AuthenticationError("invalid credential store account") from exc
         value = self._read(self._attributes(client_id, account_id))
+        home_account = None
+        if not value and account_id.count(".") == 1 and all(account_id.split(".")):
+            object_id, tenant_id = account_id.split(".")
+            home_account = (_normalize_client_id(object_id), _normalize_client_id(tenant_id))
+            value = self._read(self._attributes(client_id, home_account[0]))
         if not value:
             return None
         try:
@@ -478,6 +493,11 @@ class SecretTokenStore:
             raise AuthenticationError("invalid credential store entry") from exc
         if not isinstance(result, dict) or not result.get("refresh_token"):
             raise AuthenticationError("incomplete credential store entry")
+        if home_account and (
+            result.get("account_id") != home_account[0]
+            or result.get("tenant_id") != home_account[1]
+        ):
+            return None
         return result
 
     def accounts(self, client_id: str, authority: str) -> list[tuple[str, str]]:
@@ -930,7 +950,7 @@ class MicrosoftIdentityProvider:
             else:
                 reason = "invalid audience type"
             logging.warning(f"ID token audience rejected: {reason}", jn=False)
-            raise AuthenticationError("unexpected ID token audience")
+            raise AuthenticationError(f"unexpected ID token audience ({reason})")
         if expected_nonce and claims.get("nonce") != expected_nonce:
             raise AuthenticationError("unexpected ID token nonce")
         now = int(time.time())
@@ -996,6 +1016,8 @@ def result_fields(result: AuthorizationResult) -> dict[int, bytes]:
 
 class IdentityBridgeServer:
     def __init__(self, socket_path: str, context: str, provider=None):
+        if socket_path.startswith("/proc/self/fd/"):
+            socket_path = socket_path.replace("/proc/self/", f"/proc/{os.getpid()}/", 1)
         self.socket_path = socket_path
         self.provider = provider or MicrosoftIdentityProvider(SecretTokenStore(context))
         self.last_activity = time.monotonic()
@@ -1246,6 +1268,14 @@ def start_identity_bridge(context: str) -> Optional[str]:
         directory = os.path.join(base, "bottles-identity")
         os.makedirs(directory, mode=0o700, exist_ok=True)
         socket_path = os.path.join(directory, f"{secrets.token_hex(16)}.sock")
+        descriptor = None
+        address = socket_path
+        if len(os.fsencode(socket_path)) >= 108:
+            try:
+                descriptor, address = _callback_socket_address(socket_path)
+            except OSError:
+                logging.warning("Unable to prepare the Soda identity bridge socket")
+                return None
         module = "bottles.backend.identity"
         if os.environ.get("WAYLAND_DISPLAY") or os.environ.get("DISPLAY"):
             module = "bottles.backend.identity_ui"
@@ -1255,7 +1285,7 @@ def start_identity_bridge(context: str) -> Optional[str]:
             module,
             "--serve",
             "--socket",
-            socket_path,
+            address,
             "--context",
             hashlib.sha256(context.encode("utf-8")).hexdigest(),
         ]
@@ -1272,11 +1302,17 @@ def start_identity_bridge(context: str) -> Optional[str]:
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
                 close_fds=True,
+                pass_fds=() if descriptor is None else (descriptor,),
                 start_new_session=True,
             )
         except OSError:
             logging.warning("Unable to start the Soda identity bridge")
             return None
+        finally:
+            if descriptor is not None:
+                os.close(descriptor)
+        if descriptor is not None:
+            socket_path = address.replace("/proc/self/", f"/proc/{process.pid}/", 1)
         bridge = _BridgeProcess(socket_path, process)
         threading.Thread(
             target=_reap_bridge, args=(context, bridge), daemon=True
