@@ -78,12 +78,22 @@ def test_uninstall_restores_matching_builtin_without_backup(
     )
 
 
-def test_native_backup_takes_priority_over_runner_builtin(monkeypatch, tmp_path):
+@pytest.mark.parametrize(
+    "backup_bytes",
+    [
+        b"custom-native",
+        b"MZ" + bytes(62) + b"Wine builtin DLL",
+        b"ZZ" + bytes(62) + b"Wine builtin DLL\0",
+    ],
+)
+def test_native_backup_takes_priority_over_runner_builtin(
+    monkeypatch, tmp_path, backup_bytes
+):
     prefix = tmp_path / "bottle"
     target = prefix / "drive_c/windows/system32/dxgi.dll"
     target.parent.mkdir(parents=True)
     target.write_bytes(b"dxvk")
-    target.with_name("dxgi.dll.bck").write_bytes(b"custom-native")
+    target.with_name("dxgi.dll.bck").write_bytes(backup_bytes)
     config = BottleConfig(Path=str(prefix), Custom_Path=True, Arch="win64")
     monkeypatch.setattr(dll_module.Reg, "import_bundle", lambda *_args: Result(True))
     monkeypatch.setattr(
@@ -94,10 +104,56 @@ def test_native_backup_takes_priority_over_runner_builtin(monkeypatch, tmp_path)
 
     assert component.uninstall(config)
 
-    assert target.read_bytes() == b"custom-native"
+    assert target.read_bytes() == backup_bytes
 
 
-def test_restore_error_preserves_native_dll_and_reports_failure(monkeypatch, tmp_path):
+@pytest.mark.parametrize("component", [DXVKComponent, VKD3DComponent])
+@pytest.mark.parametrize("missing_builtin", [False, True])
+@pytest.mark.parametrize(
+    "bottle_arch, windows_arch, system",
+    [
+        ("win64", "x86_64", "system32"),
+        ("win64", "i386", "syswow64"),
+        ("win32", "i386", "system32"),
+    ],
+)
+def test_wine_backup_uses_current_runner(
+    monkeypatch, tmp_path, component, missing_builtin, bottle_arch, windows_arch, system
+):
+    runner = tmp_path / "runner"
+    name = next(iter(component.dlls.values()))[0]
+    builtin = runner / "lib/wine" / f"{windows_arch}-windows" / name
+    builtin.parent.mkdir(parents=True)
+    header = b"MZ" + bytes(62) + b"Wine builtin DLL\0"
+    current = header + b"current runner"
+    previous = header + b"previous runner"
+    if not missing_builtin:
+        builtin.write_bytes(current)
+    prefix = tmp_path / "bottle"
+    target = prefix / "drive_c/windows" / system / name
+    target.parent.mkdir(parents=True)
+    if bottle_arch == "win64":
+        other = "syswow64" if system == "system32" else "system32"
+        (prefix / "drive_c/windows" / other).mkdir()
+    target.write_bytes(b"native-component")
+    backup = target.with_name(name + ".bck")
+    backup.write_bytes(previous)
+    config = BottleConfig(Path=str(prefix), Custom_Path=True, Arch=bottle_arch)
+    monkeypatch.setattr(ManagerUtils, "get_runner_path", lambda *_args: str(runner))
+    monkeypatch.setattr(dll_module.Reg, "import_bundle", lambda *_args: Result(True))
+    manager = component("old")
+    manager.dlls = {"x32" if windows_arch == "i386" else "x64": [name]}
+
+    assert manager.uninstall(config)
+
+    assert target.read_bytes() == (previous if missing_builtin else current)
+    assert not backup.exists()
+
+
+@pytest.mark.parametrize("wine_backup", [False, True])
+def test_restore_error_preserves_native_dll_and_reports_failure(
+    monkeypatch, tmp_path, wine_backup
+):
     runner = tmp_path / "runner"
     builtin = runner / "lib/wine/x86_64-windows/dxgi.dll"
     builtin.parent.mkdir(parents=True)
@@ -106,6 +162,9 @@ def test_restore_error_preserves_native_dll_and_reports_failure(monkeypatch, tmp
     target = prefix / "drive_c/windows/system32/dxgi.dll"
     target.parent.mkdir(parents=True)
     target.write_bytes(b"native-component")
+    backup = target.with_name("dxgi.dll.bck")
+    if wine_backup:
+        backup.write_bytes(b"MZ" + bytes(62) + b"Wine builtin DLL\0previous runner")
     config = BottleConfig(Path=str(prefix), Custom_Path=True, Arch="win64")
     monkeypatch.setattr(ManagerUtils, "get_runner_path", lambda *_args: str(runner))
     monkeypatch.setattr(dll_module.Reg, "import_bundle", lambda *_args: Result(True))
@@ -118,7 +177,7 @@ def test_restore_error_preserves_native_dll_and_reports_failure(monkeypatch, tmp
     assert not component.uninstall(config)
 
     assert target.read_bytes() == b"native-component"
-    assert list(target.parent.iterdir()) == [target]
+    assert set(target.parent.iterdir()) == ({target, backup} if wine_backup else {target})
 
 
 @pytest.mark.parametrize(

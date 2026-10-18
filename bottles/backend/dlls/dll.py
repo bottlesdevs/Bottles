@@ -276,9 +276,17 @@ class DLLComponent:
             backup_used = False
             try:
                 if os.path.exists(backup):
+                    source = backup
+                    if self.restore_builtin:
+                        with open(backup, "rb") as stream:
+                            header = stream.read(81)
+                        if header[:2] == b"MZ" and header[64:81] == b"Wine builtin DLL\0":
+                            source = (
+                                self.__get_builtin_path(config, path, dll_name) or backup
+                            )
                     fd, temporary = tempfile.mkstemp(dir=os.path.dirname(target))
                     os.close(fd)
-                    shutil.copyfile(backup, temporary)
+                    shutil.copyfile(source, temporary)
                     os.replace(temporary, target)
                     backup_used = True
                 else:
