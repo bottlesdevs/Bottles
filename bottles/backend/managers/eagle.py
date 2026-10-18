@@ -271,6 +271,13 @@ class EagleManager:
         the user before running a program. Returns a list of dicts with
         rule/name/description/severity, empty if nothing matched.
         """
+        from bottles.backend.managers import eaglebackend
+        try:
+            findings = eaglebackend.security_scan(self.config, file_path)
+            if findings is not None:
+                return findings
+        except (OSError, ValueError, RuntimeError, subprocess.SubprocessError) as error:
+            logging.warning(f"[Eagle] Runner scan unavailable: {error}")
         if self._yara_rules is None or not os.path.isfile(file_path):
             return []
 
@@ -568,6 +575,13 @@ class EagleManager:
 
     def analyze(self, executable_path: str) -> None:
         """Perform comprehensive PE analysis with YARA pattern matching."""
+        from bottles.backend.managers import eaglebackend
+        try:
+            settings = Gio.Settings.new(APP_ID)
+            if eaglebackend.analyze(self.config, executable_path, settings.get_int("eagle-scan-limit")):
+                return
+        except (OSError, ValueError, RuntimeError, subprocess.SubprocessError) as error:
+            logging.warning(f"[Eagle] Runner backend unavailable: {error}")
         self._send_step("Initialising Eagle...")
         basename = os.path.basename(executable_path)
         exe_dir = os.path.dirname(executable_path)

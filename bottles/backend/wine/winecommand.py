@@ -805,6 +805,9 @@ class WineCommand:
             return_steam_cmd = True
 
         if not return_steam_cmd and not return_clean_cmd:
+            if getattr(params, 'eagle_tracing', False) and not self.minimal:
+                from bottles.backend.managers.eaglebackend import trace_command
+                runner = trace_command(config, runner, self.cwd)
             command = f"{runner} {command}"
 
         if params.use_steam_runtime:

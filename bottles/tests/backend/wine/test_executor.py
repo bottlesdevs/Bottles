@@ -29,6 +29,34 @@ def _make_config(
 ) -> BottleConfig:
     return BottleConfig(Name=name, Path=path, Custom_Path="", Environment="Custom")
 
+def test_tracing_wraps_program_launches_and_leaves_tools_direct(monkeypatch):
+    from bottles.backend.managers import eaglebackend
+    config = _make_config()
+    config.Parameters.eagle_tracing = True
+    captured = []
+    monkeypatch.setattr(eaglebackend, 'trace_command', lambda config, runner, cwd: captured.append((runner, cwd)) or 'eagle trace --')
+    command = WineCommand.__new__(WineCommand)
+    command.config = config
+    command.runner = 'wine'
+    command.cwd = '/bottle/program'
+    command.arguments = ''
+    command.gamescope_activated = False
+    command.minimal = False
+    assert command.get_cmd('"program.exe" --option') == 'eagle trace -- "program.exe" --option'
+    assert captured == [('wine', '/bottle/program')]
+    command.minimal = True
+    assert command.get_cmd('winepath --unix file') == 'wine winepath --unix file'
+    assert len(captured) == 1
+    command.minimal = False
+    config.Parameters.eagle_tracing = False
+    assert command.get_cmd('program.exe') == 'wine program.exe'
+
+def test_tracing_disables_bridge_for_program_launch():
+    config = _make_config()
+    config.Parameters.eagle_tracing = True
+    executor = WineExecutor(config, '/bottle/program.exe', program_winebridge=True)
+    assert not executor.use_winebridge
+
 
 def test_build_placeholder_map_uses_program_values():
     config = _make_config()
