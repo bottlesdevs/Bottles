@@ -1794,3 +1794,134 @@ def test_dedicated_sandbox_shares_cpak_file_grants(monkeypatch, tmp_path):
     sandbox = winecmd._get_sandbox_manager()
 
     assert "/run/cpak/grants" in sandbox.share_paths_ro
+
+
+def _installer_executor(monkeypatch, exec_type, success_codes, returncode=0):
+    """A WineExecutor whose installer exits with `returncode` on the Wine side."""
+    if returncode:
+        result = Result(False, message=f"Command exited with status {returncode}.")
+    else:
+        result = Result(True)
+
+    class FakeWineCommand:
+        def __init__(self, *_args, **_kwargs):
+            self.returncode = None
+
+        def run(self):
+            self.returncode = returncode
+            return result
+
+    monkeypatch.setattr("bottles.backend.wine.wineprogram.WineCommand", FakeWineCommand)
+    monkeypatch.setattr(
+        WineExecutor,
+        "_WineExecutor__set_monitors",
+        lambda _self: None,
+    )
+    executor = WineExecutor.__new__(WineExecutor)
+    executor.config = _make_config()
+    executor.exec_type = exec_type
+    executor.exec_path = "/tmp/bottles/setup." + exec_type
+    executor.args = "/quiet"
+    executor.terminal = False
+    executor.environment = {}
+    executor.pre_script = None
+    executor.post_script = None
+    executor.pre_script_args = None
+    executor.post_script_args = None
+    executor.cwd = None
+    executor.hide_console = False
+    executor.sandbox_override = None
+    executor.success_codes = success_codes
+    return executor
+
+
+def _launch(executor):
+    if executor.exec_type == "msi":
+        return executor._WineExecutor__launch_msi()
+    return executor._WineExecutor__launch_with_starter()
+
+
+@pytest.mark.parametrize("exec_type", ["exe", "msi"])
+@pytest.mark.parametrize(
+    ("returncode", "ok"),
+    [
+        (0, True),
+        # 3010 and 1641 as Wine reports them: one byte.
+        (194, True),
+        (105, True),
+        (67, False),  # 1603, fatal error during installation
+        (2, False),
+        (1, False),
+    ],
+)
+def test_installer_launch_follows_the_exit_status(
+    monkeypatch, exec_type, returncode, ok
+):
+    executor = _installer_executor(monkeypatch, exec_type, [1641, 3010], returncode)
+
+    result = _launch(executor)
+
+    assert result.ok is ok
+    assert result.data["returncode"] == returncode
+    assert result.message == ("" if ok else f"Command exited with status {returncode}.")
+
+
+@pytest.mark.parametrize("exec_type", ["exe", "msi"])
+def test_launch_without_success_codes_still_ignores_the_exit_status(
+    monkeypatch, exec_type
+):
+    executor = _installer_executor(monkeypatch, exec_type, None, 67)
+
+    assert _launch(executor).ok
+
+
+def test_installer_launch_failure_without_exit_status_is_kept(monkeypatch):
+    # e.g. the "ShellExecuteEx" detection, which fails with an exit status of 0
+    executor = _installer_executor(monkeypatch, "exe", [3010])
+    monkeypatch.setattr(
+        "bottles.backend.wine.wineprogram.WineCommand",
+        lambda *_args, **_kwargs: SimpleNamespace(
+            returncode=0,
+            run=lambda: Result(False, message="ShellExecuteEx exception"),
+        ),
+    )
+
+    result = _launch(executor)
+
+    assert not result.ok
+    assert result.message == "ShellExecuteEx exception"
+
+
+def test_executable_launch_accepts_configured_exit_status(monkeypatch):
+    class Command:
+        returncode = 194
+
+        def __init__(self, *_args, **_kwargs):
+            pass
+
+        def run(self):
+            return Result(False, message="Command exited with status 194.")
+
+    monkeypatch.setattr("bottles.backend.wine.executor.WineCommand", Command)
+    executor = _installer_executor(monkeypatch, "exe", [3010])
+    executor.exec_path = "setup.exe"
+
+    assert executor._WineExecutor__launch_exe().ok
+    executor.success_codes = [0]
+    assert not executor._WineExecutor__launch_exe().ok
+
+
+@pytest.mark.parametrize(
+    ("returncode", "codes", "expected"),
+    [
+        (None, [3010], False),
+        (0, [0], False),
+        (194, [3010], True),
+        (3010, [3010], True),
+        (102, [1638], True),
+        (1, [3010], False),
+        (194, [], False),
+    ],
+)
+def test_is_success_exit_code(returncode, codes, expected):
+    assert WineExecutor.is_success_exit_code(returncode, codes) is expected
