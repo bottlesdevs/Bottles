@@ -27,6 +27,7 @@ import yara
 import struct
 import json
 import subprocess
+from xml.etree import ElementTree
 from gettext import gettext as _
 
 from bottles.backend.globals import Paths
@@ -758,18 +759,32 @@ class EagleManager:
             try:
                 if hasattr(pe, 'DIRECTORY_ENTRY_RESOURCE'):
                     for entry in pe.DIRECTORY_ENTRY_RESOURCE.entries:
-                        if hasattr(entry, 'name') and entry.name == pefile.RESOURCE_TYPE.get('RT_MANIFEST'):
+                        if entry.id == pefile.RESOURCE_TYPE.get('RT_MANIFEST'):
                             for me in entry.directory.entries:
                                 data = pe.get_data(
                                     me.directory.entries[0].data.struct.OffsetToData,
                                     me.directory.entries[0].data.struct.Size
                                 )
-                                xml = data.decode('utf-8', errors='ignore')
-                                if 'requireAdministrator' in xml:
-                                    admin_required = True
-                                    self._send_step("[!] Requires administrator")
-                                if 'dpiAware' in xml.lower():
-                                    dpi_aware = True
+                                legacy_dpi = False
+                                modern_dpi = None
+                                for element in ElementTree.fromstring(data).iter():
+                                    if element.tag in ("requestedExecutionLevel", "{urn:schemas-microsoft-com:asm.v3}requestedExecutionLevel"):
+                                        if element.get("level", "").lower() == "requireadministrator":
+                                            admin_required = True
+                                            self._send_step("[!] Requires administrator")
+                                    value = (element.text or "").strip().lower()
+                                    if element.tag in ("dpiAware", "{http://schemas.microsoft.com/SMI/2005/WindowsSettings}dpiAware"):
+                                        legacy_dpi = value in ("true", "true/pm", "per monitor")
+                                    elif element.tag in ("dpiAwareness", "{http://schemas.microsoft.com/SMI/2016/WindowsSettings}dpiAwareness"):
+                                        modern_dpi = False
+                                        for mode in value.split(","):
+                                            mode = mode.strip()
+                                            if mode == "unaware":
+                                                break
+                                            if mode in ("system", "permonitor", "permonitorv2"):
+                                                modern_dpi = True
+                                                break
+                                dpi_aware |= legacy_dpi if modern_dpi is None else modern_dpi
             except:
                 pass
 
