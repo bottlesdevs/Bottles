@@ -106,3 +106,24 @@ def test_asar_header_padding(monkeypatch, tmp_path, padding):
             assert stream.read() == payload
     finally:
         manager._cleanup_extraction(output)
+
+
+@pytest.mark.parametrize("case", ["empty", "invalid-json", "partial"])
+def test_invalid_asar_cleans_extraction(monkeypatch, tmp_path, case):
+    if case == "partial":
+        header = json.dumps({"files": {"app.js": {"offset": "0", "size": 4},
+            "broken": {"files": None}}}).encode()
+        contents = struct.pack("<4I", 0, 0, 0, len(header)) + header + b"data"
+    elif case == "invalid-json":
+        contents = struct.pack("<4I", 4, 12, 8, 4) + b"oops"
+    else:
+        contents = b""
+    archive = tmp_path / "broken.asar"
+    archive.write_bytes(contents)
+    monkeypatch.setattr(eagle_module, "Paths", SimpleNamespace(temp=str(tmp_path)))
+    manager = EagleManager.__new__(EagleManager)
+    manager._send_step = lambda *_args, **_kwargs: None
+    files, output = manager._extract_asar(str(archive))
+    assert files == []
+    assert output is None
+    assert list(tmp_path.iterdir()) == [archive]
