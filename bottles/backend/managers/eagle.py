@@ -934,14 +934,16 @@ class EagleManager:
                 # Extract and scan ASAR
                 self._send_step("Analysing Electron archive...")
                 extracted_asar_files, asar_extract_dir = self._extract_asar(asar_path)
-                if extracted_asar_files:
-                    settings = Gio.Settings.new(APP_ID)
-                    scan_limit = settings.get_int("eagle-scan-limit")
-                    for i, ef in enumerate(extracted_asar_files[:scan_limit]):
-                        fname = os.path.basename(ef)
-                        self._send_step(f"Scanning ASAR content: {fname}", delay=False)
-                        self._scan_yara(ef, insights, source=f"Electron Source: {fname}")
-                    
+                try:
+                    if extracted_asar_files:
+                        settings = Gio.Settings.new(APP_ID)
+                        scan_limit = settings.get_int("eagle-scan-limit")
+                        for i, ef in enumerate(extracted_asar_files[:scan_limit]):
+                            fname = os.path.basename(ef)
+                            self._send_step(f"Scanning ASAR content: {fname}", delay=False)
+                            self._scan_yara(ef, insights, source=f"Electron Source: {fname}")
+
+                finally:
                     self._cleanup_extraction(asar_extract_dir)
 
             # Deep Scan for Neighbor Files

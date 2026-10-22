@@ -127,3 +127,32 @@ def test_invalid_asar_cleans_extraction(monkeypatch, tmp_path, case):
     assert files == []
     assert output is None
     assert list(tmp_path.iterdir()) == [archive]
+
+
+def test_empty_asar_analysis_cleans_workspace(monkeypatch, tmp_path):
+    compiler = shutil.which("x86_64-w64-mingw32-gcc")
+    if not compiler:
+        pytest.skip("MinGW required")
+    source = tmp_path / "main.c"
+    source.write_text("int main(void) { return 0; }\n")
+    target = tmp_path / "app.exe"
+    subprocess.run([compiler, str(source), "-o", str(target)], check=True, capture_output=True)
+    resources = tmp_path / "resources"
+    resources.mkdir()
+    header = b'{"files":{}}'
+    padding = (-len(header)) % 4
+    size = 8 + len(header) + padding
+    (resources / "app.asar").write_bytes(struct.pack("<4I", 4, size, size - 4, len(header))
+        + header + b"\0" * padding)
+    monkeypatch.setattr(eagle_module, "Paths", SimpleNamespace(temp=str(tmp_path)))
+    monkeypatch.setattr(eagle_module, "STEP_DELAY", 0)
+    monkeypatch.setattr(eagle_module, "EagleIntel", lambda: SimpleNamespace(available=False))
+    manager = EagleManager(BottleConfig(Runner="sys-wine"))
+    manager._send_step = lambda *_args, **_kwargs: None
+    events = []
+    manager._send = lambda kind, result: events.append((kind, result))
+    before = set(tmp_path.iterdir())
+    manager.analyze(str(target))
+    assert events[-1][1].status
+    assert "Electron" in events[-1][1].data["details"]["Frameworks"]
+    assert set(tmp_path.iterdir()) == before
