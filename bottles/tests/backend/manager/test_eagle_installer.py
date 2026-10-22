@@ -6,6 +6,7 @@ import pytest
 
 from bottles.backend.managers import eagle as eagle_module
 from bottles.backend.managers.eagle import EagleManager
+from bottles.backend.models.config import BottleConfig
 
 
 @pytest.mark.parametrize("architecture", ["i686", "x86_64"])
@@ -42,7 +43,7 @@ def test_msi_file_ids_without_extensions(monkeypatch, tmp_path, architecture):
         manager._cleanup_extraction(output)
 
 
-@pytest.mark.parametrize("member", ["app.exe", "APP.EXE", "App.ExE"])
+@pytest.mark.parametrize("member", ["app.exe", "APP.EXE", "App.ExE", "Library.DlL"])
 def test_nsis_member_extension_case(monkeypatch, tmp_path, member):
     compiler = shutil.which("x86_64-w64-mingw32-gcc")
     if not compiler or not shutil.which("makensis") or not shutil.which("7z"):
@@ -54,16 +55,30 @@ def test_nsis_member_extension_case(monkeypatch, tmp_path, member):
     target = tmp_path / "installer.exe"
     script = tmp_path / "package.nsi"
     script.write_text(f'Name "Fixture"\nOutFile "{target}"\nSection\nSetOutPath "$INSTDIR"\n'
-        f'File /oname={member} "{payload}"\nFile /oname=Library.DlL "{payload}"\nSectionEnd\n')
+        f'File /oname={member} "{payload}"\nFile /oname=Support.DlL "{payload}"\nSectionEnd\n')
     subprocess.run(["makensis", "-V2", str(script)], check=True, capture_output=True)
     monkeypatch.setattr(eagle_module, "Paths", SimpleNamespace(temp=str(tmp_path)))
     manager = EagleManager.__new__(EagleManager)
     manager._send_step = lambda *_args, **_kwargs: None
     files, output = manager._extract_installer(str(target), "NSIS")
     try:
-        assert [eagle_module.os.path.basename(path) for path in files] == [member, "Library.DlL"]
+        assert [eagle_module.os.path.basename(path) for path in files] == [member, "Support.DlL"]
         for path in files:
             with open(path, "rb") as stream:
                 assert stream.read() == payload.read_bytes()
     finally:
         manager._cleanup_extraction(output)
+
+    manager = EagleManager(BottleConfig(Runner="sys-wine"))
+    events = []
+    manager._send_step = lambda *_args, **_kwargs: None
+    manager._send = lambda kind, result: events.append((kind, result))
+    monkeypatch.setattr(eagle_module, "STEP_DELAY", 0)
+    monkeypatch.setattr(eagle_module, "EagleIntel", lambda: SimpleNamespace(available=False))
+    monkeypatch.setattr(eagle_module, "Gio", SimpleNamespace(Settings=SimpleNamespace(
+        new=lambda _app: SimpleNamespace(get_int=lambda _key: 20))))
+    manager.analyze(str(target))
+    assert events[-1][1].status
+    analysed = events[-1][1].data["details"]["Analysed Files"]
+    assert member in analysed
+    assert "Support.DlL" in analysed

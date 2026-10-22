@@ -1004,18 +1004,18 @@ class EagleManager:
                             main_exe = max(exe_files, key=os.path.getsize)
                             self._send_step(f"Scanning main binary: {os.path.basename(main_exe)}")
 
-                            settings = Gio.Settings.new(APP_ID)
-                            scan_limit = settings.get_int("eagle-scan-limit")
-                            files_to_scan = extracted_files[:scan_limit]
-                            
-                            for i, ef in enumerate(files_to_scan):
-                                if not os.path.exists(ef):
-                                    continue
-                                fname = os.path.basename(ef)
-                                insights["Analysed Files"].append(fname)
-                                self._send_step(f"[{i+1}/{len(files_to_scan)}] Scanning: {fname}", delay=False)
-                                self._scan_yara(ef, insights, source=fname)
-                            
+                        settings = Gio.Settings.new(APP_ID)
+                        scan_limit = settings.get_int("eagle-scan-limit")
+                        files_to_scan = extracted_files[:scan_limit]
+
+                        for i, ef in enumerate(files_to_scan):
+                            if not os.path.exists(ef):
+                                continue
+                            fname = os.path.basename(ef)
+                            insights["Analysed Files"].append(fname)
+                            self._send_step(f"[{i+1}/{len(files_to_scan)}] Scanning: {fname}", delay=False)
+                            self._scan_yara(ef, insights, source=fname)
+
                 except Exception as e:
                     logging.warning(f"[Eagle] Deep scan failed: {e}")
                     self._send_step(f"Deep scan failed, continuing with surface analysis")
