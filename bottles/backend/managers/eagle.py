@@ -890,12 +890,13 @@ class EagleManager:
                             for entry in it:
                                 if not entry.is_dir():
                                     continue
-                                for arch in ("Win64", "Win32"):
-                                    binaries_path = os.path.join(entry.path, "Binaries", arch)
+                                for binary_arch in ("Win64", "Win32"):
+                                    binaries_path = os.path.join(entry.path, "Binaries", binary_arch)
                                     if not os.path.isdir(binaries_path):
                                         continue
                                     for f in os.listdir(binaries_path):
-                                        if f.lower().endswith(f"-{arch.lower()}-shipping.exe"):
+                                        if (f.lower().endswith(f"-{binary_arch.lower()}-shipping.exe")
+                                                and os.path.isfile(os.path.join(binaries_path, f))):
                                             ue_shipping_exe = os.path.join(binaries_path, f)
                                             self._send_step(f"[Engines] Shipping binary found: {f}")
                                             break
