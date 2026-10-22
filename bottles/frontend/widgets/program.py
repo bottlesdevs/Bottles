@@ -500,7 +500,8 @@ class ProgramEntry(Adw.ActionRow):
                 # sandbox, so stop the bottle's sandbox launchers instead.
                 WineServer(self.config).force_kill()
             else:
-                WineDbg(self.config).kill_process(self.executable)
+                WineDbg(self.config).kill_process(name=self.executable)
+            return True
 
         # run off the main loop so the UI never freezes while the (possibly
         # blocking) stop command runs
