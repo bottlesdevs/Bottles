@@ -1314,6 +1314,7 @@ def start_identity_bridge(context: str) -> Optional[str]:
             hashlib.sha256(context.encode("utf-8")).hexdigest(),
         ]
         env = os.environ.copy()
+        env.pop("PYTHONHOME", None)
         package_path = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
         env["PYTHONPATH"] = os.pathsep.join(
             filter(None, (package_path, env.get("PYTHONPATH")))

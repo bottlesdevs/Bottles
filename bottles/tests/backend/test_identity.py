@@ -431,10 +431,13 @@ def test_bridge_process_is_reaped(tmp_path, monkeypatch):
 
 
 @pytest.mark.parametrize("runtime", [False, True])
-def test_bridge_starts_outside_package_directory(tmp_path, monkeypatch, runtime):
+@pytest.mark.parametrize("python_home", [None, "/missing-python-runtime"])
+def test_bridge_starts_outside_package_directory(tmp_path, monkeypatch, runtime, python_home):
     monkeypatch.chdir(tmp_path)
-    for name in ("PYTHONPATH", "DISPLAY", "WAYLAND_DISPLAY", "XDG_RUNTIME_DIR"):
+    for name in ("PYTHONHOME", "PYTHONPATH", "DISPLAY", "WAYLAND_DISPLAY", "XDG_RUNTIME_DIR"):
         monkeypatch.delenv(name, raising=False)
+    if python_home:
+        monkeypatch.setenv("PYTHONHOME", python_home)
     monkeypatch.setattr("bottles.backend.identity.Paths.temp", os.environ["TMPDIR"])
     if runtime:
         monkeypatch.setenv("XDG_RUNTIME_DIR", os.environ["TMPDIR"])
