@@ -1,4 +1,6 @@
+import json
 import shutil
+import struct
 import subprocess
 from types import SimpleNamespace
 
@@ -82,3 +84,25 @@ def test_nsis_member_extension_case(monkeypatch, tmp_path, member):
     analysed = events[-1][1].data["details"]["Analysed Files"]
     assert member in analysed
     assert "Support.DlL" in analysed
+
+
+@pytest.mark.parametrize("padding", range(4))
+def test_asar_header_padding(monkeypatch, tmp_path, padding):
+    payload = b'console.log("fixture");\n'
+    header = json.dumps({"files": {"app.js": {"offset": "0", "size": len(payload)}}}).encode()
+    while (-len(header)) % 4 != padding:
+        header += b" "
+    header_size = 8 + len(header) + padding
+    archive = tmp_path / "app.asar"
+    archive.write_bytes(struct.pack("<4I", 4, header_size, header_size - 4, len(header))
+        + header + b"\0" * padding + payload)
+    monkeypatch.setattr(eagle_module, "Paths", SimpleNamespace(temp=str(tmp_path)))
+    manager = EagleManager.__new__(EagleManager)
+    manager._send_step = lambda *_args, **_kwargs: None
+    files, output = manager._extract_asar(str(archive))
+    try:
+        assert len(files) == 1
+        with open(files[0], "rb") as stream:
+            assert stream.read() == payload
+    finally:
+        manager._cleanup_extraction(output)

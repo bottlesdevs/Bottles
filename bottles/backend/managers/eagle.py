@@ -474,8 +474,9 @@ class EagleManager:
                 header_json_data = f.read(header_json_len)
                 header = json.loads(header_json_data.decode('utf-8'))
                 
-                # Base offset for files
-                base_offset = 16 + header_json_len
+                # The serialized header includes padding after the JSON string.
+                header_size = struct.unpack('<I', data[4:8])[0]
+                base_offset = 8 + header_size if header_size else 16 + header_json_len
                 
                 def walk_files(dir_structure, current_path=""):
                     if "files" in dir_structure:
