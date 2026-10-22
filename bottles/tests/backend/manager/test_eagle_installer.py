@@ -40,3 +40,30 @@ def test_msi_file_ids_without_extensions(monkeypatch, tmp_path, architecture):
             assert stream.read() == (tmp_path / "sample.exe").read_bytes()
     finally:
         manager._cleanup_extraction(output)
+
+
+@pytest.mark.parametrize("member", ["app.exe", "APP.EXE", "App.ExE"])
+def test_nsis_member_extension_case(monkeypatch, tmp_path, member):
+    compiler = shutil.which("x86_64-w64-mingw32-gcc")
+    if not compiler or not shutil.which("makensis") or not shutil.which("7z"):
+        pytest.skip("MinGW, NSIS and 7z required")
+    source = tmp_path / "main.c"
+    source.write_text("int main(void) { return 0; }\n")
+    payload = tmp_path / "payload.exe"
+    subprocess.run([compiler, str(source), "-o", str(payload)], check=True, capture_output=True)
+    target = tmp_path / "installer.exe"
+    script = tmp_path / "package.nsi"
+    script.write_text(f'Name "Fixture"\nOutFile "{target}"\nSection\nSetOutPath "$INSTDIR"\n'
+        f'File /oname={member} "{payload}"\nFile /oname=Library.DlL "{payload}"\nSectionEnd\n')
+    subprocess.run(["makensis", "-V2", str(script)], check=True, capture_output=True)
+    monkeypatch.setattr(eagle_module, "Paths", SimpleNamespace(temp=str(tmp_path)))
+    manager = EagleManager.__new__(EagleManager)
+    manager._send_step = lambda *_args, **_kwargs: None
+    files, output = manager._extract_installer(str(target), "NSIS")
+    try:
+        assert [eagle_module.os.path.basename(path) for path in files] == [member, "Library.DlL"]
+        for path in files:
+            with open(path, "rb") as stream:
+                assert stream.read() == payload.read_bytes()
+    finally:
+        manager._cleanup_extraction(output)

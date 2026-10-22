@@ -529,7 +529,7 @@ class EagleManager:
 
             seven_z = shutil.which("7z") or shutil.which("7za") or shutil.which("7zr")
             if seven_z:
-                cmd = [seven_z, "x", "-y", f"-o{extract_dir}", installer_path]
+                cmd = [seven_z, "x", "-y", "-ssc-", f"-o{extract_dir}", installer_path]
                 
                 filters = [
                     "*.exe", "*.dll", "*.msi",
@@ -554,7 +554,7 @@ class EagleManager:
                 except Exception:
                     raise Exception("No extraction tool available")
 
-            for pattern in ["**/*.exe", "**/*.dll"]:
+            for pattern in ["**/*.[eE][xX][eE]", "**/*.[dD][lL][lL]"]:
                 extracted_files.extend(glob(os.path.join(extract_dir, pattern), recursive=True))
 
             if installer_type == "MSI":
