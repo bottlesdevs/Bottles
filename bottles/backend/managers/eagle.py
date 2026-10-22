@@ -538,7 +538,7 @@ class EagleManager:
                     "*.reg"
                 ]
                 
-                for f in filters:
+                for f in filters if installer_type != "MSI" else []:
                     cmd.append(f"-i!{f}")
                     cmd.append(f"-i!**/{f}")
                 
@@ -556,6 +556,17 @@ class EagleManager:
 
             for pattern in ["**/*.exe", "**/*.dll"]:
                 extracted_files.extend(glob(os.path.join(extract_dir, pattern), recursive=True))
+
+            if installer_type == "MSI":
+                # Cabinet members can use file IDs without executable extensions.
+                for directory, _, filenames in os.walk(extract_dir):
+                    for filename in filenames:
+                        path = os.path.join(directory, filename)
+                        if path in extracted_files or os.path.islink(path) or not os.path.isfile(path):
+                            continue
+                        with open(path, "rb") as stream:
+                            if stream.read(2) == b"MZ":
+                                extracted_files.append(path)
 
             self._send_step(f"Found {len(extracted_files)} binaries in installer")
 
