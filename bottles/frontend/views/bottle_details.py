@@ -637,6 +637,8 @@ class BottleView(Adw.PreferencesPage):
                     self.details, "update_runner_label"
                 ):
                     self.details.update_runner_label(self.config.Runner)
+                    self.details.view_preferences.update_combo_components()
+                    self.details.view_preferences.set_config(self.config)
 
             if success:
                 self.window.show_toast(
