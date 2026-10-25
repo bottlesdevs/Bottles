@@ -1577,9 +1577,14 @@ def test_cpak_store_uses_only_the_scoped_shim(monkeypatch):
     assert store.load("client", "") is None
 
 
-@pytest.mark.parametrize("failure", ("missing-shim", "denied", "permissions", "scope", "malformed", "private-stderr"))
+@pytest.mark.parametrize("failure", (
+    "missing-shim", "denied", "permissions", "scope", "malformed", "private-stderr",
+    "prefixed-denied", "prefixed-permissions", "prefixed-private-stderr",
+))
 def test_cpak_keyring_failure_never_falls_back_to_host_bus(monkeypatch, failure):
     monkeypatch.setenv("CPAK_CONTAINER_ID", "synthetic")
+    prefix = "Error: host action failed: " if failure.startswith("prefixed-") else ""
+    failure = failure.removeprefix("prefixed-")
 
     warnings = []
 
@@ -1590,17 +1595,17 @@ def test_cpak_keyring_failure_never_falls_back_to_host_bus(monkeypatch, failure)
             raise subprocess.CalledProcessError(
                 1,
                 args,
-                stderr="secure credential storage is unavailable or locked",
+                stderr=prefix + "secure credential storage is unavailable or locked",
             )
         if failure == "permissions":
             raise subprocess.CalledProcessError(
-                1, args, stderr="secret operation is not permitted",
+                1, args, stderr=prefix + "secret operation is not permitted",
             )
         if failure == "private-stderr":
             raise subprocess.CalledProcessError(
                 1,
                 args,
-                stderr="account@example.invalid token=private-token-value",
+                stderr=prefix + "account@example.invalid token=private-token-value",
             )
         if failure == "malformed":
             return subprocess.CompletedProcess(args, 0, "[]")
