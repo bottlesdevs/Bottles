@@ -247,12 +247,11 @@ class BottleView(Adw.PreferencesPage):
     def on_drop(self, drop_target, value: Gdk.FileList, x, y, user_data=None):
         self.drop_overlay.set_visible(False)
         files: List[Gio.File] = value.get_files()
+        if not files:
+            return False
         args = ""
         file = files[0]
-        if (
-            ".exe" in file.get_basename().split("/")[-1]
-            or ".msi" in file.get_basename().split("/")[-1]
-        ):
+        if file.get_basename().casefold().endswith((".exe", ".msi")):
             def callback(a, b):
                 self.update_programs(force_update=True)
 
@@ -269,6 +268,7 @@ class BottleView(Adw.PreferencesPage):
             guard_sandbox_launch(
                 self.window, self.config, file.get_path(), proceed
             )
+            return True
 
         else:
             self.window.show_toast(
@@ -276,6 +276,7 @@ class BottleView(Adw.PreferencesPage):
                     file.get_basename().split("/")[-1]
                 )
             )
+            return False
 
     def on_enter(self, drop_target, x, y):
         self.drop_overlay.set_visible(True)

@@ -43,7 +43,12 @@ def _ordered_bottles(configs, configured_order):
     positions = {bottle_id: index for index, bottle_id in enumerate(configured_order)}
     fallback = len(positions)
     return sorted(
-        configs, key=lambda config: positions.get(_bottle_order_id(config), fallback)
+        configs,
+        key=lambda config: (
+            positions.get(_bottle_order_id(config), fallback),
+            config.Name.casefold(),
+            config.Path,
+        ),
     )
 
 
