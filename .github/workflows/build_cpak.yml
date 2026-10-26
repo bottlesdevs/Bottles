@@ -128,7 +128,8 @@ jobs:
                 bottles/tests/backend/test_identity_ui.py \
                 bottles/tests/frontend/test_open_uri.py \
                 bottles/tests/frontend/test_eagle_dialog.py \
-                bottles/tests/frontend/test_bottle_preferences.py::test_open_eagle_logs_keeps_window_alive_when_directory_is_unwritable
+                bottles/tests/frontend/test_bottle_preferences.py::test_open_eagle_logs_keeps_window_alive_when_directory_is_unwritable \
+                bottles/tests/frontend/test_program_stop.py
             '
 
       - name: Verify Soda on arm64
