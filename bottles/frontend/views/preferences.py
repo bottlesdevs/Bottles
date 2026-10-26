@@ -772,16 +772,18 @@ class PreferencesWindow(Adw.PreferencesDialog):
         RunAsync(self.manager.apply_audio_driver, driver=driver)
 
     def __display_unstable_candidate(self, component=["", {"Channel": "unstable"}]):
-        return self.window.settings.get_boolean("release-candidate") or component[1][
-            "Channel"
-        ] not in ["rc", "unstable"]
+        return (
+            component[1].get("Installed", False)
+            or self.window.settings.get_boolean("release-candidate")
+            or component[1]["Channel"] not in ["rc", "unstable"]
+        )
 
     def __populate_component_list(
         self, component_type, supported_components, list_component
     ):
         offline_components = self.manager.get_offline_components(component_type)
         supported_component_items = list(supported_components.items())
-        if self.__display_unstable_candidate():
+        if offline_components:
             i, j = 0, 0
             while i <= len(supported_component_items):
                 while j < len(offline_components) and (
@@ -851,7 +853,7 @@ class PreferencesWindow(Adw.PreferencesDialog):
             identifiable_runner["runner_type"] = runner_type
 
         offline_runners_list = self.manager.get_offline_components(runner_type)
-        if self.__display_unstable_candidate():
+        if offline_runners_list:
             for offline_runner_name in offline_runners_list:
                 offline_runner = [
                     offline_runner_name,

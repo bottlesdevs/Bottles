@@ -100,6 +100,7 @@ jobs:
               test -r /usr/share/bottles/bottles/backend/identity.py
               gresource extract /usr/share/bottles/bottles.gresource /com/usebottles/bottles/details-preferences.ui | grep -F switch_eagle_tracing
               bottles-cli --version
+              python3 -c "from requests.adapters import SOCKSProxyManager; SOCKSProxyManager(\"socks5h://127.0.0.1:9\")"
             '
 
       - name: Test bottle and dependency handling
@@ -145,6 +146,11 @@ jobs:
                 bottles/tests/frontend/test_dependency_entry.py \
                 bottles/tests/frontend/test_dependency_batch.py \
                 bottles/tests/frontend/test_importer_selection.py \
+                bottles/tests/frontend/test_offline_components.py \
+                bottles/tests/frontend/test_drive_dialog.py \
+                bottles/tests/frontend/test_drives_dialog.py \
+                bottles/tests/frontend/test_onboard.py \
+                bottles/tests/frontend/test_installer_icon.py \
                 bottles/tests/backend/wine/test_executor.py \
                 bottles/tests/backend/wine/test_start.py
             '
