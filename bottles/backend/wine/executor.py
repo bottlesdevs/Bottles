@@ -215,9 +215,13 @@ class WineExecutor:
         codes above 255 arrive truncated (3010 is seen as 194). Both sides are
         compared on their low byte, like the installer manager does.
         """
-        if not isinstance(returncode, int) or returncode == 0:
+        if type(returncode) is not int or returncode <= 0:
             return False
-        return returncode & 0xFF in {code & 0xFF for code in codes}
+        return any(
+            type(code) is int and code > 0
+            and (returncode == code or returncode <= 255 and returncode == code & 0xFF)
+            for code in codes
+        )
 
     def __exit_result(self, res: Result, returncode: Optional[int]) -> Result:
         """Build the result of a launch that waited for the process to exit."""

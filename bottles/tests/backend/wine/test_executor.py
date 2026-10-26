@@ -1921,6 +1921,11 @@ def test_executable_launch_accepts_configured_exit_status(monkeypatch):
         (102, [1638], True),
         (1, [3010], False),
         (194, [], False),
+        (-62, [3010], False),
+        (-151, [1641], False),
+        (True, [1], False),
+        (450, [3010], False),
+        (194, [-62], False),
     ],
 )
 def test_is_success_exit_code(returncode, codes, expected):
