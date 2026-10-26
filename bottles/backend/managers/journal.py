@@ -63,33 +63,25 @@ class JournalManager:
         if journal is None:
             return {}
 
-        try:
-            journal = {
-                k: v
-                for k, v in sorted(
-                    journal.items(), key=lambda item: item[1]["timestamp"], reverse=True
-                )
-            }
-        except (KeyError, TypeError):
-            journal = {}
-
-        return journal
+        if not isinstance(journal, dict):
+            return {}
+        entries = ((key, value) for key, value in journal.items() if isinstance(value, dict))
+        return dict(sorted(
+            entries, key=lambda item: str(item[1].get("timestamp", "")), reverse=True
+        ))
 
     @staticmethod
     def __clean_old():
         """Clean old journal entries (1 month)."""
         journal = JournalManager.__get_journal()
         old_events = []
-        latest = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
         for event_id, event in journal.items():
-            if event.get("timestamp", None) is None:
-                latest_datetime = datetime.strptime(latest, "%Y-%m-%d %H:%M:%S")
-            else:
+            try:
                 latest_datetime = datetime.strptime(
-                    event["timestamp"], "%Y-%m-%d %H:%M:%S"
+                    event.get("timestamp"), "%Y-%m-%d %H:%M:%S"
                 )
-                latest = event["timestamp"]
+            except (TypeError, ValueError):
+                continue
 
             if latest_datetime < datetime.now() - timedelta(days=30):
                 old_events.append(event_id)
@@ -157,9 +149,12 @@ class JournalManager:
             end = start + timedelta(days=1)
 
         for event_id, event in journal.items():
-            timestamp = datetime.strptime(
-                event["timestamp"], "%Y-%m-%d %H:%M:%S"
-            ).date()
+            try:
+                timestamp = datetime.strptime(
+                    event.get("timestamp"), "%Y-%m-%d %H:%M:%S"
+                ).date()
+            except (TypeError, ValueError):
+                continue
 
             if start <= timestamp <= end:
                 _journal[event_id] = event
