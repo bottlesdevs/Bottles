@@ -31,7 +31,7 @@ template $UmuArgumentsDialog: Adw.Dialog {
     content: Adw.PreferencesPage {
       Adw.PreferencesGroup {
         title: _("Arguments");
-        description: _("These arguments are passed to the game executable when it starts.");
+        description: _("These arguments are passed to the game executable when it starts. Use %command% to run the game through another program, for example: gamemoderun %command% or gamescope -f -- %command%");
 
         Adw.EntryRow entry_arguments {
           title: _("Example: -windowed -nointro");
