@@ -3,7 +3,7 @@ import re
 import shlex
 import time
 import uuid
-from typing import ClassVar, Optional, Pattern
+from typing import ClassVar, Collection, Optional, Pattern
 
 from bottles.backend.dlls.d7vk import D7VKComponent
 from bottles.backend.dlls.dxvk import DXVKComponent
@@ -62,6 +62,7 @@ class WineExecutor:
         "fsync",
         "ntsync",
     }
+    success_codes: Optional[Collection[int]] = None
     _PLACEHOLDER_PATTERN: Pattern[str] = re.compile(r"%([A-Z_]+)%")
     _KNOWN_PLACEHOLDERS: set[str] = {
         "PROGRAM_NAME",
@@ -95,9 +96,15 @@ class WineExecutor:
         program_winebridge: Optional[bool] = None,
         program_hide_console: bool = False,
         sandbox_override: Optional[str] = None,
+        success_codes: Optional[Collection[int]] = None,
     ):
         logging.info("Launching an executable…")
         self.config = config
+        # None keeps the historical behaviour, where a launch counts as
+        # successful as soon as the process was started. A collection makes the
+        # result follow the process exit status, accepting the listed codes in
+        # addition to 0 (see is_success_exit_code).
+        self.success_codes = success_codes
         # Per-launch dedicated sandbox override (None / "off" / "legacy"); see
         # WineCommand for the meaning of each value.
         self.sandbox_override = sandbox_override
@@ -199,6 +206,31 @@ class WineExecutor:
         if not path:
             return False
         return "/run/user/" in path and "/doc/" in path
+
+    @staticmethod
+    def is_success_exit_code(returncode: Optional[int], codes: Collection[int]) -> bool:
+        """Whether a non-zero exit status is one of the accepted codes.
+
+        Wine hands the exit status to the host as a single byte, so Windows
+        codes above 255 arrive truncated (3010 is seen as 194). Both sides are
+        compared on their low byte, like the installer manager does.
+        """
+        if type(returncode) is not int or returncode <= 0:
+            return False
+        return any(
+            type(code) is int and code > 0
+            and (returncode == code or returncode <= 255 and returncode == code & 0xFF)
+            for code in codes
+        )
+
+    def __exit_result(self, res: Result, returncode: Optional[int]) -> Result:
+        """Build the result of a launch that waited for the process to exit."""
+        status = res.ok or self.is_success_exit_code(returncode, self.success_codes)
+        return Result(
+            status=status,
+            data={"output": res, "returncode": returncode},
+            message="" if status else res.message,
+        )
 
     @classmethod
     def run_program(
@@ -622,11 +654,13 @@ class WineExecutor:
         )
         res = winecmd.run()
         self.__set_monitors()
+        if self.success_codes is not None:
+            return self.__exit_result(res, winecmd.returncode)
         return Result(status=res.ok, data={"output": res}, message=res.message)
 
     def __launch_msi(self):
         msiexec = MsiExec(self.config)
-        msiexec.install(
+        res = msiexec.install(
             pkg_path=self.exec_path,
             args=self.args,
             terminal=self.terminal,
@@ -634,6 +668,8 @@ class WineExecutor:
             environment=self.environment,
         )
         self.__set_monitors()
+        if self.success_codes is not None:
+            return self.__exit_result(res, msiexec.returncode)
         return Result(True)
 
     def __launch_batch(self):
@@ -664,6 +700,8 @@ class WineExecutor:
             host_cwd=host_cwd,
         )
         self.__set_monitors()
+        if self.success_codes is not None:
+            return self.__exit_result(res, start.returncode)
         return Result(status=True, data={"output": res})
 
     def __launch_with_explorer(self):

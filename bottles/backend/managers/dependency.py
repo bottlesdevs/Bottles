@@ -46,6 +46,12 @@ from bottles.backend.wine.winedbg import WineDbg
 logging = Logger()
 
 
+# Non-zero exit codes that still mean the installer did its job: 1638 (another
+# version is already installed), 1641, 3010 and 3011 (done, restart needed).
+# A step can accept more through the optional `success_codes` list.
+INSTALLER_SUCCESS_CODES = (1638, 1641, 3010, 3011)
+
+
 class DependencyManager:
     def __init__(self, manager, offline: bool = False):
         self.__manager = manager
@@ -444,10 +450,10 @@ class DependencyManager:
             )
             if not res.ok:
                 TaskManager.remove(task_id)
-                return Result(
-                    status=False,
-                    message=f"One or more steps failed for {dependency[0]}.",
-                )
+                message = f"One or more steps failed for {dependency[0]}."
+                if res.message:
+                    message += f" {res.message}"
+                return Result(status=False, message=message)
             if not res.data.get("uninstaller"):
                 uninstaller = False
 
@@ -521,14 +527,15 @@ class DependencyManager:
                 return Result(status=False)
 
         if step["action"] in ["install_exe", "install_msi"]:
-            if not self.__step_install_exe_msi(
+            result = self.__step_install_exe_msi(
                 config=config,
                 step=step,
                 task=task,
                 progress_cb=progress_cb,
                 progress_progress_cb=progress_progress_cb,
-            ):
-                return Result(status=False)
+            )
+            if not result.ok:
+                return result
 
         if step["action"] == "uninstall":
             self.__step_uninstall(config=config, file_name=step["file_name"])
@@ -643,10 +650,11 @@ class DependencyManager:
         task: Optional[Task] = None,
         progress_cb: Optional[Callable[[str], None]] = None,
         progress_progress_cb: Optional[Callable[[Optional[float]], None]] = None,
-    ) -> bool:
+    ) -> Result:
         """
         Download and install the .exe or .msi file
-        declared in the step, in a bottle.
+        declared in the step, in a bottle. The step fails when the
+        installer exits with a status that is not a success code.
         """
         winedbg = WineDbg(config)
         progress_handler = self.__build_progress_handler(task, progress_progress_cb)
@@ -668,23 +676,36 @@ class DependencyManager:
                 file = f"{_file}/{file}"
             else:
                 file = f"{Paths.temp}/{file}"
+            extra_codes = step.get("success_codes")
+            success_codes = list(INSTALLER_SUCCESS_CODES)
+            if isinstance(extra_codes, list):
+                success_codes += [c for c in extra_codes if type(c) is int]
             executor = WineExecutor(
                 config,
                 exec_path=file,
                 args=step.get("arguments"),
                 environment=step.get("environment"),
+                success_codes=success_codes,
             )
-            executor.run()
+            result = executor.run()
             winedbg.wait_for_process(file)
+
+            if not result.ok:
+                message = result.message or f"Failed to run {step.get('file_name')}."
+                logging.error(message)
+                return Result(status=False, message=message)
 
             if progress_progress_cb:
                 progress_progress_cb(None)
 
             if progress_cb:
                 progress_cb(_("Installer completed."))
-            return True
+            return Result(status=True)
 
-        return False
+        return Result(
+            status=False,
+            message=f"Failed to download {step.get('file_name')}, or checksum failed.",
+        )
 
     @staticmethod
     def __step_uninstall(config: BottleConfig, file_name: str) -> bool:
