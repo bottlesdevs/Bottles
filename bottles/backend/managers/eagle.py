@@ -27,6 +27,7 @@ import yara
 import struct
 import json
 import subprocess
+from xml.etree import ElementTree
 from gettext import gettext as _
 
 from bottles.backend.globals import Paths
@@ -466,15 +467,16 @@ class EagleManager:
             with open(asar_path, 'rb') as f:
                 data = f.read(16)
                 if len(data) < 16:
-                    return [], None
+                    raise ValueError("Truncated ASAR header")
                 
                 header_json_len = struct.unpack('<I', data[12:16])[0]
                 
                 header_json_data = f.read(header_json_len)
                 header = json.loads(header_json_data.decode('utf-8'))
                 
-                # Base offset for files
-                base_offset = 16 + header_json_len
+                # The serialized header includes padding after the JSON string.
+                header_size = struct.unpack('<I', data[4:8])[0]
+                base_offset = 8 + header_size if header_size else 16 + header_json_len
                 
                 def walk_files(dir_structure, current_path=""):
                     if "files" in dir_structure:
@@ -515,6 +517,7 @@ class EagleManager:
 
         except Exception as e:
             logging.error(f"[Eagle] ASAR extraction failed: {e}")
+            self._cleanup_extraction(extract_dir)
             return [], None
 
     def _extract_installer(self, installer_path: str, installer_type: str) -> tuple:
@@ -528,7 +531,7 @@ class EagleManager:
 
             seven_z = shutil.which("7z") or shutil.which("7za") or shutil.which("7zr")
             if seven_z:
-                cmd = [seven_z, "x", "-y", f"-o{extract_dir}", installer_path]
+                cmd = [seven_z, "x", "-y", "-ssc-", f"-o{extract_dir}", installer_path]
                 
                 filters = [
                     "*.exe", "*.dll", "*.msi",
@@ -537,7 +540,7 @@ class EagleManager:
                     "*.reg"
                 ]
                 
-                for f in filters:
+                for f in filters if installer_type != "MSI" else []:
                     cmd.append(f"-i!{f}")
                     cmd.append(f"-i!**/{f}")
                 
@@ -553,8 +556,19 @@ class EagleManager:
                 except Exception:
                     raise Exception("No extraction tool available")
 
-            for pattern in ["**/*.exe", "**/*.dll"]:
+            for pattern in ["**/*.[eE][xX][eE]", "**/*.[dD][lL][lL]"]:
                 extracted_files.extend(glob(os.path.join(extract_dir, pattern), recursive=True))
+
+            if installer_type == "MSI":
+                # Cabinet members can use file IDs without executable extensions.
+                for directory, _, filenames in os.walk(extract_dir):
+                    for filename in filenames:
+                        path = os.path.join(directory, filename)
+                        if path in extracted_files or os.path.islink(path) or not os.path.isfile(path):
+                            continue
+                        with open(path, "rb") as stream:
+                            if stream.read(2) == b"MZ":
+                                extracted_files.append(path)
 
             self._send_step(f"Found {len(extracted_files)} binaries in installer")
 
@@ -714,9 +728,10 @@ class EagleManager:
             self._send_step("Analysing Rich header...")
             try:
                 if hasattr(pe, 'RICH_HEADER') and pe.RICH_HEADER:
-                    for entry in pe.RICH_HEADER.values:
-                        if entry['prodid'] in self.VS_PRODUCTS:
-                            metadata["compiler"] = self.VS_PRODUCTS[entry['prodid']]
+                    for entry in pe.RICH_HEADER.values[::2]:
+                        if entry >> 16 in self.VS_PRODUCTS:
+                            header = pe.OPTIONAL_HEADER
+                            metadata["compiler"] = f"Microsoft tools (linker {header.MajorLinkerVersion}.{header.MinorLinkerVersion})"
                             self._send_step(f"Compiler: {metadata['compiler']}")
                             break
             except:
@@ -758,18 +773,32 @@ class EagleManager:
             try:
                 if hasattr(pe, 'DIRECTORY_ENTRY_RESOURCE'):
                     for entry in pe.DIRECTORY_ENTRY_RESOURCE.entries:
-                        if hasattr(entry, 'name') and entry.name == pefile.RESOURCE_TYPE.get('RT_MANIFEST'):
+                        if entry.id == pefile.RESOURCE_TYPE.get('RT_MANIFEST'):
                             for me in entry.directory.entries:
                                 data = pe.get_data(
                                     me.directory.entries[0].data.struct.OffsetToData,
                                     me.directory.entries[0].data.struct.Size
                                 )
-                                xml = data.decode('utf-8', errors='ignore')
-                                if 'requireAdministrator' in xml:
-                                    admin_required = True
-                                    self._send_step("[!] Requires administrator")
-                                if 'dpiAware' in xml.lower():
-                                    dpi_aware = True
+                                legacy_dpi = False
+                                modern_dpi = None
+                                for element in ElementTree.fromstring(data).iter():
+                                    if element.tag in ("requestedExecutionLevel", "{urn:schemas-microsoft-com:asm.v3}requestedExecutionLevel"):
+                                        if element.get("level", "").lower() == "requireadministrator":
+                                            admin_required = True
+                                            self._send_step("[!] Requires administrator")
+                                    value = (element.text or "").strip().lower()
+                                    if element.tag in ("dpiAware", "{http://schemas.microsoft.com/SMI/2005/WindowsSettings}dpiAware"):
+                                        legacy_dpi = value in ("true", "true/pm", "per monitor")
+                                    elif element.tag in ("dpiAwareness", "{http://schemas.microsoft.com/SMI/2016/WindowsSettings}dpiAwareness"):
+                                        modern_dpi = False
+                                        for mode in value.split(","):
+                                            mode = mode.strip()
+                                            if mode == "unaware":
+                                                break
+                                            if mode in ("system", "permonitor", "permonitorv2"):
+                                                modern_dpi = True
+                                                break
+                                dpi_aware |= legacy_dpi if modern_dpi is None else modern_dpi
             except:
                 pass
 
@@ -856,18 +885,19 @@ class EagleManager:
                 if (is_root_launcher
                         and "shipping" not in basename.lower()
                         and os.path.getsize(executable_path) < 1_048_576):
-                    self._send_step("[!] Unreal Engine bootstrapper detected – searching for shipping binary...")
+                    self._send_step("[!] Unreal Engine bootstrapper detected - searching for shipping binary...")
                     try:
                         with os.scandir(exe_dir) as it:
                             for entry in it:
                                 if not entry.is_dir():
                                     continue
-                                for arch in ("Win64", "Win32"):
-                                    binaries_path = os.path.join(entry.path, "Binaries", arch)
+                                for binary_arch in ("Win64", "Win32"):
+                                    binaries_path = os.path.join(entry.path, "Binaries", binary_arch)
                                     if not os.path.isdir(binaries_path):
                                         continue
                                     for f in os.listdir(binaries_path):
-                                        if f.lower().endswith(f"-{arch.lower()}-shipping.exe"):
+                                        if (f.lower().endswith(f"-{binary_arch.lower()}-shipping.exe")
+                                                and os.path.isfile(os.path.join(binaries_path, f))):
                                             ue_shipping_exe = os.path.join(binaries_path, f)
                                             self._send_step(f"[Engines] Shipping binary found: {f}")
                                             break
@@ -906,14 +936,16 @@ class EagleManager:
                 # Extract and scan ASAR
                 self._send_step("Analysing Electron archive...")
                 extracted_asar_files, asar_extract_dir = self._extract_asar(asar_path)
-                if extracted_asar_files:
-                    settings = Gio.Settings.new(APP_ID)
-                    scan_limit = settings.get_int("eagle-scan-limit")
-                    for i, ef in enumerate(extracted_asar_files[:scan_limit]):
-                        fname = os.path.basename(ef)
-                        self._send_step(f"Scanning ASAR content: {fname}", delay=False)
-                        self._scan_yara(ef, insights, source=f"Electron Source: {fname}")
-                    
+                try:
+                    if extracted_asar_files:
+                        settings = Gio.Settings.new(APP_ID)
+                        scan_limit = settings.get_int("eagle-scan-limit")
+                        for i, ef in enumerate(extracted_asar_files[:scan_limit]):
+                            fname = os.path.basename(ef)
+                            self._send_step(f"Scanning ASAR content: {fname}", delay=False)
+                            self._scan_yara(ef, insights, source=f"Electron Source: {fname}")
+
+                finally:
                     self._cleanup_extraction(asar_extract_dir)
 
             # Deep Scan for Neighbor Files
@@ -978,18 +1010,18 @@ class EagleManager:
                             main_exe = max(exe_files, key=os.path.getsize)
                             self._send_step(f"Scanning main binary: {os.path.basename(main_exe)}")
 
-                            settings = Gio.Settings.new(APP_ID)
-                            scan_limit = settings.get_int("eagle-scan-limit")
-                            files_to_scan = extracted_files[:scan_limit]
-                            
-                            for i, ef in enumerate(files_to_scan):
-                                if not os.path.exists(ef):
-                                    continue
-                                fname = os.path.basename(ef)
-                                insights["Analysed Files"].append(fname)
-                                self._send_step(f"[{i+1}/{len(files_to_scan)}] Scanning: {fname}", delay=False)
-                                self._scan_yara(ef, insights, source=fname)
-                            
+                        settings = Gio.Settings.new(APP_ID)
+                        scan_limit = settings.get_int("eagle-scan-limit")
+                        files_to_scan = extracted_files[:scan_limit]
+
+                        for i, ef in enumerate(files_to_scan):
+                            if not os.path.exists(ef):
+                                continue
+                            fname = os.path.basename(ef)
+                            insights["Analysed Files"].append(fname)
+                            self._send_step(f"[{i+1}/{len(files_to_scan)}] Scanning: {fname}", delay=False)
+                            self._scan_yara(ef, insights, source=fname)
+
                 except Exception as e:
                     logging.warning(f"[Eagle] Deep scan failed: {e}")
                     self._send_step(f"Deep scan failed, continuing with surface analysis")
@@ -1054,18 +1086,18 @@ class EagleManager:
             if has_mono and net_runtimes:
                  # Both detected: recommend Mono first
                  suggestions.append({"key": "dep_mono", "value": False, "label": "Wine Mono (Recommended first)"})
-                 for rt in set(net_runtimes):
+                 for rt in sorted(set(net_runtimes)):
                      suggestions.append({"key": "dep_dotnet", "value": False, "label": f"{rt} (Try Mono first)"})
             else:
                  # Standard behavior
-                 for rt in set(net_runtimes):
+                 for rt in sorted(set(net_runtimes)):
                      suggestions.append({"key": "dep_dotnet", "value": False, "label": rt})
                  if has_mono and not net_runtimes:
                       suggestions.append({"key": "dep_mono", "value": False, "label": "Wine Mono"})
 
             vcpp = [r for r in flat_insights.get("Runtimes", []) if "VC++" in r]
             if vcpp:
-                suggestions.append({"key": "dep_vcredist", "value": False, "label": f"Visual C++ ({', '.join(set(vcpp))})"})
+                suggestions.append({"key": "dep_vcredist", "value": False, "label": f"Visual C++ ({', '.join(sorted(set(vcpp)))})"})
 
             if not dpi_aware:
                 suggestions.append({"key": "virtual_desktop", "value": False, "label": "Virtual Desktop (DPI)"})

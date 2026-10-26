@@ -391,6 +391,7 @@ class SecretTokenStore:
         except (OSError, subprocess.SubprocessError, ValueError) as exc:
             reason = exc.__class__.__name__
             broker_error = (getattr(exc, "stderr", "") or "").strip()
+            broker_error = broker_error.removeprefix("Error: host action failed: ")
             if broker_error in (
                 "secure credential storage is unavailable or locked",
                 "secret operation is not permitted",
@@ -1314,6 +1315,7 @@ def start_identity_bridge(context: str) -> Optional[str]:
             hashlib.sha256(context.encode("utf-8")).hexdigest(),
         ]
         env = os.environ.copy()
+        env.pop("PYTHONHOME", None)
         package_path = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
         env["PYTHONPATH"] = os.pathsep.join(
             filter(None, (package_path, env.get("PYTHONPATH")))
