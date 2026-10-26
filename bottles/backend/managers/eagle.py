@@ -728,9 +728,10 @@ class EagleManager:
             self._send_step("Analysing Rich header...")
             try:
                 if hasattr(pe, 'RICH_HEADER') and pe.RICH_HEADER:
-                    for entry in pe.RICH_HEADER.values:
-                        if entry['prodid'] in self.VS_PRODUCTS:
-                            metadata["compiler"] = self.VS_PRODUCTS[entry['prodid']]
+                    for entry in pe.RICH_HEADER.values[::2]:
+                        if entry >> 16 in self.VS_PRODUCTS:
+                            header = pe.OPTIONAL_HEADER
+                            metadata["compiler"] = f"Microsoft tools (linker {header.MajorLinkerVersion}.{header.MinorLinkerVersion})"
                             self._send_step(f"Compiler: {metadata['compiler']}")
                             break
             except:

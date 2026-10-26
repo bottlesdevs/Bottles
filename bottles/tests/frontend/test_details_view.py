@@ -8,7 +8,9 @@ from gi.repository import Gio
 bottles_resource = Gio.Resource.load("/app/share/bottles/bottles.gresource")
 bottles_resource._register()
 
+from bottles.backend.models.config import BottleConfig
 from bottles.frontend.views.details import DetailsView
+from bottles.frontend.views.eagle import EagleView
 
 
 def _make_view(transition_running, showing_details):
@@ -54,3 +56,27 @@ def test_unload_view_empties_the_page_stack():
     DetailsView.unload_view(view)
 
     assert stack.get_first_child() is None
+
+
+def test_eagle_follows_the_selected_bottle():
+    eagle = EagleView(SimpleNamespace(), BottleConfig())
+    previous_manager = eagle.manager
+    unused = SimpleNamespace(set_config=lambda **kwargs: None, update=lambda **kwargs: None)
+    view = SimpleNamespace(
+        view_bottle=unused,
+        view_preferences=unused,
+        view_taskmanager=unused,
+        view_installers=unused,
+        view_registry_rules=unused,
+        view_versioning=unused,
+        view_eagle=eagle,
+    )
+    for config in (
+        BottleConfig(Name="First", Runner="soda-11.0-34"),
+        BottleConfig(Name="Second", Environment="Steam", RunnerPath="/runner"),
+    ):
+        DetailsView.set_config(view, config, rebuild_pages=False)
+        assert eagle.config is config
+        assert eagle.manager.config is config
+        assert eagle.manager is not previous_manager
+        previous_manager = eagle.manager
