@@ -18,6 +18,7 @@
 import contextlib
 import webbrowser
 from gettext import gettext as _
+from urllib.parse import urlencode
 
 from gi.repository import Adw, Gtk
 
@@ -41,6 +42,7 @@ class DependencyEntry(Adw.ActionRow):
     btn_remove = Gtk.Template.Child()
     btn_manifest = Gtk.Template.Child()
     btn_license = Gtk.Template.Child()
+    btn_report = Gtk.Template.Child()
     btn_err = Gtk.Template.Child()
     box_actions = Gtk.Template.Child()
     spinner = Gtk.Template.Child()
@@ -90,6 +92,7 @@ class DependencyEntry(Adw.ActionRow):
         self.btn_remove.connect("clicked", self.remove_dependency)
         self.btn_manifest.connect("clicked", self.open_manifest)
         self.btn_license.connect("clicked", self.open_license)
+        self.btn_report.connect("clicked", self.open_bug_report)
 
         if dependency[0] in self.config.Installed_Dependencies:
             """
@@ -157,6 +160,10 @@ class DependencyEntry(Adw.ActionRow):
         )
         webbrowser.open(manifest["License_url"])
 
+    def open_bug_report(self, _widget):
+        query = urlencode({"title": f"{self.dependency[0]}: "})
+        webbrowser.open(f"https://github.com/bottlesdevs/dependencies/issues/new?{query}")
+
     def install_dependency(self, _widget):
         """
         This function install the dependency in the bottle, it
@@ -223,8 +230,10 @@ class DependencyEntry(Adw.ActionRow):
             else:
                 self.window.show_toast(_('"{0}" installed').format(self.dependency[0]))
             self.set_installed(uninstaller, removed)
-            return
-        self.set_err()
+        else:
+            self.set_err()
+        if self.window.page_details.config is self.config:
+            self.window.page_details.view_dependencies.update(config=self.config)
 
     def set_err(self):
         """
@@ -237,7 +246,8 @@ class DependencyEntry(Adw.ActionRow):
         self.check_select.set_visible(False)
         self.btn_remove.set_visible(False)
         self.btn_err.set_visible(True)
-        self.get_parent().set_sensitive(True)
+        with contextlib.suppress(AttributeError):
+            self.get_parent().set_sensitive(True)
         self.window.show_toast(_('"{0}" failed to install').format(self.dependency[0]))
 
     def set_installed(self, installer=True, removed=False):

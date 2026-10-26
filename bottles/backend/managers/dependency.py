@@ -17,6 +17,7 @@
 
 import os
 import shutil
+import tempfile
 import traceback
 from glob import glob
 from typing import Callable, Optional
@@ -42,6 +43,7 @@ from bottles.backend.wine.regkeys import RegKeys
 from bottles.backend.wine.regsvr32 import Regsvr32
 from bottles.backend.wine.uninstaller import Uninstaller
 from bottles.backend.wine.winedbg import WineDbg
+from bottles.backend.wine.winepath import WinePath
 
 logging = Logger()
 
@@ -680,15 +682,37 @@ class DependencyManager:
             success_codes = list(INSTALLER_SUCCESS_CODES)
             if isinstance(extra_codes, list):
                 success_codes += [c for c in extra_codes if type(c) is int]
-            executor = WineExecutor(
-                config,
-                exec_path=file,
-                args=step.get("arguments"),
-                environment=step.get("environment"),
-                success_codes=success_codes,
-            )
-            result = executor.run()
-            winedbg.wait_for_process(file)
+            staged = None
+            cwd = None
+            try:
+                prefix = ManagerUtils.get_bottle_path(config)
+                if not os.path.exists(os.path.join(prefix, "dosdevices", "z:")):
+                    temp_dir = os.path.join(prefix, "drive_c", "windows", "temp")
+                    os.makedirs(temp_dir, exist_ok=True)
+                    staged = tempfile.TemporaryDirectory(prefix="bottles-installer-", dir=temp_dir)
+                    cwd = staged.name
+                    destination = os.path.join(cwd, os.path.basename(file))
+                    if step.get("url").startswith("temp/"):
+                        shutil.copytree(os.path.dirname(file), cwd, dirs_exist_ok=True)
+                    else:
+                        shutil.copy2(file, destination)
+                    file = WinePath(config).to_windows(destination, native=True)
+
+                executor = WineExecutor(
+                    config,
+                    exec_path=file,
+                    args=step.get("arguments"),
+                    environment=step.get("environment"),
+                    success_codes=success_codes,
+                    cwd=cwd,
+                )
+                result = executor.run()
+                winedbg.wait_for_process(os.path.basename(file.replace("\\", "/")))
+            except OSError as error:
+                return Result(False, message=f"Could not prepare installer: {error}")
+            finally:
+                if staged:
+                    staged.cleanup()
 
             if not result.ok:
                 message = result.message or f"Failed to run {step.get('file_name')}."
@@ -884,10 +908,18 @@ class DependencyManager:
             if not os.path.exists(font_path):
                 os.makedirs(font_path)
 
+            temporary = None
             try:
-                shutil.copyfile(f"{path}/{font}", f"{font_path}/{font}")
-            except (FileNotFoundError, FileExistsError):
-                logging.warning(f"Font {font} already exists or is not found.")
+                with tempfile.NamedTemporaryFile(dir=font_path, delete=False) as target:
+                    temporary = target.name
+                shutil.copyfile(f"{path}/{font}", temporary)
+                os.replace(temporary, f"{font_path}/{font}")
+            except OSError as error:
+                logging.warning(f"Could not install font {font}: {error}")
+                return False
+            finally:
+                if temporary and os.path.exists(temporary):
+                    os.unlink(temporary)
 
             # print(f"Copying {font} to {bottle_path}/drive_c/windows/Fonts/")
 

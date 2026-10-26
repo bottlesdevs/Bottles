@@ -1,9 +1,12 @@
 from pathlib import Path
 from types import SimpleNamespace
 
+import pytest
+
 from bottles.backend.globals import Paths, TrdyPaths
 from bottles.backend.managers.importer import ImportManager
 from bottles.backend.models.result import Result
+from bottles.backend.models.config import BottleConfig
 
 
 def _disable_default_locations(monkeypatch, tmp_path):
@@ -98,3 +101,44 @@ def test_import_wineprefix_rolls_back_when_config_cannot_be_saved(
     assert not result.status
     assert not destination.joinpath(f"Imported_{source.name}").exists()
     assert not source.joinpath("bottle.lock").exists()
+
+
+@pytest.mark.parametrize("compatible_runner", (True, False))
+def test_import_win32_selects_compatible_runner(tmp_path, monkeypatch, compatible_runner):
+    source = tmp_path / "32-bit Prefix"
+    source.joinpath("drive_c").mkdir(parents=True)
+    source.joinpath("system.reg").write_text("WINE REGISTRY Version 2\n#arch=win32\n")
+    runners = tmp_path / "runners"
+    unix64 = runners / "wow64-only/lib/wine/x86_64-unix/ntdll.so"
+    unix64.parent.mkdir(parents=True)
+    unix64.touch()
+    available = ["wow64-only"]
+    if compatible_runner:
+        unix32 = runners / "dual-unix/lib/wine/i386-unix/ntdll.so"
+        unix32.parent.mkdir(parents=True)
+        unix32.touch()
+        available.append("dual-unix")
+    destination = tmp_path / "bottles"
+    destination.mkdir()
+    monkeypatch.setattr(Paths, "bottles", str(destination))
+    monkeypatch.setattr(Paths, "runners", str(runners))
+    manager = SimpleNamespace(
+        get_latest_runner=lambda: "wow64-only",
+        runners_available=available,
+        update_bottles=lambda **_kwargs: None,
+    )
+
+    result = ImportManager(manager).import_wineprefix(
+        {"Name": source.name, "Path": str(source)}
+    )
+
+    imported = destination / f"Imported_{source.name}"
+    assert result.ok == compatible_runner
+    if compatible_runner:
+        config = BottleConfig.load(str(imported / "bottle.yml"))
+        assert config.data.Arch == "win32"
+        assert config.data.Runner == "dual-unix"
+    else:
+        assert "32-bit Unix support" in result.message
+        assert not imported.exists()
+        assert not source.joinpath("bottle.lock").exists()

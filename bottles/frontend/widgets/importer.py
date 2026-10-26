@@ -63,12 +63,17 @@ class ImporterEntry(Adw.ActionRow):
     def import_wineprefix(self, widget):
         @GtkUtils.run_in_main_loop
         def set_imported(result, error=False):
-            self.btn_import.set_visible(result.ok)
-            self.img_lock.set_visible(result.ok)
+            success = result is not None and result.ok
+            self.btn_import.set_visible(not success)
+            self.img_lock.set_visible(success)
 
-            if result.ok:
+            if success:
                 self.window.show_toast(
                     _('"{0}" imported').format(self.prefix.get("Name"))
+                )
+            else:
+                self.window.show_toast(
+                    result.message if result and result.message else _("Could not import Wine prefix")
                 )
 
             self.set_sensitive(True)

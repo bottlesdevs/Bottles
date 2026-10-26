@@ -1885,6 +1885,16 @@ class Manager(metaclass=Singleton):
             runner = self.get_latest_runner()
         runner_name = runner
 
+        if arch == "win32" and not WineUtils.supports_win32_prefix(
+            ManagerUtils.get_runner_path(runner)
+        ):
+            message = _(
+                "This runner cannot create a 32-bit prefix. Use a 64-bit bottle "
+                "to run 32-bit applications, or select a runner with 32-bit Unix support."
+            )
+            log_update(message)
+            return Result(False, message=message)
+
         if not dxvk:
             # if no dxvk is specified, use the first one from available
             dxvk = self.dxvk_available[0] if self.dxvk_available else ""
@@ -2234,6 +2244,9 @@ class Manager(metaclass=Singleton):
 
             wineboot.kill()
 
+        if self.settings.get_boolean("disable-home-drive"):
+            Drives(config).remove_drive("Z")
+
         if env:
             while wineserver.is_alive():
                 cancel_result = check_cancel()
@@ -2317,7 +2330,9 @@ class Manager(metaclass=Singleton):
                             _("Failed to install dependency: %s")
                             % _dep.get("Description", "n/a")
                         )
-                        return Result(False)
+                        if res.message:
+                            log_update(res.message)
+                        return res
                     template_updated = True
 
         if d7vk_requested:

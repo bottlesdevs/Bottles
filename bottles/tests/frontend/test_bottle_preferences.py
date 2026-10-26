@@ -20,6 +20,23 @@ def _make_view(config):
     return SimpleNamespace(config=config, switch_hdr=Mock())
 
 
+@pytest.mark.parametrize("nvidia", (True, False))
+@pytest.mark.parametrize("enabled", (True, False))
+def test_nvapi_remains_manageable_after_gpu_change(monkeypatch, nvidia, enabled):
+    from bottles.frontend.views import bottle_preferences
+    from bottles.frontend.views.bottle_preferences import PreferencesView
+
+    config = BottleConfig()
+    config.Parameters.dxvk_nvapi = enabled
+    view = SimpleNamespace(config=config, row_nvapi=Mock(), combo_nvapi=Mock())
+    monkeypatch.setattr(bottle_preferences.GPUUtils, "is_gpu", lambda *_args: nvidia)
+
+    PreferencesView._PreferencesView__update_nvapi_visibility(view)
+
+    view.row_nvapi.set_visible.assert_called_once_with(nvidia or enabled)
+    view.combo_nvapi.set_visible.assert_called_once_with(nvidia or enabled)
+
+
 def test_flatpak_addons_use_the_current_runtime_branch():
     from bottles.frontend.views.bottle_preferences import FLATPAK_INSTALL_COMMANDS
 
@@ -138,6 +155,9 @@ def test_adaptive_launch_requires_soda(runner, supported):
         switch_adaptive_launch=Mock(),
         row_adaptive_launch=Mock(),
         _adaptive_launch_warning=Mock(),
+        switch_eagle_tracing=Mock(),
+        row_eagle_tracing=Mock(),
+        _PreferencesView__toggle_feature_cb=Mock(),
     )
 
     PreferencesView._PreferencesView__update_adaptive_launch_support(view)

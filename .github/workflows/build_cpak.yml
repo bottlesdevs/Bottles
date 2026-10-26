@@ -102,7 +102,7 @@ jobs:
               bottles-cli --version
             '
 
-      - name: Test identity and folder handling
+      - name: Test bottle and dependency handling
         env:
           IMAGE: ${{ steps.identity.outputs.image }}
         run: |
@@ -111,7 +111,7 @@ jobs:
             --volume "$GITHUB_WORKSPACE:/tests:ro" \
             "$IMAGE" -ceu '
               apt-get update
-              apt-get install -y --no-install-recommends xauth xvfb python3-pytest python3-pytest-mock
+              apt-get install -y --no-install-recommends xauth xvfb blueprint-compiler python3-pytest python3-pytest-mock
               mkdir -p /app/share/bottles
               ln -s /usr/share/bottles/bottles.gresource /app/share/bottles/bottles.gresource
               cd /tests
@@ -128,8 +128,25 @@ jobs:
                 bottles/tests/backend/test_identity_ui.py \
                 bottles/tests/frontend/test_open_uri.py \
                 bottles/tests/frontend/test_eagle_dialog.py \
-                bottles/tests/frontend/test_bottle_preferences.py::test_open_eagle_logs_keeps_window_alive_when_directory_is_unwritable \
-                bottles/tests/frontend/test_program_stop.py
+                bottles/tests/frontend/test_bottle_preferences.py \
+                bottles/tests/frontend/test_program_stop.py \
+                bottles/tests/backend/manager/test_journal.py \
+                bottles/tests/backend/manager/test_importer.py \
+                bottles/tests/backend/manager/test_default_drives.py \
+                bottles/tests/backend/manager/test_dependency_extraction.py \
+                bottles/tests/backend/manager/test_dependency_install.py \
+                bottles/tests/backend/manager/test_offline_cache.py \
+                bottles/tests/backend/manager/test_manager.py::test_create_bottle_rejects_win32_for_wow64_only_runner \
+                bottles/tests/backend/utils/test_manager.py \
+                bottles/tests/backend/utils/test_wine.py \
+                bottles/tests/backend/test_nvapi.py \
+                bottles/tests/frontend/test_bottle_drop.py \
+                bottles/tests/frontend/test_bottle_list_order.py \
+                bottles/tests/frontend/test_dependency_entry.py \
+                bottles/tests/frontend/test_dependency_batch.py \
+                bottles/tests/frontend/test_importer_selection.py \
+                bottles/tests/backend/wine/test_executor.py \
+                bottles/tests/backend/wine/test_start.py
             '
 
       - name: Verify Soda on arm64

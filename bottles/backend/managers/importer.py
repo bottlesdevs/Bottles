@@ -20,11 +20,14 @@ import shutil
 import subprocess
 from datetime import datetime
 from glob import glob
+from gettext import gettext as _
 
 from bottles.backend.globals import Paths, TrdyPaths
 from bottles.backend.logger import Logger
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
+from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.utils.wine import WineUtils
 
 logging = Logger()
 
@@ -91,6 +94,23 @@ class ImportManager:
         """Import wineprefix from external manager and convert in a bottle"""
         logging.info(f"Importing wineprefix {wineprefix['Name']} as bottle…")
 
+        new_config = BottleConfig()
+        new_config.Arch = WineUtils.get_prefix_arch(wineprefix["Path"]) or new_config.Arch
+        new_config.Runner = self.manager.get_latest_runner()
+        if new_config.Arch == "win32" and not WineUtils.supports_win32_prefix(
+            ManagerUtils.get_runner_path(new_config.Runner)
+        ):
+            compatible = [
+                runner for runner in self.manager.runners_available
+                if WineUtils.supports_win32_prefix(ManagerUtils.get_runner_path(runner))
+            ]
+            if not compatible:
+                return Result(
+                    False,
+                    message=_("This 32-bit prefix needs a runner with 32-bit Unix support."),
+                )
+            new_config.Runner = compatible[0]
+
         # prepare bottle path for the wine prefix
         bottle_path = f"Imported_{wineprefix.get('Name')}"
         bottle_complete_path = os.path.join(Paths.bottles, bottle_path)
@@ -118,9 +138,7 @@ class ImportManager:
             return Result(False)
 
         # create bottle config
-        new_config = BottleConfig()
         new_config.Name = wineprefix["Name"]
-        new_config.Runner = self.manager.get_latest_runner()
         new_config.Path = bottle_path
         new_config.Environment = "Custom"
         new_config.Creation_Date = str(datetime.now())

@@ -508,6 +508,32 @@ def test_create_bottle_checks_every_essential_component_before_retry():
     assert calls == ["runner", "dxvk", "vkd3d"]
 
 
+def test_create_bottle_rejects_win32_for_wow64_only_runner(tmp_path, monkeypatch):
+    runner = tmp_path / "runner"
+    ntdll = runner / "lib/wine/x86_64-unix/ntdll.so"
+    ntdll.parent.mkdir(parents=True)
+    ntdll.touch()
+    monkeypatch.setattr(ManagerUtils, "get_runner_path", lambda *_args: str(runner))
+    manager = object.__new__(Manager)
+    manager.runners_available = ["runner"]
+    manager.dxvk_available = ["dxvk"]
+    manager.vkd3d_available = ["vkd3d"]
+    manager.nvapi_available = ["nvapi"]
+    manager.latencyflex_available = ["latencyflex"]
+    manager.d7vk_available = []
+    messages = []
+
+    result = manager.create_bottle(
+        name="Test", environment="application", runner="runner",
+        arch="win32", path=str(tmp_path), fn_logger=messages.append,
+    )
+
+    assert not result.ok
+    assert "32-bit prefix" in result.message
+    assert result.message in messages
+    assert not (tmp_path / "Test").exists()
+
+
 class ComponentUpdateSettings:
     def __init__(self, show_updates=True, release_candidate=False):
         self.show_updates = show_updates
