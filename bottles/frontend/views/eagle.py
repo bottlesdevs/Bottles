@@ -56,8 +56,7 @@ class EagleView(Gtk.Box):
     def __init__(self, details, config: BottleConfig, **kwargs):
         super().__init__(**kwargs)
         self.details = details
-        self.config = config
-        self.manager = EagleManager(config)
+        self.set_config(config)
         self.analysis_results = None
         self.target_path = None
         self._analysis_steps: list[Adw.ActionRow] = []
@@ -70,6 +69,10 @@ class EagleView(Gtk.Box):
         
         SignalManager.connect(Signals.EagleStep, self.__on_eagle_step)
         SignalManager.connect(Signals.EagleFinished, self.__on_eagle_finished)
+
+    def set_config(self, config: BottleConfig) -> None:
+        self.config = config
+        self.manager = EagleManager(config)
 
     def analyze(self, executable_path: str) -> None:
         """
