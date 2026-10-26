@@ -1437,6 +1437,7 @@ def test_winecommand_syncs_proton_vkd3d(monkeypatch, tmp_path):
     stale_dll = bottle_path / "drive_c/windows/system32/libvkd3d-1.dll"
     stale_dll.parent.mkdir(parents=True)
     stale_dll.write_bytes(b"stale")
+    os.utime(stale_dll, (0, 0))
 
     config = BottleConfig(Name="Test", Path=str(bottle_path), Runner="GE-Proton")
     config.Parameters = BottleParams()
