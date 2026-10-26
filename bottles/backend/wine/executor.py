@@ -460,9 +460,9 @@ class WineExecutor:
                 if fonts_mtime > stamp_mtime:
                     logging.info("Fonts directory modified manually, running wineboot to update fonts registry.")
                     from bottles.backend.wine.wineboot import WineBoot
-                    WineBoot(self.config).launch(update=True)
-                    with open(stamp_file, "w") as f:
-                        f.write(str(fonts_mtime))
+                    if WineBoot(self.config).update().ok:
+                        with open(stamp_file, "w") as f:
+                            f.write(str(fonts_mtime))
         except Exception as e:
             logging.debug(f"Failed to check and update fonts: {e}")
 

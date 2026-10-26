@@ -97,6 +97,55 @@ def test_gamescope_mangohud_payload_exits_with_the_game(monkeypatch, tmp_path):
     assert result.returncode == 23
 
 
+@pytest.mark.parametrize("refresh_ok", [True, False])
+def test_changed_fonts_refresh_before_launch(monkeypatch, tmp_path, refresh_ok):
+    fonts = tmp_path / "drive_c/windows/Fonts"
+    fonts.mkdir(parents=True)
+    stamp = tmp_path / ".fonts_stamp"
+    commands = []
+    events = []
+
+    class Command:
+        def __init__(self, _config, **kwargs):
+            commands.append(kwargs)
+
+        def run(self):
+            events.append("refresh")
+            return Result(refresh_ok)
+
+    monkeypatch.setattr(
+        "bottles.backend.wine.wineprogram.WineCommand", Command
+    )
+    monkeypatch.setattr(
+        ManagerUtils, "get_bottle_path", lambda _config: str(tmp_path)
+    )
+    monkeypatch.setattr(
+        "bottles.backend.wine.executor.SignalManager.send", lambda *_args: None
+    )
+    executor = WineExecutor.__new__(WineExecutor)
+    executor.config = _make_config()
+    executor.exec_path = executor._raw_exec_path = r"C:\fixture.exe"
+    executor.exec_type = "exe"
+
+    def launch():
+        events.append("launch")
+        return Result(True)
+
+    executor._WineExecutor__launch_with_bridge = launch
+
+    assert executor.run().ok
+    assert events == ["refresh", "launch"]
+    assert commands[0]["command"] == "wineboot -u /nogui"
+    assert commands[0]["communicate"] is True
+    assert commands[0]["forced_dll_overrides"] == "mscoree=d"
+    assert stamp.exists() == refresh_ok
+    if refresh_ok:
+        assert float(stamp.read_text()) == fonts.stat().st_mtime
+
+    assert executor.run().ok
+    assert len(commands) == (1 if refresh_ok else 2)
+
+
 def test_build_placeholder_map_uses_program_values():
     config = _make_config()
     program = {
