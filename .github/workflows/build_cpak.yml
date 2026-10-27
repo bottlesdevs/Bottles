@@ -111,21 +111,7 @@ jobs:
             --entrypoint sh \
             --volume "$GITHUB_WORKSPACE:/tests:ro" \
             "$IMAGE" -ceu '
-              # Keep runtime packages at their image versions while adding test tools.
-              dpkg-query -W -f="\${binary:Package} \${db:Status-Status}\n" |
-                awk "\$2 == \"installed\" {print \$1}" |
-                xargs -r apt-mark hold > /dev/null
-              case "$(dpkg --print-architecture)" in
-                amd64) mirror=https://archive.ubuntu.com/ubuntu/ ;;
-                arm64) mirror=https://ports.ubuntu.com/ubuntu-ports/ ;;
-                *) exit 1 ;;
-              esac
-              for source in /etc/apt/sources.list /etc/apt/sources.list.d/*.list /etc/apt/sources.list.d/*.sources; do
-                test -f "$source" || continue
-                sed -Ei "s|https?://snapshot\\.ubuntu\\.com/ubuntu(-ports)?/[0-9TZ]+/?|$mirror|g" "$source"
-              done
-              apt-get -o Acquire::Retries=5 --error-on=any update
-              apt-get -o Acquire::Retries=5 install -y --no-install-recommends xauth xvfb blueprint-compiler python3-pytest python3-pytest-mock
+              sh /tests/build-aux/cpak/install-test-tools.sh xauth xvfb blueprint-compiler python3-pytest python3-pytest-mock
               mkdir -p /app/share/bottles
               ln -s /usr/share/bottles/bottles.gresource /app/share/bottles/bottles.gresource
               cd /tests
@@ -164,6 +150,7 @@ jobs:
                 bottles/tests/frontend/test_offline_components.py \
                 bottles/tests/frontend/test_preferences_window.py \
                 bottles/tests/frontend/test_external_runner_component.py \
+                bottles/tests/frontend/test_playtime_service.py \
                 bottles/tests/frontend/test_drive_dialog.py \
                 bottles/tests/frontend/test_drives_dialog.py \
                 bottles/tests/frontend/test_onboard.py \
@@ -193,9 +180,9 @@ jobs:
           docker run --rm \
             --entrypoint sh \
             --volume "$runner:/runner:ro" \
+            --volume "$GITHUB_WORKSPACE/build-aux/cpak/install-test-tools.sh:/install-test-tools:ro" \
             "$IMAGE" -ceu '
-              apt-get update
-              apt-get install -y --no-install-recommends xauth xvfb
+              sh /install-test-tools xauth xvfb
               export FEX_APP_CONFIG=/runner/share/fex-emu/Config.json
               export FEX_APP_CONFIG_LOCATION=/runner/share/fex-emu
               export LD_LIBRARY_PATH="/runner/lib:/runner/lib/wine/aarch64-unix:$LD_LIBRARY_PATH"
