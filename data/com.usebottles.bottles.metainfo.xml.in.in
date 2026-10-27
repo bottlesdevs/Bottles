@@ -85,6 +85,21 @@
     <display_length compare="ge">768</display_length>
   </requires>
   <releases>
+    <release version="67.5" date="2026-10-27">
+      <description translate="no">
+        <ul>
+          <li>Fixed template downloads, offline component selection and component updates</li>
+          <li>Fixed dependency installation with the Z: drive disabled and reporting installer failures</li>
+          <li>Preserved prefix architecture and user files when importing or restoring bottles</li>
+          <li>Fixed desktop shortcuts, executable drag and drop, and bottle ordering</li>
+          <li>Fixed UMU controller access and retrying failed game searches</li>
+          <li>Applied the Wayland setting when launching Proton</li>
+          <li>Added optional Eagle tracing and native analysis with compatible Soda runners</li>
+          <li>Added the identity bridge for compatible Soda runners</li>
+          <li>Displayed total playtime in hours</li>
+        </ul>
+      </description>
+    </release>
     <release version="67.4" date="2026-09-07">
       <description translate="no">
         <ul>
