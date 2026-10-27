@@ -469,6 +469,7 @@ class UmuExecutor:
             share_paths_rw=[str(path) for path in sorted(writable_paths)],
             share_net=game.share_net,
             share_host_ro=False,
+            share_input=True,
         )
 
     def run(self, game: UmuGame) -> subprocess.Popen[str]:

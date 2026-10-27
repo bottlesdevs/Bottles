@@ -16,6 +16,7 @@ from bottles.backend.umu import (
 )
 from bottles.backend.umu import executor as executor_module
 from bottles.backend.utils import vdf
+from bottles.backend.managers import sandbox as sandbox_module
 
 
 def _game(repository, tmp_path, environment=None, sandbox=False, share_net=False):
@@ -587,6 +588,32 @@ def test_dedicated_sandbox_exposes_base_cache(monkeypatch, tmp_path):
 
     assert cache_home.is_dir()
     assert f"--bind {cache_home} {cache_home}" in command
+
+
+@pytest.mark.parametrize("devices, shared", [("all;", True), ("dri;", False)])
+def test_dedicated_sandbox_forwards_available_controller_input(
+    monkeypatch, tmp_path, devices, shared
+):
+    repository = UmuGameRepository(tmp_path / "umu")
+    game = replace(
+        _game(repository, tmp_path, sandbox=True),
+        proton=str(_installed_proton(tmp_path)),
+    )
+    executor = _executor(repository, tmp_path)
+    info = tmp_path / "flatpak-info"
+    info.write_text(
+        f"[Instance]\nflatpak-version=1.17.1\n[Context]\ndevices={devices}\n"
+    )
+    monkeypatch.setenv("FLATPAK_ID", "com.usebottles.bottles")
+    monkeypatch.setattr(sandbox_module, "FLATPAK_INFO", str(info))
+
+    sandbox = executor._sandbox_manager(game, executor.prepare(game))
+    command = sandbox.get_cmd("true")
+
+    assert sandbox.share_input
+    assert (f"--sandbox-flag={sandbox_module.FLATPAK_SHARE_INPUT}" in command) is shared
+    assert not sandbox.share_usb
+    assert not sandbox.share_hidraw
 
 
 def test_dedicated_sandbox_does_not_expose_game_cache_override(monkeypatch, tmp_path):
