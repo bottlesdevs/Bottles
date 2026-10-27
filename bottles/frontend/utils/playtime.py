@@ -442,8 +442,7 @@ class PlaytimeService:
         Rules:
         - < 60s: "<1m"
         - < 3600s: "MMm"
-        - < 86400s: "Hh MMm"
-        - >= 86400s: "Dd HHh"
+        - >= 3600s: "Hh MMm"
 
         Args:
             total_seconds: Total accumulated playtime in seconds.
