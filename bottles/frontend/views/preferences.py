@@ -378,6 +378,11 @@ class PreferencesWindow(Adw.PreferencesDialog):
         if switch.get_active():
             self.data.remove(UserDataKeys.FundingDismissed)
 
+    def refresh_component_usage(self):
+        for entry in self.__registry:
+            if isinstance(entry, ComponentEntry):
+                entry.refresh_usage()
+
     def ui_update(self):
         # Show locally installed runners/DLLs right away so the pages never get
         # stuck on the loading spinner when the online catalog is slow or

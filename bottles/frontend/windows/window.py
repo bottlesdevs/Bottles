@@ -612,6 +612,7 @@ class BottlesWindow(Adw.ApplicationWindow):
             self._preferences_window = PreferencesWindow(self)
 
         preferences_window = self._preferences_window
+        preferences_window.refresh_component_usage()
         if page:
             preferences_window.set_visible_page_name(page)
         elif view:
