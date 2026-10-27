@@ -1466,7 +1466,8 @@ def test_winecommand_filters_host_environment(monkeypatch, tmp_path):
     assert str(runner_path / "lib/wine/aarch64-unix") in env["LD_LIBRARY_PATH"]
 
 
-def test_winecommand_syncs_proton_vkd3d(monkeypatch, tmp_path):
+@pytest.mark.parametrize("wayland", (False, True))
+def test_winecommand_prepares_proton_environment(monkeypatch, tmp_path, wayland):
     bottle_path = tmp_path / "TestBottle"
     bottle_path.mkdir()
     proton_path = tmp_path / "GE-Proton"
@@ -1489,7 +1490,7 @@ def test_winecommand_syncs_proton_vkd3d(monkeypatch, tmp_path):
     os.utime(stale_dll, (0, 0))
 
     config = BottleConfig(Name="Test", Path=str(bottle_path), Runner="GE-Proton")
-    config.Parameters = BottleParams()
+    config.Parameters = BottleParams(wayland=wayland)
     config.Parameters.use_runtime = False
     config.Parameters.use_eac_runtime = False
     config.Parameters.use_be_runtime = False
@@ -1523,6 +1524,11 @@ def test_winecommand_syncs_proton_vkd3d(monkeypatch, tmp_path):
         "bottles.backend.wine.winecommand.DisplayUtils.check_nvidia_device",
         lambda: None,
     )
+    monkeypatch.setattr(
+        "bottles.backend.wine.winecommand.DisplayUtils.display_server_type",
+        lambda: "wayland",
+    )
+    monkeypatch.setenv("WAYLAND_DISPLAY", "wayland-0")
 
     def _fake_gpu(self):
         return {
@@ -1543,7 +1549,14 @@ def test_winecommand_syncs_proton_vkd3d(monkeypatch, tmp_path):
     winecmd.gamescope_activated = False
     winecmd.terminal = False
 
-    winecmd.get_env(return_clean_env=True)
+    resolved = winecmd.get_env(return_clean_env=True)
+
+    if wayland:
+        assert resolved["WINE_DISABLE_FULLSCREEN_HACK"] == "1"
+        assert resolved["PROTON_NO_STEAMINPUT"] == "1"
+        assert "DISPLAY" not in resolved
+    else:
+        assert "WINE_DISABLE_FULLSCREEN_HACK" not in resolved
 
     for dll in ["libvkd3d-1.dll", "libvkd3d-shader-1.dll"]:
         assert (bottle_path / "drive_c/windows/system32" / dll).read_bytes() == b"win64"

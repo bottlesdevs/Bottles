@@ -132,9 +132,11 @@ def _wayland_available(env: "WineEnv") -> bool:
 
 
 def apply_wayland_preferences(
-    env: "WineEnv", params, xlocale_dir: Optional[str] = None
+    env: "WineEnv", params, xlocale_dir: Optional[str] = None, proton: bool = False
 ) -> None:
-    proton_wayland_enabled = _proton_option_enabled(env.get_value, "WAYLAND")
+    proton_wayland_enabled = _proton_option_enabled(env.get_value, "WAYLAND") or (
+        proton and getattr(params, "wayland", False)
+    )
     if not _wayland_requested(env, params):
         return
     if DisplayUtils.display_server_type() != "wayland":
@@ -850,7 +852,7 @@ class WineCommand:
             candidate = os.path.join(runner_path, "share/X11/locale")
             if os.path.isdir(candidate):
                 xlocale_dir = candidate
-        apply_wayland_preferences(env, params, xlocale_dir)
+        apply_wayland_preferences(env, params, xlocale_dir, proton=bool(proton_path))
         apply_hdr_preferences(
             env,
             params,
