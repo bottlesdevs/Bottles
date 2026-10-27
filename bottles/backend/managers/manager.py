@@ -1540,6 +1540,14 @@ class Manager(metaclass=Singleton):
 
             try:
                 real_path = ManagerUtils.get_bottle_path(config)
+                users_path = os.path.join(real_path, "drive_c", "users")
+                if os.path.isdir(users_path) and not os.path.islink(
+                    os.path.join(real_path, "drive_c")
+                ):
+                    if not WineUtils.ensure_user_profile_alias(real_path):
+                        logging.warning(
+                            f"Could not prepare user profile aliases for bottle {_name}."
+                        )
                 for p in [
                     os.path.join(real_path, "cache", "dxvk_shader"),
                     os.path.join(real_path, "cache", "gl_shader"),

@@ -315,6 +315,73 @@ def test_check_bottles_updates_versioned_system_runner(
     apply_rules.assert_not_called()
 
 
+@pytest.mark.parametrize("external_drive", (True, False))
+def test_loaded_prefix_keeps_user_files_after_account_change(monkeypatch, tmp_path, external_drive):
+    bottles = tmp_path / "bottles"
+    prefix = bottles / "Portable"
+    prefix.mkdir(parents=True)
+    drive = tmp_path / "external-drive" if external_drive else prefix / "drive_c"
+    profile = drive / "users/source-user"
+    profile.mkdir(parents=True)
+    if external_drive:
+        (prefix / "drive_c").symlink_to(drive)
+    (profile / "document.txt").write_text("existing document")
+    BottleConfig(Name="Portable", Path="Portable", Runner="runner").dump(
+        str(prefix / "bottle.yml")
+    )
+    manager = object.__new__(Manager)
+    manager.runners_available = ["runner"]
+    manager.settings = GSettingsStub()
+    manager.is_cli = True
+    monkeypatch.setattr(manager_module.Paths, "bottles", str(bottles))
+    monkeypatch.setenv("USER", "destination-user")
+
+    manager.check_bottles(silent=True)
+
+    users = prefix / "drive_c/users"
+    if external_drive:
+        assert not (users / "destination-user").exists()
+        assert not (users / "steamuser").exists()
+    else:
+        assert (users / "destination-user").is_symlink()
+        assert (users / "destination-user/document.txt").read_text() == "existing document"
+        assert (users / "steamuser/document.txt").read_text() == "existing document"
+    assert profile.is_dir() and not profile.is_symlink()
+
+
+def test_full_backup_import_preserves_files_for_another_account(monkeypatch, tmp_path):
+    from bottles.backend.managers import backup
+    from bottles.backend.managers.backup import BackupManager
+
+    source = tmp_path / "source"
+    prefix = source / "Portable"
+    profile = prefix / "drive_c/users/source-user"
+    profile.mkdir(parents=True)
+    (profile / "document.txt").write_text("existing document")
+    config = BottleConfig(Name="Portable", Path="Portable", Runner="runner")
+    config.dump(str(prefix / "bottle.yml"))
+    archive = tmp_path / "portable.tar.gz"
+    monkeypatch.setattr(manager_module.Paths, "bottles", str(source))
+    assert BackupManager.export_backup(config, "full", str(archive)).ok
+
+    destination = tmp_path / "destination"
+    destination.mkdir()
+    manager = object.__new__(Manager)
+    manager.runners_available = ["runner"]
+    manager.settings = GSettingsStub()
+    manager.is_cli = True
+    monkeypatch.setattr(backup, "Manager", lambda: manager)
+    monkeypatch.setattr(manager_module.Paths, "bottles", str(destination))
+    monkeypatch.setenv("USER", "destination-user")
+
+    assert BackupManager.import_backup("full", str(archive)).ok
+
+    users = destination / "Portable/drive_c/users"
+    assert (users / "destination-user/document.txt").read_text() == "existing document"
+    assert (users / "source-user/document.txt").read_text() == "existing document"
+    assert not (profile.parent / "destination-user").exists()
+
+
 def test_get_programs_preserves_per_program_runtime_options(monkeypatch):
     class Settings:
         @staticmethod
