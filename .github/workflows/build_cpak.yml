@@ -138,6 +138,8 @@ jobs:
                 bottles/tests/backend/manager/test_dependency_install.py \
                 bottles/tests/backend/manager/test_offline_cache.py \
                 bottles/tests/backend/manager/test_manager.py::test_create_bottle_rejects_win32_for_wow64_only_runner \
+                bottles/tests/backend/manager/test_manager.py::test_loaded_prefix_keeps_user_files_after_account_change \
+                bottles/tests/backend/manager/test_manager.py::test_full_backup_import_preserves_files_for_another_account \
                 bottles/tests/backend/utils/test_manager.py \
                 bottles/tests/backend/utils/test_wine.py \
                 bottles/tests/backend/test_nvapi.py \
@@ -151,6 +153,10 @@ jobs:
                 bottles/tests/frontend/test_drives_dialog.py \
                 bottles/tests/frontend/test_onboard.py \
                 bottles/tests/frontend/test_installer_icon.py \
+                bottles/tests/backend/umu/test_executor.py \
+                bottles/tests/backend/umu/test_database.py \
+                bottles/tests/backend/manager/test_sandbox.py \
+                bottles/tests/frontend/test_umu_search.py \
                 bottles/tests/backend/wine/test_executor.py \
                 bottles/tests/backend/wine/test_start.py
             '
