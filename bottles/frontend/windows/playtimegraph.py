@@ -22,6 +22,7 @@ from typing import Optional, List, Any
 from gi.repository import Gtk, Adw
 
 from bottles.backend.logger import Logger
+from bottles.backend.managers.playtime import ResetResult
 from bottles.frontend.utils.playtime import PlaytimeService
 from bottles.frontend.widgets.playtimechart_weekly import PlaytimeChartWeekly
 from bottles.frontend.widgets.playtimechart_hourly import PlaytimeChartHourly
@@ -148,32 +149,56 @@ class PlaytimeGraphDialog(Adw.Window):
             return
 
         service = PlaytimeService(self.parent.manager)
-        success = service.reset_program_playtime_by_id(
+        result = service.reset_program_playtime_by_id(
             bottle_id=self.bottle_id,
             program_id=self.program_id,
         )
 
-        if success:
-            logging.info(
-                f"Playtime stats reset for {self.program_name} "
-                f"(program_id={self.program_id})"
-            )
-            # Reset navigation and reload all data inside this dialog
-            self.current_week_offset = 0
-            self.__load_data()
+        if result is not ResetResult.OK:
+            self.__show_reset_error(result)
+            return
 
-            # Ask the parent ProgramEntry to refresh its subtitle.
-            # After the reset, the cache is invalidated and the DB has no
-            # records for this program, so the subtitle will show "Never Played".
-            if hasattr(self.parent, "update_playtime"):
-                try:
-                    service = PlaytimeService(self.parent.manager)
-                    self.parent.update_playtime(service)
-                except Exception as e:
-                    logging.error(
-                        f"Failed to refresh ProgramEntry subtitle after reset: {e}",
-                        exc_info=True,
-                    )
+        logging.info(
+            f"Playtime stats reset for {self.program_name} "
+            f"(program_id={self.program_id})"
+        )
+        # Reset navigation and reload all data inside this dialog
+        self.current_week_offset = 0
+        self.__load_data()
+
+        # Ask the parent ProgramEntry to refresh its subtitle.
+        # After the reset, the cache is invalidated and the DB has no
+        # records for this program, so the subtitle will show "Never Played".
+        if hasattr(self.parent, "update_playtime"):
+            try:
+                self.parent.update_playtime(service)
+            except Exception as e:
+                logging.error(
+                    f"Failed to refresh ProgramEntry subtitle after reset: {e}",
+                    exc_info=True,
+                )
+
+    def __show_reset_error(self, result: ResetResult) -> None:
+        """Tell the user why the playtime statistics were not reset."""
+        if result is ResetResult.RUNNING:
+            body = _(
+                'Playtime statistics cannot be reset while "{}" is running. '
+                "Close the program and try again."
+            ).format(self.program_name)
+        elif result is ResetResult.DISABLED:
+            body = _("Playtime tracking is disabled.")
+        else:
+            body = _("Something went wrong while resetting the statistics.")
+
+        dialog = Adw.MessageDialog(
+            transient_for=self,
+            heading=_("Could Not Reset Playtime Statistics"),
+            body=body,
+        )
+        dialog.add_response("ok", _("OK"))
+        dialog.set_default_response("ok")
+        dialog.set_close_response("ok")
+        dialog.present()
 
     def __load_data(self) -> None:
         """Load and display playtime data from the database."""
