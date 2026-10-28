@@ -1183,6 +1183,18 @@ class PreferencesView(Adw.PreferencesPage):
         # self.manager.dxvk_available[self.combo_dxvk.get_selected()]
         @GtkUtils.run_in_main_loop
         def update(result, error=False):
+            if error:
+                versions = list(self.windows_versions)
+                selected = 0
+                if self.config.Windows in versions:
+                    selected = versions.index(self.config.Windows)
+                self.combo_windows.handler_block_by_func(self.__set_windows)
+                self.combo_windows.set_selected(selected)
+                self.combo_windows.handler_unblock_by_func(self.__set_windows)
+            else:
+                self.config = self.manager.update_config(
+                    config=self.config, key="Windows", value=windows_version
+                ).data["config"]
             self.spinner_windows.stop()
             self.spinner_windows.set_visible(False)
             self.combo_windows.set_sensitive(True)
@@ -1196,10 +1208,6 @@ class PreferencesView(Adw.PreferencesPage):
 
         for index, windows_version in enumerate(self.windows_versions):
             if self.combo_windows.get_selected() == index:
-                self.config = self.manager.update_config(
-                    config=self.config, key="Windows", value=windows_version
-                ).data["config"]
-
                 RunAsync(rk.lg_set_windows, callback=update, version=windows_version)
                 break
 

@@ -136,6 +136,65 @@ def test_unchanged_sync_does_not_update_bottle(monkeypatch):
     view.queue.add_task.assert_not_called()
 
 
+@pytest.mark.parametrize("error", (None, ValueError("winecfg failed")))
+def test_windows_version_is_saved_only_after_winecfg_succeeds(monkeypatch, error):
+    from gi.repository import Adw, GLib, Gtk
+
+    from bottles.frontend.views import bottle_preferences
+    from bottles.frontend.views.bottle_preferences import PreferencesView
+
+    Adw.init()
+    config = BottleConfig(Windows="win10")
+    combo = Adw.ComboRow(model=Gtk.StringList.new(["Windows 10", "Windows 11"]))
+    combo.set_selected(0)
+    view = SimpleNamespace(
+        config=config,
+        combo_windows=combo,
+        windows_versions={"win10": "Windows 10", "win11": "Windows 11"},
+        manager=Mock(),
+        queue=Mock(),
+        spinner_windows=Mock(),
+    )
+    view._PreferencesView__set_windows = lambda *_args: (
+        PreferencesView._PreferencesView__set_windows(view)
+    )
+    combo.connect("notify::selected", view._PreferencesView__set_windows)
+    run_async = Mock()
+    monkeypatch.setattr(bottle_preferences, "RunAsync", run_async)
+    monkeypatch.setattr(bottle_preferences, "RegKeys", Mock())
+
+    def persist(**kwargs):
+        config.Windows = kwargs["value"]
+        return SimpleNamespace(data={"config": config})
+
+    view.manager.update_config.side_effect = persist
+    combo.set_selected(1)
+
+    assert config.Windows == "win10"
+    view.manager.update_config.assert_not_called()
+    assert not combo.get_sensitive()
+    callback = run_async.call_args.kwargs["callback"]
+    callback(None, error)
+    context = GLib.MainContext.default()
+    while context.pending():
+        context.iteration(False)
+
+    if error:
+        assert config.Windows == "win10"
+        assert combo.get_selected() == 0
+        view.manager.update_config.assert_not_called()
+    else:
+        assert config.Windows == "win11"
+        assert combo.get_selected() == 1
+        view.manager.update_config.assert_called_once_with(
+            config=config, key="Windows", value="win11"
+        )
+    assert run_async.call_count == 1
+    assert combo.get_sensitive()
+    view.queue.end_task.assert_called_once_with()
+    view.spinner_windows.stop.assert_called_once_with()
+
+
 @pytest.mark.parametrize(
     ("runner", "supported"),
     [
