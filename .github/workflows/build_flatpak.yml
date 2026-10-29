@@ -16,7 +16,7 @@ jobs:
       with:
         bundle: bottles.flatpak
         manifest-path: build-aux/com.usebottles.bottles.Devel.json
-        cache-key: flatpak-builder-${{ github.sha }}
+        cache-key: flatpak-builder-x86_64-${{ github.sha }}
     - name: Test multiarch runtime
       run: |
         curl -fL https://deb.debian.org/debian/pool/main/g/gstreamer1.0/gstreamer1.0-tools_1.26.2-2_i386.deb -o /tmp/gstreamer-tools-i386.deb
