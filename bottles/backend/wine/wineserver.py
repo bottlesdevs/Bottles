@@ -62,7 +62,7 @@ class WineServer(WineProgram):
             return True
         return False
 
-    def wait(self):
+    def _run(self, args):
         config = self.config
         bottle = ManagerUtils.get_bottle_path(config)
         runner = ManagerUtils.get_runner_path(config.Runner)
@@ -76,25 +76,30 @@ class WineServer(WineProgram):
 
         env = os.environ.copy()
         env["WINEPREFIX"] = bottle
-        env["PATH"] = f"{runner}/bin:{env['PATH']}"
+        command = "wineserver"
+        if not config.Runner.startswith("sys-"):
+            command = os.path.join(runner, "bin", "wineserver")
+            env["PATH"] = f"{runner}/bin:{env['PATH']}"
 
-        subprocess.Popen(
-            "wineserver -w",
+        return subprocess.Popen(
+            [command, *args],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
-            shell=True,
             cwd=bottle,
             env=env,
-        ).wait()
+        )
+
+    def wait(self):
+        self._run(["-w"]).wait()
 
     def kill(self, signal: int = -1):
         args = "-k"
         if signal != -1:
             args += str(signal)
 
-        self.launch(
-            args=args, communicate=True, action_name="sending signal to the wine server"
-        )
+        if not self.silent:
+            logging.info("Using Wine Server -- sending signal to the wine server")
+        self.returncode = self._run([args]).wait()
 
     def force_kill(self):
         bottle = ManagerUtils.get_bottle_path(self.config)
