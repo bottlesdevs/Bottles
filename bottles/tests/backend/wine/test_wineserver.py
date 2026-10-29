@@ -9,12 +9,7 @@ from bottles.backend.wine.wineserver import WineServer
 def test_is_alive_skips_missing_bottle_directory(monkeypatch, mocker, tmp_path):
     bottle_path = tmp_path / "missing"
     config = BottleConfig(Name="Missing", Runner="sys-wine-11.0")
-    pgrep = mocker.Mock()
-    pgrep.stdout.read.return_value = b"123\n"
-    popen = mocker.patch(
-        "bottles.backend.wine.wineserver.subprocess.Popen",
-        return_value=pgrep,
-    )
+    popen = mocker.patch("bottles.backend.wine.wineserver.subprocess.Popen")
     monkeypatch.setattr(
         "bottles.backend.wine.wineserver.ManagerUtils.get_bottle_path",
         lambda _config: str(bottle_path),
@@ -25,18 +20,16 @@ def test_is_alive_skips_missing_bottle_directory(monkeypatch, mocker, tmp_path):
     )
 
     assert WineServer(config).is_alive() is False
-    popen.assert_called_once_with(["pgrep", "wineserver"], stdout=subprocess.PIPE)
+    popen.assert_not_called()
 
 
 def test_is_alive_handles_bottle_removed_during_check(monkeypatch, mocker, tmp_path):
     bottle_path = tmp_path / "removed"
     bottle_path.mkdir()
     config = BottleConfig(Name="Removed", Runner="sys-wine-11.0")
-    pgrep = mocker.Mock()
-    pgrep.stdout.read.return_value = b"123\n"
     mocker.patch(
         "bottles.backend.wine.wineserver.subprocess.Popen",
-        side_effect=[pgrep, FileNotFoundError],
+        side_effect=FileNotFoundError,
     )
     monkeypatch.setattr(
         "bottles.backend.wine.wineserver.ManagerUtils.get_bottle_path",
@@ -48,6 +41,39 @@ def test_is_alive_handles_bottle_removed_during_check(monkeypatch, mocker, tmp_p
     )
 
     assert WineServer(config).is_alive() is False
+
+
+def test_is_alive_reaps_timed_out_waiter(monkeypatch, mocker, tmp_path):
+    config = BottleConfig(Name="Test", Runner="soda-test")
+    monkeypatch.setattr(
+        "bottles.backend.wine.wineserver.ManagerUtils.get_bottle_path",
+        lambda _config: str(tmp_path),
+    )
+    process = mocker.Mock()
+    process.wait.side_effect = [subprocess.TimeoutExpired("wineserver", 0.5), 0]
+    run = mocker.patch.object(WineServer, "_run", return_value=process)
+    assert WineServer(config).is_alive() is True
+
+    run.assert_called_once_with(["-w"])
+    process.kill.assert_called_once_with()
+    assert process.wait.call_args_list == [mocker.call(timeout=0.5), mocker.call()]
+
+
+def test_is_alive_reaps_finished_waiter(monkeypatch, mocker, tmp_path):
+    config = BottleConfig(Name="Test", Runner="soda-test")
+    monkeypatch.setattr(
+        "bottles.backend.wine.wineserver.ManagerUtils.get_bottle_path",
+        lambda _config: str(tmp_path),
+    )
+    process = mocker.Mock()
+    process.wait.return_value = 0
+    run = mocker.patch.object(WineServer, "_run", return_value=process)
+
+    assert WineServer(config).is_alive() is False
+
+    run.assert_called_once_with(["-w"])
+    process.wait.assert_called_once_with(timeout=0.5)
+    process.kill.assert_not_called()
 
 
 @pytest.mark.parametrize("signal,argument", [(-1, "-k"), (9, "-k9")])

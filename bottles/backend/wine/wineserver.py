@@ -1,6 +1,5 @@
 import os
 import subprocess
-import time
 
 from bottles.backend.logger import Logger
 from bottles.backend.utils.manager import ManagerUtils
@@ -22,43 +21,23 @@ class WineServer(WineProgram):
         if not config.Runner:
             return False
 
-        # Perform native check before wasting time using wine
-        res = subprocess.Popen(["pgrep", "wineserver"], stdout=subprocess.PIPE)
-        if res.stdout.read() == b"":
-            return False
-
-        # Check using wine
         bottle = ManagerUtils.get_bottle_path(config)
-        runner = ManagerUtils.get_runner_path(config.Runner)
 
         if config.Environment == "Steam":
             bottle = config.Path
-            runner = config.RunnerPath
 
         if not os.path.isdir(bottle):
             return False
 
-        if SteamUtils.is_proton(runner):
-            runner = SteamUtils.get_dist_directory(runner)
-
-        env = os.environ.copy()
-        env["WINEPREFIX"] = bottle
-        if not config.Runner.startswith("sys-"):
-            env["PATH"] = f"{runner}/bin:{env['PATH']}"
         try:
-            res = subprocess.Popen(
-                "wineserver -w",
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                shell=True,
-                cwd=bottle,
-                env=env,
-            )
+            res = self._run(["-w"])
         except FileNotFoundError:
             return False
-        time.sleep(0.5)
-        if res.poll() is None:
-            res.kill()  # kill the process to avoid zombie incursion
+        try:
+            res.wait(timeout=0.5)
+        except subprocess.TimeoutExpired:
+            res.kill()
+            res.wait()
             return True
         return False
 
