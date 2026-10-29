@@ -1,3 +1,4 @@
+import shlex
 from dataclasses import replace
 from pathlib import Path
 from uuid import uuid4
@@ -91,6 +92,54 @@ def test_prepare_builds_argv_without_shell_expansion(tmp_path):
     assert command.env["PROTONPATH"] == "GE-Proton"
     assert "UMU_NO_RUNTIME" not in command.env
     assert command.env["STEAM_COMPAT_INSTALL_PATH"] == str(command.cwd)
+
+
+def test_prepare_runs_command_through_wrapper(tmp_path):
+    repository = UmuGameRepository(tmp_path / "umu")
+    game = replace(
+        _game(repository, tmp_path),
+        arguments=("gamemoderun", "-v", "%command%", "--option", "%command%"),
+    )
+    executor = _executor(repository, tmp_path)
+
+    command = executor.prepare(game)
+
+    assert command.argv == (
+        "gamemoderun",
+        "-v",
+        str(executor.installation.path),
+        str(game.executable.resolve()),
+        "--option",
+        "%command%",
+    )
+
+
+def test_prepare_runs_command_through_wrapper_with_spaces(tmp_path):
+    repository = UmuGameRepository(tmp_path / "umu")
+    game = replace(
+        _game(repository, tmp_path),
+        arguments=(
+            "/opt/game tools/wrapper",
+            "--label",
+            "two words",
+            "%command%",
+            "--option",
+            "value with spaces",
+        ),
+    )
+    executor = _executor(repository, tmp_path)
+
+    command = executor.prepare(game)
+
+    assert command.argv == (
+        "/opt/game tools/wrapper",
+        "--label",
+        "two words",
+        str(executor.installation.path),
+        str(game.executable.resolve()),
+        "--option",
+        "value with spaces",
+    )
 
 
 def test_prepare_resolves_managed_proton(tmp_path):
@@ -382,6 +431,69 @@ def test_run_uses_dedicated_sandbox_when_enabled(monkeypatch, tmp_path):
     assert "'$(touch ignored)'" in argv
     assert kwargs["shell"] is True
     assert kwargs["start_new_session"] is True
+
+
+def test_dedicated_sandbox_launches_the_wrapper(monkeypatch, tmp_path):
+    repository = UmuGameRepository(tmp_path / "umu")
+    game_folder = tmp_path / "Game Files"
+    game_folder.mkdir()
+    wrapper = tmp_path / "wrap tools" / "wrapper"
+    wrapper.parent.mkdir()
+    wrapper.write_text('#!/bin/sh\nexec "$@"\n')
+    wrapper.chmod(0o755)
+    game = replace(
+        _game(repository, tmp_path, sandbox=True),
+        proton=str(_installed_proton(tmp_path)),
+        arguments=(
+            str(wrapper),
+            "--label",
+            "two words",
+            "%command%",
+            "--option",
+            "value with spaces",
+        ),
+    )
+    executor = _executor(
+        repository,
+        tmp_path,
+        {"DISPLAY": ":1", "XDG_DATA_HOME": str(tmp_path / "data")},
+    )
+
+    class Process:
+        pid = 123
+
+        @staticmethod
+        def poll():
+            return None
+
+    calls = []
+
+    def popen(argv, **kwargs):
+        calls.append((argv, kwargs))
+        return Process()
+
+    monkeypatch.setattr(executor, "_ensure_sandbox_runtime", lambda _command: None)
+    monkeypatch.setattr(executor_module.subprocess, "Popen", popen)
+
+    executor.run(game)
+
+    argv, kwargs = calls[0]
+    expected = shlex.join(
+        (
+            str(wrapper.resolve()),
+            "--label",
+            "two words",
+            str(executor.installation.path),
+            str(game.executable.resolve()),
+            "--option",
+            "value with spaces",
+        )
+    )
+    quoted_wrapper = shlex.quote(str(wrapper.resolve()))
+    assert argv.startswith("bwrap --clearenv")
+    assert expected in argv
+    assert f"--ro-bind {quoted_wrapper} {quoted_wrapper}" in argv
+    assert kwargs["shell"] is True
 
 
 def test_dedicated_sandbox_exposes_managed_proton(monkeypatch, tmp_path):
