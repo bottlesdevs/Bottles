@@ -1157,7 +1157,8 @@ def test_default_wine_environment_inherits_xmodifiers(monkeypatch):
         ("ntsync", True, {"WINENTSYNC": "1"}),
         ("ntsync", False, {"WINEFSYNC": "1"}),
         ("esync", False, {"WINEESYNC": "1"}),
-        ("fsync", False, {"WINEFSYNC": "1"}),
+        ("fsync", False, {"WINEFSYNC": "1", "PROTON_NO_NTSYNC": "1"}),
+        ("fsync", True, {"WINEFSYNC": "1", "PROTON_NO_NTSYNC": "1"}),
     ],
 )
 def test_winecommand_applies_selected_sync_environment(
