@@ -22,6 +22,7 @@ from typing import Optional, List, Any
 from gi.repository import Gtk, Adw
 
 from bottles.backend.logger import Logger
+from bottles.backend.managers.playtime import ResetResult
 from bottles.frontend.utils.playtime import PlaytimeService
 from bottles.frontend.widgets.playtimechart_weekly import PlaytimeChartWeekly
 from bottles.frontend.widgets.playtimechart_hourly import PlaytimeChartHourly
@@ -47,6 +48,7 @@ class PlaytimeGraphDialog(Adw.Window):
     btn_view_week: Gtk.ToggleButton = Gtk.Template.Child()
     btn_view_day: Gtk.ToggleButton = Gtk.Template.Child()
     btn_view_year: Gtk.ToggleButton = Gtk.Template.Child()
+    btn_reset: Gtk.Button = Gtk.Template.Child()
     chart_container: Gtk.Box = Gtk.Template.Child()
     label_total_time: Gtk.Label = Gtk.Template.Child()
     label_sessions_count: Gtk.Label = Gtk.Template.Child()
@@ -82,6 +84,7 @@ class PlaytimeGraphDialog(Adw.Window):
         self.btn_view_week.connect("toggled", self.__on_view_toggled, "week")  # type: ignore
         self.btn_view_day.connect("toggled", self.__on_view_toggled, "day")  # type: ignore
         self.btn_view_year.connect("toggled", self.__on_view_toggled, "year")  # type: ignore
+        self.btn_reset.connect("clicked", self.__on_reset_clicked)  # type: ignore
 
         self.__load_data()
 
@@ -116,6 +119,86 @@ class PlaytimeGraphDialog(Adw.Window):
         if self.current_week_offset < 0:
             self.current_week_offset += 1
             self.__load_data()
+
+    def __on_reset_clicked(self, _widget: Gtk.Button) -> None:
+        """Show a confirmation dialog before resetting playtime stats."""
+        if not self.bottle_id or not self.program_id:
+            return
+
+        dialog = Adw.MessageDialog(
+            transient_for=self,
+            heading=_("Reset Playtime Statistics?"),
+            body=_(
+                'This will permanently delete all playtime data for "{}". '
+                "This action cannot be undone."
+            ).format(self.program_name),
+        )
+        dialog.add_response("cancel", _("Cancel"))
+        dialog.add_response("reset", _("Reset"))
+        dialog.set_response_appearance("reset", Adw.ResponseAppearance.DESTRUCTIVE)
+        dialog.set_default_response("cancel")
+        dialog.set_close_response("cancel")
+        dialog.connect("response", self.__on_reset_confirmed)
+        dialog.present()
+
+    def __on_reset_confirmed(self, _dialog: Adw.MessageDialog, response: str) -> None:
+        """Handle confirmation of the reset action."""
+        if response != "reset":
+            return
+        if not self.bottle_id or not self.program_id:
+            return
+
+        service = PlaytimeService(self.parent.manager)
+        result = service.reset_program_playtime_by_id(
+            bottle_id=self.bottle_id,
+            program_id=self.program_id,
+        )
+
+        if result is not ResetResult.OK:
+            self.__show_reset_error(result)
+            return
+
+        logging.info(
+            f"Playtime stats reset for {self.program_name} "
+            f"(program_id={self.program_id})"
+        )
+        # Reset navigation and reload all data inside this dialog
+        self.current_week_offset = 0
+        self.__load_data()
+
+        # Ask the parent ProgramEntry to refresh its subtitle.
+        # After the reset, the cache is invalidated and the DB has no
+        # records for this program, so the subtitle will show "Never Played".
+        if hasattr(self.parent, "update_playtime"):
+            try:
+                self.parent.update_playtime(service)
+            except Exception as e:
+                logging.error(
+                    f"Failed to refresh ProgramEntry subtitle after reset: {e}",
+                    exc_info=True,
+                )
+
+    def __show_reset_error(self, result: ResetResult) -> None:
+        """Tell the user why the playtime statistics were not reset."""
+        if result is ResetResult.RUNNING:
+            body = _(
+                'Playtime statistics cannot be reset while "{}" is running. '
+                "Close the program and try again."
+            ).format(self.program_name)
+        elif result is ResetResult.DISABLED:
+            body = _("Playtime tracking is disabled.")
+        else:
+            body = _("Something went wrong while resetting the statistics.")
+
+        dialog = Adw.MessageDialog(
+            transient_for=self,
+            heading=_("Could Not Reset Playtime Statistics"),
+            body=body,
+        )
+        dialog.add_response("ok", _("OK"))
+        dialog.set_default_response("ok")
+        dialog.set_close_response("ok")
+        dialog.present()
 
     def __load_data(self) -> None:
         """Load and display playtime data from the database."""
