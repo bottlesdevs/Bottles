@@ -885,6 +885,8 @@ class WineCommand:
             env.add("WINEESYNC", "1")
         elif sync == "fsync":
             env.add("WINEFSYNC", "1")
+            # Wine 11 runners prefer ntsync over fsync unless told not to
+            env.add("PROTON_NO_NTSYNC", "1")
         elif sync in ("wine", "ntsync"):
             if is_ntsync_available(runner):
                 env.add("WINENTSYNC", "1")
