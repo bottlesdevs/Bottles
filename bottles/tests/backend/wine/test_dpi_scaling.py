@@ -86,3 +86,28 @@ def test_dpi_scaling_rejects_unknown_modes_before_running_wine(tmp_path, monkeyp
     monkeypatch.setattr(keys.reg, "launch", lambda *_args, **_kwargs: pytest.fail("Unexpected Wine launch"))
     assert not keys.set_dpi_scaling("enhanced").ok
     assert not list(tmp_path.iterdir())
+
+
+@pytest.mark.parametrize(("flags", "expected"), [("", "default"), ("~ RUNASADMIN", "default"), ("~ HIGHDPIAWARE", "application"), ("~ DPIUNAWARE", "system"), ("HIGHDPIAWARE DPIUNAWARE", "system")])
+def test_reading_the_dpi_mode_keeps_existing_flags(tmp_path, monkeypatch, flags, expected):
+    drive = tmp_path / "drive_c"
+    drive.mkdir()
+    keys = RegKeys(BottleConfig(Path=str(tmp_path), Custom_Path=True))
+    imported = []
+
+    def launch(args, **kwargs):
+        tokens = shlex.split(args)
+        if tokens[0] == "import":
+            imported.append((drive / tokens[1][3:]).read_text(encoding="utf-16"))
+        else:
+            (drive / tokens[2][3:]).write_text(f"Windows Registry Editor Version 5.00\n\n[{KEY}]\n@={json.dumps(flags)}\n", encoding="utf-16")
+        return Result(True)
+
+    monkeypatch.setattr(keys.reg, "launch", launch)
+    result = keys.get_dpi_scaling()
+
+    assert result.ok
+    assert result.data == expected
+    assert len(imported) == 1
+    assert "@=" not in imported[0]
+    assert not list(drive.iterdir())

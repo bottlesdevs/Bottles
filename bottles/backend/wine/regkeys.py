@@ -336,8 +336,16 @@ class RegKeys:
         )
 
     def set_dpi_scaling(self, mode: str) -> Result:
+        if mode is None:
+            return Result(False, message="Unknown DPI scaling mode.")
+        return self._dpi_scaling(mode)
+
+    def get_dpi_scaling(self) -> Result:
+        return self._dpi_scaling()
+
+    def _dpi_scaling(self, mode: Optional[str] = None) -> Result:
         flags = {"default": "", "application": "HIGHDPIAWARE", "system": "DPIUNAWARE"}
-        if mode not in flags:
+        if mode is not None and mode not in flags:
             return Result(False, message="Unknown DPI scaling mode.")
         key = r"HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers"
         directory = os.path.join(ManagerUtils.get_bottle_path(self.config), "drive_c")
@@ -371,6 +379,10 @@ class RegKeys:
                             return Result(False, message="The DPI compatibility value is not a string.")
             if not found_key:
                 return Result(False, message="The compatibility registry key was not exported.")
+            if mode is None:
+                layers = {item.upper() for item in current.split()}
+                selected = "system" if "DPIUNAWARE" in layers else "application" if "HIGHDPIAWARE" in layers else "default"
+                return Result(True, data=selected)
             layers = [item for item in current.split() if item.upper() not in (
                 "HIGHDPIAWARE", "DPIUNAWARE", "GDIDPISCALING",
             )]

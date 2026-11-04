@@ -34,12 +34,19 @@ def test_display_saves_dpi_scaling_only_after_the_registry_update(monkeypatch, m
     queue = SimpleNamespace(add_task=Mock(), end_task=Mock())
     spinner = Gtk.Spinner()
     button = Gtk.Button()
+    monkeypatch.setattr(RegKeys, "get_dpi_scaling", lambda self: Result(True, "default"))
     dialog = DisplayDialog(window, config, None, queue, button, spinner)
+    context = GLib.MainContext.default()
+    deadline = time.monotonic() + 5
+    while dialog.dpi_scaling is None and time.monotonic() < deadline:
+        while context.pending():
+            context.iteration(False)
+        time.sleep(0.01)
+    assert dialog.dpi_scaling == "default"
     registry = Mock(return_value=Result(success, message="Registry failed"))
     monkeypatch.setattr(RegKeys, "set_dpi_scaling", registry)
     dialog.combo_dpi_scaling.set_selected(mode)
     dialog.btn_save.emit("clicked")
-    context = GLib.MainContext.default()
     deadline = time.monotonic() + 5
     while time.monotonic() < deadline:
         while context.pending():
@@ -63,5 +70,41 @@ def test_display_saves_dpi_scaling_only_after_the_registry_update(monkeypatch, m
             assert config.Parameters.dpi_scaling == "default"
             window.manager.update_config.assert_not_called()
             assert window.show_toast.call_args.args == ("Some display settings could not be updated.",)
+    dialog.destroy()
+    window.destroy()
+
+
+@pytest.mark.parametrize(("mode", "success"), [("application", True), ("system", True), ("default", False)])
+def test_display_reads_existing_manual_dpi_settings(monkeypatch, mode, success):
+    config = BottleConfig()
+    window = Adw.Window()
+    window.manager = SimpleNamespace(update_config=Mock())
+    window.show_toast = Mock()
+    completed = []
+
+    def read(self):
+        completed.append(True)
+        return Result(success, mode)
+
+    monkeypatch.setattr(RegKeys, "get_dpi_scaling", read)
+    registry = Mock()
+    monkeypatch.setattr(RegKeys, "set_dpi_scaling", registry)
+    dialog = DisplayDialog(window, config, None, SimpleNamespace(), Gtk.Button(), Gtk.Spinner())
+    context = GLib.MainContext.default()
+    deadline = time.monotonic() + 5
+    while time.monotonic() < deadline:
+        while context.pending():
+            context.iteration(False)
+        if completed and (dialog.dpi_scaling is not None or window.show_toast.called):
+            break
+        time.sleep(0.01)
+    assert dialog.combo_dpi_scaling.get_sensitive() is success
+    if success:
+        assert dialog.combo_dpi_scaling.get_selected() == (1 if mode == "application" else 2)
+    dialog.btn_save.emit("clicked")
+    while context.pending():
+        context.iteration(False)
+    registry.assert_not_called()
+    window.manager.update_config.assert_not_called()
     dialog.destroy()
     window.destroy()

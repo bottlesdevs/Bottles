@@ -41,6 +41,8 @@ try:
     ):
         result = RegKeys(config).set_dpi_scaling(mode)
         assert result.ok, (mode, result.message, result.data)
+        selected = RegKeys(config).get_dpi_scaling()
+        assert selected.ok and selected.data == mode, (mode, selected.message, selected.data)
         assert flags in run("reg", "query", key, "/ve").stdout
         assert "DPIUNAWARE" in run("reg", "query", key, "/v", "game.exe").stdout
     run("reg", "add", key, "/ve", "/t", "REG_SZ", "/d", "~ HIGHDPIAWARE", "/f")

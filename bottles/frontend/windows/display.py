@@ -82,6 +82,18 @@ class DisplayDialog(Adw.Window):
         self.combo_dpi_scaling.set_selected(
             dpi_scaling_modes.index(mode) if mode in dpi_scaling_modes else 0
         )
+        self.dpi_scaling = None
+        self.combo_dpi_scaling.set_sensitive(False)
+
+        def loaded(result, error):
+            if error or result is None or not result.ok:
+                self.window.show_toast(_("Could not read the DPI scaling mode."))
+                return
+            self.dpi_scaling = result.data
+            self.combo_dpi_scaling.set_selected(dpi_scaling_modes.index(result.data))
+            self.combo_dpi_scaling.set_sensitive(True)
+
+        RunAsync(RegKeys(config).get_dpi_scaling, loaded)
 
         """Set resolution"""
         virtual_desktop_res = self.parameters.virtual_desktop_res
@@ -218,7 +230,7 @@ class DisplayDialog(Adw.Window):
             RunAsync(rk.set_dpi, callback=update, value=dpi)
 
         dpi_scaling = dpi_scaling_modes[self.combo_dpi_scaling.get_selected()]
-        if dpi_scaling != self.parameters.dpi_scaling:
+        if self.dpi_scaling is not None and dpi_scaling != self.dpi_scaling:
             def update_scaling(result, error=False):
                 if error or result is None or not result.ok:
                     self.failed = True
