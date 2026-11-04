@@ -115,12 +115,16 @@ def test_dependency_report_button_opens_dependency_tracker(monkeypatch):
     assert "d3dx9" in opened[0]
 
 
-def test_installed_dependency_actions_use_recorded_uninstaller():
+@pytest.mark.parametrize("uninstaller", [
+    "Microsoft .NET Framework 4 Extended",
+    ["Microsoft .NET Framework 4 Extended", "Microsoft .NET Framework 4 Client Profile"],
+])
+def test_installed_dependency_actions_use_recorded_uninstaller(uninstaller):
     window = _make_window(online=True, cache_calls=[])
     config = BottleConfig(
         Name="Bottle",
         Installed_Dependencies=["dotnet40"],
-        Uninstallers={"dotnet40": "Microsoft .NET Framework 4 Extended"},
+        Uninstallers={"dotnet40": uninstaller},
     )
 
     entry = DependencyEntry(

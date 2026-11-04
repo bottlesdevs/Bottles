@@ -479,15 +479,15 @@ class DependencyManager:
             )
             installed_new = True
 
-        if manifest.get("Uninstaller"):
+        if manifest.get("Uninstallers") or manifest.get("Uninstaller"):
             """
             If the manifest has an uninstaller, add it to the
             uninstaller list in the bottle config.
             Set it to NO_UNINSTALLER if the dependency cannot be uninstalled.
             """
-            uninstaller = manifest.get("Uninstaller")
+            uninstaller = manifest.get("Uninstallers", manifest.get("Uninstaller"))
 
-        if not isinstance(uninstaller, str) or not uninstaller:
+        if not Uninstaller.get_names(uninstaller):
             uninstaller = "NO_UNINSTALLER"
         self.__manager.update_config(
             config, dependency[0], uninstaller, "Uninstallers"

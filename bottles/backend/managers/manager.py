@@ -802,14 +802,21 @@ class Manager(metaclass=Singleton):
         logging.info(f"Removing {dependency} dependency from {config.Name}")
         uninstallers = config.Uninstallers
 
-        uninstaller = uninstallers.get(dependency)
-        if not isinstance(uninstaller, str) or uninstaller in ["", "NO_UNINSTALLER"]:
+        names = Uninstaller.get_names(uninstallers.get(dependency))
+        if not names:
             return Result(
                 status=False,
                 message=f"No uninstaller is available for {dependency}.",
             )
 
-        Uninstaller(config).from_name(uninstaller)
+        uninstaller = Uninstaller(config)
+        for name in names:
+            result = uninstaller.from_name(name)
+            if not result.ok:
+                return Result(
+                    False,
+                    message=result.message or f"Failed to uninstall {name}.",
+                )
 
         # remove dependency from bottle configuration
         if dependency in config.Installed_Dependencies:

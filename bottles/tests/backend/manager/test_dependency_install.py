@@ -240,7 +240,7 @@ def test_prerequisite_progress_uses_the_dependency_description(recorder, descrip
 @pytest.mark.parametrize("present", [True, False])
 def test_uninstall_progress_only_runs_an_installed_entry(recorder, monkeypatch, present):
     calls = []
-    class Uninstaller:
+    class Uninstaller(dependency.Uninstaller):
         def __init__(self, config):
             pass
         def get_uuid(self, name):

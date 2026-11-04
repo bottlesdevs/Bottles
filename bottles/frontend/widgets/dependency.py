@@ -24,6 +24,7 @@ from gi.repository import Adw, Gtk
 
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.models.result import Result
+from bottles.backend.wine.uninstaller import Uninstaller
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.gtk import GtkUtils
 from bottles.frontend.windows.dependency_install import DependencyInstallDialog
@@ -103,8 +104,7 @@ class DependencyEntry(Adw.ActionRow):
             self.btn_reinstall.set_visible(True)
             uninstaller = self.config.Uninstallers.get(dependency[0])
             self.btn_remove.set_visible(
-                isinstance(uninstaller, str)
-                and uninstaller not in ["", "NO_UNINSTALLER"]
+                bool(Uninstaller.get_names(uninstaller))
             )
 
         cached_by_arch = dependency[1].get("Cached", {})
