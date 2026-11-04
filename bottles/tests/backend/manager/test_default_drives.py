@@ -38,6 +38,7 @@ def test_create_bottle_applies_home_drive_after_wineboot(
 
         def init(self):
             self._create_home_drive()
+            return Result(True)
 
         def update(self):
             self._create_home_drive()
