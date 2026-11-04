@@ -167,6 +167,7 @@ class ProgressTrackingFilter:
 
 
 class BackupManager:
+    _DUPLICATE_ITEMS = ("drive_c", "system.reg", "user.reg", "userdef.reg", "bottle.yml")
     _BOTTLE_PATH_TOKEN = "%BOTTLE_PATH%"
     _PROGRAM_BACKUP_PATTERN = re.compile(r"^\d{8}-\d{6}-\d{6}$")
     _program_backup_locks: ClassVar[dict[str, Lock]] = {}
@@ -731,7 +732,9 @@ class BackupManager:
             return Result(status=False)
 
     @staticmethod
-    def duplicate_bottle(config: BottleConfig, name: str) -> Result:
+    def duplicate_bottle(
+        config: BottleConfig, name: str, destination: Optional[str] = None
+    ) -> Result:
         """
         Duplicates the bottle with the specified new name.
         """
@@ -746,38 +749,72 @@ class BackupManager:
         if not sanitized_name:
             return Result(status=False, message=_("Bottle name is not valid."))
 
-        source_path = ManagerUtils.get_bottle_path(config)
-        destination_path = os.path.join(Paths.bottles, sanitized_name)
+        source_path = os.path.realpath(ManagerUtils.get_bottle_path(config))
+        destination_root = os.path.realpath(destination or Paths.bottles)
+        custom_path = destination_root != os.path.realpath(Paths.bottles)
+        if not os.path.isdir(source_path) or not os.path.isdir(destination_root):
+            return Result(False, message=_("The source or destination directory is unavailable."))
+        if os.path.commonpath((source_path, destination_root)) == source_path:
+            return Result(False, message=_("The destination cannot be inside the source bottle."))
+        try:
+            required = 0
+            for item in BackupManager._DUPLICATE_ITEMS:
+                path = os.path.join(source_path, item)
+                if os.path.isdir(path):
+                    for directory, _dirs, files in os.walk(path):
+                        required += sum(
+                            os.lstat(os.path.join(directory, file)).st_size
+                            for file in files if not os.path.islink(os.path.join(directory, file))
+                        )
+                elif os.path.isfile(path):
+                    required += os.path.getsize(path)
+            if shutil.disk_usage(destination_root).free < required:
+                return Result(False, message=_("There is not enough free space in the destination."))
+        except OSError as error:
+            return Result(False, message=str(error))
+        destination_path = os.path.join(destination_root, sanitized_name)
 
         duplicate_name = name
         suffix = 1
-        while os.path.lexists(destination_path):
+        while os.path.lexists(destination_path) or (
+            custom_path and os.path.lexists(os.path.join(Paths.bottles, os.path.basename(destination_path)))
+        ):
             duplicate_name = f"{name}__{suffix}"
             destination_path = os.path.join(
-                Paths.bottles, f"{sanitized_name}__{suffix}"
+                destination_root, f"{sanitized_name}__{suffix}"
             )
             suffix += 1
 
-        return BackupManager._duplicate_bottle_directory(
-            config, source_path, destination_path, duplicate_name
+        result = BackupManager._duplicate_bottle_directory(
+            config, source_path, destination_path, duplicate_name, custom_path
         )
+        if not result.ok or not custom_path:
+            return result
+        placeholder = os.path.join(Paths.bottles, os.path.basename(destination_path))
+        placeholder_created = False
+        try:
+            os.mkdir(placeholder)
+            placeholder_created = True
+            with open(os.path.join(placeholder, "placeholder.yml"), "x") as file:
+                yaml.dump({"Path": destination_path}, file)
+        except OSError as error:
+            if placeholder_created:
+                shutil.rmtree(placeholder, ignore_errors=True)
+            shutil.rmtree(destination_path, ignore_errors=True)
+            return Result(False, message=str(error))
+        return result
 
     @staticmethod
     def _duplicate_bottle_directory(
-        config: BottleConfig, source_path: str, destination_path: str, new_name: str
+        config: BottleConfig, source_path: str, destination_path: str, new_name: str,
+        custom_path: bool = False,
     ) -> Result:
         destination_created = False
         duplicate_succeeded = False
         try:
             os.makedirs(destination_path)
             destination_created = True
-            for item in [
-                "drive_c",
-                "system.reg",
-                "user.reg",
-                "userdef.reg",
-                "bottle.yml",
-            ]:
+            for item in BackupManager._DUPLICATE_ITEMS:
                 source_item = os.path.join(source_path, item)
                 destination_item = os.path.join(destination_path, item)
                 if os.path.isdir(source_item):
@@ -795,12 +832,13 @@ class BackupManager:
                 config_data = yaml.load(config_file)
             config_data["Name"] = new_name
             config_data["Path"] = destination_path
+            config_data["Custom_Path"] = custom_path
             with open(config_path, "w") as config_file:
                 yaml.dump(config_data, config_file, indent=4)
 
             logging.info(f"Bottle duplicated successfully as {new_name}.")
             duplicate_succeeded = True
-            return Result(status=True)
+            return Result(status=True, data={"path": destination_path})
         except (OSError, shutil.Error) as e:
             logging.error(f"Error duplicating bottle: {e}")
             return Result(status=False, message=str(e))

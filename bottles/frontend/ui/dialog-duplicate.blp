@@ -51,6 +51,15 @@ template $DuplicateDialog: Adw.Window {
           Adw.EntryRow entry_name {
             title: _("Name");
           }
+
+          Adw.ActionRow row_destination {
+            title: _("Destination");
+            Button btn_destination {
+              icon-name: "folder-open-symbolic";
+              tooltip-text: _("Choose Destination");
+              valign: center;
+            }
+          }
         }
       }
 

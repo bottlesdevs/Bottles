@@ -201,6 +201,89 @@ def test_duplicate_bottle_rejects_empty_name(tmp_path, monkeypatch):
     assert not list(tmp_path.iterdir())
 
 
+def _external_source(tmp_path, monkeypatch):
+    internal = tmp_path / "Bottles"
+    external = tmp_path / "External Drive"
+    source = tmp_path / "Source"
+    internal.mkdir()
+    external.mkdir()
+    (source / "drive_c").mkdir(parents=True)
+    (source / "drive_c/document.txt").write_text("Keep this document")
+    config = BottleConfig(Name="Source", Path=str(source), Custom_Path=True, Notes="Installation notes")
+    config.dump(str(source / "bottle.yml"))
+    monkeypatch.setattr(Paths, "bottles", str(internal))
+    return config, source, internal, external
+
+
+@pytest.mark.parametrize("custom", [False, True])
+def test_duplicate_uses_the_selected_directory_and_keeps_the_source(tmp_path, monkeypatch, custom):
+    config, source, internal, external = _external_source(tmp_path, monkeypatch)
+    root = external if custom else internal
+
+    result = BackupManager.duplicate_bottle(config, "New Copy", str(root))
+
+    assert result.ok
+    target = root / "New-Copy"
+    assert (target / "drive_c/document.txt").read_text() == "Keep this document"
+    assert (source / "drive_c/document.txt").read_text() == "Keep this document"
+    copied = BottleConfig.load(str(target / "bottle.yml"))
+    assert copied.ok and copied.data.Notes == config.Notes
+    assert copied.data.Custom_Path is custom
+    assert copied.data.Path == str(target)
+    if custom:
+        with (internal / "New-Copy/placeholder.yml").open() as file:
+            assert yaml.load(file) == {"Path": str(target)}
+    else:
+        assert not (target / "placeholder.yml").exists()
+
+
+@pytest.mark.parametrize("inside", [False, True])
+def test_duplicate_rejects_full_or_recursive_destinations(tmp_path, monkeypatch, inside):
+    config, source, internal, external = _external_source(tmp_path, monkeypatch)
+    if inside:
+        destination = external / "link-to-source"
+        destination.symlink_to(source / "drive_c", target_is_directory=True)
+    else:
+        destination = external
+        monkeypatch.setattr(shutil, "disk_usage", lambda _path: SimpleNamespace(free=0))
+
+    result = BackupManager.duplicate_bottle(config, "Copy", str(destination))
+
+    assert not result.ok
+    assert not (destination / "Copy").exists()
+    assert not list(internal.iterdir())
+    assert (source / "drive_c/document.txt").read_text() == "Keep this document"
+
+
+def test_duplicate_avoids_collisions_in_the_bottle_catalog(tmp_path, monkeypatch):
+    config, source, internal, external = _external_source(tmp_path, monkeypatch)
+    (internal / "Copy").mkdir()
+    (internal / "Copy/marker").write_text("Existing bottle")
+
+    result = BackupManager.duplicate_bottle(config, "Copy", str(external))
+
+    assert result.ok
+    assert (external / "Copy__1/drive_c/document.txt").is_file()
+    assert (internal / "Copy/marker").read_text() == "Existing bottle"
+
+
+def test_duplicate_rolls_back_if_the_external_reference_cannot_be_saved(tmp_path, monkeypatch):
+    config, source, internal, external = _external_source(tmp_path, monkeypatch)
+    mkdir = os.mkdir
+    def fail_reference(path, *args, **kwargs):
+        if os.fspath(path) == str(internal / "Copy"):
+            raise PermissionError("Cannot write reference")
+        return mkdir(path, *args, **kwargs)
+    monkeypatch.setattr(os, "mkdir", fail_reference)
+
+    result = BackupManager.duplicate_bottle(config, "Copy", str(external))
+
+    assert not result.ok
+    assert not (external / "Copy").exists()
+    assert not (internal / "Copy").exists()
+    assert (source / "drive_c/document.txt").read_text() == "Keep this document"
+
+
 def test_duplicate_bottle_does_not_overwrite_existing_destination(tmp_path):
     source = tmp_path / "source"
     destination = tmp_path / "destination"

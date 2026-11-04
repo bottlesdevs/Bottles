@@ -17,9 +17,10 @@
 
 from gettext import gettext as _
 
-from gi.repository import Adw, GLib, Gtk
+from gi.repository import Adw, Gio, GLib, Gtk
 
 from bottles.backend.managers.backup import BackupManager
+from bottles.backend.globals import Paths
 from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.utils.gtk import GtkUtils
 
@@ -30,6 +31,8 @@ class DuplicateDialog(Adw.Window):
 
     # region Widgets
     entry_name = Gtk.Template.Child()
+    row_destination = Gtk.Template.Child()
+    btn_destination = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
     btn_duplicate = Gtk.Template.Child()
     stack_switcher = Gtk.Template.Child()
@@ -46,6 +49,9 @@ class DuplicateDialog(Adw.Window):
         self.parent = parent
         self.config = parent.config
         self.pulse_id = None
+        self.destination = None
+        self.row_destination.set_subtitle(Paths.bottles)
+        self.btn_destination.connect("clicked", self.__choose_destination)
 
         self.entry_name.connect("changed", self.__check_entry_name)
 
@@ -68,6 +74,21 @@ class DuplicateDialog(Adw.Window):
             self.entry_name.remove_css_class("error")
             self.btn_duplicate.set_sensitive(True)
 
+    def __choose_destination(self, _button):
+        def selected(dialog, result):
+            try:
+                folder = dialog.select_folder_finish(result)
+            except GLib.Error:
+                return
+            if folder is not None and folder.get_path():
+                self.destination = folder.get_path()
+                self.row_destination.set_subtitle(self.destination)
+
+        dialog = Gtk.FileDialog.new()
+        dialog.set_title(_("Choose Destination"))
+        dialog.set_initial_folder(Gio.File.new_for_path(self.destination or Paths.bottles))
+        dialog.select_folder(self, callback=selected)
+
     def __duplicate_bottle(self, widget):
         """
         This function take the new bottle name from the entry
@@ -86,6 +107,7 @@ class DuplicateDialog(Adw.Window):
             callback=self.finish,
             config=self.config,
             name=name,
+            destination=self.destination,
         )
 
     @GtkUtils.run_in_main_loop
