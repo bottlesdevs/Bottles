@@ -49,6 +49,17 @@ template $PlaytimeGraphDialog: Adw.Window {
           group: btn_view_day;
         }
       }
+
+      [end]
+      Button btn_reset {
+        icon-name: "user-trash-symbolic";
+        tooltip-text: _("Reset Playtime Statistics");
+        valign: center;
+
+        styles [
+          "flat",
+        ]
+      }
     }
 
     content: Box {

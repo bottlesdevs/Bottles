@@ -12,6 +12,7 @@ import sqlite3
 import threading
 import time
 from dataclasses import dataclass
+from enum import Enum
 from typing import Any, Dict, List, Optional, TypedDict
 
 from bottles.backend.globals import Paths
@@ -34,6 +35,15 @@ class PlaytimeTotalsDict(TypedDict):
     total_seconds: int
     sessions_count: int
     last_played: Optional[int]
+
+
+class ResetResult(Enum):
+    """Outcome of ProcessSessionTracker.delete_program_stats()."""
+
+    OK = "ok"
+    DISABLED = "disabled"
+    RUNNING = "running"
+    ERROR = "error"
 
 
 @dataclass(frozen=True)
@@ -1044,3 +1054,72 @@ class ProcessSessionTracker:
         except Exception as e:
             logging.error(f"Failed to get yearly session count: {e}", exc_info=True)
             return 0
+
+    def delete_program_stats(self, bottle_id: str, program_id: str) -> ResetResult:
+        """
+        Delete all playtime data (totals and sessions) for a specific program.
+
+        The reset is refused while the program has a running session, so that
+        the session being tracked is never orphaned. Both deletes run in a
+        single transaction and are rolled back together on failure.
+
+        Args:
+            bottle_id: Bottle identifier
+            program_id: Program identifier (SHA1 hash)
+
+        Returns:
+            ResetResult.OK on success, ResetResult.RUNNING if the program has
+            an active session, ResetResult.DISABLED if tracking is disabled,
+            ResetResult.ERROR on any other failure.
+        """
+        if not self.enabled:
+            logging.debug("Playtime tracking disabled; cannot delete stats")
+            return ResetResult.DISABLED
+
+        try:
+            with self._lock:
+                if any(
+                    ts.bottle_id == bottle_id and ts.program_id == program_id
+                    for ts in self._tracked.values()
+                ):
+                    return ResetResult.RUNNING
+
+                cur = self._conn.cursor()
+                cur.execute(
+                    "SELECT 1 FROM sessions "
+                    "WHERE bottle_id=? AND program_id=? AND status='running' "
+                    "LIMIT 1",
+                    (bottle_id, program_id),
+                )
+                if cur.fetchone() is not None:
+                    return ResetResult.RUNNING
+
+                try:
+                    # Sessions are used for graphs, totals for the main label
+                    cur.execute(
+                        "DELETE FROM sessions WHERE bottle_id=? AND program_id=?",
+                        (bottle_id, program_id),
+                    )
+                    sessions_deleted = cur.rowcount
+                    cur.execute(
+                        "DELETE FROM playtime_totals WHERE bottle_id=? AND program_id=?",
+                        (bottle_id, program_id),
+                    )
+                    totals_deleted = cur.rowcount
+                    self._conn.commit()
+                except Exception:
+                    self._conn.rollback()
+                    raise
+
+            logging.info(
+                f"Deleted playtime stats for bottle={bottle_id} program_id={program_id}. "
+                f"Sessions deleted: {sessions_deleted}, Totals deleted: {totals_deleted}"
+            )
+            return ResetResult.OK
+        except Exception as e:
+            logging.error(
+                f"Failed to delete playtime stats for bottle={bottle_id} "
+                f"program_id={program_id}: {e}",
+                exc_info=True,
+            )
+            return ResetResult.ERROR

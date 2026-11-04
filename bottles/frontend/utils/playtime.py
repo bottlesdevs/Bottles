@@ -30,7 +30,7 @@ from typing import Dict, List, Optional, Tuple
 from gi.repository import GLib
 
 from bottles.backend.logger import Logger
-from bottles.backend.managers.playtime import _compute_program_id
+from bottles.backend.managers.playtime import ResetResult, _compute_program_id
 
 
 logging = Logger()
@@ -247,6 +247,43 @@ class PlaytimeService:
         such as after a program finishes running.
         """
         self.cache.clear()
+
+    def reset_program_playtime_by_id(
+        self, bottle_id: str, program_id: str
+    ) -> ResetResult:
+        """
+        Reset all playtime data of a program, identified by its IDs.
+
+        Args:
+            bottle_id: The bottle identifier.
+            program_id: The program identifier (SHA1 hash).
+
+        Returns:
+            ResetResult.OK on success; otherwise the reason it was not reset
+            (RUNNING if the program is currently running, DISABLED if playtime
+            tracking is off, ERROR for any other failure).
+        """
+        if not self.is_enabled():
+            logging.debug("Playtime service: tracking disabled")
+            return ResetResult.DISABLED
+
+        try:
+            result = self.manager.playtime_tracker.delete_program_stats(
+                bottle_id, program_id
+            )
+        except Exception as e:
+            logging.error(
+                f"Failed to reset playtime for bottle={bottle_id} "
+                f"program_id={program_id}: {e}",
+                exc_info=True,
+            )
+            return ResetResult.ERROR
+
+        if result is ResetResult.OK:
+            # Invalidate cache so UI fetches fresh (empty) data
+            self.cache.invalidate(bottle_id, program_id)
+            logging.info(f"Successfully reset playtime for program_id={program_id}")
+        return result
 
     def get_weekly_data(
         self, bottle_id: str, program_id: str, week_offset: int = 0
