@@ -262,7 +262,12 @@ class UmuExecutor:
             if game.sandbox and wrapper:
                 wrapper_path = self._sandbox_wrapper_path(wrapper[0], environment)
                 if wrapper_path is not None:
-                    readable_paths.append(wrapper_path)
+                    wrapper = (str(wrapper_path), *wrapper[1:])
+                    if not (
+                        wrapper_path.is_relative_to("/usr")
+                        or wrapper_path.is_relative_to("/app")
+                    ):
+                        readable_paths.append(wrapper_path)
         return UmuCommand(
             argv=(
                 *wrapper,
@@ -279,11 +284,7 @@ class UmuExecutor:
     def _sandbox_wrapper_path(
         wrapper: str, environment: Mapping[str, str]
     ) -> Path | None:
-        """Return the wrapper program to expose read-only in the dedicated
-        sandbox. The sandbox only carries the paths it is given, so a wrapper
-        installed outside it (the app data directory, a home directory) is not
-        visible unless it is exposed. Programs from the Flatpak runtime
-        (/usr, /app) are already part of the sandbox."""
+        """Resolve the wrapper so its command and sandbox exposure use the same path."""
         candidate = Path(wrapper).expanduser()
         if not candidate.is_absolute():
             resolved = shutil.which(wrapper, path=environment.get("PATH"))
@@ -292,8 +293,6 @@ class UmuExecutor:
             candidate = Path(resolved)
         candidate = candidate.resolve(strict=False)
         if candidate == Path(candidate.anchor) or not candidate.is_file():
-            return None
-        if candidate.is_relative_to("/usr") or candidate.is_relative_to("/app"):
             return None
         return candidate
 

@@ -1205,3 +1205,24 @@ def test_game_rejects_invalid_environment_name(tmp_path):
 
     with pytest.raises(ValueError, match="Invalid environment key"):
         _game(repository, tmp_path, {"BAD=NAME": "value"})
+
+
+@pytest.mark.parametrize("runtime_target,bare_name", [(False, False), (False, True), (True, False)])
+def test_sandbox_wrapper_symlink_uses_exposed_target(tmp_path, runtime_target, bare_name):
+    repository = UmuGameRepository(tmp_path / "umu")
+    target = Path("/usr/bin/true") if runtime_target else tmp_path / "wrapper target"
+    if not runtime_target:
+        target.write_text('#!/bin/sh\nexec "$@"\n')
+        target.chmod(0o755)
+    alias = tmp_path / "wrapper bin" / "wrapper"
+    alias.parent.mkdir()
+    alias.symlink_to(target)
+    wrapper = alias.name if bare_name else str(alias)
+    game = replace(_game(repository, tmp_path, sandbox=True), arguments=(wrapper, "%command%"))
+    executor = _executor(repository, tmp_path, {"DISPLAY": ":1", "PATH": str(alias.parent)})
+
+    command = executor.prepare(game)
+
+    assert command.argv[0] == str(target.resolve())
+    assert (target.resolve() in command.readable_paths) is not runtime_target
+    assert alias not in command.readable_paths
