@@ -148,7 +148,10 @@ class PlaytimeGraphDialog(Adw.Window):
         if not self.bottle_id or not self.program_id:
             return
 
-        service = PlaytimeService(self.parent.manager)
+        manager = self.parent.manager
+        service = getattr(manager, "playtime_service", None)
+        if service is None:
+            service = manager.playtime_service = PlaytimeService(manager)
         result = service.reset_program_playtime_by_id(
             bottle_id=self.bottle_id,
             program_id=self.program_id,
