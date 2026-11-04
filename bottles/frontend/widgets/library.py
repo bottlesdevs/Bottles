@@ -443,11 +443,36 @@ class LibraryEntry(Gtk.Box):
 
         self.window.show_toast(_('Launching "{0}"...').format(self.game.name))
 
+        status_label = None
+        source = 0
+
+        def update_status():
+            nonlocal status_label, source
+            status = executor.status_for(self.game)
+            labels = {
+                "downloading": _("Downloading..."),
+                "preparing": _("Preparing..."),
+                "configuring": _("Configuring..."),
+            }
+            label = labels.get(status, "UMU")
+            if label != status_label:
+                self.label_source.set_text(label)
+                status_label = label
+            if status == "running":
+                source = 0
+                return GLib.SOURCE_REMOVE
+            return GLib.SOURCE_CONTINUE
+
+        source = GLib.timeout_add(250, update_status)
+
         def run():
             executor.run(self.game)
             return executor.wait(self.game)
 
         def complete(return_code, error=False):
+            if source:
+                GLib.source_remove(source)
+            self.label_source.set_text("UMU")
             self.__reset_buttons(True)
             if error:
                 self.window.show_toast(_("The game could not be started."))
