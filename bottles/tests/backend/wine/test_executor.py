@@ -2066,3 +2066,24 @@ def test_wineboot_preserves_the_session_display(monkeypatch, status):
     assert WineBoot(_make_config()).send_status(status).ok
     assert captured["DISPLAY"] == ":17"
     assert captured["WAYLAND_DISPLAY"] == "wayland-fixture"
+
+
+@pytest.mark.parametrize("output,expected", [
+    ("win11\n", "win11"), ("winxp64\n", "winxp64"),
+    ("not a Windows version", None), (None, None),
+])
+def test_winecfg_reads_the_effective_windows_version(monkeypatch, output, expected):
+    from bottles.backend.wine.winecfg import WineCfg
+
+    calls = []
+    def launch(_self, **kwargs):
+        calls.append(kwargs)
+        return Result(True, output)
+    monkeypatch.setattr(WineCfg, "launch", launch)
+
+    result = WineCfg(_make_config()).get_windows_version()
+
+    assert result.ok is (expected is not None)
+    if expected:
+        assert result.data == expected
+    assert calls == [{"args": "-v", "communicate": True, "action_name": "get_windows_version"}]

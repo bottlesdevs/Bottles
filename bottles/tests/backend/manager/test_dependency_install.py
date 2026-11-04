@@ -279,3 +279,45 @@ def test_uninstall_query_failure_is_not_reported_as_a_skipped_step(recorder, mon
     assert not result.ok
     assert "Cannot read uninstall entries" in result.message
     assert not any("Skipping Wine Mono" in message for message in messages)
+
+
+@pytest.mark.parametrize("failure", [None, "installer", "exception", "restore", "query", "set"])
+def test_dependency_restores_the_actual_windows_version(recorder, monkeypatch, failure):
+    versions = []
+    def set_version(version):
+        versions.append(version)
+        if failure == "restore" and version == "win11":
+            raise ValueError("Cannot restore Windows version")
+        if failure == "set" and version == "winxp":
+            raise ValueError("Cannot change Windows version")
+    monkeypatch.setattr(dependency, "RegKeys", lambda _config: SimpleNamespace(lg_set_windows=set_version))
+    monkeypatch.setattr(dependency, "WineCfg", lambda _config: SimpleNamespace(
+        get_windows_version=lambda: Result(failure != "query", "win11"),
+    ))
+    manager = _dependency_manager(recorder)
+    manager.get_dependency = lambda _name: {
+        "Dependencies": [], "Uninstaller": "Runtime",
+        "Steps": [
+            {"action": "set_windows", "version": "winxp"},
+            {"action": "install_exe"},
+            {"action": "set_windows", "version": "win7"},
+        ],
+    }
+    def install(**_kwargs):
+        if failure == "exception":
+            raise OSError("installer missing")
+        return Result(failure != "installer")
+    monkeypatch.setattr(manager, "_DependencyManager__step_install_exe_msi", install)
+    config = BottleConfig(Name="Bottle", Windows="win10")
+
+    result = manager.install(config, ["runtime", {}])
+
+    assert result.ok is (failure is None)
+    assert config.Windows == "win10"
+    if failure == "query":
+        assert versions == []
+    elif failure in ("installer", "exception", "set"):
+        assert versions == ["winxp", "win11"]
+    else:
+        assert versions == ["winxp", "win7", "win11"]
+    assert ("Installed_Dependencies" in recorder.config_updates) is (failure is None)

@@ -43,6 +43,7 @@ from bottles.backend.wine.regkeys import RegKeys
 from bottles.backend.wine.regsvr32 import Regsvr32
 from bottles.backend.wine.uninstaller import Uninstaller
 from bottles.backend.wine.winedbg import WineDbg
+from bottles.backend.wine.winecfg import WineCfg
 from bottles.backend.wine.winepath import WinePath
 
 logging = Logger()
@@ -434,35 +435,53 @@ class DependencyManager:
                         TaskManager.remove(task_id)
                         return _res
 
-        for step in steps:
-            """
-            Here we execute all steps in the manifest.
-            Steps are the actions performed to install the dependency.
-            """
-            arch = step.get("for", "win64_win32")
-            if config.Arch not in arch:
-                continue
+        original_windows = None
+        windows_changed = False
+        try:
+            try:
+                for step in steps:
+                    """
+                    Here we execute all steps in the manifest.
+                    Steps are the actions performed to install the dependency.
+                    """
+                    arch = step.get("for", "win64_win32")
+                    if config.Arch not in arch:
+                        continue
 
-            description = self.__describe_step(step)
-            if step["action"] != "uninstall":
-                self.__notify_progress(progress_cb, description, task=task)
-            self.__notify_progress_fraction(progress_progress_cb, None)
+                    if step["action"] == "set_windows" and not windows_changed:
+                        version = WineCfg(config).get_windows_version()
+                        if not version.ok:
+                            TaskManager.remove(task_id)
+                            return version
+                        original_windows = version.data
+                        windows_changed = True
 
-            res = self.__perform_steps(
-                config,
-                step,
-                task=task,
-                progress_cb=progress_cb,
-                progress_progress_cb=progress_progress_cb,
-            )
-            if not res.ok:
-                TaskManager.remove(task_id)
-                message = f"One or more steps failed for {dependency[0]}."
-                if res.message:
-                    message += f" {res.message}"
-                return Result(status=False, message=message)
-            if not res.data.get("uninstaller"):
-                uninstaller = False
+                    description = self.__describe_step(step)
+                    if step["action"] != "uninstall":
+                        self.__notify_progress(progress_cb, description, task=task)
+                    self.__notify_progress_fraction(progress_progress_cb, None)
+
+                    res = self.__perform_steps(
+                        config,
+                        step,
+                        task=task,
+                        progress_cb=progress_cb,
+                        progress_progress_cb=progress_progress_cb,
+                    )
+                    if not res.ok:
+                        TaskManager.remove(task_id)
+                        message = f"One or more steps failed for {dependency[0]}."
+                        if res.message:
+                            message += f" {res.message}"
+                        return Result(status=False, message=message)
+                    if not res.data.get("uninstaller"):
+                        uninstaller = False
+            finally:
+                if windows_changed:
+                    RegKeys(config).lg_set_windows(original_windows)
+        except (OSError, ValueError) as error:
+            TaskManager.remove(task_id)
+            return Result(False, message=str(error))
 
         if dependency[0] not in config.Installed_Dependencies:
             """
@@ -596,7 +615,8 @@ class DependencyManager:
             self.__step_replace_font(config=config, step=step)
 
         if step["action"] == "set_windows":
-            self.__step_set_windows(config=config, step=step)
+            if not self.__step_set_windows(config=config, step=step):
+                return Result(False, message="Failed to change Windows version.")
 
         if step["action"] == "use_windows":
             self.__step_use_windows(config=config, step=step)
@@ -1109,6 +1129,7 @@ class DependencyManager:
             rk.lg_set_windows(step.get("version"))
         except ValueError as e:
             logging.warning(str(e))
+            return False
         return True
 
     @staticmethod
