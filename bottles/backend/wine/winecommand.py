@@ -579,6 +579,9 @@ class WineCommand:
         DisplayUtils.check_nvidia_device()
         ld = []
 
+        if not clean_env and self.runner:
+            env.add("WINE", shlex.split(self.runner)[0], override=True)
+
         # Bottle environment variables
         if _needs_steam_virtual_gamepad_workaround(config.Runner) and not env.has(
             "SteamVirtualGamepadInfo"

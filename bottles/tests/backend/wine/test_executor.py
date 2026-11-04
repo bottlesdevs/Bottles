@@ -1381,7 +1381,16 @@ def test_disabled_proton_options_are_not_translated(monkeypatch):
     assert "ENABLE_HDR_WSI" not in resolved
 
 
-def test_winecommand_filters_host_environment(monkeypatch, tmp_path):
+@pytest.mark.parametrize(
+    "runner_binary,override",
+    [
+        ("/usr/bin/wine", None),
+        ("/runners/Soda with spaces/bin/wine64", None),
+        ("/runners/GE-Proton/files/bin/wine", None),
+        ("/runners/Soda/bin/wine", "/custom/wine"),
+    ],
+)
+def test_winecommand_filters_host_environment(monkeypatch, tmp_path, runner_binary, override):
     bottle_path = tmp_path / "TestBottle"
     bottle_path.mkdir()
     runner_path = tmp_path / "runner"
@@ -1411,6 +1420,7 @@ def test_winecommand_filters_host_environment(monkeypatch, tmp_path):
 
     monkeypatch.setenv("DISPLAY", ":1")
     monkeypatch.setenv("SHOULD_NOT_PASS", "secret")
+    monkeypatch.setenv("WINE", "/wrong/inherited/wine")
 
     monkeypatch.setattr(
         "bottles.backend.wine.winecommand.ManagerUtils.get_bottle_path",
@@ -1455,12 +1465,13 @@ def test_winecommand_filters_host_environment(monkeypatch, tmp_path):
     winecmd.config = config
     winecmd.minimal = True
     winecmd.arguments = ""
-    winecmd.runner = "/usr/bin/wine"
+    winecmd.runner = shlex.quote(runner_binary)
     winecmd.runner_runtime = ""
     winecmd.gamescope_activated = False
     winecmd.terminal = False
 
-    env = winecmd.get_env()
+    env = winecmd.get_env({"WINE": override} if override else {})
+    assert env["WINE"] == (override or runner_binary)
     assert env["DISPLAY"] == ":1"
     assert "DXVK_HDR" not in env
     assert "SHOULD_NOT_PASS" not in env
