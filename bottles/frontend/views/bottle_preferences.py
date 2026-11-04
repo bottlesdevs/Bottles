@@ -113,6 +113,8 @@ class PreferencesView(Adw.PreferencesPage):
     row_drives = Gtk.Template.Child()
     row_sandbox = Gtk.Template.Child()
     entry_name = Gtk.Template.Child()
+    text_notes = Gtk.Template.Child()
+    btn_save_notes = Gtk.Template.Child()
     switch_mangohud = Gtk.Template.Child()
     switch_obsvkc = Gtk.Template.Child()
     switch_vkbasalt = Gtk.Template.Child()
@@ -168,6 +170,10 @@ class PreferencesView(Adw.PreferencesPage):
         self.window = details.window
         self.manager = details.window.manager
         self.config = config
+        self.btn_save_notes.connect("clicked", self.__save_notes)
+        self.text_notes.get_buffer().connect(
+            "changed", lambda *_args: self.btn_save_notes.set_sensitive(True)
+        )
         self.queue = details.queue
         self.details = details
         self.combo_runner.set_list_factory(
@@ -614,7 +620,20 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_language.handler_unblock_by_func(self.__set_language)
         self.combo_windows.handler_unblock_by_func(self.__set_windows)
 
+    def __save_notes(self, _button):
+        buffer = self.text_notes.get_buffer()
+        notes = buffer.get_text(buffer.get_start_iter(), buffer.get_end_iter(), True)
+        result = self.manager.update_config(self.config, key="Notes", value=notes)
+        if not result.ok:
+            self.window.show_toast(_("The notes could not be saved."))
+            return
+        self.config = result.data["config"]
+        self.btn_save_notes.set_sensitive(False)
+
     def set_config(self, config: BottleConfig):
+        if self.config.Name != config.Name or not self.btn_save_notes.get_sensitive():
+            self.text_notes.get_buffer().set_text(config.Notes)
+            self.btn_save_notes.set_sensitive(False)
         self.config = config
         parameters = self.config.Parameters
         self.__update_nvapi_visibility()

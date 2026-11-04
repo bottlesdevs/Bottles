@@ -164,6 +164,7 @@ class BottleParams(DictCompatMixIn):
 @dataclass
 class BottleConfig(DictCompatMixIn):
     Name: str = ""
+    Notes: str = ""
     Arch: str = "win64"  # Enum, Use bottles.backend.models.enum.Arch
     Windows: str = "win10"
     Runner: str = ""  # runner name, "sys-*", or any installed runner name

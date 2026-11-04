@@ -10,6 +10,37 @@ template $DetailsPreferences: Adw.PreferencesPage {
   }
 
   Adw.PreferencesGroup {
+    title: _("Notes");
+
+    Box {
+      orientation: vertical;
+      spacing: 6;
+
+      Frame {
+        ScrolledWindow {
+          min-content-height: 120;
+          max-content-height: 240;
+          hscrollbar-policy: never;
+
+          TextView text_notes {
+            wrap-mode: word_char;
+            top-margin: 12;
+            bottom-margin: 12;
+            left-margin: 12;
+            right-margin: 12;
+          }
+        }
+      }
+
+      Button btn_save_notes {
+        label: _("Save Notes");
+        halign: end;
+        sensitive: false;
+      }
+    }
+  }
+
+  Adw.PreferencesGroup {
     title: _("Components");
 
     Adw.ComboRow combo_runner {

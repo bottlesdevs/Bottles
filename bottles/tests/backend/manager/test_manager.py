@@ -358,7 +358,7 @@ def test_full_backup_import_preserves_files_for_another_account(monkeypatch, tmp
     profile = prefix / "drive_c/users/source-user"
     profile.mkdir(parents=True)
     (profile / "document.txt").write_text("existing document")
-    config = BottleConfig(Name="Portable", Path="Portable", Runner="runner")
+    config = BottleConfig(Name="Portable", Path="Portable", Runner="runner", Notes="Keep these installation notes.")
     config.dump(str(prefix / "bottle.yml"))
     archive = tmp_path / "portable.tar.gz"
     monkeypatch.setattr(manager_module.Paths, "bottles", str(source))
@@ -380,6 +380,9 @@ def test_full_backup_import_preserves_files_for_another_account(monkeypatch, tmp
     assert (users / "destination-user/document.txt").read_text() == "existing document"
     assert (users / "source-user/document.txt").read_text() == "existing document"
     assert not (profile.parent / "destination-user").exists()
+    restored = BottleConfig.load(str(destination / "Portable/bottle.yml"))
+    assert restored.ok
+    assert restored.data.Notes == config.Notes
 
 
 def test_get_programs_preserves_per_program_runtime_options(monkeypatch):

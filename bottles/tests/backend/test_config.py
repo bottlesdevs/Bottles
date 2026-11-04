@@ -16,6 +16,12 @@ def _reload(config):
     return result.data
 
 
+def test_bottle_notes_survive_config_serialization():
+    config = BottleConfig(Name="Test", Notes="Installation notes\nSecond line: <text> & symbols")
+
+    assert _reload(config).Notes == config.Notes
+
+
 @pytest.mark.parametrize(
     "excluded_defaults",
     [

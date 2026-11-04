@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import Mock
@@ -7,7 +8,7 @@ from gi.repository import Gio
 
 from bottles.backend.models.config import BottleConfig
 
-resource_path = Path("/app/share/bottles/bottles.gresource")
+resource_path = Path(os.environ.get("BOTTLES_TEST_RESOURCE", "/app/share/bottles/bottles.gresource"))
 if not resource_path.exists():
     pytest.skip(
         "Bottle preferences tests require the Bottles Flatpak runtime",
@@ -18,6 +19,29 @@ Gio.resources_register(Gio.Resource.load(str(resource_path)))
 
 def _make_view(config):
     return SimpleNamespace(config=config, switch_hdr=Mock())
+
+
+@pytest.mark.parametrize("success", [False, True])
+def test_bottle_notes_are_kept_when_saving_fails(success):
+    from gi.repository import Gtk
+    from bottles.backend.models.result import Result
+    from bottles.frontend.views.bottle_preferences import PreferencesView
+
+    config = BottleConfig(Name="Test")
+    text = Gtk.TextView()
+    notes = "Installation notes\nDo not discard this text."
+    text.get_buffer().set_text(notes)
+    button = Gtk.Button()
+    manager = SimpleNamespace(update_config=Mock(return_value=Result(success, {"config": config})))
+    view = SimpleNamespace(config=config, text_notes=text, btn_save_notes=button, manager=manager, window=SimpleNamespace(show_toast=Mock()))
+
+    PreferencesView._PreferencesView__save_notes(view, button)
+
+    manager.update_config.assert_called_once_with(config, key="Notes", value=notes)
+    assert button.get_sensitive() is not success
+    buffer = text.get_buffer()
+    assert buffer.get_text(buffer.get_start_iter(), buffer.get_end_iter(), True) == notes
+    assert view.window.show_toast.called is not success
 
 
 @pytest.mark.parametrize("nvidia", (True, False))
