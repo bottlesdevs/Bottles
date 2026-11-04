@@ -218,3 +218,64 @@ def test_installer_without_z_is_staged_inside_prefix(
     assert not staged[0].exists()
     if not success:
         assert recorder.config_updates == []
+
+
+@pytest.mark.parametrize("description,expected", [("Microsoft .NET Framework 4", "Microsoft .NET Framework 4"), (None, "prerequisite")])
+def test_prerequisite_progress_uses_the_dependency_description(recorder, description, expected):
+    manager = _dependency_manager(recorder)
+    manifests = {
+        "main": {"Dependencies": ["prerequisite"], "Steps": []},
+        "prerequisite": {"Description": description, "Dependencies": [], "Steps": []},
+    }
+    manager.get_dependency = manifests.get
+    manager._DependencyManager__manager.supported_dependencies = manifests
+    messages = []
+
+    result = manager.install(BottleConfig(Name="Bottle"), ["main", manifests["main"]], progress_cb=messages.append)
+
+    assert result.ok
+    assert any(f'prerequisite "{expected}"' in message for message in messages)
+
+
+@pytest.mark.parametrize("present", [True, False])
+def test_uninstall_progress_only_runs_an_installed_entry(recorder, monkeypatch, present):
+    calls = []
+    class Uninstaller:
+        def __init__(self, config):
+            pass
+        def get_uuid(self, name):
+            calls.append(("query", name))
+            return Result(True, "{MONO}" if present else "")
+        def from_uuid(self, identifier):
+            calls.append(("remove", identifier))
+            return Result(True)
+    monkeypatch.setattr(dependency, "Uninstaller", Uninstaller)
+    manager = _dependency_manager(recorder)
+    manager.get_dependency = lambda name: {"Dependencies": [], "Steps": [
+        {"action": "uninstall", "file_name": "Wine Mono"},
+    ]}
+    messages = []
+
+    result = manager.install(BottleConfig(Name="Bottle"), ["example", {}], progress_cb=messages.append)
+
+    assert result.ok
+    assert calls == ([("query", "Wine Mono"), ("remove", "{MONO}")] if present else [("query", "Wine Mono")])
+    assert any("Running uninstaller (Wine Mono)" in message for message in messages) is present
+    assert any("Skipping Wine Mono: not installed" in message for message in messages) is not present
+
+
+def test_uninstall_query_failure_is_not_reported_as_a_skipped_step(recorder, monkeypatch):
+    monkeypatch.setattr(dependency, "Uninstaller", lambda config: SimpleNamespace(
+        get_uuid=lambda name: Result(False, message="Cannot read uninstall entries"),
+    ))
+    manager = _dependency_manager(recorder)
+    manager.get_dependency = lambda name: {"Dependencies": [], "Steps": [
+        {"action": "uninstall", "file_name": "Wine Mono"},
+    ]}
+    messages = []
+
+    result = manager.install(BottleConfig(Name="Bottle"), ["example", {}], progress_cb=messages.append)
+
+    assert not result.ok
+    assert "Cannot read uninstall entries" in result.message
+    assert not any("Skipping Wine Mono" in message for message in messages)

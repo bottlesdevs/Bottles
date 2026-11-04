@@ -44,7 +44,10 @@ class DependencyInstallDialog(Adw.Window):
         self.dependency_name = dependency_name
         self._steps: List[Adw.ActionRow] = []
 
-        self.label_title.set_label(_("Installing “{0}”…").format(dependency_name))
+        manager = getattr(parent, "manager", None)
+        metadata = getattr(manager, "supported_dependencies", {}).get(dependency_name, {})
+        display_name = metadata.get("Description") or dependency_name
+        self.label_title.set_label(_('Installing "{0}"...').format(display_name))
         self.label_status.set_label(_("Preparing installation…"))
         self.progress_download.set_visible(False)
         self.btn_close.set_sensitive(False)

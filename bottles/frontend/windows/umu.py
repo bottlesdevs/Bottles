@@ -1293,14 +1293,6 @@ class UmuAddGameDialog(Adw.Dialog):
             except ValueError as error:
                 self.window.show_toast(str(error))
                 return
-            if importing and self.prefix:
-                try:
-                    executable.relative_to(Path(self.prefix).resolve())
-                except ValueError:
-                    self.window.show_toast(
-                        _("Select an executable inside the chosen Proton prefix.")
-                    )
-                    return
             self.executable = str(executable)
             self.row_executable.set_subtitle(self.executable)
             if not self.entry_name.get_text().strip():
@@ -1330,19 +1322,6 @@ class UmuAddGameDialog(Adw.Dialog):
             self.prefix = file.get_path()
             if self.prefix is None:
                 return
-            if self.executable:
-                try:
-                    Path(self.executable).resolve().relative_to(
-                        Path(self.prefix).resolve()
-                    )
-                except ValueError:
-                    self.executable = None
-                    self.row_executable.set_subtitle(
-                        _("Choose the installed game executable.")
-                    )
-                    self.window.show_toast(
-                        _("Choose an executable inside the selected Proton prefix.")
-                    )
             self.row_prefix.set_subtitle(self.prefix)
             self.__validate()
 
@@ -1586,20 +1565,6 @@ class UmuGameDialog(Adw.Dialog):
             except ValueError as error:
                 self.window.show_toast(str(error))
                 return
-            source_mode = self.game.extra.get("source_mode")
-            require_managed_executable = source_mode in ("installer", "imported")
-            if source_mode is None:
-                require_managed_executable = bool(
-                    self.game.extra.get("installer") or not self.game.prefix.managed
-                )
-            try:
-                if require_managed_executable:
-                    executable.relative_to(Path(self.prefix).resolve())
-            except (ValueError, OSError):
-                self.window.show_toast(
-                    _("Select a valid Windows executable inside the game prefix.")
-                )
-                return
             self.executable = str(executable)
             self.row_executable.set_subtitle(self.executable)
             self.__validate_settings()
@@ -1630,20 +1595,6 @@ class UmuGameDialog(Adw.Dialog):
             path = file.get_path()
             if path:
                 prefix = str(Path(path).resolve())
-                if self.executable:
-                    try:
-                        Path(self.executable).resolve().relative_to(prefix)
-                    except ValueError:
-                        self.executable = ""
-                        self.row_executable.set_subtitle(
-                            _("Choose an executable inside the game prefix.")
-                        )
-                        self.window.show_toast(
-                            _(
-                                "Choose the game executable again because the "
-                                "prefix changed."
-                            )
-                        )
                 self.prefix = prefix
                 self.prefix_managed = False
                 self.row_prefix.set_subtitle(prefix)
