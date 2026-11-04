@@ -1993,3 +1993,44 @@ def test_executable_launch_accepts_configured_exit_status(monkeypatch):
 )
 def test_is_success_exit_code(returncode, codes, expected):
     assert WineExecutor.is_success_exit_code(returncode, codes) is expected
+
+
+@pytest.mark.parametrize("arch,version,expected", [
+    ("win32", "winxp", "winxp"),
+    ("win64", "winxp", "winxp64"),
+    ("win64", "win7", "win7"),
+])
+def test_legacy_windows_version_uses_prefix_architecture(monkeypatch, arch, version, expected):
+    from bottles.backend.wine import regkeys
+
+    versions = []
+    monkeypatch.setattr(regkeys, "WineCfg", lambda config: SimpleNamespace(
+        set_windows_version=lambda value: versions.append(value) or Result(True),
+    ))
+    keys = regkeys.RegKeys.__new__(regkeys.RegKeys)
+    keys.config = SimpleNamespace(Arch=arch)
+
+    keys.lg_set_windows(version)
+
+    assert versions == [expected]
+
+
+@pytest.mark.parametrize("arch,expected", [("win32", "winxp"), ("win64", "winxp64")])
+def test_windows_registry_values_match_prefix_architecture(monkeypatch, arch, expected):
+    from bottles.backend.wine import regkeys
+
+    bundles = []
+    monkeypatch.setattr(regkeys, "WineBoot", lambda config: SimpleNamespace(
+        restart=lambda: None, update=lambda: None,
+    ))
+    keys = regkeys.RegKeys.__new__(regkeys.RegKeys)
+    keys.config = SimpleNamespace(Arch=arch)
+    keys.reg = SimpleNamespace(remove=lambda *args: None, import_bundle=bundles.append)
+
+    keys.set_windows("winxp")
+
+    values = {item["value"]: item["data"] for item in bundles[0][
+        "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion"
+    ]}
+    assert values["CurrentVersion"] == regkeys.win_versions[expected]["CurrentVersion"]
+    assert values["CSDVersion"] == regkeys.win_versions[expected]["CSDVersion"]
