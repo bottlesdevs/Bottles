@@ -1058,3 +1058,27 @@ def test_unknown_portal_state_without_manual_launcher_fails(monkeypatch, tmp_pat
         BottleConfig(Name="Unknown"),
         {"name": "Editor", "executable": "editor.exe"},
     ) is False
+
+
+def test_program_paths_support_windows_case_and_offline_drives(tmp_path):
+    bottle = tmp_path / "Bottle"
+    drive = tmp_path / "External Drive"
+    drive.mkdir()
+    (drive / "Game.EXE").write_bytes(b"MZfixture")
+    devices = bottle / "dosdevices"
+    devices.mkdir(parents=True)
+    (devices / "d:").symlink_to(drive, target_is_directory=True)
+    config = BottleConfig(Name="Test", Path=str(bottle), Custom_Path=True)
+    config.External_Programs["game"] = {"path": "D:\\game.exe"}
+
+    assert ManagerUtils.program_exists(config, "D:\\game.exe") is True
+    assert ManagerUtils.program_exists(config, str(drive / "Game.EXE")) is True
+    assert ManagerUtils.program_exists(config, "D:\\missing.exe") is False
+    (devices / "d:").unlink()
+    assert ManagerUtils.program_exists(config, "D:\\game.exe") is False
+    assert config.External_Programs == {"game": {"path": "D:\\game.exe"}}
+
+
+@pytest.mark.parametrize("path", [None, "", "notepad.exe", "%ProgramFiles%\\Editor\\editor.exe", "\\\\server\\share\\game.exe"])
+def test_unresolved_program_paths_are_left_to_wine(path):
+    assert ManagerUtils.program_exists(BottleConfig(), path) is None

@@ -35,6 +35,7 @@ from bottles.backend.wine.uninstaller import Uninstaller
 from bottles.backend.wine.winedbg import WineDbg
 from bottles.backend.wine.wineserver import WineServer
 from bottles.frontend.utils.gtk import GtkUtils
+from bottles.frontend.utils.program import guard_program_launch
 from bottles.frontend.utils.playtime import PlaytimeService
 from bottles.frontend.utils.sandbox_guard import guard_sandbox_launch
 from bottles.frontend.windows.fileassociations import FileAssociationsDialog
@@ -49,6 +50,7 @@ class ProgramEntry(Adw.ActionRow):
     __gtype_name__ = "ProgramEntry"
 
     # region Widgets
+    img_missing = Gtk.Template.Child()
     btn_menu = Gtk.Template.Child()
     btn_run = Gtk.Template.Child()
     btn_stop = Gtk.Template.Child()
@@ -195,6 +197,13 @@ class ProgramEntry(Adw.ActionRow):
         # Update subtitle with playtime info
         if not is_steam:
             self.__update_subtitle()
+            RunAsync(
+                ManagerUtils.program_exists,
+                callback=lambda exists, error=False: self.img_missing.set_visible(
+                    exists is False and not error
+                ),
+                config=config, path=self.program.get("path"),
+            )
 
     def __program_icon_ready(self, icon, error):
         if error is None and isinstance(icon, str) and os.path.isfile(icon):
@@ -305,6 +314,14 @@ class ProgramEntry(Adw.ActionRow):
 
     def run_executable(self, _widget, with_terminal=False):
         self.pop_actions.popdown()  # workaround #1640
+
+        guard_program_launch(
+            self.window, self.config, self.program,
+            lambda: self.__check_security_and_launch(with_terminal),
+            on_check=lambda exists: self.img_missing.set_visible(exists is False),
+        )
+
+    def __check_security_and_launch(self, with_terminal=False):
 
         path = self.program.get("path")
         if (

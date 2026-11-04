@@ -115,6 +115,12 @@ template $ProgramEntry: Adw.ActionRow {
       ]
     }
 
+    Image img_missing {
+      visible: false;
+      icon-name: "dialog-warning-symbolic";
+      tooltip-text: _("The program file could not be found. Check its path and any external drives.");
+    }
+
     Button btn_run {
       valign: center;
       icon-name: "media-playback-start-symbolic";

@@ -30,6 +30,7 @@ def entry():
         btn_run=run,
         btn_stop=stop,
         pop_actions=Mock(),
+        img_missing=Gtk.Image(),
     )
     entry._ProgramEntry__reset_buttons = lambda result=False, error=False: (
         program.ProgramEntry._ProgramEntry__reset_buttons(entry, result, error)
@@ -46,6 +47,26 @@ def wait_for(predicate):
             context.iteration(False)
         time.sleep(0.01)
     return predicate()
+
+
+def test_missing_program_warns_and_can_run_after_drive_returns(monkeypatch, entry):
+    available = [False]
+    entry.program["path"] = "/external/Game.exe"
+    entry._ProgramEntry__check_security_and_launch = Mock()
+    monkeypatch.setattr(program.ManagerUtils, "program_exists", lambda **_kwargs: available[0])
+
+    program.ProgramEntry.run_executable(entry, None)
+
+    assert wait_for(lambda: entry.window.show_toast.called)
+    assert entry.img_missing.get_visible()
+    entry._ProgramEntry__check_security_and_launch.assert_not_called()
+    assert entry.program["path"] == "/external/Game.exe"
+
+    available[0] = True
+    program.ProgramEntry.run_executable(entry, None)
+
+    assert wait_for(lambda: entry._ProgramEntry__check_security_and_launch.called)
+    assert not entry.img_missing.get_visible()
 
 
 @pytest.mark.parametrize("sandbox", [False, True])
