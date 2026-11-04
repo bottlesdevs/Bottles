@@ -167,3 +167,125 @@ def test_cancelled_stream_preserves_existing_file(tmp_path, monkeypatch, length,
     assert not destination.with_name("dependency.exe.part").exists()
     assert closed == [True]
     assert updates[-1] == ((), {"status": downloader_module.Status.CANCELLED})
+
+
+def test_download_restarts_after_a_truncated_http_response(tmp_path):
+    from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+    from threading import Thread
+
+    payload = b"Complete dependency payload" * 5000
+    requests_seen = []
+
+    class Handler(BaseHTTPRequestHandler):
+        def do_GET(self):
+            requests_seen.append(self.path)
+            self.send_response(200)
+            self.send_header("Content-Length", str(len(payload)))
+            self.end_headers()
+            self.wfile.write(payload[:10000] if len(requests_seen) == 1 else payload)
+            self.wfile.flush()
+            self.close_connection = True
+
+        def log_message(self, *_args):
+            pass
+
+    server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+    thread = Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    destination = tmp_path / "dependency.exe"
+    destination.write_bytes(b"Previous dependency")
+    try:
+        result = Downloader(f"http://127.0.0.1:{server.server_port}/dependency.exe", str(destination)).download()
+    finally:
+        server.shutdown()
+        server.server_close()
+        thread.join(timeout=5)
+
+    assert result.ok
+    assert requests_seen == ["/dependency.exe", "/dependency.exe"]
+    assert destination.read_bytes() == payload
+    assert not destination.with_suffix(".exe.part").exists()
+
+
+@pytest.mark.parametrize("error", [requests.HTTPError("404"), requests.exceptions.SSLError("certificate")])
+def test_download_does_not_retry_http_or_certificate_errors(tmp_path, monkeypatch, error):
+    calls = []
+
+    def get(*_args, **_kwargs):
+        calls.append(True)
+        raise error
+
+    monkeypatch.setattr(downloader_module.requests, "get", get)
+    destination = tmp_path / "dependency.exe"
+    destination.write_bytes(b"Previous dependency")
+
+    assert not Downloader("https://example.test/dependency.exe", str(destination)).download().ok
+    assert calls == [True]
+    assert destination.read_bytes() == b"Previous dependency"
+    assert not destination.with_suffix(".exe.part").exists()
+
+
+def test_cancel_during_retry_delay_prevents_another_request(tmp_path, monkeypatch):
+    event = Event()
+    calls = []
+    updates = []
+
+    def get(*_args, **_kwargs):
+        calls.append(True)
+        event.set()
+        raise requests.ReadTimeout("timeout")
+
+    monkeypatch.setattr(downloader_module.requests, "get", get)
+    destination = tmp_path / "dependency.exe"
+    destination.write_bytes(b"Previous dependency")
+    result = Downloader("https://example.test/dependency.exe", str(destination), cancel_event=event,
+                        update_func=lambda **kwargs: updates.append(kwargs)).download()
+
+    assert not result.ok
+    assert result.message == "cancelled"
+    assert calls == [True]
+    assert updates == [{"status": downloader_module.Status.CANCELLED}]
+    assert destination.read_bytes() == b"Previous dependency"
+    assert not destination.with_suffix(".exe.part").exists()
+
+
+def test_download_stops_after_three_timeouts(tmp_path, monkeypatch):
+    calls = []
+    waits = []
+
+    def get(*_args, **_kwargs):
+        calls.append(True)
+        raise requests.ReadTimeout("timeout")
+
+    monkeypatch.setattr(downloader_module.requests, "get", get)
+    monkeypatch.setattr(downloader_module.time, "sleep", waits.append)
+    destination = tmp_path / "dependency.exe"
+    destination.write_bytes(b"Previous dependency")
+
+    result = Downloader("https://example.test/dependency.exe", str(destination)).download()
+
+    assert not result.ok
+    assert len(calls) == 3
+    assert waits == [1, 2]
+    assert destination.read_bytes() == b"Previous dependency"
+    assert not destination.with_suffix(".exe.part").exists()
+
+
+def test_cancel_after_commit_keeps_the_completed_download_successful(tmp_path, monkeypatch):
+    event = Event()
+    destination = tmp_path / "dependency.exe"
+    response = SimpleNamespace(headers={}, raise_for_status=lambda: None,
+                               iter_content=lambda _size: iter([b"Complete"]), close=lambda: None)
+    monkeypatch.setattr(downloader_module.requests, "get", lambda *_args, **_kwargs: response)
+    replace = downloader_module.os.replace
+
+    def commit(source, target):
+        replace(source, target)
+        event.set()
+
+    monkeypatch.setattr(downloader_module.os, "replace", commit)
+
+    result = Downloader("https://example.test/dependency.exe", str(destination), cancel_event=event).download()
+
+    assert result.ok
+    assert destination.read_bytes() == b"Complete"

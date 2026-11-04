@@ -171,7 +171,8 @@ def test_stream_download_has_timeouts(monkeypatch, tmp_path):
         request["url"] = url
         request.update(kwargs)
         return SimpleNamespace(
-            headers={}, content=b"runner", raise_for_status=lambda: None
+            headers={}, iter_content=lambda _size: iter([b"runner"]),
+            raise_for_status=lambda: None, close=lambda: None,
         )
 
     monkeypatch.setattr(downloader_module.requests, "get", get)
@@ -182,7 +183,7 @@ def test_stream_download_has_timeouts(monkeypatch, tmp_path):
     ).download()
 
     assert result.ok is True
-    assert request["timeout"] == (10, 30)
+    assert request["timeout"] == (10, 60)
 
 
 def test_stream_timeout_removes_partial_download(monkeypatch, tmp_path):
@@ -197,6 +198,10 @@ def test_stream_timeout_removes_partial_download(monkeypatch, tmp_path):
         def iter_content(_size):
             yield b"half"
             raise downloader_module.requests.exceptions.ReadTimeout
+
+        @staticmethod
+        def close():
+            pass
 
     monkeypatch.setattr(
         downloader_module.requests, "get", lambda *_args, **_kwargs: Response()

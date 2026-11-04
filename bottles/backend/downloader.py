@@ -59,6 +59,23 @@ class Downloader:
 
     def download(self) -> Result:
         """Start the download."""
+        for attempt in range(3):
+            result = self._download()
+            if result.ok or result.message == "cancelled":
+                return result
+            if self.cancel_event and self.cancel_event.is_set():
+                if self.update_func:
+                    self.update_func(status=Status.CANCELLED)
+                return Result(False, message="cancelled")
+            if not (result.data or {}).get("retryable") or attempt == 2:
+                return result
+            logging.warning(f"Download interrupted, retrying ({attempt + 2}/3): {self.url}")
+            if self.cancel_event:
+                self.cancel_event.wait(attempt + 1)
+            else:
+                time.sleep(attempt + 1)
+
+    def _download(self) -> Result:
         partial_file = f"{self.file}.part"
         response = None
         try:
@@ -73,7 +90,7 @@ class Downloader:
                     self.url,
                     stream=True,
                     headers=headers,
-                    timeout=(10, 30),
+                    timeout=(10, 60),
                 )
                 response.raise_for_status()
                 try:
@@ -86,7 +103,7 @@ class Downloader:
                     total_size = 0
                 received_size = 0
 
-                for data in response.iter_content(1024 * 1024):  # 1MB buffer
+                for data in response.iter_content(64 * 1024):
                     if self.cancel_event and self.cancel_event.is_set():
                         raise DownloadCancelled
                     received_size += len(data)
@@ -119,7 +136,12 @@ class Downloader:
                 os.remove(partial_file)
             logging.error(f"Failed to download [{self.url}]: {error}")
             return Result(
-                False, message="Download failed! Check your internet connection."
+                False, message="Download failed! Check your internet connection.",
+                data={"retryable": isinstance(error, (
+                    requests.exceptions.Timeout,
+                    requests.exceptions.ConnectionError,
+                    requests.exceptions.ChunkedEncodingError,
+                ))},
             )
         finally:
             if response is not None:
