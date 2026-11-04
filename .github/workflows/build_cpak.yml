@@ -183,61 +183,57 @@ jobs:
                 bottles/tests/backend/wine/test_start.py
             '
 
-      - name: Test DPI registry settings
-        if: matrix.arch == 'amd64'
-        env:
-          IMAGE: ${{ steps.identity.outputs.image }}
-        run: |
-          docker run --rm \
-            --entrypoint sh \
-            --volume "$GITHUB_WORKSPACE:/tests:ro" \
-            "$IMAGE" -ceu '
-              sh /tests/build-aux/cpak/install-test-tools.sh xauth xvfb
-              export PYTHONPATH=/usr/share/bottles
-              export PYTHONDONTWRITEBYTECODE=1
-              export TMPDIR="$HOME/artifacts/bottles-dpi-ci"
-              export TMP="$TMPDIR" TEMP="$TMPDIR"
-              mkdir -p "$TMPDIR"
-              xvfb-run -a timeout 180 python3 /tests/build-aux/cpak/test-dpi-scaling.py /usr/bin/wine "$TMPDIR/prefix"
-            '
-
-      - name: Verify Soda on arm64
-        if: matrix.arch == 'arm64'
+      - name: Verify Soda and DPI settings
         env:
           GH_TOKEN: ${{ github.token }}
           IMAGE: ${{ steps.identity.outputs.image }}
+          EXPECTED_ARCH: ${{ matrix.arch }}
         run: |
-          mkdir -p /tmp/soda-arm64
+          case "$EXPECTED_ARCH" in
+            amd64) soda_arch=x86_64 ;;
+            arm64) soda_arch=aarch64 ;;
+          esac
+          soda_dir="$RUNNER_TEMP/soda-$EXPECTED_ARCH"
+          mkdir -p "$soda_dir"
           gh release download soda-11.0-10 \
             --repo bottlesdevs/wine \
-            --pattern 'soda-11.0-10-aarch64.tar.xz' \
-            --dir /tmp/soda-arm64
-          tar -C /tmp/soda-arm64 -xJf /tmp/soda-arm64/soda-11.0-10-aarch64.tar.xz
-          runner="$(find /tmp/soda-arm64 -mindepth 1 -maxdepth 1 -type d -name 'soda-*-aarch64' -print -quit)"
+            --pattern "soda-11.0-10-$soda_arch.tar.xz" \
+            --dir "$soda_dir"
+          tar -C "$soda_dir" -xJf "$soda_dir/soda-11.0-10-$soda_arch.tar.xz"
+          runner="$(find "$soda_dir" -mindepth 1 -maxdepth 1 -type d -name "soda-*-$soda_arch" -print -quit)"
           test -n "$runner"
           docker run --rm \
             --entrypoint sh \
+            --env EXPECTED_ARCH \
             --volume "$runner:/runner:ro" \
             --volume "$GITHUB_WORKSPACE/build-aux/cpak/test-dpi-scaling.py:/dpi-test.py:ro" \
             --volume "$GITHUB_WORKSPACE/build-aux/cpak/install-test-tools.sh:/install-test-tools:ro" \
             "$IMAGE" -ceu '
               sh /install-test-tools xauth xvfb
-              export FEX_APP_CONFIG=/runner/share/fex-emu/Config.json
-              export FEX_APP_CONFIG_LOCATION=/runner/share/fex-emu
-              export LD_LIBRARY_PATH="/runner/lib:/runner/lib/wine/aarch64-unix:$LD_LIBRARY_PATH"
+              export LD_LIBRARY_PATH="/runner/lib:/runner/lib64:/runner/lib/wine/aarch64-unix:/runner/lib/wine/x86_64-unix:$LD_LIBRARY_PATH"
+              if test "$EXPECTED_ARCH" = arm64; then
+                export FEX_APP_CONFIG=/runner/share/fex-emu/Config.json
+                export FEX_APP_CONFIG_LOCATION=/runner/share/fex-emu
+              fi
               export WINEARCH=win64
               export WINEDEBUG=-all
-              export WINEPREFIX=/tmp/soda-arm64-prefix
-              ldd /runner/bin/wine | tee /tmp/soda-ldd.log
-              ! grep -F "not found" /tmp/soda-ldd.log
+              export TMPDIR="$HOME/artifacts/bottles-soda-ci"
+              export TMP="$TMPDIR" TEMP="$TMPDIR"
+              mkdir -p "$TMPDIR"
+              export WINEPREFIX="$TMPDIR/prefix"
+              ldd /runner/bin/wine | tee "$TMPDIR/soda-ldd.log"
+              ! grep -F "not found" "$TMPDIR/soda-ldd.log"
               xvfb-run -a /runner/bin/wine wineboot -u
               native="$(xvfb-run -a /runner/bin/wine cmd /c echo "%PROCESSOR_ARCHITECTURE%" | tr -d "\r" | grep -E "^(ARM64|AMD64|x86)$" | tail -1)"
-              x64="$(xvfb-run -a /runner/bin/wine /runner/lib/wine/x86_64-windows/cmd.exe /c echo "%PROCESSOR_ARCHITECTURE%" | tr -d "\r" | grep -E "^(ARM64|AMD64|x86)$" | tail -1)"
               x86="$(xvfb-run -a /runner/bin/wine /runner/lib/wine/i386-windows/cmd.exe /c echo "%PROCESSOR_ARCHITECTURE%" | tr -d "\r" | grep -E "^(ARM64|AMD64|x86)$" | tail -1)"
-              test "$native" = ARM64
-              test "$x64" = AMD64
+              if test "$EXPECTED_ARCH" = arm64; then
+                test "$native" = ARM64
+                x64="$(xvfb-run -a /runner/bin/wine /runner/lib/wine/x86_64-windows/cmd.exe /c echo "%PROCESSOR_ARCHITECTURE%" | tr -d "\r" | grep -E "^(ARM64|AMD64|x86)$" | tail -1)"
+                test "$x64" = AMD64
+              else
+                test "$native" = AMD64
+              fi
               test "$x86" = x86
-              printf "Soda architectures: native=%s, x64=%s, x86=%s\n" "$native" "$x64" "$x86"
               PYTHONPATH=/usr/share/bottles xvfb-run -a timeout 180 python3 /dpi-test.py /runner/bin/wine "$WINEPREFIX"
               /runner/bin/wineserver -w
             '
