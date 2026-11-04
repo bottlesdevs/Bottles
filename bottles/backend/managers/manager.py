@@ -2242,6 +2242,10 @@ class Manager(metaclass=Singleton):
             rk.toggle_wayland_driver(parameters.wayland)
             rk.set_renderer(parameters.renderer)
             rk.set_dpi(parameters.custom_dpi)
+            if parameters.dpi_scaling != "default":
+                result = rk.set_dpi_scaling(parameters.dpi_scaling)
+                if not result.ok:
+                    raise ValueError(result.message)
             rk.set_grab_fullscreen(parameters.fullscreen_capture)
             rk.set_take_focus(parameters.take_focus)
             rk.set_decorated(parameters.decorated)

@@ -1,9 +1,13 @@
+import pytest
+
 from bottles.backend.managers import manager as manager_module
 from bottles.backend.managers.manager import Manager
 from bottles.backend.models.config import BottleConfig, BottleParams
+from bottles.backend.models.result import Result
 
 
-def test_config_import_restores_runtime_settings(monkeypatch, tmp_path):
+@pytest.mark.parametrize("dpi_scaling", ["default", "application", "system"])
+def test_config_import_restores_runtime_settings(monkeypatch, tmp_path, dpi_scaling):
     applied_settings = []
     windows_versions = []
     wineboot_inits = []
@@ -25,6 +29,7 @@ def test_config_import_restores_runtime_settings(monkeypatch, tmp_path):
 
         def init(self):
             wineboot_inits.append(True)
+            return Result(True)
 
         def update(self):
             pass
@@ -75,6 +80,11 @@ def test_config_import_restores_runtime_settings(monkeypatch, tmp_path):
             applied_settings.append(("dpi", value))
 
         @staticmethod
+        def set_dpi_scaling(value):
+            applied_settings.append(("dpi_scaling", value))
+            return Result(True)
+
+        @staticmethod
         def set_grab_fullscreen(state):
             applied_settings.append(("fullscreen_capture", state))
 
@@ -116,6 +126,7 @@ def test_config_import_restores_runtime_settings(monkeypatch, tmp_path):
             wayland=True,
             renderer="vulkan",
             custom_dpi=144,
+            dpi_scaling=dpi_scaling,
             fullscreen_capture=True,
             take_focus=True,
             decorated=False,
@@ -167,6 +178,7 @@ def test_config_import_restores_runtime_settings(monkeypatch, tmp_path):
         ("wayland", True),
         ("renderer", "vulkan"),
         ("dpi", 144),
+        *([("dpi_scaling", dpi_scaling)] if dpi_scaling != "default" else []),
         ("fullscreen_capture", True),
         ("take_focus", True),
         ("decorated", False),

@@ -28,6 +28,7 @@ from bottles.frontend.utils.gtk import GtkUtils
 logging = Logger()
 
 renderers = ["gl", "gdi", "vulkan"]
+dpi_scaling_modes = ["default", "application", "system"]
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/dialog-display.ui")
@@ -45,6 +46,7 @@ class DisplayDialog(Adw.Window):
     switch_decorated = Gtk.Template.Child()
     spin_dpi = Gtk.Template.Child()
     combo_renderer = Gtk.Template.Child()
+    combo_dpi_scaling = Gtk.Template.Child()
 
     def __init__(
         self, parent_window, config, details, queue, widget, spinner_display, **kwargs
@@ -76,6 +78,10 @@ class DisplayDialog(Adw.Window):
         self.switch_mouse_warp.set_active(self.parameters.mouse_warp)
         self.switch_decorated.set_active(self.parameters.decorated)
         self.spin_dpi.set_value(self.parameters.custom_dpi)
+        mode = self.parameters.dpi_scaling
+        self.combo_dpi_scaling.set_selected(
+            dpi_scaling_modes.index(mode) if mode in dpi_scaling_modes else 0
+        )
 
         """Set resolution"""
         virtual_desktop_res = self.parameters.virtual_desktop_res
@@ -100,6 +106,7 @@ class DisplayDialog(Adw.Window):
         self.started = 0
         self.queued = 0
         self.completed = 0
+        self.failed = False
 
         def add_queue():
             if self.started == 0:
@@ -115,7 +122,10 @@ class DisplayDialog(Adw.Window):
             if self.queued == self.completed:
                 self.widget.set_sensitive(True)
                 self.spinner_display.stop()
-                self.window.show_toast(_("Display settings updated"))
+                self.window.show_toast(
+                    _("Some display settings could not be updated.")
+                    if self.failed else _("Display settings updated")
+                )
             self.queue.end_task()
 
         if (
@@ -206,6 +216,23 @@ class DisplayDialog(Adw.Window):
             dpi = int(self.spin_dpi.get_value())
 
             RunAsync(rk.set_dpi, callback=update, value=dpi)
+
+        dpi_scaling = dpi_scaling_modes[self.combo_dpi_scaling.get_selected()]
+        if dpi_scaling != self.parameters.dpi_scaling:
+            def update_scaling(result, error=False):
+                if error or result is None or not result.ok:
+                    self.failed = True
+                    logging.error(str(error) if error else result.message if result else "DPI update failed")
+                else:
+                    saved = self.manager.update_config(
+                        config=self.config, key="dpi_scaling", value=dpi_scaling,
+                        scope="Parameters",
+                    )
+                    self.failed = self.failed or not saved.ok
+                complete_queue()
+
+            add_queue()
+            RunAsync(RegKeys(self.config).set_dpi_scaling, update_scaling, mode=dpi_scaling)
 
         if renderers[self.combo_renderer.get_selected()] != self.parameters.renderer:
             """Set renderer"""

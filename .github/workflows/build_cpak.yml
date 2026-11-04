@@ -141,6 +141,8 @@ jobs:
                 bottles/tests/backend/manager/test_dependency_removal.py \
                 bottles/tests/backend/manager/test_installer.py \
                 bottles/tests/backend/manager/test_backup.py \
+                bottles/tests/backend/manager/test_config_import.py \
+                bottles/tests/backend/wine/test_dpi_scaling.py \
                 bottles/tests/backend/manager/test_offline_cache.py \
                 bottles/tests/backend/manager/test_manager.py::test_create_bottle_rejects_win32_for_wow64_only_runner \
                 bottles/tests/backend/manager/test_manager.py::test_prefix_creation_reports_wineboot_failure_before_waiting \
@@ -174,10 +176,29 @@ jobs:
                 bottles/tests/frontend/test_umu_library.py \
                 bottles/tests/frontend/test_library_view.py \
                 bottles/tests/frontend/test_bottle_move.py \
+                bottles/tests/frontend/test_display.py \
                 bottles/tests/backend/wine/test_executor.py \
                 bottles/tests/backend/wine/test_wineserver.py \
                 bottles/tests/backend/wine/test_uninstaller.py \
                 bottles/tests/backend/wine/test_start.py
+            '
+
+      - name: Test DPI registry settings
+        if: matrix.arch == 'amd64'
+        env:
+          IMAGE: ${{ steps.identity.outputs.image }}
+        run: |
+          docker run --rm \
+            --entrypoint sh \
+            --volume "$GITHUB_WORKSPACE:/tests:ro" \
+            "$IMAGE" -ceu '
+              sh /tests/build-aux/cpak/install-test-tools.sh xauth xvfb
+              export PYTHONPATH=/usr/share/bottles
+              export PYTHONDONTWRITEBYTECODE=1
+              export TMPDIR="$HOME/artifacts/bottles-dpi-ci"
+              export TMP="$TMPDIR" TEMP="$TMPDIR"
+              mkdir -p "$TMPDIR"
+              xvfb-run -a timeout 180 python3 /tests/build-aux/cpak/test-dpi-scaling.py /usr/bin/wine "$TMPDIR/prefix"
             '
 
       - name: Verify Soda on arm64
@@ -197,6 +218,7 @@ jobs:
           docker run --rm \
             --entrypoint sh \
             --volume "$runner:/runner:ro" \
+            --volume "$GITHUB_WORKSPACE/build-aux/cpak/test-dpi-scaling.py:/dpi-test.py:ro" \
             --volume "$GITHUB_WORKSPACE/build-aux/cpak/install-test-tools.sh:/install-test-tools:ro" \
             "$IMAGE" -ceu '
               sh /install-test-tools xauth xvfb
@@ -216,6 +238,7 @@ jobs:
               test "$x64" = AMD64
               test "$x86" = x86
               printf "Soda architectures: native=%s, x64=%s, x86=%s\n" "$native" "$x64" "$x86"
+              PYTHONPATH=/usr/share/bottles xvfb-run -a timeout 180 python3 /dpi-test.py /runner/bin/wine "$WINEPREFIX"
               /runner/bin/wineserver -w
             '
 
