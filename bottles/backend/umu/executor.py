@@ -1,6 +1,7 @@
 import os
 import re
 import shlex
+import shutil
 import signal
 import subprocess
 import sys
@@ -252,16 +253,48 @@ class UmuExecutor:
             else None
         )
         environment, readable_paths = self._environment(game, prefix_only=False)
+        wrapper: tuple[str, ...] = ()
+        arguments = game.arguments
+        readable_paths = list(readable_paths)
+        if "%command%" in arguments:
+            index = arguments.index("%command%")
+            wrapper, arguments = arguments[:index], arguments[index + 1 :]
+            if game.sandbox and wrapper:
+                wrapper_path = self._sandbox_wrapper_path(wrapper[0], environment)
+                if wrapper_path is not None:
+                    wrapper = (str(wrapper_path), *wrapper[1:])
+                    if not (
+                        wrapper_path.is_relative_to("/usr")
+                        or wrapper_path.is_relative_to("/app")
+                    ):
+                        readable_paths.append(wrapper_path)
         return UmuCommand(
             argv=(
+                *wrapper,
                 str(self.installation.path),
                 str(executable),
-                *game.arguments,
+                *arguments,
             ),
             env=environment,
             cwd=cwd,
-            readable_paths=readable_paths,
+            readable_paths=tuple(readable_paths),
         )
+
+    @staticmethod
+    def _sandbox_wrapper_path(
+        wrapper: str, environment: Mapping[str, str]
+    ) -> Path | None:
+        """Resolve the wrapper so its command and sandbox exposure use the same path."""
+        candidate = Path(wrapper).expanduser()
+        if not candidate.is_absolute():
+            resolved = shutil.which(wrapper, path=environment.get("PATH"))
+            if resolved is None:
+                return None
+            candidate = Path(resolved)
+        candidate = candidate.resolve(strict=False)
+        if candidate == Path(candidate.anchor) or not candidate.is_file():
+            return None
+        return candidate
 
     def prepare_prefix(self, game: UmuGame) -> UmuCommand:
         environment, readable_paths = self._environment(game, prefix_only=True)
