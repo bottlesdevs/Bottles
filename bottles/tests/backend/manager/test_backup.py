@@ -890,3 +890,167 @@ def test_program_backup_roots_separate_programs_with_the_same_name(tmp_path):
 
     assert first == str(destination / "Bottle" / "Game-first-id")
     assert second == str(destination / "Bottle" / "Game-second-id")
+
+
+@pytest.mark.parametrize("external", [False, True])
+@pytest.mark.parametrize("to_default", [False, True])
+def test_move_preserves_full_prefix_and_registration(tmp_path, monkeypatch, external, to_default):
+    from bottles.backend.wine.wineserver import WineServer
+    config, source, internal, destination = _external_source(tmp_path, monkeypatch)
+    reference = internal / "Source"
+    if external:
+        reference.mkdir()
+        (reference / "placeholder.yml").write_text(yaml.dump({"Path": str(source)}))
+    else:
+        shutil.move(source, reference)
+        source = reference
+        config.Path = "Source"
+        config.Custom_Path = False
+    monkeypatch.setattr(WineServer, "is_alive", lambda self: False)
+    if to_default and not external:
+        result = BackupManager.move_bottle(config, str(internal))
+        assert not result.status
+        assert source.is_dir()
+        return
+    config.WorkingDir = str(source / "drive_c")
+    config.External_Programs = {"game": {"name": "Game", "path": str(source / "drive_c/game.exe"), "folder": str(source / "drive_c"), "icon": "/other/icon.png"}}
+    config.dump(str(source / "bottle.yml"))
+    (source / "dosdevices").mkdir()
+    (source / "dosdevices/c:").symlink_to("../drive_c")
+    (source / "dosdevices/z:").symlink_to("/")
+    (source / "dosdevices/d:").symlink_to(source / "drive_c")
+    (source / "logs").mkdir()
+    (source / "logs/run.log").write_text("Keep logs")
+    (source / ".hidden").write_text("Keep metadata")
+    parent = internal if to_default else destination
+    target = parent / "Source"
+
+    result = BackupManager.move_bottle(config, str(parent))
+
+    assert result.status, result.message
+    assert not (source / "drive_c").exists()
+    assert (target / "logs/run.log").read_text() == "Keep logs"
+    assert (target / ".hidden").read_text() == "Keep metadata"
+    assert os.readlink(target / "dosdevices/c:") == "../drive_c"
+    assert os.readlink(target / "dosdevices/z:") == "/"
+    assert os.readlink(target / "dosdevices/d:") == str(target / "drive_c")
+    loaded = BottleConfig.load(str(target / "bottle.yml")).data
+    assert loaded.Name == "Source"
+    assert loaded.Notes == "Installation notes"
+    assert loaded.Custom_Path is (not to_default)
+    assert loaded.WorkingDir == str(target / "drive_c")
+    assert loaded.External_Programs["game"]["path"] == str(target / "drive_c/game.exe")
+    assert loaded.External_Programs["game"]["icon"] == "/other/icon.png"
+    if not to_default:
+        assert yaml.load((reference / "placeholder.yml").read_text())["Path"] == str(target)
+    assert not list(internal.glob(".bottles-move-*"))
+    assert not list(parent.glob(".bottles-move-*"))
+
+
+@pytest.mark.parametrize("failure", ["running", "space", "copy", "verification", "registration"])
+def test_move_keeps_original_after_failure(tmp_path, monkeypatch, failure):
+    from bottles.backend.wine.wineserver import WineServer
+    config, source, internal, destination = _external_source(tmp_path, monkeypatch)
+    reference = internal / "Source"
+    reference.mkdir()
+    original_reference = yaml.dump({"Path": str(source)})
+    (reference / "placeholder.yml").write_text(original_reference)
+    monkeypatch.setattr(WineServer, "is_alive", lambda self: failure == "running")
+    if failure == "space":
+        monkeypatch.setattr(shutil, "disk_usage", lambda path: SimpleNamespace(free=0))
+    elif failure == "copy":
+        def fail(*args, **kwargs):
+            raise OSError("copy failed")
+        monkeypatch.setattr(shutil, "copytree", fail)
+    elif failure == "verification":
+        copytree = shutil.copytree
+        def corrupt(source, target, *args, **kwargs):
+            result = copytree(source, target, *args, **kwargs)
+            document = Path(target) / "drive_c/document.txt"
+            if document.exists():
+                document.write_text("corrupted")
+            return result
+        monkeypatch.setattr(shutil, "copytree", corrupt)
+    elif failure == "registration":
+        rename = os.rename
+        def fail(source_path, target):
+            if str(source_path).endswith("replacement"):
+                raise OSError("registration failed")
+            return rename(source_path, target)
+        monkeypatch.setattr(os, "rename", fail)
+
+    result = BackupManager.move_bottle(config, str(destination))
+
+    assert not result.status
+    assert (source / "drive_c/document.txt").read_text() == "Keep this document"
+    assert (reference / "placeholder.yml").read_text() == original_reference
+    assert config.Path == str(source)
+    assert not list(destination.iterdir())
+    assert not list(internal.glob(".bottles-move-*"))
+
+
+def test_move_never_removes_an_existing_destination(tmp_path, monkeypatch):
+    config, source, internal, destination = _external_source(tmp_path, monkeypatch)
+    (internal / "Source").mkdir()
+    (internal / "Source/placeholder.yml").write_text(yaml.dump({"Path": str(source)}))
+    target = destination / "Source"
+    target.mkdir()
+    (target / "marker").write_text("Do not touch")
+
+    assert not BackupManager.move_bottle(config, str(destination)).status
+    assert (target / "marker").read_text() == "Do not touch"
+    assert source.exists()
+
+
+def test_move_keeps_recovery_copy_if_registration_and_rollback_fail(tmp_path, monkeypatch):
+    from bottles.backend.wine.wineserver import WineServer
+    config, source, internal, destination = _external_source(tmp_path, monkeypatch)
+    reference = internal / "Source"
+    shutil.move(source, reference)
+    source = reference
+    config.Path, config.Custom_Path = "Source", False
+    config.dump(str(source / "bottle.yml"))
+    monkeypatch.setattr(WineServer, "is_alive", lambda self: False)
+    rename = os.rename
+
+    def fail(source_path, target):
+        if str(source_path).endswith(("replacement", "previous")):
+            raise OSError("registration unavailable")
+        return rename(source_path, target)
+
+    monkeypatch.setattr(os, "rename", fail)
+    result = BackupManager.move_bottle(config, str(destination))
+
+    assert not result.status
+    recovery, = internal.glob(".bottles-move-*/previous")
+    assert (recovery / "drive_c/document.txt").read_text() == "Keep this document"
+    assert not list(destination.iterdir())
+
+
+@pytest.mark.parametrize("stage", ["copy", "finish"])
+def test_move_refuses_a_prefix_that_changes_during_copy(tmp_path, monkeypatch, stage):
+    from bottles.backend.wine.wineserver import WineServer
+    config, source, internal, destination = _external_source(tmp_path, monkeypatch)
+    reference = internal / "Source"
+    reference.mkdir()
+    (reference / "placeholder.yml").write_text(yaml.dump({"Path": str(source)}))
+    calls = []
+
+    def is_alive(self):
+        calls.append(True)
+        return stage == "finish" and len(calls) > 1
+
+    monkeypatch.setattr(WineServer, "is_alive", is_alive)
+    if stage == "copy":
+        copytree = shutil.copytree
+        def change(source_path, target, *args, **kwargs):
+            result = copytree(source_path, target, *args, **kwargs)
+            if str(source_path) == str(source):
+                (source / "drive_c/new.txt").write_text("New data")
+            return result
+        monkeypatch.setattr(shutil, "copytree", change)
+
+    assert not BackupManager.move_bottle(config, str(destination)).status
+    assert (source / "drive_c/document.txt").exists()
+    assert (reference / "placeholder.yml").exists()
+    assert not list(destination.iterdir())

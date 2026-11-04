@@ -99,6 +99,7 @@ class BottleView(Adw.PreferencesPage):
     btn_backup_config = Gtk.Template.Child()
     btn_backup_full = Gtk.Template.Child()
     btn_duplicate = Gtk.Template.Child()
+    btn_move = Gtk.Template.Child()
     btn_delete = Gtk.Template.Child()
     btn_flatpak_doc = Gtk.Template.Child()
     label_name = Gtk.Template.Child()
@@ -195,6 +196,7 @@ class BottleView(Adw.PreferencesPage):
         self.btn_backup_config.connect("clicked", self.__backup, "config")
         self.btn_backup_full.connect("clicked", self.__backup, "full")
         self.btn_duplicate.connect("clicked", self.__duplicate)
+        self.btn_move.connect("clicked", self.__move)
         self.btn_flatpak_doc.connect(
             "clicked", open_doc_url, "flatpak/black-screen-or-silent-crash"
         )
@@ -853,6 +855,49 @@ class BottleView(Adw.PreferencesPage):
         new_window = DuplicateDialog(self)
         new_window.present()
 
+    def __move(self, _widget):
+        def finish(result, error):
+            self.window.set_sensitive(True)
+            if error or result is None or not result.ok:
+                message = str(error) if error else result.message if result else ""
+                self.window.show_toast(message or _("The bottle could not be moved."))
+                return
+            self.manager.update_bottles()
+            self.set_config(result.data)
+            self.window.show_toast(result.message or _("Bottle moved."))
+
+        def confirmed(dialog, response, destination):
+            dialog.destroy()
+            if response != "move":
+                return
+            self.window.set_sensitive(False)
+            RunAsync(
+                BackupManager.move_bottle, finish,
+                config=self.config, destination=destination,
+            )
+
+        def selected(dialog, result):
+            try:
+                folder = dialog.select_folder_finish(result)
+            except GLib.Error:
+                return
+            if folder is None or not folder.get_path():
+                return
+            destination = folder.get_path()
+            confirmation = Adw.MessageDialog.new(
+                self.window, _("Move Bottle?"),
+                _("Close all programs in this bottle first. Its files will be moved to {0}.").format(destination),
+            )
+            confirmation.add_response("cancel", _("_Cancel"))
+            confirmation.add_response("move", _("_Move"))
+            confirmation.set_response_appearance("move", Adw.ResponseAppearance.SUGGESTED)
+            confirmation.connect("response", confirmed, destination)
+            confirmation.present()
+
+        dialog = Gtk.FileDialog.new()
+        dialog.set_title(_("Choose Destination"))
+        dialog.select_folder(self.window, callback=selected)
+
     def __upgrade_versioning(self, on_close=None):
         """
         This function pop up the upgrade versioning dialog, so the user can
@@ -1018,6 +1063,6 @@ the Bottles preferences or choose a new one to run applications."
     def __set_steam_rules(self):
         status = False if self.config.Environment == "Steam" else True
 
-        for w in [self.btn_delete, self.btn_backup_full, self.btn_duplicate]:
+        for w in [self.btn_delete, self.btn_backup_full, self.btn_duplicate, self.btn_move]:
             w.set_visible(status)
             w.set_sensitive(status)
