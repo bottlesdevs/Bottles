@@ -383,6 +383,17 @@ template $PreferencesWindow: Adw.PreferencesDialog {
     title: _("UMU");
 
     Adw.PreferencesGroup {
+      Adw.ActionRow {
+        title: _("Show UMU");
+        subtitle: _("Show UMU prefixes and the game installation menu.");
+        activatable-widget: switch_show_umu;
+        Switch switch_show_umu {
+          valign: center;
+        }
+      }
+    }
+
+    Adw.PreferencesGroup {
       Stack umu_stack {
         transition-type: crossfade;
 

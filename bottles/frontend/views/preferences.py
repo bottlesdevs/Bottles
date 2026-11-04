@@ -79,6 +79,7 @@ class PreferencesWindow(Adw.PreferencesDialog):
     str_list_ui_languages = Gtk.Template.Child()
     combo_font_scale = Gtk.Template.Child()
     combo_library_order = Gtk.Template.Child()
+    switch_show_umu = Gtk.Template.Child()
     combo_audio_driver = Gtk.Template.Child()
     spin_eagle_limit = Gtk.Template.Child()
     list_runners = Gtk.Template.Child()
@@ -286,6 +287,9 @@ class PreferencesWindow(Adw.PreferencesDialog):
         )
 
         self.__sync_font_scale_selection()
+        self.settings.bind(
+            "show-umu", self.switch_show_umu, "active", Gio.SettingsBindFlags.DEFAULT
+        )
         self.settings.bind(
             "library-sort-order",
             self.combo_library_order,

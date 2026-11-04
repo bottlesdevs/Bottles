@@ -158,7 +158,8 @@ def test_bottle_list_empty_state(titles, terms, expected):
     ) == expected
 
 
-def test_umu_actions_replace_empty_state():
+@pytest.mark.parametrize("show_umu", [False, True])
+def test_umu_actions_replace_empty_state(show_umu):
     visible = {}
 
     def widget(name):
@@ -173,11 +174,12 @@ def test_umu_actions_replace_empty_state():
         bottle_status=widget("empty"),
         no_bottles_found=widget("no-results"),
         umu_provider=SimpleNamespace(available=True),
+        window=SimpleNamespace(settings=SimpleNamespace(get_boolean=lambda _key: show_umu)),
     )
 
     BottleView._BottleView__update_empty_state(view, "")
 
-    assert visible == {"list": True, "empty": False, "no-results": False}
+    assert visible == {"list": show_umu, "empty": not show_umu, "no-results": False}
 
 
 def test_search_updates_filters_and_empty_state():

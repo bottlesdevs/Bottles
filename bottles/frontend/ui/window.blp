@@ -19,11 +19,23 @@ template $BottlesWindow: Adw.ApplicationWindow {
             stack: stack_main;
           };
 
-          MenuButton btn_add {
-            tooltip-text: _("Add");
-            icon-name: "list-add-symbolic";
-            always-show-arrow: false;
-            popover: pop_add;
+          Stack btn_add {
+            StackPage {
+              name: "umu";
+              child: MenuButton {
+                tooltip-text: _("Add");
+                icon-name: "list-add-symbolic";
+                always-show-arrow: false;
+                popover: pop_add;
+              };
+            }
+            StackPage {
+              name: "bottle";
+              child: Button btn_create_direct {
+                tooltip-text: _("Create a Bottle");
+                icon-name: "list-add-symbolic";
+              };
+            }
           }
 
           Box box_actions {}

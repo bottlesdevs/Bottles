@@ -218,6 +218,7 @@ class BottleView(Adw.Bin):
         # connect signals
         self.btn_create.connect("clicked", self.window.show_add_view)
         self.entry_search.connect("changed", self.__search_bottles)
+        self.window.settings.connect("changed::show-umu", self.update_bottles_list)
         self.update_banner.connect("button-clicked", self.__show_bulk_update)
 
         # backend signals
@@ -250,7 +251,11 @@ class BottleView(Adw.Bin):
         has_matches = any(
             self.__filter_bottles(row, terms) for row in self.__bottles.values()
         )
-        show_umu_actions = self.umu_provider.available and not terms
+        show_umu_actions = (
+            self.umu_provider.available
+            and self.window.settings.get_boolean("show-umu")
+            and not terms
+        )
         self.pref_page.set_visible(has_matches or show_umu_actions)
         self.bottle_status.set_visible(not has_bottles and not show_umu_actions)
         self.no_bottles_found.set_visible(bool(terms) and not has_matches)
@@ -280,7 +285,8 @@ class BottleView(Adw.Bin):
             else:
                 self.list_steam.append(_entry)
 
-        for entry in self.umu_provider.list_prefixes():
+        show_umu = self.window.settings.get_boolean("show-umu")
+        for entry in self.umu_provider.list_prefixes() if show_umu else []:
             callback = (
                 self.window.show_umu_detected_prefix
                 if entry.get("detected")
@@ -291,13 +297,13 @@ class BottleView(Adw.Bin):
             self.list_umu.append(row)
 
         has_umu_prefixes = self.list_umu.get_first_child() is not None
-        if self.umu_provider.available and not has_umu_prefixes:
+        if show_umu and self.umu_provider.available and not has_umu_prefixes:
             self.list_umu.append(self.__build_umu_empty_row())
 
         has_local_bottles = self.list_bottles.get_first_child() is not None
         has_steam_prefixes = self.list_steam.get_first_child() is not None
         self.group_bottles.set_visible(has_local_bottles)
-        self.group_umu.set_visible(self.umu_provider.available)
+        self.group_umu.set_visible(show_umu and self.umu_provider.available)
         self.group_steam.set_visible(has_steam_prefixes)
         self.group_bottles.set_title(
             _("Your Bottles") if has_umu_prefixes or has_steam_prefixes else ""
