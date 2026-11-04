@@ -68,17 +68,39 @@ class WineServer(WineProgram):
             env=env,
         )
 
-    def wait(self):
-        self._run(["-w"]).wait()
+    def _wait(self, args, timeout=None):
+        process = self._run(args)
+        try:
+            if timeout is None:
+                return process.wait()
+            return process.wait(timeout=timeout)
+        except subprocess.TimeoutExpired:
+            process.kill()
+            process.wait()
+            raise
 
-    def kill(self, signal: int = -1):
+    def wait(self, timeout=None):
+        return self._wait(["-w"], timeout)
+
+    def kill(self, signal: int = -1, timeout=None):
         args = "-k"
         if signal != -1:
             args += str(signal)
 
         if not self.silent:
             logging.info("Using Wine Server -- sending signal to the wine server")
-        self.returncode = self._run([args]).wait()
+        self.returncode = self._wait([args], timeout)
+
+    def stop(self, timeout=30):
+        if self.config.Parameters.sandbox:
+            from bottles.backend.managers.sandbox import SandboxManager
+
+            bottle = ManagerUtils.get_bottle_path(self.config)
+            SandboxManager.terminate_prefix(bottle, timeout=timeout)
+            return True
+
+        self.kill(timeout=timeout)
+        return self.returncode == 0 and self.wait(timeout=timeout) == 0
 
     def force_kill(self):
         bottle = ManagerUtils.get_bottle_path(self.config)

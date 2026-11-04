@@ -1,12 +1,48 @@
 """Dedicated sandbox tests."""
 
 import pytest
+import subprocess
 
 from bottles.backend.managers import sandbox as sandbox_module
 from bottles.backend.managers.sandbox import SandboxManager
 from bottles.backend.models.config import BottleConfig
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.winecommand import WineCommand
+
+
+def test_terminate_prefix_waits_without_stopping_other_bottles(monkeypatch):
+    first = subprocess.Popen(["sleep", "30"], start_new_session=True)
+    second = subprocess.Popen(["sleep", "30"], start_new_session=True)
+    monkeypatch.setattr(SandboxManager, "_running", {"first": [first], "second": [second]})
+    try:
+        assert SandboxManager.terminate_prefix("first", timeout=2) == 1
+        assert first.poll() is not None
+        assert second.poll() is None
+        assert SandboxManager._running["first"] == []
+        assert SandboxManager._running["second"] == [second]
+    finally:
+        for process in (first, second):
+            if process.poll() is None:
+                process.kill()
+            process.wait()
+
+
+@pytest.mark.parametrize("failure", [PermissionError("not allowed"), subprocess.TimeoutExpired("launcher", 2)])
+def test_terminate_prefix_reports_cleanup_failure(monkeypatch, mocker, failure):
+    process = mocker.Mock(pid=12345)
+    process.poll.return_value = None
+    monkeypatch.setattr(SandboxManager, "_running", {"prefix": [process]})
+    mocker.patch.object(sandbox_module.os, "getpgid", return_value=12345)
+    kill = mocker.patch.object(sandbox_module.os, "killpg")
+    if isinstance(failure, PermissionError):
+        kill.side_effect = failure
+    else:
+        process.wait.side_effect = failure
+
+    with pytest.raises(type(failure)):
+        SandboxManager.terminate_prefix("prefix", timeout=2)
+
+    assert SandboxManager._running["prefix"] == [process]
 
 
 @pytest.mark.parametrize(

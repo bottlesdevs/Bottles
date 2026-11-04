@@ -36,6 +36,7 @@ from bottles.backend.utils.wine import WineUtils
 from bottles.backend.wine.executor import WineExecutor
 from bottles.backend.wine.regkeys import RegKeys
 from bottles.backend.wine.winecommand import WineCommand
+from bottles.backend.wine.wineserver import WineServer
 
 logging = Logger()
 
@@ -801,6 +802,16 @@ class InstallerManager:
                 False,
                 data={"message": "Checks failed, the program is not installed."},
             )
+
+        if is_final and manifest.get("StopAfterInstall") is True:
+            try:
+                stopped = WineServer(_config).stop()
+            except (OSError, subprocess.TimeoutExpired) as error:
+                logging.error(f"Failed to stop installer session: {error}")
+                stopped = False
+            if not stopped:
+                message = "Installation finished, but the bottle could not be stopped."
+                return Result(False, data={"message": message}, message=message)
 
         if is_final:
             step_fn()

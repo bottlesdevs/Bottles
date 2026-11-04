@@ -1,4 +1,5 @@
 import threading
+import subprocess
 
 import pytest
 
@@ -752,3 +753,78 @@ def test_installer_skips_installed_dependencies(mocker):
     )
 
     manager.dependency_manager.install.assert_not_called()
+
+
+@pytest.mark.parametrize("stop_after", [None, False, "false", True])
+@pytest.mark.parametrize("is_final", [False, True])
+def test_installer_stops_session_only_when_requested(mocker, stop_after, is_final):
+    manager = mocker.Mock()
+    manifest = {
+        "Name": "Editor",
+        "Executable": {"file": "editor.exe", "name": "Editor"},
+        "Steps": [{"action": "install_exe"}],
+    }
+    if stop_after is not None:
+        manifest["StopAfterInstall"] = stop_after
+    manager.repository_manager.get_repo.return_value.get.return_value = manifest
+    installer = InstallerManager(manager)
+    config = BottleConfig(Name="Test", Runner="soda-test")
+    events = []
+    mocker.patch.object(
+        installer, "_InstallerManager__perform_steps",
+        side_effect=lambda *_args, **_kwargs: events.append("steps") or Result(True),
+    )
+    mocker.patch.object(
+        installer, "_InstallerManager__register_executable",
+        side_effect=lambda *_args: events.append("register") or True,
+    )
+    server = mocker.patch("bottles.backend.managers.installer.WineServer")
+    server.return_value.stop.side_effect = lambda: events.append("stop") or True
+
+    result = installer.install(config, ("editor",), lambda: None, is_final)
+
+    assert result.ok is True
+    if stop_after is True and is_final:
+        assert events == ["steps", "register", "stop"]
+        server.assert_called_once_with(config)
+    else:
+        assert events == ["steps", "register"]
+        server.assert_not_called()
+
+
+@pytest.mark.parametrize("failure", [False, OSError("server missing"), subprocess.TimeoutExpired("wineserver", 30)])
+def test_installer_reports_session_cleanup_failure(mocker, failure):
+    manager = mocker.Mock()
+    manager.repository_manager.get_repo.return_value.get.return_value = {
+        "Name": "Editor", "StopAfterInstall": True,
+        "Executable": {"file": "editor.exe", "name": "Editor"},
+    }
+    installer = InstallerManager(manager)
+    mocker.patch.object(installer, "_InstallerManager__register_executable", return_value=True)
+    server = mocker.patch("bottles.backend.managers.installer.WineServer")
+    if isinstance(failure, Exception):
+        server.return_value.stop.side_effect = failure
+    else:
+        server.return_value.stop.return_value = failure
+
+    result = installer.install(BottleConfig(Name="Test"), ("editor",), lambda: None)
+
+    assert result.ok is False
+    assert "could not be stopped" in result.message
+
+
+def test_installer_does_not_stop_after_failed_step(mocker):
+    manager = mocker.Mock()
+    manager.repository_manager.get_repo.return_value.get.return_value = {
+        "Name": "Editor", "StopAfterInstall": True,
+        "Executable": {"file": "editor.exe", "name": "Editor"},
+        "Steps": [{"action": "install_exe"}],
+    }
+    installer = InstallerManager(manager)
+    mocker.patch.object(installer, "_InstallerManager__perform_steps", return_value=Result(False))
+    server = mocker.patch("bottles.backend.managers.installer.WineServer")
+
+    result = installer.install(BottleConfig(Name="Test"), ("editor",), lambda: None)
+
+    assert result.ok is False
+    server.assert_not_called()
