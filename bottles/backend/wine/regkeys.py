@@ -21,6 +21,9 @@ class RegKeys:
         Legacy method to change Windows version in a bottle using
         the Wine Configuration tool.
         """
+        if version == "winxp" and self.config.Arch == Arch.WIN64:
+            version = "winxp64"
+
         winecfg = WineCfg(self.config)
         res = winecfg.set_windows_version(version)
         if not res.ok:
@@ -45,12 +48,12 @@ class RegKeys:
             If the given version is invalid.
         """
 
+        if version == "winxp" and self.config.Arch == Arch.WIN64:
+            version = "winxp64"
+
         win_version = win_versions.get(version)
         if win_version is None:
             raise ValueError("Given version is not supported.")
-
-        if version == "winxp" and self.config.Arch == Arch.WIN64:
-            version = "winxp64"
 
         wineboot = WineBoot(self.config)
         del_keys = {
