@@ -6,6 +6,37 @@ from bottles.backend.utils import wine as wine_module
 from bottles.backend.utils.wine import WineUtils
 
 
+@pytest.mark.parametrize("arch", ("win32", "win64"))
+def test_reads_prefix_architecture_before_registry_sections(tmp_path, arch):
+    (tmp_path / "system.reg").write_text(
+        f"WINE REGISTRY Version 2\n;; Test fixture\n#arch={arch}\n\n[Software]"
+    )
+    assert WineUtils.get_prefix_arch(str(tmp_path)) == arch
+
+
+@pytest.mark.parametrize("layout", ("", "files", "dist"))
+@pytest.mark.parametrize("library", ("lib", "lib64", "lib/x86_64-linux-gnu"))
+def test_distinguishes_wow64_only_from_dual_unix_runner(tmp_path, layout, library):
+    wine = tmp_path / layout / library / "wine"
+    unix64 = wine / "x86_64-unix/ntdll.so"
+    unix64.parent.mkdir(parents=True)
+    unix64.write_bytes(b"64-bit Unix fixture")
+    pe32 = wine / "i386-windows/ntdll.dll"
+    pe32.parent.mkdir()
+    pe32.write_bytes(b"32-bit PE support does not imply win32 prefix support")
+
+    assert not WineUtils.supports_win32_prefix(str(tmp_path))
+
+    unix32 = tmp_path / layout / "lib/wine/i386-unix/ntdll.so"
+    unix32.parent.mkdir(parents=True, exist_ok=True)
+    unix32.write_bytes(b"32-bit Unix fixture")
+    assert WineUtils.supports_win32_prefix(str(tmp_path))
+
+
+def test_unknown_runner_layout_is_not_rejected(tmp_path):
+    assert WineUtils.supports_win32_prefix(str(tmp_path))
+
+
 def test_creates_shared_wine_and_proton_user_profile(tmp_path):
     prefix = tmp_path / "prefix"
 

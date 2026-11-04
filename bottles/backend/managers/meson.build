@@ -28,6 +28,7 @@ bottles_sources = [
   'thumbnail.py',
   'playtime.py',
   'eagle.py',
+  'eaglenative.py',
   'eagletracing.py',
   'intel.py'
 ]

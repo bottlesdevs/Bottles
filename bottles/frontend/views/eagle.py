@@ -56,8 +56,7 @@ class EagleView(Gtk.Box):
     def __init__(self, details, config: BottleConfig, **kwargs):
         super().__init__(**kwargs)
         self.details = details
-        self.config = config
-        self.manager = EagleManager(config)
+        self.set_config(config)
         self.analysis_results = None
         self.target_path = None
         self._analysis_steps: list[Adw.ActionRow] = []
@@ -71,10 +70,17 @@ class EagleView(Gtk.Box):
         SignalManager.connect(Signals.EagleStep, self.__on_eagle_step)
         SignalManager.connect(Signals.EagleFinished, self.__on_eagle_finished)
 
+    def set_config(self, config: BottleConfig) -> None:
+        self.config = config
+        self.manager = EagleManager(config)
+
     def analyze(self, executable_path: str) -> None:
         """
         Starts the analysis process on the given executable path.
         """
+        if self.target_path is not None:
+            self.manager = EagleManager(self.config)
+        manager = self.manager
         self.target_path = executable_path
         self.analysis_results = None
         
@@ -116,7 +122,7 @@ class EagleView(Gtk.Box):
             self._results_rows.clear()
 
         def _analyze():
-            self.manager.analyze(executable_path)
+            manager.analyze(executable_path)
 
         RunAsync(_analyze)
 
@@ -176,6 +182,8 @@ class EagleView(Gtk.Box):
 
     @GtkUtils.run_in_main_loop
     def __on_eagle_step(self, res: Result) -> None:
+        if getattr(res, "eagle_source", None) is not self.manager:
+            return
         msg = res.data
         if not msg or not msg.strip():
             return
@@ -203,14 +211,16 @@ class EagleView(Gtk.Box):
 
     @GtkUtils.run_in_main_loop
     def __on_eagle_finished(self, res: Result) -> None:
+        if getattr(res, "eagle_source", None) is not self.manager:
+            return
         self.__mark_last_step_completed()
 
-        self.analysis_results = res.data
-        data = self.analysis_results
+        self.analysis_results = res.data if res.status else None
+        data = res.data or {}
         details = data.get("details", {})
         
         self.group_results.set_visible(True)
-        self.group_donate.set_visible(True)
+        self.group_donate.set_visible(res.status)
 
         # Clear existing rows
         if self._results_rows:
@@ -222,6 +232,23 @@ class EagleView(Gtk.Box):
         def _add_result(row):
             self.group_results.add(row)
             self._results_rows.append(row)
+
+        if not res.status:
+            message = data.get("error") if isinstance(data, dict) else str(data)
+            _add_result(self.__create_info_row(
+                _("Analysis failed"),
+                str(message).strip() if message else _("Could not analyse this file."),
+                "dialog-warning-symbolic",
+            ))
+            self.group_warnings.set_visible(False)
+            self.group_files.set_visible(False)
+            self.group_dependencies.set_visible(False)
+            self.list_suggestions.get_ancestor(Adw.PreferencesGroup).set_visible(False)
+            self.banner_disclaimer.set_revealed(False)
+            self.btn_launch.set_visible(False)
+            self.btn_report.set_visible(False)
+            self.stack.set_visible_child_name("results")
+            return
 
         _add_result(self.__create_info_row(
             _("Product Name"), 
@@ -663,7 +690,7 @@ class EagleView(Gtk.Box):
                     )
                 self.list_suggestions.append(row)
                 has_opts = True
-        self.list_suggestions.get_parent().set_visible(has_opts)
+        self.list_suggestions.get_ancestor(Adw.PreferencesGroup).set_visible(has_opts)
         self.group_dependencies.set_visible(has_deps)
 
         self.stack.set_visible_child_name("results")
@@ -728,13 +755,21 @@ class EagleView(Gtk.Box):
         if arguments:
             program["arguments"] = " ".join(arguments)
         
-        config = manager.update_config(
-            config=config,
+        program_config = config.copy()
+        program_config.External_Programs = config.External_Programs.copy()
+        result = manager.update_config(
+            config=program_config,
             key=_uuid,
             value=program,
             scope="External_Programs",
             fallback=True,
-        ).data["config"]
+        )
+        if not result.status:
+            self.details.window.show_toast(
+                _("Could not save the program: {0}").format(result.message)
+            )
+            return
+        config = result.data["config"]
         
         view_bottle.config = config
         view_bottle.update_programs(config=config, force_add=program)
@@ -844,7 +879,7 @@ class EagleView(Gtk.Box):
             lines.append("")
         
         lines.append("## Detected Technologies")
-        for category in ["Graphics", "Audio", "Runtimes", "Frameworks", "Engines", "Input", "Protection", "Social/DRM", "Installer"]:
+        for category in ["Graphics", "Audio", "Runtimes", "Frameworks", "Engines", "Input", "Protection", "Social/DRM", "Installer", "Upscaling", "Physics", "Media", "Crypto", "System"]:
             items = details.get(category, [])
             if items:
                 lines.append(f"### {category}")
@@ -896,7 +931,14 @@ class EagleView(Gtk.Box):
                 lines.append(f"- `{fname}`")
             lines.append("")
 
-        warnings = details.get("Warning", [])
+        system_alerts = [
+            item for item in details.get("System", [])
+            if isinstance(item, dict) and item.get("severity") in ["high", "critical"]
+        ]
+        warnings = (
+            details.get("Security", []) + details.get("Warning", [])
+            + data.get("messages", []) + system_alerts
+        )
         if warnings:
             lines.append("## Compatibility Warnings")
             for warn in warnings:
@@ -928,8 +970,12 @@ class EagleView(Gtk.Box):
         overrides = [s for s in suggestions if not s.get("key", "").startswith("dep_")]
         if overrides:
             lines.append("## Suggested Overrides")
+            row = self.list_suggestions.get_first_child()
             for ovr in overrides:
                 selected = ovr.get("apply", bool(ovr.get("value")))
+                if row is not None:
+                    selected = row.get_active()
+                    row = row.get_next_sibling()
                 status = "[x]" if selected else "[ ]"
                 lines.append(f"- {status} {ovr.get('label', 'Unknown')}")
             lines.append("")

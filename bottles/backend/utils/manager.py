@@ -370,7 +370,7 @@ class ManagerUtils:
 
         try:
             portal_exec_cmd = ManagerUtils.get_desktop_entry_exec(
-                config, program, for_host=True
+                config, program, for_host=False
             )
             portal_content = ManagerUtils.build_desktop_entry(
                 config, program, portal_exec_cmd

@@ -20,7 +20,7 @@ class MsiExec(WineProgram):
     ):
         args = f"/i {pkg_path} {args}"
 
-        self.launch(
+        return self.launch(
             args=args,
             communicate=True,
             minimal=True,

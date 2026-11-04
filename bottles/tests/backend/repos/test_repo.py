@@ -91,3 +91,30 @@ def test_repository_callbacks_leave_the_main_loop_only_for_cli(
             {"callback_in_main_loop": callback_in_main_loop},
         )
     ]
+
+
+@pytest.mark.parametrize("plain", [True, False])
+def test_dependency_retries_missing_manifest_and_caches_success(mocker, plain):
+    manager = mocker.Mock()
+    repository = manager.repository_manager.get_repo.return_value
+    manifest = "Steps: []" if plain else {"Steps": []}
+    repository.get.side_effect = [False, manifest]
+    dependencies = DependencyManager(manager)
+
+    assert dependencies.get_dependency("runtime", plain=plain) is False
+    assert dependencies.get_dependency("runtime", plain=plain) == manifest
+    assert dependencies.get_dependency("runtime", plain=plain) == manifest
+    assert repository.get.call_count == 2
+
+
+@pytest.mark.parametrize("initial_catalog", [None, {}])
+def test_dependency_catalog_recovers_when_repository_becomes_ready(mocker, initial_catalog):
+    manager = mocker.Mock()
+    repository = manager.repository_manager.get_repo.return_value
+    repository.catalog = initial_catalog
+    dependencies = DependencyManager(manager)
+    manifest = {"Category": "Essentials", "Description": "Runtime"}
+
+    assert dependencies.fetch_catalog() == {}
+    repository.catalog = {"runtime": manifest}
+    assert dependencies.fetch_catalog() == {"runtime": manifest}

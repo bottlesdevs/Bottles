@@ -1,8 +1,11 @@
 # ruff: noqa: E402
 
+import os
+from pathlib import Path
 from types import SimpleNamespace
 
 import gi
+import pytest
 
 gi.require_version("Adw", "1")
 gi.require_version("Gdk", "4.0")
@@ -13,7 +16,10 @@ gi.require_version("XdpGtk4", "1.0")
 
 from gi.repository import Gio, GLib
 
-Gio.resources_register(Gio.Resource.load("/app/share/bottles/bottles.gresource"))
+resource_path = Path(
+    os.environ.get("BOTTLES_TEST_RESOURCE", "/app/share/bottles/bottles.gresource")
+)
+Gio.resources_register(Gio.Resource.load(str(resource_path)))
 
 from bottles.frontend import params
 
@@ -85,8 +91,14 @@ def test_show_uri_opens_web_uri_through_portal_in_flatpak(monkeypatch):
     assert not gtk_calls
 
 
-def test_show_local_uri_uses_cpak_broker(monkeypatch, mocker):
-    uri = "file:///home/test/.local/share/bottles/runners/soda"
+@pytest.mark.parametrize("uri, target", [
+    ("file:///home/test/.local/share/bottles/runners/soda", "/home/test/.local/share/bottles/runners/soda"),
+    ("file:///home/test/Folder%20%231", "/home/test/Folder #1"),
+    ("file://LOCALHOST/home/test/Folder%20%231", "/home/test/Folder #1"),
+    ("file://server.invalid/share/Folder%20%231", "file://server.invalid/share/Folder%20%231"),
+    ("file://server.invalid/share", "file://server.invalid/share"),
+])
+def test_show_file_uri_uses_cpak_broker(monkeypatch, mocker, uri, target):
     gtk_calls = []
     subprocess_new = mocker.patch.object(window.Gio.Subprocess, "new")
 
@@ -97,10 +109,25 @@ def test_show_local_uri_uses_cpak_broker(monkeypatch, mocker):
     BottlesWindow.g_show_uri_handler.__wrapped__(SimpleNamespace(), Result(data=uri))
 
     subprocess_new.assert_called_once_with(
-        ["xdg-open", "/home/test/.local/share/bottles/runners/soda"],
+        ["xdg-open", target],
         window.Gio.SubprocessFlags.NONE,
     )
     assert not gtk_calls
+
+
+def test_show_web_uri_keeps_gtk_handler_in_cpak(monkeypatch, mocker):
+    uri = "https://usebottles.com"
+    gtk_calls = []
+    subprocess_new = mocker.patch.object(window.Gio.Subprocess, "new")
+    monkeypatch.delenv("FLATPAK_ID", raising=False)
+    monkeypatch.setattr(window, "is_cpak", lambda: True)
+    monkeypatch.setattr(window.Gtk, "show_uri", lambda *args: gtk_calls.append(args))
+
+    BottlesWindow.g_show_uri_handler.__wrapped__(SimpleNamespace(), Result(data=uri))
+
+    subprocess_new.assert_not_called()
+    assert len(gtk_calls) == 1
+    assert gtk_calls[0][1] == uri
 
 
 def test_show_uri_keeps_native_handler_in_other_sandboxes(monkeypatch):

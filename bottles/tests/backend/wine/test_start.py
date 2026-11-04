@@ -205,3 +205,32 @@ def test_wine_program_forwards_sandbox_override(monkeypatch):
 
     assert result.status is True
     assert captured["sandbox_override"] == "off"
+
+
+def test_start_run_returns_the_launch_result(monkeypatch):
+    launched = Result(False, message="Command exited with status 67.")
+    monkeypatch.setattr(Start, "launch", lambda _self, **_kwargs: launched)
+
+    assert Start(_make_config()).run(file="/tmp/setup.exe") is launched
+
+
+def test_wine_program_keeps_the_exit_status_of_the_last_launch(monkeypatch):
+    class FakeWineCommand:
+        returncode = 67
+
+        def __init__(self, _config, **_kwargs):
+            pass
+
+        def run(self):
+            return Result(False, message="Command exited with status 67.")
+
+    monkeypatch.setattr(
+        "bottles.backend.wine.wineprogram.WineCommand",
+        FakeWineCommand,
+    )
+    program = WineProgram(_make_config())
+    assert program.returncode is None
+
+    program.launch()
+
+    assert program.returncode == 67

@@ -93,6 +93,7 @@ FIELD_CLIENT_INFO = 19
 FIELD_ERROR = 20
 FIELD_POLICY = 21
 FIELD_ACCOUNTS = 22
+FIELD_PROMPT = 23
 
 MAX_ACCOUNTS = 128
 PERSONAL_TENANT = "9188040d-6c67-4c5b-b112-36a304b66dad"
@@ -390,15 +391,25 @@ class SecretTokenStore:
         except (OSError, subprocess.SubprocessError, ValueError) as exc:
             reason = exc.__class__.__name__
             broker_error = (getattr(exc, "stderr", "") or "").strip()
+            broker_error = broker_error.removeprefix("Error: host action failed: ")
             if broker_error in (
                 "secure credential storage is unavailable or locked",
                 "secret operation is not permitted",
             ):
                 reason = broker_error
             logging.warning(f"cpak credential broker failed: {reason}")
-            raise AuthenticationStorageError(
+            message = (
                 "Secure credential storage is unavailable. Start or unlock a Secret Service provider, such as GNOME Keyring or KWallet, and try again."
-            ) from exc
+            )
+            if isinstance(exc, FileNotFoundError):
+                message = (
+                    "The cpak credential broker is missing. Update cpak and check your saved permissions override, then restart Bottles."
+                )
+            elif broker_error == "secret operation is not permitted":
+                message = (
+                    "The cpak permissions do not allow credential storage. Check your saved permissions override and restart Bottles."
+                )
+            raise AuthenticationStorageError(message) from exc
 
     def _write(self, attributes, label, value):
         if is_cpak():
@@ -781,19 +792,21 @@ class MicrosoftIdentityProvider:
         return " ".join(defaults + [item for item in requested if item not in defaults])
 
     def authorize(
-        self, client_id: str, authority: str, scopes: str, login_hint: str
+        self, client_id: str, authority: str, scopes: str, login_hint: str,
+        force_authentication: bool = False,
     ) -> AuthorizationResult:
         scopes = self._normalize_scopes(scopes)
         self._validate_request(client_id, authority, scopes, login_hint)
         client_id = _normalize_client_id(client_id)
-        try:
-            return self.get_token(client_id, authority, scopes, "", login_hint)
-        except AuthenticationStorageError as exc:
-            if self.auth_complete:
-                self.auth_complete(False, str(exc))
-            raise
-        except AuthenticationError:
-            pass
+        if not force_authentication:
+            try:
+                return self.get_token(client_id, authority, scopes, "", login_hint)
+            except AuthenticationStorageError as exc:
+                if self.auth_complete:
+                    self.auth_complete(False, str(exc))
+                raise
+            except AuthenticationError:
+                pass
         verifier = _base64url(secrets.token_bytes(64))
         challenge = _base64url(hashlib.sha256(verifier.encode("ascii")).digest())
         state = _base64url(secrets.token_bytes(32))
@@ -820,6 +833,8 @@ class MicrosoftIdentityProvider:
         }
         if login_hint:
             parameters["login_hint"] = login_hint
+        if force_authentication:
+            parameters["prompt"] = "login"
         endpoint = (
             f"https://login.microsoftonline.com/{authority}/oauth2/v2.0/authorize"
         )
@@ -1044,6 +1059,7 @@ class IdentityBridgeServer:
                     FIELD_AUTHORITY,
                     FIELD_LOGIN_HINT,
                     FIELD_POLICY,
+                    FIELD_PROMPT,
                 },
                 OP_GET_TOKEN: {
                     FIELD_CLIENT_ID,
@@ -1092,11 +1108,16 @@ class IdentityBridgeServer:
             if request.opcode == OP_AUTHORIZE:
                 scopes = _required_text(fields, FIELD_SCOPES)
                 _validate_text(_text(fields, FIELD_POLICY), "policy", 256)
+                prompt = _text(fields, FIELD_PROMPT)
+                if prompt not in {"", "login"}:
+                    raise ProtocolError("invalid authentication prompt")
+                options = {"force_authentication": True} if prompt else {}
                 result = self.provider.authorize(
                     client_id,
                     _authority(fields, "organizations"),
                     scopes,
                     _text(fields, FIELD_LOGIN_HINT),
+                    **options,
                 )
                 return Message(
                     request.opcode | RESPONSE_BIT,
@@ -1294,6 +1315,7 @@ def start_identity_bridge(context: str) -> Optional[str]:
             hashlib.sha256(context.encode("utf-8")).hexdigest(),
         ]
         env = os.environ.copy()
+        env.pop("PYTHONHOME", None)
         package_path = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
         env["PYTHONPATH"] = os.pathsep.join(
             filter(None, (package_path, env.get("PYTHONPATH")))

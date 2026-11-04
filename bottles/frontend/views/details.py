@@ -222,6 +222,7 @@ class DetailsView(Adw.Bin):
         self.view_bottle.set_config(config=config)
         self.view_preferences.set_config(config=config)
         self.view_taskmanager.set_config(config=config)
+        self.view_eagle.set_config(config=config)
         self.view_installers.update(config=config)
         self.view_registry_rules.update(config=config)
         self.view_versioning.update(config=config)

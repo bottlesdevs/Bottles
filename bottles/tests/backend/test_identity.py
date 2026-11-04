@@ -24,6 +24,7 @@ from bottles.backend.identity import (
     FIELD_EXPIRES_AT,
     FIELD_LOGIN_HINT,
     FIELD_POLICY,
+    FIELD_PROMPT,
     FIELD_SCOPES,
     MAGIC,
     OP_AUTHORIZE,
@@ -430,10 +431,13 @@ def test_bridge_process_is_reaped(tmp_path, monkeypatch):
 
 
 @pytest.mark.parametrize("runtime", [False, True])
-def test_bridge_starts_outside_package_directory(tmp_path, monkeypatch, runtime):
+@pytest.mark.parametrize("python_home", [None, "/missing-python-runtime"])
+def test_bridge_starts_outside_package_directory(tmp_path, monkeypatch, runtime, python_home):
     monkeypatch.chdir(tmp_path)
-    for name in ("PYTHONPATH", "DISPLAY", "WAYLAND_DISPLAY", "XDG_RUNTIME_DIR"):
+    for name in ("PYTHONHOME", "PYTHONPATH", "DISPLAY", "WAYLAND_DISPLAY", "XDG_RUNTIME_DIR"):
         monkeypatch.delenv(name, raising=False)
+    if python_home:
+        monkeypatch.setenv("PYTHONHOME", python_home)
     monkeypatch.setattr("bottles.backend.identity.Paths.temp", os.environ["TMPDIR"])
     if runtime:
         monkeypatch.setenv("XDG_RUNTIME_DIR", os.environ["TMPDIR"])
@@ -576,7 +580,8 @@ def test_authorization_uses_system_browser_and_pkce(monkeypatch, requested_clien
 
 @pytest.mark.parametrize("invalid", ["audience", "nonce"])
 @pytest.mark.parametrize("uppercase", (False, True))
-def test_invalid_id_token_is_not_stored_or_cached(monkeypatch, invalid, uppercase):
+@pytest.mark.parametrize("force_authentication", (False, True))
+def test_invalid_id_token_is_not_stored_or_cached(monkeypatch, invalid, uppercase, force_authentication):
     client_id = "d3590ed6-52b3-4102-aeff-aad2292ab01c"
     nonce = base64.urlsafe_b64encode(b"n" * 32).rstrip(b"=").decode()
     monkeypatch.setattr(
@@ -602,7 +607,7 @@ def test_invalid_id_token_is_not_stored_or_cached(monkeypatch, invalid, uppercas
     )
 
     with pytest.raises(AuthenticationError, match=f"unexpected ID token {invalid}"):
-        provider.authorize(client_id.upper() if uppercase else client_id, "common", "openid", "")
+        provider.authorize(client_id.upper() if uppercase else client_id, "common", "openid", "", force_authentication)
 
     assert store.values == {}
     assert provider.cache == {}
@@ -834,6 +839,54 @@ def test_cached_token_is_not_reused_for_a_different_authority():
     assert common.access_token == "common-token"
     assert tenant.access_token == "tenant-token"
     assert len(session.requests) == 2
+
+
+def test_forced_authentication_skips_cached_tokens(monkeypatch):
+    client_id = "11111111-1111-1111-1111-111111111111"
+    nonce = base64.urlsafe_b64encode(b"n" * 32).rstrip(b"=").decode()
+    monkeypatch.setattr("bottles.backend.identity.secrets.token_bytes", lambda size: b"n" * size)
+    token = {
+        "access_token": "fresh-access", "refresh_token": "fresh-refresh",
+        "id_token": _id_token(client_id, nonce), "expires_in": 3600,
+    }
+    opened = []
+    session = Session([token])
+    class CurrentStore(Store):
+        def load(self, client, account):
+            value = super().load(client, account or "account-id")
+            return dict(value, account_id="account-id", username="user@example.com") if value else None
+
+    provider = MicrosoftIdentityProvider(CurrentStore(), session, opened.append, Listener)
+    cached = provider._result_from_token(dict(token, access_token="cached-access"), client_id)
+    provider.store.store(client_id, cached)
+    provider.cache[(client_id, "common", provider._normalize_scopes("openid"), cached.account_id)] = cached
+    assert provider.authorize(client_id, "common", "openid", "") is cached
+    assert not opened and not session.requests
+    response = IdentityBridgeServer("unused", "test", provider).dispatch(Message(
+        OP_AUTHORIZE, 1, 0, {
+            FIELD_CLIENT_ID: client_id.encode(), FIELD_AUTHORITY: b"common",
+            FIELD_SCOPES: b"openid", FIELD_PROMPT: b"login",
+        },
+    ))
+    assert response.status == STATUS_OK
+    assert response.fields[FIELD_ACCESS_TOKEN] == b"fresh-access"
+    assert parse_qs(urlparse(opened[0]).query)["prompt"] == ["login"]
+    assert session.requests[0][1]["grant_type"] == "authorization_code"
+    assert len(session.requests) == 1
+
+
+@pytest.mark.parametrize("prompt", (b"select_account", b"none", b"login\x00", b"login\n"))
+def test_bridge_rejects_unsupported_authentication_prompts(prompt):
+    class Provider:
+        def authorize(self, *_args, **_kwargs):
+            pytest.fail("invalid prompt reached the provider")
+
+    response = IdentityBridgeServer("unused", "test", Provider()).dispatch(Message(
+        OP_AUTHORIZE, 1, 0, {
+            FIELD_CLIENT_ID: b"client", FIELD_SCOPES: b"openid", FIELD_PROMPT: prompt,
+        },
+    ))
+    assert response.status == STATUS_INVALID_REQUEST
 
 
 def test_authorization_prompts_when_the_requested_account_changes(monkeypatch):
@@ -1524,9 +1577,14 @@ def test_cpak_store_uses_only_the_scoped_shim(monkeypatch):
     assert store.load("client", "") is None
 
 
-@pytest.mark.parametrize("failure", ("missing-shim", "denied", "scope", "malformed", "private-stderr"))
+@pytest.mark.parametrize("failure", (
+    "missing-shim", "denied", "permissions", "scope", "malformed", "private-stderr",
+    "prefixed-denied", "prefixed-permissions", "prefixed-private-stderr",
+))
 def test_cpak_keyring_failure_never_falls_back_to_host_bus(monkeypatch, failure):
     monkeypatch.setenv("CPAK_CONTAINER_ID", "synthetic")
+    prefix = "Error: host action failed: " if failure.startswith("prefixed-") else ""
+    failure = failure.removeprefix("prefixed-")
 
     warnings = []
 
@@ -1537,13 +1595,17 @@ def test_cpak_keyring_failure_never_falls_back_to_host_bus(monkeypatch, failure)
             raise subprocess.CalledProcessError(
                 1,
                 args,
-                stderr="secure credential storage is unavailable or locked",
+                stderr=prefix + "secure credential storage is unavailable or locked",
+            )
+        if failure == "permissions":
+            raise subprocess.CalledProcessError(
+                1, args, stderr=prefix + "secret operation is not permitted",
             )
         if failure == "private-stderr":
             raise subprocess.CalledProcessError(
                 1,
                 args,
-                stderr="account@example.invalid token=private-token-value",
+                stderr=prefix + "account@example.invalid token=private-token-value",
             )
         if failure == "malformed":
             return subprocess.CompletedProcess(args, 0, "[]")
@@ -1558,8 +1620,16 @@ def test_cpak_keyring_failure_never_falls_back_to_host_bus(monkeypatch, failure)
     monkeypatch.setattr("bottles.backend.identity.subprocess.run", request)
     monkeypatch.setattr("bottles.backend.identity.logging.warning", warnings.append)
     monkeypatch.setattr("bottles.backend.identity.Secret.password_lookup_sync", forbidden)
-    with pytest.raises(AuthenticationStorageError):
+    with pytest.raises(AuthenticationStorageError) as error:
         SecretTokenStore("context").load("client", "account")
+    if failure == "missing-shim":
+        assert "cpak credential broker is missing" in str(error.value)
+        assert "unlock" not in str(error.value)
+    elif failure == "permissions":
+        assert "cpak permissions do not allow credential storage" in str(error.value)
+        assert "unlock" not in str(error.value)
+    else:
+        assert "Secure credential storage is unavailable" in str(error.value)
     assert len(warnings) == 1
     assert "synthetic" not in warnings[0]
     assert "account@example.invalid" not in warnings[0]

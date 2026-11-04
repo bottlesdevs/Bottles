@@ -60,7 +60,10 @@ class Downloader:
     def download(self) -> Result:
         """Start the download."""
         partial_file = f"{self.file}.part"
+        response = None
         try:
+            if self.cancel_event and self.cancel_event.is_set():
+                raise DownloadCancelled
             with open(partial_file, "wb") as file:
                 self.start_time = time.time()
                 headers = {
@@ -73,24 +76,29 @@ class Downloader:
                     timeout=(10, 30),
                 )
                 response.raise_for_status()
-                total_size = int(response.headers.get("content-length", 0))
+                try:
+                    lengths = {
+                        int(value.strip())
+                        for value in response.headers.get("content-length", "0").split(",")
+                    }
+                    total_size = max(0, lengths.pop()) if len(lengths) == 1 else 0
+                except (ValueError, AttributeError):
+                    total_size = 0
                 received_size = 0
 
-                if total_size != 0:
-                    for data in response.iter_content(1024 * 1024):  # 1MB buffer
-                        if self.cancel_event and self.cancel_event.is_set():
-                            raise DownloadCancelled
-                        received_size += len(data)
-                        file.write(data)
-                        if not self.update_func:
-                            continue
+                for data in response.iter_content(1024 * 1024):  # 1MB buffer
+                    if self.cancel_event and self.cancel_event.is_set():
+                        raise DownloadCancelled
+                    received_size += len(data)
+                    file.write(data)
+                    if self.update_func and total_size != 0:
                         self.update_func(received_size, total_size)
                         self.__progress(received_size, total_size)
-                else:
-                    file.write(response.content)
-                    if self.update_func:
-                        self.update_func(1, 1)
-                        self.__progress(1, 1)
+                if self.cancel_event and self.cancel_event.is_set():
+                    raise DownloadCancelled
+                if self.update_func and total_size == 0:
+                    self.update_func(1, 1)
+                    self.__progress(1, 1)
             os.replace(partial_file, self.file)
         except DownloadCancelled:
             if self.update_func:
@@ -113,6 +121,9 @@ class Downloader:
             return Result(
                 False, message="Download failed! Check your internet connection."
             )
+        finally:
+            if response is not None:
+                response.close()
 
         return Result(True)
 

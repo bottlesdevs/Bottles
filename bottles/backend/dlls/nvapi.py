@@ -31,8 +31,17 @@ class NVAPIComponent(DLLComponent):
     dlls = {
         "x32": ["nvapi.dll"],
         "x64": ["nvapi64.dll"],
-        get_nvidia_dll_path(): ["nvngx.dll", "_nvngx.dll"],
     }
+
+    def __init__(self, version: str):
+        self.dlls = {path: names.copy() for path, names in type(self).dlls.items()}
+        driver_path = get_nvidia_dll_path()
+        if driver_path:
+            self.dlls[driver_path] = ["nvngx.dll", "_nvngx.dll"]
+        else:
+            # Keep driver DLLs removable even after the NVIDIA driver is gone.
+            self.dlls["x64"].extend(["nvngx.dll", "_nvngx.dll"])
+        super().__init__(version)
 
     @staticmethod
     def get_override_keys() -> str:

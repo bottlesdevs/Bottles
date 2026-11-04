@@ -24,7 +24,6 @@ import stat
 import tarfile
 import tempfile
 import zipfile
-from functools import lru_cache
 from threading import Event
 from typing import Optional
 
@@ -184,10 +183,16 @@ class ComponentManager:
         )
         self.__offline = offline
         self.__checksum_cache = {}
+        self.__manifests = {}
 
-    @lru_cache
-    def get_component(self, name: str, plain: bool = False) -> dict:
-        return self.__repo.get(name, plain)
+    def get_component(self, name: str, plain: bool = False) -> str | dict | bool:
+        key = (name, plain)
+        if key not in self.__manifests:
+            manifest = self.__repo.get(name, plain)
+            if manifest:
+                self.__manifests[key] = manifest
+            return manifest
+        return self.__manifests[key]
 
     def fetch_catalog(self) -> dict:
         """

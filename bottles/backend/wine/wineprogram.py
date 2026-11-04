@@ -16,6 +16,7 @@ class WineProgram:
     colors: str = "default"
     is_internal: bool = False
     internal_path: str = ""
+    returncode: Optional[int] = None
 
     def __init__(self, config: BottleConfig, silent=False):
         if not isinstance(config, BottleConfig):
@@ -66,7 +67,7 @@ class WineProgram:
             program_args = None
 
         command = self.get_command(wineprogram_args)
-        res = WineCommand(
+        winecommand = WineCommand(
             self.config,
             command=command,
             terminal=terminal,
@@ -85,7 +86,9 @@ class WineProgram:
         )
 
         # logging.info("Executing command:", res.command)
-        res = res.run()
+        self.returncode = None
+        res = winecommand.run()
+        self.returncode = getattr(winecommand, "returncode", None)
         return res
 
     def launch_terminal(self, args: Optional[str] = None):

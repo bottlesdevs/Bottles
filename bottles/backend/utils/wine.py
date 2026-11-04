@@ -39,6 +39,38 @@ def _rename_noreplace(directory_fd: int, source: str, destination: str) -> None:
 
 class WineUtils:
     @staticmethod
+    def get_prefix_arch(prefix_path: str) -> Optional[str]:
+        try:
+            with open(os.path.join(prefix_path, "system.reg"), errors="replace") as registry:
+                for _ in range(20):
+                    line = registry.readline().strip()
+                    if line in ("#arch=win32", "#arch=win64"):
+                        return line.removeprefix("#arch=")
+                    if line.startswith("["):
+                        break
+        except OSError:
+            pass
+        return None
+
+    @staticmethod
+    def supports_win32_prefix(runner_path: str) -> bool:
+        libraries = ("lib", "lib32", "lib64", "lib/i386-linux-gnu", "lib/x86_64-linux-gnu")
+        roots = (runner_path, os.path.join(runner_path, "files"), os.path.join(runner_path, "dist"))
+        has_64bit = False
+        for root in roots:
+            for library in libraries:
+                wine = os.path.join(root, library, "wine")
+                if os.path.isfile(os.path.join(wine, "i386-unix", "ntdll.so")):
+                    return True
+                if any(
+                    os.path.isfile(os.path.join(wine, arch, "ntdll.so"))
+                    for arch in ("x86_64-unix", "aarch64-unix")
+                ):
+                    has_64bit = True
+        # Older and system runner layouts cannot be classified from these files.
+        return not has_64bit
+
+    @staticmethod
     def ensure_user_profile_alias(
         prefix_path: str, username: Optional[str] = None
     ) -> bool:

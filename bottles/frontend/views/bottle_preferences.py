@@ -352,9 +352,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.entry_name.connect("apply", self.__save_name)
         # endregion
 
-        """Set DXVK_NVAPI related rows to visible when an NVIDIA GPU is detected (invisible by default)"""
-        self.row_nvapi.set_visible(is_nvidia_gpu)
-        self.combo_nvapi.set_visible(is_nvidia_gpu)
+        self.__update_nvapi_visibility()
 
         """Toggle some utilities according to its availability"""
         self.switch_gamemode.set_sensitive(gamemode_available)
@@ -619,6 +617,7 @@ class PreferencesView(Adw.PreferencesPage):
     def set_config(self, config: BottleConfig):
         self.config = config
         parameters = self.config.Parameters
+        self.__update_nvapi_visibility()
 
         # temporary lock functions connected to the widgets
         self.switch_mangohud.handler_block_by_func(self.__toggle_feature_cb)
@@ -889,6 +888,11 @@ class PreferencesView(Adw.PreferencesPage):
     def __toggle_gamescope(self, _widget: Gtk.Widget, state: bool) -> None:
         self.__toggle_feature(state=state, key="gamescope")
         self.__update_hdr_sensitivity()
+
+    def __update_nvapi_visibility(self) -> None:
+        visible = GPUUtils.is_gpu(GPUVendors.NVIDIA) or self.config.Parameters.dxvk_nvapi
+        self.row_nvapi.set_visible(visible)
+        self.combo_nvapi.set_visible(visible)
 
     def __update_hdr_sensitivity(self, active: bool | None = None) -> None:
         if active is None:
@@ -1179,6 +1183,18 @@ class PreferencesView(Adw.PreferencesPage):
         # self.manager.dxvk_available[self.combo_dxvk.get_selected()]
         @GtkUtils.run_in_main_loop
         def update(result, error=False):
+            if error:
+                versions = list(self.windows_versions)
+                selected = 0
+                if self.config.Windows in versions:
+                    selected = versions.index(self.config.Windows)
+                self.combo_windows.handler_block_by_func(self.__set_windows)
+                self.combo_windows.set_selected(selected)
+                self.combo_windows.handler_unblock_by_func(self.__set_windows)
+            else:
+                self.config = self.manager.update_config(
+                    config=self.config, key="Windows", value=windows_version
+                ).data["config"]
             self.spinner_windows.stop()
             self.spinner_windows.set_visible(False)
             self.combo_windows.set_sensitive(True)
@@ -1192,10 +1208,6 @@ class PreferencesView(Adw.PreferencesPage):
 
         for index, windows_version in enumerate(self.windows_versions):
             if self.combo_windows.get_selected() == index:
-                self.config = self.manager.update_config(
-                    config=self.config, key="Windows", value=windows_version
-                ).data["config"]
-
                 RunAsync(rk.lg_set_windows, callback=update, version=windows_version)
                 break
 

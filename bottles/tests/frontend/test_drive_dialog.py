@@ -38,6 +38,32 @@ def test_device_drive_shows_eject_action(tmp_path):
     assert entry.btn_eject.get_visible() is True
 
 
+def test_manually_entered_drive_path_is_saved(tmp_path):
+    from bottles.backend.wine.drives import Drives
+    from bottles.frontend.windows.drives import DriveEntry
+
+    prefix = tmp_path / "prefix"
+    devices = prefix / "dosdevices"
+    devices.mkdir(parents=True)
+    old = tmp_path / "old"
+    new = tmp_path / "new path"
+    old.mkdir()
+    new.mkdir()
+    (devices / "p:").symlink_to(old)
+    config = BottleConfig(Path=str(prefix), Custom_Path=True)
+    parent = SimpleNamespace(config=config, window=SimpleNamespace(manager=Mock()))
+    entry = DriveEntry(parent, ["P", str(old)])
+
+    entry.set_text(str(new))
+    assert entry.get_show_apply_button()
+    entry.emit("apply")
+
+    assert (devices / "p:").resolve() == new
+    reopened = DriveEntry(parent, ["P", Drives(config).get_drive("P")])
+    assert reopened.get_text() == str(new)
+    assert not reopened.get_show_apply_button()
+
+
 def test_drive_entry_runs_wine_eject(monkeypatch):
     from bottles.frontend.windows import drives as drives_module
     from bottles.frontend.windows.drives import DriveEntry

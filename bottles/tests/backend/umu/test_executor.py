@@ -1,3 +1,4 @@
+import shlex
 from dataclasses import replace
 from pathlib import Path
 from uuid import uuid4
@@ -16,6 +17,7 @@ from bottles.backend.umu import (
 )
 from bottles.backend.umu import executor as executor_module
 from bottles.backend.utils import vdf
+from bottles.backend.managers import sandbox as sandbox_module
 
 
 def _game(repository, tmp_path, environment=None, sandbox=False, share_net=False):
@@ -90,6 +92,54 @@ def test_prepare_builds_argv_without_shell_expansion(tmp_path):
     assert command.env["PROTONPATH"] == "GE-Proton"
     assert "UMU_NO_RUNTIME" not in command.env
     assert command.env["STEAM_COMPAT_INSTALL_PATH"] == str(command.cwd)
+
+
+def test_prepare_runs_command_through_wrapper(tmp_path):
+    repository = UmuGameRepository(tmp_path / "umu")
+    game = replace(
+        _game(repository, tmp_path),
+        arguments=("gamemoderun", "-v", "%command%", "--option", "%command%"),
+    )
+    executor = _executor(repository, tmp_path)
+
+    command = executor.prepare(game)
+
+    assert command.argv == (
+        "gamemoderun",
+        "-v",
+        str(executor.installation.path),
+        str(game.executable.resolve()),
+        "--option",
+        "%command%",
+    )
+
+
+def test_prepare_runs_command_through_wrapper_with_spaces(tmp_path):
+    repository = UmuGameRepository(tmp_path / "umu")
+    game = replace(
+        _game(repository, tmp_path),
+        arguments=(
+            "/opt/game tools/wrapper",
+            "--label",
+            "two words",
+            "%command%",
+            "--option",
+            "value with spaces",
+        ),
+    )
+    executor = _executor(repository, tmp_path)
+
+    command = executor.prepare(game)
+
+    assert command.argv == (
+        "/opt/game tools/wrapper",
+        "--label",
+        "two words",
+        str(executor.installation.path),
+        str(game.executable.resolve()),
+        "--option",
+        "value with spaces",
+    )
 
 
 def test_prepare_resolves_managed_proton(tmp_path):
@@ -383,6 +433,69 @@ def test_run_uses_dedicated_sandbox_when_enabled(monkeypatch, tmp_path):
     assert kwargs["start_new_session"] is True
 
 
+def test_dedicated_sandbox_launches_the_wrapper(monkeypatch, tmp_path):
+    repository = UmuGameRepository(tmp_path / "umu")
+    game_folder = tmp_path / "Game Files"
+    game_folder.mkdir()
+    wrapper = tmp_path / "wrap tools" / "wrapper"
+    wrapper.parent.mkdir()
+    wrapper.write_text('#!/bin/sh\nexec "$@"\n')
+    wrapper.chmod(0o755)
+    game = replace(
+        _game(repository, tmp_path, sandbox=True),
+        proton=str(_installed_proton(tmp_path)),
+        arguments=(
+            str(wrapper),
+            "--label",
+            "two words",
+            "%command%",
+            "--option",
+            "value with spaces",
+        ),
+    )
+    executor = _executor(
+        repository,
+        tmp_path,
+        {"DISPLAY": ":1", "XDG_DATA_HOME": str(tmp_path / "data")},
+    )
+
+    class Process:
+        pid = 123
+
+        @staticmethod
+        def poll():
+            return None
+
+    calls = []
+
+    def popen(argv, **kwargs):
+        calls.append((argv, kwargs))
+        return Process()
+
+    monkeypatch.setattr(executor, "_ensure_sandbox_runtime", lambda _command: None)
+    monkeypatch.setattr(executor_module.subprocess, "Popen", popen)
+
+    executor.run(game)
+
+    argv, kwargs = calls[0]
+    expected = shlex.join(
+        (
+            str(wrapper.resolve()),
+            "--label",
+            "two words",
+            str(executor.installation.path),
+            str(game.executable.resolve()),
+            "--option",
+            "value with spaces",
+        )
+    )
+    quoted_wrapper = shlex.quote(str(wrapper.resolve()))
+    assert argv.startswith("bwrap --clearenv")
+    assert expected in argv
+    assert f"--ro-bind {quoted_wrapper} {quoted_wrapper}" in argv
+    assert kwargs["shell"] is True
+
+
 def test_dedicated_sandbox_exposes_managed_proton(monkeypatch, tmp_path):
     repository = UmuGameRepository(tmp_path / "umu")
     game_folder = tmp_path / "Game Files"
@@ -587,6 +700,32 @@ def test_dedicated_sandbox_exposes_base_cache(monkeypatch, tmp_path):
 
     assert cache_home.is_dir()
     assert f"--bind {cache_home} {cache_home}" in command
+
+
+@pytest.mark.parametrize("devices, shared", [("all;", True), ("dri;", False)])
+def test_dedicated_sandbox_forwards_available_controller_input(
+    monkeypatch, tmp_path, devices, shared
+):
+    repository = UmuGameRepository(tmp_path / "umu")
+    game = replace(
+        _game(repository, tmp_path, sandbox=True),
+        proton=str(_installed_proton(tmp_path)),
+    )
+    executor = _executor(repository, tmp_path)
+    info = tmp_path / "flatpak-info"
+    info.write_text(
+        f"[Instance]\nflatpak-version=1.17.1\n[Context]\ndevices={devices}\n"
+    )
+    monkeypatch.setenv("FLATPAK_ID", "com.usebottles.bottles")
+    monkeypatch.setattr(sandbox_module, "FLATPAK_INFO", str(info))
+
+    sandbox = executor._sandbox_manager(game, executor.prepare(game))
+    command = sandbox.get_cmd("true")
+
+    assert sandbox.share_input
+    assert (f"--sandbox-flag={sandbox_module.FLATPAK_SHARE_INPUT}" in command) is shared
+    assert not sandbox.share_usb
+    assert not sandbox.share_hidraw
 
 
 def test_dedicated_sandbox_does_not_expose_game_cache_override(monkeypatch, tmp_path):
@@ -1066,3 +1205,24 @@ def test_game_rejects_invalid_environment_name(tmp_path):
 
     with pytest.raises(ValueError, match="Invalid environment key"):
         _game(repository, tmp_path, {"BAD=NAME": "value"})
+
+
+@pytest.mark.parametrize("runtime_target,bare_name", [(False, False), (False, True), (True, False)])
+def test_sandbox_wrapper_symlink_uses_exposed_target(tmp_path, runtime_target, bare_name):
+    repository = UmuGameRepository(tmp_path / "umu")
+    target = Path("/usr/bin/true") if runtime_target else tmp_path / "wrapper target"
+    if not runtime_target:
+        target.write_text('#!/bin/sh\nexec "$@"\n')
+        target.chmod(0o755)
+    alias = tmp_path / "wrapper bin" / "wrapper"
+    alias.parent.mkdir()
+    alias.symlink_to(target)
+    wrapper = alias.name if bare_name else str(alias)
+    game = replace(_game(repository, tmp_path, sandbox=True), arguments=(wrapper, "%command%"))
+    executor = _executor(repository, tmp_path, {"DISPLAY": ":1", "PATH": str(alias.parent)})
+
+    command = executor.prepare(game)
+
+    assert command.argv[0] == str(target.resolve())
+    assert (target.resolve() in command.readable_paths) is not runtime_target
+    assert alias not in command.readable_paths

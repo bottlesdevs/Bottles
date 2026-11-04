@@ -23,9 +23,11 @@ def test_format_playtime():
     assert PlaytimeService.format_playtime(3600) == "1h 00m"
     assert PlaytimeService.format_playtime(3660) == "1h 01m"
     assert PlaytimeService.format_playtime(7325) == "2h 02m"
-    assert PlaytimeService.format_playtime(86400) == "1d 00h"
-    assert PlaytimeService.format_playtime(90000) == "1d 01h"
-    assert PlaytimeService.format_playtime(180000) == "2d 02h"
+    assert PlaytimeService.format_playtime(86400) == "24h 00m"
+    assert PlaytimeService.format_playtime(90000) == "25h 00m"
+    assert PlaytimeService.format_playtime(180000) == "50h 00m"
+    assert PlaytimeService.format_playtime(86461) == "24h 01m"
+    assert PlaytimeService.format_playtime(180125) == "50h 02m"
 
 
 def test_format_last_played():

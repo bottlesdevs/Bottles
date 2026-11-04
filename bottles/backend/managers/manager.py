@@ -1540,6 +1540,14 @@ class Manager(metaclass=Singleton):
 
             try:
                 real_path = ManagerUtils.get_bottle_path(config)
+                users_path = os.path.join(real_path, "drive_c", "users")
+                if os.path.isdir(users_path) and not os.path.islink(
+                    os.path.join(real_path, "drive_c")
+                ):
+                    if not WineUtils.ensure_user_profile_alias(real_path):
+                        logging.warning(
+                            f"Could not prepare user profile aliases for bottle {_name}."
+                        )
                 for p in [
                     os.path.join(real_path, "cache", "dxvk_shader"),
                     os.path.join(real_path, "cache", "gl_shader"),
@@ -1676,7 +1684,9 @@ class Manager(metaclass=Singleton):
             else:
                 config[key] = value
 
-        config.dump(os.path.join(bottle_path, "bottle.yml"))
+        result = config.dump(os.path.join(bottle_path, "bottle.yml"))
+        if not result.status:
+            return Result(False, data={"config": config}, message=result.message)
 
         config.Update_Date = str(datetime.now())
 
@@ -1882,6 +1892,16 @@ class Manager(metaclass=Singleton):
             # if no runner is specified, use the first one from available
             runner = self.get_latest_runner()
         runner_name = runner
+
+        if arch == "win32" and not WineUtils.supports_win32_prefix(
+            ManagerUtils.get_runner_path(runner)
+        ):
+            message = _(
+                "This runner cannot create a 32-bit prefix. Use a 64-bit bottle "
+                "to run 32-bit applications, or select a runner with 32-bit Unix support."
+            )
+            log_update(message)
+            return Result(False, message=message)
 
         if not dxvk:
             # if no dxvk is specified, use the first one from available
@@ -2232,6 +2252,9 @@ class Manager(metaclass=Singleton):
 
             wineboot.kill()
 
+        if self.settings.get_boolean("disable-home-drive"):
+            Drives(config).remove_drive("Z")
+
         if env:
             while wineserver.is_alive():
                 cancel_result = check_cancel()
@@ -2315,7 +2338,9 @@ class Manager(metaclass=Singleton):
                             _("Failed to install dependency: %s")
                             % _dep.get("Description", "n/a")
                         )
-                        return Result(False)
+                        if res.message:
+                            log_update(res.message)
+                        return res
                     template_updated = True
 
         if d7vk_requested:

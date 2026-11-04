@@ -132,9 +132,11 @@ def _wayland_available(env: "WineEnv") -> bool:
 
 
 def apply_wayland_preferences(
-    env: "WineEnv", params, xlocale_dir: Optional[str] = None
+    env: "WineEnv", params, xlocale_dir: Optional[str] = None, proton: bool = False
 ) -> None:
-    proton_wayland_enabled = _proton_option_enabled(env.get_value, "WAYLAND")
+    proton_wayland_enabled = _proton_option_enabled(env.get_value, "WAYLAND") or (
+        proton and getattr(params, "wayland", False)
+    )
     if not _wayland_requested(env, params):
         return
     if DisplayUtils.display_server_type() != "wayland":
@@ -850,7 +852,7 @@ class WineCommand:
             candidate = os.path.join(runner_path, "share/X11/locale")
             if os.path.isdir(candidate):
                 xlocale_dir = candidate
-        apply_wayland_preferences(env, params, xlocale_dir)
+        apply_wayland_preferences(env, params, xlocale_dir, proton=bool(proton_path))
         apply_hdr_preferences(
             env,
             params,
@@ -883,6 +885,8 @@ class WineCommand:
             env.add("WINEESYNC", "1")
         elif sync == "fsync":
             env.add("WINEFSYNC", "1")
+            # Wine 11 runners prefer ntsync over fsync unless told not to
+            env.add("PROTON_NO_NTSYNC", "1")
         elif sync in ("wine", "ntsync"):
             if is_ntsync_available(runner):
                 env.add("WINENTSYNC", "1")

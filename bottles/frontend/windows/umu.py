@@ -28,6 +28,7 @@ from bottles.backend.umu import (
     RESERVED_ENVIRONMENT_KEYS,
     UMU_STORE_IDS,
     UmuDatabaseEntry,
+    UmuDatabaseError,
     UmuDependencyInstaller,
     UmuPrefix,
     UmuRepositoryError,
@@ -598,7 +599,15 @@ class UmuSearchDialog(Adw.Dialog):
             self.entry_search.grab_focus()
             self.__search()
 
-        RunAsync(self.database.get_entries, callback=loaded, refresh=refresh)
+        def fetch_entries():
+            try:
+                return self.database.get_entries(refresh=refresh)
+            except UmuDatabaseError as error:
+                cause = error.__cause__ or error
+                logging.warning(f"Could not load UMU database ({type(cause).__name__}).")
+                return ()
+
+        RunAsync(fetch_entries, callback=loaded)
 
     def __search(self, *_args):
         query = self.entry_search.get_text().strip()

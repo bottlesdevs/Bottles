@@ -34,9 +34,9 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
 
-      - uses: docker/setup-buildx-action@37fe631027851001ddb9b187196cc803df7f5f0e
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069
 
-      - uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f
+      - uses: docker/login-action@81c6f93d4bc991e510b342a00b419b3bb4efc5c6
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -56,7 +56,7 @@ jobs:
           tags: type=raw,value=${{ steps.identity.outputs.tag }}
 
       - id: build
-        uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc
         with:
           context: .
           file: build-aux/cpak/Containerfile
@@ -100,9 +100,10 @@ jobs:
               test -r /usr/share/bottles/bottles/backend/identity.py
               gresource extract /usr/share/bottles/bottles.gresource /com/usebottles/bottles/details-preferences.ui | grep -F switch_eagle_tracing
               bottles-cli --version
+              python3 -c "from requests.adapters import SOCKSProxyManager; SOCKSProxyManager(\"socks5h://127.0.0.1:9\")"
             '
 
-      - name: Test identity and folder handling
+      - name: Test bottle and dependency handling
         env:
           IMAGE: ${{ steps.identity.outputs.image }}
         run: |
@@ -110,8 +111,7 @@ jobs:
             --entrypoint sh \
             --volume "$GITHUB_WORKSPACE:/tests:ro" \
             "$IMAGE" -ceu '
-              apt-get update
-              apt-get install -y --no-install-recommends xauth xvfb python3-pytest python3-pytest-mock
+              sh /tests/build-aux/cpak/install-test-tools.sh xauth xvfb blueprint-compiler python3-pytest python3-pytest-mock
               mkdir -p /app/share/bottles
               ln -s /usr/share/bottles/bottles.gresource /app/share/bottles/bottles.gresource
               cd /tests
@@ -120,13 +120,48 @@ jobs:
               mkdir -p "$TMPDIR"
               export TMP="$TMPDIR" TEMP="$TMPDIR"
               command -v dbus-run-session
+              xvfb-run -a /usr/bin/bottles-real --help
               xvfb-run -a python3 -m pytest -q \
                 bottles/tests/backend/test_downloader.py \
                 bottles/tests/backend/manager/test_component.py \
                 bottles/tests/backend/test_identity.py \
                 bottles/tests/backend/test_identity_ui.py \
                 bottles/tests/frontend/test_open_uri.py \
-                bottles/tests/frontend/test_bottle_preferences.py::test_open_eagle_logs_keeps_window_alive_when_directory_is_unwritable
+                bottles/tests/frontend/test_eagle_dialog.py \
+                bottles/tests/frontend/test_bottle_preferences.py \
+                bottles/tests/frontend/test_program_stop.py \
+                bottles/tests/backend/manager/test_journal.py \
+                bottles/tests/backend/manager/test_importer.py \
+                bottles/tests/backend/manager/test_default_drives.py \
+                bottles/tests/backend/manager/test_dependency_extraction.py \
+                bottles/tests/backend/manager/test_dependency_install.py \
+                bottles/tests/backend/manager/test_offline_cache.py \
+                bottles/tests/backend/manager/test_manager.py::test_create_bottle_rejects_win32_for_wow64_only_runner \
+                bottles/tests/backend/manager/test_manager.py::test_loaded_prefix_keeps_user_files_after_account_change \
+                bottles/tests/backend/manager/test_manager.py::test_full_backup_import_preserves_files_for_another_account \
+                bottles/tests/backend/utils/test_manager.py \
+                bottles/tests/backend/utils/test_wine.py \
+                bottles/tests/backend/test_nvapi.py \
+                bottles/tests/frontend/test_bottle_drop.py \
+                bottles/tests/frontend/test_bottle_list_order.py \
+                bottles/tests/frontend/test_dependency_entry.py \
+                bottles/tests/frontend/test_dependency_batch.py \
+                bottles/tests/frontend/test_importer_selection.py \
+                bottles/tests/frontend/test_offline_components.py \
+                bottles/tests/frontend/test_preferences_window.py \
+                bottles/tests/frontend/test_external_runner_component.py \
+                bottles/tests/frontend/test_playtime_service.py \
+                bottles/tests/frontend/test_drive_dialog.py \
+                bottles/tests/frontend/test_drives_dialog.py \
+                bottles/tests/frontend/test_onboard.py \
+                bottles/tests/frontend/test_installer_icon.py \
+                bottles/tests/backend/umu/test_executor.py \
+                bottles/tests/backend/umu/test_database.py \
+                bottles/tests/backend/manager/test_sandbox.py \
+                bottles/tests/frontend/test_umu_search.py \
+                bottles/tests/backend/wine/test_executor.py \
+                bottles/tests/backend/wine/test_wineserver.py \
+                bottles/tests/backend/wine/test_start.py
             '
 
       - name: Verify Soda on arm64
@@ -146,9 +181,9 @@ jobs:
           docker run --rm \
             --entrypoint sh \
             --volume "$runner:/runner:ro" \
+            --volume "$GITHUB_WORKSPACE/build-aux/cpak/install-test-tools.sh:/install-test-tools:ro" \
             "$IMAGE" -ceu '
-              apt-get update
-              apt-get install -y --no-install-recommends xauth xvfb
+              sh /install-test-tools xauth xvfb
               export FEX_APP_CONFIG=/runner/share/fex-emu/Config.json
               export FEX_APP_CONFIG_LOCATION=/runner/share/fex-emu
               export LD_LIBRARY_PATH="/runner/lib:/runner/lib/wine/aarch64-unix:$LD_LIBRARY_PATH"
@@ -177,9 +212,9 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
 
-      - uses: docker/setup-buildx-action@37fe631027851001ddb9b187196cc803df7f5f0e
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069
 
-      - uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f
+      - uses: docker/login-action@81c6f93d4bc991e510b342a00b419b3bb4efc5c6
         with:
           registry: ghcr.io
           username: ${{ github.actor }}

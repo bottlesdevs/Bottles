@@ -247,12 +247,11 @@ class BottleView(Adw.PreferencesPage):
     def on_drop(self, drop_target, value: Gdk.FileList, x, y, user_data=None):
         self.drop_overlay.set_visible(False)
         files: List[Gio.File] = value.get_files()
+        if not files:
+            return False
         args = ""
         file = files[0]
-        if (
-            ".exe" in file.get_basename().split("/")[-1]
-            or ".msi" in file.get_basename().split("/")[-1]
-        ):
+        if file.get_basename().casefold().endswith((".exe", ".msi")):
             def callback(a, b):
                 self.update_programs(force_update=True)
 
@@ -269,6 +268,7 @@ class BottleView(Adw.PreferencesPage):
             guard_sandbox_launch(
                 self.window, self.config, file.get_path(), proceed
             )
+            return True
 
         else:
             self.window.show_toast(
@@ -276,6 +276,7 @@ class BottleView(Adw.PreferencesPage):
                     file.get_basename().split("/")[-1]
                 )
             )
+            return False
 
     def on_enter(self, drop_target, x, y):
         self.drop_overlay.set_visible(True)
@@ -637,6 +638,8 @@ class BottleView(Adw.PreferencesPage):
                     self.details, "update_runner_label"
                 ):
                     self.details.update_runner_label(self.config.Runner)
+                    self.details.view_preferences.update_combo_components()
+                    self.details.view_preferences.set_config(self.config)
 
             if success:
                 self.window.show_toast(
@@ -754,11 +757,13 @@ class BottleView(Adw.PreferencesPage):
         """
 
         def set_path(_dialog, response):
-            if response != Gtk.ResponseType.ACCEPT:
-                return
-
-            path = _dialog.get_file().get_path()
-            self.analyze_with_eagle(path)
+            try:
+                if response == Gtk.ResponseType.ACCEPT:
+                    path = _dialog.get_file().get_path()
+                    self.analyze_with_eagle(path)
+            finally:
+                self._eagle_dialog = None
+                _dialog.destroy()
 
         dialog = Gtk.FileChooserNative.new(
             title=_("Select Executable for Eagle Analysis"),
@@ -774,6 +779,7 @@ class BottleView(Adw.PreferencesPage):
             Gio.File.new_for_path(ManagerUtils.get_bottle_path(self.config))
         )
         dialog.connect("response", set_path)
+        self._eagle_dialog = dialog
         dialog.show()
 
     def __backup(self, widget, backup_type):

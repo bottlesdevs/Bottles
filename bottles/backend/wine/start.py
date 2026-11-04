@@ -51,7 +51,7 @@ class Start(WineProgram):
         else:
             _args = f"{start_options}/wait {directory_option}{file}"
 
-        self.launch(
+        return self.launch(
             args=(_args, args),
             communicate=True,
             terminal=terminal,
