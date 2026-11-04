@@ -54,6 +54,14 @@ jobs:
           python3 -c "from gi.repository import Gio; resource = Gio.Resource.load(\"/app/share/bottles/bottles.gresource\"); ui = resource.lookup_data(\"/com/usebottles/bottles/details-preferences.ui\", Gio.ResourceLookupFlags.NONE).get_data(); assert b\"switch_eagle_tracing\" in ui"
           gst-inspect-1.0 avdec_wmv3
         '
+        if flatpak info --user com.usebottles.bottles.Devel.Debug; then
+          flatpak uninstall --user --noninteractive com.usebottles.bottles.Devel.Debug
+        fi
+        install_ref org.freedesktop.Platform.GL32.Debug.default//25.08
+        flatpak run --user --command=sh com.usebottles.bottles.Devel -ec '
+          test -d /app/lib/GL32.Debug/default
+          test -n "$(find /app/lib/GL32.Debug/default -type f -print -quit)"
+        '
         flatpak run --user \
           --filesystem=/tmp/soda:ro \
           --command=sh \

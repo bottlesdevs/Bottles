@@ -59,7 +59,7 @@
       "autoprune-unless": "active-gl-driver"
     },
     "org.freedesktop.Platform.GL32.Debug": {
-      "directory": "lib/debug/lib/i386-linux-gnu/GL",
+      "directory": "lib/GL32.Debug",
       "version": "1.4",
       "versions": "25.08;25.08-extra;1.4",
       "subdirectories": true,
@@ -398,7 +398,9 @@
         "mkdir -p /app/lib/i386-linux-gnu",
         "mkdir -p /app/lib/debug/lib/i386-linux-gnu",
         "mkdir -p /app/lib/i386-linux-gnu/GL",
-        "mkdir -p /app/lib/debug/lib/i386-linux-gnu/GL",
+        "mkdir -p /app/lib/GL32.Debug",
+        "test ! -e /app/lib/debug/lib/i386-linux-gnu/GL || rmdir /app/lib/debug/lib/i386-linux-gnu/GL",
+        "ln -s ../../../GL32.Debug /app/lib/debug/lib/i386-linux-gnu/GL",
         "mkdir -p /app/lib/i386-linux-gnu/dri/intel-vaapi-driver",
         "mkdir -p /app/i386/nvidia-vaapi-driver",
         "mkdir -p /app/lib/i386-linux-gnu/codecs-extra"
