@@ -85,6 +85,24 @@
     <display_length compare="ge">768</display_length>
   </requires>
   <releases>
+    <release version="67.6" date="2026-11-04">
+      <description translate="no">
+        <ul>
+          <li>Added bottle moves between directories and a destination picker when duplicating bottles</li>
+          <li>Added per-bottle notes and library sorting by bottle name</li>
+          <li>Added Default, Application and System DPI scaling modes in Advanced Display Settings</li>
+          <li>Added optional UMU controls, support for launch wrappers and download status in the library</li>
+          <li>Added a playtime reset button and warnings for missing program files without removing shortcuts</li>
+          <li>Fixed interrupted downloads on slow connections with a longer read timeout and bounded retries</li>
+          <li>Fixed startup delays, repeated Battle.net launches and saving imported bottles on external drives</li>
+          <li>Fixed Windows XP selection on 64-bit bottles and switching between Fsync and NTSync</li>
+          <li>Fixed restoring the Windows version after dependency installation, dependency progress and multiple uninstallers</li>
+          <li>Fixed Wine server shutdown and added an installer option to stop completed sessions</li>
+          <li>Fixed GL32 debug symbol mounts and exposed the selected Wine executable to launch scripts</li>
+          <li>Updated the experimental Soda catalogs and installer progress logs</li>
+        </ul>
+      </description>
+    </release>
     <release version="67.5" date="2026-10-27">
       <description translate="no">
         <ul>
