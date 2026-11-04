@@ -26,6 +26,7 @@ import gi
 from bottles.backend.health import HealthChecker
 from bottles.backend.globals import is_official_package
 from bottles.backend.logger import Logger
+from bottles.backend.utils.threading import RunAsync
 from bottles.frontend.params import (
     APP_ID,
     APP_MAJOR_VERSION,
@@ -310,10 +311,11 @@ class Bottles(Adw.Application):
             )
         self._font_scale_manager = FontScaleManager(Gio.Settings.new(APP_ID))
 
-        # log the same environment summary shown in the GUI debug info, so a
-        # terminal run is enough to see what the user is running on
+        logging.info(f"Bottles {APP_VERSION}")
+        RunAsync(self.__log_environment)
+
+    def __log_environment(self):
         try:
-            logging.info(f"Bottles {APP_VERSION}")
             logging.info(HealthChecker().get_results(plain=True))
         except Exception as e:
             logging.debug(f"Could not collect startup environment info: {e}")

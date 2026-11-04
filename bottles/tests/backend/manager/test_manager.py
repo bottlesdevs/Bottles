@@ -766,3 +766,71 @@ def test_get_programs_can_refresh_cached_results(monkeypatch):
 
     assert Manager.get_programs(manager, config) is cached
     assert Manager.get_programs(manager, config, force_update=True) == []
+
+
+@pytest.mark.parametrize("target_available", [True, False])
+def test_custom_prefix_without_placeholder_uses_its_current_config(monkeypatch, tmp_path, target_available):
+    bottles = tmp_path / "bottles"
+    local = bottles / "Imported"
+    local.mkdir(parents=True)
+    target = tmp_path / "external" / "Imported"
+    stale = BottleConfig(Name="Imported", Path=str(target), Custom_Path=True, Runner="old-runner")
+    stale.dump(str(local / "bottle.yml"))
+    local_before = (local / "bottle.yml").read_bytes()
+    if target_available:
+        target.mkdir(parents=True)
+        current = stale.copy()
+        current.Runner = "new-runner"
+        current.Environment_Variables = {"KEEP_SETTING": "yes"}
+        current.dump(str(target / "bottle.yml"))
+        target_before = (target / "bottle.yml").read_bytes()
+    manager = object.__new__(Manager)
+    manager.runners_available = ["new-runner"]
+    manager.settings = GSettingsStub()
+    manager.is_cli = True
+    monkeypatch.setattr(manager_module.Paths, "bottles", str(bottles))
+
+    manager.check_bottles(silent=True)
+
+    assert (local / "bottle.yml").read_bytes() == local_before
+    if target_available:
+        config = manager.local_bottles["Imported"]
+        assert config.Runner == "new-runner"
+        assert config.Environment_Variables == {"KEEP_SETTING": "yes"}
+        assert (target / "bottle.yml").read_bytes() == target_before
+        manager.check_bottles(silent=True)
+        assert manager.local_bottles["Imported"].Runner == "new-runner"
+    else:
+        assert manager.local_bottles == {}
+        assert not target.exists()
+
+
+def test_prefix_creation_reports_wineboot_failure_before_waiting(monkeypatch, tmp_path):
+    from bottles.backend.models.result import Result
+
+    bottles = tmp_path / "bottles"
+    bottles.mkdir()
+    manager = object.__new__(Manager)
+    for attribute in ("runners_available", "dxvk_available", "vkd3d_available", "nvapi_available", "latencyflex_available"):
+        setattr(manager, attribute, ["fixture"])
+    manager.d7vk_available = []
+    monkeypatch.setattr(manager_module.Paths, "bottles", str(bottles))
+    monkeypatch.setattr(manager_module.FileUtils, "chattr_f", lambda path: None)
+    monkeypatch.setattr(manager_module.WineUtils, "ensure_user_profile_alias", lambda path: True)
+    monkeypatch.setattr(manager_module, "WineBoot", lambda config: SimpleNamespace(
+        init=lambda: Result(False, message="Command exited with status 23."),
+    ))
+    def unexpected_wait(*args, **kwargs):
+        raise AssertionError("Waited for prefix files after wineboot failed")
+    monkeypatch.setattr(manager_module.FileUtils, "wait_for_files", unexpected_wait)
+    monkeypatch.setattr(manager_module.logging, "error", lambda *args, **kwargs: None)
+    messages = []
+
+    result = manager.create_bottle(
+        name="Test", environment="custom", runner="fixture", arch="win64",
+        configuration=BottleConfig(), fn_logger=messages.append,
+    )
+
+    assert not result.ok
+    assert "status 23" in result.message
+    assert result.message in messages

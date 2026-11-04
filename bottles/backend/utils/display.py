@@ -16,18 +16,18 @@ class DisplayUtils:
 
         for i in ports_range:
             _port = f":{i}"
-            _proc = (
-                subprocess.Popen(
-                    f"xdpyinfo -display :{i}",
-                    stdout=subprocess.PIPE,
-                    stderr=subprocess.PIPE,
-                    shell=True,
+            try:
+                result = subprocess.run(
+                    ["xdpyinfo", "-display", _port],
+                    capture_output=True,
+                    timeout=1,
+                    check=False,
                 )
-                .communicate()[0]
-                .decode("utf-8")
-                .lower()
-            )
-            if "x.org" in _proc:
+            except FileNotFoundError:
+                return False
+            except (OSError, subprocess.TimeoutExpired):
+                continue
+            if b"x.org" in result.stdout.lower():
                 return _port
 
         return False

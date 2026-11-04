@@ -2035,3 +2035,23 @@ def test_windows_registry_values_match_prefix_architecture(monkeypatch, arch, ex
     ]}
     assert values["CurrentVersion"] == regkeys.win_versions[expected]["CurrentVersion"]
     assert values["CSDVersion"] == regkeys.win_versions[expected]["CSDVersion"]
+
+
+@pytest.mark.parametrize("status", [3, 4])
+def test_wineboot_preserves_the_session_display(monkeypatch, status):
+    from bottles.backend.wine.wineboot import WineBoot
+
+    captured = {}
+    monkeypatch.setenv("DISPLAY", ":17")
+    monkeypatch.setenv("WAYLAND_DISPLAY", "wayland-fixture")
+    def launch(self, **kwargs):
+        env = winecommand.WineEnv()
+        env.add_bundle(kwargs["environment"], override=True)
+        captured.update(env.get()["envs"])
+        return Result(True)
+
+    monkeypatch.setattr(WineBoot, "launch", launch)
+
+    assert WineBoot(_make_config()).send_status(status).ok
+    assert captured["DISPLAY"] == ":17"
+    assert captured["WAYLAND_DISPLAY"] == "wayland-fixture"

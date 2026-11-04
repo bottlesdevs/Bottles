@@ -1452,6 +1452,22 @@ class Manager(metaclass=Singleton):
 
             config_load = BottleConfig.load(_config)
 
+            if (
+                config_load.status
+                and not _placeholder_target
+                and config_load.data.Custom_Path
+                and os.path.isabs(config_load.data.Path)
+            ):
+                target = config_load.data.Path
+                target_config = os.path.join(target, "bottle.yml")
+                if os.path.realpath(target_config) != os.path.realpath(_config):
+                    _placeholder_target = target
+                    _config = target_config
+                    config_load = BottleConfig.load(_config)
+                    if config_load.status:
+                        config_load.data.Path = target
+                        config_load.data.Custom_Path = True
+
             if not config_load.status:
                 if _placeholder_target:
                     # the bottle lives on a custom path that is not reachable now
@@ -2108,7 +2124,14 @@ class Manager(metaclass=Singleton):
 
         # execute wineboot on the bottle path
         log_update(_("The Wine config is being updated…"))
-        wineboot.init()
+        initialized = wineboot.init()
+        if not initialized.ok:
+            message = _("Failed to initialize the Wine prefix.")
+            if initialized.message:
+                message = f"{message} {initialized.message}"
+            logging.error(message, jn=True)
+            log_update(message)
+            return Result(False, data={"config": config}, message=message)
         if not FileUtils.wait_for_files(prefix_files, timeout=5):
             logging.error("Wine prefix initialization failed.", jn=True)
             message = _("Failed to initialize the Wine prefix.")

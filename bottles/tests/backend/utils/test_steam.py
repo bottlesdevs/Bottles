@@ -461,3 +461,32 @@ def test_prepare_proton_fsr4_kills_process_group_on_timeout(
         "pgid": 42,
         "signal": 9,
     }
+
+
+def test_sync_proton_fonts_keeps_unchanged_links_and_directory_mtime(tmp_path):
+    proton = tmp_path / "Proton"
+    source = proton / "files/share/wine/fonts"
+    source.mkdir(parents=True)
+    (source / "tahoma.ttf").write_bytes(b"font")
+    prefix = tmp_path / "prefix"
+    SteamUtils.sync_proton_fonts(str(proton), str(prefix))
+    fonts = prefix / "drive_c/windows/Fonts"
+    link = fonts / "tahoma.ttf"
+    before = (link.lstat().st_ino, link.lstat().st_mtime_ns, fonts.stat().st_mtime_ns)
+
+    SteamUtils.sync_proton_fonts(str(proton), str(prefix))
+
+    assert (link.lstat().st_ino, link.lstat().st_mtime_ns, fonts.stat().st_mtime_ns) == before
+
+
+def test_sync_proton_fonts_retargets_links_after_a_runner_change(tmp_path):
+    prefix = tmp_path / "prefix"
+    for name in ("old", "new"):
+        source = tmp_path / name / "files/share/wine/fonts"
+        source.mkdir(parents=True)
+        (source / "tahoma.ttf").write_bytes(name.encode())
+        SteamUtils.sync_proton_fonts(str(tmp_path / name), str(prefix))
+
+    assert (prefix / "drive_c/windows/Fonts/tahoma.ttf").resolve() == (
+        tmp_path / "new/files/share/wine/fonts/tahoma.ttf"
+    )

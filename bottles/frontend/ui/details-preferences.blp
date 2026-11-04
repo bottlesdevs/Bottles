@@ -228,6 +228,7 @@ template $DetailsPreferences: Adw.PreferencesPage {
     Adw.ComboRow combo_sync {
       tooltip-text: _("Enable synchronization to increase performance of multicore processors.");
       title: _("Synchronization");
+      subtitle: _("Esync requires runner support; otherwise the runner uses its default.");
 
       model: StringList {
         strings [

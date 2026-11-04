@@ -29,7 +29,6 @@ class WineBoot(WineProgram):
         }
         envs = {
             "WINEDEBUG": "-all",
-            "DISPLAY": ":3.0",
             "WINEDLLOVERRIDES": "winemenubuilder=d",
         }
         forced_dll_overrides = "mscoree=d" if status in (3, 4) else None
