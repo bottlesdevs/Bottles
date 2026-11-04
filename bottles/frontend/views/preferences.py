@@ -78,6 +78,7 @@ class PreferencesWindow(Adw.PreferencesDialog):
     combo_ui_language = Gtk.Template.Child()
     str_list_ui_languages = Gtk.Template.Child()
     combo_font_scale = Gtk.Template.Child()
+    combo_library_order = Gtk.Template.Child()
     combo_audio_driver = Gtk.Template.Child()
     spin_eagle_limit = Gtk.Template.Child()
     list_runners = Gtk.Template.Child()
@@ -285,6 +286,12 @@ class PreferencesWindow(Adw.PreferencesDialog):
         )
 
         self.__sync_font_scale_selection()
+        self.settings.bind(
+            "library-sort-order",
+            self.combo_library_order,
+            "selected",
+            Gio.SettingsBindFlags.DEFAULT,
+        )
         self.combo_font_scale.connect("notify::selected", self.__on_font_scale_selected)
         self.settings.connect(
             "changed::font-scale", self.__on_font_scale_setting_changed

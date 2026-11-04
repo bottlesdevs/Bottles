@@ -26,10 +26,18 @@ from bottles.frontend.utils.umu import get_umu_store_title
 from bottles.frontend.widgets.library import LibraryAddEntry, LibraryEntry
 
 
-def _ordered_library_entries(entries):
+def _ordered_library_entries(entries, by_bottle=False):
+    def order(item):
+        entry = item[1]
+        name = str(entry.get("name") or "").casefold()
+        if not by_bottle:
+            return name
+        bottle = entry.get("bottle", {}).get("name") or entry.get("source", "")
+        return str(bottle).casefold(), name
+
     return sorted(
         entries.items(),
-        key=lambda item: str(item[1].get("name") or "").casefold(),
+        key=order,
     )
 
 
@@ -54,6 +62,9 @@ class LibraryView(Adw.Bin):
         self.css = b""
         self.entry_search.connect("search-changed", self.__search)
         self.main_flow.set_filter_func(self.__filter_entry)
+        self.window.settings.connect(
+            "changed::library-sort-order", lambda *_args: self.update()
+        )
         self.update()
 
     def update(self):
@@ -65,7 +76,9 @@ class LibraryView(Adw.Bin):
 
         entry_count = 0
 
-        for u, e in _ordered_library_entries(entries):
+        for u, e in _ordered_library_entries(
+            entries, self.window.settings.get_uint("library-sort-order") == 1
+        ):
             # We suppress exceptions so that it doesn't continue if the init fails
             with contextlib.suppress(Exception):
                 entry = LibraryEntry(self, u, e)

@@ -56,6 +56,16 @@ template $PreferencesWindow: Adw.PreferencesDialog {
           valign: center;
         }
       }
+
+      Adw.ComboRow combo_library_order {
+        title: _("Library Order");
+        model: StringList {
+          strings [
+            _("Program Name"),
+            _("Bottle Name"),
+          ]
+        };
+      }
     }
 
     Adw.PreferencesGroup {

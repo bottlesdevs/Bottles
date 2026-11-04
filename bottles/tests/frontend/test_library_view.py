@@ -37,6 +37,19 @@ def test_library_entries_are_ordered_by_name():
     ]
 
 
+def test_library_can_group_entries_by_bottle_without_changing_names():
+    entries = {
+        "z": {"name": "Zulu", "bottle": {"name": "Series 1"}},
+        "b": {"name": "Bravo", "bottle": {"name": "Series 1"}},
+        "a": {"name": "Alpha", "bottle": {"name": "Series 2"}},
+        "umu": {"name": "Imported Game", "source": "umu"},
+    }
+
+    assert [key for key, _entry in _ordered_library_entries(entries, True)] == ["b", "z", "a", "umu"]
+    assert [key for key, _entry in _ordered_library_entries(entries)] == ["a", "b", "umu", "z"]
+    assert entries["z"]["name"] == "Zulu"
+
+
 def test_delete_entry_refreshes_library(monkeypatch):
     removed = []
     updates = []
