@@ -10,6 +10,7 @@ bottles_sources = [
   'filters.py',
   'flatpak.py',
   'playtime.py',
+  'program.py',
   'sh.py',
   'sandbox_guard.py',
   'umu.py',
