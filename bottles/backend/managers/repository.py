@@ -46,7 +46,7 @@ class RepositoryManager:
         },
         "dependencies": {
             "sources": (
-                "https://raw.githubusercontent.com/bottlesdevs/dependencies/23bd12fd717c506addb0b05859a5f8635036f225/",
+                "https://raw.githubusercontent.com/bottlesdevs/dependencies/79d3db76c517d25812af1e33c5baf4aefe963ceb/",
                 "https://proxy.usebottles.com/repo/dependencies/",
             ),
             "index": "",
@@ -54,7 +54,7 @@ class RepositoryManager:
         },
         "installers": {
             "sources": (
-                "https://raw.githubusercontent.com/bottlesdevs/programs/fc98163e5ecbb67683f7204d33f81728766f37e6/",
+                "https://raw.githubusercontent.com/bottlesdevs/programs/e137e8db4b838ff5049c10c1f8203ee12c31de2c/",
                 "https://proxy.usebottles.com/repo/programs/",
             ),
             "index": "",
