@@ -4,7 +4,11 @@ from typing import Optional
 import pytest
 
 from bottles.backend.utils import generic
-from bottles.backend.utils.generic import detect_encoding, is_ntsync_available
+from bottles.backend.utils.generic import (
+    detect_encoding,
+    is_esync_missing,
+    is_ntsync_available,
+)
 
 
 # CP932 is superset of Shift-JIS, which is default codec for Japanese in Windows
@@ -58,3 +62,20 @@ def test_ntsync_accepts_backported_runner_with_spaces(monkeypatch, tmp_path):
     monkeypatch.setattr(generic, "NTSYNC_DEVICE", str(device))
 
     assert is_ntsync_available(shlex.quote(str(runner / "wine")))
+
+
+@pytest.mark.parametrize(
+    ("wineserver", "missing"),
+    [
+        (b"getenv WINEESYNC here", False),
+        (b"no such support", True),
+        (None, False),
+    ],
+)
+def test_esync_missing_reads_the_runner_wineserver(tmp_path, wineserver, missing):
+    runner = tmp_path / "custom runner" / "bin"
+    runner.mkdir(parents=True)
+    if wineserver is not None:
+        (runner / "wineserver").write_bytes(wineserver)
+
+    assert is_esync_missing(shlex.quote(str(runner / "wine"))) is missing
