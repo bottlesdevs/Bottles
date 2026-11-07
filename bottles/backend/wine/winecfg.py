@@ -20,10 +20,11 @@ class WineCfg(WineProgram):
         )
         if not result.ok:
             return result
-        version = result.data.strip() if isinstance(result.data, str) else ""
-        if version not in win_versions:
+        lines = result.data.splitlines() if isinstance(result.data, str) else ()
+        versions = {line.strip() for line in lines if line.strip() in win_versions}
+        if len(versions) != 1:
             return Result(False, message="Cannot determine the current Windows version.")
-        result.data = version
+        result.data = versions.pop()
         return result
 
     def set_windows_version(self, version):

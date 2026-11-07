@@ -2070,6 +2070,10 @@ def test_wineboot_preserves_the_session_display(monkeypatch, status):
 
 @pytest.mark.parametrize("output,expected", [
     ("win11\n", "win11"), ("winxp64\n", "winxp64"),
+    ("00e4:err:module:use_lsteamclient lsteamclient disabled.\nwin10\n", "win10"),
+    ("win11\r\n00ec:fixme:owned diagnostic\r\n", "win11"),
+    ("win10\nwin10\n", "win10"), ("win7\nwin10\n", None),
+    ("diagnostic mentions win10", None),
     ("not a Windows version", None), (None, None),
 ])
 def test_winecfg_reads_the_effective_windows_version(monkeypatch, output, expected):
