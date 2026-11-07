@@ -16,7 +16,7 @@ class WineCfg(WineProgram):
 
     def get_windows_version(self):
         result = self.launch(
-            args="-v", communicate=True, action_name="get_windows_version"
+            args="-v", communicate=True, capture_stderr=True, action_name="get_windows_version"
         )
         if not result.ok:
             return result

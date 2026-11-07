@@ -681,6 +681,7 @@ def test_winecommand_reports_nonzero_exit_status(monkeypatch):
     command.terminal = False
     command.sandbox_override = None
     command.communicate = True
+    command.capture_stderr = False
     command.cwd = None
 
     result = command.run()
@@ -689,6 +690,36 @@ def test_winecommand_reports_nonzero_exit_status(monkeypatch):
     assert result.data == "registry failed"
     assert result.message == "Command exited with status 7."
     assert command.returncode == 7
+
+
+@pytest.mark.parametrize("sandboxed", [False, True])
+@pytest.mark.parametrize("capture_stderr", [False, True])
+def test_winecommand_can_capture_version_output_on_stderr(monkeypatch, sandboxed, capture_stderr):
+    process = SimpleNamespace(returncode=0, communicate=lambda: (b"", b"owned Wine diagnostic\nwin10\n"))
+    captured = {}
+    def launch(*_args, **kwargs):
+        captured.update(kwargs)
+        return process
+    monkeypatch.setattr(winecommand.subprocess, "Popen", launch)
+    command = WineCommand.__new__(WineCommand)
+    command.runner = "/usr/bin/wine"
+    command.env = {}
+    command.command = "wine winecfg -v"
+    command.config = _make_config()
+    command.config.Parameters.sandbox = sandboxed
+    command.terminal = False
+    command.sandbox_override = None
+    command.communicate = True
+    command.capture_stderr = capture_stderr
+    command.cwd = None
+    monkeypatch.setattr(command, "_get_sandbox_manager", lambda: SimpleNamespace(run=launch))
+
+    result = command.run()
+
+    assert result.ok
+    assert result.data == ("owned Wine diagnostic\nwin10\n" if capture_stderr else "")
+    if not sandboxed:
+        assert captured['stderr'] == (subprocess.PIPE if capture_stderr else None)
 
 
 def test_winecommand_reports_full_windows_exit_status(monkeypatch):
@@ -708,6 +739,7 @@ def test_winecommand_reports_full_windows_exit_status(monkeypatch):
     command.terminal = False
     command.sandbox_override = None
     command.communicate = True
+    command.capture_stderr = False
     command.cwd = None
     command._exit_code_batch = None
     command._exit_code_marker = "BOTTLES_EXIT_CODE_test"
@@ -2090,4 +2122,4 @@ def test_winecfg_reads_the_effective_windows_version(monkeypatch, output, expect
     assert result.ok is (expected is not None)
     if expected:
         assert result.data == expected
-    assert calls == [{"args": "-v", "communicate": True, "action_name": "get_windows_version"}]
+    assert calls == [{"args": "-v", "communicate": True, "capture_stderr": True, "action_name": "get_windows_version"}]
