@@ -46,7 +46,7 @@ class RepositoryManager:
         },
         "dependencies": {
             "sources": (
-                "https://raw.githubusercontent.com/bottlesdevs/dependencies/79d3db76c517d25812af1e33c5baf4aefe963ceb/",
+                "https://raw.githubusercontent.com/bottlesdevs/dependencies/8c72988d1106c0bf788f1d5803844ee7758cee19/",
                 "https://proxy.usebottles.com/repo/dependencies/",
             ),
             "index": "",
