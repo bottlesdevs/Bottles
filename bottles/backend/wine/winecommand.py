@@ -27,6 +27,7 @@ from bottles.backend.utils.display import DisplayUtils
 from bottles.backend.utils.generic import (
     detect_encoding,
     get_host_architecture,
+    is_esync_missing,
     is_ntsync_available,
 )
 from bottles.backend.utils.gpu import GPUUtils
@@ -425,7 +426,7 @@ class WineCommand:
             )
         self.arguments = arguments
         self.cwd = self._get_cwd(cwd)
-        self.runner, self.runner_runtime = self._get_runner_info()
+        self.runner, self.runner_runtime = self.get_runner_info(self.config)
         self.gamescope_activated = (
             environment["GAMESCOPE"] == "1"
             if "GAMESCOPE" in environment
@@ -885,6 +886,11 @@ class WineCommand:
     @staticmethod
     def _apply_sync_environment(env: WineEnv, sync: str, runner: str) -> None:
         if sync == "esync":
+            if is_esync_missing(runner):
+                logging.warning(
+                    "esync requested but the runner has no esync, "
+                    "it will use its default"
+                )
             env.add("WINEESYNC", "1")
         elif sync == "fsync":
             env.add("WINEFSYNC", "1")
@@ -899,8 +905,8 @@ class WineCommand:
                 )
                 env.add("WINEFSYNC", "1")
 
-    def _get_runner_info(self) -> tuple[str, str]:
-        config = self.config
+    @staticmethod
+    def get_runner_info(config: BottleConfig) -> tuple[str, str]:
         runner = ManagerUtils.get_runner_path(config.Runner)
         arch = config.Arch
         runner_runtime = ""
@@ -925,7 +931,7 @@ class WineCommand:
             If the runner type is system, set the runner binary
             path to the system command. Else set it to the full path.
             """
-            runner = shutil.which("wine")
+            runner = shutil.which("wine") or ""
 
         else:
             runner = f"{runner}/bin/wine"
