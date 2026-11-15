@@ -89,7 +89,7 @@ msgstr "Optimerar miljön…"
 #: bottles/backend/managers/manager.py:1279
 #, python-brace-format
 msgid "Applying environment: {0}…"
-msgstr "Tillämpar miljön {0}…"
+msgstr "Tillämpar miljön: {0}…"
 
 #: bottles/backend/managers/manager.py:1289
 msgid "(!) Using a custom environment recipe…"
@@ -114,7 +114,7 @@ msgstr "Installerar DXVK-NVAPI…"
 #: bottles/backend/managers/manager.py:1335
 #, python-format
 msgid "Installing dependency: %s …"
-msgstr "Installerar beroendet %s…"
+msgstr "Installerar beroende: %s…"
 
 #: bottles/backend/managers/manager.py:1345
 msgid "Creating versioning state 0…"
@@ -254,7 +254,7 @@ msgstr "Hämta och installera"
 
 #: bottles/frontend/ui/component-entry.blp:58
 msgid "0%"
-msgstr "0%"
+msgstr "0 %"
 
 #: bottles/frontend/ui/dependency-entry.blp:16
 msgid "Show Manifest"
@@ -299,7 +299,7 @@ msgstr ""
 
 #: bottles/frontend/ui/dependency-entry.blp:93
 msgid "Dependency Menu"
-msgstr "Meny för beroenden"
+msgstr "Beroendemeny"
 
 #: bottles/frontend/ui/details-bottle.blp:16
 msgid "Troubleshooting"
@@ -559,7 +559,7 @@ msgstr ""
 "programvara.\n"
 "\n"
 "Filerna på den här sidan tillhandahålls av tredje part under en proprietär "
-"licens. Genom att installera dem godkänner du respektive licensvillkor."
+"licens. Genom att installera dem godkänner du deras respektive licensvillkor."
 
 #: bottles/frontend/ui/details-dependencies.blp:76
 msgid "Report a problem or a missing dependency."
@@ -599,7 +599,7 @@ msgstr ""
 "Installera program som gemenskapen har valt ut.\n"
 "\n"
 "Filerna på den här sidan tillhandahålls av tredje part under en proprietär "
-"licens. Genom att installera dem godkänner du respektive licensvillkor."
+"licens. Genom att installera dem godkänner du deras respektive licensvillkor."
 
 #: bottles/frontend/ui/details-installers.blp:29
 msgid "No Installers Found"
@@ -811,7 +811,7 @@ msgstr ""
 
 #: bottles/frontend/ui/details-preferences.blp:221
 msgid "Preload Game Files"
-msgstr "Förhandsläs spelfiler"
+msgstr "Läs in spelfiler i förväg"
 
 #: bottles/frontend/ui/details-preferences.blp:222
 msgid ""
@@ -1322,7 +1322,7 @@ msgstr "Information"
 
 #: bottles/frontend/ui/dialog-journal.blp:40
 msgid "Journal browser"
-msgstr "Journalvisare"
+msgstr "Loggvisare"
 
 #: bottles/frontend/ui/dialog-journal.blp:48
 msgid "Journal Browser"
@@ -1685,7 +1685,7 @@ msgid ""
 "edges based on colors. Luma is more performant than Color."
 msgstr ""
 "Luma identifierar kanter ur ett monokromt perspektiv, medan Färg "
-"identifierar kanter utifrån färger. Luma kräver mindre prestanda än Färg."
+"identifierar kanter utifrån färger. Luma är snabbare än Färg."
 
 #: bottles/frontend/ui/dialog-vkbasalt.blp:530
 msgid ""
@@ -1919,7 +1919,6 @@ msgid "C_reate"
 msgstr "S_kapa"
 
 #: bottles/frontend/ui/new.blp:53
-#, fuzzy
 msgid "Bottle Name"
 msgstr "Buteljnamn"
 
@@ -1959,7 +1958,7 @@ msgstr "Arkitektur"
 
 #: bottles/frontend/ui/new.blp:137
 msgid "32-bit should only be used if strictly necessary."
-msgstr "32 bitar bör endast användas när det är absolut nödvändigt."
+msgstr "32-bitar bör endast användas när det är absolut nödvändigt."
 
 #: bottles/frontend/ui/new.blp:146
 msgid "Import a custom configuration."
@@ -2148,7 +2147,7 @@ msgstr "Förhandsutgåvor"
 
 #: bottles/frontend/ui/preferences.blp:209
 msgid "Display unstable versions of runners."
-msgstr "Visa instabila versioner av körare."
+msgstr "Visa instabila versioner av körprogram."
 
 #: bottles/frontend/ui/preferences.blp:224
 msgid "DLL Components"
@@ -2397,7 +2396,7 @@ msgstr "Vill du verkligen tvångsavsluta alla processer?"
 
 #: bottles/frontend/views/bottle_details.py:598
 msgid "This can cause data loss, corruption, and programs to malfunction."
-msgstr "Det kan orsaka dataförlust, skadade data och programfel."
+msgstr "Det kan orsaka dataförlust, datakorruption och program som inte fungerar korrekt."
 
 #: bottles/frontend/views/bottle_details.py:601
 msgid "Force _Stop"
@@ -2447,7 +2446,7 @@ msgstr "Åtgärder pågår. Vänta."
 
 #: bottles/frontend/views/details.py:239
 msgid "Return to your bottles."
-msgstr "Återgå till buteljerna."
+msgstr "Återgå till dina buteljer."
 
 #: bottles/frontend/views/importer.py:92
 msgid "Backup imported successfully"
@@ -2562,21 +2561,23 @@ msgstr "_Starta om"
 
 #: bottles/frontend/views/preferences.py:243
 msgid "Based on Valve's Wine, includes staging and Proton patches."
-msgstr ""
+msgstr "Baserad på Valves Wine och innehåller staging- och Proton-patchar."
 
 #: bottles/frontend/views/preferences.py:244
 msgid "Based on Wine upstream, includes staging and Proton patches."
-msgstr ""
+msgstr "Baserad på Wine uppströms och innehåller staging- och Proton-patchar."
 
 #: bottles/frontend/views/preferences.py:247
 msgid "Based on Wine upstream, includes staging patches."
-msgstr ""
+msgstr "Baserad på Wine uppströms och innehåller staging-patchar."
 
 #: bottles/frontend/views/preferences.py:248
 msgid ""
 "Based on Valve's Wine, includes staging, Proton and Steam-specific patches. "
 "Requires the Steam Runtime turned on."
 msgstr ""
+"Baserad på Valves Wine och innehåller staging-, Proton- och Steam-specifika "
+"patchar. Kräver att Steam Runtime är aktiverad."
 
 #: bottles/frontend/views/preferences.py:250
 msgid "Other"
@@ -2954,7 +2955,7 @@ msgstr "Kör Windows-program på Linux med Bottles!"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:12
 msgid "Bottle software and enjoy at your leisure!"
-msgstr "Buteljera programvara och njut på din fritid!"
+msgstr "Kör program i buteljer och njut när det passar dig!"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:13
 msgid ""
@@ -2963,15 +2964,15 @@ msgid ""
 "components: the runner (Wine, Proton), DXVK, dependencies, etc."
 msgstr ""
 "Vårt inbyggda installationssystem för beroenden ger automatisk åtkomst till "
-"programvarukompatibilitet. Använd nedladdningshanteraren för att ladda ner "
-"de officiella komponenterna: Körprogram (Wine, Proton), DXVK, beroenden etc."
+"programvarukompatibilitet. Använd nedladdningshanteraren för att hämta de "
+"officiella komponenterna: körprogram (Wine, Proton), DXVK, beroenden med mera."
 
 #: data/com.usebottles.bottles.metainfo.xml.in:16
 msgid ""
 "Bottle versioning keeps your work safe now and lets you restore it later!"
 msgstr ""
-"Buteljversionshantering håller ditt arbete säkert nu och låter dig "
-"återställa det senare!"
+"Versionshantering för buteljer skyddar ditt arbete och låter dig återställa "
+"det senare!"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:17
 msgid "Features:"
@@ -2987,8 +2988,8 @@ msgid ""
 "Run executables (.exe/.msi) in your bottles, directly from the context menu "
 "of your file-manager"
 msgstr ""
-"Kör exekverbara filer (.exe/.msi) i dina buteljer, direkt från kontextmenyn "
-"i din filhanterare"
+"Kör körbara filer (.exe/.msi) i dina buteljer direkt från filhanterarens "
+"snabbmeny"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:21
 msgid "Automated detection of applications installed in your bottles"
@@ -3000,19 +3001,19 @@ msgstr "Lägg till miljövariabler snabbt"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:23
 msgid "Override DLLs directly from per-bottle preferences"
-msgstr "Åsidosätt DLL-filer direkt från inställningar per butelj"
+msgstr "Åsidosätt DLL-filer direkt från buteljinställningarna"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:24
 msgid "On-the-fly runner change for any Bottle"
-msgstr "Byte av körprogram i farten för vilken butelj som helst"
+msgstr "Byt körprogram direkt för valfri butelj"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:25
 msgid ""
 "Various gaming-performance optimizations (esync, fsync, DXVK, cache, shader "
 "compiler, offload … and much more.)"
 msgstr ""
-"Olika prestandaoptimeringar för spel (esync, fsync, DXVK, cache, shader "
-"kompilator, avlastning ... och mycket mer.)"
+"Olika prestandaoptimeringar för spel (esync, fsync, DXVK, cache, "
+"shaderkompilator, avlastning … och mycket mer.)"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:26
 msgid "Automatic installation and management of Wine and Proton runners"
@@ -3048,7 +3049,7 @@ msgstr "Importera Wine-prefix från andra hanterare"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:34
 msgid "Bottles versioning"
-msgstr "Bottles versionshantering"
+msgstr "Versionshantering i Bottles"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:35
 msgid "... and much more that you can find by installing Bottles!"
@@ -3074,7 +3075,7 @@ msgstr "Rättade att BottleConfig inte kunde serialiseras"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:96
 msgid "Fixed Patool double extraction failing"
-msgstr "Rättade ett fel där Patool misslyckades med dubbel extrahering"
+msgstr "Rättade ett fel där Patool misslyckades med dubblettextrahering"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:101
 msgid "Correct version"
@@ -3094,7 +3095,7 @@ msgstr "Användbarhetsförbättringar:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:114
 msgid "Replace emote-love icon with library in library page"
-msgstr ""
+msgstr "Ersatte emote-love-ikonen med biblioteket på bibliotekssidan"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:115
 msgid "Add toast for \"Run Executable\""
@@ -3106,7 +3107,7 @@ msgstr "Felrättningar:"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:119
 msgid "Adding shortcut to Steam resulted an error"
-msgstr ""
+msgstr "Ett fel uppstod när genvägen till Steam lades till"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:120
 msgid "Importing backups resulted an error"
@@ -3121,6 +3122,8 @@ msgid ""
 "Various library related fixes, like empty covers, and crashes related to "
 "missing entries"
 msgstr ""
+"Diverse korrigeringar kopplade till biblioteket, som tomma omslag och "
+"krascher på grund av saknade poster"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:123
 msgid "Fix various issues related to text encoding"
@@ -3136,7 +3139,7 @@ msgstr "Rättade versionsdatumet"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:138
 msgid "Hide NVIDIA-related critical errors on non NVIDIA systems"
-msgstr ""
+msgstr "Dölj kritiska NVIDIA-relaterade fel på system utan NVIDIA"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:145
 msgid "Gamescope improvements and fixes"
@@ -3169,7 +3172,7 @@ msgstr "Fler variabler för skript i installationsprogram"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:152
 msgid "Fix onboard dialog showing \"All ready\" while it was in fact not ready"
-msgstr ""
+msgstr "Rättade introduktionsdialogen som visade ”Allt klart” trots att den inte var klar"
 
 #: data/com.usebottles.bottles.metainfo.xml.in:153
 msgid "Improvement to build system"
