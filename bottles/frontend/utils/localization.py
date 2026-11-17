@@ -58,6 +58,7 @@ UI_LANGUAGES = (
     ("ka", "ქართული"),
     ("yi", "ייִדיש"),
     ("oc", "Occitan"),
+    ("lv", "Latviešu"),
 )
 UI_LANGUAGE_CODES = {code for code, _name in UI_LANGUAGES}
 _INHERITED_LANGUAGE = os.environ.get("LANGUAGE")
