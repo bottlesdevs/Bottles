@@ -114,12 +114,18 @@ jobs:
           IMAGE: ${{ steps.identity.outputs.image }}
           FULL_TEST_SUITE: ${{ inputs.full_test_suite || false }}
         run: |
+          mkdir -p "$RUNNER_TEMP/bottles-test-results"
           docker run --rm \
             --entrypoint sh \
             --env FULL_TEST_SUITE \
+            --volume "$RUNNER_TEMP/bottles-test-results:/results" \
             --volume "$GITHUB_WORKSPACE:/tests:ro" \
             "$IMAGE" -ceu '
-              sh /tests/build-aux/cpak/install-test-tools.sh xauth xvfb blueprint-compiler python3-pytest python3-pytest-mock python3-freezegun
+              test_tools="xauth xvfb blueprint-compiler python3-pytest python3-pytest-mock python3-freezegun"
+              if test "$FULL_TEST_SUITE" = true; then
+                test_tools="$test_tools gcc-mingw-w64-i686 gcc-mingw-w64-x86-64 wixl nsis"
+              fi
+              sh /tests/build-aux/cpak/install-test-tools.sh $test_tools
               mkdir -p /app/share/bottles
               ln -s /usr/share/bottles/bottles.gresource /app/share/bottles/bottles.gresource
               cd /tests
@@ -130,7 +136,7 @@ jobs:
               command -v dbus-run-session
               xvfb-run -a /usr/bin/bottles-real --help
               if test "$FULL_TEST_SUITE" = true; then
-                xvfb-run -a timeout 900 python3 -m pytest -q --import-mode=importlib bottles/tests
+                xvfb-run -a timeout 900 python3 -m pytest -q -ra --junitxml=/results/pytest.xml --import-mode=importlib bottles/tests
               else
               xvfb-run -a python3 -m pytest -q \
                 bottles/tests/backend/test_downloader.py \
@@ -197,6 +203,14 @@ jobs:
                 bottles/tests/backend/wine/test_start.py
               fi
             '
+
+      - name: Upload full test results
+        if: ${{ always() && inputs.full_test_suite }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: bottles-tests-${{ matrix.arch }}
+          path: ${{ runner.temp }}/bottles-test-results
+          retention-days: 7
 
       - name: Verify Soda and DPI settings
         env:

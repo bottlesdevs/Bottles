@@ -18,7 +18,7 @@ from bottles.backend.utils.generic import (
     [
         ("Hello, world!", None, "ascii"),
         ("   ", None, "ascii"),
-        ("Привет, мир!", "ru_RU", "windows-1251"),
+        ("Привет, мир!", "ru_RU.windows-1251", "windows-1251"),
         ("こんにちは、世界！", "ja_JP", "cp932"),
         ("こんにちは、世界！", "ja_JP.utf-8", "utf-8"),
         ("你好，世界！", "zh_CN", "gbk"),
@@ -79,3 +79,13 @@ def test_esync_missing_reads_the_runner_wineserver(tmp_path, wineserver, missing
         (runner / "wineserver").write_bytes(wineserver)
 
     assert is_esync_missing(shlex.quote(str(runner / "wine"))) is missing
+
+
+@pytest.mark.parametrize("confidence,expected", [(0.4, None), (0.5, "windows-1251"), (0.9, "windows-1251")])
+def test_encoding_detection_preserves_the_confidence_threshold(monkeypatch, confidence, expected):
+    monkeypatch.setattr(
+        generic.chardet, "detect",
+        lambda _data: {"encoding": "windows-1251", "confidence": confidence},
+    )
+
+    assert detect_encoding(b"ambiguous input") == expected
