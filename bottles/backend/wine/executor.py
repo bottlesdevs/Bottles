@@ -494,7 +494,7 @@ class WineExecutor:
                     from bottles.backend.wine.wineboot import WineBoot
                     if WineBoot(self.config).update().ok:
                         with open(stamp_file, "w") as f:
-                            f.write(str(fonts_mtime))
+                            f.write(str(os.path.getmtime(fonts_dir)))
         except Exception as e:
             logging.debug(f"Failed to check and update fonts: {e}")
 

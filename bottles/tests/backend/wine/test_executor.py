@@ -111,6 +111,8 @@ def test_changed_fonts_refresh_before_launch(monkeypatch, tmp_path, refresh_ok):
 
         def run(self):
             events.append("refresh")
+            refreshed_time = fonts.stat().st_mtime + 1
+            os.utime(fonts, (refreshed_time, refreshed_time))
             return Result(refresh_ok)
 
     monkeypatch.setattr(
