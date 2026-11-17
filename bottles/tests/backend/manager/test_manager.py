@@ -578,6 +578,57 @@ def test_create_bottle_checks_every_essential_component_before_retry():
     assert calls == ["runner", "dxvk", "vkd3d"]
 
 
+@pytest.mark.parametrize("available", [False, True])
+@pytest.mark.parametrize("existing_config", [False, True])
+def test_gaming_creation_detects_sync_without_overwriting_saved_settings(
+    monkeypatch, mocker, tmp_path, available, existing_config
+):
+    manager = object.__new__(Manager)
+    for name in ("runners", "dxvk", "vkd3d", "nvapi", "latencyflex"):
+        setattr(manager, f"{name}_available", ["fixture"])
+    manager.d7vk_available = []
+    manager.supported_dependencies = {}
+    manager.settings = GSettingsStub()
+    cancelled = Event()
+    manager.install_dll_component = lambda *_args, **_kwargs: cancelled.set()
+    monkeypatch.setattr(manager_module.Paths, "bottles", str(tmp_path))
+    monkeypatch.setattr(manager_module.FileUtils, "chattr_f", lambda _path: None)
+    monkeypatch.setattr(manager_module.FileUtils, "wait_for_files", lambda *_a, **_k: True)
+    monkeypatch.setattr(manager_module.WineUtils, "ensure_user_profile_alias", lambda _p: True)
+    monkeypatch.setattr(manager_module.WineUtils, "unlink_user_profile_links", lambda _p: True)
+    monkeypatch.setattr(manager_module.TemplateManager, "get_env_template", lambda _e: None)
+    mocker.patch.object(manager_module, "Reg")
+    mocker.patch.object(manager_module, "RegKeys")
+    boot = mocker.patch.object(manager_module, "WineBoot").return_value
+    boot.init.return_value = manager_module.Result(True)
+    server = mocker.patch.object(manager_module, "WineServer").return_value
+    server.is_alive.return_value = False
+    monkeypatch.setattr(
+        manager_module.WineCommand, "get_runner_info",
+        lambda _config: ("/runner/bin/wine", ""),
+    )
+    check = mocker.patch.object(manager_module, "is_ntsync_available", return_value=available)
+    config = BottleConfig() if existing_config else None
+    if config is not None:
+        config.Parameters.sync = "esync"
+        config.Parameters.dxvk = config.Parameters.vkd3d = True
+
+    result = manager.create_bottle(
+        name="Gaming", environment="gaming", runner="fixture",
+        cancel_event=cancelled, configuration=config,
+    )
+
+    assert not result.ok
+    expected = "esync" if existing_config else ("ntsync" if available else "fsync")
+    assert result.data["config"].Parameters.sync == expected
+    assert manager_module.Samples.environments["gaming"]["Parameters"]["sync"] == "ntsync"
+    if existing_config:
+        check.assert_not_called()
+        assert config.Parameters.sync == "esync"
+    else:
+        check.assert_called_once_with("/runner/bin/wine")
+
+
 def test_create_bottle_rejects_win32_for_wow64_only_runner(tmp_path, monkeypatch):
     runner = tmp_path / "runner"
     ntdll = runner / "lib/wine/x86_64-unix/ntdll.so"

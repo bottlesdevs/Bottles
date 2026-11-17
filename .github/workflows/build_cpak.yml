@@ -7,6 +7,11 @@ on:
   schedule:
     - cron: '40 7 * * 2'
   workflow_dispatch:
+    inputs:
+      full_test_suite:
+        description: Run the complete test suite before release
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -106,9 +111,11 @@ jobs:
       - name: Test bottle and dependency handling
         env:
           IMAGE: ${{ steps.identity.outputs.image }}
+          FULL_TEST_SUITE: ${{ inputs.full_test_suite || false }}
         run: |
           docker run --rm \
             --entrypoint sh \
+            --env FULL_TEST_SUITE \
             --volume "$GITHUB_WORKSPACE:/tests:ro" \
             "$IMAGE" -ceu '
               sh /tests/build-aux/cpak/install-test-tools.sh xauth xvfb blueprint-compiler python3-pytest python3-pytest-mock
@@ -121,6 +128,9 @@ jobs:
               export TMP="$TMPDIR" TEMP="$TMPDIR"
               command -v dbus-run-session
               xvfb-run -a /usr/bin/bottles-real --help
+              if test "$FULL_TEST_SUITE" = true; then
+                xvfb-run -a python3 -m pytest -q bottles/tests
+              else
               xvfb-run -a python3 -m pytest -q \
                 bottles/tests/backend/test_downloader.py \
                 bottles/tests/backend/manager/test_component.py \
@@ -145,6 +155,7 @@ jobs:
                 bottles/tests/backend/wine/test_dpi_scaling.py \
                 bottles/tests/backend/manager/test_offline_cache.py \
                 bottles/tests/backend/manager/test_manager.py::test_create_bottle_rejects_win32_for_wow64_only_runner \
+                bottles/tests/backend/manager/test_manager.py::test_gaming_creation_detects_sync_without_overwriting_saved_settings \
                 bottles/tests/backend/manager/test_manager.py::test_prefix_creation_reports_wineboot_failure_before_waiting \
                 bottles/tests/backend/manager/test_manager.py::test_custom_prefix_without_placeholder_uses_its_current_config \
                 bottles/tests/backend/manager/test_manager.py::test_loaded_prefix_keeps_user_files_after_account_change \
@@ -181,6 +192,7 @@ jobs:
                 bottles/tests/backend/wine/test_wineserver.py \
                 bottles/tests/backend/wine/test_uninstaller.py \
                 bottles/tests/backend/wine/test_start.py
+              fi
             '
 
       - name: Verify Soda and DPI settings
