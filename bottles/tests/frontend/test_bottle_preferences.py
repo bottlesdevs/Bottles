@@ -160,6 +160,29 @@ def test_unchanged_sync_does_not_update_bottle(monkeypatch):
     view.queue.add_task.assert_not_called()
 
 
+@pytest.mark.parametrize(
+    ("sync", "missing", "visible"),
+    (
+        ("esync", True, True),
+        ("esync", False, False),
+        ("fsync", True, False),
+    ),
+)
+def test_esync_warning_follows_sync_and_runner(monkeypatch, sync, missing, visible):
+    from bottles.frontend.views import bottle_preferences
+    from bottles.frontend.views.bottle_preferences import PreferencesView
+
+    view = SimpleNamespace(config=BottleConfig(), _esync_warning=Mock())
+    monkeypatch.setattr(
+        bottle_preferences.WineCommand, "get_runner_info", lambda _config: ("wine", "")
+    )
+    monkeypatch.setattr(bottle_preferences, "is_esync_missing", lambda _runner: missing)
+
+    PreferencesView._PreferencesView__update_esync_warning(view, sync)
+
+    view._esync_warning.set_visible.assert_called_once_with(visible)
+
+
 @pytest.mark.parametrize("error", (None, ValueError("winecfg failed")))
 def test_windows_version_is_saved_only_after_winecfg_succeeds(monkeypatch, error):
     from gi.repository import Adw, GLib, Gtk

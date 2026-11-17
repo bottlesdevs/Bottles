@@ -101,22 +101,43 @@ def is_glibc_min_available():
 
 NTSYNC_DEVICE = "/dev/ntsync"
 NTSYNC_DEVICE_MARKER = b"/dev/ntsync"
+ESYNC_ENV_MARKER = b"WINEESYNC"
 
 
 @functools.lru_cache(maxsize=64)
-def _wineserver_supports_ntsync(path: str, mtime_ns: int, size: int) -> bool:
+def _wineserver_contains(path: str, mtime_ns: int, size: int, marker: bytes) -> bool:
     del mtime_ns, size
     try:
         with open(path, "rb") as binary:
             previous = b""
             while chunk := binary.read(1024 * 1024):
                 data = previous + chunk
-                if NTSYNC_DEVICE_MARKER in data:
+                if marker in data:
                     return True
-                previous = data[-len(NTSYNC_DEVICE_MARKER) :]
+                previous = data[-len(marker) :]
     except OSError:
         pass
     return False
+
+
+def _runner_wineserver_contains(runner: str, marker: bytes) -> Optional[bool]:
+    """Return whether the runner's wineserver has marker, None if not found."""
+    try:
+        runner_parts = shlex.split(runner)
+    except ValueError:
+        return None
+    if len(runner_parts) != 1:
+        return None
+
+    wineserver = os.path.join(os.path.dirname(runner_parts[0]), "wineserver")
+    try:
+        stat = os.stat(wineserver)
+    except OSError:
+        return None
+
+    return _wineserver_contains(
+        os.path.realpath(wineserver), stat.st_mtime_ns, stat.st_size, marker
+    )
 
 
 def is_ntsync_available(runner: Optional[str] = None) -> bool:
@@ -133,22 +154,17 @@ def is_ntsync_available(runner: Optional[str] = None) -> bool:
     if runner is None:
         return True
 
-    try:
-        runner_parts = shlex.split(runner)
-    except ValueError:
-        return False
-    if len(runner_parts) != 1:
-        return False
+    return _runner_wineserver_contains(runner, NTSYNC_DEVICE_MARKER) is True
 
-    wineserver = os.path.join(os.path.dirname(runner_parts[0]), "wineserver")
-    try:
-        stat = os.stat(wineserver)
-    except OSError:
-        return False
 
-    return _wineserver_supports_ntsync(
-        os.path.realpath(wineserver), stat.st_mtime_ns, stat.st_size
-    )
+def is_esync_missing(runner: str) -> bool:
+    """
+    Return True if the runner's wineserver was built without Esync.
+
+    The wineserver only reads WINEESYNC when Esync was compiled in. A wineserver
+    that can't be found says nothing about the runner, so it doesn't count.
+    """
+    return _runner_wineserver_contains(runner, ESYNC_ENV_MARKER) is False
 
 
 def sort_by_version(_list: list, extra_check: str = "async"):
