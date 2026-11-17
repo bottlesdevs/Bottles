@@ -8,12 +8,22 @@ from gi.repository import GLib
 from bottles.backend.managers.manager import Manager
 from bottles.backend.utils.gsettings_stub import GSettingsStub
 from bottles.backend.managers.playtime import ProcessSessionTracker
+from bottles.backend.state import SignalManager
 
 
 @pytest.fixture(autouse=True)
 def synchronous_callbacks(monkeypatch):
+    existing = Manager._instances.pop(Manager, None)
+    monkeypatch.setattr(Manager, "_playtime_signals_connected", False)
+    monkeypatch.setattr(SignalManager, "_SIGNALS", {})
     monkeypatch.setattr(GLib, "idle_add", lambda func, *args, **kwargs: func(*args))
     monkeypatch.setattr(GLib, "timeout_add", lambda *_args, **_kwargs: 0)
+    yield
+    current = Manager._instances.pop(Manager, None)
+    if current is not None:
+        current.playtime_tracker.shutdown()
+    if existing is not None:
+        Manager._instances[Manager] = existing
 
 
 @pytest.fixture()
@@ -43,6 +53,7 @@ def manager(temp_xdg_home, test_settings_stub):
     os.makedirs(db_dir, exist_ok=True)
     db_path = os.path.join(db_dir, "process_metrics.sqlite")
     tracker = ProcessSessionTracker(db_path=db_path, heartbeat_interval=5, enabled=True)
+    m.playtime_tracker.shutdown()
     m.playtime_tracker = tracker
     yield m
     with contextlib.suppress(Exception):

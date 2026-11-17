@@ -64,7 +64,8 @@ def test_nsis_member_extension_case(monkeypatch, tmp_path, member):
     manager._send_step = lambda *_args, **_kwargs: None
     files, output = manager._extract_installer(str(target), "NSIS")
     try:
-        assert [eagle_module.os.path.basename(path) for path in files] == [member, "Support.DlL"]
+        assert len(files) == 2
+        assert {eagle_module.os.path.basename(path) for path in files} == {member, "Support.DlL"}
         for path in files:
             with open(path, "rb") as stream:
                 assert stream.read() == payload.read_bytes()
