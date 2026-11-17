@@ -566,7 +566,7 @@ class Manager(metaclass=Singleton):
                 return
             payload: ProcessFinishedPayload = data.data  # type: ignore
             sid = self._launch_to_session.pop(payload.launch_id, -1)
-            if sid and sid > 0:
+            if sid and sid != -1:
                 status = payload.status
                 ended_at = int(payload.ended_at or time.time())
                 logging.debug(

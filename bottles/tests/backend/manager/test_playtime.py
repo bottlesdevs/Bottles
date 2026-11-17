@@ -94,7 +94,7 @@ def test_recovery_finalizes_running_sessions():
         tracker2.shutdown()
 
 
-def test_disabled_tracker_is_noop():
+def test_disabled_tracker_keeps_sessions_without_database_writes():
     with tempfile.TemporaryDirectory() as tmp:
         tracker = _new_tracker(tmp, enabled=False)
         sid = tracker.start_session(
@@ -104,7 +104,7 @@ def test_disabled_tracker_is_noop():
             program_name="Game",
             program_path="C:/Game/game.exe",
         )
-        assert sid == -1
+        assert sid < -1
         tracker.shutdown()
 
 
@@ -291,7 +291,7 @@ def test_disable_tracking_method():
         assert sid > 0
 
         tracker.disable_tracking()
-        # After disabling, new sessions should be no-op
+        # New sessions remain in memory after persistence is disabled.
         sid2 = tracker.start_session(
             bottle_id="b1",
             bottle_name="Bottle",
@@ -299,7 +299,7 @@ def test_disable_tracking_method():
             program_name="Game2",
             program_path="C:/Game2/game2.exe",
         )
-        assert sid2 == -1
+        assert sid2 < -1
 
 
 def test_start_session_collapses_duplicate_running_session():
@@ -487,3 +487,27 @@ def test_database_stores_normalized_paths():
         tracker.shutdown()
 
 
+
+
+def test_disabled_tracking_ids_remain_distinct_at_the_same_timestamp(monkeypatch, tmp_path):
+    from bottles.backend.managers import playtime
+
+    tracker = _new_tracker(str(tmp_path), enabled=False)
+    monkeypatch.setattr(playtime.time, "time", lambda: 1700000000.0)
+    arguments = dict(
+        bottle_id="b1", bottle_name="Bottle", bottle_path="/bottle",
+        program_name="Game", program_path="C:/Game/game.exe",
+    )
+    try:
+        first = tracker.start_session(**arguments)
+        second = tracker.start_session(**arguments)
+        assert first < -1 and second < -1
+        assert first != second
+        tracker.mark_exit(first)
+        assert first not in tracker._tracked
+        assert second in tracker._tracked
+        tracker.mark_exit(second)
+        assert not tracker._tracked
+        assert tracker._conn.execute("SELECT COUNT(*) FROM sessions").fetchone()[0] == 0
+    finally:
+        tracker.shutdown()

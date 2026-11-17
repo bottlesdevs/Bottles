@@ -888,3 +888,20 @@ def test_prefix_creation_reports_wineboot_failure_before_waiting(monkeypatch, tm
     assert not result.ok
     assert "status 23" in result.message
     assert result.message in messages
+
+
+@pytest.mark.parametrize("session_id,finished", [(7, True), (-2, True), (-1, False), (0, False)])
+def test_finished_signal_cleans_up_in_memory_sessions(mocker, session_id, finished):
+    manager = object.__new__(Manager)
+    manager._launch_to_session = {"launch": session_id}
+    manager.playtime_finish = mocker.Mock()
+    manager._get_payload_config = lambda _payload: None
+    payload = SimpleNamespace(launch_id="launch", status="success", ended_at=5)
+
+    manager._on_program_finished(manager_module.Result(True, data=payload))
+
+    assert not manager._launch_to_session
+    if finished:
+        manager.playtime_finish.assert_called_once_with(session_id, status="success", ended_at=5)
+    else:
+        manager.playtime_finish.assert_not_called()

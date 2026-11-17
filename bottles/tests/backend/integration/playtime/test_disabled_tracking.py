@@ -22,7 +22,7 @@ def test_disabled_tracking_smoke(temp_xdg_home):
     assert tracker is not None
     assert tracker.enabled is False
 
-    # Attempt to start a session → should be no-op
+    # Start a session in memory without recording statistics.
     sid = tracker.start_session(
         bottle_id="b1",
         bottle_name="Bottle",
@@ -30,7 +30,10 @@ def test_disabled_tracking_smoke(temp_xdg_home):
         program_name="Game",
         program_path="C:/Game/game.exe",
     )
-    assert sid == -1
+    assert sid < -1
+    assert sid in tracker._tracked
+    tracker.mark_exit(sid)
+    assert sid not in tracker._tracked
 
     # Verify no rows in sessions/totals
     con = sqlite3.connect(tracker.db_path)

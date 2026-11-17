@@ -153,6 +153,7 @@ class ProcessSessionTracker:
 
         self._lock = threading.RLock()
         self._tracked: Dict[int, _TrackedSession] = {}
+        self._memory_session_id = -1
 
         self._stop_event = threading.Event()
         self._heartbeat_thread = threading.Thread(
@@ -287,7 +288,8 @@ class ProcessSessionTracker:
         with self._lock:
             # If database tracking is disabled, we only use in-memory tracking.
             if not self.enabled:
-                session_id = -int(time.time() * 1000) % 2147483647
+                self._memory_session_id -= 1
+                session_id = self._memory_session_id
                 self._tracked[session_id] = _TrackedSession(
                     session_id=session_id,
                     bottle_id=bottle_id,
@@ -404,7 +406,7 @@ class ProcessSessionTracker:
 
         with self._lock:
             # If tracking was in-memory only, just pop it and return
-            if not self.enabled and session_id in self._tracked:
+            if session_id < -1:
                 self._tracked.pop(session_id, None)
                 logging.debug(f"Session ended (in-memory only): id={session_id}")
                 return
