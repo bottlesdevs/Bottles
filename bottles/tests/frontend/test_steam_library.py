@@ -564,6 +564,7 @@ def test_program_library_action_removes_entry(monkeypatch):
         program={"name": "Example Game"},
         btn_add_library=button,
         _ProgramEntry__library_entry_uuid="entry-id",
+        remove_from_library=lambda widget: ProgramEntry.remove_from_library(entry, widget),
         _ProgramEntry__set_library_state=lambda exists: (
             ProgramEntry._ProgramEntry__set_library_state(entry, exists)
         ),
@@ -775,6 +776,7 @@ def test_library_entry_resolves_steam_game_without_wine_program():
     }
     entry = SimpleNamespace(
         entry=data,
+        is_umu=False,
         manager=SimpleNamespace(local_bottles={"123": config}),
         _LibraryEntry__remove_from_library=lambda: pytest.fail(
             "The Steam prefix is available"

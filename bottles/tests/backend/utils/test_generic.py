@@ -18,7 +18,7 @@ from bottles.backend.utils.generic import (
     [
         ("Hello, world!", None, "ascii"),
         ("   ", None, "ascii"),
-        ("Привет, мир!", None, "windows-1251"),
+        ("Привет, мир!", "ru_RU", "windows-1251"),
         ("こんにちは、世界！", "ja_JP", "cp932"),
         ("こんにちは、世界！", "ja_JP.utf-8", "utf-8"),
         ("你好，世界！", "zh_CN", "gbk"),

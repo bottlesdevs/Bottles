@@ -3,6 +3,7 @@ import sqlite3
 import tempfile
 
 from bottles.backend.managers.manager import Manager
+from bottles.backend.utils.gsettings_stub import GSettingsStub
 from bottles.backend.managers.playtime import ProcessSessionTracker
 from bottles.backend.state import SignalManager, Signals
 from bottles.backend.models.result import Result
@@ -12,7 +13,7 @@ from bottles.backend.models.process import (
 )
 
 
-class _Settings:
+class _Settings(GSettingsStub):
     def get_boolean(self, key: str) -> bool:
         return True if key == "playtime-enabled" else False
 

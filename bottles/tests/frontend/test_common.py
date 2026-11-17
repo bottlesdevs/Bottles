@@ -53,6 +53,7 @@ def test_runner_dropdown_uses_display_names_without_changing_ids(monkeypatch):
     monkeypatch.setattr(ManagerUtils, "get_languages", lambda: [])
     manager = SimpleNamespace(
         runners_available=["soda-11.0-3", "sys-wine-11.0"],
+        d7vk_available=[],
         dxvk_available=[],
         vkd3d_available=[],
         nvapi_available=[],
@@ -61,6 +62,7 @@ def test_runner_dropdown_uses_display_names_without_changing_ids(monkeypatch):
     view = SimpleNamespace(manager=manager)
     for name in (
         "runner",
+        "d7vk",
         "dxvk",
         "vkd3d",
         "nvapi",
@@ -72,6 +74,7 @@ def test_runner_dropdown_uses_display_names_without_changing_ids(monkeypatch):
         setattr(view, f"_PreferencesView__set_{name}", Mock())
     for name in (
         "runner",
+        "d7vk",
         "dxvk",
         "vkd3d",
         "nvapi",

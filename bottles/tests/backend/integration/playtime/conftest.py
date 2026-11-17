@@ -6,6 +6,7 @@ import pytest
 from gi.repository import GLib
 
 from bottles.backend.managers.manager import Manager
+from bottles.backend.utils.gsettings_stub import GSettingsStub
 from bottles.backend.managers.playtime import ProcessSessionTracker
 
 
@@ -24,7 +25,7 @@ def temp_xdg_home(monkeypatch):
 
 @pytest.fixture()
 def test_settings_stub():
-    class _S:
+    class _S(GSettingsStub):
         def get_boolean(self, key: str) -> bool:
             return True if key == "playtime-enabled" else False
 

@@ -37,6 +37,7 @@ from bottles.frontend.views.bottle_preferences import PreferencesView
     ],
 )
 def test_steam_runtime_row_explains_availability(monkeypatch, runtimes, sensitive):
+    monkeypatch.setattr(bottle_preferences, "is_cpak", lambda: True)
     monkeypatch.setattr(bottle_preferences, "gamemode_available", False)
     monkeypatch.setattr(
         bottle_preferences.RuntimeManager,
