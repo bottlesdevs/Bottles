@@ -46,6 +46,32 @@ class PortalStub:
         self.directory_calls.append(args)
 
 
+@pytest.mark.parametrize("missing", ["runners", "dxvk", "vkd3d", None])
+def test_executable_picker_waits_for_first_run_setup(monkeypatch, mocker, tmp_path, missing):
+    from bottles.frontend import main
+    from bottles.frontend.windows import bottlepicker
+
+    for name in ("runners", "dxvk", "vkd3d"):
+        directory = tmp_path / name
+        directory.mkdir()
+        if name != missing:
+            (directory / "fixture").mkdir()
+        monkeypatch.setattr(main.Paths, name, str(directory))
+    picker = mocker.patch.object(bottlepicker, "BottlePickerDialog")
+    app = SimpleNamespace(do_activate=mocker.Mock())
+    executable = "file:///run/user/1000/doc/fixture/setup.exe"
+
+    assert main.Bottles._Bottles__show_bottle_picker(app, executable) == 0
+
+    if missing:
+        app.do_activate.assert_called_once_with()
+        picker.assert_not_called()
+    else:
+        app.do_activate.assert_not_called()
+        picker.assert_called_once_with(application=app, arg_exe=executable)
+        picker.return_value.present.assert_called_once_with()
+
+
 def test_show_uri_opens_file_uri_through_portal_in_flatpak(monkeypatch):
     uri = "file:///tmp/Test"
     parent = object()
