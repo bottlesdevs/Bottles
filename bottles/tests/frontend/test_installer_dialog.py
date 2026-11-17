@@ -1,51 +1,21 @@
-from importlib import import_module
-from importlib.util import module_from_spec, spec_from_file_location
-from pathlib import Path
+# ruff: noqa: E402
+import os
 from types import SimpleNamespace
 from unittest.mock import Mock
 
+import gi
 import pytest
 
+gi.require_version("Adw", "1")
+gi.require_version("Gtk", "4.0")
+from gi.repository import Gio
+
+Gio.resources_register(Gio.Resource.load(
+    os.environ.get("BOTTLES_TEST_RESOURCE", "/app/share/bottles/bottles.gresource")
+))
+
 from bottles.backend.models.result import Result
-
-
-class TemplateStub:
-    def __init__(self, **_kwargs):
-        pass
-
-    def __call__(self, cls):
-        return cls
-
-    @staticmethod
-    def Child():
-        return None
-
-
-def load_installer_dialog():
-    import gi
-
-    gi.require_version("Adw", "1")
-    gi.require_version("Gtk", "4.0")
-    Gtk = import_module("gi.repository.Gtk")
-
-    spec = spec_from_file_location(
-        "_test_installer_module",
-        Path(__file__).parents[2] / "frontend" / "windows" / "installer.py",
-    )
-    if spec is None or spec.loader is None:
-        raise RuntimeError("Unable to load the installer module")
-    installer_module = module_from_spec(spec)
-
-    template = Gtk.Template
-    Gtk.Template = TemplateStub
-    try:
-        spec.loader.exec_module(installer_module)
-    finally:
-        Gtk.Template = template
-    return installer_module.InstallerDialog
-
-
-InstallerDialog = load_installer_dialog()
+from bottles.frontend.windows.installer import InstallerDialog
 
 
 def test_installer_progress_displays_percentage():

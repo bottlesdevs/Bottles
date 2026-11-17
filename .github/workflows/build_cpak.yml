@@ -118,7 +118,7 @@ jobs:
             --env FULL_TEST_SUITE \
             --volume "$GITHUB_WORKSPACE:/tests:ro" \
             "$IMAGE" -ceu '
-              sh /tests/build-aux/cpak/install-test-tools.sh xauth xvfb blueprint-compiler python3-pytest python3-pytest-mock
+              sh /tests/build-aux/cpak/install-test-tools.sh xauth xvfb blueprint-compiler python3-pytest python3-pytest-mock python3-freezegun
               mkdir -p /app/share/bottles
               ln -s /usr/share/bottles/bottles.gresource /app/share/bottles/bottles.gresource
               cd /tests
@@ -129,7 +129,7 @@ jobs:
               command -v dbus-run-session
               xvfb-run -a /usr/bin/bottles-real --help
               if test "$FULL_TEST_SUITE" = true; then
-                xvfb-run -a python3 -m pytest -q bottles/tests
+                xvfb-run -a python3 -m pytest -q --import-mode=importlib bottles/tests
               else
               xvfb-run -a python3 -m pytest -q \
                 bottles/tests/backend/test_downloader.py \
