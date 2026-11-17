@@ -4,6 +4,7 @@ import pytest
 
 from bottles.backend.managers import manager as manager_module
 from bottles.backend.managers.manager import Manager
+from bottles.backend.models.result import Result
 
 
 def test_default_directory_selection_does_not_create_a_placeholder(
@@ -56,6 +57,8 @@ def test_create_bottle_applies_sandbox_before_wineboot(monkeypatch, tmp_path, sa
             captured["user_dir"] = (users / "hostuser").is_dir()
             captured["steamuser"] = str((users / "steamuser").readlink())
             cancel_event.set()
+
+            return Result(True)
 
     manager = object.__new__(Manager)
     manager.runners_available = ["soda-11.0"]
@@ -113,6 +116,8 @@ def test_shared_user_profile_survives_home_link_cleanup(monkeypatch, tmp_path):
             host_documents = tmp_path / "host-documents"
             host_documents.mkdir()
             (users / "hostuser" / "Documents").symlink_to(host_documents)
+
+            return Result(True)
 
     def wait_for_files(*_args, **_kwargs):
         nonlocal wait_calls
@@ -243,6 +248,8 @@ def test_create_bottle_handles_home_directory_links(
             profile = bottle_root / "Sandboxed" / "drive_c/users/hostuser"
             profile.mkdir(parents=True)
             (profile / "Documents").symlink_to(host_documents)
+
+            return Result(True)
 
     def wait_for_files(*_args, **_kwargs):
         nonlocal wait_calls
