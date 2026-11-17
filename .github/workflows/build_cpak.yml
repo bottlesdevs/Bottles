@@ -123,7 +123,7 @@ jobs:
             "$IMAGE" -ceu '
               test_tools="xauth xvfb blueprint-compiler python3-pytest python3-pytest-mock python3-freezegun"
               if test "$FULL_TEST_SUITE" = true; then
-                test_tools="$test_tools gcc-mingw-w64-i686 gcc-mingw-w64-x86-64 wixl nsis"
+                test_tools="$test_tools gcc-mingw-w64-i686 gcc-mingw-w64-x86-64 wixl nsis python3-pyatspi"
               fi
               sh /tests/build-aux/cpak/install-test-tools.sh $test_tools
               mkdir -p /app/share/bottles
@@ -137,6 +137,7 @@ jobs:
               xvfb-run -a /usr/bin/bottles-real --help
               if test "$FULL_TEST_SUITE" = true; then
                 xvfb-run -a timeout 900 python3 -m pytest -q -ra --junitxml=/results/pytest.xml --import-mode=importlib bottles/tests
+                xvfb-run -a dbus-run-session -- timeout 600 python3 build-aux/cpak/test-startup.py
               else
               xvfb-run -a python3 -m pytest -q \
                 bottles/tests/backend/test_downloader.py \
