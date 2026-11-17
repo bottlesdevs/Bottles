@@ -58,7 +58,7 @@ from bottles.fvs.repo import FVSRepo
 
 
 @Gtk.Template(resource_path="/com/usebottles/bottles/details-bottle.ui")
-class BottleView(Adw.PreferencesPage):
+class BottleView(Adw.Bin):
     __gtype_name__ = "DetailsBottle"
     __registry = []
 

@@ -60,17 +60,21 @@ template $InstallerDialog: Adw.Window {
             description: _("This installer requires some local resources which cannot be provided otherwise.");
           }
 
-          Button btn_proceed {
-            label: _("Proceed");
-            sensitive: false;
-            visible: false;
-            halign: center;
-            valign: center;
+          Adw.PreferencesGroup {
+            visible: bind btn_proceed.visible;
 
-            styles [
-              "pill",
-              "suggested-action",
-            ]
+            Button btn_proceed {
+              label: _("Proceed");
+              sensitive: false;
+              visible: false;
+              halign: center;
+              valign: center;
+
+              styles [
+                "pill",
+                "suggested-action",
+              ]
+            }
           }
         };
       }

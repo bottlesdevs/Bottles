@@ -48,14 +48,15 @@ template $ImporterView: Adw.Bin {
       }
     }
 
-    Adw.PreferencesPage {
-      Adw.StatusPage status_page {
-        vexpand: true;
-        icon-name: "document-save-symbolic";
-        title: _("No Prefixes Found");
-        description: _("No external prefixes were found. Select their folder to grant Bottles access, or import a bottle backup.");
-      }
+    Adw.StatusPage status_page {
+      vexpand: true;
+      icon-name: "document-save-symbolic";
+      title: _("No Prefixes Found");
+      description: _("No external prefixes were found. Select their folder to grant Bottles access, or import a bottle backup.");
+    }
 
+    Adw.PreferencesPage {
+      visible: bind group_prefixes.visible;
       Adw.PreferencesGroup group_prefixes {
         visible: false;
 

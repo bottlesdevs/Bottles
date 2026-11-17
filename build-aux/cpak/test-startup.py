@@ -48,22 +48,28 @@ for mode in ("plain", "executable", "uri"):
 
             with (output / f"{name}.log").open("w") as log:
                 process = subprocess.Popen(
-                    ["/usr/bin/bottles", *args], env=env,
-                    stdout=log, stderr=subprocess.STDOUT, start_new_session=True,
+                    ["/usr/bin/bottles", *args],
+                    env=env,
+                    stdout=log,
+                    stderr=subprocess.STDOUT,
+                    start_new_session=True,
                 )
                 names = []
                 try:
                     deadline = time.monotonic() + 45
                     while time.monotonic() < deadline:
                         if process.poll() is not None:
-                            raise AssertionError(f"{name}: exited with {process.returncode}")
+                            raise AssertionError(
+                                f"{name}: exited with {process.returncode}"
+                            )
                         names = visible_names(pyatspi.Registry.getDesktop(0))
                         if "Welcome to Bottles" in names:
                             break
                         time.sleep(0.2)
                     subprocess.run(
                         ["import", "-window", "root", str(output / f"{name}.png")],
-                        check=True, timeout=10,
+                        check=True,
+                        timeout=10,
                     )
                     assert "Welcome to Bottles" in names, (name, names)
                     assert (home / "data/bottles/winebridge/WineBridge.exe").is_file()
@@ -77,5 +83,6 @@ for mode in ("plain", "executable", "uri"):
                             os.killpg(process.pid, signal.SIGKILL)
                             process.wait(timeout=5)
                     (output / "startup.json").write_text(json.dumps(results, indent=2))
+            assert "Adwaita-CRITICAL" not in (output / f"{name}.log").read_text()
 
 print(f"Fresh-profile startup passed: {len(results)} launches")
