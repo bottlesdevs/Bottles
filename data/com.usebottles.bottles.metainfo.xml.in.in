@@ -85,6 +85,22 @@
     <display_length compare="ge">768</display_length>
   </requires>
   <releases>
+    <release version="67.7" date="2026-11-17">
+      <description translate="no">
+        <ul>
+          <li>Fixed reading the Windows version when Wine writes diagnostics or uses stderr, including the error that stopped dependency installers</li>
+          <li>Fixed first-run setup when Bottles is opened with an executable or a file URL</li>
+          <li>Fixed repeated font refreshes after wineboot updates the fonts directory</li>
+          <li>Gaming bottles now check runner and kernel support before choosing NTSync</li>
+          <li>Added a warning when the selected runner does not support Esync</li>
+          <li>Bottle creation now stops if the user profile cannot be prepared</li>
+          <li>Fixed playtime session cleanup with statistics disabled</li>
+          <li>Fixed the drag overlay, importer empty state and installer resource button being rejected by Adwaita</li>
+          <li>Added Latvian to the language selector and updated the Swedish translation</li>
+          <li>Updated the experimental Soda and Office installer catalogs</li>
+        </ul>
+      </description>
+    </release>
     <release version="67.6" date="2026-11-04">
       <description translate="no">
         <ul>
