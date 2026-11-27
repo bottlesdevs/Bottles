@@ -320,7 +320,7 @@ jobs:
             git push origin "HEAD:${{ github.event.repository.default_branch }}"
           fi
 
-      - uses: sigstore/cosign-installer@756fe2d284c7292c4e9b62c8a28f1e5629c59532
+      - uses: sigstore/cosign-installer@881c63bd87e38389154debd8331404ce7ca8a3ab
 
       - name: Install cpak-sign
         run: |
